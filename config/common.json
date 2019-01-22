@@ -1,0 +1,101 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplComm" : {
+				"options": {
+					"prefix":"/",
+					"module" : "lotteComm"
+				},
+				"src" : [
+					"lotte/resources_dev/layout/header.html",
+					"lotte/resources_dev/layout/sub_header.html",
+					"lotte/resources_dev/layer/layer_search.html",
+					"lotte/resources_dev/layout/footer.html",
+					"lotte/resources_dev/layout/lotte_side_category.html",
+					"lotte/resources_dev/layout/lotte_side_mylotte.html",
+					"lotte/resources_dev/layout/actionbar.html",
+					"lotte/resources_dev/common/comm_footer.html",
+					"lotte/resources_dev/sns/share_box.html",
+					"lotte/resources_dev/sns/sms_box.html",
+					"lotte/resources_dev/sns/share_pop.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/common.template.js"
+			}
+		},
+		
+		"concat" : {
+			"jsComm" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/lib/jquery/jquery-1.11.2.min.js",
+					"lotte/lib/jquery/cnt_interface.js",
+					"lotte/lib/jquery/app_interface.js",
+					"lotte/lib/angular/angular.min.js",
+					"lotte/lib/angular/angular-sanitize.min.js",
+					"lotte/lib/angular/angular-touch.min.js",
+					"lotte/lib/angular/angular-carousel.min.js",
+					"lotte/resources_dev/common/lotte_svc.js",
+					"lotte/resources_dev/common/lotte_comm.js",
+					"lotte/resources_dev/common/lotte_util.js",
+					"lotte/resources_dev/common/lotte_filter.js",
+					"lotte/resources_dev/common/lotte_search.js",
+					"lotte/resources_dev/common/lotte_comm_footer.js",
+					"lotte/resources_dev/common/lotte_log.js",
+					"lotte/resources_dev/layout/lotte_sidectg.js",
+					"lotte/resources_dev/layout/lotte_sidemylotte.js",
+					"lotte/lib/kakao/kakao.js",
+					"lotte/resources_dev/sns/lotte_sns.js"
+
+				],
+				"dest" : "lotte/resources/<%= version %>/common.js"
+			}
+		},
+		"uglify" : {
+			"jsComm" : {
+				"src" : "lotte/resources/<%= version %>/common.js",
+				"dest" : "lotte/resources/<%= version %>/common.min.js"
+			},
+			"tplComm" : {
+				"src" : "lotte/resources/<%= version %>/common.template.js",
+				"dest" : "lotte/resources/<%= version %>/common.tpl.js"
+			}
+			
+		},
+		"cssmin" : {
+			"cssComm" : {
+				"src" : [
+					"lotte/resources_dev/common/lotte.css",
+					"lotte/resources_dev/layout/header.css",
+					"lotte/resources_dev/layout/header_sub.css",
+					"lotte/resources_dev/layout/footer.css",
+					"lotte/resources_dev/layout/actionbar.css",
+					"lotte/resources_dev/layout/side_ctg.css",
+					"lotte/resources_dev/layout/side_mylotte.css",
+					"lotte/resources_dev/search/layer_srh.css",
+					"lotte/resources_dev/sns/sns.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/common.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanComm" : [
+				"lotte/resources/<%= version %>/common.js",
+				"lotte/resources/<%= version %>/common.template.js"
+			]
+		},
+		
+		 "processhtml" : {
+			"htmlComm" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {}
+			}
+		}
+	}
+}

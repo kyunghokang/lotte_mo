@@ -1,0 +1,66 @@
+<section id="main_header" class="main_header" ng-class="{app_bnr: appDownBnrFlag}">
+	<!-- Main Header -->
+	<div class="header_wrap">
+		<div app-down-bnr ng-if="appDownBnrFlag"></div>
+		<div class="inner_wrap" ng-class="{fixed: isMainHeaderFixed}">
+		    <div class="bg_cover">
+                <!-- 햄버거 메뉴/ 로고/ 장바구니 -->
+                <div class="header_top_wrap">
+                    <h1 class="logo"><button ng-click="logGAEvtComm('mainHeader','로고');gotoMainHeader()" class="btn_main">LOTTE.COM</button></h1>
+                    <button ng-click="logGAEvtComm('mainHeader','헤더카테고리');showSideCtgHeader()" class="btn_ctg">카테고리<i ng-if="intTodayDate && intLastCtgFlagDate && intTodayDate < intLastCtgFlagDate" class="reddot"></i></button>
+                    <a ng-click="logGAEvtComm('mainHeader','슈퍼이동');superMainMove()" class="site_move"><img ng-src="{{site_move}}" alt="" /></a>
+                </div>
+                <div class="header_bottom_wrap">
+                    <!-- 검색창 (음성검색/스타일 추천) -->
+                    <div class="srh_box" ng-class="{
+                    web: !appObj.isApp, 
+                    app: appObj.isApp, 
+                    app_speech_only: speechSrhFlag && !stylePushFlag, 
+                    app_stylesrh_only: !speechSrhFlag && stylePushFlag}">
+                        <label ng-click="logGAEvtComm('mainHeader','검색');showSrhLayerHeader()" for="keyword" class="btn_srh">{{srhPromotKeyword}}</label>
+                        <!-- <a class="btn_srh_promo" ng-click="showSrhLayerHeaderPromo()"></a> -->
+                        <a class="btn_srh_camera" ng-click="goStyleIntro()"></a>
+                        <!--  div ng-if="appObj.isApp" class="app_btn_area">
+                            <button ng-if="speechSrhFlag" ng-click="speechSrhLink()" class="btn_mic">음성검색</button>
+                            <button ng-if="stylePushFlag" ng-click="stylePushLink()" class="btn_stylesrh" ng-class="{after_line: speechSrhFlag}">스타일 추천</button>
+                        </div -->
+                    </div>
+                    <button ng-click="logGAEvtComm('mainHeader','장바구니');gotoCart()" class="btn_cart">장바구니<i ng-if="cartCount && cartCount > 0" class="cnt">{{cartCount}}</i></button>
+                </div>
+                <!-- GNB -->
+                <div id="gnb" class="nav_swipe_wrap" ng-show="pageUI.rootMenu.length > 0 && !open_menu">
+                    <nav main-menu lotte-slider class="main_nav" swipe-end-func="$scope.menuSwipEndFunc">
+                        <ul>
+                            <li ng-repeat="item in pageUI.rootMenu" class="dispno_{{item.dispNo}}" ng-class="{on : $index == pageUI.curMenuIdx}">
+                                <span class="cate_flag" ng-if="item.txtFlag">{{item.txtFlag}}</span>
+                                <a ng-click="logGAEvtComm('cateDirect',item.dispNm);headerMenuClick(item.dispNo)">{{item.dispNm}}</a>
+                            </li>
+                        </ul>
+                        <!--<div class="gradation" ng-class="{before: menuLeftChk, after: menuRightChk}"></div>-->
+                        <div class="gradation" ng-class="{before: menuLeftChk}"></div>
+                        <div class="open_menu" ng-click="logGAEvtOpenMenu('열기');gnbMenuOpen(true)"><img ng-src="http://image.lotte.com/lotte/mo2018/main/ic-tab-open_201811.png"></div>
+                    </nav>
+                </div>
+			</div>
+			
+			<!-- GNB 열린 상태 -->
+			<div class="gnb_open_menu" ng-show="pageUI.rootOpenMenu.length > 0 && open_menu"  ng-click="gnbMenuOpen(false)">
+                <div id="gnb2" ng-if="pageUI.rootOpenMenu.length > 0" ng-class="{on:open_menu}">
+                    <div class="gnb_open_title">
+                        전체보기 
+                        <div class="close_menu"  ng-click="logGAEvtOpenMenu('닫기');gnbMenuOpen(false)"><img ng-src="http://image.lotte.com/lotte/mo2018/main/ic-tab-close_201811.png"></div>
+                    </div>                        
+                    <nav class="main_nav2">
+                        <ul>
+                            <li ng-repeat="item in pageUI.rootOpenMenu" ng-class="{on : pageUI.curDispNo == item.dispNo}">                                
+                                <!--<a ng-click="logGAEvtComm('cateDirect',item.dispNm);headerMenuClick(item.dispNo)">{{item.dispNm}}</a>-->
+                                <a ng-if="item.mtype != 'sub'" ng-click="logGAEvtOpenMenu(item.dispNm);headerMenuClick(item.dispNo)">{{item.dispNm}}</a>
+                                <a ng-if="item.mtype == 'sub'" ng-click="logGAEvtOpenMenu(item.dispNm);headerMenuClick(item.parDispNo, item)">{{item.dispNm}}</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,72 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplmylotteCritView" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mylotte/product/m/mylotte_crit_view_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/mylotte_crit_view.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsmylotteCritView" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+					"lotte/resources_dev/common/lotte_ngswipe.js",
+					"lotte/resources_dev/common/lotte_video.js",
+					"lotte/resources_dev/common/lotte_slider.js",
+					"lotte/resources_dev/mylotte/product/m/mylotte_crit_view.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/mylotte_crit_view.js"
+            }
+        },
+
+        "uglify" : {
+            "jsmylotteCritView" : {
+                "src" : "lotte/resources/<%= version %>/mylotte_crit_view.js",
+                "dest" : "lotte/resources/<%= version %>/mylotte_crit_view.min.js"
+            },
+            "tplmylotteCritView" : {
+                "src" : "lotte/resources/<%= version %>/mylotte_crit_view.template.js",
+                "dest" : "lotte/resources/<%= version %>/mylotte_crit_view.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssmylotteCritView" : {
+                "src" : [
+					"lotte/resources_dev/mylotte/mylotte.css",
+					"lotte/resources_dev/mylotte/product/m/mylotte_crit_view.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/mylotte_crit_view.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanmylotteCritView" : [
+                "lotte/resources/<%= version %>/mylotte_crit_view.js",
+                "lotte/resources/<%= version %>/mylotte_crit_view.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlmylotteCritView" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mylotte/product/m/mylotte_crit_view.html" : "mylotte/product/m/mylotte_crit_view_dev.html"
+                }
+            }
+        }
+    }
+}

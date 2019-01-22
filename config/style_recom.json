@@ -1,0 +1,70 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplStyleRecom" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/search/style_recom_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/style_recom.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsStyleRecom" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/common/style_recom.js",
+                    "lotte/resources_dev/common/lotte_slider.js",
+                    "lotte/resources_dev/search/style_recom.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/style_recom.js"
+            }
+        },
+
+        "uglify" : {
+            "jsStyleRecom" : {
+                "src" : "lotte/resources/<%= version %>/style_recom.js",
+                "dest" : "lotte/resources/<%= version %>/style_recom.min.js"
+            },
+            "tplStyleRecom" : {
+                "src" : "lotte/resources/<%= version %>/style_recom.template.js",
+                "dest" : "lotte/resources/<%= version %>/style_recom.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssStyleRecom" : {
+                "src" : [
+                    "lotte/resources_dev/search/style_recom.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/style_recom.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanStyleRecom" : [
+                "lotte/resources/<%= version %>/style_recom.js",
+                "lotte/resources/<%= version %>/style_recom.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlStyleRecom" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "search/style_recom.html" : "search/style_recom_dev.html"
+                }
+            }
+        }
+    }
+}

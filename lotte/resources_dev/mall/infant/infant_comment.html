@@ -1,0 +1,30 @@
+<div class="commentArea">
+	<div class="accordionWrap comment_list" ng-show="commentListIndex == $index">
+		<ul>
+			<li ng-repeat="item in commentListData">
+			   	<span class="id">		    		
+	    			<span>{{idChange(item.mbr_id)}}</span>			    			
+	    		</span>	
+			   	<span class="cont" id="swagComment_txt{{$index}}">{{item.cont}}</span>	    		
+	    		<div class="btn">
+	    			<a ng-if="item.mbr_id == item.login_id" ng-click="deleteComment(item.bbc_no,$index, item)" class="del">삭제</a>
+	    		</div>
+			</li>
+		</ul>	
+		<!-- 
+		<div>
+	        <a ng-if="commentData.page_now != commentData.page_total" ng-show="commentData.total_cnt != null" ng-click="getCommentListPaging(item.bbc_no,commentData.page_now,'','')" class="btn_more"><span class="ic"></span><em>더보기&nbsp;</em>({{commentData.page_cur_row_cnt}}/{{commentData.total_cnt}})</a>
+	    </div> -->
+	</div>	
+	<div class="commentForm">
+		<fieldset>
+			<legend>댓글등록</legend>
+			<div class="reg">
+				<span><textarea class="textarea" id="commentTxt" ng-trim ng-click="registerCheck()" ng-model="input.commentTxt" onchange="maxLengthCheck('4000', null, this, commentTxt)" onkeyup="maxLengthCheck('4000', null, this)" placeholder="  댓글을 남겨보세요.">
+				{{input.commentTxt}}
+				</textarea></span>
+				<a href="#" class="btn" ng-click="register(item)">등록</a>
+			</div>		
+		</fieldset>
+	</div>		
+</div>

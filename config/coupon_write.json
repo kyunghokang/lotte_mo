@@ -1,0 +1,69 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplCouponWrite" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mylotte/pointcoupon/m/coupon_write_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/coupon_write.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsCouponWrite" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mylotte/pointcoupon/m/coupon_write.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/coupon_write.js"
+            }
+        },
+
+        "uglify" : {
+            "jsCouponWrite" : {
+                "src" : "lotte/resources/<%= version %>/coupon_write.js",
+                "dest" : "lotte/resources/<%= version %>/coupon_write.min.js"
+            },
+            "tplCouponWrite" : {
+                "src" : "lotte/resources/<%= version %>/coupon_write.template.js",
+                "dest" : "lotte/resources/<%= version %>/coupon_write.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssCouponWrite" : {
+                "src" : [
+                    "lotte/resources_dev/mylotte/pointcoupon/m/point_info.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/coupon_write.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanCouponWrite" : [
+                "lotte/resources/<%= version %>/coupon_write.js",
+                "lotte/resources/<%= version %>/coupon_write.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlCouponWrite" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mylotte/pointcoupon/m/coupon_write.html" : "mylotte/pointcoupon/m/coupon_write_dev.html"
+                }
+            }
+        }
+    }
+}
+

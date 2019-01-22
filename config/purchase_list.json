@@ -1,0 +1,71 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplpurchase" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                ],
+                "dest" : "lotte/resources/<%= version %>/purchase_list.template.js"
+            }
+        },
+
+        "concat" : {
+            "jspurchase" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+					"common3/js/kakao-1.0.7.js",
+					"common3/js/smp/smp.common.sendpick.js",
+                    "lotte/resources_dev/mylotte/purchase/m/purchase_list.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/purchase_list.js"
+            }
+        },
+
+        "uglify" : {
+            "jspurchase" : {
+                "src" : "lotte/resources/<%= version %>/purchase_list.js",
+                "dest" : "lotte/resources/<%= version %>/purchase_list.min.js"
+            },
+            "tplpurchase" : {
+                "src" : "lotte/resources/<%= version %>/purchase_list.template.js",
+                "dest" : "lotte/resources/<%= version %>/purchase_list.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "csspurchase" : {
+                "src" : [
+                    "lotte/resources_dev/mylotte/purchase/m/purchase_list.css",
+                    "lotte/resources_dev/mylotte/purchase/m/detail_datepicker.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/purchase_list.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanpurchase" : [
+                "lotte/resources/<%= version %>/purchase_list.js",
+                "lotte/resources/<%= version %>/purchase_list.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlpurchase" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mylotte/purchase/m/purchase_list.html" : "mylotte/purchase/m/purchase_list_dev.html"
+                }
+            }
+        }
+    }
+}
+

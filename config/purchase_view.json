@@ -1,0 +1,68 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplPurchaseView" : {
+                "src" : [
+                ],
+                "dest" : "lotte/resources/<%= version %>/purchase_view.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsPurchaseView" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+					"common3/js/function.js",
+					"common3/js/jquery-ui.min.js",
+					"common3/js/main2012.js",
+					"common3/js/kakao-1.0.7.js",
+					"common3/js/smp/smp.common.sendpick.js",
+					"lotte/resources_dev/mylotte/purchase/m/purchase_view.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/purchase_view.js"
+            }
+        },
+
+        "uglify" : {
+            "jsPurchaseView" : {
+                "src" : "lotte/resources/<%= version %>/purchase_view.js",
+                "dest" : "lotte/resources/<%= version %>/purchase_view.min.js"
+            },
+            "tplPurchaseView" : {
+                "src" : "lotte/resources/<%= version %>/purchase_view.template.js",
+                "dest" : "lotte/resources/<%= version %>/purchase_view.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssPurchaseView" : {
+                "src" : [
+					"lotte/resources_dev/mylotte/purchase/m/purchase_view.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/purchase_view.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanPurchaseView" : [
+                "lotte/resources/<%= version %>/purchase_view.js",
+                "lotte/resources/<%= version %>/purchase_view.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlPurchaseView" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                }
+            }
+        }
+    }
+}
+

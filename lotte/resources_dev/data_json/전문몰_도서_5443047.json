@@ -1,0 +1,738 @@
+1. 업무명 : 전문몰 도서
+2. 담당자 : 김강덕
+3. URL : 
+	http://mapi.lotte.com/json/mall/special_mall.json?dispNo=5443047
+4. 파라미터
+	전시번호:dispNo
+5. JSON 파라미터
+	1) mix_banner : 배너 mix 여부
+	2) 카타고리
+		cate_list
+			items
+				disp_no 전시매장번호
+				disp_no 전시매장명 (카테고리명)
+				cate_depth  카타고리 Depth
+				link_url	(X)	
+				mov_frme_cd	이동 프레임 여부
+				sub_cate_list	하위 카테고리 리스트
+						items
+						disp_no
+						disp_no
+						link_url
+						mov_frme_cd
+						sub_cate_list
+	3) webzine_conts_list				
+	new_books_list
+	{
+	 이미지배너 컨텐츠 "img" : {
+					          banner_nm			배너명
+					          img_url			이미지 URL
+					          link_url			이미지 Link(X)
+					          mov_frme_cd		이동 프레임 여부
+					          conts_desc_cont	설명 내용
+					          alt_cont			ALT 내용
+					       },
+	텍스트배너 컨텐츠 "text" : {
+					          banner_nm			배너명
+					          link_url			링크 URL
+					          mov_frme_cd		이동 프레임 여부
+					          note_cont			설명 내용
+							}
+	상품 컨텐츠        "goods" :{
+							- img_url: 상품 이미지 URL
+							- link_url: 상품 Link URL
+							- mov_frme_cd 이동 프레임 여부
+							- brnd_nm: 브랜드명
+							- private long goods_no: 상품번호
+							- goods_nm: 상품명
+							- price1: 할인전 가격
+							- price2: 할인후 가격
+							- private long original_price: 할인전 가격
+							- private long discounted_price: 할인후 가격
+							- private int sale_rate: 할인율
+							- flag: MD 입력 플래그
+							- is_sold_out: 재고없음 여부
+							- has_coupon: 쿠폰 존재 여부	
+							- has_wish: 위시리스트에 담겨있는지 여부
+							- is_sale_promotion: 기획 전형 상품 여부
+							- private long review_count: 상품평 개수
+							- private long bought_sum: 누적 구매 개수
+							- md_tip: MD 팁
+							- promotion_text: 홍보문구
+							- dlv_fee_tp: 무료배송유무
+							- smartpick_yn: 스마트픽유무
+							- sold_out_cd_yn: 	품절임박유무	
+							- limit_age_yn: 성인 이미지 뷰 허용 여부
+	
+					 }
+	기획전 컨텐츠 planshop" : {
+						- spdp_no	기획전번호
+						- spdp_nm 	기획전명    
+						- img_url   이미지 URL
+        			}
+	브랜드 컨텐츠 brand : {
+					brnd_no: 브랜드번호
+					brnd_nm: 브랜드명
+					brnd_shop_no: 브랜드 매장번호
+					big_img_url: 큰 사이즈 이미지 URL
+					mid_img_url: 중간 사이즈 이미지 URL
+					small_img_url: 작은 사이즈 이미지 URL
+					link_url: Link URL
+					},
+	이미지배너 컨텐츠 리스트"img_list" :{
+					          banner_nm			배너명
+					          img_url			이미지 URL
+					          link_url			이미지 Link(X)
+					          mov_frme_cd		이동 프레임 여부
+					          conts_desc_cont	설명 내용
+					          alt_cont			ALT 내용
+							  },
+	텍스트배너 컨텐츠 리스트 text_list": {
+					          banner_nm			배너명
+					          link_url			링크 URL
+					          mov_frme_cd		이동 프레임 여부
+					          note_cont			설명 내용
+        					}, 
+	상품 컨텐츠 리스트 goods_list  : {
+							- img_url: 상품 이미지 URL
+							- link_url: 상품 Link URL
+							- mov_frme_cd 이동 프레임 여부
+							- brnd_nm: 브랜드명
+							- private long goods_no: 상품번호
+							- goods_nm: 상품명
+							- price1: 할인전 가격
+							- price2: 할인후 가격
+							- private long original_price: 할인전 가격
+							- private long discounted_price: 할인후 가격
+							- private int sale_rate: 할인율
+							- flag: MD 입력 플래그
+							- is_sold_out: 재고없음 여부
+							- has_coupon: 쿠폰 존재 여부	
+							- has_wish: 위시리스트에 담겨있는지 여부
+							- is_sale_promotion: 기획 전형 상품 여부
+							- private long review_count: 상품평 개수
+							- private long bought_sum: 누적 구매 개수
+							- md_tip: MD 팁
+							- promotion_text: 홍보문구
+							- dlv_fee_tp: 무료배송유무
+							- smartpick_yn: 스마트픽유무
+							- sold_out_cd_yn: 	품절임박유무	
+							- limit_age_yn: 성인 이미지 뷰 허용 여부        
+        				}
+
+ 
+ 	4) best_books_list  		->new_books_list 동일    
+ 	5) theme_recomm_books_1		->new_books_list 동일
+ 	6)theme_recomm_books_2		->new_books_list 동일
+ 	7)no1_best_seller_books		->new_books_list 동일
+ 	8)best_seller_books_list	->new_books_list 동일		
+ 	9)steady_seller_books_list	->new_books_list 동일
+{
+  "max" : {
+    "mix_banner" : false,
+    "cate_list" : {
+      "items" : [ {
+        "disp_no" : 5443061,
+        "disp_nm" : "국내도서",
+        "link_url" : null,
+        "mov_frme_cd" : false,
+        "sub_cate_list" : [ {
+          "disp_no" : 5443108,
+          "disp_nm" : "자기계발",
+          "link_url" : null,
+          "mov_frme_cd" : false,
+          "sub_cate_list" : null
+        } 
+      } ],
+      "total_count" : 5
+    },
+    "new_books_list" : {
+      "items" : [ {
+        "img" : {
+          "banner_nm" : "",
+          "img_url" : "http://image.lotte.com/upload/display/corner/5443047_28957_26414_30_13006704_18.jpg",
+          "link_url" : "http://molocal.lotte.com마법천자문 30",
+          "mov_frme_cd" : false,
+          "conts_desc_cont" : null,
+          "alt_cont" : "인터파크"
+        },
+        "text" : null,
+        "goods" : null,
+        "planshop" : null,
+        "brand" : null,
+        "img_list" : null,
+        "text_list" : [ {
+          "banner_nm" : "마법천자문 30",
+          "link_url" : "http://molocal.lotte.com1",
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        }, {
+          "banner_nm" : "아울북 / 국내",
+          "link_url" : null,
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        }, {
+          "banner_nm" : "아이들 한자와 어휘 공부는 마법천자문으로 시작하세요",
+          "link_url" : null,
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        } ],
+        "goods_list" : null
+      }, {
+        "img" : {
+          "banner_nm" : "",
+          "img_url" : "http://image.lotte.com/upload/display/corner/5443047_28957_26414_30_13006704_20.jpg",
+          "link_url" : "http://molocal.lotte.com센트럴 파크",
+          "mov_frme_cd" : false,
+          "conts_desc_cont" : null,
+          "alt_cont" : "인터파크"
+        },
+        "text" : null,
+        "goods" : null,
+        "planshop" : null,
+        "brand" : null,
+        "img_list" : null,
+        "text_list" : [ {
+          "banner_nm" : "센트럴 파크",
+          "link_url" : "http://molocal.lotte.com2",
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        }, {
+          "banner_nm" : "밝은세상 / 국내",
+          "link_url" : null,
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        }, {
+          "banner_nm" : "사랑과 감동의 마에스트로 기욤 뮈소의 매혹적 스릴러",
+          "link_url" : null,
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        } ],
+        "goods_list" : null
+      }, {
+        "img" : {
+          "banner_nm" : "",
+          "img_url" : "http://image.lotte.com/upload/display/corner/5443047_28957_26414_30_13006704_21.jpg",
+          "link_url" : "http://molocal.lotte.com집으로 가는 길은 어디서라도 멀지 않다",
+          "mov_frme_cd" : false,
+          "conts_desc_cont" : null,
+          "alt_cont" : "인터파크"
+        },
+        "text" : null,
+        "goods" : null,
+        "planshop" : null,
+        "brand" : null,
+        "img_list" : null,
+        "text_list" : [ {
+          "banner_nm" : "집으로 가는 길은 어디서라도 멀지 않다",
+          "link_url" : "http://molocal.lotte.com3",
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        }, {
+          "banner_nm" : "불광출판사 / 국내",
+          "link_url" : null,
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        }, {
+          "banner_nm" : "해인사로 출가 후 처음 펴낸 이번 산문집에는 스님의 일상들을 담아냈다",
+          "link_url" : null,
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        } ],
+        "goods_list" : null
+      }, {
+        "img" : {
+          "banner_nm" : "",
+          "img_url" : "http://image.lotte.com/upload/display/corner/5443047_28957_26414_30_13006704_22.jpg",
+          "link_url" : "http://molocal.lotte.com미움받을 용기",
+          "mov_frme_cd" : false,
+          "conts_desc_cont" : null,
+          "alt_cont" : "인터파크"
+        },
+        "text" : null,
+        "goods" : null,
+        "planshop" : null,
+        "brand" : null,
+        "img_list" : null,
+        "text_list" : [ {
+          "banner_nm" : "미움받을 용기",
+          "link_url" : "http://molocal.lotte.com4",
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        }, {
+          "banner_nm" : "인플루엔셜 / 국내",
+          "link_url" : null,
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        }, {
+          "banner_nm" : "자유롭고 행복한 삶을 원하는 당신, 지금 당신에게 필요한 것은 바로 이 용기이다.",
+          "link_url" : null,
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        } ],
+        "goods_list" : null
+      } ],
+      "total_count" : 4
+    },
+    "best_books_list" : {
+      "items" : [ {
+        "img" : {
+          "banner_nm" : "",
+          "img_url" : "http://image.lotte.com/upload/display/corner/5443047_28957_26416_30_13006704_11.jpg",
+          "link_url" : "http://molocal.lotte.com트렌드 코리아 2015",
+          "mov_frme_cd" : false,
+          "conts_desc_cont" : null,
+          "alt_cont" : "인터파크"
+        },
+        "text" : null,
+        "goods" : null,
+        "planshop" : null,
+        "brand" : null,
+        "img_list" : null,
+        "text_list" : [ {
+          "banner_nm" : "트렌드 코리아 2015",
+          "link_url" : "http://molocal.lotte.com1",
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        }, {
+          "banner_nm" : "미래의창 / 국내",
+          "link_url" : null,
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        }, {
+          "banner_nm" : "소비자의 작은 일상에 ‘새로운 기회’가 숨어 있다",
+          "link_url" : null,
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        } ],
+        "goods_list" : null
+      }, {
+        "img" : {
+          "banner_nm" : "",
+          "img_url" : "http://image.lotte.com/upload/display/corner/5443047_28957_26416_30_13006704_12.jpg",
+          "link_url" : "http://molocal.lotte.com비밀의 정원",
+          "mov_frme_cd" : false,
+          "conts_desc_cont" : null,
+          "alt_cont" : "인터파크"
+        },
+        "text" : null,
+        "goods" : null,
+        "planshop" : null,
+        "brand" : null,
+        "img_list" : null,
+        "text_list" : [ {
+          "banner_nm" : "비밀의 정원",
+          "link_url" : "http://molocal.lotte.com2",
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        }, {
+          "banner_nm" : "클(퍼블리싱 컴퍼니 클) / 국내",
+          "link_url" : null,
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        }, {
+          "banner_nm" : "색색의 펜으로 종이를 채워가는 아날로그적인 재미",
+          "link_url" : null,
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        } ],
+        "goods_list" : null
+      }, {
+        "img" : {
+          "banner_nm" : "",
+          "img_url" : "http://image.lotte.com/upload/display/corner/5443047_28957_26416_30_13006704_13.jpg",
+          "link_url" : "http://molocal.lotte.com에디톨로지 Editology",
+          "mov_frme_cd" : false,
+          "conts_desc_cont" : null,
+          "alt_cont" : "인터파크"
+        },
+        "text" : null,
+        "goods" : null,
+        "planshop" : null,
+        "brand" : null,
+        "img_list" : null,
+        "text_list" : [ {
+          "banner_nm" : "에디톨로지 Editology",
+          "link_url" : "http://molocal.lotte.com3",
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        }, {
+          "banner_nm" : "21세기북스(북이십일) / 국내",
+          "link_url" : null,
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        }, {
+          "banner_nm" : "유쾌한 인문학으로 돌아온 김정운의 신작",
+          "link_url" : null,
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        } ],
+        "goods_list" : null
+      }, {
+        "img" : {
+          "banner_nm" : "",
+          "img_url" : "http://image.lotte.com/upload/display/corner/5443047_28957_26416_30_13006704_5.jpg",
+          "link_url" : "http://molocal.lotte.com공지영의 수도원 기행 2",
+          "mov_frme_cd" : false,
+          "conts_desc_cont" : null,
+          "alt_cont" : "인터파크"
+        },
+        "text" : null,
+        "goods" : null,
+        "planshop" : null,
+        "brand" : null,
+        "img_list" : null,
+        "text_list" : [ {
+          "banner_nm" : "공지영의 수도원 기행 2",
+          "link_url" : "http://molocal.lotte.com4",
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        }, {
+          "banner_nm" : "분도출판사 / 국내",
+          "link_url" : null,
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        }, {
+          "banner_nm" : "진리는 내게 늘 그렇게 왔다. 이해하기 전에 가슴을 치며",
+          "link_url" : null,
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        } ],
+        "goods_list" : null
+      } ],
+      "total_count" : 4
+    },
+    "theme_recomm_books_1" : {
+      "img" : null,
+      "text" : {
+        "banner_nm" : "누리과정",
+        "link_url" : null,
+        "mov_frme_cd" : false,
+        "note_cont" : null
+      },
+      "goods" : null,
+      "planshop" : null,
+      "brand" : null,
+      "img_list" : null,
+      "text_list" : null,
+      "goods_list" : [ {
+        "img_url" : "http://image.lotte.com/goods/42/22/45/41/41452242_1_280.jpg",
+        "link_url" : "http://molocal.lotte.com/product/m/product_view.do?goods_no=41452242",
+        "mov_frme_cd" : false,
+        "brnd_nm" : "",
+        "goods_no" : 41452242,
+        "goods_nm" : "7년의 밤",
+        "price1" : "",
+        "price2" : "8,320"
+      }, {
+        "img_url" : "http://image.lotte.com/goods/59/35/63/41/41633559_1_280.jpg",
+        "link_url" : "http://molocal.lotte.com/product/m/product_view.do?goods_no=41633559",
+        "mov_frme_cd" : false,
+        "brnd_nm" : "",
+        "goods_no" : 41633559,
+        "goods_nm" : "두근두근 내 인생 [60% 적립]  - 김애란 장편소설",
+        "price1" : "",
+        "price2" : "7,680"
+      }, {
+        "img_url" : "http://image.lotte.com/goods/03/87/64/41/41648703_1_280.jpg",
+        "link_url" : "http://molocal.lotte.com/product/m/product_view.do?goods_no=41648703",
+        "mov_frme_cd" : false,
+        "brnd_nm" : "",
+        "goods_no" : 41648703,
+        "goods_nm" : "내 심장을 쏴라",
+        "price1" : "",
+        "price2" : "7,370"
+      }, {
+        "img_url" : "http://image.lotte.com/goods/47/52/97/80/80975247_1_280.jpg",
+        "link_url" : "http://molocal.lotte.com/product/m/product_view.do?goods_no=80975247",
+        "mov_frme_cd" : false,
+        "brnd_nm" : "",
+        "goods_no" : 80975247,
+        "goods_nm" : "명량",
+        "price1" : "",
+        "price2" : "12,420"
+      } ]
+    },
+    "theme_recomm_books_2" : {
+      "img" : null,
+      "text" : {
+        "banner_nm" : "영어공부",
+        "link_url" : null,
+        "mov_frme_cd" : false,
+        "note_cont" : null
+      },
+      "goods" : null,
+      "planshop" : null,
+      "brand" : null,
+      "img_list" : null,
+      "text_list" : null,
+      "goods_list" : [ {
+        "img_url" : "http://image.lotte.com/goods/41/17/24/42/42241741_1_280.jpg",
+        "link_url" : "http://molocal.lotte.com/product/m/product_view.do?goods_no=42241741",
+        "mov_frme_cd" : false,
+        "brnd_nm" : "",
+        "goods_no" : 42241741,
+        "goods_nm" : "저스트고 유럽 EUROPE (2014~2015)",
+        "price1" : "",
+        "price2" : "12,420"
+      }, {
+        "img_url" : "http://image.lotte.com/goods/88/54/79/41/41795488_1_280.jpg",
+        "link_url" : "http://molocal.lotte.com/product/m/product_view.do?goods_no=41795488",
+        "mov_frme_cd" : false,
+        "brnd_nm" : "",
+        "goods_no" : 41795488,
+        "goods_nm" : "맵&가이드 보라카이 (2014~2015)  - BORACAY",
+        "price1" : "",
+        "price2" : "4,530"
+      }, {
+        "img_url" : "http://image.lotte.com/goods/45/48/55/47/47554845_1_280.jpg",
+        "link_url" : "http://molocal.lotte.com/product/m/product_view.do?goods_no=47554845",
+        "mov_frme_cd" : false,
+        "brnd_nm" : "",
+        "goods_no" : 47554845,
+        "goods_nm" : "디스 이즈 타이베이 THIS IS TAIPEI  - 2014년 최신판 / 타이완 15개 도시 완벽 가이드",
+        "price1" : "",
+        "price2" : "11,200"
+      }, {
+        "img_url" : "http://image.lotte.com/goods/55/22/74/41/41742255_1_280.jpg",
+        "link_url" : "http://molocal.lotte.com/product/m/product_view.do?goods_no=41742255",
+        "mov_frme_cd" : false,
+        "brnd_nm" : "",
+        "goods_no" : 41742255,
+        "goods_nm" : "클로즈업 홍콩 Close up HONG KONG (2014~2015)  - 홍콩 디즈니랜드 마카오 심천",
+        "price1" : "",
+        "price2" : "11,900"
+      } ]
+    },
+    "no1_best_seller_books" : {
+      "img" : null,
+      "text" : {
+        "banner_nm" : "창문 넘어 도망친 100세 노인",
+        "link_url" : "http://molocal.lotte.com",
+        "mov_frme_cd" : false,
+        "note_cont" : null
+      },
+      "goods" : {
+        "img_url" : "http://image.lotte.com/goods/49/90/21/26/1/126219049_1_280.jpg",
+        "link_url" : "http://molocal.lotte.com/product/m/product_view.do?goods_no=126219049",
+        "mov_frme_cd" : false,
+        "brnd_nm" : "",
+        "goods_no" : 126219049,
+        "goods_nm" : "지지 않는 청춘",
+        "price1" : "",
+        "price2" : "9,000"
+      },
+      "planshop" : null,
+      "brand" : null,
+      "img_list" : null,
+      "text_list" : null,
+      "goods_list" : null
+    },
+    "best_seller_books_list" : {
+      "items" : [ {
+        "img" : null,
+        "text" : {
+          "banner_nm" : "어떤 하루",
+          "link_url" : "http://molocal.lotte.com",
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        },
+        "goods" : null,
+        "planshop" : null,
+        "brand" : null,
+        "img_list" : null,
+        "text_list" : null,
+        "goods_list" : null
+      }, {
+        "img" : null,
+        "text" : {
+          "banner_nm" : "미 비포 유",
+          "link_url" : "http://molocal.lotte.com",
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        },
+        "goods" : null,
+        "planshop" : null,
+        "brand" : null,
+        "img_list" : null,
+        "text_list" : null,
+        "goods_list" : null
+      }, {
+        "img" : null,
+        "text" : {
+          "banner_nm" : "나의 한국현대사  - 1959-2014, 55년의 기록",
+          "link_url" : "http://molocal.lotte.com",
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        },
+        "goods" : null,
+        "planshop" : null,
+        "brand" : null,
+        "img_list" : null,
+        "text_list" : null,
+        "goods_list" : null
+      }, {
+        "img" : null,
+        "text" : {
+          "banner_nm" : "내가 알고 있는 걸 당신도 알게 된다면  - 전 세계가 주목한 코넬대학교의 \u0027인류 유산 프로젝트\u0027",
+          "link_url" : "http://molocal.lotte.com",
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        },
+        "goods" : null,
+        "planshop" : null,
+        "brand" : null,
+        "img_list" : null,
+        "text_list" : null,
+        "goods_list" : null
+      }, {
+        "img" : null,
+        "text" : {
+          "banner_nm" : "임신 출산 육아 대백과  - 술술 잘 읽히는 첫아기 잘 키우는 법",
+          "link_url" : "http://molocal.lotte.com",
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        },
+        "goods" : null,
+        "planshop" : null,
+        "brand" : null,
+        "img_list" : null,
+        "text_list" : null,
+        "goods_list" : null
+      }, {
+        "img" : null,
+        "text" : {
+          "banner_nm" : "나미야 잡화점의 기적   - 히가시노 게이고 장편소설",
+          "link_url" : "http://molocal.lotte.com",
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        },
+        "goods" : null,
+        "planshop" : null,
+        "brand" : null,
+        "img_list" : null,
+        "text_list" : null,
+        "goods_list" : null
+      }, {
+        "img" : null,
+        "text" : {
+          "banner_nm" : "투명인간  - 성석제 장편소설",
+          "link_url" : "http://molocal.lotte.com",
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        },
+        "goods" : null,
+        "planshop" : null,
+        "brand" : null,
+        "img_list" : null,
+        "text_list" : null,
+        "goods_list" : null
+      }, {
+        "img" : null,
+        "text" : {
+          "banner_nm" : "간헐적 운동",
+          "link_url" : "http://molocal.lotte.com",
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        },
+        "goods" : null,
+        "planshop" : null,
+        "brand" : null,
+        "img_list" : null,
+        "text_list" : null,
+        "goods_list" : null
+      }, {
+        "img" : null,
+        "text" : {
+          "banner_nm" : "나만 알고싶은 유럽 TOP 10  - 나만 알고 싶은 유럽, 당신과 나누고 싶은 유럽",
+          "link_url" : "http://molocal.lotte.com",
+          "mov_frme_cd" : false,
+          "note_cont" : null
+        },
+        "goods" : null,
+        "planshop" : null,
+        "brand" : null,
+        "img_list" : null,
+        "text_list" : null,
+        "goods_list" : null
+      } ],
+      "total_count" : 9
+    },
+    "steady_seller_books_list" : {
+      "items" : [ {
+        "img" : null,
+        "text" : null,
+        "goods" : {
+          "img_url" : "http://image.lotte.com/goods/93/95/76/75/75769593_1_280.jpg",
+          "link_url" : "http://molocal.lotte.com/product/m/product_view.do?goods_no=75769593",
+          "mov_frme_cd" : false,
+          "brnd_nm" : "",
+          "goods_no" : 75769593,
+          "goods_nm" : "9900원의 심리학  - 소비자를 유혹하는 가격 결정의 비밀",
+          "price1" : "",
+          "price2" : "12,600"
+        },
+        "planshop" : null,
+        "brand" : null,
+        "img_list" : null,
+        "text_list" : null,
+        "goods_list" : null
+      }, {
+        "img" : null,
+        "text" : null,
+        "goods" : {
+          "img_url" : "http://image.lotte.com/goods/16/95/74/75/75749516_1_280.jpg",
+          "link_url" : "http://molocal.lotte.com/product/m/product_view.do?goods_no=75749516",
+          "mov_frme_cd" : false,
+          "brnd_nm" : "",
+          "goods_no" : 75749516,
+          "goods_nm" : "기억을 잃어버린 앨리스를 부탁해",
+          "price1" : "",
+          "price2" : "12,600"
+        },
+        "planshop" : null,
+        "brand" : null,
+        "img_list" : null,
+        "text_list" : null,
+        "goods_list" : null
+      }, {
+        "img" : null,
+        "text" : null,
+        "goods" : {
+          "img_url" : "http://image.lotte.com/goods/82/18/12/53/53121882_1_280.jpg",
+          "link_url" : "http://molocal.lotte.com/product/m/product_view.do?goods_no=53121882",
+          "mov_frme_cd" : false,
+          "brnd_nm" : "",
+          "goods_no" : 53121882,
+          "goods_nm" : "한비네 집 맛있는 이야기  - 귀여운 엘비스가 전하는 아이 먹거리 육아 살림 비법",
+          "price1" : "",
+          "price2" : "7,560"
+        },
+        "planshop" : null,
+        "brand" : null,
+        "img_list" : null,
+        "text_list" : null,
+        "goods_list" : null
+      }, {
+        "img" : null,
+        "text" : null,
+        "goods" : {
+          "img_url" : "http://image.lotte.com/goods/96/55/76/41/41765596_1_280.jpg",
+          "link_url" : "http://molocal.lotte.com/product/m/product_view.do?goods_no=41765596",
+          "mov_frme_cd" : false,
+          "brnd_nm" : "",
+          "goods_no" : 41765596,
+          "goods_nm" : "어린이 사자소학",
+          "price1" : "",
+          "price2" : "4,500"
+        },
+        "planshop" : null,
+        "brand" : null,
+        "img_list" : null,
+        "text_list" : null,
+        "goods_list" : null
+      } ],
+      "total_count" : 4
+    }
+  }
+}

@@ -1,0 +1,29 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!--M30	추천 상품 일반형-->
+	<div class="moduleCon" ng-if="prdData.prdList.items.length > 2">
+		<div class="gTop_title">
+			<p><b>{{prdData.txt}}</b></p> 
+		</div>
+		<div  lotte-slider class="swipe_wrap">
+			<ul class="prd_unit_type01_line">
+				<li ng-repeat="item in prdData.prdList.items">
+					<a ng-click="logGAEvtModuleEach($index + 1, item.goodsNo);mainProductClick(item.goodsNo, moduleData.tclick + '_Swp_Prd'+numberFill(($index+1),2) + '&_reco=M_main_' + rScope.pageUI.curDispNo)">
+						<div class="imageCon">
+							<img ng-src="{{item.imgUrl}}" alt="" />
+							<!-- <span class="rkNum">{{$index + 1}}</span>  -->
+						</div>
+						<div class="titleCon">
+							<div class="name">{{item.goodsNm}}</div>
+							<div class="ti"><strong>{{item.price | number}}</strong>원<em ng-if="item.isPlanPrd">~</em></div>
+						</div>
+					</a>
+				</li>
+				<li class="bestMore">
+					<a class="txt_store" ng-click="logGAEvtModuleEach('더보기', '더보기');" ng-href="/mylotte/m/myfeed.do?{{rScope.baseParam}}&tclick=m_RDC_main_{{rScope.pageUI.curDispNo}}_M2030_Swp_more">
+						<p>더보기</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>

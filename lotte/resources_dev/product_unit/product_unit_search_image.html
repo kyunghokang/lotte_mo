@@ -1,0 +1,68 @@
+<div class="prod_search_container prd_srh_cnt_img">
+<ol class="prod_list_02 prod_search_img">
+	<li ng-repeat="item in products track by $index">
+		<!-- 일반상품 : 이미지형 -->
+		<div class="unit_list_02">
+			<div class="unit_box">
+				<a ng-href="{{getProductInfoUrl(item, 'normal', ($index+1))}}" onclick="return false;" ng-click="productInfoClick(item)">
+					<div class="soldout" ng-show="item.sold_out">SOLD OUT</div>
+					<div class="thumb" style="background-image:url({{getProductImage(item)}})">
+						<span class="icon_ranking" ng-if="templateType=='imagerank'">{{$index+1}}</span>
+						<p class="flag">
+							<span class="flag depart" ng-show="item.flag=='D'||item.is_dept">롯데백화점</span>
+							<span class="flag etv" ng-if="item.is_tvhome && !item.is_dept">롯데홈쇼핑</span>
+							<span class="flag depart super" ng-if="item.is_super && !item.is_dept">롯데슈퍼</span>
+						</p>
+						<span ng-if="item.find_age != null && item.find_gender != null" class="sex_age"
+							ng-class="{sexm:item.find_gender=='M', sexf:item.find_gender=='F'}">
+							<span class="age">{{item.find_age}}대</span>
+							<span ng-if="item.find_gender == 'M'" class="gender">남성</span><span ng-if="item.find_gender == 'F'" class="gender">여성</span> 인기
+						</span>
+					</div>
+				</a>
+				<div class="wish_wrap">
+					<div class="wish_btn" ng-class="{on:item.has_wish}" ng-click="addWishClick($index,item)">위시리스트</div>
+				</div>
+			</div>
+			<div class="unit_box">
+				<a ng-href="{{getProductInfoUrl(item, 'normal', ($index+1))}}" onclick="return false;" ng-click="productInfoClick(item)">
+					<div class="info">
+						<span class="tit">
+							<span ng-show="item.brnd_nm">[<span ng-bind-html="item.brnd_nm|titleToHtml"></span>]</span>
+							<span ng-bind-html="item.goods_nm|titleToHtml"></span>
+						</span>
+						<p class="pr_box">
+							<span class="price"><em>{{item.discounted_price|number}}</em>원<span ng-show="item.is_sale_promotion">~</span></span>
+							<span class="price2" ng-show="item.original_price!=item.discounted_price && item.original_price !=0 && !item.is_sale_promotion">
+								<em>{{item.original_price|number}}</em>원
+							</span>
+						</p>
+					</div>
+				</a>
+			</div>
+			
+			<div class="info2">
+				<!-- 별점/상품평 -->
+				<div class="user_feedback">
+					<span class="review" ng-if="item.review_count > 0 && item.avg_gdas_stfd_val <= 0" ng-click="productReviewClick(item)">상품평 <em>({{item.review_count|number}})</em></span>
+					<span class="score" ng-if="item.review_count > 0 && item.avg_gdas_stfd_val > 0" ng-click="productReviewClick(item)">
+						<span class="starScoreWrap"><span class="starScoreCnt" style="width:{{ ((item.avg_gdas_stfd_val*2)|ceil)*10 }}%"></span></span>
+						<span class="review"><em>{{item.review_count|number}}</em></span>
+					</span>
+				</div>
+			</div>
+
+			<!-- 해시태그 -->
+			<!-- <div ng-if="srhKeyword" class="hash_list">
+				<ul>
+					<li ng-if="hash != ''" ng-repeat="hash in item.hash_list track by $index">
+						<a ng-href="{{getSearch(hash, 'M_SEARCH_hash_box')}}" onclick="return false;" ng-click="goSearch(hash, 'M_SEARCH_hash_box')">#{{hash}}</a>
+					</li>
+				</ul>
+			</div> -->
+			<!-- //해시태그 -->
+		</div>
+		<!-- //일반상품 : 이미지형 -->
+	</li>
+</ol>
+</div>

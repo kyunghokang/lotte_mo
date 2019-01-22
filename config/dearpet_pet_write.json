@@ -1,0 +1,71 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplDearpetPetWrite" : {
+                "options": {
+					"prefix":"/",
+					"module": "app"
+				},
+                "src" : [
+                    "lotte/resources_dev/mall/pet/dearpet_pet_write_container.html",
+                    "lotte/resources_dev/mall/pet/dearpet_pet_write_tmpl.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/pet_write.template.js"
+            }
+        },
+        
+        "concat" : {
+            "jsDearpetPetWrite" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mall/pet/dearpet_pet_write.js",
+                    "lotte/resources_dev/mall/pet/HWSwipe.js",
+                    "lotte/lib/jquery/load-image.all.min.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/dearpet_pet_write.js"
+            }
+        },
+        
+        "uglify" : {
+            "jsDearpetPetWrite" : {
+                "src" : "lotte/resources/<%= version %>/dearpet_pet_write.js",
+                "dest" : "lotte/resources/<%= version %>/pet_write.min.js"
+            },
+            "tplDearpetPetWrite" : {
+                "src" : "lotte/resources/<%= version %>/pet_write.template.js",
+                "dest" : "lotte/resources/<%= version %>/pet_write.tpl.js"
+            }
+        },
+	
+        "cssmin" : {
+            "cssDearpetPetWrite" : {
+                "src" : [
+                    "lotte/resources_dev/mall/pet/dearpet_pet_write.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/pet_write.min.css"
+            }
+        },
+	
+        "clean" : {
+            "cleanDearpetPetWrite" : [
+                "lotte/resources/<%= version %>/dearpet_pet_write.js",
+                "lotte/resources/<%= version %>/pet_write.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlDearpetPetWrite" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mall/pet/pet_write.html" : "mall/pet/pet_write_dev.html"
+                }
+            }
+        }
+    }
+}

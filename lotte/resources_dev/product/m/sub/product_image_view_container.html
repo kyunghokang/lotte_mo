@@ -1,0 +1,27 @@
+<section ng-show="contVisible" class="cont_minheight"> <!--상품이미지 확대보기 Page-->
+	<product-sub-header></product-sub-header>
+
+	<!--상품 상세 서브 page 기본 wrapper(한번만 사용할 것): prod_detail_page_wrap-->
+	<div class="prod_detail_page_wrap p_img_expand" ng-class="{lotte_native:appObj.isApp}">
+		<div class="img_expand_wrap">
+			<p id="pinchArea" class="img_expand">
+				<img ng-pinch-zoom max-scale="4" ng-src="{{pageUI.loadData.imgInfo.imgList[pageUI.imgIdx]}}" alt="" onerror="this.src='http://image.lotte.com/lotte/mo2017/product/no_product_600.jpg'">
+			</p>
+		</div>
+
+		<div ng-if="pageUI.loadData.imgInfo.imgList && pageUI.loadData.imgInfo.imgList.length > 0" class="detail_base_wrap">
+			<div lotte-slider class="swipe_wrap thumb_list_wrap img_expand">
+				<ul id="thumbList" class="thumb_list">
+					<li ng-repeat="item in pageUI.loadData.imgInfo.imgList track by $index" ng-class="{on:pageUI.imgIdx == $index}" ng-click="imgChange($index)">
+						<span class="thumb cover"><img ng-src="{{item}}" alt="" onerror="this.src='http://image.lotte.com/lotte/mo2017/product/no_product_600.jpg'" /></span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!--공통 로딩커버-->
+	<div class="loading_cover" ng-if="jsonLoading">
+		<div class="loading"></div>
+	</div>
+</section>

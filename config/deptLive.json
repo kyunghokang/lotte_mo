@@ -1,0 +1,71 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplDeptLive" : {
+				"options": {
+					"prefix":"/",
+					"module" : "app"
+				},
+				"src" : [
+					"lotte/resources_dev/deptLive/deptLive_container.html",
+					"lotte/resources_dev/deptLive/deptLive_detail.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/deptLive.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsDeptLive" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/lib/angular/angular-route.min.js",
+					"lotte/lib/angular/angulargrid.min.js",
+					"lotte/resources_dev/deptLive/deptLive.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/deptLive.js"
+			}
+		},
+
+		"uglify" : {
+			"jsDeptLive" : {
+				"src" : "lotte/resources/<%= version %>/deptLive.js",
+				"dest" : "lotte/resources/<%= version %>/deptLive.min.js"
+			},
+			"tplDeptLive" : {
+				"src" : "lotte/resources/<%= version %>/deptLive.template.js",
+				"dest" : "lotte/resources/<%= version %>/deptLive.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssDeptLive" : {
+				"src" : [
+					"lotte/resources_dev/deptLive/deptLive.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/deptLive.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanDeptLive" : [
+				"lotte/resources/<%= version %>/deptLive.js",
+				"lotte/resources/<%= version %>/deptLive.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlDeptLive" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"deptLive/deptLive.html" : "deptLive/deptLive_dev.html"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,76 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplKshop" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/unit/comm_unit.html",
+                    "lotte/resources_dev/mall/kshop_container.html",
+                    "lotte/resources_dev/mall/kshop_main.html",
+                    "lotte/resources_dev/mall/kshop_sub.html",
+                    "lotte/resources_dev/mall/kshop_info.html",
+                    "lotte/resources_dev/mall/kshop_ctg_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/kshop.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsKshop" : {
+                "src" : [
+                    "lotte/lib/angular/angular-route.min.js",
+                    "lotte/resources_dev/mall/kshop.js",
+                    "lotte/resources_dev/common/lotte_unit.js",
+                	"lotte/lib/jquery/EGSlider.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/kshop.js"
+            }
+        },
+
+        "uglify" : {
+            "jsKshop" : {
+                "src" : "lotte/resources/<%= version %>/kshop.js",
+                "dest" : "lotte/resources/<%= version %>/kshop.min.js"
+            },
+            "tplKshop" : {
+                "src" : "lotte/resources/<%= version %>/kshop.template.js",
+                "dest" : "lotte/resources/<%= version %>/kshop.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssKshop" : {
+                "src" : [
+                    "lotte/resources_dev/list/prd_lst.css",
+                    "lotte/resources_dev/unit/comm_unit.css",
+                    "lotte/resources_dev/icon/unit_ico.css",
+                    "lotte/resources_dev/mall/kshop.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/kshop.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanKshop" : [
+                "lotte/resources/<%= version %>/kshop.js",
+                "lotte/resources/<%= version %>/kshop.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlKshop" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mall/kshop.html" : "mall/kshop_dev.html"
+                }
+            }
+        }
+    }
+}

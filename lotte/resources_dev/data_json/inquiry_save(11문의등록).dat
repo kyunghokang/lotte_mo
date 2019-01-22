@@ -1,0 +1,35 @@
+1. 업무명: 1:1 문의 > 문의 등록
+2. 담당자: 이형근
+3. URL: http://molocal.lotte.com/json/cn/custcenter/inquiry_save.json
+4. 파라미터
+	- ord_no_yn: 주문상품 없음 여부(Y|N)
+    - accp_cont: 문의 내용
+    - ord_no: 주문번호
+    - ord_dtl_sn: 주문내역일련번호
+    - goods_no: 상품번호
+    - appx_file: 첨부파일1
+    - appx_file_2: 첨부파일2
+    - appx_file_3: 첨부파일3
+5. JSON 파라미터
+    - response_code: 응답코드
+    - response_msg: 응답메시지
+6. 성공 시
+{
+  "data_set": {
+    "response_code" : "0000",
+    "response_msg" : "등록되었습니다." 
+  }
+}
+7. 실패 시
+{
+  "error" : {
+    "response_code" : "9999",
+    "response_msg" : "서버 오류"
+  }
+}
+{
+  "error" : {
+    "response_code" : "9004",
+    "response_msg" : "아이디 또는 회원번호 존재하지 않음"
+  }
+}

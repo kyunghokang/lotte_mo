@@ -1,0 +1,230 @@
+<section ng-show="contVisible" class="cont_minheight">
+	<div class="best_header_wrap">
+		<div class="fixed_header" sub-header-each>
+			<header id="bestbrandSubHead">
+				<h2>
+				<a ng-click="goSamsungBrandMain()">
+					<span>samsung</span>
+				</a>
+				</h2>
+				<p class="share">
+					<a ng-click="showSharePop()">공유</a>
+				</p>
+			</header>
+			<!-- GNB -->
+			<div id="gnb" ng-if="screenData.gnbMenu.length > 0" class="nav_swipe_wrap">
+				<nav main-menu lotte-slider class="main_nav" swipe-end-func="$scope.menuSwipEndFunc">
+					<ul>
+						<li ng-repeat="item in screenData.gnbMenu" class="dispno_{{item.disp_no}}">
+							<span class="cate_flag" ng-if="item.flag_txt">{{item.flag_txt}}</span>
+							<a ng-click="headerMenuClick(item.disp_no,item.sort)" >{{item.disp_nm}}</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+    </div>
+    <!-- TOP BANNER -->
+	<div ng-if="screenData.topBanner.length > 0" class="top_banner">
+		<a ng-if="screenData.topBanner.length == 1" ng-click="goSamsungBrandTop(screenData.topBanner[0].img_link, 0)">
+           <img ng-src="{{screenData.topBanner[0].img_url}}">
+        </a>
+		<div ng-if="screenData.topBanner.length > 1" class="swipe_wrap" id="topBnrSwipe1" roll-swipe-banner rolling="true" width320="1" width640="1" width900="1" info="screenData.topBanner" endfnc="swipeEnd">
+	        <ul class="swipeBox">
+	            <li ng-repeat="item in screenData.topBanner track by $index">
+	                <a ng-click="goSamsungBrandTop(item.img_link, $index)">
+	                   <img ng-src="{{item.img_url}}">
+	                </a>
+	            </li>
+	        </ul>
+	        <!-- <ul class="indicator roll">
+	            <li ng-repeat="item in screenData.topBanner"><span>{{$index}}</span></li>
+	        </ul> -->
+	    </div>
+	    <div ng-if="screenData.topBanner.length > 1" class="bn_pagewrap dim30" ng-click="showAll()" ng-class="{all:screenData.topBanner.length > 1}">
+			<span class="paging"><span class="curpage">{{sb_index}}</span> / <span>{{screenData.topBanner.length}}</span></span>
+			<span class="plus dim50">+</span>
+		</div>
+		<!--전체보기-->
+		<div class="unit unit_bn_promo typeB all fixed" ng-show="isShowAll">
+			<p class="tit">모두보기<a ng-click="showAllClose()">닫기</a></p>
+			<ul>
+				<li class="shop1" ng-repeat="item in screenData.topBanner" ng-click="goSamsungBrandTop(item.img_link, $index)">
+					<p class="imgwrap"><img ng-src="{{item.img_url}}"></p>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<!--THEMA BANNER-->
+	<section class="thema" ng-if="screenData.thema && screenData.thema.length > 0">
+		<div class="titlearea">
+			<div class="title">테마 추천</div>
+		</div>
+		<!-- 스와이프 영역 -->
+		<div ng-if="screenData.thema.length <= 2" class="swipe_wrap promotionSwipe" id="promotionSwipe1"  roll-swipe-banner item-margin="40" rolling="false" width320="1" width640="1" width900="1" info="screenData.promotion">
+	        <ul class="swipeBox">
+	            <li ng-repeat="item in screenData.thema track by $index">
+	            	<div>
+		                <a ng-click="goThema(item.img_link, $index)">
+		                   <img ng-src="{{item.img_url}}">
+		                </a>
+	                </div>
+	            </li>
+	        </ul>
+	    </div>
+		<div ng-if="screenData.thema.length > 2" class="swipe_wrap promotionSwipe" id="promotionSwipe2"  roll-swipe-banner item-margin="40" rolling="true" width320="1" width640="1" width900="1" info="screenData.promotion">
+	        <ul class="swipeBox">
+	            <li ng-repeat="item in screenData.thema track by $index">
+	            	<div>
+		                <a ng-click="goThema(item.img_link, $index)">
+		                   <img ng-src="{{item.img_url}}">
+		                </a>
+	                </div>
+	            </li>
+	        </ul>
+	    </div>
+	</section>
+	
+	<!--BRAND STORY AREA-->
+	<section class="brand_story" ng-if="screenData.brandStory && screenData.brandStory.length > 0">
+		<div class="titlearea">
+			<p class="title">브랜드 스토리</p>
+		</div>
+		<div class="brandstory_inwrap">
+			<div class="brandstory_menu" lotte-slider ng-class="{w50: screenData.brandStory.length === 2, w33: screenData.brandStory.length === 3}">
+				<ul class="brandstory_subtitle">
+					<li ng-repeat= "items in screenData.brandStory track by $index" ng-if="$index < 6">
+						<a ng-click="selectBrandStory($index)" ng-class="{on: screenData.storyItem.idx == $index || (screenData.storyItem.idx == 0 && $index == 0)}">{{screenData.brandStory[$index].keyword}}</a>
+					</li>
+				</ul>
+			</div>
+			<div class="brandstory_cont">
+				<div class="brandstory_textbn">
+					<span class="brandstory_subtit">{{screenData.storyItem.bigl_title}}</span>
+					<span class="brandstory_subtit2">{{screenData.storyItem.small_title}}</span>
+				</div>
+				<div class="brandstory_product">
+					<a ng-click="prodBrandStory(screenData.storyItem.goods_no,screenData.storyItem.idx);">
+						<div class="storyprod_img">
+							<img ng-src="{{screenData.storyItem.img_url}}">
+						</div>
+						<div class="storyprod_cont">
+							<p>{{screenData.storyItem.goods_nm}}</p>
+							<p class="storyprod_price">
+								<span class="sale_price"><em>{{screenData.storyItem.sale_price | number}}</em>원</span>
+							</p>
+						</div>
+					</a>
+				</div>
+				<div class="brandstory_imgbn">
+					<div class="story_contents">
+						<div class="text_wrap" ng-bind-html="screenData.storyItem.story_html"></div>
+						<!-- 이미지 형 -->
+						<div class="img_wrap" ng-if="!screenData.storyItem.img_ban_desc">
+							<img alt="{{screenData.storyItem.img_ban_desc}}" ng-src="{{screenData.storyItem.img_ban_url}}"/>
+						</div>
+						<!-- 업체 or 닷컴영상 01, 03-->
+						<div class="img_wrap" ng-if="screenData.storyItem.img_ban_desc">
+		                    <div lotte-video class="lv_wrap" lv-src="{{screenData.storyItem.img_ban_desc}}" lv-poster="{{screenData.storyItem.img_ban_url}}">
+		                    	<video id="videoId1" playsinline="true" webkit-playsinline="true">
+									<source type="video/mp4">
+								</video>
+								<div ng-show="movMode==0" class="play_cover"></div>
+								<div ng-show="movMode==1" class="stop_cover"></div>
+								<div ng-show="movMode!=0" ng-click="clickCover()" class="click_cover"></div>
+								<a ng-show="movMode==0" ng-click="playVideo()" class="btn_start">비디오 재생</a>
+								<a ng-show="movMode==1" ng-click="muteVideo()" ng-class="{mute:mute}" class="btn_volume btn_text btns">{{mute?'음소거해제':'음소거'}}</a>
+								<a ng-show="movMode==1" ng-click="stopVideo()" class="btn_stop btn_text btns">일시정지</a>
+							 </div>
+							 <!-- youtube 02 -->
+							 <!-- <div ng-if="screenData.storyItem.video_info && screenData.storyItem.video_info.video_url && screenData.storyItem.video_info.type === 'youtube'" class="vod_box">
+								<div class="player_wrap"><iframe title="YouTube video player" ng-src="{{trustSrc('https://www.youtube.com/embed/' + screenData.storyItem.mpic_info.mpic_url)}}" frameborder="0" allowfullscreen class="player"></iframe></div>
+								<div class="skt_app_desc" ng-if="appObj.isSktApp && !screenData.sktDescLayerCloseFlag">동영상은 외부 호스팅 사용으로 SKT 데이터 프리가<br>적용되지 않으니 유의하시기 바랍니다.<button ng-click="etvMovSktDescClose($event, screenData)" class="btn_close">안내 레이어 닫기</button></div>
+							 </div> -->
+						 </div>
+						<a class="brandstory_btn" ng-click="goBrandStory(screenData.storyItem.story_link_url)" href="#">브랜드 스토리 보기</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<!--HOT DEAL BANNER-->
+    <section ng-if="screenData.hotDeal && screenData.hotDeal.img_url" class="hotdeal_wrap" >
+		<div class="titlearea">
+			<p class="title">HOT DEAL</p>
+		</div>
+		<div>
+			<a ng-click="goHotdeal(screenData.hotDeal.img_link)">
+				<img ng-src="{{screenData.hotDeal.img_url}}">
+			</a>
+		</div>
+	</section>
+	
+	<!-- MD RECOMM -->
+	<section class="md_recomm" ng-if="screenData.md_recomm && screenData.md_recomm.length > 3">
+		<div class="titlearea">
+			<div class="title">MD 추천</div>
+		</div>
+		<div class="md_recomm_wrap">
+			<ul>
+				<li class="{{$index}}" ng-repeat="item in screenData.md_recomm" ng-if="$index < 6 && !($index%2 == 0 && $index === screenData.md_recomm.length-1)">
+					<a ng-click="goNewArrival(item.goods_no, $index)">
+						<div class="image_wrap">
+							<img ng-src="{{item.img_url}}" alt="{{item.goods_nm}}" />
+						</div>
+						<div class="info_wrap">
+							<span class="goods_nm" ng-bind-html="item.goods_nm"></span>
+							<span class="price"><strong>{{item.sale_price | number}}</strong><em>원</em><var ng-if="item.is_plan_prod" class="plan_prod_limit">~</var></span>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</section>
+	<!-- BEST REVIEW -->
+	<section class="best_review" ng-if="screenData.bestReview && screenData.bestReview.length > 3">
+		<div class="titlearea">
+			<div class="title">BEST REVIEW</div>
+		</div>
+		<div class="review_wrap">
+			<ul>
+				<li ng-repeat="item in screenData.bestReview" ng-if="screenData.bestReview.length >= 4">
+					<a ng-click="goPreview(item.goods_no, $index)">
+                        <div class="thumb">
+                            <img ng-src="{{item.img_url}}" alt="{{item.goods_nm}}" />
+                        </div>
+                        <div class="info">
+                            <p class="tit" ng-bind-html="item.goods_nm"></p>
+                            <div class="user_feedback">
+	                            <span class="score" ng-if="item.gdas_stfd_val > 0" ng-click="productReviewClick(item)">
+	                                <span class="starScoreWrap"><span class="starScoreCnt" ng-style="{'width':item.gdas_stfd_val*20 + '%'}"></span></span>
+	                            </span>
+	                        </div>
+	                        <p class="review" ng-bind-html="item.gdas_cont"></p>
+                        </div>
+	                </a>
+				</li>
+			</ul>
+		</div>
+	</section>
+
+	<!--ISSUE BANNER-->
+	<section class="issue_ban" ng-if="screenData.issueList && screenData.issueList.length > 0">
+		<ul>
+			<li ng-repeat="item in screenData.issueList">
+				<a ng-click="goIssueProd(item.img_link, $index)">
+					<img ng-src="{{item.img_url}}">
+				</a>
+			</li>
+		</ul>
+	</section>
+
+	<!--BENEFIT BANNER-->
+	<section class="benefit_ban" ng-if="screenData.benefit && screenData.benefit.img_url">
+		<a ng-click="goBenefitProd(screenData.benefit.img_link)">
+			<img ng-src="{{screenData.benefit.img_url}}">
+		</a>
+	</section>
+</section>

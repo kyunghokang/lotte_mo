@@ -1,0 +1,618 @@
+1. 업무명 : 브랜드 메인
+2. 담당자 : 신주섭
+3. URL : 
+	http://mapi.lotte.com/json/brand_main.json?upBrdNo=30357
+4. 파라미터
+	- upBrdNo : 상위 브랜드번호
+5. JSON 파라미터
+	1) BrandInfo : 브랜드 정보
+		- brnd_no : 브랜드번호
+		- brnd_nm : 브랜드명
+		- img_path_file_big : 브랜드 이미지
+		- img_path_file_mid : 브랜드 이미지
+		- img_path_file_small : 브랜드 이미지		
+	2) ERROR : 에러 정보
+	    - ERROR_CODE : 에러코드(0000 OR 0 아니면 모두 에러)
+		- ERROR_MSG : 에러메시지		
+	3) GoodsList.items : 상품정보 배열
+		- img_url" : 상품이미지경로(http://image.lotte.com/goods/81/98/57/00/1/100579881_1_60.jpg)
+		- brnd_nm" : 브랜드명(게스(진))
+		- benefit_flags" : 상품css Tag 배열([ "sort_icon01", "sort_icon05" ])
+		- flag" : 상품 형식(D), 백화점 영플라자등
+		- ctg_no" : 카테고리번호(대카)
+		- goods_no" : 상품코드(100579881)
+		- goods_nm" : 상품명(2)
+		- original_price" : 할인전가격(15000)
+		- discounted_price" : 할인후가격(15000)
+		- sale_rate" : 할인율(0.0)
+		- has_coupon" : 쿠폰존재여부(false)
+		- bought_sum" : 누적구매개수(0)
+		- sold_out_cd_yn : 품절임박(Y OR N)
+		- tot_review_cnt : 리뷰개수(100)
+		- smartpick_yn : 스마트픽 유무(Y OR N)
+		- dlv_fee_tp : 무료배송(Y OR N)
+		- GoodsList.rs_total_cnt : 상품검색 전체 개수
+	4) BrandCateList.items : 카테고리정보(배열)
+		- disp_no : 카테고리번호
+		- disp_nm : 카테고리명
+		- cate_cnt : 카테고리에 속한 상품 수량
+	5) Banner.items : 기획전 베너 배열
+		- spdp_no : 기획전 번호
+		- spdp_nm : 기획전명
+		- lnk_url_addr : 기획전 링크
+		
+6. JSON
+{
+  "BrandInfo" : {
+    "totalcnt" : 0,
+    "pageIdx" : 1,
+    "rowsPerPage" : 10,
+    "pageRange" : 10,
+    "pageCalc" : 101,
+    "brnd_no" : 30357,
+    "obj_brnd_no" : 30357,
+    "brnd_nm" : "게스",
+    "upr_brnd_no" : 0,
+    "obj_upr_brnd_no" : null,
+    "dpth_val" : 0,
+    "obj_dpth_val" : null,
+    "brnd_kor_nm" : null,
+    "brnd_eng_nm" : null,
+    "kor_eng_sct_cd" : null,
+    "kor_sch_nm" : null,
+    "eng_sch_nm" : null,
+    "brnd_desc_cont" : null,
+    "brnd_conf_stat_cd" : null,
+    "brnd_req_dtime" : null,
+    "brnd_rqsr_id" : null,
+    "brnd_req_caus_desc" : null,
+    "brnd_rtrn_caus_cont" : null,
+    "sys_reg_dtime" : null,
+    "sys_regr_id" : null,
+    "sys_mod_dtime" : null,
+    "sys_modr_id" : null,
+    "size_lktb_path_nm" : null,
+    "size_lktb_file_nm" : null,
+    "disp_no" : 0,
+    "size_lktb_path_file" : "",
+    "img_path_file_big" : "",
+    "img_path_file_mid" : "",
+    "img_path_file_small" : "/goods/brand/30357.gif",
+    "additionalBeanInfo" : null,
+    "beanDescriptor" : null,
+    "defaultEventIndex" : -1,
+    "defaultPropertyIndex" : -1,
+    "eventSetDescriptors" : null,
+    "methodDescriptors" : null,
+    "propertyDescriptors" : null
+  },
+  "BrandCateList" : {
+    "items" : [ {
+      "disp_no" : "7044",
+      "disp_nm" : "여성용",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "5",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7058",
+      "disp_nm" : "여성가방",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "22",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7066",
+      "disp_nm" : "여성구두",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "1651",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7068",
+      "disp_nm" : "캐주얼화",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "98",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7072",
+      "disp_nm" : "명품/수입시계",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "39",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7073",
+      "disp_nm" : "정장/패션시계",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "123",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7086",
+      "disp_nm" : "선글라스/안경",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "30",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7138",
+      "disp_nm" : "티셔츠",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "33",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7139",
+      "disp_nm" : "셔츠/남방",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "115",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7140",
+      "disp_nm" : "니트/스웨터",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "30",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7141",
+      "disp_nm" : "베스트/가디건",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "4",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7142",
+      "disp_nm" : "원피스",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "7",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7143",
+      "disp_nm" : "팬츠",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "82",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7144",
+      "disp_nm" : "데님",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "210",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7146",
+      "disp_nm" : "점퍼",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "85",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7149",
+      "disp_nm" : "코디아이템",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "16",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7211",
+      "disp_nm" : "여아 아동의류",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "1",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7228",
+      "disp_nm" : "책가방",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "4",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7229",
+      "disp_nm" : "보조가방",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "4",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7232",
+      "disp_nm" : "모자",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "16",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7233",
+      "disp_nm" : "장갑/목도리/워머/귀마개",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "2",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7272",
+      "disp_nm" : "스키/보드복/용품",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "1",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7579",
+      "disp_nm" : "모자",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "2",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7584",
+      "disp_nm" : "셔츠/블라우스",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "2",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7585",
+      "disp_nm" : "니트/스웨터",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "2",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7596",
+      "disp_nm" : "셔츠/블라우스",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "1",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7608",
+      "disp_nm" : "여성속옷",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "652",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7609",
+      "disp_nm" : "남성속옷",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "331",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7610",
+      "disp_nm" : "커플속옷",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "197",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7633",
+      "disp_nm" : "팬츠",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "2",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7634",
+      "disp_nm" : "티셔츠",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "403",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7635",
+      "disp_nm" : "셔츠/남방",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "63",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7636",
+      "disp_nm" : "니트/스웨터",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "61",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7637",
+      "disp_nm" : "베스트/가디건",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "91",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7638",
+      "disp_nm" : "원피스",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "1",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7639",
+      "disp_nm" : "팬츠",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "23",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7640",
+      "disp_nm" : "데님",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "395",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7641",
+      "disp_nm" : "스커트",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "22",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7642",
+      "disp_nm" : "점퍼",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "94",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7644",
+      "disp_nm" : "코디아이템",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "59",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7662",
+      "disp_nm" : "유아의류",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "64",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7663",
+      "disp_nm" : "여아 아동의류",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "525",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7664",
+      "disp_nm" : "남아 아동의류",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "175",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7665",
+      "disp_nm" : "여아 주니어의류",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "37",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "7666",
+      "disp_nm" : "남아 주니어의류",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "34",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "6909",
+      "disp_nm" : "재킷",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "55",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    }, {
+      "disp_no" : "6910",
+      "disp_nm" : "코트",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "12",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : null
+    } ],
+    "total_count" : 47
+  },
+  "GoodsList" : [ {
+    "img_url" : "http://image.lotte.com/goods/81/98/57/00/1/100579881_1_60.jpg",
+    "brnd_nm" : "게스(진)",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "",
+    "goods_no" : "100579881",
+    "goods_nm" : "2",
+    "original_price" : 15000,
+    "discounted_price" : 15000,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  }, {
+    "img_url" : "http://image.lotte.com/goods/87/35/80/98/98803587_1_60.jpg",
+    "brnd_nm" : "게스(진)",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "5827",
+    "goods_no" : "98803587",
+    "goods_nm" : "[남성] 롱기장 패딩 자켓  (ME4W4863)",
+    "original_price" : 229600,
+    "discounted_price" : 229600,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  }, {
+    "img_url" : "http://image.lotte.com/goods/08/81/75/98/98758108_1_60.jpg",
+    "brnd_nm" : "게스(진)",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "5827",
+    "goods_no" : "98758108",
+    "goods_nm" : "[여성] 폭스후드 벨티드 롱 다운 점퍼  (YE4W5874)",
+    "original_price" : 448200,
+    "discounted_price" : 448200,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  }, {
+    "img_url" : "http://image.lotte.com/goods/96/78/75/98/98757896_1_60.jpg",
+    "brnd_nm" : "게스(진)",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "5827",
+    "goods_no" : "98757896",
+    "goods_nm" : "[남성] 이중넥 트렌치변형 다운점퍼 (ME4W5874)",
+    "original_price" : 358200,
+    "discounted_price" : 358200,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  }, {
+    "img_url" : "http://image.lotte.com/goods/56/21/75/98/98752156_1_60.jpg",
+    "brnd_nm" : "지바이게스",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "5827",
+    "goods_no" : "98752156",
+    "goods_nm" : "[남성]배색 퀼팅 베이스볼 점퍼(BE4D1855)",
+    "original_price" : 98100,
+    "discounted_price" : 98100,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  }, {
+    "img_url" : "http://image.lotte.com/goods/86/22/74/98/98742286_1_60.jpg",
+    "brnd_nm" : "지바이게스",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "5827",
+    "goods_no" : "98742286",
+    "goods_nm" : "[남성]레인보우 고주파 로고 맨투맨 티셔츠 (BE4K9420)",
+    "original_price" : 26100,
+    "discounted_price" : 26100,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  }, {
+    "img_url" : "http://image.lotte.com/goods/70/68/73/98/98736870_1_60.jpg",
+    "brnd_nm" : "게스(구두)",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "5845",
+    "goods_no" : "98736870",
+    "goods_nm" : "게스 퍼부츠 8종 택일",
+    "original_price" : 159000,
+    "discounted_price" : 159000,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  }, {
+    "img_url" : "http://image.lotte.com/goods/10/61/73/98/98736110_1_60.jpg",
+    "brnd_nm" : "게스(진)",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "5827",
+    "goods_no" : "98736110",
+    "goods_nm" : "[남성][30세일] 81다잉 Hoody Zip-up  (ME4K6403)",
+    "original_price" : 116550,
+    "discounted_price" : 116550,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  }, {
+    "img_url" : "http://image.lotte.com/goods/48/60/73/98/98736048_1_60.jpg",
+    "brnd_nm" : "게스(진)",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "5827",
+    "goods_no" : "98736048",
+    "goods_nm" : "[여성][30세일] 81다잉 Hoody Zip-up (YE4K6403)",
+    "original_price" : 116550,
+    "discounted_price" : 116550,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  }, {
+    "img_url" : "http://image.lotte.com/goods/98/36/73/98/98733698_1_60.jpg",
+    "brnd_nm" : "게스(구두)",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "5845",
+    "goods_no" : "98733698",
+    "goods_nm" : "게스부츠10종택1",
+    "original_price" : 119000,
+    "discounted_price" : 119000,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  } ],
+  "Banner" : {
+    "items" : [ ],
+    "total_count" : 0
+  },
+  "Error" : {
+    "ERROR_CODE" : "0",
+    "ERROR_MSG" : ""
+  }
+}

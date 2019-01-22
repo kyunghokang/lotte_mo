@@ -1,0 +1,182 @@
+<section ng-show="contVisible" class="talkRecomCtrl" ng-class="{dev_mode:DEV_MODE}">
+
+<div class="dev_sidebar" ng-if="DEV_MODE">
+	<a ng-click="talkRecomDelegate('sendTalk', '나이키', 'T')">나이키</a>
+	<a ng-click="talkRecomDelegate('sendTalk', '벨트', 'T')">벨트</a>
+	<a ng-click="talkRecomDelegate('sendTalk', '20대 남성', 'T')">20대 남성</a>
+	<a ng-click="talkRecomDelegate('sendTalk', '냉장고', 'T')">냉장고</a>
+	<a ng-click="userInputMsg()">직접입력</a>
+	<span></span>
+	<a ng-click="talkRecomDelegate('newRecomTalk')">새추천</a>
+	<a ng-click="talkRecomDelegate('showCart')">카트보기</a>
+	<a ng-click="talkRecomDelegate('showWish')">위시보기</a>
+	<span></span>
+	<a ng-click="clearLocalStorage()">LS삭제</a>
+	<a ng-click="clearTempOption()">옵션삭제</a>
+</div>
+
+<div class="dev_option" ng-if="DEV_MODE && TEMP_OPTION">
+	<!-- <div class="title">{{TEMP_OPTION.title}}</div> -->
+	<div class="list">
+		<a ng-repeat="opt in TEMP_OPTION.option track by $index" ng-class="{disable:opt[2]==0}"
+			ng-click="talkRecomDelegate('selectOption', TEMP_OPTION.title, opt[1])">
+			<span>{{opt[0]}}</span>
+		</a>
+	</div>
+</div>
+
+
+<div class="tr_notice">
+	<a ng-click="gotoPrepage()" class="tr_back_btn">이전</a>
+	<a ng-click="showTrPopup('inform')" class="tr_notice_btn">Notice</a>
+</div>
+
+
+<div class="tr_conversation" ng-class="{waiting:isWaitingResponse}" ng-if="GROUPS.length > 0">
+<div class="tr_twoweek">대화이력은 최근 2주까지만 제공됩니다.</div>
+	<!-- GROUP -->
+	<div class="tr_group" ng-repeat="group in GROUPS track by $index" ng-if="group.section_list.length > 0">
+		<div ng-if="group.first" class="tr_date" talk-recom-date-format><span>{{::getTalkDate(group.date)}}</span></div>
+		<div ng-if="DEV_MODE" style="text-align:center;padding:2px 4px;background-color:#efefef;border-radius:10px;">Group - {{group.group_id}} - {{group.date}}</div>
+		<!-- SECTION -->
+		<div class="tr_section" ng-repeat="sect in group.section_list track by $index">
+			<div class="tr_talk" ng-repeat="talk in sect.list track by $index" data-gr_tk_id="{{talk.gr_tk_id}}"
+					ng-class="{photo:talk.img_url, user:talk.auth=='U', ai:talk.auth=='A', first:talk.first, tr_prod:talk.isPrd, prod_loaded:PRODUCT_MAP[talk.gr_tk_id].data}">
+				
+				<!-- 텍스트인 경우 -->
+				<div class="tr_text" ng-if="!(talk.isImg || talk.isPrd)" ng-bind-html="talk.text"></div>
+				
+				<!-- 사진/이모티콘인 경우 -->
+				<img ng-if="talk.isImg" ng-src="{{talk.img_url}}" talk-recom-image-load />
+				
+				<!-- 상품리스트인 경우 -->
+				<div ng-if="talk.isPrd" class="tr_slide_wrap">
+					<div ng-if="PRODUCT_MAP[talk.gr_tk_id].data" class="tr_slide" lotte-slider>
+						<ul style="width:{{270 * PRODUCT_MAP[talk.gr_tk_id].data.length + (PRODUCT_MAP[talk.gr_tk_id].goods_no.length > PROD_GROUP_SIZE ? 102 : 0) + 20}}px;">
+							<li ng-repeat="item in PRODUCT_MAP[talk.gr_tk_id].data track by $index">
+								<div class="prod_wrap">
+									<div class="photo"><img ng-src="{{item.imgUrl}}" ng-click="gotoDetailView(item, 't')" /></div>
+									<div class="title" ng-click="gotoDetailView(item, 't')"><span ng-if="item.brandNm">[{{item.brandNm}}]</span>{{item.goodsNm}}</div>
+									<div class="info">
+										<div class="link" ng-click="gotoDetailView(item, 't')">
+											<div class="price">{{item.price2|number}}<span>원</span></div>
+											<div class="rate" ng-if="item.avg_gdas_stfd_val > 0 && item.reviewCnt > 0">
+												<span class="starScoreWrap"><span class="starScoreCnt" style="width:{{item.avg_gdas_stfd_val*20}}%"></span></span>
+												<span class="review">{{item.reviewCnt}}</span>
+											</div>
+										</div>
+										<a class="reason" ng-if="item.md_tip || (item.find_age && item.find_gender)" ng-click="showTrPopup('reason', item)">MD팁</a>
+									</div>
+									<div class="btns">
+										<a ng-click="addToCart(item, '')">장바구니 담기</a>
+										<a ng-click="gotoDetailView(item)">자세히 보기</a>
+									</div>
+									<div class="wish" ng-class="{on:item.wishAdded}">
+										<a ng-click="addToWishList(item)">위시리스트 담기</a>
+									</div>
+								</div>
+							</li>
+							<li class="more" ng-if="PRODUCT_MAP[talk.gr_tk_id].goods_no.length > PROD_GROUP_SIZE">
+								<a ng-click="showMoreProduct(PRODUCT_MAP[talk.gr_tk_id], this)">
+									<span class="text">추천상품<br/>더보기</span>
+									<span class="icon"></span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- //상품리스트인 경우 -->
+				
+				<div class="profile" ng-if="talk.first && talk.auth=='A'"><a ng-click="showTrPopup('profile')">사만다</a></div>
+				<div class="tr_time" ng-if="talk.last" talk-recom-date-format>{{::getTalkTime(talk.date)}}</div>
+			</div>
+		</div>
+		<!-- //SECTION -->
+	</div>
+	<!-- //GROUP -->
+	
+	<div class="tr_group" ng-if="isWaitingResponse && userInputText">
+		<div class="tr_section">
+			<div class="tr_talk user first">
+				<div class="tr_text">{{userInputText}}</div>
+			</div>
+		</div>
+	</div>
+	<div class="waiting_ani"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div>
+</div>
+
+
+<!-- 추천이유 팝업 -->
+<div class="tr_popup tr_popup_reason" ng-if="isReasonVisible">
+	<div class="tr_pop_dim"></div>
+	<div class="tr_pop_wrap">
+	
+		<div class="tr_pop_head">MD팁</div>
+		
+		<div class="tr_pop_body">
+			<div class="photo">
+				<div class="img" ng-click="gotoDetailView(recomReason, 't')"><img ng-src="{{recomReason.imgUrl}}" /></div>
+			</div>
+			<div class="title" ng-click="gotoDetailView(recomReason, 't')"><span ng-if="recomReason.brandNm">[{{recomReason.brandNm}}]</span>{{recomReason.goodsNm}}</div>
+			<div class="mdtip" ng-if="recomReason.md_tip || (recomReason.find_age && recomReason.find_gender)">
+				<div class="cont titl" ng-if="recomReason.md_tip" ng-bind-html="recomReason.md_tip"></div>
+				<div class="cont" ng-if="recomReason.md_tip_conts" ng-bind-html="recomReason.md_tip_conts"></div>
+				<div class="agegen" ng-if="recomReason.find_age && recomReason.find_gender" ng-class="{male:recomReason.find_gender=='M'}">
+				#요즘 {{recomReason.find_age}}대 <span ng-if="recomReason.find_gender=='F'">여성</span><span ng-if="recomReason.find_gender=='M'">남성</span>이 많이 찾아요
+				</div>
+			</div>
+		</div>
+		
+		<div class="tr_pop_foot">
+			<a ng-click="hideTrPopup('reason')">닫기</a>
+		</div>
+		
+	</div>
+</div>
+<!-- 추천이유 팝업 -->
+
+<!-- 인포 팝업 -->
+<div class="tr_popup tr_popup_inform" ng-if="isInformVisible">
+	<div class="tr_pop_dim"></div>
+	<div class="tr_pop_wrap">
+		
+		<div class="tr_pop_body">
+			<div class="swipe" ng-controller="lotteNgSwipeCtrl">
+				<ul lotte-ng-list-swipe swipe-slide-item="true" swipe-list-model="[1]" swipe-disp-count="1" swipe-max-ratio="0.2" swipe-min-distance="40">
+					<li ng-repeat="item in [1] track by $index"><img ng-src="http://image.lotte.com/lotte/mo2017/talk/talkrecom_info1.png" /></li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="tr_pop_foot">
+			<a ng-click="hideTrPopup('inform')">닫기</a>
+		</div>
+		
+	</div>
+</div>
+<!-- 인포 팝업 -->
+
+<!-- 프로필 팝업 -->
+<div class="tr_popup tr_popup_profile" ng-if="isProfileVisible">
+	<div class="tr_pop_dim"></div>
+	<div class="tr_pop_wrap">
+	
+		<div class="tr_pop_head">
+			<div class="balloon">이 구역의<br/>쇼핑 요정은 나야!</div>
+			<div class="profile"><a ng-click="">사만다</a></div>
+		</div>
+		
+		<div class="tr_pop_body">
+			온화하면서도 지적인 느낌을 가진 그녀는 어릴 때부터 남다른 눈썰미로 좋다고 소문난 아이템을 섭렵했으며, 지인에게 좋은 아이템을 추천하는 게 삶의 낙이다!<br/>
+			가끔 지인에게 딱 맞는 아이템을 추천해주지 못할 땐 혼자 몰래 좌절하기도 하나 금방 회복된다.
+		</div>
+		
+		<div class="tr_pop_foot">
+			<a ng-click="hideTrPopup('profile')">닫기</a>
+		</div>
+		
+	</div>
+</div>
+<!-- 프로필 팝업 -->
+
+</section>

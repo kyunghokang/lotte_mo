@@ -1,0 +1,68 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplshareEvent" : {
+				"options": {
+					"prefix":"/",
+					"module" : "app"
+				},
+				"src" : [
+					"lotte/resources_dev/event/shareEvent.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/shareEvent.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsshareEvent" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/event/shareEvent.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/shareEvent.js"
+			}
+		},
+
+		"uglify" : {
+			"jsshareEvent" : {
+				"src" : "lotte/resources/<%= version %>/shareEvent.js",
+				"dest" : "lotte/resources/<%= version %>/shareEvent.min.js"
+			},
+			"tplshareEvent" : {
+				"src" : "lotte/resources/<%= version %>/shareEvent.template.js",
+				"dest" : "lotte/resources/<%= version %>/shareEvent.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssshareEvent" : {
+				"src" : [
+					"lotte/resources_dev/event/shareEvent.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/shareEvent.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanshareEvent" : [
+				"lotte/resources/<%= version %>/shareEvent.js",
+				"lotte/resources/<%= version %>/shareEvent.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlshareEvent" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"event/shareEvent.html" : "event/shareEvent_dev.html"
+				}
+			}
+		}
+	}
+}

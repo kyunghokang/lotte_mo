@@ -1,0 +1,76 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplbaby_main" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/product/m/product_list_select_container2.html",
+                    "lotte/resources_dev/mall/baby/baby_mall_ctg_container.html",
+                    "lotte/resources_dev/mall/baby/baby_mall_photoview.html",
+                    "lotte/resources_dev/mall/baby/baby_mall_useful_tip.html",
+                    "lotte/resources_dev/mall/baby/baby_sub_ctg_select_container.html",
+                    "lotte/resources_dev/mall/baby/baby_comment.html",
+                    "lotte/resources_dev/mall/baby/baby_main_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/baby_main.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsbaby_main" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mall/baby/baby_main.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/baby_main.js"
+            }
+        },
+
+        "uglify" : {
+            "jsbaby_main" : {
+                "src" : "lotte/resources/<%= version %>/baby_main.js",
+                "dest" : "lotte/resources/<%= version %>/baby_main.min.js"
+            },
+            "tplbaby_main" : {
+                "src" : "lotte/resources/<%= version %>/baby_main.template.js",
+                "dest" : "lotte/resources/<%= version %>/baby_main.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssbaby_main" : {
+                "src" : [
+                    "lotte/resources_dev/product/m/product_list.css",
+                    "lotte/resources_dev/mall/baby/baby_tip.css",
+                    "lotte/resources_dev/mall/baby/baby_main.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/baby_main.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanbaby_main" : [
+                "lotte/resources/<%= version %>/baby_main.js",
+                "lotte/resources/<%= version %>/baby_main.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlbaby_main" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "/mall/baby/baby_main.html" : "/mall/baby/baby_main_dev.html"
+                }
+            }
+        }
+    }
+}

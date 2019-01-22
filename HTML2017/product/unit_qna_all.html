@@ -1,0 +1,241 @@
+﻿<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+	<meta charset="utf-8">
+	<title>롯데닷컴</title>
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+
+	<!-- 기존 css & js -->
+	<!-- <script src="/lotte/resources_dev/common/common_load_2017.js"></script> -->
+	<link rel="stylesheet" type="text/css" href="common.min.css">
+	<link rel="stylesheet" type="text/css" href="product_view.min.css">
+	<!-- //기존 css & js -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script><!-- 코딩용 angular js -->
+
+<style type="text/css">
+/* common */
+.sub_header_top_wrap h2{text-align:center;line-height:48px;font-size:19px;font-weight:normal;color:#fff;}
+.prd_title{padding:15px 0;background-color:#fff;}
+.prd_title p{height:25px;padding:0 15px;font-size:16px;line-height:25px;word-break:break-all;white-space:normal;overflow:hidden;}
+.prd_title p .cnt{color:#7291cf;}
+.btnMore{display:table;width:100%;height:42px;table-layout:fixed;margin-top:-1px;border-top:1px solid #f1f1f1;border-bottom:1px solid #e9e9e9;}
+.btnMore .btnArea{display:table-cell;text-align:center;}
+.btnMore .btnArea a{display:block;border-left:1px solid #f1f1f1;background-color:#fff;}
+.btnMore .btnArea:first-child a{border-left:none;}
+.btnMore .btnArea a span{position:relative;display:inline-block;padding-right:12px;line-height:42px;font-size:14px;font-weight:bold;color:#6d8ccf;}
+.btnMore .btnArea a span:after{content:"";position:absolute;width:7px;height:7px;top:50%;right:0;margin-top:-4px;text-align:right;line-height:0;font-size:0;font-weight:normal;border-width: 1px 1px 0 0;border-style:solid;border-color:#7291cf;
+-moz-transform:rotate(45deg);
+-o-transform:rotate(45deg);
+-ms-transform:rotate(45deg);
+-webkit-transform:rotate(45deg);
+transform:rotate(45deg)}
+.btn_sty2{height:32px;display:inline-block;text-align:center;padding:0 8px;font-size:13px;line-height:32px;color:#7291cf;border:1px solid #7291cf;background-color:#fff;border-radius:4px;box-sizing:border-box;}
+	
+.pt_rbtn{position:absolute;top:11px;right:15px;}
+.qna_area{background-color:#fff;}
+.qna_area ul li{padding:20px 15px;line-height:18px;border-top:1px solid #f1f1f1;}
+.qna_area ul li:first-child{padding-top:0;border-top:none;}
+.qna_area ul li:first-child .customerInfo{padding-top:20px;border-top:1px solid #f1f1f1;}
+.qna_area ul li .customerInfo{color:#aaaaaa;}
+.qna_area ul li .question, .qna_area ul li .answer{position:relative;word-break: break-all;margin-top:4px;}
+.qna_area ul li .question.fold{height:54px;overflow:hidden;}
+.qna_area ul li .answer{color:#aaaaaa;}
+.qna_area ul li .answer.fold{height:36px;overflow:hidden;}
+.qna_area ul li .qna_more{position:absolute;bottom:0;right:0;color:#7291cf;background-color:#fff;display:none;}
+.qna_area ul li .fold .qna_more{display:block;}
+	
+</style>
+	
+</head>
+<body ng-controller="ProductCtrl">
+
+	<div id="wrapper">
+
+		<section>
+			<header class="sub_header_top_wrap" id="lotteHeader">
+				<div class="inner_wrap headerFixed">
+				<!-- <h1 class="logo"><button class="btn_main">LOTTE.COM</button></h1>-->
+					<button class="btn_prev">이전</button>
+					<!-- <div class="header_srh_wrap web">
+						<div class="srh_box">
+							<label for="keyword" class="btn_srh"></label>
+						</div>
+					</div> -->
+					<!-- <button class="btn_ctg">카테고리</button>
+					<button class="btn_cart">장바구니<i class="cnt">5</i></button> -->
+					<h2>Q&amp;A 전체보기</h2>
+				</div>
+			</header>
+		</section>
+
+		<section class="cont_minheight">
+
+			<!-- container -->
+			<div id="container">
+				<!-- 퍼블리싱 시작-->
+				<div class="prd_title">
+					<p>Q&amp;A <em class="cnt">(26)</em></p>
+					<div class="pt_rbtn"><span class="btn_sty2">상품문의하기</span></div>
+				</div>
+
+				<div class="qna_area">
+					<ul>
+						<li>
+							<div class="customerInfo">
+								abcd3***님 <em>|</em> 2017.03.16
+							</div>
+							<div class="question fold">
+								<strong>Q :</strong> 평소에 매던 크로스백이여서 주문했습니다. 엄마에게도 동일한 가방을 선물해주고싶은데, 선물포장이 가능한가요? 아니면 5월 8일까지 배송이 가능할지 확인부탁드리려고 글을 쓴다
+							</div>
+							<div class="answer fold">
+								<strong>A :</strong> 고객님 안녕하세요.저희 상품을 찾아주셔서 감사합니다.. 문의하신 상품은 확인한 결과 업체에서 물량준비가 안됬습니다. 죄송합니다.
+							</div>
+						</li>
+						<li>
+							<div class="customerInfo">
+								dfhbhhh***님 <em>|</em> 2017.03.16
+							</div>
+							<div class="question fold">
+								<strong>Q :</strong> 평소에 매던 크로스백이여서 주문했습니다. 엄마에게도 동일한 가방을 선물해주고싶은데, 선물포장이 가능한가요? 아니면 5월 8일까지 배송이 가능할지 확인부탁드리려고 글을 쓴다
+							</div>
+							<div class="answer">
+								<strong>A :</strong> 아직 답변이 없습니다. 
+							</div>
+						</li>
+						<li>
+							<div class="customerInfo">
+								abcd3***님 <em>|</em> 2017.03.16
+							</div>
+							<div class="question">
+								<strong>Q :</strong> 평소에 매던 크로스백이여서 주문했습니다.
+							</div>
+							<div class="answer fold">
+								<strong>A :</strong> 고객님 안녕하세요.저희 상품을 찾아주셔서 감사합니다.. 문의하신 상품은 확인한 결과 업체에서 물량준비가 안됬습니다. 죄송합니다.
+								<span class="qna_more">......더보기</span>
+							</div>
+						</li>
+						<li>
+							<div class="customerInfo">
+								abcd3***님 <em>|</em> 2017.03.16
+							</div>
+							<div class="question">
+								<strong>Q :</strong> 평소에 매던 크로스백이여서 주문했습니다.
+							</div>
+							<div class="answer fold">
+								<strong>A :</strong> 고객님 안녕하세요.저희 상품을 찾아주셔서 감사합니다.. 문의하신 상품은 확인한 결과 업체에서 물량준비가 안됬습니다. 죄송합니다.
+							</div>
+						</li>
+						<li>
+							<div class="customerInfo">
+								abcd3***님 <em>|</em> 2017.03.16
+							</div>
+							<div class="question">
+								<strong>Q :</strong> 평소에 매던 크로스백이여서 주문했습니다.
+							</div>
+							<div class="answer fold">
+								<strong>A :</strong> 고객님 안녕하세요.저희 상품을 찾아주셔서 감사합니다.. 문의하신 상품은 확인한 결과 업체에서 물량준비가 안됬습니다. 죄송합니다.
+							</div>
+						</li>
+						<li>
+							<div class="customerInfo">
+								abcd3***님 <em>|</em> 2017.03.16
+							</div>
+							<div class="question">
+								<strong>Q :</strong> 평소에 매던 크로스백이여서 주문했습니다.
+							</div>
+							<div class="answer fold">
+								<strong>A :</strong> 고객님 안녕하세요.저희 상품을 찾아주셔서 감사합니다.. 문의하신 상품은 확인한 결과 업체에서 물량준비가 안됬습니다. 죄송합니다.
+							</div>
+						</li>
+						<li>
+							<div class="customerInfo">
+								abcd3***님 <em>|</em> 2017.03.16
+							</div>
+							<div class="question">
+								<strong>Q :</strong> 평소에 매던 크로스백이여서 주문했습니다.
+							</div>
+							<div class="answer fold">
+								<strong>A :</strong> 고객님 안녕하세요.저희 상품을 찾아주셔서 감사합니다.. 문의하신 상품은 확인한 결과 업체에서 물량준비가 안됬습니다. 죄송합니다.
+							</div>
+						</li>
+						<li>
+							<div class="customerInfo">
+								abcd3***님 <em>|</em> 2017.03.16
+							</div>
+							<div class="question">
+								<strong>Q :</strong> 평소에 매던 크로스백이여서 주문했습니다.
+							</div>
+							<div class="answer fold">
+								<strong>A :</strong> 고객님 안녕하세요.저희 상품을 찾아주셔서 감사합니다.. 문의하신 상품은 확인한 결과 업체에서 물량준비가 안됬습니다. 죄송합니다.
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!-- 퍼블리싱 끝-->
+			</div>
+			<!-- //container -->
+
+		</section>
+		<!-- //sub_header_wrap -->
+
+		<!-- footer -->
+		<footer id="footer">
+			<ul class="menu01">
+				<li><a class="ng-binding" href="#">마이롯데</a><i></i>	</li>
+				<li><a ng-click="pcClick()">PC버전</a><i></i></li>
+				<li><a href="#">장바구니</a><i></i></li>
+				<li><a href="#">고객센터</a><i></i></li>
+				<li><a href="#" ng-click="loginProc()" ng-bind="(loginInfo.isLogin)?'로그아웃':'로그인'" class="ng-binding">로그아웃</a></li>
+			</ul>
+			<div class="info">
+				<ul class="menu02">
+					<li><strong>(주)롯데닷컴</strong></li>
+					<li><a ng-click="ftcClick()">사업자정보확인</a></li>
+					<li><a ng-click="forwardClick()">채무지급보증안내</a></li>
+				</ul>
+				<p class="add">
+					<span class="addFirst">대표이사 : 김형준</span>
+					<span class="line">서울시 중구 을지로 158 10층(을지로4가, 삼풍빌딩)</span>
+					<span class="line">사업자등록번호 : 101-81-52964 통신판매업신고 : 중구 제00402호</span>
+					<span class="line">고객만족센터 : <a href="tel:1577-1110">1577-1110</a>  webmaster@lotte.com</span>
+					<span class="line">개인정보보호책임자 : 윤상선</span> <span class="line">청소년보호책임자 : 김찬기</span>
+					<span>호스팅 사업자 : (주)롯데닷컴</span>
+				</p>
+			</div>
+			<div class="menu03">
+				<ul>
+					<li><a href="#">이용약관</a></li>
+					<li><a href="#"><strong>개인정보처리방침</strong></a></li>
+					<li><a href="#">청소년보호정책</a></li>
+				</ul>
+			</div>
+			<div class="capyright">Copyright © LOTTE.com, Inc. All rights Reserved.</div>
+		</footer>
+		<!-- //footer -->
+
+		<!-- quick_btn -->
+		<div class="quick_btn">
+			<div ng-show="visible" class="">
+				<a class="btn_back ng-hide" ng-click="gotoPrepageSide()" ng-show="quickBackBtn">뒤로</a><a class="btn_top" ng-click="gotoTop()">위로</a>
+			</div>
+			<a class="btn_talk" ng-click="gotoTalk()">톡상담</a>
+		</div>
+		<!-- quick_btn -->
+	</div>
+
+	<!-- lotteActionbar -->
+	<section id="lotteActionbar" class="actionbar" ng-show="!appObj.isApp &amp;&amp; !actionbarHideFlag" style="display: block">
+		<ul class="actionbar_wrap">
+			<li class="home on" ng-class="{on:cur_pageid == 1 &amp;&amp; !isShowSideCtg}"><button ng-click="gotoMainFooter()" class="btn_main">홈</button></li>
+			<li class="ctg" ng-class="{on: isShowSideCtg}"><button ng-click="showSideCtgFooter()" class="btn_ctg">카테고리</button></li>
+			<li class="order" ng-class="{on:cur_pageid == 2}"><button ng-click="gotoOrderLstFooter()" class="btn_order">주문배송</button></li>
+			<li class="mylotte" ng-class="{on:cur_pageid == 3}"><button ng-click="gotoMyPageFooter()" class="btn_mylotte">마이롯데</button></li>
+		</ul>
+	</section>
+	<!-- //lotteActionbar -->
+</body>
+</html>

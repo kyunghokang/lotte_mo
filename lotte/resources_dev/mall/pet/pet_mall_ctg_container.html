@@ -1,0 +1,20 @@
+<section ng-if="isMain">
+	<style>
+		.ctg_list_big ul li { width:{{ ctgReSize }}px !important }
+	</style>
+	<div class="ctg_list dearpet_v4" ng-class="{fixed : menufix}" ng-if="screenData.cate_list.length">
+		<div class="ctg_list_big" lotte-slider>
+			<ul class='clear'>
+				<li
+					ng-repeat="citem in screenData.cate_list"
+					ng-class="{big_on:screenData.selectCate1==citem.disp_no}"
+					ng-click="menuCateLink(citem,$index)">
+					<figure><img ng-src='{{citem.disp_img}}' alt=''/></figure>
+					<span class="btn_ctg_big">
+						<text ng-bind-html="citem.disp_nm"></text>
+					</span>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>

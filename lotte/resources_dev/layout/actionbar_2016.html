@@ -1,0 +1,8 @@
+<section id="lotteActionbar" class="actionbar" ng-show="!appObj.isApp && !actionbarHideFlag">
+    <ul class="actionbar_wrap">
+        <li class="home" ng-class="{on:cur_pageid == 1 && !isShowSideCtg}"><button ng-click="gotoMainFooter()" class="btn_main">홈</button></li>
+        <li class="ctg" ng-class="{on: isShowSideCtg}"><button ng-click="showSideCtgFooter()" class="btn_ctg"><i ng-if="intTodayDate && intLastCtgFlagDate && intTodayDate < intLastCtgFlagDate" class="reddot"></i>카테고리</button></li>
+        <li class="order" ng-class="{on:cur_pageid == 2}"><button ng-click="gotoOrderLstFooter()" class="btn_order"><i ng-if="orderStateFlag" class="newOrderState">N</i>주문배송</button></li>
+        <li class="mylotte" ng-class="{on:cur_pageid == 3}"><button ng-click="gotoMyPageFooter()" class="btn_mylotte">마이롯데</button></li>
+    </ul>
+</section>

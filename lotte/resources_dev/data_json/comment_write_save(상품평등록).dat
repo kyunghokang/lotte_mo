@@ -1,0 +1,56 @@
+1. 업무명: 마이롯데 > 상품평 등록
+2. 담당자: 이형근
+3. URL: http://molocal.lotte.com/json/cn/comment/comment_write_save.json
+4. 파라미터
+	- goods_no: 상품번호
+	- usm_goods_no: 통합판매관리 상품번호
+	- frst_gdas_yn: 첫 상품평 여부
+	- wtrt_pur_yn: 쓰기가능 여부
+	- reviewTxt: 상품평 내용
+	- prc_stfd_val: 가격만족도
+	- qual_stfd_val: 품질만족도
+	- dsgn_stfd_val: 디자인만족도
+	- dlv_stfd_val: 배송만족도
+	- size: 사이즈
+	- color: 색상
+5. JSON 파라미터
+    - response_code: 응답코드
+    - response_msg: 응답메시지
+6. 성공 시
+{
+  "data_set": {
+    "response_code" : "0000",
+    "response_msg" : "등록되었습니다." 
+  }
+}
+7. 실패 시
+{
+  "error" : {
+    "response_code" : "9999",
+    "response_msg" : "서버 오류"
+  }
+}
+{
+  "error" : {
+    "response_code" : "9004",
+    "response_msg" : "아이디 또는 회원번호 존재하지 않음"
+  }
+}
+{
+  "error" : {
+    "response_code" : "3100",
+    "response_msg" : "상품평 등록에 실패했습니다."
+  }
+}
+{
+  "error" : {
+    "response_code" : "3101",
+    "response_msg" : "동일한 품목에 대하여 이미 상품평을 작성하셨네요.\\n (동품목 상품평1회제한)"
+  }
+}
+{
+  "error" : {
+    "response_code" : "3102",
+    "response_msg" : "이벤트 응모에 실패했습니다."
+  }
+}

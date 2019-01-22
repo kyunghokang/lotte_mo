@@ -1,0 +1,134 @@
+/* 내정보(햄버거) */
+.myinfo_side_wrap.open{
+-webkit-transform:translate(0,0);
+transform:translate(0,0);
+}
+.myinfo_side_wrap {position:fixed; top:0; left:0; width:100%; height:100%; z-index:999; background:#f2f2f2;
+-webkit-transition: transform .2s;
+transition: transform .2s;
+-webkit-transform:translate(-100%,0);
+transform:translate(-100%,0);
+}
+.myinfo_side_wrap .myinfo_wrap{ overflow:auto;-webkit-overflow-scrolling:touch;width:100%; height:100%;}
+.myinfo_side_wrap .header_wrap {position:relative; height:48px; background:#ffebf0}
+.myinfo_side_wrap .header_wrap .btn_close {position:absolute; top:0; right:0; width:60px; height:48px; text-indent:-9999px;}
+.myinfo_side_wrap .header_wrap .btn_close:after {content:''; display:block; position:absolute; top:50%; right:23px; width:18px; height:18px; margin:-9px 0 0 0; background:url(http://image.lotte.com/lotte/mo2018/voice/btn_close.png) no-repeat; background-size:18px 18px;}
+.myinfo_side_wrap .header_wrap .btn_side_back {position:absolute; top:0; left:0; width:60px; height:48px; text-indent:-9999px; }
+.myinfo_side_wrap .header_wrap .btn_side_back:before {content:''; display:block; position:absolute; top:50%; left:23px; width:21px; height:19px; margin:-10px 0 0 0; background:url(http://image.lotte.com/lotte/mo2018/voice/btn_back.png) no-repeat; background-size:21px 19px;}
+
+.myinfo_side_wrap h3.title {font-size:16px; line-height:24px; font-weight:700;}
+.myinfo_side_wrap h3.title a {position:relative; padding:3px 0;}
+.myinfo_side_wrap h3.title a:after {content:''; display:block; position:absolute; bottom:0; left:0; right:0; width:100%; height:1px; background:#333;}
+.myinfo_side_wrap .myinfo_box {margin-bottom:10px; padding:0 20px 24px 20px; background:#ffebf0; box-shadow:0px 2px 6px rgba(0, 0, 0, 0.1);}
+.myinfo_side_wrap .myinfo_box .greeting_box {margin-bottom:23px;height:49px;width:100%; background:#FF6991; border-radius:30px;position:relative;}
+.myinfo_side_wrap .myinfo_box .greeting_box:before {content:''; display:block; position:absolute; top:-6px; left:1px; width:22px; height:16px; border-radius:11px; background:#ff6991;}
+.myinfo_side_wrap .myinfo_box .greeting_box:after {content:''; display:block; position:absolute; top:-16px; left:3px; width:26px; height:16px; border-radius:11px; background:#ffebf0;}
+.myinfo_side_wrap .myinfo_box .greeting_box .txt_greeting {font-size:16px; color:#fff; letter-spacing:-1px;display:block;/*position:relative;top:13px;*/}
+.myinfo_side_wrap .myinfo_box .greeting_box i.img {width:34px; height:34px;margin:-2px 5px 0 0;vertical-align:middle;}
+.myinfo_side_wrap .myinfo_box .greeting_box .txt_greeting em{position:absolute;top:50%;height:34px;margin-top:-17px;padding:0 25px 0 23px;line-height:34px;display:block;overflow:hidden;}
+.myinfo_side_wrap .myinfo_box .greeting_box.open .txt_greeting em{
+    -webkit-animation: weatherUp 0.7s ease-in;
+    -moz-animation: weatherUp 0.7s ease-in;
+    -o-animation: weatherUp 0.7s ease-in;
+    -ms-animation: weatherUp 0.7s ease-in;
+    animation: weatherUp 0.7s ease-in;    
+}
+@-webkit-keyframes weatherUp {
+    0% { -webkit-transform:translate(0,26px);opacity:0; }
+    100% { -webkit-transform:translate(0,0);opacity:1; }
+}
+@keyframes weatherUp {
+    0% { -webkit-transform:translate(0,26px);opacity:0; }
+    100% { -webkit-transform:translate(0,0);opacity:1; }
+}
+
+.myinfo_side_wrap .info_detail_box {}
+.myinfo_side_wrap .info_detail_box  h3.title {display:inline-block;vertical-align:middle;}
+.myinfo_side_wrap .info_detail_box .box {position:relative; display:inline-block; margin-bottom:11px;}
+.myinfo_side_wrap .info_detail_box .box .btn_guide {display:inline-block; width:16px; height:16px; background:url(http://image.lotte.com/lotte/mo2018/voice/icon_info.png) no-repeat 0 0; background-size:16px 16px; text-indent:-9999px; vertical-align:middle;}
+.myinfo_side_wrap .info_detail_box .box .txt_message {position:absolute; top:30px; width:199px; margin-left:-70px; padding:14px; background:#fff; box-shadow:0px 2px 6px rgba(0,0,0,0.2); border:1px solid #BDBDBD; border-radius:2px; z-index:99;}
+.myinfo_side_wrap .info_detail_box .box .txt_message:before {content:''; display:block; position:absolute; top:-7px; left:50%; width:12px; height:12px; margin-left:-42px; background:#fff; transform:rotate(-137deg); border-bottom:1px solid #BDBDBD; border-right:1px solid #BDBDBD;}
+
+.myinfo_side_wrap .info_detail_box .info_register {border:1px solid rgba(255, 105, 145, 0.6); background:#fff; border-radius:6px;}
+.myinfo_side_wrap .info_detail_box .info_register .delivery_box {height:49px; line-height:49px; border-top:1px solid #e0e0e0; box-sizing:border-box;}
+.myinfo_side_wrap .info_detail_box .info_register .pay_box {height:49px; line-height:49px;}
+.myinfo_side_wrap .info_detail_box .info_register .delivery_box .tit_default,
+.myinfo_side_wrap .info_detail_box .info_register .pay_box .tit_default{text-align:center;}
+.myinfo_side_wrap .info_detail_box .info_register .delivery_box .tit_default a,
+.myinfo_side_wrap .info_detail_box .info_register .pay_box .tit_default a{display:block;}
+.myinfo_side_wrap .info_detail_box .info_register .delivery_box .tit_default a strong,
+.myinfo_side_wrap .info_detail_box .info_register .pay_box .tit_default a strong{display:block;font-size:18px; letter-spacing:-1px; color:#FB527F; }
+.myinfo_side_wrap .info_detail_box .info_register .info {position:relative; font-size:14px; letter-spacing:-1px;}
+.myinfo_side_wrap .info_detail_box .info_register .info .txt {display:inline-block; position:relative; overflow:hidden; height:50px; padding:0 63px 0 75px; color:#333;width:100%;box-sizing:border-box;}
+.myinfo_side_wrap .info_detail_box .info_register .delivery_box .info:before {content:'배송지'; display:block; position:absolute; top:0; left:14px; color:#aaa; letter-spacing:-1px;}
+.myinfo_side_wrap .info_detail_box .info_register .pay_box .info:before {content:'결제수단'; display:block; position:absolute; top:0; left:14px; color:#aaa; letter-spacing:-1px;}
+.myinfo_side_wrap .info_detail_box .info_register .info .btn_change {position:absolute; top:0; right:15px; font-weight:700; color:#FB527F;}
+.myinfo_side_wrap .info_detail_box .info_register .info .btn_change:after {content:''; display:inline-block; width:7px; height:12px; margin-top:-2px; margin-left:6px; background:url(http://image.lotte.com/lotte/mo2018/voice/icon_arrow.png) no-repeat; background-size:7px 12px; vertical-align:middle;}
+/* 보이스커머스 2차 수정 */
+.myinfo_side_wrap .info_detail_box .txt_info {position:relative; margin-top:14px; padding:11px 13px 11px 37px; border:1px solid #7C9EE2; background:#fff; border-radius:6px;}
+.myinfo_side_wrap .info_detail_box .txt_info:before {content:''; display:block; position:absolute; top:-7px; left:50%; width:12px; height:12px; margin-left:-6px; border-right:1px solid #7C9EE2; border-bottom:1px solid #7C9EE2; background:#fff; transform:rotate(-135deg); border-bottom-right-radius:2px;}
+.myinfo_side_wrap .info_detail_box .txt_info span {position:relative; color:#547FFA; font-size:14px; line-height:21px; font-weight:700;}
+.myinfo_side_wrap .info_detail_box .txt_info span:before {content:''; display:inline-block; position:absolute; top:50%; left:-26px; width:20px; height:20px; margin-top:-10px; background:url(http://image.lotte.com/lotte/mo2018/voice/icon_register.png) no-repeat; background-size:100%;}
+
+.myinfo_side_wrap .speech_box {margin-bottom:10px; padding:27px 20px 21px; background:#fff; box-shadow:0px 2px 6px rgba(0, 0, 0, 0.1);}
+.myinfo_side_wrap .speech_box .box {position:relative; margin-bottom:15px;}
+.myinfo_side_wrap .speech_box .box .btn_guide_view {position:absolute; top:2px; right:0; padding-right:17px; color:#ED7293; font-size:14px; font-weight:700;}
+.myinfo_side_wrap .speech_box .box .btn_guide_view:after {content:''; display:block; position:absolute; right:0; top:50%; width:7px; height:13px; margin-top:-7px; background:url(http://image.lotte.com/lotte/mo2018/voice/btn_guide_view.png) no-repeat; background-size:7px 13px;}
+
+.myinfo_side_wrap .speech_box .tab_speech {}
+.myinfo_side_wrap .speech_box .tab_speech .list {border-bottom:2px solid #f2f2f2;}
+.myinfo_side_wrap .speech_box .tab_speech .list li {display:inline-block;}
+.myinfo_side_wrap .speech_box .tab_speech .list li a {display:inline-block; margin-bottom:-2px; padding:9px 11px; font-size:18px; position:relative; font-weight:700; border-bottom:2px solid; z-index:1;}
+.myinfo_side_wrap .speech_box .tab_speech .list li.off a {position:relative; color:#aaa !important;border-bottom-color:transparent !important; font-size:16px; font-weight:400;}
+.myinfo_side_wrap .speech_box .tab_speech .list li a:after {content:''; display:block; position:absolute; bottom:-2px; left:0; width:100%; height:2px;}
+
+.myinfo_side_wrap .speech_box .tab_speech .list li.on a:after {content:''; display:block; position:absolute; bottom:-2px; left:0; width:100%; height:2px;}
+.myinfo_side_wrap .speech_box .tab_speech_content {margin-top:20px;position:relative;overflow:hidden;}
+.myinfo_side_wrap .speech_box .tab_speech_content ul.speech_cotent_wrap{overflow:hidden;width:100%;}
+.myinfo_side_wrap .speech_box .tab_speech_content ul.speech_cotent_wrap > li{backface-visibility:hidden;-webkit-backface-visibility:hidden;-ms-backface-visibility:hidden;overflow:hidden;width:100%;height:100%;}
+.myinfo_side_wrap .speech_box .tab_speech_content ul.speech_cotent_wrap > li > ol {display:block;overflow:hidden;height:164px;}
+.myinfo_side_wrap .speech_box .tab_speech_content ul.speech_cotent_wrap > li > ol > li {overflow:hidden;height:39px;font-size:22px; line-height:39px; color:#333; white-space:normal; word-break:break-all;}
+.myinfo_side_wrap .speech_box .tab_speech_content ul.speech_cotent_wrap > li > ol > li:before{content:"“";}
+.myinfo_side_wrap .speech_box .tab_speech_content ul.speech_cotent_wrap > li > ol > li:after{content:"”";}
+
+.myinfo_side_wrap .history_box {padding:26px 20px; background:#fff;}
+.myinfo_side_wrap .history_box .history_list {margin-top:20px;}
+.myinfo_side_wrap .history_box .history_list li {position:relative; padding-right:66px; margin-bottom:8px; font-size:20px; color:#BDBDBD;}
+.myinfo_side_wrap .history_box .history_list li .txt {display:inline-block; height:30px; word-break:break-all; overflow:hidden; white-space:normal; line-height:30px;}
+.myinfo_side_wrap .history_box .history_list li .txt:before{content:"“";}
+.myinfo_side_wrap .history_box .history_list li .txt:after{content:"”";}
+.myinfo_side_wrap .history_box .history_list li .date {display:inline-block; position:absolute; top:0; right:0; font-size:14px; line-height:30px;}
+
+/* 내정보(햄버거) > 발화가이드 */
+.myinfo_side_wrap .guide_wrap.open{
+-webkit-transform:translate(0,0);
+transform:translate(0,0);
+}
+.myinfo_side_wrap .guide_wrap{position:fixed; top:0; left:0; width:100%; height:100%; z-index:999; background:#f2f2f2;
+overflow:auto;
+-webkit-overflow-scrolling:touch;
+-webkit-transition: transform .2s;
+transition: transform .2s;
+-webkit-transform:translate(-100%,0);
+transform:translate(-100%,0);
+}
+.myinfo_side_wrap .guide_wrap {background:#fff;}
+.myinfo_side_wrap .guide_wrap .header_wrap {background:#fff;}
+.myinfo_side_wrap .guide_wrap h3.title {padding:30px 0 13px 20px;}
+.myinfo_side_wrap .guide_wrap > ul > li {padding:24px 20px;border-top:1px solid;}
+.myinfo_side_wrap .guide_wrap > ul > li > .tit {height:26px; line-height:26px; font-size:22px; font-weight:700; text-align:left;}
+.myinfo_side_wrap .guide_wrap > ul > li > ul {padding:6px 20px 0 20px;}
+.myinfo_side_wrap .guide_wrap > ul > li > ul > li {color:#333; font-size:20px; height:42px; line-height:42px; overflow:hidden; white-space:normal; word-break:break-all;}
+.myinfo_side_wrap .guide_wrap > ul > li > ul > li:before{content:"“";}
+.myinfo_side_wrap .guide_wrap > ul > li > ul > li:after{content:"”";}
+
+@media screen and (max-width: 320px){
+	.myinfo_side_wrap .info_detail_box {position:relative;}
+	.myinfo_side_wrap .info_detail_box .box {position:static;}
+	.myinfo_side_wrap .info_detail_box .box .txt_message {right:0;}
+	.myinfo_side_wrap .info_detail_box .box .txt_message:before {left:72px;}
+	.myinfo_side_wrap .info_detail_box .txt_info span {word-break:keep-all;}
+	 
+	.myinfo_side_wrap .speech_box .tab_speech_content ul.speech_cotent_wrap > li > ol > li {font-size:20px;}
+}
+

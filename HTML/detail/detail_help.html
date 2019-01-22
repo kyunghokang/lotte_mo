@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">	
+<!----------------- current css ----------------->
+
+<link rel="stylesheet" href="/lotte/resources_dev/product/m/detail.css">
+<link rel="stylesheet" href="/lotte/resources_dev/product/m/detail_datepicker.css">
+<link rel="stylesheet" href="/lotte/resources_dev/product/m/detail_popup.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<!-- <section ng-include src="'/HTML/include/head_sub.html'"></section> -->
+<header id="head_sub" class="ng-scope">
+	<h2>
+		<span>상품상세</span>
+		<!-- 클릭될 경우 a 클래스 on -->
+		<a href="#" class="btn_sel">화살표</a>
+		<span class="titLocation">
+			<a href="#none">패션잡화</a>
+			<a href="#none">가방/지갑/벨트</a>
+			<a href="#none">여성가방</a>
+		</span>
+	</h2>
+	<p class="prev">
+		<a href="#">이전</a>
+	</p>
+	<p class="this">
+		<a href="#none">공유</a>
+	</p>
+</header>
+
+<!-- container -->
+<div id="container">
+
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <ul>
+        <li style="border:1px solid #ccc; background:#fff; margin:10px; padding:5px;">팝업:롯데닷컴 선물 서비스 <span class="icQst" ng-click="popGift()">?</span></li>
+        <li>----------------------------------</li>
+        <li id="test" style="border:1px solid #ccc; background:#fff; margin:10px; padding:5px;">참좋은 혜택 말풍선 <span class="icQst" ng-click="helpLayer({target:'giftPrice'})">?</span></li>
+        <li style="border:1px solid #ccc; background:#fff; margin:10px; padding:5px;">적립기준? <span class="icQst" ng-click="helpLayer({target:'lottePointPlusCard'})">?</span></li>
+        <li style="border:1px solid #ccc; background:#fff; margin:10px; padding:5px;">렌탈상품 다운로드 <span class="icQst" ng-click="helpLayer({target:'rentalOnly'})">?</span></li>
+     
+     
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+     
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+     
+     
+     </ul>
+</div>
+
+
+<!-- 팝업:롯데닷컴 선물 서비스 -->
+<div class="popup" pop-gift>
+    <h6>롯데닷컴 선물 서비스</h6>
+    <div class="con_gift">
+        <ul>
+            <li>
+                <span  id="test" class="icPresent icCard on">메시지카드 가능</span>
+                <p>주문서에서 선물포장<br>여부를 선택해주세요</p>
+            </li>
+            <li>
+                <span class="icPresent icWrap on"">선물포장 가능</span>
+                <p>주문서에서 메시지를<br>입력해주세요</p>
+            </li>
+        </ul>
+        <p class="txt_gift">선물포장 서비스란?</p>
+        <p class="txt_gift">롯데닷컴이 제공하는 선물포장 및<br>메시지 카드 전달 서비스 입니다.</p>
+    </div>
+    <a class="close" ng-click="popGiftClose()">닫기</a>
+</div>
+
+<!-- 팝업:말풍선 -->
+<section class="helpLayer" help-layer>
+    <h6 ng-bind-html="helpTitle"></h6>
+    <span class="close" ng-click="helpLayerClose()"></span>
+    <div ng-bind-html="helpTxt"></div>
+</section>
+
+<!-- 달력 레이어 ASIS랑 같음 -->
+<section id="calendar" ng-show="datePicker" style="display:none;"><div class="wa-datechooser-date-box"><div class="close"><a ng-click="datePickerClose();">닫기</a></div><div class="wa-datechooser-date-head"><a class="wa-datechooser-month-btn">&lt;</a><span class="">2015년 08월</span><a class="wa-datechooser-month-btn">&gt;</a></div><table class="wa-datechooser-date-body"><thead><tr><th>SUN</th><th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th>SAT</th></tr></thead><tbody><tr><td class="before">26</td><td class="before">27</td><td class="before">28</td><td class="before">29</td><td class="before">30</td><td class="before">31</td><td class="before">1</td></tr><tr><td class="before">2</td><td class="before">3</td><td class="before">4</td><td class="before">5</td><td class="before">6</td><td class="before">7</td><td class="before">8</td></tr><tr><td class="before">9</td><td class="before">10</td><td class="before">11</td><td class="before">12</td><td class="before">13</td><td class="before">14</td><td class="before">15</td></tr><tr><td class="before">16</td><td class="before">17</td><td class="before">18</td><td class="before">19</td><td class="before">20</td><td class="before">21</td><td class="before">22</td></tr><tr><td class="before">23</td><td class="before">24</td><td class="after today"><a>25</a></td><td class="after"><a>26</a></td><td class="after"><a>27</a></td><td class="after"><a>28</a></td><td class="after"><a>29</a></td></tr><tr><td class="after"><a>30</a></td><td class="after"><a>31</a></td><td class="next-month">1</td><td class="next-month">2</td><td class="next-month">3</td><td class="next-month">4</td><td class="next-month">5</td></tr></tbody></table></div></section>
+
+<!-- footer -->
+<section ng-include src="'/HTML/include/footer.html'"></section>
+
+</body>
+</html>

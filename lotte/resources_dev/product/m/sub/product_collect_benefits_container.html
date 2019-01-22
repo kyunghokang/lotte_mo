@@ -1,0 +1,240 @@
+<section ng-show="contVisible" class="cont_minheight"> <!--* 상품상세 서브페이지: 혜택 모아보기-->
+	<!--20180515 L.POINT 회원 특별할인  팝업-->
+	<div class="commonPop lpop" id="lpointPopup" ng-if="pageUI.benefitOpen">
+	    <div class="bg" ng-click="pageUI.benefitOpen = !pageUI.benefitOpen"></div>
+	    <div class="box">
+	        <div class="popBox">
+	            <h2>할인내역</h2>
+	            <div class="cont">
+	                <div class="ptable list" ng-if="pageUI.loadData.inst_cpn_aply_unit_price && pageUI.loadData.inst_cpn_aply_unit_price > 0">
+	                    <div class="cell ls">쿠폰할인</div>
+	                    <div class="cell rs"><b>{{pageUI.loadData.inst_cpn_aply_unit_price | number}}</b>원</div>
+	                </div>
+	                <div class="ptable list" ng-if="pageUI.loadData.lpoint_mem_dscnt_price && pageUI.loadData.lpoint_mem_dscnt_price > 0">
+	                    <div class="cell ls">L.POINT회원 특별할인</div>
+	                    <div class="cell rs"><b>{{pageUI.loadData.lpoint_mem_dscnt_price | number}}</b>원</div>
+	                </div>
+	            </div>
+	            <div class="foot" ng-click="pageUI.benefitOpen = !pageUI.benefitOpen">
+	                닫기
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	
+	<!--오늘도착 안내 -->
+	<div ng-show="pageUI.pointGuideOpen">
+		<div class="bsPopBg" ng-click="pageUI.pointGuideOpen = !pageUI.pointGuideOpen"></div>
+		<div class="bsPop pop_pointGuide">
+			<div class="pInnder">
+				<div class="pTxtBox">
+					<p>
+						<span ng-if="pageUI.loadData.rsvLpoint">상품적립금 {{pageUI.loadData.rsvLpoint | number}}점<br /></span>
+						<span ng-if="pageUI.loadData.rsvPlusCard">롯데포인트플러스카드 결제시<br />최대 {{pageUI.loadData.rsvPlusCard | number}}점 적립</span>				
+					</p>
+					<div class="stit">적립 기준</div>
+					<ul>
+						<li>① 상기 표시된 적립금은 쿠폰 등 할인 금액에 따라 변동될 수 있습니다.</li>
+						<li>② 무이자할부 이용시 롯데카드 적립은 제외됩니다.</li>
+						<li>③ 적립쿠폰은 2배 적립에서 제외됩니다.</li>
+						<li>④ 카드사에서 제공되는 적립금은 롯데포인트 플러스카드 결제분에 한해 산정된 적립율로 지급됩니다. (롯데포인트플러스카드와 현금/포인트 복합 결제시 현금/포인트 결제금액 제외)</li>
+						<li>⑤ 롯데닷컴 ID기준의 멤버스 회원과 결제하신 롯데포인트플러스카드의 소유주가 다른 경우 롯데카드 적립금은 적립되지 않습니다. <br />(롯데닷컴 적립금은 정상 지급)</li>
+					</ul>
+				</div>
+			</div>
+			<a  ng-click="pageUI.pointGuideOpen = !pageUI.pointGuideOpen" class="pClose">닫기</a>
+		</div>
+	</div>	
+	
+	<product-sub-header></product-sub-header>
+	
+	<div class="benefits_info">
+		<div class="benefits_top">
+			<!-- 판매가 -->
+			<div class="tit_wrap"  ng-if="pageUI.loadData.orgPrice > pageUI.loadData.price && (pageUI.loadData.immed_pay_dscnt_amt > 0 || pageUI.loadData.inst_cpn_aply_unit_price > 0 || pageUI.loadData.lpoint_mem_dscnt_price > 0)">
+				<p class="tit">판매가</p>
+				<p class="price"><span>{{pageUI.loadData.orgPrice | number}}</span>원</p>
+			</div>
+
+			<div class="sales_wrap" ng-if="pageUI.loadData.orgPrice > pageUI.loadData.price && (pageUI.loadData.immed_pay_dscnt_amt > 0 || pageUI.loadData.inst_cpn_aply_unit_price > 0 || pageUI.loadData.lpoint_mem_dscnt_price > 0)">
+				<ul>
+					<li ng-if="pageUI.loadData.immed_pay_dscnt_amt > 0 && !pageUI.loadData.staffImmedDscntTxt">
+						<em class="ico"></em>
+						<p class="tit">일시불 할인</p>
+						<p class="price">{{pageUI.loadData.immed_pay_dscnt_amt | number}}원</p>
+					</li>
+					<li ng-if="(pageUI.loadData.inst_cpn_aply_unit_price || pageUI.loadData.lpoint_mem_dscnt_price) > 0">
+						<em class="ico"></em>
+						<p class="tit">즉석쿠폰할인 <span class="ico_info" ng-click="pageUI.benefitOpen = true">?</span></p>
+						<p class="price">{{(pageUI.loadData.inst_cpn_aply_unit_price + pageUI.loadData.lpoint_mem_dscnt_price) | number}}원</p>
+					</li>
+				</ul>
+			</div>
+			<!-- //판매가 -->
+
+			<!-- 참좋은 혜택가 -->
+			<div class="tit_wrap">
+				<p class="tit">참좋은 혜택가</p>
+				<p class="price"><span>{{pageUI.loadData.price | number}}</span>원</p>
+			</div>
+
+			<div class="sales_wrap">
+				<p class ="txt_info" ng-if="!loginInfo.isLogin">※ 로그인을 하시면 고객님의 쿠폰이 추가 적용됩니다.</p>
+				<p class ="txt_info" ng-if="!pageUI.loadData.emDscntTxt && !pageUI.loadData.secDscntTxt && !pageUI.loadData.thrdDscntTxt && loginInfo.isLogin">※ 놓친 쿠폰 확인하고 추가혜택을 적용해보세요.</p>
+				
+				<ul ng-if="(pageUI.loadData.emDscntTxt || pageUI.loadData.secDscntTxt || pageUI.loadData.thrdDscntTxt) && loginInfo.isLogin">
+					<li ng-if="pageUI.loadData.emDscntTxt">
+						<em class="ico"></em>
+						<p class="tit">{{pageUI.loadData.emDscntTxt}}</p>
+						<p class="price">{{pageUI.loadData.emDscntPrc | number}}원</p>
+					</li>
+					<li ng-if="pageUI.loadData.secDscntTxt">
+						<em class="ico"></em>
+						<p class="tit">{{pageUI.loadData.secDscntTxt}}</p>
+						<p class="price">{{pageUI.loadData.secDscntPrc | number}}원</p>
+					</li>
+					<li ng-if="pageUI.loadData.thrdDscntTxt">
+						<em class="ico"></em>
+						<p class="tit">{{pageUI.loadData.thrdDscntTxt}}</p>
+						<p class="price">{{pageUI.loadData.thrdDscntPrc | number}}원</p>
+					</li>
+				</ul>
+
+				<div class="btn_wrap" ng-if="pageUI.loadData.eventLinkUrl && loginInfo.isLogin">
+					<span class="btn_arrow_blue" ng-click="goEventCoupon(pageUI.loadData.eventLinkUrl);">쿠폰 더받기</span>
+				</div>
+			</div>
+			<!-- //참좋은 혜택가 -->
+
+			<!-- 추가 혜택 적용가 -->
+			<div class="disc_price_wrap">
+				<div class="inner">
+					<p class="tit">추가 혜택 적용가</p>
+					<p class="price">
+						<span ng-if="pageUI.loadData.emDscntTxt || pageUI.loadData.secDscntTxt || pageUI.loadData.thrdDscntTxt">{{pageUI.loadData.finalDscntPrc | number}}</span><span ng-if="!pageUI.loadData.emDscntTxt && !pageUI.loadData.secDscntTxt && !pageUI.loadData.thrdDscntTxt">{{pageUI.loadData.price | number}}</span>원
+					</p>
+				</div>
+				<p class="login_ck" ng-if="pageUI.loadData.staffImmedDscntTxt">* {{pageUI.loadData.staffImmedDscntTxt}}</p>
+			</div>
+			<!-- //추가 혜택 적용가 -->
+		</div>
+	</div>
+
+	<!-- 청구할인 -->
+	<div class="benefits_add" ng-if="pageUI.loadData.clmDscntPromList">
+		<div class="tit_wrap">
+			<p class="tit">청구할인</p>
+		</div>
+		<ul class="add_list">
+			<li ng-repeat="item in pageUI.loadData.clmDscntPromList.items">
+				<div class="txt_wrap">
+					<p class="tit">{{item.fvrDesc}}</p>
+					<p class="txt">{{item.fvrLmtDesc}}</p>
+				</div>
+				<p class="price" ng-if="item.fvrPrc > 0"><span>{{item.fvrPrc | number}}</span>원</p>
+			</li>
+		</ul>
+	</div>
+	<!-- //청구할인 -->
+	
+	<!-- 구매사은 -->
+	<div class="lpoint_info" ng-if="pageUI.loadData.saunList || pageUI.loadData.rsvLpoint">
+		<div class="tit_wrap">
+			<p class="tit">구매사은(신청필수)</p>
+		</div>
+
+		<ul class="lpoint_list" >
+			<!-- 사은혜택 L.POINT -->
+			<li ng-if="pageUI.loadData.saunListData.lpoint.length > 0 || pageUI.loadData.rsvLpoint">
+				<div class="name_wrap">
+					<span class="name">L.POINT</span>
+				</div>
+				<div class="kinds_wrap" ng-if="pageUI.loadData.rsvLpoint">
+					<p class="txt">상품적립</p>
+					<p class="point"><span class="point_color">{{pageUI.loadData.rsvLpoint | number}}</span>점 적립</p>
+				</div>
+				<div class="info_wrap" ng-if="pageUI.loadData.saunListData.lpoint.length > 0" ng-repeat="item in pageUI.loadData.saunListData.lpoint">
+					<div class="inner">
+						<div class="txt_wrap">
+							<p class="txt" ng-if="item.evtNm">{{item.evtNm}}</p>
+							<p class="info" ng-if="item.fvrDesc"><span ng-if="item.fvrCard">{{item.fvrCard}} </span>{{item.fvrDesc}}</p>
+						</div>
+						<div class="point_wrap">
+							<p class="point"><span class="point_color">{{item.fvrGiftNm}}</span>점 적립</p>
+						</div>
+					</div>
+					<div class="btn_wrap" ng-if="pageUI.loadData.saunLinkUrl">
+						<span class="btn_arrow_blue" ng-click="goEventSaun(item.evtNo,'m_RDC_ProdDetail_benefit_Clk_Idx'+numberFill((item.gaIdx+1),2,item.evtNo),'구매사은_'+numberFill((item.gaIdx+1),2,item.evtNo))">자세히 보기</span>
+					</div>
+				</div>
+			</li>
+			<!-- //사은혜택 L.POINT -->
+
+			<!-- 사은혜택 L.money -->
+			<li ng-if="pageUI.loadData.saunListData.lmoney.length > 0">
+				<div class="name_wrap">
+					<span class="name">L-money</span>
+				</div>
+				<div class="info_wrap" ng-repeat="item in pageUI.loadData.saunListData.lmoney">
+					<div class="inner">
+						<div class="txt_wrap">
+							<p class="txt" ng-if="item.evtNm">{{item.evtNm}}</p>
+							<p class="info" ng-if="item.fvrDesc"><span ng-if="item.fvrCard">{{item.fvrCard}} </span>{{item.fvrDesc}}</p>
+						</div>
+						<div class="point_wrap">
+							<p class="point"><span class="point_color">{{item.fvrGiftNm}}</span>점 적립</p>
+						</div>
+					</div>
+					<div class="btn_wrap" ng-if="pageUI.loadData.saunLinkUrl">
+						<span class="btn_arrow_blue" ng-click="goEventSaun(item.evtNo,'m_RDC_ProdDetail_benefit_Clk_Idx'+numberFill((item.gaIdx+1),2,item.evtNo),'구매사은_'+numberFill((item.gaIdx+1),2,item.evtNo))">자세히 보기</span>
+					</div>
+				</div>
+			</li>
+			<!-- //사은혜택 L.money -->
+
+			<!-- 20181127 사은품 삭제 처리 -->
+			<!-- <li ng-if="pageUI.loadData.saunListData.saun.length > 0">
+				<div class="name_wrap">
+					<span class="name">사은품</span>
+				</div>
+				<div class="info_wrap" ng-repeat="item in pageUI.loadData.saunListData.saun">
+					<div class="inner">
+						<div class="txt_wrap">
+							<p class="txt" ng-if="item.evtNm">{{item.evtNm}}</p>
+							<p class="txt">{{item.fvrGiftNm}}</p>
+						</div>
+					</div>
+					<div class="btn_wrap" ng-if="pageUI.loadData.saunLinkUrl">
+						<span class="btn_arrow_blue" ng-click="goEventSaun(item.evtNo,'m_RDC_ProdDetail_benefit_Clk_Idx'+numberFill((item.gaIdx+1),2,item.evtNo),'구매사은_'+numberFill((item.gaIdx+1),2,item.evtNo))">자세히 보기</span>
+					</div>
+				</div>
+			</li> -->
+			<!-- //20181127 사은품 삭제 처리 -->
+		</ul>
+	</div>
+	<!-- //구매사은 -->
+
+	<ul class="benefits_desc">
+		<li>할인은 제한 조건 및 상품에 따라 적용이 되지 않을 수 있습니다.</li>
+		<li>청구할인/추가적립은 추가 혜택 적용가 기준으로 노출됨으로, 실제 주문/결제 시와 상이할 수 있습니다.</li>
+		<li>적용 여부 및 조건은 해당 이벤트 페이지 및 주문서에서 꼭 확인해주세요.</li>
+		<li>구매사은은 이벤트 페이지에서 주의사항을 꼭 확인해주시고, 기간 내 미신청 고객님은 지급 대상에서 제외됩니다.</li>
+	</ul>
+
+	<div class="benefits_card" ng-if="pageUI.loadData.rsvPlusCard">
+		<p ng-class="{maxtxt: pageUI.loadData.cardtxtlen}">롯데포인트플러스카드로 결제 시 <strong>{{pageUI.loadData.rsvPlusCard | number}}P </strong><a class="ico_info" ng-click="pageUI.pointGuideOpen = !pageUI.pointGuideOpen">Tip</a></p>
+	</div>
+
+	<div class="benefits_card" ng-if="pageUI.loadData.immedDscntCardInfo">
+		<p cng-class="{maxtxt: pageUI.loadData.cardtxtlen}">{{pageUI.loadData.immedDscntCardInfo}}</p>
+	</div>
+
+	<div class="benefits_ad" ng-if="pageUI.loadData.adTxt">
+		<a ng-click="linkClick(pageUI.loadData.adUrl,'m_RDC_ProdDetail_benefit_Clk_ban01', pageUI.loadData.adTxt )"><span>{{adResult}}</span> <strong>{{adTxt}}</strong></a>
+	</div>
+
+	<!--공통 로딩커버-->
+	<div class="loading_cover" ng-if="jsonLoading">
+		<div class="loading"></div>
+	</div>
+</section>

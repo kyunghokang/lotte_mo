@@ -1,0 +1,51 @@
+<section id="container">
+	<section id="custcenter">
+		<div class="cs_lotte">
+			<section>
+				<p ng-if="true">안녕하세요. <strong>{{loginInfo.name}} {{loginInfo.isStaff && '임직원님' || '님'}}</strong><br>
+				롯데닷컴 고객센터입니다.</p>
+				<!-- gucci 상품 문의 --><p ng-if="false">안녕하세요. <strong>{{loginInfo.name}} {{loginInfo.isStaff && '임직원님' || '님'}}</strong><br>
+				 GUCCI 공식 온라인 스토어입니다.</p>
+				<p class="date">{{productQuest.inq_mk_dtime.substring(0, 16)}}</p>
+			</section>
+			<br>
+			<section ng-if="productQuest.with_goods">
+				<dl ng-click="linkToProductView()">
+					<dt><img ng-src="{{productQuest.img_url}}" alt=""></dt>
+					<dd>
+						<p class="pname">{{productQuest.goods_nm}}</p>
+						<p class="presult">상품 문의를 원하시면 아래 입력창에 작성해 주세요.</p>
+						<p class="date">{{productQuest.inq_mk_dtime.substring(0, 16)}}</p>
+					</dd>
+				</dl>
+			</section>
+		</div>		
+		<div class="cs_my">
+			<section>
+				<p>{{productQuest.inq_cont}}</p>
+				<p class="date">{{productQuest.inq_mk_dtime.substring(0, 16)}}</p>
+			</section>		
+		</div>
+		<div class="cs_lotte">
+			<section>
+				<p ng-if="true">문의사항이 접수 되었습니다.<br>확인 후 신속하게 답변 드리도록 하겠습니다.</p>
+				<!-- gucci 상품 문의 --><p ng-if="false">문의사항이 접수 되었습니다.<br>확인 후 신속하게 답변드리겠습니다.</p>
+				<p class="date">{{productQuest.inq_mk_dtime.substring(0, 16)}}</p>
+			</section>			
+		</div>
+		<div class="cs_lotte" ng-if="productQuest.complete">
+			<section>
+				<p>{{productQuest.ans_cont}}</p>
+				<p class="date">{{productQuest.proc_dtime.substring(0, 16)}}</p>
+			</section>
+		</div>
+		<div class="cs_lotte" ng-if="productQuest.complete">
+			<section>
+				<p>추가 문의사항이 있으시면<br> 추가로 작성해 주세요.</p>
+				<p class="date">{{productQuest.proc_dtime.substring(0, 16)}}</p>
+			</section>
+		</div>
+		<div class="btn_continue" ng-if="productQuest.complete" ng-click="linkToProductQuestWriteUrl()">신규 문의하기</div>
+		<div class="btn_continue" ng-if="!productQuest.complete" onclick="history.back(-1)">← 이전 페이지로 돌아가기</div>
+	</section>
+</section>

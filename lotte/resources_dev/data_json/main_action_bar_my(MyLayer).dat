@@ -1,0 +1,66 @@
+1. 업무명 : MyLayer
+2. 담당자 : 박상현
+3. URL : http://mapi.lotte.com/json/main/main_action_bar_my.json
+4. 파라미터
+	- viewGoods : localStorage.getItem("viewGoods")
+	- amlist : localStorage.getItem("amlist");
+5. JSON 파라미터
+	1) cart : 사용안함
+	2) order : 주문/배송 카운트
+	3) lpoint : L.Point
+	4) lmoney : L.Money
+	5) coupon : 쿠폰 카운트
+	6) wish : 위시리스트 카운트
+	7) alarm : 알림 카운트
+	8) alarm_txt : 알림 txt (localStorage.setItem("amlist", alarm_txt))
+	9) late_prod :
+		- img_url : 최근 본 상품. 리스트. 상품이미지URL
+		- link_url : 최근 본 상품. 리스트. 상품 링크URL
+	10) late_prod_txt : 최근 본 상품 txt (localStorage.setItem("viewGoods", late_prod_txt))
+	11) link_urls_acb : 사용안함
+	12) link_urls :
+		- so_goods_bene : 참좋은혜택 링크URL
+		- my_lotte : 마이롯데 링크URL
+		- coupon : 쿠폰 링크URL
+		- alarm : 알림 링크URL
+		- wish : 위시 링크URL
+		- order_deli : 주문/배송조회 링크URL
+		- canc_chg_rtn : 취소/교환/반품 링크URL
+		- faq : 1:1문의하기 링크URL
+		- smart_pay : 스마트페이 관리 링크URL
+		- late_prod_more : 최근 본 상품 더보기 링크URL
+		- cust_center : 고객센터 링크URL
+6. JSON
+{
+  "obj" : {
+    "cart" : null,
+    "order" : "36",
+    "lpoint" : "0",
+    "lmoney" : "9,987,100",
+    "coupon" : "0",
+    "wish" : "0",
+    "alarm" : "0",
+    "alarm_txt" : "0018712789^CART!357312,CART!546003,CART!608829,CART!1235667,CART!4533511",
+    "late_prod" : {
+      "items" : null,
+      "total_count" : 0
+    },
+    "late_prod_txt" : "guest^43098492",
+    "link_urls" : {
+      "items" : [ {
+        "so_good_bene" : "http://mrenewdev.lotte.com/mylotte/sub/soGoodBenefit.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=m_mylayer_sogoodbenefit",
+        "my_lotte" : "http://mrenewdev.lotte.com/mylotte/mylotte.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=m_mylayer_mylotte",
+        "coupon" : "http://mrenewdev.lotte.com/mylotte/pointcoupon/point_info.do?c=mlotte&udid=&v=&cn=&cdn=&point_div=coupon&tclick=m_mylayer_coupon",
+        "alarm" : "http://mrenewdev.lotte.com/planshop/m/smartAlarmList.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNoSctCd=21&tclick=m_mylayer_alarmlist",
+        "wish" : "http://mrenewdev.lotte.com/mylotte/wish/wish_list.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=m_mylayer_wishlist",
+        "order_deli" : "http://mrenewdev.lotte.com/mylotte/purchase/purchase_list.do?c=mlotte&udid=&v=&cn=&cdn=&ordListCase=1&tclick=m_mylayer_purchaselist",
+        "canc_chg_rtn" : "http://mrenewdev.lotte.com/mylotte/purchase/purchase_list.do?c=mlotte&udid=&v=&cn=&cdn=&ordListCase=3&tclick=m_mylayer_purchasechange",
+        "faq" : "http://mrenewdev.lotte.com/custcenter/question.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=m_mylayer_question",
+        "smart_pay" : "http://mrenewdev.lotte.com/mylotte/smartpay/m/smartpay.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=m_mylayer_smartpay",
+        "late_prod_more" : "http://mrenewdev.lotte.com/product/m/late_view_product_list.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=m_mylayer_recentviewprodmore&viewGoods=",
+        "cust_center" : "tel:1577-1110"
+      } ],
+      "total_count" : 1
+    }
+  }
+}

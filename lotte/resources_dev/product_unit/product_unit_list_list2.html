@@ -1,0 +1,45 @@
+<ol class="prod_list_01">
+	<li ng-repeat="item in products track by $index">
+		<div class="unit_list_01">
+			<span class="unit_zoom" ng-click="zoomImageSwipeClick(item)">크게보기</span>
+			<a href="#" ng-click="productInfoClick(item)">
+				<div class="soldout" ng-show="item.sold_out">SOLD OUT</div>
+				<div class="thumb">
+					<img ng-src="{{getProductImage2(item)}}" alt="{{item.goods_nm}}" err-src />
+				</div>
+				<div class="info">
+					<p class="flag">
+						<span class="flag depart" ng-if="item.is_dept">롯데백화점</span>
+						<span class="flag etv" ng-if="item.is_tvhome && !item.is_dept">롯데홈쇼핑</span>
+						<span class="flag tag" ng-show="item.dlv_fee_tp=='Y'||item.isdlex_free">무료배송</span>
+						<span class="flag smart" ng-show="item.smartpick_yn=='Y'||item.issmart_pick">스마트픽</span>
+					</p>
+					<p class="tit">
+						<span ng-show="item.brnd_nm">[<span ng-bind-html="item.brnd_nm|titleToHtml"></span>]</span>
+						<span ng-bind-html="item.goods_nm|titleToHtml"></span>
+					</p>
+					<p class="pr_box">
+						<span class="price"><em>{{item.price2|number}}</em>원<span ng-show="item.is_sale_promotion">~</span></span>
+						<span class="price2" ng-show="item.price1 && !item.is_sale_promotion"><em>{{item.price1|number}}</em>원</span>
+					</p>
+					<p class="coupon" ng-show="!item.is_sale_promotion">
+						<em class="no" ng-if="item.sale_rate" ng-show="item.price1 && item.sale_rate!=0 && item.price1 != item.price2">{{item.sale_rate}}</em><em class="po" ng-if="item.sale_rate" ng-show="item.price1 && item.sale_rate!=0 && item.price1 != item.price2">%</em>
+						<span ng-if="item.coupon" ng-show="item.coupon">쿠폰포함</span>
+					</p>
+				</div>
+			</a>
+			<div class="info2">
+				<!-- 별점/상품평 -->
+				<div class="user_feedback">
+					<span class="review" ng-if="item.pmg_gdas_cnt > 0 && item.avg_gdas_stfd_val <= 0" ng-click="productReviewClick(item)">상품평 <em>({{item.pmg_gdas_cnt|number}})</em></span>
+					<span class="score" ng-if="item.pmg_gdas_cnt > 0 && item.avg_gdas_stfd_val > 0" ng-click="productReviewClick(item)">
+						<span class="starScoreWrap"><span class="starScoreCnt" style="width:{{ ((item.avg_gdas_stfd_val*2)|ceil)*10 }}%"></span></span>
+						<span class="review"><em>({{item.pmg_gdas_cnt|number}})</em></span>
+					</span>
+				</div>
+				<!-- //별점/상품평 -->
+				<span class="wish_icon" ng-class="{on:item.has_wish}" ng-click="addWishClick($index,item)">위시리스트</span>
+			</div>
+		</div>
+	</li>
+</ol>

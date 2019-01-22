@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+.actionbar{box-sizing:border-box;-webkit-box-sizing:border-box;position:fixed;left:0;bottom:0;width:100%;height:50px;background:#fff;border-top:1px solid #abacac;z-index:200;
+-webkit-backface-visibility:hidden;
+-moz-backface-visibility:hidden;
+backface-visibility:hidden;
+-webkit-transition:-webkit-transform .2s; /* Safari */
+transition:transform .2s;
+}
+.actionbar >ul.actionbar_wrap{background:#fff;}
+.actionbar.scroll_down{
+-ms-transform: translate(0, 50px); /* IE 9 */
+-webkit-transform: translate(0, 50px); /* Safari */
+transform: translate(0, 50px);
+}
+.actionbar >ul.actionbar_wrap:after{display:block;content:'';clear:both;}
+.actionbar >ul.actionbar_wrap >li{float:left;width:25%}
+.actionbar >ul.actionbar_wrap >li >button{display:block;overflow:hidden;position:relative;width:100%;height:50px;padding-top:25px;color:#333;font-size:12px;white-space:nowrap;border:none;background-color:transparent;
+-webkit-appearance:none;
+-moz-appearance:none;
+appearance:none;
+outline:none;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+}
+.actionbar >ul.actionbar_wrap >li >button:after{content:"";display:block;position:absolute;top:0;left:0;background:transparent url(http://image.lotte.com/lotte/mo2015/angular/common/spr_actionbar_2016.png) 0 0 no-repeat;background-size:115px 60px;}
+.actionbar >ul.actionbar_wrap >li >button.btn_main:after{top:8px;left:50%;width:20px;height:18px;margin:0 -10px;background-position:-5px -5px;}
+.actionbar >ul.actionbar_wrap >li >button.btn_ctg:after{top:9px;left:50%;width:20px;height:16px;margin:0 -10px;background-position:-30px -5px;}
+.actionbar >ul.actionbar_wrap >li.on >button.btn_ctg{color:#5386fa}
+.actionbar >ul.actionbar_wrap >li.on >button.btn_ctg:after{background-position:-30px -30px;}
+.actionbar >ul.actionbar_wrap >li >button.btn_order:after{top:8px;left:50%;width:26px;height:18px;margin:0 -13px;background-position:-55px -5px;}
+.actionbar >ul.actionbar_wrap >li >button.btn_mylotte:after{top:7px;left:50%;width:16px;height:19px;margin:0 -8px;background-position:-90px -5px;}
+
+.actionbar >ul.actionbar_wrap >li.on >button.btn_main:after{background-position:-5px -30px}
+.actionbar >ul.actionbar_wrap >li.on >button.btn_order:after{background-position:-55px -30px;}
+.actionbar >ul.actionbar_wrap >li.on >button.btn_mylotte:after{background-position:-90px -30px;}
+.actionbar >ul.actionbar_wrap >li.on button{color:#5386fa}
+
+.actionbar >ul.actionbar_wrap >li >button i.reddot{position: absolute;top: 7px;left: 50%; margin-left:13px; width: 4px;height: 4px;background-color: #fa7257;z-index: 1;border-radius: 100%;text-indent: -99999px;}
+.actionbar >ul.actionbar_wrap >li >button i.newOrderState{position:absolute;top:2px;left:50%;margin-left:4px;min-width:10px;height:10px;line-height:10px;padding:4px 3px 2px 3px;background-color:#fa7257;color:#fff;font-size:10px;z-index:1;border-radius:100%;text-indent:-1px;font-style:normal;letter-spacing:-1px;text-align:center;}
+
+
+

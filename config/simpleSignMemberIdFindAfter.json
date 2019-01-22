@@ -1,0 +1,68 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplfindIdAfter" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/login/find_id_after_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberIdFindAfter.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsfindIdAfter" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/login/find_id_after.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberIdFindAfter.js"
+            }
+        },
+
+        "uglify" : {
+            "jsfindIdAfter" : {
+                "src" : "lotte/resources/<%= version %>/simpleSignMemberIdFindAfter.js",
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberIdFindAfter.min.js"
+            },
+            "tplfindIdAfter" : {
+                "src" : "lotte/resources/<%= version %>/simpleSignMemberIdFindAfter.template.js",
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberIdFindAfter.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssfindIdAfter" : {
+                "src" : [
+                    "lotte/resources_dev/login/login.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberIdFindAfter.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanfindIdAfter" : [
+                "lotte/resources/<%= version %>/simpleSignMemberIdFindAfter.js",
+                "lotte/resources/<%= version %>/simpleSignMemberIdFindAfter.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlfindIdAfter" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "login/simpleSignMemberIdFindAfter.html" : "login/simpleSignMemberIdFindAfter_dev.html"
+                }
+            }
+        }
+    }
+}

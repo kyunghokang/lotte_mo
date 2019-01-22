@@ -1,0 +1,33 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!--M41 N+배너형..-->
+	<div class="moduleCon" ng-if="moduleData.items.length > 2">
+		<div class="unit unit_cate bigdeal">
+			<div class="cate swipe_wrap" lotte-slider>
+				<ul>
+					<li ng-repeat="item in moduleData.items" ng-class="{on:$index == moduleData.uiData.tabIdx}">
+						<a ng-click="logGAEvtModuleEach($index + 1, item.txt);tabClick($event, $index)">
+							<span class="img_wrap"><img ng-src="{{item.imgUrl}}"></span>
+							<span class="tit"><span class="tit_cont">{{item.txt}}</span></span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="unit unit_bn_promo typeC all store1">
+			<ul class="fclear">
+				<li class="shop2" ng-repeat="item in moduleData.items[moduleData.uiData.tabIdx].bannerList.items" ng-click="logGAEvtModuleEach(moduleData.uiData.tabIdx+1, item.topTxt, moduleData.items[moduleData.uiData.tabIdx].txt,$index + 1);mainBannerClick(item.linkUrl, item.isOutLink, moduleData.tclick + '_Clk_idx'+numberFill((moduleData.uiData.tabIdx+1),2)+'_Ban' + numberFill(($index+1),2))">
+					<p class="imgwrap"><img ng-src="{{item.imgUrl}}"></p>
+					<div class="titwrap">
+						<div class="maintitwrap">
+							<div class="mr40sp">
+								<span class="maintit txt1">{{item.topTxt.split('\n')[0]}}</span><br/>
+								<span class="maintit txt2" ng-if="item.topTxt.split('\n')[1] != null">{{item.topTxt.split('\n')[1]}}</span>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>

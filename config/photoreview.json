@@ -1,0 +1,70 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplphotoreview" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/product/m/photoreview_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/photoreview.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsphotoreview" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/product/m/photoreview.js",
+                    "lotte/lib/jquery/ng-pinch-zoom.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/photoreview.js"
+			}
+		},
+
+		"uglify" : {
+			"jsphotoreview" : {
+				"src" : "lotte/resources/<%= version %>/photoreview.js",
+				"dest" : "lotte/resources/<%= version %>/photoreview.min.js"
+			},
+			"tplphotoreview" : {
+				"src" : "lotte/resources/<%= version %>/photoreview.template.js",
+				"dest" : "lotte/resources/<%= version %>/photoreview.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssphotoreview" : {
+				"src" : [
+					"lotte/resources_dev/product/m/photoreview.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/photoreview.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanphotoreview" : [
+				"lotte/resources/<%= version %>/photoreview.js",
+				"lotte/resources/<%= version %>/photoreview.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlphotoreview" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"product/m/photoreview.html" : "product/m/photoreview_dev.html"
+				}
+			}
+		}
+	}
+}
+

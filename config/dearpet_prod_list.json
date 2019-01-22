@@ -1,0 +1,77 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplDearpetProdList" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/mall/pet/pet_mall_ctg_container.html",
+					"lotte/resources_dev/mall/pet/dearpet_prod_list_container.html",
+					"lotte/resources_dev/mall/pet/dearpet_mall_sub_category.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/dearpet_prod_list.template.js"
+			}
+		},
+			
+		"concat" : {
+			"jsDearpetProdList" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/common/lotte_ngswipe.js",
+					"lotte/resources_dev/mall/pet/dearpet_prod_list.js",
+					"lotte/resources_dev/mall/pet/dearpet_mall_sub_category.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/dearpet_prod_list.js"
+			}
+		},
+	
+		"uglify" : {
+			"jsDearpetProdList" : {
+				"src" : "lotte/resources/<%= version %>/dearpet_prod_list.js",
+				"dest" : "lotte/resources/<%= version %>/dearpet_prod_list.min.js"
+			},
+			"tplDearpetProdList" : {
+				"src" : "lotte/resources/<%= version %>/dearpet_prod_list.template.js",
+				"dest" : "lotte/resources/<%= version %>/dearpet_prod_list.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssDearpetProdList" : {
+				"src" : [
+					"lotte/resources_dev/list/prd_lst.css",
+					"lotte/resources_dev/unit/comm_unit.css",
+					"lotte/resources_dev/mall/pet/dearpet.css",
+					"lotte/resources_dev/mall/pet/dearpet_prod_list.css",
+					"lotte/resources_dev/mall/pet/dearpet_mall_sub_category.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/dearpet_prod_list.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanDearpetProdList" : [
+				"lotte/resources/<%= version %>/dearpet_prod_list.js",
+				"lotte/resources/<%= version %>/dearpet_prod_list.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlDearpetProdList" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"/mall/pet/dearpet_prod_list.html" : "/mall/pet/dearpet_prod_list_dev.html"
+				}
+			}
+		}
+	}
+}
+

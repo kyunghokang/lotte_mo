@@ -1,0 +1,44 @@
+<div ng-if="pageUI.loadData.product_saleBest.prdList.items.length >= 3 && !pageUI.data.commonInfo.chanelYn">
+	<div class="prd_title mt10">
+		<p class="max_tit"><span>다른 고객들이 많이 산 {{pageUI.loadData.product_saleBest.dispNm}}</span><em class="cnt"> ({{pageUI.loadData.product_saleBest.prdList.items.length|number}}개)</em></p>
+	</div>
+	<div lotte-slider class="swipe_wrap bg_white">
+		<ul class="unit_prod_customer">
+			<li ng-repeat="item in pageUI.loadData.product_saleBest.prdList.items track by $index">
+				<a ng-click="gotoProductPage(
+					item.goodsNo, 
+					item.curDispNo, 
+					item.curDispNoSctCd, 
+					'm_RDC_ProdDetail_Swp_RelBuy_Prd' + idxSetDigit($index + 1), 
+					''
+					);
+					logGAEvtPrdView('다른고객들이많이산상품추천',idxSetDigit($index + 1),item.goodsNo);">
+					<div class="thumb">
+						<img ng-src="{{item.imgUrl}}" alt="" />
+				</div>
+					<div class="info">
+						<div class="name">{{item.goodsNm}}</div>
+						<div class="price"><strong>{{item.price | currency:'':0}}</strong>원</div>
+						<div class="score_wrap">
+							<span class="starScoreWrap" ng-if="item.gdasCnt > 0"><span class="starScoreCnt" style="width:{{item.gdasStfdVal|starScorePolicy:100}}%"></span></span>
+							<span class="review" ng-if="item.gdasCnt > 0">({{item.gdasCnt|number}})</span>
+						</div>
+						<div class="btnArea">
+							<a class="btn_sty1" ng-if="!item.rentalYn" ng-click="addCartOptionSelect(item); sendTclick('m_RDC_ProdDetail_Swp_RelBuy_Cart');logGAEvtPrdView('다른고객들이많이산상품추천','장바구니_'+ idxSetDigit($index + 1), item.goodsNo);">장바구니 담기</a>
+							<a class="btn_sty1" ng-if="item.rentalYn" ng-click="productViewAlert({
+								type: 'rent',
+								goodsNo: item.goodsNo,
+								curDispNo: item.curDispNo,
+								curDispNoSctCd: item.curDispNoSctCd,
+								tclick: 'm_RDC_ProdDetail_Swp_RelBuy_Cart' + idxSetDigit($index + 1),
+								_reco: '',
+								time: 2500
+							});
+							logGAEvtPrdView('다른고객들이많이산상품추천','장바구니_'+ idxSetDigit($index + 1), item.goodsNo)">장바구니 담기</a>
+						</div>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>

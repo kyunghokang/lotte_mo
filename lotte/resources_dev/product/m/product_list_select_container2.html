@@ -1,0 +1,25 @@
+<section class="allProductFlag">
+    <!-- 전체보기 열렸을때(class 'on'추가) -->
+    <div class="prdAllView" ng-class="{on:allProductOpenFlag}" >
+        <!--버튼-->
+        <div class="btnWrap"  ng-click="allProductClick()" >
+            <span class="btnArea">
+                <a class="btn_prdView"><span id="curcatenm">{{divName}}</span><span class="btnIcon"></span></a>
+            </span>
+        </div>
+
+	<!-- 스크롤 20170309 -->
+        <div ng-show="allProductOpenFlag" ng-class="{true: 'prdAllViewList on', false: 'prdAllViewList'}[allProductOpenFlag]">
+            <div class="list scrolltype">
+                <ul>
+                    <li ng-repeat="items in itemCateDataList">
+                		<a ng-click="sortCateClick(items.divObjNo, items.divObjNm, $index)" ng-class="{on : items.divObjNo == divObjNoParam}">
+                            <div class="txt">{{items.divObjNm}}</div>
+                            <span class="num" ng-if="items.divObjNo != ''">({{items.goodsCnt}})</span></a>
+                    </li>
+				</ul>
+			</div>
+        </div>
+        <!-- //스크롤 -->
+    </div>
+</section>

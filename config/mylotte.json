@@ -1,0 +1,72 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplMyLotteMain" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mylotte/m/mylotte_main_container.html",
+                    "lotte/resources_dev/mylotte/m/popup_mem.html",
+  					"lotte/resources_dev/mylotte/m/popup_welcomePop.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/mylotte.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsMyLotteMain" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mylotte/m/mylotte_main.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/mylotte.js"
+            }
+        },
+
+        "uglify" : {
+            "jsMyLotteMain" : {
+                "src" : "lotte/resources/<%= version %>/mylotte.js",
+                "dest" : "lotte/resources/<%= version %>/mylotte.min.js"
+            },
+            "tplMyLotteMain" : {
+                "src" : "lotte/resources/<%= version %>/mylotte.template.js",
+                "dest" : "lotte/resources/<%= version %>/mylotte.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssMyLotteMain" : {
+                "src" : [
+                    "lotte/resources_dev/mylotte/mylotte.css",
+                    "lotte/resources_dev/mylotte/popup_mem_edit.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/mylotte.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanMyLotteMain" : [
+                "lotte/resources/<%= version %>/mylotte.js",
+                "lotte/resources/<%= version %>/mylotte.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlMyLotteMain" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mylotte/m/mylotte.html" : "mylotte/m/mylotte_dev.html"
+                }
+            }
+        }
+    }
+}
+

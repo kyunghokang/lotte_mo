@@ -1,0 +1,69 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplsmartAlarmList" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/planshop/m/smartAlarmList_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/smartAlarmList.template.js"
+            }
+        },
+
+        "concat" : {
+            "jssmartAlarmList" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/planshop/m/smartAlarmList.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/smartAlarmList.js"
+            }
+        },
+
+        "uglify" : {
+            "jssmartAlarmList" : {
+                "src" : "lotte/resources/<%= version %>/smartAlarmList.js",
+                "dest" : "lotte/resources/<%= version %>/smartAlarmList.min.js"
+            },
+            "tplsmartAlarmList" : {
+                "src" : "lotte/resources/<%= version %>/smartAlarmList.template.js",
+                "dest" : "lotte/resources/<%= version %>/smartAlarmList.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "csssmartAlarmList" : {
+                "src" : [
+                    "lotte/resources_dev/planshop/m/smartAlarmList.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/smartAlarmList.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleansmartAlarmList" : [
+                "lotte/resources/<%= version %>/smartAlarmList.js",
+                "lotte/resources/<%= version %>/smartAlarmList.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlsmartAlarmList" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "planshop/m/smartAlarmList.html" : "planshop/m/smartAlarmList_dev.html"
+                }
+            }
+        }
+    }
+}
+

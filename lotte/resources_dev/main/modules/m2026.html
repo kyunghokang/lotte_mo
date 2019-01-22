@@ -1,0 +1,30 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!--M26 3+4형..-->
+	<div class="moduleCon" ng-if="unitShow">
+		<div class="unit unit_bn_svcB">
+			<ul>
+				<li ng-repeat="item in moduleData.items" ng-click="logGAEvtModuleEach($index + 1, item.txt);tabClick($event, $index)" ng-class="{on:$index == selectIdx}">
+					<div class="imgwrap cover_img"><img ng-src="{{item.imgUrl}}"></div>
+					<div class="tit_wrap"><p class="tit">{{item.txt}}</p></div>
+				</li>
+			</ul>
+		</div>
+
+		<div class="unit unit_prod_4">
+			<ul>
+				<li ng-repeat="item in moduleData.items[selectIdx].prdList.items | limitTo:((moduleData.items[selectIdx].prdList.items.length % 2 == 0)? moduleData.items[selectIdx].prdList.items.length: moduleData.items[selectIdx].prdList.items.length - 1)">
+					<a ng-click="logGAEvtModuleEach(selectIdx+1 , item.goodsNo, $index + 1);mainProductClick(item.goodsNo, moduleData.tclick + '_Clk_Btn'+numberFill((selectIdx+1),2)+'_Prd'+numberFill(($index+1),2))">
+						<!--상품이미지-->
+						<p class="imgwrap"><img ng-src="{{item.imgUrl}}"></p>
+						<!--브랜드명-- >
+						<p class="brandname">{{item.brdNm}}</p> <!--삭제 요청함, 상품명에 브랜드명 추가되어 오기로함 -->
+						<!--상품명-->
+						<p class="prodname">{{item.goodsNm}}</p>
+						<!--가격-->
+						<p class="price">{{item.price | currency: '':0}}<em>원<em class="plan_prod_limit ng-scope" ng-if="item.isPlanPrd">~</em></em></p>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>

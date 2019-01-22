@@ -1,0 +1,69 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tpldirectAttend" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/event/direct_attend_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/directAttend.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsdirectAttend" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/event/direct_attend.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/directAttend.js"
+            }
+        },
+
+        "uglify" : {
+            "jsdirectAttend" : {
+                "src" : "lotte/resources/<%= version %>/directAttend.js",
+                "dest" : "lotte/resources/<%= version %>/directAttend.min.js"
+            },
+            "tpldirectAttend" : {
+                "src" : "lotte/resources/<%= version %>/directAttend.template.js",
+                "dest" : "lotte/resources/<%= version %>/directAttend.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssdirectAttend" : {
+                "src" : [
+                    "lotte/resources_dev/event/direct_attend.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/directAttend.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleandirectAttend" : [
+                "lotte/resources/<%= version %>/directAttend.js",
+                "lotte/resources/<%= version %>/directAttend.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmldirectAttend" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "event/m/directAttend.html" : "event/m/directAttend_dev.html"
+                }
+            }
+        }
+    }
+}
+

@@ -1,0 +1,176 @@
+@charset="utf-8";
+
+/* 포인트 내역 */
+
+.bg_white {background-color:#fff; width:100%; padding:0 0 10px 0; margin-top:10px; border-bottom:1px solid #dcdcdc; border-top:1px solid #dcdcdc;}
+
+.input-wrap {width:100%;display:table;box-sizing:border-box;}
+.input-wrap .cell {display:table-cell; width:auto; padding:0 3px;vertical-align:middle; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box;}
+.input-wrap .cell:first-child {padding-left:0;}
+.input-wrap .cell.last, .input-wrap .cell:last-child {padding-right:0;}
+
+.s_box01 {border:1px solid #ddd;border-radius:3px;position:relative;height:30px;}
+.s_box01 select {width:100%;height:30px;margin:0;font-size:13px;color:#000;padding:0 20px 0 8px;border:0;/* outline:none; */display:inline-block;-webkit-appearance:none;-moz-appearance:none;appearance:none;cursor:pointer;background-color:#ffffff}
+.s_box01 .img_box {right:0;top:0;position:absolute;pointer-events:none}
+.s_box01 .img_box i {margin:5px 8px 0 0}
+.s_box01 .img_box:before {content:"";position:absolute;top:11px;right:8px;width:12px;height:8px;display:inline-block;background:url('http://image.lotte.com/lotte/mo2015/angular/mylotte/bull_01.png') no-repeat 0 0;background-size:22px 8px;}
+
+.ip_style {width:100%;height:30px;padding:0 8px;border:1px solid #dddddd;box-sizing:border-box;-webkit-box-sizing:border-box;border-radius:3px}
+
+.mylotte_point .tab_con {display:none; background-color:#fff; padding:8px 0 0 0;}
+.mylotte_point .tab_con.on {display:block;}
+.mylotte_point  {width:100%; overflow:hidden; padding-bottom:10px;}
+.mylotte_point .tab_nav ul {display:table;width:100%;background-color:#eeeeee;}
+.mylotte_point .tab_nav li {position:relative;display:table-cell;width:33.33%;height:55px;color:#555;vertical-align:middle;text-align:center;font-size:11px;border-bottom:1px solid #dcdcdc;box-sizing:border-box;-webkit-box-sizing:border-box}
+.mylotte_point .tab_nav li:last-child {border-right:none;box-sizing:border-box;-webkit-box-sizing:border-box}
+.mylotte_point .tab_nav a {display:block;color:#555;}
+.mylotte_point .tab_nav li.on {color:#588bff;border-bottom:1px solid #588bff;box-sizing:border-box;-webkit-box-sizing:border-box}
+.mylotte_point .tab_nav li.on a {color:#588bff;}
+.mylotte_point .tab_nav span {display:block;font-size:12px;}
+.mylotte_point .tab_nav span strong {font-size:18px;font-weight:bold;}
+.mylotte_point .tab_nav li.on span strong {color:#588bff}
+.mylotte_point .tab_nav li:before {content:'';height:20px;width:1px;display:block;background:#dcdcdc;position:absolute;top:17px;right:0px;}
+.mylotte_point .tab_nav li:last-child:before {background:none;}
+.mylotte_point .tab_nav li:last-child {background:none;}
+
+.mylotte_point .pay_box {position:relative;margin:0 0 8px 0px;padding:10px 0;background-color:#eff3ff;color:#000;text-align:center;font-size:12px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.mylotte_point .pay_box p {line-height:18px}
+.mylotte_point .pay_box p.desc{color:#888888}
+.mylotte_point .pay_box .num {font-size:13px;font-weight:bold;color:#588bff}
+
+.mylotte_point .point_list {padding:0 8px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.mylotte_point .point_list h3 {padding-top:20px;font-size:14px;color:#333;box-sizing:border-box;-webkit-box-sizing:border-box}
+.mylotte_point .point_list h3 span {font-weight:normal}
+.mylotte_point .point_list .cont_no {vertical-align:top;padding:70px 0;font-size:11px;color:#bbbbbb;text-align:center;box-sizing:border-box;-webkit-box-sizing:border-box}
+.mylotte_point .tbl_list_01 {margin-top:9px;color:#000;border:1px solid #ededed}
+.mylotte_point .tbl_list_01 thead {background-color:#fafafa;font-size:11px;color:#888;box-sizing:border-box;-webkit-box-sizing:border-box}
+.mylotte_point .tbl_list_01 thead th {position:relative;height:28px;font-weight:normal;}
+.mylotte_point .tbl_list_01 thead th.order_num {text-align:left; padding-left:10px;}
+.mylotte_point .tbl_list_01 thead th.order_num strong {display:inline-block; padding-right:10px;}
+
+.mylotte_point .tbl_list_01 thead th:before {content:'';height:10px;width:1px;display:block;background:#d7d9dd;position:absolute;top:8px;right:0px;}
+.mylotte_point .tbl_list_01 thead th:last-child:before {background:none;}
+.mylotte_point .tbl_list_01 thead th:last-child {background:none;}
+.mylotte_point .tbl_list_01 tbody th {text-align:left; color:#999; padding:12px;border-bottom:1px solid #d9dbde;font-weight:normal;box-sizing:border-box;-webkit-box-sizing:border-box}
+.mylotte_point .tbl_list_01 td {border-bottom:1px solid #ededed;font-size:12px;line-height:16px;padding:8px 10px;box-sizing:border-box;-webkit-box-sizing:border-box}/*padding:12px;*/
+
+.mylotte_point .tbl_list_01 tbody.add_point {border-bottom:1px solid #eee;}
+.mylotte_point .tbl_list_01 tbody.add_point th {border-bottom:0;}
+.mylotte_point .tbl_list_01 tbody.add_point td {border-bottom:0; text-align:right;}
+.mylotte_point .tbl_list_01 tbody.add_point td strong {color:#f65f1c;}
+
+.mylotte_point .tbl_list_01 .btn {display:inline-block; margin-left:5px; width:65px; height:24px; line-height:24px; color:#bbb; border:1px solid #bbb; text-align:center; border-radius:12px}
+.mylotte_point .tbl_list_01 .btn.on {color:#719cff; border:1px solid #719cff;}
+
+.mylotte_point .tbl_list_01 .point {font-size:14px;text-align:right;font-weight:bold;color:#000;}
+.mylotte_point .tbl_list_01 .point span {font-size:12px;font-weight: normal;}
+.mylotte_point .tbl_list_01 .point.plus {color:#f65f1c;}
+.mylotte_point .tbl_list_01 .point.minus {color:#285ace;}
+.mylotte_point .tbl_list_01 .date {display:inline-block;margin-bottom:5px;font-size:11px;color:#999;}
+
+.mylotte_point .point_info{padding:5px 10px;}
+.mylotte_point .point_info ul li{position:relative; padding:5px 7px;line-height:15px;font-size:11px;color:#888888;vertical-align:top; -webkit-background-size:2px 2px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.mylotte_point .point_info ul li:before {content:'';display:block; width:2px; height:2px; background:#ccc; position:absolute; left:0; top:11px; }
+/* 더보기 */
+.more_view{overflow:hidden;clear:both;padding:10px 8px;box-sizing:border-box;-webkit-box-sizing:border-box;}
+.more_view div {border:solid 1px #d0d0d0;background:#f4f4f4;text-align:center;border-radius:3px;}
+.more_view a {display:block;padding:11px;color:#333;box-sizing:border-box;-webkit-box-sizing:border-box;}
+.more_view a:before{content:"";display:inline-block;width:10px;height:10px;margin-right:5px;border:none;background:url('http://image.lotte.com/lotte/mo2015/angular/mylotte/bg_common.png') no-repeat 0 0; background-size:300px 300px;}
+
+.slideGuide {width:100%; overflow:hidden; clear:both;}
+.slideGuide dt {padding:0 10px; position:relative; height:45px; border-top:1px solid #ededed; border-bottom:1px solid #ededed; line-height:45px; font-weight:bold; color:#666; font-size:13px;}
+.slideGuide dt:after {content:''; position:absolute; right:15px; top:15px; display:block; width:16px; height:9px; overflow:hidden; background:url('http://image.lotte.com/lotte/mo2015/angular/mylotte/bg_common.png') no-repeat -75px -25px; background-size: 300px 300px;}
+
+.slideGuide dd {padding:10px 20px; overflow:hidden; background-color:#fafafa; line-height:17px; color:#888888; font-size:11px;}
+.slideGuide dd h6 {font-size:11px; color:#333; padding-top:5px;}
+.slideGuide dd p {padding:2px 0;}
+.slideGuide dd ul {padding:2px 0;}
+.slideGuide dd ul li {position:relative; padding-left:10px;}
+.slideGuide dd ul li:before {position:absolute; left:2px; top:9px; width:2px; height:2px; background:#666; display:block; content:'';}
+
+
+.btn_areaC {text-align:center;margin:15px 0}
+
+.mylotte_point .coupon_write{ padding:10px 15px 0 15px;}
+.mylotte_point .coupon_write p{margin-bottom:10px}
+.mylotte_point .coupon_write p span{font-size:12px;color:#999999}
+
+.mylotte_point .order_info{padding:5px 10px;background-color:#eeeeee}
+.mylotte_point .order_info ul li{position:relative;padding:5px 7px;line-height:15px;font-size:11px;color:#999999;vertical-align:top;background-size:2px 2px;-webkit-background-size:2px 2px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.mylotte_point .order_info ul li:before {content:'';display:block; width:2px; height:2px; background:#ccc; position:absolute; left:0; top:11px; }
+.tbl_style01 {padding:0 10px;border-top:1px solid #dcdcdc;}
+.tbl_style01 table {}
+.tbl_style01 table tr th, .tbl_style01 table tr td {padding:13px 7px;border-bottom:1px solid #dcdcdc}
+.tbl_style01 table tr th {text-align:left;font-weight:normal;color:#999999}
+.tbl_style01 table tr .tot_money {color:#3874ec}
+.tbl_style01 table tr td .tot_money {font-size:22px}
+.tbl_style01 table tr td ul li{padding-top:7px;}
+.tbl_style01 table tr td ul li:first-child{padding-top:0;}
+
+/* btn */
+.btn_style1 {height:24px;display:inline-block;color:#888888;font-size:12px;border:solid 1px #dddddd;padding:0 9px;line-height:22px;text-align:center;box-sizing:border-box;-webkit-box-sizing:border-box;background-color:#ffffff}
+.btn_style2 {height:40px;display:inline-block;color:#719cff;font-size:14px;border:solid 1px #719cff;padding:0 24px;line-height:38px;text-align:center;box-sizing:border-box;-webkit-box-sizing:border-box;background-color:#fffffff;border-radius:20px}
+.btn_style2s {height:25px;display:inline-block;color:#719cff;font-size:12px;border:solid 1px #719cff;padding:0 10px;line-height:23px;text-align:center;box-sizing:border-box;-webkit-box-sizing:border-box;background-color:#fffffff;border-radius:20px}
+.btn_style2s.disabled{color:#cccccc;border:1px solid #eeeeee}
+.btn_style3 {height:40px;display:inline-block;color:#ffffff;font-size:14px;border:solid 1px #719cff;padding:0 24px;line-height:38px;text-align:center;box-sizing:border-box;-webkit-box-sizing:border-box;background-color:#719cff;border-radius:20px}
+.btn_style4 {height:30px;display:inline-block;color:#666666;font-size:12px;border:solid 1px #ebebeb;padding:0 9px;line-height:28px;text-align:center;box-sizing:border-box;-webkit-box-sizing:border-box;background-color:#fafafa;border-radius:3px}
+
+.btn_style5 {display:inline-block; border-radius:2px; color:#fff; background-color:#719cff; height:24px; line-height:24px; padding:0 9px; white-space:nowrap;}
+.btn_style5.ptr {position:absolute; right:10px; top:50%; margin-top:-12px;}
+
+.btn_style6 {height:30px;display:inline-block;color:#666666;font-size:12px;border:solid 1px #ebebeb;padding:0 9px;line-height:28px;text-align:center;box-sizing:border-box;-webkit-box-sizing:border-box;background-color:#eee;border-radius:3px}
+.btnRefundWrap {clear:both; width:100%; text-align:right; padding-top:8px;}
+
+.bi-sp:before{content:"";display:inline-block;width:15px;height:13px;margin-right:3px;border:none;background:url('http://image.lotte.com/lotte/mo2015/angular/mylotte/ico_mylotte.png') no-repeat -50px 0; background-size:300px 300px;vertical-align:middle;margin-top:-2px;}
+.bi-mr:after{content:"";display:inline-block;width:11px;height:7px;margin-left:5px;border:none;background:url('http://image.lotte.com/lotte/mo2015/angular/mylotte/ico_mylotte.png') no-repeat -100px 0; background-size:300px 300px;vertical-align:middle;margin-top:-1px;}
+
+.bi-mr.disabled:after{background-position:-122px -24px; opacity:0.7}
+.bi-mr.on:after{background-position:-100px -24px;}
+
+/* 쿠폰 내역 */
+.mylotte_point .coupon_header {padding:10px 15px;line-height:25px;font-size:14px;border-top:1px solid #bbbbbb;}
+.mylotte_point .coupon_header:after {content:"";display:block;clear:both;height:0;visibility:hidden;}
+.mylotte_point .coupon_header span {float:left}
+.mylotte_point .coupon_header span em{color:#588bff}
+.mylotte_point .coupon_header .btn_list {float:right}
+.mylotte_point .coupon_list {}
+.mylotte_point .coupon_list h3 {margin-bottom:10px;padding-left:5px;font-weight:normal;}
+.mylotte_point .coupon_list ul {}
+.mylotte_point .coupon_list ul li {padding:15px 10px;border-top:1px solid #eeeeee;}
+.mylotte_point .coupon_list ul li .coupon_datail {height:100px;border:3px solid #21409a;border-radius:10px}
+.mylotte_point .coupon_list ul li .coupon_datail .cpnnum {text-align:center;width:89px;height:100px;float:left;padding-right:3px;background:#21409a url('http://image.lotte.com/lotte/mo2015/angular/mylotte/tx_lotte.png') no-repeat center 82px; background-size:50%}
+.mylotte_point .coupon_list ul li .coupon_datail .cpnnum * {color:#ffffff}
+.mylotte_point .coupon_list ul li .coupon_datail .cpnnum span {height:41px;margin-top:15px;display:inline-block;font-size:23px;overflow:hidden;}
+.mylotte_point .coupon_list ul li .coupon_datail .cpnnum span.free_delivery {width:100%;background:url('http://image.lotte.com/lotte/mo2015/angular/mylotte/icon_free_delivery.png') no-repeat center center; background-size:58px 35px}
+
+.mylotte_point .coupon_list ul li .coupon_datail .cpnnum span strong{font-size:41px;line-height:41px;}
+.mylotte_point .coupon_list ul li .coupon_datail .cpnnum p {margin-top:2px;font-size:12px;font-weight:bold;}
+.mylotte_point .coupon_list ul li .coupon_datail .cpninfo {min-height:100px;margin:0 10px 0 102px;padding:7px 0 0;box-sizing:border-box;-webkit-box-sizing:border-box}
+.mylotte_point .coupon_list ul li .coupon_datail .cpninfo p{padding:0 2px;line-height:19px;}
+.mylotte_point .coupon_list ul li .coupon_datail .cpninfo p span{display:inline-block;width:49px;color:#888888;font-size:12px}
+.mylotte_point .coupon_list ul li .coupon_datail .cpninfo p.d-day {text-align:center;margin-top:8px;line-height:26px;font-size:14px;border-top:1px solid #eeeeee;}
+.mylotte_point .coupon_list ul li .coupon_datail .cpninfo p.d-day em {color:#ff7b62}
+.mylotte_point .coupon_list ul li.sky .coupon_datail {border:3px solid #5289e2}
+.mylotte_point .coupon_list ul li.sky .coupon_datail .cpnnum{background-color:#5289e2}
+
+/* 페이퍼 쿠폰 등록 */
+.mylotte_point .coupon_write{margin:10px 15px;}
+.mylotte_point .coupon_write p{margin-bottom:10px}
+.mylotte_point .coupon_write p span{font-size:12px;color:#999999}
+
+/* 클로버 내역 */
+.clover_info{text-align:center;padding:0 10px;}
+.clover_info p strong{color:#5fb457}
+.clover_info p.tot_clover{margin-bottom:10px;line-height:40px;border-bottom:1px solid #eeeeee}
+.clover_info p.tot_clover span{display:inline-block;margin-left:8px;color:#5fb457}
+.clover_info p.tot_clover strong{font-size:14px}
+.clover_info p.tot_clover span:before{content:"";display:inline-block;width:15px;height:13px;margin-right:4px;border:none;background:url('http://image.lotte.com/ellotte/mo2015/angular/mylotte/ico_mylotte.png') no-repeat -75px 0; background-size:300px 300px;vertical-align:middle;margin-top:-2px;}
+.clover_info p.extinction_count{font-size:12px}
+.clover_info p.desc{margin-top:10px;font-size:11px;color:#888888}
+
+
+
+
+
+
+

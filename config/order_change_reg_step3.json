@@ -1,0 +1,69 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplOrderChangeReg3" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                ],
+                "dest" : "lotte/resources/<%= version %>/order_change_reg_step3.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsOrderChangeReg3" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mylotte/orderclaim/order_change_reg3.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/order_change_reg_step3.js"
+            }
+        },
+
+        "uglify" : {
+            "jsOrderChangeReg3" : {
+                "src" : "lotte/resources/<%= version %>/order_change_reg_step3.js",
+                "dest" : "lotte/resources/<%= version %>/order_change_reg_step3.min.js"
+            },
+            "tplOrderChangeReg3" : {
+                "src" : "lotte/resources/<%= version %>/order_change_reg_step3.template.js",
+                "dest" : "lotte/resources/<%= version %>/order_change_reg_step3.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssOrderChangeReg3" : {
+                "src" : [
+                    "lotte/resources_dev/mylotte/purchase/m/order_return_reg.css",
+                    "lotte/resources_dev/mylotte/purchase/m/purchase_view.css",
+                    "lotte/resources_dev/mylotte/purchase/m/purchase.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/order_change_reg_step3.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanOrderChangeReg3" : [
+                "lotte/resources/<%= version %>/order_change_reg_step3.js",
+                "lotte/resources/<%= version %>/order_change_reg_step3.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlOrderChangeReg3" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                }
+            }
+        }
+    }
+}
+

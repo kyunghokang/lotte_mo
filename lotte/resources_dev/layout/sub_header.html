@@ -1,0 +1,14 @@
+<header id="head_sub" ng-show="subTitle" ng-class="{wine:screenData.isWine&&!screenData.isComm}">
+    <h2 ng-class="{search:searchCntTxt}" class="{{addCls}}">
+        <span>
+            <span class="title" ng-bind="subTitle" ></span>
+            <em ng-if="searchCntTxt" class="fixed_txt" ng-bind="searchCntTxt"></em>
+        </span>
+    </h2>
+    <p class="prev">
+        <a ng-click="gotoPrepage()">이전</a>
+    </p>
+    <p class="this" ng-if="isShowThisSns">
+        <a ng-click="showSharePop()">공유</a>
+    </p>
+</header>

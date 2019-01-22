@@ -1,0 +1,94 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplLotteProduct" : {
+				"options": {
+					"prefix":"/",
+					"module" : "app"
+				},
+				"src" : [
+					"lotte/resources_dev/product_unit/product_unit_list_deal.html",
+					"lotte/resources_dev/product_unit/product_unit_list_image.html",
+					"lotte/resources_dev/product_unit/product_unit_list_list.html",
+					"lotte/resources_dev/product_unit/product_unit_list_list2.html",
+					"lotte/resources_dev/product_unit/product_unit_list_mixdeal.html",
+					"lotte/resources_dev/product_unit/product_unit_list_mixetv.html",
+					"lotte/resources_dev/product_unit/product_unit_list_planshop.html",
+					"lotte/resources_dev/product_unit/product_unit_list_rank.html",
+					"lotte/resources_dev/product_unit/product_unit_list_recommend.html",
+					"lotte/resources_dev/product_unit/product_unit_list_simple.html",
+					"lotte/resources_dev/product_unit/product_unit_list_swipe.html",
+					"lotte/resources_dev/product_unit/product_unit_list_stylepush.html",
+					"lotte/resources_dev/product_unit/product_unit_list_swipe_deal.html",
+					"lotte/resources_dev/product_unit/product_unit_search_list_2017.html",
+					"lotte/resources_dev/product_unit/product_unit_search_image_2017.html",
+					"lotte/resources_dev/product_unit/product_unit_search_image6_2017.html",
+					"lotte/resources_dev/product_unit/product_unit_cate_prod_normal.html",
+					"lotte/resources_dev/product_unit/product_unit_cate_prod_double.html",
+					"lotte/resources_dev/product_unit/product_unit_cate_prod_image.html",
+					"lotte/resources_dev/product_unit/product_unit_cate_prod_single.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/lotte_product.template.js"
+			}
+		},
+		
+		"concat" : {
+			"jsLotteProduct" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/common/lotte_ngswipe.js",
+					"lotte/resources_dev/common/lotte_video.js",
+					"lotte/resources_dev/common/lotte_product.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/lotte_product.js"
+			}
+		},
+		"uglify" : {
+			"jsLotteProduct" : {
+				"src" : "lotte/resources/<%= version %>/lotte_product.js",
+				"dest" : "lotte/resources/<%= version %>/lotte_product.min.js"
+			},
+			"tplLotteProduct" : {
+				"src" : "lotte/resources/<%= version %>/lotte_product.template.js",
+				"dest" : "lotte/resources/<%= version %>/lotte_product.tpl.js"
+			}
+			
+		},
+		"cssmin" : {
+			"cssLotteProduct" : {
+				"src" : [
+					"lotte/resources_dev/unit/unit_list.css",
+					"lotte/resources_dev/unit/unit_deal_01.css",
+					"lotte/resources_dev/unit/unit_list_01.css",
+					"lotte/resources_dev/unit/unit_list_02.css",
+					"lotte/resources_dev/unit/unit_list_03.css",
+					"lotte/resources_dev/unit/unit_search.css",
+					"lotte/resources_dev/unit/unit_cate_prod.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/lotte_product.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanLotteProduct" : [
+				"lotte/resources/<%= version %>/lotte_product.template.js",
+				"lotte/resources/<%= version %>/lotte_product.js"
+			]
+		},
+		
+		"processhtml" : {
+			"htmlLotteProduct" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+				}
+			}
+		}
+		
+	}
+}

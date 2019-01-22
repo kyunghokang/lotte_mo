@@ -1,0 +1,68 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplfindId" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/login/find_id_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberIdFind.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsfindId" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/login/find_id.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberIdFind.js"
+            }
+        },
+
+        "uglify" : {
+            "jsfindId" : {
+                "src" : "lotte/resources/<%= version %>/simpleSignMemberIdFind.js",
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberIdFind.min.js"
+            },
+            "tplfindId" : {
+                "src" : "lotte/resources/<%= version %>/simpleSignMemberIdFind.template.js",
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberIdFind.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssfindId" : {
+                "src" : [
+                    "lotte/resources_dev/login/login.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberIdFind.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanfindId" : [
+                "lotte/resources/<%= version %>/simpleSignMemberIdFind.js",
+                "lotte/resources/<%= version %>/simpleSignMemberIdFind.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlfindId" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "login/simpleSignMemberIdFind.html" : "login/simpleSignMemberIdFind_dev.html"
+                }
+            }
+        }
+    }
+}

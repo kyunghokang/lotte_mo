@@ -1,0 +1,69 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplCoachBrand" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/mall/coach/coach_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/coach.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsCoachBrand" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/mall/coach/coach.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/coach.js"
+			}
+		},
+
+		"uglify" : {
+			"jsCoachBrand" : {
+				"src" : "lotte/resources/<%= version %>/coach.js",
+				"dest" : "lotte/resources/<%= version %>/coach.min.js"
+			},
+			"tplCoachBrand" : {
+				"src" : "lotte/resources/<%= version %>/coach.template.js",
+				"dest" : "lotte/resources/<%= version %>/coach.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssCoachBrand" : {
+				"src" : [
+					"lotte/resources_dev/mall/coach/coach.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/coach.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanCoachBrand" : [
+				"lotte/resources/<%= version %>/coach.js",
+				"lotte/resources/<%= version %>/coach.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlCoachBrand" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"mall/coach/coach.html" : "mall/coach/coach_dev.html"
+				}
+			}
+		}
+	}
+}
+

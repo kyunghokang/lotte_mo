@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>AngularJS Sample App</title> 
+<link rel="stylesheet" href="./css/bootstrap.css"/> 
+<script src="../lib/angular/angular.js"></script>
+<script src="../lib/angular/angular-sanitize.js"></script>
+<script>
+var app = angular.module("app", []); 
+app.controller("appCtrl", function ($scope, $sce) { 
+  $scope.appTitle = "헬로 월드";
+  // XSS 방어 코드 : html text를 $scope 변수로 binding하고자 할 경우 $sce를 사용하도록 한다.
+  $scope.appTitle2 = $sce.trustAsHtml("<b>헬로 월드</b>");
+});
+</script> 
+</head>
+<body ng-app="app" > 
+<div class="container-fluid table-bordered">
+AngularJS의 기본적인 장점은 다음과 같다.
+<ol>
+<li>client application을 작성할 때 필요한 기본적인 MVC(MVW) framework를 제공한다.</li>
+<li>two-way data binding : 데이터의 변경에 따라 DOM element를 직접 control할 필요가 없다.</li>
+<li>service, factory, controller에 대한 DI를 제공함에 따라 테스트가 용이하다.</li>
+<li>model을 매개체로 하여 로직과 템플릿의 분리가 용이하다.</li>
+<li>이러한 장점을 활용한 widget 작성이 용이하다.</li>
+<li>route 기능을 통해 one page applcation 작성이 용이하다.</li>
+</ol>
+
+단점은 다음과 같다.
+<ol>
+<li>angularjs 기반의 widget은 페이지가 angularjs 기반으로 작성된 경우에만 재활용이 가능하다.</li>
+<li>성능을 고려하지 않은 directive 사용시 $scope 바인딩이 과도하게 사용되어 성능이 급격히 저하될 수 있다.</li>
+<li>directive내에서 외부 라이브러리를 통해 DOM을 수정하는 것은 세심한 주의가 필요하며, 성능저하와 더불어 잦은 오류가 발생할 수 있다.</li>
+</ol>
+
+기본적인 지침은 다음과 같다.
+<ol>
+<li>$scope에 바인딩하는 변수와 함수는 directive에 정의된 UI를 변경시킬 목적 외에는 바인딩해서는 안된다.</li>
+<li>바인딩 목적 이외의 함수는 service나 factory를 통해 정의되어야 한다.</li>
+<li>directive 내에 child directvie를 정의할 경우 반드시 필요한지, $scope가 child로 분리되어야하는지를 평가해야 한다.</li>
+<li>직접 DOM을 control하지 않고, $scope에 바인딩된 model의 변경이 template에 반영되도록 구현한다.</li>
+<li>directvie에 바인딩되는 변수 들에 대한 조건식은 ng-repeat, ng-if, ng-change 등 angularjs에서 기 제공되는 directive를 통해 제어하도록 한다.</li>
+<li>DOM내의 특정 element가 $scope에 바인딩된 model이 아닌 경우에는 queryElement를 통해 참조와 수정을 하고 $scope에 변경사항이 반영되어야 하는지를 평가해야 한다.</li>
+</ol>
+</div>
+
+목록
+<ol>
+<li><a href="./directive/01-simple/index.html">directive/simple</a></li>
+<li><a href="./directive/02-apply/index.html">directive/apply</a></li>
+<li><a href="./directive/03-linkVSCompile/index.html">directive/link vs compile</a></li>
+<li><a href="./simpleBoard/index.html">샘플 게시판(CRUD, 파일 첨부 샘플, widget, error처리, logging에 대한 sample 제공)</a></li>
+</ol>
+</div>
+
+<H3>Simple Example</H3>
+<div ng-controller="appCtrl">
+  <p ng-bind="appTitle"></p> 
+  <p ng-bind-html="appTitle2"></p>
+</div>
+</body> 
+</html>

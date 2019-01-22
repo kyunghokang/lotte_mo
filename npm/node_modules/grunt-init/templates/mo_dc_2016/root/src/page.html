@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+    <meta charset="utf-8">
+    <title>롯데닷컴-{%= job_name %}</title>
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+
+    <script>
+    var APP_KEY = "7fa1e44757a94fd89921";
+    var SERVER_TIME = new Date();
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="/resources/css/common.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/resources/css/{%= file_name %}.min.css"/>
+
+    <script src="/resources/js/common.min.js"></script>
+    <script src="/resources/js/{%= file_name %}.min.js"></script>
+    <script src="/resources/tpl/{%= file_name %}.tpl.js"></script>
+    <!--
+    <script src="http://m.lotte.com/common3/js/SpeedTrapInsert.js"></script>
+    <script src="http://m.lotte.com/common4/js/lib/crittercismClientLibraryMin.js"></script>
+    <script>
+    $(document).ready(function(){
+        try{
+            Crittercism.init({appId: '550904cce0697fa449637803', appVersion: '20150324'});
+        }catch(e){}
+    });
+    </script>
+    -->
+</head>
+<body ng-controller="{%= controller_name %}Ctrl">
+    <div id="wrapper" ng-show="showWrap">
+        <lotte-header></lotte-header>
+        <lotte-search></lotte-search>
+        <sub-header></sub-header>
+
+        <lotte-container></lotte-container>
+
+        <lotte-footer></lotte-footer>
+        <lotte-btntop></lotte-btntop>
+    </div>
+
+    <lotte-side-category></lotte-side-category>
+    <lotte-side-mylotte></lotte-side-mylotte>
+
+    <lotte-comm-footer></lotte-comm-footer>
+</body>
+</html>

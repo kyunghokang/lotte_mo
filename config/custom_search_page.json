@@ -1,0 +1,68 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplcustomSearchPage" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/search/custom_search_page_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/custom_search_page.template.js"
+			}
+		},
+
+		"concat" : {
+			"jscustomSearchPage" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/search/custom_search_page.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/custom_search_page.js"
+			}
+		},
+
+		"uglify" : {
+			"jscustomSearchPage" : {
+				"src" : "lotte/resources/<%= version %>/custom_search_page.js",
+				"dest" : "lotte/resources/<%= version %>/custom_search_page.min.js"
+			},
+			"tplcustomSearchPage" : {
+				"src" : "lotte/resources/<%= version %>/custom_search_page.template.js",
+				"dest" : "lotte/resources/<%= version %>/custom_search_page.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"csscustomSearchPage" : {
+				"src" : [
+					"lotte/resources_dev/search/custom_search_page.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/custom_search_page.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleancustomSearchPage" : [
+				"lotte/resources/<%= version %>/custom_search_page.js",
+				"lotte/resources/<%= version %>/custom_search_page.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlcustomSearchPage" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"search/custom_search_page.html" : "search/custom_search_page_dev.html"
+				}
+			}
+		}
+	}
+}

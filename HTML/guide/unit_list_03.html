@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">	
+<!----------------- current css ----------------->
+	
+<link rel="stylesheet" href="/lotte/resources_dev/unit/unit_list.css">
+<link rel="stylesheet" href="/lotte/resources_dev/unit/unit_list_03.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<section id="container">
+	<!-- 상품리스트 유형 선택 -->
+	<div class="unit_type">
+		<ul>
+			<li class="r1"><a href="#">리스트형</a></li>
+			<li class="r2"><a href="#">이미지형</a></li>
+			<li class="r3"><a href="#" class="on">스와이프형</a></li>
+		</ul>
+	</div>
+	<!-- //상품리스트 유형 선택 -->
+	<!-- 상품리스트 : 스와이프형 -->
+	<div class="prod_list_swipe">
+		<div class="mask">
+			<ol class="prod_list_03">
+				<li>
+					<!-- 일반상품 : 스와이프형 -->
+					<div class="unit_list_03">
+						<span class="unit_zoom">크게보기</span>
+						<a href="#">
+							<p class="thumb">
+								<img src="http://image.lotte.com/goods/80/55/00/7/7005580_1_280.jpg" alt="데체텍스트 넣어주세요." />
+							</p>
+							<div class="info">
+								<p class="flag">
+									<span class="flag depart">롯데백화점</span>
+									<!-- <span class="flag etv">롯데홈쇼핑</span> -->
+									<span class="flag tag">무료배송</span>
+									<span class="flag smart">스마트픽</span>
+								</p>
+								<span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+								<p class="pr_box">
+									<span class="price"><em>1,000,000</em>원</span>
+									<span class="price2"><em>1,500,000</em>원</span>
+								</p>
+								<p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+							</div>
+						</a>
+						<div class="info2">
+							<span class="review">상품평 <em>(100)</em></span>
+							<span class="wish_icon">위시리스트</span>
+						</div>
+					</div>
+					<!-- //일반상품 : 스와이프형 -->
+				</li>
+				<li>
+					<!-- 일반상품 : 스와이프형 -->
+					<div class="unit_list_03">
+						<span class="unit_zoom">크게보기</span>
+						<a href="#">
+							<p class="thumb">
+								<img src="http://image.lotte.com/goods/58/80/52/5/5528058_1_150.jpg" alt="데체텍스트 넣어주세요." />
+							</p>
+							<div class="info">
+								<p class="flag">
+									<span class="flag etv">롯데홈쇼핑</span>
+									<span class="flag tag">무료배송</span>
+								</p>
+								<span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+								<p class="pr_box">
+									<span class="price"><em>85,000</em>원</span>
+								</p>
+								<p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+							</div>
+						</a>
+						<div class="info2">
+							<span class="review">상품평 <em>(100)</em></span>
+							<span class="wish_icon on">위시리스트</span>
+						</div>
+					</div>
+					<!-- //일반상품 : 스와이프형 -->
+				</li>
+			</ol>
+		</div>
+		<a href="#" class="btn_prev">이전 상품 보기</a>
+		<a href="#" class="btn_next">다음 상품보기</a>
+		<div class="total">
+			<span>1/6</span>
+		</div>
+	</div>
+	<!-- //상품리스트 : 스와이프형 -->
+</section>
+
+<section ng-include src="'/HTML/include/footer.html'"></section>
+
+</body>
+</html>

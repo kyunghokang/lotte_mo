@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+    <meta charset="utf-8">
+    <title>컴포턴트 롯데닷컴</title>
+    <meta content="no_cache" http-equiv="cache_control">
+    <meta content="0" http-equiv="expires">
+    <meta content="no_cache" http-equiv="pragma">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+    <meta content="telephone=no" name="format-detection">
+    <!-- test css -->
+    <link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+    <link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+    <link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+    <link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+    <link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+    <link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+    <link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+    <link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">
+
+    <!----------------- current css ----------------->
+
+    <link rel="stylesheet" href="/lotte/resources_dev/mylotte/mylotte.css">
+    <link rel="stylesheet" href="/lotte/resources_dev/mylotte/prod_eval_copy.css">
+
+    <style>
+        input.check01[type="checkbox"] {cursor:pointer;background:url(http://image.lotte.com/lotte/mo2015/angular/mylotte/input.png) no-repeat 0 0;background-size:100px 300px;width:21px;height:21px;appearance:none;-webkit-appearance:none}
+        input.check01[type="checkbox"]:checked {background-position:-25px 0}
+        input.check01[type="checkbox"]:disabled {background-position:-55px -25px}
+        input.radio01[type="radio"] {cursor:pointer;background:url(http://image.lotte.com/lotte/mo2015/angular/mylotte/input.png) no-repeat -54px 0;background-size:100px 300px;width:21px;height:21px;appearance:none;-webkit-appearance:none}
+        input.radio01[type="radio"]:checked {background-position:-79px 0}
+        input.radio01[type="radio"]:disabled {background-position:-80px -25px}
+
+        /* quantity */
+        .quantity{position:relative;display:inline-block;padding:0 28px;border:1px solid #ddd;border-radius:2px;background:#fff;text-align:center;overflow:hidden}
+        .quantity button{position:absolute;width:28px;height:28px;top:0;border:none;background:#f3f3f3;font-size:16px;color:#888}
+        .quantity .btnMinus{left:0;border-radius:2px 0 0 2px}
+        .quantity .btnPlus{right:0;border-radius:0 2px 2px 0}
+        .quantity input{width:55px;border:1px solid #ddd;border-width:0 1px;line-height:28px;text-align:center;-webkit-appearance:none}
+        .quantity input::-webkit-inner-spin-button,
+        .quantity input::-webkit-outer-spin-button{-webkit-appearance:none;}
+
+
+    </style>
+
+    <!---------------// current css ----------------->
+
+    <!-- test js -->
+    <script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+    <script src="/lib/angular/angular.min.js"></script>
+    <script src="/lib/angular/angular-route.min.js"></script>
+    <script src="/HTML/js/testPub.js"></script>
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<section id="container">
+    <!-- contents -->
+
+    <section class="prod_eval list">
+        <section class="info">
+            <p class="comment">상품평을 작성해 주시면 <span class="clover"></span>클로버를 적립해 드립니다.</p>
+            <p class="desc">(사진 상품평 300개, 매달 우수 상품평 작성하신 50분께 3,000개 적립)</p>
+        </section>
+        <nav class="cmt_nav">
+            <ul>
+                <li id="noWriteTab"><a href="javascript:viewTab('noWriteTab');">작성 가능한 상품평<br><span>3</span></a><span class="indicator"></span></li>
+                <li class="indi verti"><span></span></li>
+                <li id="writeTab" class="on"><a href="javascript:viewTab('writeTab');">내가 작성한 상품평<br><span>1</span></a><span class="indicator"></span></li>
+            </ul>
+        </nav>
+    </section>
+
+    <br>
+
+    <div class="cont write">
+        <div class="selWrap">
+            <select>
+                <option value="">상품평 간편 작성 내용 선택</option>
+                <option value="">상품평 간편 작성 내용 선택2</option>
+                <option value="">상품평 간편 작성 내용 선택3</option>
+            </select>
+        </div>
+
+        <textarea placeholder="" id="" name="">상품평테스트</textarea>
+    </div>
+
+    <div class="cont score write">
+        <h3>고객만족도 선택</h3>
+        <ul class="scoreList">
+            <li>
+                <span class="txt">가격</span>
+                        <span class="score">
+                            <a href="#" class="on"><span>5</span></a>
+                            <a href="#" class=""><span>4</span></a>
+                            <a href="#" class=""><span>3</span></a>
+                            <a href="#" class=""><span>2</span></a>
+                            <a href="#" class=""><span>1</span></a>
+                        </span>
+            </li>
+            <li>
+                <span class="txt">품질</span>
+                        <span class="score">
+                            <a href="#" class="on"><span>5</span></a>
+                            <a href="#" class=""><span>4</span></a>
+                            <a href="#" class=""><span>3</span></a>
+                            <a href="#" class=""><span>2</span></a>
+                            <a href="#" class=""><span>1</span></a>
+                        </span>
+            </li>
+            <li>
+                <span class="txt">디자인</span>
+                       <span class="score">
+                            <a href="#" class="on"><span>5</span></a>
+                            <a href="#" class=""><span>4</span></a>
+                            <a href="#" class=""><span>3</span></a>
+                            <a href="#" class=""><span>2</span></a>
+                            <a href="#" class=""><span>1</span></a>
+                        </span>
+            </li>
+            <li>
+                <span class="txt">배송</span>
+                        <span class="score">
+                            <a href="#" class="on"><span>5</span></a>
+                            <a href="#" class=""><span>4</span></a>
+                            <a href="#" class=""><span>3</span></a>
+                            <a href="#" class=""><span>2</span></a>
+                            <a href="#" class=""><span>1</span></a>
+                        </span>
+            </li>
+            <li>
+                <span class="txt">사이즈</span>
+                        <span class="score radio">
+                            <span class="txt_radio"><input type="radio" name="radio1" class="radio01" id="choice01" checked="checked" value="1"> <label for="choice01">딱맞다</label></span>
+                            <span class="txt_radio"><input type="radio" name="radio1" class="radio01" id="choice02" value="2"> <label for="choice02">작다</label></span>
+                            <span class="txt_radio"><input type="radio" name="radio1" class="radio01" id="choice03" value="3"> <label for="choice03">크다</label></span>
+                        </span>
+            </li>
+            <li>
+                <span class="txt">색상</span>
+                        <span class="score radio">
+                            <span class="txt_radio"><input type="radio" name="radio2" class="radio01" id="choice04" checked="checked" value="1"> <label for="choice04">같다</label></span>
+                            <span class="txt_radio"><input type="radio" name="radio2" class="radio01" id="choice05" value="2"> <label for="choice05">어둡다</label></span>
+                            <span class="txt_radio"><input type="radio" name="radio2" class="radio01" id="choice06" value="3"> <label for="choice06">밝다</label></span>
+                        </span>
+            </li>
+
+            <li>
+                <span class="txt">사이즈</span>
+                <a href="#" class="btn s">딱 맞다</a>
+                <a href="#" class="btn s on">작다</a>
+                <a href="#" class="btn s">크다</a>
+            </li>
+        </ul>
+
+        <div class="btn_list">
+            <span class="l_area"><span>구매일 2015.08.30</span> <span>작성기한 2015.08.30</span></span>
+            <span class="r_area">
+                <a href="#" class="btn_style2">상품평쓰기</a>
+                <!--<a href="#" class="btn_style2">이용후기 작성</a>-->
+            </span>
+        </div>
+
+
+        <span class="seper_area"></span>
+
+        <p style="clear: both;"></p>
+
+
+        <div class="btn_list cont photo">
+            <span class="l_area">사진등록<span class="gray">(사진첨부 1개 가능)</span></span>
+            <span class="r_area">
+                <a href="#" class="btn_style4"><img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/ic_btn_photo_add.png"> 사진첨부</a>
+                <!--<a href="#" class="btn_style2">이용후기 작성</a>-->
+            </span>
+        </div>
+
+        <p style="clear: both;"></p>
+
+        <span class="seper_area"></span>
+
+        <!--SNS-->
+        <div class="confirm btns1">
+            <a href="#" class="btn b normal"><span>내상품평, 친구에게도 공유하기</span></a>
+        </div>
+        <!--//SNS-->
+
+        <!-- 버튼 2개 -->
+        <div class="confirm">
+            <a href="#" class="btn b">취소</a>
+            <a href="#" class="btn b on">등록하기</a>
+        </div>
+        <!---->
+        <!-- 버튼 3개 -->
+        <div class="confirm btns3">
+            <a href="#" class="btn b">취소</a>
+            <a href="#" class="btn b normal">삭제하기</a>
+            <a href="#" class="btn b on">수정하기</a>
+        </div>
+        <!---->
+
+
+
+        <div class="group">
+            <div class="chk">
+                <span class="l_area"><input type="checkbox" title="선택" class="check01"></span>
+                <span class="l_area"><input type="radio" name="delivery_ck" class="radio01" checked="checked"> 택배로받기</span>
+                <span class="r_area"><input type="radio" name="delivery_ck" class="radio01"> 스마트픽 찾기</span>
+            </div>
+        </div>
+
+        <div style="clear:both"></div>
+
+        <div class="quantity">
+            <button class="btnMinus" qty="1"><span>-</span></button>
+            <span class="ipt_num"><input type="number" pattern="[0-9]*" name="orderQuantity" min="0" value="1"></span>
+            <button class="btnPlus" qty="3"><span>+</span></button>
+        </div>
+
+    </div>
+
+    <div style="clear:both"></div>
+
+
+
+
+
+    <!-- //contents -->
+</section>
+
+<section ng-include src="'/HTML/include/footer.html'"></section>
+
+</body>
+</html>

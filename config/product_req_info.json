@@ -1,0 +1,71 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplProductReqInfo" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/product/m/sub/product_sub_header.html",
+					"lotte/resources_dev/product/m/sub/product_req_info_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/product_req_info.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsProductReqInfo" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/product/m/sub/product_sub_header.js",
+					"lotte/resources_dev/product/m/sub/product_req_info.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/product_req_info.js"
+			}
+		},
+
+		"uglify" : {
+			"jsProductReqInfo" : {
+				"src" : "lotte/resources/<%= version %>/product_req_info.js",
+				"dest" : "lotte/resources/<%= version %>/product_req_info.min.js"
+			},
+			"tplProductReqInfo" : {
+				"src" : "lotte/resources/<%= version %>/product_req_info.template.js",
+				"dest" : "lotte/resources/<%= version %>/product_req_info.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssProductReqInfo" : {
+				"src" : [
+					"lotte/resources_dev/product/m/sub/product_req_info.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/product_req_info.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanProductReqInfo" : [
+				"lotte/resources/<%= version %>/product_req_info.js",
+				"lotte/resources/<%= version %>/product_req_info.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlProductReqInfo" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"product/m/sub/product_req_info.html" : "product/m/sub/product_req_info_dev.html"
+				}
+			}
+		}
+	}
+}
+

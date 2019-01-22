@@ -1,0 +1,14 @@
+<div class="imgbnr_list_wrap">
+	<ol class="bnr_lst_type01">
+		<li ng-repeat="item in products track by $index">
+			<a ng-click="bannerClick(item)">
+				<p class="thum"><img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}" err-src /></p>
+				<p class="flag" ng-if="item.is_dept">
+					<span class="dept" ng-if="item.is_dept">롯데백화점</span>
+					<span class="tvhome" ng-if="!item.is_dept && item.is_tvhome">롯데홈쇼핑</span>
+				</p>
+				<p class="tit">{{item.banner_nm}}</p>
+			</a>
+		</li>
+	</ol>
+</div>

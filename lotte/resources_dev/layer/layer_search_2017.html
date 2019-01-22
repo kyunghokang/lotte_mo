@@ -1,0 +1,183 @@
+<section class="searchLayerContainer">
+<section id="feSrhLayer" ng-show="showSrh" ng-class="{on:showSrh, wider:screenType>=2}">
+    <form id="searchForm" novalidate name="searchForm" action="{{srhUrl}}" ng-submit="submitSearch($event)">
+    <fieldset>
+        <legend class="blind">키워드 검색</legend>
+        <input type="hidden" ng-model="c" name="c" value="{{fnSrhParam('c')}}" />
+        <input type="hidden" ng-model="udid" name="udid" value="{{fnSrhParam('udid')}}" />
+        <input type="hidden" ng-model="v" name="v" value="{{fnSrhParam('v')}}" />
+        <input type="hidden" ng-model="cn" name="cn" value="{{fnSrhParam('cn')}}" />
+        <input type="hidden" ng-model="cdn" name="cdn" value="{{fnSrhParam('cdn')}}" />
+        <input type="hidden" ng-model="schema" name="schema" value="{{fnSrhParam('schema')}}" />
+        <input type="hidden" ng-model="dpml_no" name="dpml_no" value="1"/>
+        <input type="hidden" ng-model="type" name="type" value=""/>
+        <input type="hidden" ng-model="dispCnt" name="dispCnt" value="30"/>
+        <input type="hidden" ng-model="reqType" name="reqType" value="N"/>
+        <input type="hidden" ng-model="reqKind" name="reqKind" value="C"/>
+        <input type="hidden" ng-model="tclick" name="tclick" value="{{tclick}}"/>
+            <section class="srh_layer">
+                <div class="srh_wrap">
+                    <div class="srh_ipt">
+                        <input type="search" srh-focus="showSrh" ng-model="keyword" name="keyword" id="keyword" placeholder="검색어를 입력하세요" autocomplete="off" autocapitalize="off" autocorrect="off" required speech x-webkit-speech
+                        	ng-keyup="showAutoSrh($event)" ng-focus="showAutoSrhFocus()" ng-click="srhLayerGA('헤더_검색창')" />
+                    </div>
+                    <label ng-click="delSrhText()" ng-show="isAutoSrhingClear" class="btn_del" for="keyword">검색어 삭제</label>
+                    <!-- <a ng-click="submitSearch($event)" class="btn_srh">검색</a> -->
+                    <!-- 이전버튼 추가 ckh -->
+                    <p class="prev {{addCls}}">
+                        <a ng-click="closeSrhLayor('tclick')">이전</a>
+                    </p>
+                    <!-- //이전버튼 추가 ckh -->
+                    <!-- <a ng-click="goStyleIntro()" class="camera {{'camera_cnt_' + headerStyleRecomIcoCnt}}"><span><b>스타일 추천</b></span></a> -->
+                    <a ng-click="goStyleIntro()" class="camera"><span><b>스타일 추천</b></span></a>
+                </div>
+
+                <!-- <div class="srh_custom">
+                	<a ng-click="customSearchPage()"><span><b>맞춤설정</b></span></a>
+                	<a ng-click="goStyleIntro()" class="camera {{'camera_cnt_' + headerStyleRecomIcoCnt}}"><span><b>스타일 추천</b></span></a>
+                </div> -->
+
+				<!--검색어 탭-->
+                <!-- <div class="nsh_tab" ng-show="!isAutoSrhing">
+                    <a ng-click="sendTclick(tClickBase + 'SrhLayer_Clk_tap_1');searchLayerTabIdx = 0" class="nsh_tab_a" ng-class="{on:searchLayerTabIdx==0}">최근검색어</a>
+                    <a ng-click="sendTclick(tClickBase + 'SrhLayer_Clk_tap_2');searchLayerTabIdx = 1" class="nsh_tab_a" ng-class="{on:searchLayerTabIdx==1}">인기</a>
+                    <a ng-click="sendTclick(tClickBase + 'SrhLayer_Clk_tap_3');searchLayerTabIdx = 2" class="nsh_tab_a" ng-class="{on:searchLayerTabIdx==2}">급상승</a>
+                </div> -->
+
+
+				<div class="recentHotKeyword" ng-show="!isAutoSrhing">
+					<div class="recentKeyword" ng-if="recentKwData.length > 0">
+						<h5 ng-click="addFakeData()">최근 검색어</h5>
+						<ul>
+							<li ng-repeat="(key, item) in recentKwData">
+								<a class="delete" ng-click="delRecentOneKeyword(key, item)"></a>
+								<a class="keyword" ng-click="researchRecentKeyword(item)">
+									<span class="word">{{item.keytxt}}</span>
+									<span class="date">{{item.date}}</span>
+								</a>
+								<a class="research" ng-click="searchSet(item.keytxt, 'recent')"></a>
+							</li>
+						</ul>
+					</div>
+					<div class="hotKeyword">
+						<h5>인기 검색어</h5>
+						<div class="hotSlide" xxx-lotte-slider ng-if="recentKwData.length > 0 && screenType == 1">
+							<ul style="width:{{srhBestData.result_best.items.length * 128}}px">
+								<li ng-repeat="item in srhBestData.result_best.items"
+									ng-click="searchBestKeyword('{{item.hkeyword}}', 'm_RDC_SrhLayer_ClkW_Rst_B_m_RDC_SrhLayer_ClkW_Rst_B_'+ numberFill(($index+1),2), ($index+1))">
+									<div class="cover" style="background-image:url({{item.img_url}})">
+										<div>
+											<span><em>{{item.hkeyword}}</em></span>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<div class="hotList" ng-if="recentKwData.length == 0 || screenType > 1">
+							<ul>
+								<li ng-repeat="item in srhBestData.result_best.items"
+									ng-click="searchBestKeyword('{{item.hkeyword}}', 'm_RDC_SrhLayer_ClkW_Rst_B_m_RDC_SrhLayer_ClkW_Rst_B_'+ numberFill(($index+1),2), ($index+1))">
+									<div class="cover" style="background-image:url({{item.img_url}})">
+										<div>
+											<span><em>{{item.hkeyword}}</em></span>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+
+				<!-- ----------------------------------------------------------
+                <div class="nsh_cont" ng-if="false" ng-show="!isAutoSrhing">
+	                <div class="nsh_indicator">
+	                	<span ng-repeat="item in [0, 1, 2] track by $index" ng-class="{on:searchLayerTabIdx==item}" ng-click="searchLayerTabSelect(item);sendTclick(tClickBase + 'SrhLayer_Swp_pg0' + (item+1))"></span>
+	                </div>
+                   <div class="brlistBox">
+                       <ul class="brlist nsh_ang" rn-carousel rn-carousel-index="searchLayerTabIdx" rn-carousel-duration="100">
+                           <li class="nsh_li">
+                                <div class="nsh_title">최근 검색어</div>
+                                <div class="nsh_div srh_recent" ng-class="{empty:recentKwData==undefined || recentKwData.length==0}">
+                                    <ol>
+                                        <li ng-repeat="(key, item) in recentKwData" ng-if="recentKwData">
+                                            <a ng-href="{{getSearchListUrl(item, 'm_RDC_SrhLayer_ClkW_Rst_A')}}" onclick="return false;"
+                                            	ng-click="researchRecentKeyword($event, 'm_RDC_SrhLayer_ClkW_Rst_A')" class="word"><em>{{item.keytxt}}</em><span>{{item.date}}</span></a>
+                                            <a ng-click="delRecentOneKeyword(key)" class="del">최근 검색어 삭제</a>
+                                        </li>
+                                    </ol>
+                                </div>
+                                <div class="nsh_btns">
+                                	<a class="left"  ng-click="delRecentAllKeyword()">전체 삭제</a>
+                                	<a class="right" ng-click="closeSrhLayor('tclick')">취소</a>
+                                </div>
+                           </li>
+                            <li class="nsh_li nsh_popular">
+                                <div class="nsh_title">인기 검색어</div>
+                                <div class="nsh_div" id="nsh_best">
+                                    <ol>
+                                        <li ng-repeat="item in srhBestData.result_best.items">
+                                            <a style="background-image:url({{item.img_url}});" class="word"
+                                            	ng-click="searchBestKeyword('{{item.hkeyword}}', 'm_RDC_SrhLayer_ClkW_Rst_B_m_RDC_SrhLayer_ClkW_Rst_B_'+ numberFill(($index+1),2))">
+                                            	<span>{{$index + 1}}. {{item.hkeyword}}</span>
+                                            </a>
+                                        </li>
+
+                                    </ol>
+                                </div>
+                                <div class="nsh_btns">
+                                	<a class="right" ng-click="closeSrhLayor('tclick')">취소</a>
+                                </div>
+                            </li>
+                            <li class="nsh_li nsh_lately" ng-class="{editing:latelyGoodsEditing}">
+                                <div class="nsh_title">최근 본 상품</div>
+                                <div class="nsh_div" id="nsh_speed" ng-class="{empty:latelyGoodsList.length==0}">
+                                    <ol>
+                                    	<li ng-repeat="item in latelyGoodsList track by $index">
+                                    		<div style="-webkit-transition-delay:{{$index*0.02}}s; transition-delay:{{$index*0.1}}s;">
+	                                    		<a ng-href="{{getProductViewUrl(item, 'm_RDC_SrhLayer_ClkW_Rst_D', true)}}" onclick="return false;" ng-click="productView(item, '', '', 'm_RDC_SrhLayer_ClkW_Rst_D')" class="prod">
+	                                    			<span class="img"><img ng-src="{{item.img_url}}" /></span>
+	                                    			<span class="name"><em ng-if="item.brand_nm">{{item.brand_nm}}</em>{{item.goods_nm}}</span>
+	                                    			<span class="price" ng-class="{plan:item.is_plan_prod}">{{item.sale_price | number}}</span>
+	                                    		</a>
+	                                    		<a class="del" ng-click="delLatelyGoods(item)">삭제</a>
+                                    		</div>
+                                    	</li>
+                                    </ol>
+                                </div>
+                                <div class="nsh_btns">
+                                	<a class="left"  ng-click="editLatelyGoods()"></a>
+                                	<a class="right" ng-click="closeSrhLayor('tclick')">취소</a>
+                                </div>
+                            </li>
+                       </ul>
+                    </div>
+                </div>
+                ----------------------------------------- -->
+
+               <!-- 자동완성 -->
+                <div class="srh_auto" ng-show="isAutoSrhing">
+                    <ol>
+                        <li ng-repeat="item in srhAutoData">
+                            <a ng-href="{{getSearchListUrl(item, 'M_Search_Autocomplete_Web')}}" onclick="return false;"
+                            	ng-click="goAutoSrh('{{$index}}', '&tclick=M_Search_Autocomplete_Web')" class="kword" ng-if="item.type" ng-bind-html="item.keyword"></a>
+                            <div ng-click="searchSet(item.keyword)" xxx-ng-click="searchSet('{{$index}}');" class="arrowkey" ng-if="item.type"></div>
+                            <a ng-href="{{getSearchListUrl(item, 'M_Search_Autocomplete_Web')}}" onclick="return false;"
+                            	ng-click="goAutoSrh('{{$index}}', '&tclick=M_Search_Autocomplete_Web&cateNo={{item.cateNum}}')" class="categoryWord" ng-if="!item.type">{{item.cateStr}}</a>
+                        </li>
+                    </ol>
+                </div>
+
+                <!-- <div class="srh_bar" ng-if="isAutoSrhing">
+                    <div class="barInfo" ng-show="searchLayerTabIdx != 0 || isAutoSrhing">
+                        <div class="bestInfo" ng-show="isAutoSrhing">버튼 터치하면 검색어를 수정할 수 있습니다.</div>
+                    </div>
+                    <a ng-click="closeSrhLayor('tclick')" class="close">닫기</a>
+                </div> -->
+            </section>
+            <!--<section ly-cover class="srh_cover" ng-click="closeSrhLayor()"></section>-->
+    </fieldset>
+</form>
+</section>
+<custom-search></custom-search>
+</section>

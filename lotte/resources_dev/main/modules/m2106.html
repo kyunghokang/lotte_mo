@@ -1,0 +1,29 @@
+<section class="blankCd{{moduleData.blankCd}}" ng-class="{noshow:moduleData.items.length < 2}">
+	<!--M2106 카드행사배너..-->
+	<div class="moduleCon n201811 card">
+			
+		<div class="unit unit_bn_card two" ng-if="moduleData.items.length == 2">
+			<ul class="swipeBox">
+				<li ng-repeat="item in moduleData.items">
+					<a ng-click="logGAEvtModuleEach(item, $index + 1);mainBannerClick(item.linkUrl, item.isOutLink,'')">
+						<img ng-src="{{item.imgUrl}}">
+						<span class="txt1">{{item.cardTxt}}</span>
+						<span class="txt2">{{item.benefitTxt}}</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="unit unit_bn_card more" ng-if="moduleData.items.length > 2">
+			<ul class="swipeBox">
+				<li ng-repeat="item in moduleData.items">
+					<a ng-click="logGAEvtModuleEach(item, $index + 1);mainBannerClick(item.linkUrl, item.isOutLink, '')">
+						<img ng-src="{{item.imgUrl}}">
+						<span class="txt1">{{item.cardTxt}}</span>
+						<span class="txt2">{{item.benefitTxt}}</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,1892 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+	<meta charset="utf-8">
+	<title>롯데닷컴-order</title>
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+
+	<script>
+		var APP_KEY = "7fa1e44757a94fd89921";
+		var SERVER_TIME = new Date();
+
+		var LOTTE_CONSTANTS = [];
+			LOTTE_CONSTANTS['MAPI_HOST_API'] = "http://mo.lotte.com";
+			LOTTE_CONSTANTS['MAPI_HOST_SSL_API'] = "http://mo.lotte.com";
+			LOTTE_CONSTANTS['M_HOST_MOBILE'] = "http://mo.lotte.com";
+			LOTTE_CONSTANTS['M_HOST_SSL'] = "http://mo.lotte.com";
+			LOTTE_CONSTANTS['PC_HOST_WEB'] = "http://www.lotte.com";
+
+		var MAPI_HOST_API = LOTTE_CONSTANTS['MAPI_HOST_API'];
+		var MAPI_HOST_SSL_API = LOTTE_CONSTANTS['MAPI_HOST_SSL_API'];
+		var M_HOST_MOBILE = LOTTE_CONSTANTS['M_HOST_MOBILE'];
+		var M_HOST_SSL = LOTTE_CONSTANTS['M_HOST_SSL'];
+		var PC_HOST_WEB = LOTTE_CONSTANTS['PC_HOST_WEB'];
+
+		LOTTE_CONSTANTS['SPLIT_GUBUN_1'] = ":^:";
+		LOTTE_CONSTANTS['SPLIT_GUBUN_3'] = ";;;;;";
+		LOTTE_CONSTANTS['ONENONE_BUY_LOGIN'] = "1";
+		LOTTE_CONSTANTS['IMALL_BUY_LOGIN'] = "4";
+		LOTTE_CONSTANTS['ST_STD_CD_PAY_MEAN_CD_L_POINT'] = "21";
+		LOTTE_CONSTANTS['ST_STD_CD_PAY_MEAN_CD_LOTTE_POINT'] = "19";
+		LOTTE_CONSTANTS['ST_STD_CD_PAY_MEAN_CD_DEPOSIT'] = "20";
+		LOTTE_CONSTANTS['DEFAULT_LATE_VIEW_GOODS_COUNT'] = "20";
+
+		//rudolph start
+		LOTTE_CONSTANTS['NORMAL_LOGIN'] = "0";
+		LOTTE_CONSTANTS['ONENONE_BUY_LOGIN'] = "1";
+		LOTTE_CONSTANTS['CART_BUY_LOGIN'] = "2";
+		LOTTE_CONSTANTS['ORDER_SEARCH_LOGIN'] = "3";
+		LOTTE_CONSTANTS['IMALL_BUY_LOGIN'] = "4";
+		LOTTE_CONSTANTS['IMALL_CART_BUY_LOGIN'] = "5"
+		LOTTE_CONSTANTS['LOGIN_SEED'] = "MDOTCOM";
+		LOTTE_CONSTANTS['ORDER_PROTOCAL'] = "http";
+		LOTTE_CONSTANTS['MOBILE_DOMAIN'] = "mo.lotte.com";
+
+		LOTTE_CONSTANTS['ELLOTTE_HOST_API'] = "http://mapi.ellotte.com";
+		LOTTE_CONSTANTS['ELLOTTE_HOST_SSL_API'] = "https://mapi.ellotte.com";
+		LOTTE_CONSTANTS['ELLOTTE_HOST_MOBILE'] = "http://mo.ellotte.com";
+		LOTTE_CONSTANTS['ELLOTTE_HOST_SSL'] = "http://mo.ellotte.com";
+		LOTTE_CONSTANTS['ELLOTTE_LOGIN_SEED'] = "NMELLOTTE";
+		LOTTE_CONSTANTS['ELLOTTE_IOS_APP_SCHEMA'] = "ellotte001";
+		LOTTE_CONSTANTS['ELLOTTE_ANDROID_APP_SCHEMA'] = "ellotte002";
+		//rudolph end
+
+		LOTTE_CONSTANTS['PAYTYPE_CARD_047'] = "047";
+		LOTTE_CONSTANTS['PAYTYPE_CARD_029'] = "029";
+		LOTTE_CONSTANTS['PAYTYPE_CARD_031'] = "031";
+		LOTTE_CONSTANTS['PAYTYPE_CARD_048'] = "048";
+		LOTTE_CONSTANTS['EXP_MY_LOTTE_KO'] = "마이롯데";
+	</script>
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/common/lotte.css"/>
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/layout/header.css"/>
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/layout/header_sub.css"/>
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/layout/footer.css"/>
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/layout/actionbar.css"/>
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/layout/side_ctg.css"/>
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/layout/side_mylotte.css"/>
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/search/layer_srh.css"/>
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/order_simple/ordersimple.css"/>
+	<!-- <link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/order/order_form.css"/> -->
+	<script src="../../lotte/lib/jquery/jquery-1.11.2.min.js"></script>
+	<!-- <script src="../../lotte/lib/jquery/LottePub.js"></script> -->
+	<script src="../../lotte/lib/jquery/EGSlider.js"></script>
+	<script src="../../lotte/lib/jquery/cnt_interface.js"></script>
+	<script src="../../lotte/lib/jquery/app_interface.js"></script>
+	<!-- <script src="../../lotte/lib/angular/angular.min.js"></script> -->
+	<!-- <script src="../../lotte/lib/angular/angular-sanitize.min.js"></script> -->
+	<!-- <script src="../../lotte/resources_dev/common/lotte_comm.js"></script> -->
+	<!-- <script src="../../lotte/resources_dev/common/lotte_util.js"></script> -->
+	<!-- <script src="../../lotte/resources_dev/common/lotte_filter.js"></script> -->
+	<!-- <script src="../../lotte/resources_dev/common/lotte_svc.js"></script> -->
+	<!-- <script src="../../lotte/resources_dev/common/lotte_search.js"></script> -->
+	<!-- <script src="../../lotte/resources_dev/common/lotte_comm_footer.js"></script> -->
+	<!-- <script src="../../lotte/resources_dev/common/lotte_log_dev.js"></script> -->
+	<!-- <script src="../../lotte/resources_dev/layout/lotte_sidectg.js"></script> -->
+	<!-- <script src="../../lotte/resources_dev/layout/lotte_sidemylotte.js"></script> -->
+	<script src="../../lotte/resources_dev/order_simple/ordersimple.js"></script>
+
+	<!-- <link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/order/order_form.css"/> -->
+	<!-- <script src="../../lotte/resources_dev/order/order_gift_form.js"></script> -->
+	<!-- 	<script src="/common4/js/order.js"></script> -->
+	<!-- html_meta_angular.jsp -->
+	<!-- <script src="../..common4/js/lib/crittercismClientLibraryMin.js"></script>
+	<script src="../../common3/js/function.js"></script>
+	<script src="../../common3/js/storage.js"></script> -->
+
+
+	</script>
+</head>
+<!-- 20160712 수정 -->
+<body>
+	<!-- 201707096 수정 -->
+	<section>
+		<div class="sub_header_wrap">
+			<header id="head_sub" class="ng-scope fixedSubHeader fixedHeader">
+				<h2>
+					<span>간단주문서 작성</span>
+				</h2>
+				<p class="prev">
+					<a href="#">이전</a>
+				</p>
+				<p class="this type2">
+			      <a href="#" class="lpoint_btn3">일반주문서</a>
+			  </p>
+				<div class="introduce_comment_wrap" id="disappear">
+					<p class="introduce_comment">고객님의 쇼핑패턴에 최적화된 빠른 결제용 주문서입니다</p>
+				</div>
+			</header>
+		</div>
+	</section>
+	<section id="pageCover" style="display:none"></section>
+	<script>
+		var resCode = "0000";
+		var resMsg = "정상";
+		var orderSubTitle = "주문서 작성";
+	</script>
+	<div id="wrapper" ng-show="showWrap">
+		<lotte-header></lotte-header>
+		<lotte-search></lotte-search>
+		<sub-header></sub-header>
+		<not-found ng-if="noData"></not-found>
+		<lotte-container></lotte-container>
+<div id="container">
+	<section ng-show="contVisible" class="cont_minheight">
+	 <div id="container">
+	   <section id="order">
+	     <div class="order_simple_wrap">
+	       <div class="box_section type1" onclick="javascript:$('.delivery_change').show(), toggleAction18();">
+	         <a href="#" class="user_data">
+	           <p>이미준</p>
+	           <span class="ellipsis">(배송지명이길경우에한해서 특이케이스)</span>
+	           <address>서울시 중구 을지로서울시 중구 을지로</address>
+	         </a>
+	       </div>
+	       <div class="box_section type2">
+	         <div class="left_img_area">
+	           <img src="http://image.lotte.com/lotte/mo2015/angular/order/order_sample_img.gif" alt="">
+	         </div>
+	         <div class="right_cont_area off" onclick="toggleAction();" >
+	           <p class="title1">[슈에무라] [NEW]루즈언리미티드</p>
+	           <p class="title2">색상 : <span>화이트(WH)</span> | 사이즈 : <span>45(55)</span>  / <span>1</span>개</p>
+	           <ul class="cont_detail_list">
+	             <li>
+	               <p class="lft">판매가</p>
+	               <p class="rgt">91,250원</p>
+	             </li>
+	             <li>
+	               <p class="lft">즉석쿠폰 할인</p>
+	               <p class="rgt">(-)1,000원</p>
+	             </li>
+	             <li class="c_bold">
+	               <p class="lft">즉석쿠폰가</p>
+	               <p class="rgt">90,250원</p>
+	             </li>
+	             <li class="c_bold">
+	               <p class="lft">배송비</p>
+	               <p class="rgt">2,500원</p>
+	             </li>
+	           </ul>
+	           <ul class="cont_detail_list2">
+	             <li><a ng-click="someFunc();">매장전달 메시지</a></li>
+	             <li><a ng-click="someFunc();">선물포장</a></li>
+	             <li><a ng-click="someFunc();">종이카드</a></li>
+	           </ul>
+	           <div class="delivery_day">
+	             <p class="average_box">평균배송일</p>
+	             <p class="expect_day">3월 25일 전후 도착</p>
+	             <p class="percent">(99% 확률)</p>
+	           </div>
+	           <div class="delivery_day2">
+	             <p class="quick">빠른배송</p>
+	             <p class="expect_day"><span>3월 25일 내일(3/28)</span> 도착</p>
+	           </div>
+	         </div>
+	       </div>
+	       <div class="box_section type3">
+	         <ul class="apply_lpoint">
+	           <li>
+	             <div class="left_area">
+								 <!-- 20170622기획변경 -->
+	               <!-- <input type="checkbox" name="chk_point" id="chk_lpoint" class="check01" value="lpoint" onclick="toggleAction11(this);" data-pop="lpoint"> -->
+								 <input type="checkbox" class="check01" name="chk_point" id="chk_lt_point" value="lt_point" onclick="javascript:fn_selPoint(this);" disabled="disabled">
+	               <label for="chk_lpoint" class="no_bold mgl1">L-POINT <span class="price">(<span>15,045</span>점)</span></label>
+	             </div>
+	             <div class="right_area">
+								 <a href="#lp_layer" class="btn_typeA btn_lotte_point2" id="lt_point_amt_btn2" onclick="toggleAction15();">본인 확인하기</a>
+								 <!-- default시 비노출 -->
+								 <input type="number" class="txt01 txt_num" style="width:80px; display:none;" pattern="[0-9]*" id="lt_point_amt" onblur="javascript:fn_point_change(this);" onfocus="fn_point_focus(this);" >
+								 <input type="hidden" id="old_lt_point_amt" value="0"/>
+								 <input type="hidden" id="useable_lt_point_amt" value="0"/>
+	             </div>
+							 <!-- 20170621 2차수정 -->
+							 <div class="lpoint_cert">
+								 <div class="top_title">L.POINT 온라인 사용인증</div>
+								 <div class="bot_cont">
+									 <div class="put_pass">
+										 <input type="text" class="lpoint_input">
+										 <a href="#" class="lpoint_btn">확인하기</a>
+									 </div>
+									 <ul class="msg_3">
+										 <li>5회 이상 비밀번호 오류 시, 비밀번호를 재설정해 주세요</li>
+										 <li>L.POINT 전액 사용 시 인증이 필요합니다 </li>
+										 <li>L.POINT 고객센터 : 1899-8900 </li>
+									 </ul>
+									 <div class="couple_btn">
+										 <a href="#" class="lpoint_btn" onclick="toggleAction16();">취소하기</a>
+										 <a href="#" class="lpoint_btn">비밀번호 설정/재설정</a>
+									 </div>
+								 </div>
+							 </div>
+	           </li>
+	           <li>
+	             <div class="left_area">
+	               <input type="checkbox" name="chk_point" id="chk_lpoint2" class="check01" value="lpoint">
+	               <label for="chk_lpoint2" class="no_bold mgl1">L-money <span class="price">(<span>5,045</span>점)</span></label>
+	             </div>
+	             <div class="right_area">
+	               <input type="number" class="txt01 txt_num" pattern="[0-9]*" id="lpoint_amt" style="width:100%;" onblur="fn_point_change(this);" onfocus="fn_point_focus(this);">
+	             </div>
+	           </li>
+	           <li>
+	             <div class="left_area">
+	               <input type="checkbox" name="chk_point" id="chk_lpoint3" class="check01" value="lpoint">
+	               <label for="chk_lpoint3" class="no_bold mgl1">보관금 <span class="price">(<span>1,200</span>점)</span></label>
+	             </div>
+	             <div class="right_area">
+	               <input type="number" class="txt01 txt_num" pattern="[0-9]*" id="lpoint_amt" style="width:100%;" onblur="fn_point_change(this);" onfocus="fn_point_focus(this);">
+	             </div>
+	           </li>
+	         </ul>
+				</div>
+	       <div class="box_section type4">
+	         <ul class="amount_title_list" onclick="toggleAction3()">
+	           <li>총 주문금액</li>
+						 <!-- 20170704수정 -->
+	           <li class="max_discount"><span>최대할인</span></li>
+	           <li>최종결제금액</li>
+	         </ul>
+	         <ul class="amount_total" onclick="toggleAction3()">
+	           <li>2,330,000원<span>(배송비포함)</span></li>
+	           <li>209,550원</li>
+	           <li>2,002,450<span>원</span></li>
+	         </ul>
+	         <div class="amount_detail">
+	           <ul class="amount_detail_list">
+	             <li class="list_depth1">
+	               <ul>
+	                 <li class="list_depth2">
+	                   <div class="left">
+	                     <span class="coupon_title">롯데그룹창립기념 적립쿠폰</span>
+	                     <div class="coupon_wrap off" onclick="javascript:$('.coupon_pop').show(),toggleAction18();">
+	                       <a href="#" class="coupon">쿠폰변경</a>
+	                     </div>
+	                   </div>
+	                   <p class="right middle short_blind">50,000점 적립</p>
+	                 </li>
+	                 <li class="list_depth2">
+	                   <p class="left">네이버가격비교 중복할인</p>
+	                   <p class="right short_blind">(-)15,000원</p>
+	                 </li>
+	                 <li class="list_depth2">
+	                   <p class="left">일시불 할인</p>
+	                   <p class="right short_blind">(-)3,000원</p>
+	                 </li>
+	               </ul>
+	             </li>
+	             <li class="list_depth1 full_cont">
+	               <ul>
+	                 <li class="list_depth2">
+	                   <p class="left">L.POINT 사용</p>
+	                   <p class="right">(-)30,000원</p>
+	                 </li>
+	                 <li class="list_depth2">
+	                   <p class="left">L-money사용</p>
+	                   <p class="right">(-)2,000원</p>
+	                 </li>
+	                 <li class="list_depth2">
+	                   <p class="left">보관금 사용</p>
+	                   <p class="right">(-)1,000원</p>
+	                 </li>
+	               </ul>
+	             </li>
+							 <!-- 20170517디자인수정 -->
+	             <li class="list_depth1 full_cont bb_none">
+	               <ul>
+	                 <li class="list_depth2">
+	                   <p class="left">적립 L.POINT</p>
+	                   <p class="right">50,000점 예정</p>
+	                 </li>
+	                 <li class="list_depth2">
+	                   <p class="left">롯데포인트플러스카드 시</p>
+	                   <p class="right">2,500점 예정</p>
+	                 </li>
+	               </ul>
+	             </li>
+	             <li class="list_depth1 short_cont">
+	               <ul>
+	                 <li class="list_depth2">
+	                   <p class="left">총 적립 금액</p>
+	                   <p class="right">15,045점 예정</p>
+	                 </li>
+	               </ul>
+	             </li>
+	           </ul>
+	         </div>
+	       </div>
+	       <p class="eventcard_title">청구할인 행사 카드 : 롯데5%/신한7%/삼성10%</p>
+	       <p class="eventcard_title">구매사은 적립 : 롯데카드</p>
+				 <!-- 20170517디자인수정 -->
+				 <div class="slide_wrap">
+		       <div class="slide">
+		         <ul class="slide_ul">
+							 <div>
+		           <li class="lpay " onclick="paySelect('oo',1)">
+		             <div class="l_pay_logo">
+		               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_lpay_2.png" alt="">
+		             </div>
+		             <div class="card_name">
+		               <p class="title1">신한주식회사카드(주)</p>
+		               <p class="title2">신한카드신한카드신한카드(607*)</p>
+		             </div>
+		             <div class="check_img">
+		               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_check.png" alt="">
+		               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_lpay_on_2.png" alt="" class="on_img">
+		             </div>
+		             <div class="s_text">
+										<span class="s_box02">
+											<select name="deli_msg" class="del_msg" data-idx="1" style="width:100%">
+												<option value="" selected="일시불">일시불</option>
+												<option value="할부">할부</option>
+												<option value="할부2">할부2</option>
+											</select>
+											<span class="img_box">
+												<i></i>
+											</span>
+										</span>
+									</div>
+		           </li>
+							 <!-- 20170704수정 -->
+		           <li class="on check lpay" onclick="paySelect('oo',2)">
+		             <div class="l_pay_logo">
+		               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_lpay_2.png" alt="">
+		               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_lpay_on_2.png" alt="" class="on_img">
+		             </div>
+		             <div class="card_name">
+		               <p class="title1">신한카드(주)</p>
+		               <p class="title2">신한카드(607*)</p>
+		             </div>
+		             <div class="check_img">
+		               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_check.png" alt="">
+		             </div>
+		             <div class="s_text">
+										<span class="s_box02">
+											<select name="deli_msg" class="del_msg" data-idx="1" style="width:100%">
+												<option value="" selected="일시불">일시불</option>
+												<option value="할부">할부</option>
+												<option value="할부2">할부2</option>
+											</select>
+											<span class="img_box">
+												<i></i>
+											</span>
+										</span>
+									</div>
+		           </li>
+							 </div>
+							 <li class="on lpay" onclick="paySelect('oo',3)">
+		             <div class="l_pay_logo">
+		               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_lpay_2.png" alt="">
+		               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_lpay_on_2.png" alt="" class="on_img">
+		             </div>
+		             <div class="card_name">
+		               <p class="title1">신한카드(주)</p>
+		               <p class="title2">신한카드(607*)</p>
+		             </div>
+		             <div class="check_img">
+		               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_check.png" alt="">
+		             </div>
+		             <div class="s_text">
+										<span class="s_box02">
+											<select name="deli_msg" class="del_msg" data-idx="1" style="width:100%">
+												<option value="" selected="일시불">일시불</option>
+												<option value="할부">할부</option>
+												<option value="할부2">할부2</option>
+											</select>
+											<span class="img_box">
+												<i></i>
+											</span>
+										</span>
+									</div>
+		           </li>
+		           <li class="on"  onclick="paySelect('oo',4)">
+		             <div class="card_name">
+		               <p class="title1">신한카드(주)</p>
+		               <p class="title2">신한카드(607*)</p>
+		             </div>
+		             <div class="check_img">
+		               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_check.png" alt="">
+		             </div>
+		             <div class="s_text">
+										<span class="s_box02">
+											<select name="deli_msg" class="del_msg" data-idx="1" style="width:100%">
+												<option value="" selected="일시불">일시불</option>
+												<option value="할부">할부</option>
+												<option value="할부2">할부2</option>
+											</select>
+											<span class="img_box">
+												<i></i>
+											</span>
+										</span>
+									</div>
+		           </li>
+		           <li onclick="paySelect('oo',5)">
+		             <div class="card_name">
+		               <p class="title1">신한카드(주)</p>
+		               <p class="title2">신한카드(607*)</p>
+		             </div>
+		             <div class="check_img">
+		               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_check.png" alt="">
+		             </div>
+		             <div class="s_text">
+										<span class="s_box02">
+											<select name="deli_msg" class="del_msg" data-idx="1" style="width:100%">
+												<option value="" selected="일시불">일시불</option>
+												<option value="할부">할부</option>
+												<option value="할부2">할부2</option>
+											</select>
+											<span class="img_box">
+												<i></i>
+											</span>
+										</span>
+									</div>
+		           </li>
+							 <li class="on check"  onclick="paySelect('oo',6)">
+		             <div class="card_name">
+		               <p class="title1">신한카드(주)</p>
+		               <p class="title2">신한카드(607*)</p>
+		             </div>
+		             <div class="check_img">
+		               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_check.png" alt="">
+		             </div>
+		             <div class="s_text">
+										<span class="s_box02">
+											<select name="deli_msg" class="del_msg" data-idx="1" style="width:100%">
+												<option value="" selected="일시불">일시불</option>
+												<option value="할부">할부</option>
+												<option value="할부2">할부2</option>
+											</select>
+											<span class="img_box">
+												<i></i>
+											</span>
+										</span>
+									</div>
+		           </li>
+							 <li class="on check crucial"  onclick="paySelect('oo',7)">
+		             <div class="card_name">
+		               <p class="title1">무통장입금무통장입금무통장입금</p>
+		               <p class="title2">신한은행</p>
+		             </div>
+								 <div class="check_img">
+		               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_check.png" alt="">
+		             </div>
+		             <div class="check_img">
+		               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_check.png" alt="">
+		             </div>
+		             <div class="s_text">
+										<div class="s_box02 pay_receipt">
+											현금영수증 010-2312-1232
+										</div>
+									</div>
+		           </li>
+							 <li class="check"  onclick="paySelect('oo',8)">
+		             <div class="card_name">
+		               <p class="title1">무통장입금</p>
+		               <p class="title2">신한은행</p>
+		             </div>
+		             <div class="check_img">
+		               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_check.png" alt="">
+		             </div>
+		             <div class="s_text">
+										<div class="s_box02 pay_receipt">
+											현금영수증 010-2312-1232
+										</div>
+									</div>
+		           </li>
+							 <li class="on"  onclick="paySelect('oo',9)">
+		             <div class="card_name">
+		               <p class="title1">무통장입금</p>
+		               <p class="title2">신한은행</p>
+		             </div>
+		             <div class="check_img">
+		               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_check.png" alt="">
+		             </div>
+		             <div class="s_text">
+										<div class="s_box02 pay_receipt">
+											현금영수증 010-2312-1232
+										</div>
+									</div>
+		           </li>
+							 <li class=""  onclick="paySelect('oo',10)">
+		             <div class="card_name">
+		               <p class="title1">무통장입금</p>
+		               <p class="title2">신한은행</p>
+		             </div>
+		             <div class="check_img">
+		               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_check.png" alt="">
+		             </div>
+		             <div class="s_text">
+										<div class="s_box02 pay_receipt">
+											현금영수증 010-2312-1232
+										</div>
+									</div>
+		           </li>
+		           <li class="phone"  onclick="paySelect('oo',11)">
+		               <div class="card_name">
+		                 <p class="title1">휴대폰결제</p>
+		               </div>
+									 <div class="check_img">
+			               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_check.png" alt="">
+			             </div>
+		               <div class="mobile_img">
+		                 <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_phone.gif" alt="">
+		                 <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_phone_on.gif" alt="" class="on_img">
+		               </div>
+		           </li>
+							 <li class="phone check"  onclick="paySelect('oo',12)">
+		               <div class="card_name">
+		                 <p class="title1">휴대폰결제</p>
+		               </div>
+									 <div class="check_img">
+			               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_check.png" alt="">
+			             </div>
+		               <div class="mobile_img">
+		                 <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_phone.gif" alt="">
+		                 <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_phone_on.gif" alt="" class="on_img">
+		               </div>
+		           </li>
+							 <div>
+								 <li class="phone check on"  onclick="paySelect('oo',13)">
+			               <div class="card_name">
+			                 <p class="title1">휴대폰결제</p>
+			               </div>
+										 <div class="check_img">
+				               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_check.png" alt="">
+				             </div>
+			               <div class="mobile_img">
+			                 <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_phone.gif" alt="">
+			                 <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_phone_on.gif" alt="" class="on_img">
+			               </div>
+			           </li>
+								 <li class="phone check on" style="display:none">
+			               <div class="card_name">
+			                 <p class="title1">휴대폰결제</p>
+			               </div>
+										 <div class="check_img">
+				               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_check.png" alt="">
+				             </div>
+			               <div class="mobile_img">
+			                 <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_phone.gif" alt="">
+			                 <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_phone_on.gif" alt="" class="on_img">
+			               </div>
+			           </li>
+								 <li class="phone check on"  onclick="paySelect('oo',14)">
+			               <div class="card_name">
+			                 <p class="title1">휴대폰결제</p>
+			               </div>
+										 <div class="check_img">
+				               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_check.png" alt="">
+				             </div>
+			               <div class="mobile_img">
+			                 <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_phone.gif" alt="">
+			                 <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_phone_on.gif" alt="" class="on_img">
+			               </div>
+			           </li>
+							 </div>
+							 <li class="phone on" style="display:none">
+		             <div class="card_name">
+		               <p class="title1">휴대폰결제</p>
+		             </div>
+								 <div class="check_img">
+		               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_check.png" alt="">
+		             </div>
+		             <div class="mobile_img">
+		               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_phone.gif" alt="">
+		               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_phone_on.gif" alt="" class="on_img">
+		             </div>
+		           </li>
+		           <li class="phone on" style="display:none">
+		             <div class="card_name">
+		               <p class="title1">휴대폰결제</p>
+		             </div>
+								 <div class="check_img">
+		               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_check.png" alt="">
+		             </div>
+		             <div class="mobile_img">
+		               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_phone.gif" alt="">
+		               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_phone_on.gif" alt="" class="on_img">
+		             </div>
+		           </li>
+		           <li class="another" onclick="javascript:$('.pay_method').show(),toggleAction18();">
+		             <div class="card_name">
+		               <p class="title1">다른 결제수단<br>이용하기 ></p>
+		             </div>
+		           </li>
+		         </ul>
+		       </div>
+					 <script>
+					 /* 20170630수정 */
+					 	var li_num1 = $('.slide_ul li').size();
+					 	var li_num2 = $('.slide_ul li[style="display:none"]').size();
+					 	var li_num1_width = (li_num1 * 189);
+					 	var li_num2_width = (li_num2 * 189);
+						var li_num_total = (li_num1_width - li_num2_width) - 3;
+						$('.slide_ul').width(li_num_total);
+						if($('.slide_ul li').hasClass('crucial')){
+							var windowwidth = $(window).width();
+							var windowwidthhalf = windowwidth / 2;
+							var outerWidth = 189;
+							var outerWidthhalf = outerWidth / 2;
+							var halfhalf = windowwidthhalf - outerWidthhalf;
+							var leftValue = $('.crucial').offset().left;
+							var howleft = leftValue - halfhalf;
+							$('.slide').scrollLeft(howleft)
+						};
+					 </script>
+				 </div>
+				 <!-- 20170621 2차수정 -->
+				 <!-- 20170629수정 -->
+	       <p class="eventcard_title">청구할인가 1,979,000원 예상</p>
+	       <div class="order_wrap mgt10">
+	 				<div class="box_agree_check">
+	 					<p class="tit_agree_check">
+	 						<input type="checkbox" name="ord_agr_yn" class="check01" id="order_agree_on">
+	 						<label for="order_agree_on">주문 내역 확인 동의</label>
+	 						<span class="">자세히 보기/닫기</span>
+	 					</p>
+	 					<p class="txt">
+	 						주문내용을 확인해주세요.<br/>
+	 						주문할 상품의 상품명, 상품가격, 배송정보를 확인하였습니다.(전자상거래법 제 8조 제2항)<br/><br/>
+	 						구매에 동의하시겠습니까?
+	 					</p>
+	 				</div>
+	 			</div>
+	      <!-- 결제하기 -->
+	      <!-- 20170621 2차수정 -->
+				<div class="order_btn_wrap mg_015">
+					<div id="ORDER" class="order_btn">
+						<a name="PAYMENT_ANCHAR"></a>
+						<span id="submit_btn"><a href="javascript:send();" class="btn_typeB"><span>결제하기</span></a></span>
+					</div>
+					<div class="order_btn" id="PROCESSING" style="display:none">
+						<font size="2">처리중 입니다. 잠시만 기다려 주십시오.</font>
+					</div>
+					<div class="laver_Lpay_order" style="display:none">
+						<p>L.pay<!-- 20150828 수정 -->  외의 결제수단으로 L.POINT를 사용하실 때에는 비밀번호 입력이 필요합니다.<br><span>(L.POINT로 전체 결제하실 때에는 L.pay<!-- 20150828 수정 -->가 아닌 결제수단 으로 처리됩니다.)</span></p>
+						<div class="btn_zone clearfix">
+							<!-- 20150925 수정 -->
+							<a href="#" class="btn_typeL">L.POINT 사용 취소</a>
+							<a href="#" class="btn_typeR">비밀번호 입력</a>
+							<!-- //20150925 수정 -->
+						</div>
+					</div>
+				</div>
+	     </div>
+	   </section>
+	 </div>
+	</section>
+	<div id="agree_layer_bg" class="add_order_pop pay_method bg" style="display:none"></div>
+	<div id="agree_layer" class="add_order_pop pay_method" style="display: none;">
+		<div class="cont">
+			<div class="pop_wrap">
+				<div class="pop_top">
+					<p>다른 결제수단선택</p>
+					<a onclick="javascript:$('.add_order_pop').hide(),toggleAction19();" class="pop_top_close">
+						<img src="http://image.lotte.com/lotte/mo2015/angular/order/poptop_close.png" alt="">
+					</a>
+				</div>
+				<div class="pop_middle">
+					<div class="order_section mpdw4 new_paytype_list">
+					 <div class="paytype_list">
+						 <div class="order_product_list">
+							 <dl>
+								 <dd class="bnone card_txt_sp">
+									 <div class="pay_method_area in_mem">
+										 <span id="pay_type4" class="pay_type4 on" onclick="toggleAction6(this)" data-tab="tab-1">
+											 <span>
+												 <input type="radio" name="rdo_paytype" value="40" onfocus="this.blur()">
+												 <label for="rdo_paytype4">간편결제</label>
+											 </span>
+										 </span>
+
+										 <span id="pay_type1" class="pay_type1" onclick="toggleAction6(this)" data-tab="tab-2">
+											 <span data-tab="tab-2">
+												 <input type="radio" name="rdo_paytype" value="16" onfocus="this.blur()">
+
+												 <label for="rdo_paytype1">신용카드</label>
+											 </span>
+										 </span>
+
+										 <span id="pay_type2" class="pay_type2" onclick="toggleAction6(this)" data-tab="tab-3">
+											 <span data-tab="tab-3">
+												 <input type="radio" name="rdo_paytype" value="03" onfocus="this.blur()">
+												 <label for="rdo_paytype3">무통장입금</label>
+											 </span>
+										 </span>
+										 <span id="pay_type3" class="pay_type3" onclick="toggleAction6(this)" data-tab="tab-4">
+											 <span data-tab="tab-4">
+												 <input type="radio" name="rdo_paytype" value="15" onfocus="this.blur()">
+												 <label for="rdo_paytype3">휴대폰결제</label>
+											 </span>
+										 </span>
+										 <input type="hidden" name="paytype" value="16">
+									 </div>
+								 </dd>
+							 </dl>
+						 </div>
+					 </div>
+				 	</div>
+					<!-- 20170622기획변경 -->
+					<div class="pay-inner on" id="tab-1">
+						<!-- 엘페이미가입회원 -->
+		        <h3>L.Pay 등록 수단 선택</h3>
+						<div class="box_Lpay_agree_check" style="display: block;">
+							<a class="title" href="javascript:LpayAgreeCheckLayer();">L.pay 간편결제 서비스 이용안내</a>
+							<div class="txt">
+								<p class="tit01">비밀번호 없이 한 번에 결제 OK!</p>
+								<p class="info01">최초 1회 결제 후 결제 비밀번호 입력 없이<br>바로 결제 가능한 “빠른결제”서비스 입니다.</p>
+								<!--<p class="info02">결제수단 : 롯데카드 등록 가능<br/>(카드사/금융사는 계속 추가 중입니다)</p>-->
+								<p class="info02">L.pay로 결제 시 L.POINT를 비밀번호 없이 사용</p>
+								<p class="info02">카드사/금융사별 정책에 따라 고액 결제 시<br> 추가 인증이 필요합니다.</p>
+								<a href="javascript:lpay_lnk_app();" class="btn">L.pay 앱 실행하기</a>
+							</div>
+						</div>
+
+						<!-- 엘페이회원/결제수단미등록 -->
+						<h3 class="no_add">L.Pay 간편결제 선택</h3>
+		        <div class="nocard_account_wrap">
+		        	<p class="tit1">L.Pay에 등록된 카드/계좌가 없습니다.</p>
+							<a href="#" class="lpoint_btn">카드등록</a>
+		        </div>
+
+		        <radiobox-list class="ng-scope active">
+		           <radiobox class="combo">
+								<input type="radio" name="pay_type" id="pay_type_n0" value="" class="radio01" onclick="toggleAction7(this)" ;="">
+								<label for="pay_type_n0" class="ng-binding">삼성카드(주) - 삼성 아멕스카드</label>
+								<input type="hidden" name="" id="pay_type_value0" value="samsung">
+								</radiobox>
+			            <div class="option-list">
+										<selectbox class="pos-rel phone p32 rcArrow mr1 ng-scope">
+		                    <select name="pfn">
+													<option value="001" class="ng-binding ng-scope">일시불
+													</option><option value="002" class="ng-binding ng-scope">무이자 3개월 할부
+													</option><option value="003" class="ng-binding ng-scope">무이자 6개월 할부
+													</option><option value="004" class="ng-binding ng-scope">무이자 9개월 할부
+													</option><option value="005" class="ng-binding ng-scope">무이자 12개월 할부
+													</option>
+		                    </select>
+		                </selectbox>
+			            </div>
+					        </radiobox-list>
+									<radiobox-list class="ng-scope">
+					           <radiobox class="combo">
+									<input type="radio" name="pay_type" id="pay_type_n1" value="" class="radio01" onclick="toggleAction7(this)" ;="">
+									<label for="pay_type_n1" class="ng-binding">롯데카드(주) - 롯데 DC 플러스카드</label>
+									<input type="hidden" name="" id="pay_type_value1" value="lotte">
+								</radiobox>
+								<div class="option-list">
+									<selectbox class="pos-rel phone p32 rcArrow mr1 ng-scope">
+											<select name="pfn">
+												<option value="001" class="ng-binding ng-scope">일시불
+												</option><option value="002" class="ng-binding ng-scope">무이자 3개월 할부
+												</option><option value="003" class="ng-binding ng-scope">무이자 6개월 할부
+												</option><option value="004" class="ng-binding ng-scope">무이자 9개월 할부
+												</option><option value="005" class="ng-binding ng-scope">무이자 12개월 할부
+												</option>
+											</select>
+									</selectbox>
+								</div>
+
+					        </radiobox-list><radiobox-list class="ng-scope">
+					           <radiobox class="combo">
+									<input type="radio" name="pay_type" id="pay_type_n2" value="" class="radio01" onclick="toggleAction7(this)" ;="">
+									<label for="pay_type_n2" class="ng-binding">우리은행 - 12345678910계좌이체</label>
+									<input type="hidden" name="" id="pay_type_value2" value="lotte">
+								</radiobox>
+								<div class="option-list">
+									<selectbox class="pos-rel phone p32 rcArrow mr1 ng-scope">
+											<select name="pfn">
+												<option value="001" class="ng-binding ng-scope">일시불
+												</option><option value="002" class="ng-binding ng-scope">무이자 3개월 할부
+												</option><option value="003" class="ng-binding ng-scope">무이자 6개월 할부
+												</option><option value="004" class="ng-binding ng-scope">무이자 9개월 할부
+												</option><option value="005" class="ng-binding ng-scope">무이자 12개월 할부
+												</option>
+											</select>
+									</selectbox>
+								</div>
+
+					        </radiobox-list>
+									<!-- 20170517디자인수정 -->
+									<div id="pay_card" class="order_product_list" style="display: block;">
+
+						<!-- L페이 간편결제 선택 시 -->
+						<div class="box_Lpay_agree_check" style="display: block;">
+							<a class="title" href="javascript:LpayAgreeCheckLayer();">L.pay 간편결제 서비스 이용안내</a>
+							<div class="txt">
+								<p class="tit01">비밀번호 없이 한 번에 결제 OK!</p>
+								<p class="info01">최초 1회 결제 후 결제 비밀번호 입력 없이<br>바로 결제 가능한 “빠른결제”서비스 입니다.</p>
+								<!--<p class="info02">결제수단 : 롯데카드 등록 가능<br/>(카드사/금융사는 계속 추가 중입니다)</p>-->
+								<p class="info02">L.pay로 결제 시 L.POINT를 비밀번호 없이 사용</p>
+								<p class="info02">카드사/금융사별 정책에 따라 고액 결제 시<br> 추가 인증이 필요합니다.</p>
+								<a href="javascript:lpay_lnk_app();" class="btn">L.pay 앱 실행하기</a>
+							</div>
+						</div>
+						</div>
+									<!-- <div class="Lpay-help">
+							        <div class="rcArrow" onclick="toggleAction4()">
+							             LPay 간편결제 서비스 이용안내
+							        </div>
+											<div class="hiddenContent">
+							            <p>명칭 변경으로 인해 고객님의 혼동이 예상 되오니 너그러운 양해
+							            부탁드립니다.</p>
+							            <ul>
+							                <li>4월 9일 이후 : (기존) L- 포인트 → (변경) L- menoy</li>
+							                <li>4월 20일 이후 : (기존) 롯데포인트 → (변경) L.point</li>
+							                <li>변동사항 : 명칭만 변경 (※적립이력, 사용기준 방법에는 변동이 없음)</li>
+							            </ul>
+							        </div>
+							    </div> -->
+					    </div>
+							<div class="pay-inner" id="tab-2">
+								<div class="card_list">
+									<h3>신용카드 선택</h3>
+									<div class="card_items_list">
+										<!-- 20170621 2차수정 -->
+										<ul class="clear">
+											<li class="inlineBorder" onclick="toggleAction5(this)">
+													<img alt="lotte" class="on" src="http://image.lotte.com/lotte/mo2015/angular/order/lottecard_on.gif">
+													<img alt="lotte" class="off" src="http://image.lotte.com/lotte/mo2015/angular/order/lottecard_off.gif">
+													<img alt="lotte" class="act" src="http://image.lotte.com/lotte/mo2015/angular/order/lottecard_active.gif">
+
+											</li><li class="inlineBorder" onclick="toggleAction5(this)">
+													<img alt="shinhan" class="on" src="http://image.lotte.com/lotte/mo2015/angular/order/shcard_on.gif">
+													<img alt="shinhan" class="off" src="http://image.lotte.com/lotte/mo2015/angular/order/shcard_off.gif">
+													<img alt="shinhan" class="act" src="http://image.lotte.com/lotte/mo2015/angular/order/shcard_active.gif">
+
+											</li><li class="inlineBorder" onclick="toggleAction5(this)">
+													<img alt="bc" class="on" src="http://image.lotte.com/lotte/mo2015/angular/order/bccard_on.gif">
+													<img alt="bc" class="off" src="http://image.lotte.com/lotte/mo2015/angular/order/bccard_off.gif">
+													<img alt="bc" class="act" src="http://image.lotte.com/lotte/mo2015/angular/order/bccard_active.gif">
+
+											</li><li class="inlineBorder" onclick="toggleAction5(this)">
+													<img alt="kb" class="on" src="http://image.lotte.com/lotte/mo2015/angular/order/kbcard_on.gif">
+													<img alt="kb" class="off" src="http://image.lotte.com/lotte/mo2015/angular/order/kbcard_off.gif">
+													<img alt="kb" class="act" src="http://image.lotte.com/lotte/mo2015/angular/order/kbcard_active.gif">
+
+											</li><li class="inlineBorder" onclick="toggleAction5(this)">
+													<img alt="ssamsung" class="on" src="http://image.lotte.com/lotte/mo2015/angular/order/samsungcard_on.gif">
+													<img alt="ssamsung" class="off" src="http://image.lotte.com/lotte/mo2015/angular/order/samsungcard_off.gif">
+													<img alt="ssamsung" class="act" src="http://image.lotte.com/lotte/mo2015/angular/order/samsungcard_active.gif">
+
+											</li><li class="inlineBorder" onclick="toggleAction5(this)">
+													<img alt="hyundai" class="on" src="http://image.lotte.com/lotte/mo2015/angular/order/hdcard_on.gif">
+													<img alt="hyundai" class="off" src="http://image.lotte.com/lotte/mo2015/angular/order/hdcard_off.gif">
+													<img alt="hyundai" class="act" src="http://image.lotte.com/lotte/mo2015/angular/order/hdcard_active.gif">
+
+											</li><li class="inlineBorder" onclick="toggleAction5(this)">
+													<img alt="hana" class="on" src="http://image.lotte.com/lotte/mo2015/angular/order/hanacard_on.gif">
+													<img alt="hana" class="off" src="http://image.lotte.com/lotte/mo2015/angular/order/hanacard_off.gif">
+													<img alt="hana" class="act" src="http://image.lotte.com/lotte/mo2015/angular/order/hanacard_active.gif">
+
+											</li><li class="inlineBorder" onclick="toggleAction5(this)">
+													<img alt="citi" class="on" src="http://image.lotte.com/lotte/mo2015/angular/order/citicard_on.gif">
+													<img alt="citi" class="off" src="http://image.lotte.com/lotte/mo2015/angular/order/citicard_off.gif">
+													<img alt="citi" class="act" src="http://image.lotte.com/lotte/mo2015/angular/order/citicard_active.gif">
+
+											</li><li class="inlineBorder" onclick="toggleAction5(this)">
+													<img alt="nh" class="on" src="http://image.lotte.com/lotte/mo2015/angular/order/nhcard_on.gif">
+													<img alt="nh" class="off" src="http://image.lotte.com/lotte/mo2015/angular/order/nhcard_off.gif">
+													<img alt="nh" class="act" src="http://image.lotte.com/lotte/mo2015/angular/order/nhcard_active.gif">
+
+											</li><li class="inlineBorder" onclick="toggleAction5(this)">
+													<img alt="woori" class="on" src="http://image.lotte.com/lotte/mo2015/angular/order/wrcard_on.gif">
+													<img alt="woori" class="off" src="http://image.lotte.com/lotte/mo2015/angular/order/wrcard_off.gif">
+													<img alt="woori" class="act" src="http://image.lotte.com/lotte/mo2015/angular/order/wrcard_active.gif">
+
+											</li><li class="inlineBorder" onclick="toggleAction5(this)">
+													<img alt="kj" class="on" src="http://image.lotte.com/lotte/mo2015/angular/order/gjcard_on.gif">
+													<img alt="kj" class="off" src="http://image.lotte.com/lotte/mo2015/angular/order/gjcard_off.gif">
+													<img alt="kj" class="act" src="http://image.lotte.com/lotte/mo2015/angular/order/gjcard_active.gif">
+
+											</li><li class="inlineBorder" onclick="toggleAction5(this)">
+													<img alt="epost" class="on" src="http://image.lotte.com/lotte/mo2015/angular/order/wcard_on.gif">
+													<img alt="epost" class="off" src="http://image.lotte.com/lotte/mo2015/angular/order/wcard_off.gif">
+													<img alt="epost" class="act" src="http://image.lotte.com/lotte/mo2015/angular/order/wcard_active.gif">
+
+											</li>
+										</ul>
+									</div>
+
+
+								</div>
+								<div class="pay-step ng-scope">
+									<div class="input-radio">
+										<radiobox class="combo ng-scope">
+											<input type="radio" name="card_pay_type" id="card_pay_type_name0" value="" class="radio01">
+											<label for="card_pay_type_name0" class="ng-binding">스마트페이</label>
+											<input type="hidden" name="" id="pay_type_value0" value="smart">
+										</radiobox><radiobox class="combo ng-scope">
+											<input type="radio" name="card_pay_type" id="card_pay_type_name1" value="" class="radio01">
+											<label for="card_pay_type_name1" class="ng-binding">일반/PayShot결제</label>
+											<input type="hidden" name="" id="pay_type_value1" value="normal">
+										</radiobox><radiobox class="combo ng-scope">
+											<input type="radio" name="card_pay_type" id="card_pay_type_name2" value="" class="radio01">
+											<label for="card_pay_type_name2" class="ng-binding">FAN페이</label>
+											<input type="hidden" name="" id="pay_type_value2" value="fan">
+										</radiobox>
+							        </div>
+							        <div class="input-selecct">
+										<selectbox class="pos-rel phone p32 rcArrow mr1">
+							                <select name="pfn">
+												<option ng-repeat="opt in payType" value="001" class="ng-binding ng-scope">일시불
+												</option><option ng-repeat="opt in payType" value="002" class="ng-binding ng-scope">무이자 3개월 할부
+												</option><option ng-repeat="opt in payType" value="003" class="ng-binding ng-scope">무이자 6개월 할부
+												</option><option ng-repeat="opt in payType" value="004" class="ng-binding ng-scope">무이자 9개월 할부
+												</option><option ng-repeat="opt in payType" value="005" class="ng-binding ng-scope">무이자 12개월 할부
+												</option>
+							                </select>
+							            </selectbox>
+							        </div>
+
+							        <div class="input-checkbox">
+										<checkbox>
+							                <input type="checkbox" id="chk_save_adress" name="chk_dlvp_reuse" class="check01 mgb0" checked="checked">
+							                <label for="chk_save_adress" class="ng-binding">우리카드 포인트사용</label>
+							            </checkbox>
+							        </div>
+								</div>
+								<div class="order_section mpdw4">
+									<div class="order_product_content">
+										<div class="order_content_list div_pay_card">
+											<dl>
+												<dd class="card_event_txt">
+													<p class="eventcard_title2">청구할인 행사카드</p>
+													<span>롯데카드 5,0000 원 이상 최대 7%</span><br>
+													<span>삼성카드 100,000원 이상 최대 5%</span>
+												</dd>
+											</dl>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="pay-inner" id="tab-3">
+								<div class="order_product_content">
+									<div class="order_content_list div_pay_bank">
+										<dl>
+											<dd class="dd_first_margin">
+												<section class="order-confirm new_order">
+													<section class="order_header tit">
+														<h5>은행선택</h5>
+													</section>
+												</section>
+												<div class="sel_cont_new">
+													<span class="s_box02">
+														<select name="bankno" class="ono_selectBox0503 wd95" data-idx="1" style="width:100%">
+															<option value="" selected="일시불">국민은행</option>
+															<option value="">우리은행</option>
+															<option value="">하나은행</option>
+														</select>
+														<span class="img_box"><i></i></span>
+													</span>
+												</div>
+											</dd>
+											<!-- 20170621 2차수정 -->
+											<dd class="mt__15">
+											<!--
+												<div class="s_title">입금기한</div>
+												<div class="s_text">
+															<span>2017-04-13 <em>* 기한 내 미입금시 자동취소</em></span>
+												</div> -->
+												<table class="use-period" border="0" width="100%" cellpadding="0" cellspacing="0">
+													<colgroup>
+														<col width="80">
+														<col width="*">
+													</colgroup>
+													<tbody>
+														<tr>
+															<th>
+																입금기한
+															</th>
+															<td>
+																2017-04-13 <em>* 기한 내 미입금시 자동취소</em>
+															</td>
+														</tr>
+														<tr>
+															<th>
+																입금자 이름
+															</th>
+															<td>
+																<input type="text" name="" value="홍길동" class="txtall">
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</dd>
+										</dl>
+									</div>
+									<div class="order_content_list div_cash_receipts">
+										<div class="wd_title">
+											<span>현금영수증 발급</span>
+										</div>
+										<dl>
+											<dd>
+												<div class="sel_cont_new">
+													<span class="s_box02">
+														<select class="ono_selectBox0503 wd95" data-idx="1" style="width:100%">
+															<option value="" selected="">소득공제용 (개인)</option>
+															<option value="">소득공제용 (법인)</option>
+														</select>
+														<span class="img_box"><i></i></span>
+													</span>
+												</div>
+											</dd>
+											<dd class="dd_last_margin">
+												<div class="sel_cont_new">
+													<span class="s_box02">
+														<select class="ono_selectBox0503 wd95" data-idx="1" style="width:100%">
+															<option value="" selected="">신용카드 번호</option>
+															<option value="">핸드폰 번호</option>
+														</select>
+														<span class="img_box"><i></i></span>
+													</span>
+												</div>
+												<div>
+													<span>
+														<span class="s_box02">
+															<input type="number" pattern="[0-9]*" name="" value="0" class="txt_num" maxlength="4" oninput="maxLengthCheck(this)">
+															<input type="number" pattern="[0-9]*" name="" value="0" class="txt_num" maxlength="4" oninput="maxLengthCheck(this)">
+															<input type="number" pattern="[0-9]*" name="" value="0" class="txt_num" maxlength="4" oninput="maxLengthCheck(this)">
+															<input type="number" pattern="[0-9]*" name="" value="0" class="txt_num" maxlength="4" oninput="maxLengthCheck(this)">
+														</span>
+													</span>
+												</div>
+												<!-- 20170629수정사항 -->
+												<div class="phone clear off">
+                            <selectbox class="pos-rel phone p32 rcArrow mr1">
+                                <select name="pfn">
+																	<!-- ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="010" class="ng-binding ng-scope">010
+																	</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="011" class="ng-binding ng-scope">011
+																	</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="013" class="ng-binding ng-scope">013
+																	</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="016" class="ng-binding ng-scope">016
+																	</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="017" class="ng-binding ng-scope">017
+																	</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="019" class="ng-binding ng-scope">019
+																	</option><!-- end ngRepeat: opt in PFN -->
+                                </select>
+                            </selectbox>
+                            <input class="float-left inlineBorder p32 mr-mid ng-pristine ng-untouched ng-valid" type="text" ng-model="frmData.hp2">
+                            <input class="float-left inlineBorder p33 ng-pristine ng-untouched ng-valid" type="text" ng-model="frmData.hp3">
+
+                    </div>
+											</dd>
+											<dd>
+
+
+											</dd>
+										</dl>
+									</div>
+								</div>
+							</div>
+
+							<div class="pay-inner" id="tab-4">
+								<p class="phone_title">각 통신사별 휴대폰 결제한도를 확인해 주세요<br>통신사 고객센터로 문의 바랍니다</p>
+							</div>
+
+							<div class="order_section_bottom div_next_chk">
+								<div class="order_product_list">
+									<dl>
+										<dd class="t_line mgt15">
+											<input type="checkbox" id="next_use_type1" name="next_use" class="check02" checked="">
+											<label for="next_use_type1">지금 선택한 결제수단을 다음에도 사용</label>
+										</dd>
+									</dl>
+								</div>
+							</div>
+							<div class="div_btn_cont">
+								<div class="btn_areaC">
+									<a href="#" class="btn_style2">변경안함</a>
+									<a href="#" class="btn_style3">선택결제수단적용</a>
+								</div>
+							</div>
+				</div>
+		</div>
+
+		</div>
+		</div>
+	</div>
+	<div class="add_order_pop order_simple_wrap coupon_pop bg" style="display:none"></div>
+	<div class="add_order_pop order_simple_wrap coupon_pop" style="display: none;">
+		<div class="cont">
+			<div class="pop_wrap">
+				<div class="pop_top">
+					<p>쿠폰 변경</p>
+					<a onclick="javascript:$('.coupon_pop').hide(),toggleAction19();" class="pop_top_close">
+						<img src="http://image.lotte.com/lotte/mo2015/angular/order/poptop_close.png" alt="">
+					</a>
+				</div>
+				<div class="pop_middle2">
+					<div class="max_coupon">
+						<input type="checkbox" id="max_dc" class="check01" onclick="toggleAction10(this)">
+						<label for="max_dc">최대할인 적용</label>
+					</div>
+					<div class="discount_list">
+						<ul class="dc_detail">
+							<li>
+								<!-- 20170621 2차수정 -->
+								<p class="left_tit">상품 할인<strong>(5,000원 적립)</strong></p>
+								<div class="right_con">
+									<span class="s_box02">
+										<select name="deli_msg" class="del_msg" data-idx="1" style="width:100%">
+											<option value="" selected="일시불">일시불</option>
+											<option value="할부">할부</option>
+											<option value="할부2">할부2</option>
+										</select>
+										<span class="img_box">
+											<i></i>
+										</span>
+									</span>
+									<p class="cmt">임직원 할인 시 추가 할인 및 일시불 할인을 사용하실 수 없습니다.</p>
+								</div>
+							</li>
+							<li>
+								<!-- 20170621 2차수정 -->
+								<p class="left_tit mt_5">상품 할인<strong>(5,000원 적립)</strong></p>
+								<div class="right_con">
+									<span class="s_box02">
+										<select name="deli_msg" class="del_msg" data-idx="1" style="width:100%">
+											<option value="" selected="일시불">일시불</option>
+											<option value="할부">할부</option>
+											<option value="할부2">할부2</option>
+										</select>
+										<span class="img_box">
+											<i></i>
+										</span>
+									</span>
+								</div>
+							</li>
+							<li>
+								<!-- 20170621 2차수정 -->
+								<p class="left_tit mt_5">상품 할인<strong>(5,000원 적립)</strong></p>
+								<div class="right_con">
+									<span class="s_box02">
+										<select name="deli_msg" class="del_msg" data-idx="1" style="width:100%">
+											<option value="" selected="일시불">일시불</option>
+											<option value="할부">할부</option>
+											<option value="할부2">할부2</option>
+										</select>
+										<span class="img_box">
+											<i></i>
+										</span>
+									</span>
+								</div>
+							</li>
+							<li>
+								<!-- 20170621 2차수정 -->
+								<p class="left_tit mt_5">상품 할인<strong>(5,000원 적립)</strong></p>
+								<div class="right_con">
+									<span class="s_box02">
+										<select name="deli_msg" class="del_msg" data-idx="1" style="width:100%">
+											<option value="" selected="일시불">일시불</option>
+											<option value="할부">할부</option>
+											<option value="할부2">할부2</option>
+										</select>
+										<span class="img_box">
+											<i></i>
+										</span>
+									</span>
+								</div>
+							</li>
+							<li>
+								<!-- 20170621 2차수정 -->
+								<p class="left_tit mt_5">상품 할인<strong>(5,000원 적립)</strong></p>
+								<div class="right_con">
+									<span class="s_box02">
+										<select name="deli_msg" class="del_msg" data-idx="1" style="width:100%">
+											<option value="" selected="일시불">일시불</option>
+											<option value="할부">할부</option>
+											<option value="할부2">할부2</option>
+										</select>
+										<span class="img_box">
+											<i></i>
+										</span>
+									</span>
+								</div>
+							</li>
+							<li>
+								<!-- 20170621 2차수정 -->
+								<p class="left_tit mt_5">상품 할인<strong>(5,000원 적립)</strong></p>
+								<div class="right_con">
+									<span class="s_box02">
+										<select name="deli_msg" class="del_msg" data-idx="1" style="width:100%">
+											<option value="" selected="일시불">일시불</option>
+											<option value="할부">할부</option>
+											<option value="할부2">할부2</option>
+										</select>
+										<span class="img_box">
+											<i></i>
+										</span>
+									</span>
+								</div>
+							</li>
+							<li>
+								<!-- 20170621 2차수정 -->
+								<p class="left_tit mt_5">상품 할인<strong>(5,000원 적립)</strong></p>
+								<div class="right_con">
+									<span class="s_box02">
+										<select name="deli_msg" class="del_msg" data-idx="1" style="width:100%">
+											<option value="" selected="일시불">일시불</option>
+											<option value="할부">할부</option>
+											<option value="할부2">할부2</option>
+										</select>
+										<span class="img_box">
+											<i></i>
+										</span>
+									</span>
+								</div>
+							</li>
+							<li>
+								<!-- 20170621 2차수정 -->
+								<p class="left_tit">일시불 할인<strong>(5,000원 적립)</strong></p>
+								<div class="right_con">
+									<span class="combo mr15">
+										<input type="radio" name="gift_type_1" id="gift_type_1" class="radio01" checked="">
+										<label for="gift_type_1">적용(1,000원)</label>
+									</span>
+									<span class="combo">
+										<input type="radio" name="gift_type_1" id="gift_type_2" class="radio01">
+										<label for="gift_type_2">적용 안함</label>
+									</span>
+									<p class="alarm">*일시불 할인 시 할부 적용이 불가합니다</p>
+								</div>
+							</li>
+							<li>
+								<!-- 20170621 2차수정 -->
+								<p class="left_tit het22">무료배송</p>
+								<div class="right_con">
+									<span class="combo mr15">
+										<input type="radio" name="gift_type_2" id="gift_type_3" class="radio01" checked="">
+										<label for="gift_type_3">적용(2,500원)</label>
+									</span>
+									<span class="combo">
+										<input type="radio" name="gift_type_2" id="gift_type_4" class="radio01">
+										<label for="gift_type_4">적용 안함</label>
+									</span>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="apply_box">
+						<p class="title1">최대할인 적용 시</p>
+						<p class="title2"><span>20,850</span>원 혜택</p>
+					</div>
+					<div class="apply_box type2">
+						<p class="title1">선택한 할인 적용 시</p>
+						<p class="title2"><span>20,850</span>원 혜택</p>
+					</div>
+					<div class="div_btn_cont">
+						<div class="btn_areaC2">
+							<a href="#" class="btn_style2">변경안함</a>
+							<a href="#" class="btn_style3 discount_apply">선택 할인수단 사용</a>
+						</div>
+					</div>
+			</div>
+			</div>
+		</div>
+	</div>
+	<div class="add_order_pop order_simple_wrap delivery_change bg" style="display:none"></div>
+	<div id="element" class="add_order_pop order_simple_wrap delivery_change" style="display: none;">
+		<div class="cont">
+			<div class="pop_wrap">
+				<div class="pop_top">
+					<p>배송지 변경</p>
+					<a onclick="javascript:$('.delivery_change').hide(), toggleAction19();" class="pop_top_close">
+						<img src="http://image.lotte.com/lotte/mo2015/angular/order/poptop_close.png" alt="">
+					</a>
+				</div>
+				<div class="pop_middle2 tab-cont">
+					<div><!-- order -->
+						<address-tabs class="clear">
+				        <span class="inlineBorder active" data-tab2="tab2-1" onclick="toggleAction8(this)"> 배송지 목록
+				        </span>
+				        <span class="inlineBorder" data-tab2="tab2-2" onclick="toggleAction8(this)"> 배송지 직접 등록
+				        </span>
+				    </address-tabs>
+						<div class="tab1 tab-con active" id="tab2-1">
+							<ul class="home_list">
+								<!-- 20170621 2차수정 -->
+								<li class="home_li">
+									<span class="combo">
+										<input type="radio" name="coupon_refund" id="coupon_refund1" value="" class="radio01" checked="">
+										<!-- 20170628레이블안으로태그이동 -->
+										<label for="coupon_refund1">
+											<span class="color1">[최근]</span><span class="ls2">김로테(우리회사아닐까너네회사)</span>
+											<div class="detail_address">[234-120]서울시 중구 을지로 상품상가 12층</div>
+											<div class="detail_address">010-1234-1234 | 02-1234-1234</div>
+										</label>
+									</span>
+									<div class="btn_position two">
+										<a onclick="javascript:$(this).closest('li').toggleClass('modify');" class="lpoint_btn mfy">수정</a>
+										<a onclick="javascript:$(this).closest('li').remove();" class="lpoint_btn">삭제</a>
+									</div>
+									<address-content>
+							        <table border="0" cellpadding="0" cellspacing="0" width="100%" summary="배송지">
+							            <colgroup>
+							                <col width="80">
+							                <col width="*">
+							            </colgroup>
+							            <tbody>
+							                <tr>
+							                    <th>배송지명</th>
+							                    <td>
+							                        <input class="inlineBorder" type="text">
+							                    </td>
+							                </tr>
+							                <tr>
+							                    <th>받는분</th>
+							                    <td>
+							                        <input class="inlineBorder" type="text">
+							                    </td>
+							                </tr>
+							                <tr>
+							                    <th>주소</th>
+							                    <td class="td-address">
+							                        <div class="postal clear">
+							                            <input class="inlineBorder" type="text">
+							                            <span class="postal-search" onclick="javascript:$('.postal_code').show();">
+							                                우편번호 찾기
+							                            </span>
+							                        </div>
+							                        <div>
+							                            <input class="inlineBorder" type="text">
+							                        </div>
+							                        <div>
+							                            <input class="inlineBorder" type="text">
+							                        </div>
+							                    </td>
+							                </tr>
+							                <tr>
+							                    <th>연락처
+							                        <small>(택배안심번호)</small>
+							                    </th>
+																	<!-- 20170704수정 -->
+							                    <td class="phone_align">
+							                        <div class="phone clear">
+							                                <selectbox class="pos-rel phone p32 rcArrow mr1">
+							                                    <select name="pfn">
+																	<!-- ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="010" class="ng-binding ng-scope">010
+																	</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="011" class="ng-binding ng-scope">011
+																	</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="013" class="ng-binding ng-scope">013
+																	</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="016" class="ng-binding ng-scope">016
+																	</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="017" class="ng-binding ng-scope">017
+																	</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="019" class="ng-binding ng-scope">019
+																	</option><!-- end ngRepeat: opt in PFN -->
+							                                    </select>
+							                                </selectbox>
+							                                <input class="float-left inlineBorder p32 mr1 ng-pristine ng-untouched ng-valid" type="number" ng-model="frmData.hp2">
+							                                <input class="float-left inlineBorder p33 ng-pristine ng-untouched ng-valid" type="number" ng-model="frmData.hp3">
+
+							                        </div>
+							                    </td>
+							                </tr>
+							            </tbody>
+							        </table>
+											<div class="order_simple_pop04_1">
+												<a onclick="javascript:$(this).closest('li').removeClass('modify');" class="btn_style3">배송지 수정</a>
+											</div>
+							    </address-content>
+								</li>
+								<!-- 20170621 2차수정 -->
+								<li class="home_li modify">
+									<span class="combo">
+										<input type="radio" name="coupon_refund" id="coupon_refund2" value="" class="radio01">
+										<!-- 20170628레이블안으로태그이동 -->
+										<label for="coupon_refund2">
+											<span class="color1">[기본배송지]</span><span class="ls2">김로테(우리회사아닐까너네회사)</span>
+											<div class="detail_address">[234-120]서울시 중구 을지로 상품상가 12층</div>
+											<div class="detail_address">010-1234-1234 | 02-1234-1234</div>
+										</label>
+									</span>
+									<div class="btn_position two">
+										<a onclick="javascript:$(this).closest('li').toggleClass('modify');" class="lpoint_btn mfy">수정</a>
+										<a onclick="javascript:$(this).closest('li').remove();" class="lpoint_btn">삭제</a>
+									</div>
+									<address-content>
+							        <table border="0" cellpadding="0" cellspacing="0" width="100%" summary="배송지">
+							            <colgroup>
+							                <col width="80">
+							                <col width="*">
+							            </colgroup>
+							            <tbody>
+							                <tr>
+							                    <th>배송지명</th>
+							                    <td>
+							                        <input class="inlineBorder" type="text">
+							                    </td>
+							                </tr>
+							                <tr>
+							                    <th>받는분</th>
+							                    <td>
+							                        <input class="inlineBorder" type="text">
+							                    </td>
+							                </tr>
+							                <tr>
+							                    <th>주소</th>
+							                    <td class="td-address">
+							                        <div class="postal clear">
+							                            <input class="inlineBorder" type="text">
+							                            <span class="postal-search" onclick="javascript:$('.postal_code').show();">
+							                                우편번호 찾기
+							                            </span>
+							                        </div>
+							                        <div>
+							                            <input class="inlineBorder" type="text">
+							                        </div>
+							                        <div>
+							                            <input class="inlineBorder" type="text">
+							                        </div>
+							                    </td>
+							                </tr>
+							                <tr>
+							                    <th>연락처
+							                        <small>(택배안심번호)</small>
+							                    </th>
+																	<!-- 20170704수정 -->
+							                    <td class="phone_align">
+							                        <div class="phone clear">
+							                                <selectbox class="pos-rel phone p32 rcArrow mr1">
+							                                    <select name="pfn">
+																	<!-- ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="010" class="ng-binding ng-scope">010
+																	</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="011" class="ng-binding ng-scope">011
+																	</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="013" class="ng-binding ng-scope">013
+																	</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="016" class="ng-binding ng-scope">016
+																	</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="017" class="ng-binding ng-scope">017
+																	</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="019" class="ng-binding ng-scope">019
+																	</option><!-- end ngRepeat: opt in PFN -->
+							                                    </select>
+							                                </selectbox>
+							                                <input class="float-left inlineBorder p32 mr1 ng-pristine ng-untouched ng-valid" type="text" ng-model="frmData.hp2">
+							                                <input class="float-left inlineBorder p33 ng-pristine ng-untouched ng-valid" type="text" ng-model="frmData.hp3">
+
+							                        </div>
+							                    </td>
+							                </tr>
+							            </tbody>
+							        </table>
+											<div class="order_simple_pop04_1">
+												<a onclick="javascript:$(this).closest('li').removeClass('modify');" class="btn_style3">배송지 수정</a>
+											</div>
+							    </address-content>
+									<div class="use_nexttime">
+										<input type="checkbox" id="next_use_type1" name="next_use" class="check01" checked="">
+										<label for="next_use_type1">선택한 배송지를 다음에도 사용</label>
+									</div>
+								</li>
+								<!-- 20170621 2차수정 -->
+								<li class="home_li">
+									<span class="combo">
+										<input type="radio" name="coupon_refund" id="coupon_refund3" value="" class="radio01">
+										<!-- 20170628레이블안으로태그이동 -->
+										<label for="coupon_refund3">
+											<span class="ls2">김사랑(우리회사)</span>
+											<div class="detail_address">[234-120]서울시 중구 을지로 상품상가 12층</div>
+											<div class="detail_address">010-1234-1234 | 02-1234-1234</div>
+										</label>
+									</span>
+									<address-content>
+							        <table border="0" cellpadding="0" cellspacing="0" width="100%" summary="배송지">
+							            <colgroup>
+							                <col width="80">
+							                <col width="*">
+							            </colgroup>
+							            <tbody>
+							                <tr>
+							                    <th>배송지명</th>
+							                    <td>
+							                        <input class="inlineBorder" type="text">
+							                    </td>
+							                </tr>
+							                <tr>
+							                    <th>받는분</th>
+							                    <td>
+							                        <input class="inlineBorder" type="text">
+							                    </td>
+							                </tr>
+							                <tr>
+							                    <th>주소</th>
+							                    <td class="td-address">
+							                        <div class="postal clear">
+							                            <input class="inlineBorder" type="text">
+							                            <span class="postal-search" onclick="javascript:$('.postal_code').show();">
+							                                우편번호 찾기
+							                            </span>
+							                        </div>
+							                        <div>
+							                            <input class="inlineBorder" type="text">
+							                        </div>
+							                        <div>
+							                            <input class="inlineBorder" type="text">
+							                        </div>
+							                    </td>
+							                </tr>
+							                <tr>
+							                    <th>연락처
+							                        <small>(택배안심번호)</small>
+							                    </th>
+																	<!-- 20170704수정 -->
+							                    <td class="phone_align">
+							                        <div class="phone clear">
+							                                <selectbox class="pos-rel phone p32 rcArrow mr1">
+							                                    <select name="pfn">
+																	<!-- ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="010" class="ng-binding ng-scope">010
+																	</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="011" class="ng-binding ng-scope">011
+																	</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="013" class="ng-binding ng-scope">013
+																	</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="016" class="ng-binding ng-scope">016
+																	</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="017" class="ng-binding ng-scope">017
+																	</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="019" class="ng-binding ng-scope">019
+																	</option><!-- end ngRepeat: opt in PFN -->
+							                                    </select>
+							                                </selectbox>
+							                                <input class="float-left inlineBorder p32 mr1 ng-pristine ng-untouched ng-valid" type="text" ng-model="frmData.hp2">
+							                                <input class="float-left inlineBorder p33 ng-pristine ng-untouched ng-valid" type="text" ng-model="frmData.hp3">
+
+							                        </div>
+							                    </td>
+							                </tr>
+							            </tbody>
+							        </table>
+											<div class="order_simple_pop04_1">
+												<a onclick="javascript:$(this).closest('li').removeClass('modify');" class="btn_style3">배송지 수정</a>
+											</div>
+							    </address-content>
+									<div class="btn_position two">
+										<a onclick="javascript:$(this).closest('li').toggleClass('modify');" class="lpoint_btn mfy">수정</a>
+										<a onclick="javascript:$(this).closest('li').remove();" class="lpoint_btn">삭제</a>
+									</div>
+								</li>
+								<!-- 20170621 2차수정 -->
+								<li class="home_li">
+									<span class="combo">
+										<input type="radio" name="coupon_refund" id="coupon_refund4" value="" class="radio01">
+										<!-- 20170628레이블안으로태그이동 -->
+										<label for="coupon_refund4">
+											<span class="ls2">김로테(우리회사아닐까너네회사)</span>
+											<div class="detail_address">[234-120]서울시 중구 을지로 상품상가 12층</div>
+											<div class="detail_address">010-1234-1234 | 02-1234-1234</div>
+										</label>
+									</span>
+									<address-content>
+							        <table border="0" cellpadding="0" cellspacing="0" width="100%" summary="배송지">
+							            <colgroup>
+							                <col width="80">
+							                <col width="*">
+							            </colgroup>
+							            <tbody>
+							                <tr>
+							                    <th>배송지명</th>
+							                    <td>
+							                        <input class="inlineBorder" type="text">
+							                    </td>
+							                </tr>
+							                <tr>
+							                    <th>받는분</th>
+							                    <td>
+							                        <input class="inlineBorder" type="text">
+							                    </td>
+							                </tr>
+							                <tr>
+							                    <th>주소</th>
+							                    <td class="td-address">
+							                        <div class="postal clear">
+							                            <input class="inlineBorder" type="text">
+							                            <span class="postal-search" onclick="javascript:$('.postal_code').show();">
+							                                우편번호 찾기
+							                            </span>
+							                        </div>
+							                        <div>
+							                            <input class="inlineBorder" type="text">
+							                        </div>
+							                        <div>
+							                            <input class="inlineBorder" type="text">
+							                        </div>
+							                    </td>
+							                </tr>
+							                <tr>
+							                    <th>연락처
+							                        <small>(택배안심번호)</small>
+							                    </th>
+																	<!-- 20170704수정 -->
+							                    <td class="phone_align">
+							                        <div class="phone clear">
+							                                <selectbox class="pos-rel phone p32 rcArrow mr1">
+							                                    <select name="pfn">
+																	<!-- ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="010" class="ng-binding ng-scope">010
+																	</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="011" class="ng-binding ng-scope">011
+																	</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="013" class="ng-binding ng-scope">013
+																	</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="016" class="ng-binding ng-scope">016
+																	</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="017" class="ng-binding ng-scope">017
+																	</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="019" class="ng-binding ng-scope">019
+																	</option><!-- end ngRepeat: opt in PFN -->
+							                                    </select>
+							                                </selectbox>
+							                                <input class="float-left inlineBorder p32 mr1 ng-pristine ng-untouched ng-valid" type="text" ng-model="frmData.hp2">
+							                                <input class="float-left inlineBorder p33 ng-pristine ng-untouched ng-valid" type="text" ng-model="frmData.hp3">
+
+							                        </div>
+							                    </td>
+							                </tr>
+							            </tbody>
+							        </table>
+											<div class="order_simple_pop04_1">
+												<a onclick="javascript:$(this).closest('li').removeClass('modify');" class="btn_style3">배송지 수정</a>
+											</div>
+							    </address-content>
+									<div class="btn_position two">
+										<a onclick="javascript:$(this).closest('li').toggleClass('modify');" class="lpoint_btn mfy">수정</a>
+										<a onclick="javascript:$(this).closest('li').remove();" class="lpoint_btn">삭제</a>
+									</div>
+								</li>
+							</ul>
+							<div class="div_btn_cont type2">
+								<div class="btn_areaC type3">
+									<a href="#" class="btn_style2">변경안함</a>
+									<a href="#" class="btn_style3">선택 배송지 적용</a>
+								</div>
+							</div>
+						</div>
+						<div class="tab2 tab-con" id="tab2-2">
+							<address-content>
+									<table border="0" cellpadding="0" cellspacing="0" width="100%" summary="배송지">
+											<colgroup>
+													<col width="80">
+													<col width="*">
+											</colgroup>
+											<tbody>
+													<tr>
+															<th>배송지명</th>
+															<td>
+																	<input class="inlineBorder" type="text">
+															</td>
+													</tr>
+													<tr>
+															<th>받는분</th>
+															<td>
+																	<input class="inlineBorder" type="text">
+															</td>
+													</tr>
+													<tr>
+															<th>주소</th>
+															<td class="td-address">
+																	<div class="postal clear">
+																			<input class="inlineBorder" type="text">
+																			<span class="postal-search" onclick="javascript:$('.postal_code').show();">
+																					우편번호 찾기
+																			</span>
+																	</div>
+																	<div>
+																			<input class="inlineBorder" type="text">
+																	</div>
+																	<div>
+																			<input class="inlineBorder" type="text">
+																	</div>
+															</td>
+													</tr>
+													<tr>
+															<th>연락처
+																	<small>(택배안심번호)</small>
+															</th>
+															<!-- 20170704수정 -->
+															<td class="phone_align">
+																	<div class="phone clear">
+																					<selectbox class="pos-rel phone p32 rcArrow mr1">
+																							<select name="pfn">
+															<!-- ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="010" class="ng-binding ng-scope">010
+															</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="011" class="ng-binding ng-scope">011
+															</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="013" class="ng-binding ng-scope">013
+															</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="016" class="ng-binding ng-scope">016
+															</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="017" class="ng-binding ng-scope">017
+															</option><!-- end ngRepeat: opt in PFN --><option ng-repeat="opt in PFN" value="019" class="ng-binding ng-scope">019
+															</option><!-- end ngRepeat: opt in PFN -->
+																							</select>
+																					</selectbox>
+																					<input class="float-left inlineBorder p32 mr1 ng-pristine ng-untouched ng-valid" type="text" ng-model="frmData.hp2">
+																					<input class="float-left inlineBorder p33 ng-pristine ng-untouched ng-valid" type="text" ng-model="frmData.hp3">
+
+																	</div>
+															</td>
+													</tr>
+											</tbody>
+									</table>
+							</address-content>
+							<div class="check_bot_wrap">
+								<div class="s_text pdt0 pdb10">
+									<input type="checkbox" id="chk_dlvp_reuse" name="chk_dlvp_reuse" class="check01 mgb0" checked="checked">
+									<label for="chk_dlvp_reuse" style="font-weight:normal">배송지 목록에 추가</label>
+								</div>
+								<div class="s_text pdt0 pdb10">
+									<input type="checkbox" id="chk_dlvp_reuse2" name="chk_dlvp_reuse" class="check01 mgb0" checked="checked">
+									<label for="chk_dlvp_reuse2" style="font-weight:normal">이 배송지를 다음에도 사용</label>
+								</div>
+							</div>
+							<div class="div_btn_cont">
+								<div class="btn_areaC2">
+									<a href="#" class="btn_style2">등록안함</a>
+									<a href="#" class="btn_style3">등록배송지적용</a>
+								</div>
+							</div>
+						</div>
+					</div>
+			</div>
+			</div>
+		</div>
+	</div>
+	<div class="add_order_pop order_simple_wrap postal_code" style="display: none;">
+		<div class="cont">
+			<div class="pop_wrap">
+				<div class="pop_top">
+					<p>우편번호 찾기</p>
+					<a onclick="javascript:$('.postal_code').hide();" class="pop_top_close">
+						<img src="http://image.lotte.com/lotte/mo2015/angular/order/poptop_close.png" alt="">
+					</a>
+				</div>
+				<div class="pop_middle2">
+					<section id="order01">
+					<div class="order_simple_wrap01">
+						<div class="order_simple_pop01">
+							<div class="oder_simple_pop01_1">
+
+								<div class="oder_simple_pop01_3">
+								  <p class="fr flex frp">
+									<span class="combo">
+								    <input type="radio" name="single_pay2" id="single_pay2_y" value="0" class="radio01" checked="">
+								    <label for="single_pay2_y">도로명</label>
+									</span>
+									<span class="combo">
+									  <input type="radio" name="single_pay2" id="single_pay2_n" value="1" class="radio01">
+									  <label for="single_pay2_n">지번(구 주소)</label>
+									</span>
+								  </p>
+								 </div>
+								 <div class="order_simple_pop01_21">
+			 						<input type="search" class="order_simple_pop01_a" placeholder="도로명+건물번호,동/읍/면+번지">
+			 						<div class="btn_areaC">
+			 							<a href="#" class="btn_style3">검색</a>
+			 						</div>
+			 					</div>
+					  		</div>
+					  	<div class="order_simple_pop01_2">
+					  		<p>원하시는 주소지를 찾을수 없습니다.</p>
+					  		<span>찾으실 주소의 검색어를 정확하게 입력해 주세요<br>
+					  		   정식 건축물이 없는 가건물,컨테이너의 경우<br>
+					  		   지번으로 검색해 주세요</span>
+					  	</div>
+					  	<div class="order_simple_pop02_1">
+					  		<p>도로명 검색 시</p>
+					  		<span>도로명 + 건물번호(예:을지로 158)</span>
+					  	</div>
+				  		<div class="order_simple_pop02_2">
+					  		<p>지번 검색 시</p>
+					  		<span>도로명 + 건물번호(예:을지로 158)</span>
+					  	</div>
+							<div class="address_detail_choice">
+								<ul class="add_list">
+									<li>
+										<span class="s_box02">
+											<select name="deli_msg" class="del_msg" data-idx="1" style="width:100%">
+												<option value="" selected="일시불">일시불</option>
+												<option value="할부">할부</option>
+												<option value="할부2">할부2</option>
+											</select>
+											<span class="img_box">
+												<i></i>
+											</span>
+										</span>
+									</li>
+									<li><input type="text" class="input_texttype"></li>
+									<li><input type="text" class="input_texttype"></li>
+									<li><input type="text" class="input_texttype"></li>
+									<li><input type="text" class="input_texttype"></li>
+									<li><a href="#" class="lpoint_btn bg_blue">검색</a></li>
+								</ul>
+							</div>
+							<div class="order_simple_pop03">
+					  				<div class="order_simple_pop03_1">
+					  					<div id="deli_phone_val_1" class="s_text flex">
+											<span class="s_box02">
+												<select name="inpcell1" class="phone_modi">
+													<option value="시/도">시/도</option>
+													<option value="시/도">시/도</option>
+													<option value="시/도">시/도</option>
+												</select>
+												<span class="img_box">
+													<i></i>
+												</span>
+											</span>
+											<span class="s_box02">
+												<select name="inpcell1" class="phone_modi">
+													<option value="동/읍/면">동/읍/면</option>
+													<option value="동/읍/면">동/읍/면</option>
+													<option value="동/읍/면">동/읍/면</option>
+												</select>
+												<span class="img_box">
+													<i></i>
+												</span>
+											</span>
+										</div>
+				  						 <dl>
+											 <dd class="txtarea">
+												<div class="s_title">
+													<p>9,151<span>건</span></p>
+												</div>
+											</dd>
+										</dl>
+						  				</div>
+						  				<div class="road_name_choice">
+						  					<ul>
+						  						<li>서울 은평구 연서로 25길 7-9 거남빌라<a href="#" class="lpoint_btn">선택</a></li>
+						  						<li>서울 은평구 연서로 25길 7-9 거남빌라<a href="#" class="lpoint_btn">선택</a></li>
+						  						<li>서울 은평구 연서로 25길 7-9 거남빌라<a href="#" class="lpoint_btn">선택</a></li>
+						  						<li>서울 은평구 연서로 25길 7-9 거남빌라<a href="#" class="lpoint_btn">선택</a></li>
+						  						<li>서울 은평구 연서로 25길 7-9 거남빌라<a href="#" class="lpoint_btn">선택</a></li>
+						  					</ul>
+						  				</div>
+						  				<div class="order_simple_pop03_3">
+						  					<a href="#none"><p>검색 결과 더보기 +</p></a>
+						  				</div>
+
+						  			</div>
+										<div class="order_simple_pop04">
+					  					<p>상세 주소를 입력해 주세요</p>
+					  					<table border="1">
+					  						<tbody><tr>
+					  							<td><span class="stl_y">도로명</span><span>서울특별시 은평구 진흥로 19길 30-2</span></td>
+					  							<td class="cetr_1" rowspan="2">[03361]</td>
+					  						</tr>
+					  						<tr>
+					  							<td><span class="stl_y">지번</span><span>서울특별시 은평구 불광동 1-2 불광사</span></td>
+					  						</tr>
+					  					</tbody></table>
+					  					<div class="s_text flex">
+											<input type="text" name="inprmitnm" class="txt01" style="width:94%" placeholder="삼풍빌딩 12층">
+										</div>
+										<div class="order_simple_pop04_1 mb_10">
+											<a href="#none" class="btn_style3">배송지 적용</a>
+										</div>
+				  				</div>
+									<div class="order_simple_pop04 new2">
+										<p>상세 주소를 입력해 주세요</p>
+										<p class="fs_normal">서울특별시 은평구 불광동</p>
+										<div class="s_text flex mt_3">
+											<input type="text" name="inprmitnm" class="txt01" style="width:79%" placeholder="예시)XX아파트XXX호, 삼풍빌딩 12층">
+											<a href="#" class="lpoint_btn">입력</a>
+										</div>
+										<!-- 20170621 2차수정 -->
+										<div class="order_simple_pop04_1 pb_50">
+											<a href="#none" class="btn_style3">배송지 적용</a>
+										</div>
+								</div>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		</div>
+	</div>
+</div>
+<!-- <script>disappear();</script> -->
+</body>
+</html>

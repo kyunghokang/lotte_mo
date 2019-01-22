@@ -1,0 +1,202 @@
+<section ng-show="contVisible" class="cont_minheight style_recom_container" ng-class="{normal:screenType==1, wider:screenType>1, widest:screenType>2}">
+
+<div ng-if="SR_IMG != ''">
+	<div class="clipping_beauty">
+		<div class="clip_box">
+			<img id="srImage" ng-src="{{SR_IMG}}" style-recom-image-load />
+			<!-- <div class="clip_dim clip_top"></div>
+			<div class="clip_dim clip_btm"></div>
+			<div class="clip_dim clip_lft"></div>
+			<div class="clip_dim clip_rgt"></div>
+			<div class="clip_brd"></div>
+			<div class="dummy"></div> -->
+			<ul>
+				<li ng-repeat="item in DETECT_LIST | limitTo : 6"
+					ng-click="selectDetection(item, $index, '디텍트')" ng-class="{on:selectedID == item.id}"
+					style="left:{{item.cx}}%;top:{{item.cy}}%"></li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="style_category count{{DETECT_LIST.length}}" ng-class="{visible : showCategory, noSlide : noCateSlide}">
+		<div lotte-slider ng-if="DETECT_LIST.length > 0" id="categorySlider" class="category_slider">
+			<ul>
+				<li ng-repeat="item in DETECT_LIST | limitTo : 6"
+					ng-click="selectDetection(item, $index, '카테고리')" ng-class="{on:selectedID == item.id}">
+					<div>
+						<span class="name">{{item.ctgName}}</span>
+						<span class="thumb">
+							<em style="width:{{SR_IMG_WIDTH}}px;height:{{SR_IMG_HEIGHT}}px;">
+								<img ng-src="{{SR_IMG}}" style="left:-{{item.cx}}%;top:-{{item.cy}}%" />
+							</em>
+						</span>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<!-- <div class="style_clip_list" ng-class="{hide:DETECT_LIST.length<=1}" ng-if="DETECT_LIST.length>0">
+		<div lotte-slider ng-if="DETECT_LIST.length > 0">
+			<ul style="width:{{DETECT_LIST.length * 111}}px">
+				<li ng-repeat="item in DETECT_LIST track by $index">
+					<a class="style_clip" ng-click="selectStyleClip($event, item, $index)">
+						<span class="style_img"><img ng-src="{{SR_IMG}}" /><span class="circle"></span></span>
+						<span class="style_ani">
+							<span class="style_pct"><em></em></span>
+							<span class="dummy"></span>
+						</span>
+					</a>			
+				</li>
+			</ul>
+		</div>
+		<div ng-if="styRecomBnr" ng-class="{wide:screenType > 1}" class="styRecomBnr">
+			<a ng-click="styRecomBnrUrl()">
+				<img src="http://image.lotte.com/lotte/mo2015/angular/search/style_bnr_0607.png" alt="스타일 추천 받았다면? 댓글 남기고 커피 받자!">
+			</a>
+		</div>
+	</div> -->
+	
+	<!-- <div class="style_gender" ng-if="DETECT_LIST.length>0" ng-class="{nocate:CATE_NO==2}">
+		<ul>
+			<li ng-if="CATE_NO != '5'" ng-repeat="item in SEX track by $index" ng-class="{on:selectedSex==item.data}">
+				<a id="style_gender_{{item.data}}" ng-click="selectGender(item, $index, $event)">{{item.label}}</a>
+			</li>
+			<li ng-if="CATE_NO == '5'" ng-repeat="item in childSex track by $index" ng-class="{on:selectedSex==item.data}">
+				<a id="style_gender_{{item.data}}" ng-click="selectGender(item, $index, $event)">{{item.label}}</a>
+			</li>
+		</ul>
+	</div> -->
+	
+	<!-- <div class="style_category" id="style_category" ng-if="DETECT_LIST.length>0 && CATE_NO!=2">
+		<div class="slider_wrap">
+			<div lotte-slider>
+				<ul style="width:{{(selectedSex=='M' ? 4 : CATE.length) * 66}}px">
+					<li ng-repeat="item in CATE track by $index" class="c{{item.data}}" 
+						ng-if="selectedSex!='M' || (selectedSex=='M' && $index<4)" ng-class="{on:item.selected}">
+						<a ng-click="selectCategory(item, $event)">{{item.label}}</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div> -->
+	
+	<!-- <div class="style_category fixtop" id="style_category_fix" ng-class="{show:fixCategory}" ng-if="DETECT_LIST.length>0">
+		<div class="slider_wrap">
+			<ul>
+				<li ng-repeat="item in CATE track by $index" class="c{{item.data}}"
+					ng-if="selectedSex!='M' || (selectedSex=='M' && $index<3)" ng-class="{on:item.selected}">
+					<a ng-click="selectCategory(item, $event)">{{item.label}}</a>
+				</li>
+			</ul>
+		</div>
+	</div> -->
+	
+	<div class="catelist" ng-if="DETECT_LIST.length > 0 && isCamera && styleCateList.length > 0">
+       	<div>
+        	<div id="cateListSlider" lotte-slider class="scroll_wrap">
+				<ul>
+        			<li ng-repeat="item in styleCateList track by $index">
+        				<a ng-click="selectCateGrp(item, $index)">{{item.cate_nm}}</a>
+        			</li>
+        		</ul>
+        	</div>
+       	</div>
+    </div>
+	
+	
+	<div xxx-ng-if="PROD_LIST.length > 0">
+	
+		<!-- <div ng-if="CATE_NO != '2' && !isCamera" class="style_title">
+			스타일 추천
+			<span ng-if="selectedItem.genCd!='A'"><em ng-if="selectedItem.genCd == 'F'">여</em><em ng-if="selectedItem.genCd == 'M'">남</em><em ng-if="CATE_NO != '5'">성</em><em ng-if="CATE_NO == '5'">아</em></span>
+			<span ng-if="selectedItem.genCd=='A'">전체</span>
+			<span ng-if="selectedItem.genCd=='F' && CATE_NO != '5'">여성</span><span ng-if="selectedItem.genCd=='F' && CATE_NO == '5'">여아</span><span ng-if="selectedItem.genCd=='M' && CATE_NO != '5'">남성</span><span ng-if="selectedItem.genCd=='M' && CATE_NO == '5'">남아</span><span ng-if="selectedItem.genCd=='A'">전체</span>
+			<span>
+				<em>{{selectedItem.ctgName}}</em>
+				<em ng-if="CATE[0].selected">상의</em><em ng-if="CATE[1].selected">아우터</em><em ng-if="CATE[2].selected">긴바지</em><em ng-if="CATE[3].selected">반바지</em><em ng-if="CATE[4].selected && selectedSex!='M'">스커트</em><em ng-if="CATE[5].selected && selectedSex!='M'">원피스</em>
+			</span>
+		</div> -->
+		
+		<div class="style_cnt_sort">
+			<div class="total_count">전체 <em>{{PROD_ORIGIN_LIST.length | number}}</em>개</div>
+			<div class="sort_list" ng-class="{disable : PROD_LIST.length == 0}">
+				<a ng-click="toggleSortLayer('btn')">{{currentSort.name}}</a>
+				<!-- <div class="sort_layer" ng-if="sortLayerVisible">
+					<ul>
+						<li ng-repeat="item in SORT" ng-click="changeSort(item)">{{item.name}}</li>
+					</ul>
+				</div> -->
+			</div>
+		</div>
+		
+		<div class="style_prods">
+			<ul ng-if="PROD_LIST.length > 0">
+				<li ng-repeat="item in PROD_LIST track by $index">
+					<a ng-click="gotoProductDetail(item, $index);">
+						<span class="image" style="background-image:url({{item.imgUrl2}})">
+							<!-- <img ng-if="screenType == 1 &&  (($index % 5)==4)" ng-src="{{item.imgUrl2}}" />
+							<img ng-if="screenType == 1 && !(($index % 5)==4)" ng-src="{{item.imgUrl}}" />
+							<img ng-if="screenType == 2 &&  ((($index % 5)==3) || (($index % 5)==4))" ng-src="{{item.imgUrl2}}" />
+							<img ng-if="screenType == 2 && !((($index % 5)==3) || (($index % 5)==4))" ng-src="{{item.imgUrl}}" />
+							<img ng-if="screenType > 2" ng-src="{{item.imgUrl}}" /> -->
+						</span>
+						<span class="text">
+							<span class="price">{{item.price2|number}}</span>
+						</span>
+						<!-- <span class="flags" ng-if="item.dept==true">롯데백화점</span> -->
+					</a>
+					<a ng-click="refreshStyle(item, $index + 1)" class="sr_icon refresh_icon"></a>
+					<a ng-click="addWishList(item, $index + 1)" class="sr_icon wish_icon" ng-class="{on:item.wishAdded}"></a>
+					<!-- <div class="coach_wrap" ng-if="styleCoachMark && ((screenType < 3 && $index==1) || (screenType == 3 && $index==4))" ng-click="closeCoachMark()">
+						<div class="dimmed"></div>
+						<button class="closeBtn"></button>
+						<p class="coach"><img src="http://image.lotte.com/lotte/mo2015/angular/search/coach.png"/></p>
+					</div> -->
+				</li>
+				<li ng-if="PROD_LIST.length%2==1">
+					<a>
+						<span class="image"></span>
+						<span class="text"></span>
+					</a>
+				</li>
+			</ul>
+			
+			<div ng-if="dataLoaded && PROD_LIST.length == 0" class="no_prod_list">
+			이 카테고리는 추천상품을 준비 중입니다.<br/>
+			이용에 불편을 드려 죄송합니다.
+			</div>
+		</div>
+	</div>
+	
+	
+</div>
+
+<div class="side_search_wrap" ng-class="{on:sortLayerVisible}">
+	<div class="ssw_header">
+		<div class="ssw_header1">
+			<div class="cropview">
+				<span class="ssw_title sub">정렬</span>
+			</div>
+			<a ng-click="toggleSortLayer()" class="ssw_close">close</a>
+		</div>
+		<!-- <div class="ssw_header2">
+			<span>검색결과 <em>{{PROD_ORIGIN_LIST.length | number}}</em>개</span>
+		</div> -->
+	</div>
+	<div class="ssw_content">
+		<!-- <div class="sort_title">정렬</div> -->
+		<ul>
+			<li ng-repeat="item in SORT" ng-click="changeSort(item)" ng-class="{on : currentSort.name == item.name}">
+				<a class="sort_label">{{item.name}}</a>
+				<!-- <a ng-if="item.name == '판매순'" class="sort_notice" ng-click="showHideSortGuide($event)"></a> -->
+			</li>
+			
+			
+		</ul>
+	</div>
+</div>
+
+<loading-bar id="loading" style="display:none"></loading-bar>
+
+</section>

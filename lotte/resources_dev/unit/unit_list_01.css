@@ -1,0 +1,118 @@
+@charset "UTF-8";
+
+/* 상품리스트 : 리스트형 */
+.prod_list_01{position:relative;box-sizing:border-box;-webkit-box-sizing:border-box; width:100%;}
+.prod_list_01:after{clear:both;display:block;content:'';}
+.prod_list_01 > li{padding:0 0 5px 0;float:left; width:100%;box-sizing:border-box;-webkit-box-sizing:border-box;}
+.prod_list_01 > li > div{border-top:1px solid #dcdcdc;}
+.prod_list_01 > li > .find_much_box ~ div{border-top:none}
+
+/* 무료배송 플래그 */
+span.flag.tag{
+	display:inline-block;
+	padding:0 5px;
+	border:1px solid #a4a4a4;background-color:#fff;
+	color:#a4a4a4;font-size:10px;line-height:17px;
+}
+
+/* 공통 유닛 표준 : 일반상품 : 리스트형 */
+.unit_list_01{
+	position:relative;
+	border-width:0 1px 1px;
+	border-style:solid;
+	border-color:#dcdcdc;
+	background-color:#ffffff;
+}
+.unit_list_01 > a{display:block;}
+.unit_list_01 .thumb{
+	position:absolute;top:0;left:0;
+	width:150px;height:150px;
+	overflow:hiddne;    
+    background:url(http://image.lotte.com/lotte/mo2017/category/unit_default_01.png) no-repeat;background-size:100%;
+}
+.unit_list_01 .thumb img {display:block;width:auto;max-width:100%;height:100%;margin:0 auto;}
+.unit_list_01 .info{
+	margin:0 0 0 150px;
+	position:relative;
+	padding:8px 5px 8px 10px;
+	height:104px;
+}
+.unit_list_01 .info p.flag{white-space:nowrap;}
+.unit_list_01 .info p.flag span.flag {margin-bottom:3px;}
+.unit_list_01 .info .tit{
+	display:block;
+	height:40px;
+	margin:3px 0 3px 0;
+	color:#333;font-size:14px;line-height:18px;
+	overflow:hidden;/*text-overflow:ellipsis;
+	display:-webkit-box;*/white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+}
+.unit_list_01 .info .tit strong {font-weight:normal;}
+.unit_list_01 .info .pr_box{position:absolute;bottom:7px;left:10px;height:42px;}
+.unit_list_01 .info .pr_box .salePer {font-weight:bold; font-size:18px; color:#f27c3d; vertical-align:-1px;}
+.unit_list_01 .info .pr_box .price{display:block;color:#3874ec;letter-spacing:-0.5px;}
+.unit_list_01 .info .pr_box .price em{font-size:19px;font-weight:bold;vertical-align:-1px;margin-right:2px;}
+.unit_list_01 .info .pr_box .price2{display:block;color:#bbbbbb;font-size:12px;text-decoration:line-through;letter-spacing:-0.5px;}
+
+
+.unit_list_01 .info .coupon{
+	position:absolute;bottom:13px;right:5px;width:40px;height:39px;
+	color:#333;font-size:14px;text-align:center;
+}
+.unit_list_01 .info .coupon em.no{font-size:19px;}
+.unit_list_01 .info .coupon em.po{margin:0 0 0 2px;}
+.unit_list_01 .info .coupon span {display:block;color:#bbb;font-size:10px;margin:1px 0 0 0;}
+.unit_list_01 .info .coupon span:first-child {color:#333;}
+.unit_list_01 .info2 .wish_icon.wishOn {background-position:0 -49px;}
+.unit_list_01 .info2{
+	position:relative;
+	margin:0 0 0 150px;padding:0 10px;
+	height:32px;
+	line-height:32px;
+	background:#fafafa;
+}
+.unit_list_01 .info2 .review{color:#888;font-size:13px;font-weight:normal;}
+.unit_list_01 .info2 .review em{font-weight:normal;}
+.unit_list_01 .info2 .wish_icon{position:absolute;top:5px;right:5px}
+
+@media screen and (min-width:640px) and (max-width:899px){
+    .prod_list_01 > li {width:50%; padding:0 2.5px 5px 2.5px;}
+    .prod_list_01 > li:nth-child(odd){clear:both;}
+}
+@media screen and (min-width:900px){
+    .prod_list_01 > li {width:33.3%;}
+    .prod_list_01 > li:nth-child(3n+1){clear:both;}
+}
+
+/*2016.08.18 css 수정*/
+.unit_list_01_v2 .unit_zoom{bottom: 13px;left: 108px;width: 25px;height: 25px;background-position: 0px -70px;background-size: 78px 102px;}
+.unit_list_01_v2 .thumb{position: absolute;top: 12px;left: 8px;width: 125px;height: 125px;overflow: hidden;background:url(http://image.lotte.com/lotte/mo2017/category/unit_default_01.png) no-repeat;background-size:100%;}
+.unit_list_01_v2 .info{ padding: 12px 5px 0px 0px;height: 45px;margin: 0 0 0 142px;} /* #kyungho */
+.unit_list_01_v2 .info p.flag{height:17px}
+.unit_list_01_v2 .info > a {display:block;}
+.unit_list_01_v2 .info .pr_box .price{display:inline-block; position:relative; color:#3874ec;letter-spacing:-0.5px;}  /* #kyungho */
+.unit_list_01_v2 .info .pr_box .price2{display:inline-block;color:#bbbbbb;font-size:12px;text-decoration:line-through;letter-spacing:-0.5px;}
+.unit_list_01_v2 .info .pr_box .basket_btn {display:inline-block; position:absolute; right:0px; top:0px; width:35px; height:35px; background:url('/images/mo2019/img-wish.png') no-repeat; background-size:35px 35px;} /* #kyungho */
+.unit_list_01_v2 .info2{background: none;padding-right: 3.3%;letter-spacing: -0.7px;overflow: hidden;height: 41px;line-height: 15px;bottom: 13px;padding-left: 0; margin: 0 0 0 142px;}
+.unit_list_01_v2 .info2 span{color: #fb7155;font-size:11px;margin-right:7px}
+.unit_list_01_v2 .info .pr_box{height:26px;bottom:20px;height: 26px;left:0;bottom: 13px;}
+.unit_list_01_v2 .info2 .review{ color: #888;font-size: 13px;font-weight: normal;}
+.unit_list_01_v2 .info2 .info_dsc{position:absolute;bottom:0;overflow: hidden;height:18px}
+.unit_list_01_v2 .info2 .info_dsc span{display: inline-block}
+.unit_list_01_v2 .review{display: block; color:#888;font-size:13px;font-weight:normal;padding-bottom: 9px;}
+.unit_list_01_v2 .wish_icon{position: absolute;right: 8px;top: 10px;z-index: 2}
+
+/*2016.11.24 무이자*/
+.unit_list_01_v2 .wish_icon{top:18px}
+.unit_list_01_v2 .unit_zoom{top:120px}
+.unit_list_01_v2 .thumb{top:20px}
+.unit_list_01_v2 .info {padding: 20px 5px 0px 0px;height: 84px;}
+.unit_list_01_v2 .info .pr_box {height: 26px;left: 0;bottom: 0px;}
+.unit_list_01_v2 .info2 {background: none;padding-right: 3.3%;letter-spacing: -0.7px;overflow: hidden;height: 50px;line-height: 16px;bottom: 0px;padding-left: 0;margin: 0 0 13px 142px;}
+.unit_list_01_v2 .info2 .user_feedback{height:15px}
+.unit_list_01_v2 .info2 .info_dsc{height: 38px;position: relative;display: table-cell;vertical-align: middle;}
+.unit_list_01_v2 .info2 .review{padding-bottom: 0}
+.unit_list_01_v2 .info2 .info_dsc .noItr{color: #fff;background: #ff7b62;padding: 0 2px}
+
+/*2017.5.25 스타일추천 */
+.unit_list_01_v2 .recomm_icon{ position: absolute;right: 8px;bottom: 20px;z-index: 2;display: inline-block;width: 27.5px;height: 27.5px;font-size: 0;background: url(http://image.lotte.com/lotte/mo2017/common/ic_recomm_v3.png) 0 0 no-repeat;background-size: 27.5px 27.5px;}

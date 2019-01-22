@@ -1,0 +1,72 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplBrandMain" : {
+            	"options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/category/m/cate_brand_main_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/cate_brand_main.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsBrandMain" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/category/m/cate_brand_main.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/cate_brand_main.js"
+            }
+        },
+
+        "uglify" : {
+            "jsBrandMain" : {
+                "src" : "lotte/resources/<%= version %>/cate_brand_main.js",
+                "dest" : "lotte/resources/<%= version %>/cate_brand_main.min.js"
+            },
+            "tplBrandMain" : {
+                "src" : "lotte/resources/<%= version %>/cate_brand_main.template.js",
+                "dest" : "lotte/resources/<%= version %>/cate_brand_main.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssBrandMain" : {
+                "src" : [
+                	"lotte/resources_dev/unit/unit_list.css",
+                	"lotte/resources_dev/unit/unit_01.css",
+                    "lotte/resources_dev/brandshop/brand_common.css",
+                    "lotte/resources_dev/brandshop/brandshop.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/cate_brand_main.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanBrandMain" : [
+                "lotte/resources/<%= version %>/cate_brand_main.js",
+                "lotte/resources/<%= version %>/cate_brand_main.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlBrandMain" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "category/m/cate_brand_main.html" : "category/m/cate_brand_main_dev.html"
+                }
+            }
+        }
+    }
+}
+

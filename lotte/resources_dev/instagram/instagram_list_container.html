@@ -1,0 +1,37 @@
+<section ng-show="contVisible" class="cont_minheight" ng-class="{pad:screenType > 1, pad_land:screenType == 3}">
+	<section class="pageLoading" ng-show="pageLoading"><p class="loading half"></p></section>
+	<section ng-show="!pageLoading">
+		<ul class="insta_list">
+			<li ng-repeat="item in screenData.instaData" ng-if="item.goodsData && item.goodsData.length > 0">
+				<div class="thumb_insta"><img ng-src="{{::item.images.low_resolution.url}}" /></div>
+				<div class="info_insta">
+					<div class="like_flag" ng-bind="::item.likes.count"></div>
+					<div class="comment_box" ng-class="{more_open: item.more_open == true || screenType > 1}">
+						<div class="comment" ng-bind-html="::item.caption.text"></div>
+						<a ng-click="instaCommentMore($index)" class="btn_comment_more">더보기</a>
+					</div>
+					<div class="goods_list_box">
+		                <ul class="goods_list">
+		                    <li ng-repeat="item2 in item.goodsData">
+                                <a ng-click="gotoLinkM('','Dearpetgram', item.tabIdx, 0, item2)">
+                                    <div class="imageCon">
+                                        <img ng-src="{{item2.img_url}}">
+                                    </div>
+                                    <div class="titleCon">
+                                        <div class="name">{{item2.goods_nm}}</div>
+                                        <div class="t1"><b>{{item2.discounted_price | number}}</b>원<em ng-if="item2.is_sale_promotion" class="plan_prod_limit">~</em></div>
+                                    </div>
+                                </a>
+		                    </li>
+		                </ul>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<p class="content_none" ng-if="screenData.instaData == ''">해당 인스타그램 정보를 받아오지 못했거나, 정보가 없습니다.</p>
+		<!-- Product Load Loading -->
+		<div class="listLoading" ng-if="productListLoading && !pageLoading">
+			<p class="loading half"></p>
+		</div>
+	</section>
+</section>

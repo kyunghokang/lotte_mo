@@ -1,0 +1,75 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplDearpetMain" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/sns/share_box.html",
+					"lotte/resources_dev/sns/share_pop.html",
+					"lotte/resources_dev//mall/pet/pet_mall_ctg_container.html",
+					"lotte/resources_dev/mall/pet/dearpet_main_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/dearpet_main.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsDearpetMain" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/common/lotte_ngswipe.js",
+					"lotte/resources_dev/common/lotte_slider.js",
+					"lotte/resources_dev/mall/pet/dearpet_main.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/dearpet_main.js"
+			}
+		},
+
+		"uglify" : {
+			"jsDearpetMain" : {
+				"src" : "lotte/resources/<%= version %>/dearpet_main.js",
+				"dest" : "lotte/resources/<%= version %>/dearpet_main.min.js"
+			},
+			"tplDearpetMain" : {
+				"src" : "lotte/resources/<%= version %>/dearpet_main.template.js",
+				"dest" : "lotte/resources/<%= version %>/dearpet_main.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssDearpetMain" : {
+				"src" : [
+					"lotte/resources_dev/mall/pet/dearpet.css",
+					"lotte/resources_dev/mall/pet/dearpet_main.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/dearpet_main.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanDearpetMain" : [
+				"lotte/resources/<%= version %>/dearpet_main.js",
+				"lotte/resources/<%= version %>/dearpet_main.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlDearpetMain" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"/mall/pet/dearpet_main.html" : "/mall/pet/dearpet_main_dev.html"
+				}
+			}
+		}
+	}
+}
+

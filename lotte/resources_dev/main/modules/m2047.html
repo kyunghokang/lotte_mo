@@ -1,0 +1,23 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!--M47	뷰티전용 뷰티테스터 -->
+	<div class="moduleCon">
+		<div class="gTop_title">
+			<p><b>{{moduleData.txt}}</b></p>
+		</div>
+		<div class="unit unit_prod_4">
+			<ul>
+				<li ng-repeat="item in moduleData.items">
+					<a ng-click="logGAEvtModuleEach($index + 1, item.topTxt + ' ' + item.btmTxt + ' ' + item.evtReqDt);mainBannerClick(item.linkUrl, item.isOutLink, moduleData.tclick+'_Clk_Ban'+numberFill(($index+1),2))">
+						<div class="imgwrap">
+							<img ng-src="{{item.imgUrl}}" alt="" />
+						</div>
+						<div class="info">
+							<p class="name">{{item.topTxt}}<br />{{item.btmTxt}} </p>
+							<p class="date">{{item.evtReqDt}}</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>

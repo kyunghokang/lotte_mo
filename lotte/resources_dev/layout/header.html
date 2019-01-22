@@ -1,0 +1,18 @@
+<section>
+	<header id="head">
+	    <h1 class="logo"><a ng-click="gotoMainHeader()"><i>LOTTE.COM</i></a></h1>
+	    <ul>
+	        <li class="category"><a ng-click="showSideCtgHeader()"><i>카테고리</i></a></li>
+	        <li ng-class="{app_android: stylePushFlag}" class="search"><label ng-click="showSrhLayorHeader()" for="keyword"><i></i></label></li>
+	        <li ng-if="stylePushFlag" class="style_push">
+	        	<a ng-click="stylePushLink()"><i>스타일추천</i></a>
+	        	<div ng-if="showStyleDesc" class="imgsrh_desc">
+	        		<i></i>
+	        		스타일도 검색해보세요
+	        		<button class="btn_close" ng-click="hideStylePushDesc()">닫기</button>
+	        	</div>
+	        </li>
+	    </ul>
+	 </header>
+	 <section id="headerSpace"></section>
+</section>

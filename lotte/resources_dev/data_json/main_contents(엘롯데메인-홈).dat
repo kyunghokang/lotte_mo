@@ -1,0 +1,1517 @@
+1. 업무명 : 엘롯데 메인 > 홈
+2. 담당자 : 강영웅
+3. URL : http://molocal.ellotte.com/json/main/main_contents.json?dispNo=5538657
+4. 파라미터
+	- dispNo : 카테고리 번호(전시매장번호)
+5. JSON 파라미터
+	1) mix_banner : 배너 mix 여부
+	2) marketing_banner_list : 마케팅 배너
+		- img : 이미지 배너 정보
+			{
+				- banner_nm : 배너명
+				- img_url : 이미지 URL
+				- link_url : Link URL
+				- mov_frme_cd : 이동 프레임 여부
+				- conts_desc_cont : 설명 내용
+				- alt_cont : ALT 내용
+			}
+	3) planshop_banner_list : 기획전 배너
+		- img : 이미지 배너 정보
+			{
+				- banner_nm : 배너명
+				- img_url : 이미지 URL
+				- link_url : Link URL
+				- mov_frme_cd : 이동 프레임 여부
+				- conts_desc_cont : 설명 내용
+				- alt_cont : ALT 내용
+			}
+		- text : 텍스트 배너 정보
+			{
+				- banner_nm : 배너명
+				- link_url : Link URL
+				- mov_frme_cd : 이동 프레임 여부
+				- note_cont : 설명 내용
+			}
+	4) recom_goods_list1 : 브랜드 행사 상단 목록
+		- img : 이미지 배너 정보
+			{
+			  - banner_nm : 배너명
+			  i- mg_url : 이미지경로
+			  - link_url : 링크경로
+			  - alt_cont : 배너설명
+			},
+		- goods_list : 상품 정보 목록
+			  - img_url : 이미지경로
+			  - link_url: 링크경로
+			  - brnd_nm : 브랜드명
+			  - goods_no : 상품번호
+			  - goods_nm : 상품명
+			  - price1 : 할인전 가격
+			  - price2 : 할인후 가격
+		}
+	5) recom_goods_list2 : 브랜드 행사 하단 목록
+		- img : 이미지 배너 정보 목록
+			{
+			  - banner_nm : 배너명
+			  - mg_url : 이미지경로
+			  - link_url : 링크경로
+			  - alt_cont : 배너설명
+			}
+	6) card_banner_list : 카드행사 배너
+		- text : 텍스트 배너 정보
+			{
+				- banner_nm : 배너명
+				- link_url : Link URL
+				- mov_frme_cd : 이동 프레임 여부
+				- note_cont : 설명 내용
+			}
+	7) shoppingholic_banner_list : 쇼핑홀릭 배너
+		- img_url : 이미지 URL
+		- link_url : Link URL
+		- holic_prod_list : 쇼핑홀릭 상품 코너 세트 컨텐츠 리스트
+			- img : 이미지 배너 정보
+				{
+					- banner_nm : 배너명
+					- img_url : 이미지 URL
+					- link_url : Link URL
+					- mov_frme_cd : 이동 프레임 여부
+					- conts_desc_cont : 설명 내용
+					- alt_cont : ALT 내용
+				}
+			- text : 텍스트 배너 정보
+				{
+					- banner_nm : 배너명
+					- link_url : Link URL
+					- mov_frme_cd : 이동 프레임 여부
+					- note_cont : 설명 내용
+				}
+			- goods : 상품 정보
+				{
+					- img_url : 상품 이미지 URL
+					- link_url : 상품 Link URL
+					- mov_frme_cd : 이동 프레임 여부
+					- brnd_nm : 브랜드명
+					- goods_no : 상품번호
+					- goods_nm : 상품명
+					- price1 : 할인전 가격
+					- price2 : 할인후 가격
+				}
+	8) plusdeal_goods_list : 플러스 딜 상품
+		- unit_mix : 유닛 혼합여부(배너가 있을경우 true)
+		- sale_rate : 할인율
+		- coupon : 쿠폰 여부
+		- flag : MD 팁
+		- tv_card : ETV 여부
+		- is_dept : 백화점 상품 여부
+		- is_tvhome : 홈쇼핑 상품 여부
+		- copy_nm : MD팁명
+		- link_url : 상품 LINK URL
+		- img_url : 상품 이미지 URL
+		- goods_no : 상품번호
+		- goods_nm : 상품명
+		- price1 : 할인전 가격 
+		- price2 : 할인후 가격
+		- sale_cnt : 구매수량
+		- pmg_gdas_cnt : 상품평 갯수
+		- pmg_byr_age_lmt_cd : 연령제한
+		- sold_out : Sold out 여부
+	9) event_banner_list : 이벤트 배너
+		- img : 이미지 배너 정보
+			{
+				- banner_nm : 배너명
+				- img_url : 이미지 URL
+				- link_url : Link URL
+				- mov_frme_cd : 이동 프레임 여부
+				- conts_desc_cont : 설명 내용
+				- alt_cont : ALT 내용
+			}
+	10) custom_recomm_prod_list : 맞춤추천 상품
+		- unit_mix : 유닛 혼합여부(배너가 있을경우 true)
+		- prc_dif_view_yn : 비교가격 노출 여부
+		- sale_rate : 할인율
+		- coupon : 쿠폰 여부
+		- flag : MD 팁
+		- tv_card : ETV 여부
+		- is_dept : 백화점 상품 여부
+		- is_tvhome : 홈쇼핑 상품 여부
+		- copy_nm : MD팁명
+		- link_url : 상품 LINK URL
+		- img_url : 상품 이미지 URL
+		- goods_no : 상품번호
+		- goods_nm : 상품명
+		- price1 : 할인전 가격 
+		- price2 : 할인후 가격
+		- sale_cnt : 구매수량
+		- pmg_gdas_cnt : 상품평 갯수
+		- pmg_byr_age_lmt_cd : 연령제한
+		- sold_out : Sold out 여부
+		- disp_no : 전시매장번호
+6. JSON
+{
+    "main_contents": {
+        "mix_banner": false,
+        "marketing_banner_list": {
+            "items": [{
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5494835_40255_0_30_13007895_144.jpg",
+                    "link_url": "/product/product_list.do?curDispNo=5392334",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "1116 행쇼 4DAYS (수-목)",
+                    "alt_cont": "1116 행쇼 4DAYS (수-목)"
+                },
+                "text": null,
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": null,
+                "conr_set_disp_prio_rnk": 1,
+                "conts_disp_prio_rnk": 1
+            }],
+            "total_count": 1
+        },
+        "planshop_banner_list": {
+            "items": [{
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5494835_36955_0_30_13007673_117.jpg",
+                    "link_url": "/product/m/product_list.do?curDispNo=5385045",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "키엘",
+                    "alt_cont": "키엘"
+                },
+                "text": null,
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": null,
+                "conr_set_disp_prio_rnk": 1,
+                "conts_disp_prio_rnk": 1
+            }, {
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5494835_36955_0_30_13007673_118.jpg",
+                    "link_url": "/product/m/product_list.do?curDispNo=5355726",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "레이첼콕스 & 렉켄",
+                    "alt_cont": "레이첼콕스 & 렉켄"
+                },
+                "text": null,
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": null,
+                "conr_set_disp_prio_rnk": 1,
+                "conts_disp_prio_rnk": 2
+            }, {
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5494835_36955_0_30_13007673_119.jpg",
+                    "link_url": "/product/m/product_list.do?curDispNo=5372664",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "소형필수가전",
+                    "alt_cont": "소형필수가전"
+                },
+                "text": null,
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": null,
+                "conr_set_disp_prio_rnk": 1,
+                "conts_disp_prio_rnk": 3
+            }, {
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5494835_36955_0_30_13007673_120.jpg",
+                    "link_url": "/product/m/product_list.do?curDispNo=5372176",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "나이키",
+                    "alt_cont": "나이키"
+                },
+                "text": null,
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": null,
+                "conr_set_disp_prio_rnk": 1,
+                "conts_disp_prio_rnk": 4
+            }, {
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5494835_36955_0_30_13007673_121.jpg",
+                    "link_url": "/product/m/product_list.do?curDispNo=5365541",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "보브/ 지컷/ 톰보이",
+                    "alt_cont": "블랙야크"
+                },
+                "text": null,
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": null,
+                "conr_set_disp_prio_rnk": 1,
+                "conts_disp_prio_rnk": 5
+            }, {
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5494835_36955_0_30_13007673_44.jpg",
+                    "link_url": "/product/m/product_list.do?curDispNo=5392641",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "노스페이스/네파/뉴발란스 外",
+                    "alt_cont": "노스페이스/네파/뉴발란스 外"
+                },
+                "text": null,
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": null,
+                "conr_set_disp_prio_rnk": 1,
+                "conts_disp_prio_rnk": 6
+            }, {
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5494835_36955_0_30_13007673_124.jpg",
+                    "link_url": "/product/m/product_list.do?curDispNo=5388451",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "블랙위크",
+                    "alt_cont": "블랙위크"
+                },
+                "text": null,
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": null,
+                "conr_set_disp_prio_rnk": 1,
+                "conts_disp_prio_rnk": 7
+            }, {
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5494835_36955_0_30_13007673_133.jpg",
+                    "link_url": "/product/m/product_list.do?curDispNo=5379490",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "퍼팩트 윈터",
+                    "alt_cont": "퍼팩트 윈터"
+                },
+                "text": null,
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": null,
+                "conr_set_disp_prio_rnk": 1,
+                "conts_disp_prio_rnk": 8
+            }, {
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5494835_36955_0_30_13007673_123.jpg",
+                    "link_url": "/mall/deptLive/deptLiveShop_el.do?",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "백화점라이브관",
+                    "alt_cont": "백화점라이브관"
+                },
+                "text": null,
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": null,
+                "conr_set_disp_prio_rnk": 1,
+                "conts_disp_prio_rnk": 9
+            }],
+            "total_count": 9
+        },
+        "recom_goods_list1": {
+            "items": [{
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5494835_36556_33781_30_13007597_4.jpg",
+                    "link_url": "/planshop/viewPlanShopDetail.lotte?spdp_no=5392852",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "/product/m/product_list.do?curDispNo=5392852",
+                    "alt_cont": "-"
+                },
+                "text": {
+                    "banner_nm": "그녀들의 IT BAG 제안",
+                    "link_url": "/planshop/viewPlanShopDetail.lotte?spdp_no=5392852",
+                    "mov_frme_cd": false,
+                    "note_cont": "/product/m/product_list.do?curDispNo=5392852"
+                },
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": [{
+                    "img_url": "http://image.lotte.com/goods/22/96/48/90/1/190489622_1_280.jpg",
+                    "link_url": "/product/m/product_view.do?goods_no=190489622",
+                    "mov_frme_cd": false,
+                    "brnd_nm": "만다리나덕",
+                    "goods_no": 190489622,
+                    "goods_nm": "최지우백팩 MD CLASS CLT01003",
+                    "price1": "",
+                    "price2": "495600",
+                    "original_price": 498000,
+                    "discounted_price": 495600,
+                    "sale_rate": 0,
+                    "flag": null,
+                    "is_sold_out": false,
+                    "has_coupon": false,
+                    "has_wish": false,
+                    "is_sale_promotion": false,
+                    "review_count": 0,
+                    "bought_sum": 0,
+                    "md_tip": null,
+                    "promotion_text": "",
+                    "dlv_fee_tp": "Y",
+                    "smartpick_yn": "Y",
+                    "sold_out_cd_yn": null,
+                    "limit_age_yn": "N"
+                }],
+                "conr_set_disp_prio_rnk": 1,
+                "conts_disp_prio_rnk": 0
+            }, {
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5494835_36556_33776_30_13007597_3.jpg",
+                    "link_url": "/planshop/viewPlanShopDetail.lotte?spdp_no=5372476",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "/product/m/product_list.do?curDispNo=5372476",
+                    "alt_cont": "-"
+                },
+                "text": {
+                    "banner_nm": "스테디&베스트 카라T 편하고 좋아요!",
+                    "link_url": "/planshop/viewPlanShopDetail.lotte?spdp_no=5372476",
+                    "mov_frme_cd": false,
+                    "note_cont": "/product/m/product_list.do?curDispNo=5372476"
+                },
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": [{
+                    "img_url": "http://image.lotte.com/goods/33/85/34/86/1/186348533_1_280.jpg",
+                    "link_url": "/product/m/product_view.do?goods_no=186348533",
+                    "mov_frme_cd": false,
+                    "brnd_nm": "헤지스",
+                    "goods_no": 186348533,
+                    "goods_nm": "15 F/W 신상 스트라이프 카라티셔츠 HZE05D432BU/DE",
+                    "price1": "",
+                    "price2": "109060",
+                    "original_price": 133000,
+                    "discounted_price": 109060,
+                    "sale_rate": 18,
+                    "flag": null,
+                    "is_sold_out": false,
+                    "has_coupon": true,
+                    "has_wish": false,
+                    "is_sale_promotion": false,
+                    "review_count": 6,
+                    "bought_sum": 0,
+                    "md_tip": null,
+                    "promotion_text": "헤지스 품격 그대로~ 횡재가에 만나자",
+                    "dlv_fee_tp": "Y",
+                    "smartpick_yn": "Y",
+                    "sold_out_cd_yn": null,
+                    "limit_age_yn": "N"
+                }],
+                "conr_set_disp_prio_rnk": 2,
+                "conts_disp_prio_rnk": 0
+            }, {
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5494835_36556_33777_30_13007597_1.jpg",
+                    "link_url": "/planshop/viewPlanShopDetail.lotte?spdp_no=1377042",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "/product/m/product_list.do?curDispNo=1377042",
+                    "alt_cont": "-"
+                },
+                "text": {
+                    "banner_nm": "16\u0027 신학기 책가방 벌써 소문났네!",
+                    "link_url": "/planshop/viewPlanShopDetail.lotte?spdp_no=1377042",
+                    "mov_frme_cd": false,
+                    "note_cont": "/product/m/product_list.do?curDispNo=1377042"
+                },
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": [{
+                    "img_url": "http://image.lotte.com/goods/59/55/56/90/1/190565559_1_280.jpg",
+                    "link_url": "/product/m/product_view.do?goods_no=190565559",
+                    "mov_frme_cd": false,
+                    "brnd_nm": "닥스 키즈",
+                    "goods_no": 190565559,
+                    "goods_nm": "[2016신학기책가방]체크배색 반성형 책가방 세트(DMS60UP05MSET-NV)",
+                    "price1": "",
+                    "price2": "179000",
+                    "original_price": 200000,
+                    "discounted_price": 179000,
+                    "sale_rate": 10,
+                    "flag": null,
+                    "is_sold_out": false,
+                    "has_coupon": true,
+                    "has_wish": false,
+                    "is_sale_promotion": false,
+                    "review_count": 1,
+                    "bought_sum": 0,
+                    "md_tip": null,
+                    "promotion_text": "",
+                    "dlv_fee_tp": "Y",
+                    "smartpick_yn": "Y",
+                    "sold_out_cd_yn": null,
+                    "limit_age_yn": "N"
+                }],
+                "conr_set_disp_prio_rnk": 3,
+                "conts_disp_prio_rnk": 0
+            }, {
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5494835_36556_33778_30_13007597_3.jpg",
+                    "link_url": "/planshop/viewPlanShopDetail.lotte?spdp_no=5384624",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "/product/m/product_list.do?curDispNo=5384624",
+                    "alt_cont": "1"
+                },
+                "text": {
+                    "banner_nm": "바버 스타일과 보온성 한방에!+15%쿠폰",
+                    "link_url": "/planshop/viewPlanShopDetail.lotte?spdp_no=5384624",
+                    "mov_frme_cd": false,
+                    "note_cont": "/product/m/product_list.do?curDispNo=5384624"
+                },
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": [{
+                    "img_url": "http://image.lotte.com/goods/15/79/53/72/1/172537915_1_280.jpg",
+                    "link_url": "/product/m/product_view.do?goods_no=172537915",
+                    "mov_frme_cd": false,
+                    "brnd_nm": "바버(진유니)",
+                    "goods_no": 172537915,
+                    "goods_nm": "남성 Beaufort Wax Jacket 뷰포트 왁스 재킷 (MWX0017)",
+                    "price1": "",
+                    "price2": "481700",
+                    "original_price": 570000,
+                    "discounted_price": 481700,
+                    "sale_rate": 15,
+                    "flag": null,
+                    "is_sold_out": false,
+                    "has_coupon": true,
+                    "has_wish": false,
+                    "is_sale_promotion": false,
+                    "review_count": 0,
+                    "bought_sum": 0,
+                    "md_tip": null,
+                    "promotion_text": "",
+                    "dlv_fee_tp": "Y",
+                    "smartpick_yn": "Y",
+                    "sold_out_cd_yn": null,
+                    "limit_age_yn": "N"
+                }],
+                "conr_set_disp_prio_rnk": 4,
+                "conts_disp_prio_rnk": 0
+            }, {
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5494835_36556_33779_30_13007597_1.jpg",
+                    "link_url": "/planshop/viewPlanShopDetail.lotte?spdp_no=1454245",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "/product/m/product_list.do?curDispNo=1454245",
+                    "alt_cont": "-"
+                },
+                "text": {
+                    "banner_nm": "김효진 신상코트 8만원대~/니트 1만원대~",
+                    "link_url": "/planshop/viewPlanShopDetail.lotte?spdp_no=1454245",
+                    "mov_frme_cd": false,
+                    "note_cont": "/product/m/product_list.do?curDispNo=1454245"
+                },
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": [{
+                    "img_url": "http://image.lotte.com/goods/47/56/39/87/1/187395647_1_280.jpg",
+                    "link_url": "/product/m/product_view.do?goods_no=187395647",
+                    "mov_frme_cd": false,
+                    "brnd_nm": "보니알렉스",
+                    "goods_no": 187395647,
+                    "goods_nm": "부클 와이드핏 코트(BDHY587C)",
+                    "price1": "",
+                    "price2": "89100",
+                    "original_price": 99000,
+                    "discounted_price": 89100,
+                    "sale_rate": 10,
+                    "flag": null,
+                    "is_sold_out": false,
+                    "has_coupon": true,
+                    "has_wish": false,
+                    "is_sale_promotion": false,
+                    "review_count": 6,
+                    "bought_sum": 0,
+                    "md_tip": null,
+                    "promotion_text": "",
+                    "dlv_fee_tp": "Y",
+                    "smartpick_yn": "Y",
+                    "sold_out_cd_yn": null,
+                    "limit_age_yn": "N"
+                }],
+                "conr_set_disp_prio_rnk": 5,
+                "conts_disp_prio_rnk": 0
+            }, {
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5494835_36556_33780_30_13007597_2.jpg",
+                    "link_url": "/planshop/viewPlanShopDetail.lotte?spdp_no=1745494",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "/product/m/product_list.do?curDispNo=1745494",
+                    "alt_cont": "-"
+                },
+                "text": {
+                    "banner_nm": "핫! 맥머도 다운+10%쿠폰까지",
+                    "link_url": "/planshop/viewPlanShopDetail.lotte?spdp_no=1745494",
+                    "mov_frme_cd": false,
+                    "note_cont": "/product/m/product_list.do?curDispNo=1745494"
+                },
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": [{
+                    "img_url": "http://image.lotte.com/goods/60/00/80/90/1/190800060_7_280.jpg",
+                    "link_url": "/product/m/product_view.do?goods_no=190800060",
+                    "mov_frme_cd": false,
+                    "brnd_nm": "노스페이스",
+                    "goods_no": 190800060,
+                    "goods_nm": "★양말증정★M‘S VX MCMURDO PARKA [NVJ3NG50] 남성용 브이엑스 맥머도 파카",
+                    "price1": "",
+                    "price2": "241700",
+                    "original_price": 270000,
+                    "discounted_price": 241700,
+                    "sale_rate": 10,
+                    "flag": null,
+                    "is_sold_out": false,
+                    "has_coupon": true,
+                    "has_wish": false,
+                    "is_sale_promotion": false,
+                    "review_count": 0,
+                    "bought_sum": 0,
+                    "md_tip": null,
+                    "promotion_text": "",
+                    "dlv_fee_tp": "Y",
+                    "smartpick_yn": "Y",
+                    "sold_out_cd_yn": null,
+                    "limit_age_yn": "N"
+                }, {
+                    "img_url": "http://image.lotte.com/goods/90/26/11/87/1/187112690_1_280.jpg",
+                    "link_url": "/product/m/product_view.do?goods_no=187112690",
+                    "mov_frme_cd": false,
+                    "brnd_nm": "노스페이스",
+                    "goods_no": 187112690,
+                    "goods_nm": "15 W BOOTIE [NZS99G92] 여성용 15 부티",
+                    "price1": "",
+                    "price2": "114000",
+                    "original_price": 120000,
+                    "discounted_price": 114000,
+                    "sale_rate": 5,
+                    "flag": null,
+                    "is_sold_out": false,
+                    "has_coupon": true,
+                    "has_wish": false,
+                    "is_sale_promotion": false,
+                    "review_count": 3,
+                    "bought_sum": 0,
+                    "md_tip": null,
+                    "promotion_text": "다양한컬러로 맘데로 골라봐요",
+                    "dlv_fee_tp": "Y",
+                    "smartpick_yn": "Y",
+                    "sold_out_cd_yn": null,
+                    "limit_age_yn": "N"
+                }],
+                "conr_set_disp_prio_rnk": 6,
+                "conts_disp_prio_rnk": 0
+            }],
+            "total_count": 6
+        },
+        "recom_goods_list2": {
+            "items": [{
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5494835_36556_37737_30_13007597_75.jpg",
+                    "link_url": "/planshop/viewPlanShopDetail.lotte?spdp_no=5392847",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "/product/product_list.do?curDispNo=5392847",
+                    "alt_cont": "에고이스트 패딩,코트 外 신상품 출시!"
+                },
+                "text": {
+                    "banner_nm": "에고이스트 패딩,코트 外 신상품 출시!",
+                    "link_url": "/planshop/viewPlanShopDetail.lotte?spdp_no=5392847",
+                    "mov_frme_cd": false,
+                    "note_cont": "/product/product_list.do?curDispNo=5392847"
+                },
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": [{
+                    "img_url": "http://image.lotte.com/goods/45/79/73/74/1/174737945_10_280.jpg",
+                    "link_url": "/product/m/product_view.do?goods_no=174737945",
+                    "mov_frme_cd": false,
+                    "brnd_nm": "에고이스트",
+                    "goods_no": 174737945,
+                    "goods_nm": "롱항공점퍼(EF3EZ804)",
+                    "price1": "",
+                    "price2": "126650",
+                    "original_price": 149000,
+                    "discounted_price": 126650,
+                    "sale_rate": 15,
+                    "flag": null,
+                    "is_sold_out": false,
+                    "has_coupon": true,
+                    "has_wish": false,
+                    "is_sale_promotion": false,
+                    "review_count": 9,
+                    "bought_sum": 0,
+                    "md_tip": null,
+                    "promotion_text": "",
+                    "dlv_fee_tp": "Y",
+                    "smartpick_yn": "N",
+                    "sold_out_cd_yn": null,
+                    "limit_age_yn": "N"
+                }],
+                "conr_set_disp_prio_rnk": 7,
+                "conts_disp_prio_rnk": 0
+            }, {
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5494835_36556_37837_30_13007597_92.jpg",
+                    "link_url": "/planshop/viewPlanShopDetail.lotte?spdp_no=1522925",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "/product/product_list.do?curDispNo=1522925",
+                    "alt_cont": "MLB 여성랩퍼 치타도 선택한 HOT한 아이템!"
+                },
+                "text": {
+                    "banner_nm": "MLB 여성랩퍼 치타도 선택한 HOT한 아이템!",
+                    "link_url": "/planshop/viewPlanShopDetail.lotte?spdp_no=1522925",
+                    "mov_frme_cd": false,
+                    "note_cont": "/product/product_list.do?curDispNo=1522925"
+                },
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": [{
+                    "img_url": "http://image.lotte.com/goods/61/70/42/85/1/185427061_1_280.jpg",
+                    "link_url": "/product/m/product_view.do?goods_no=185427061",
+                    "mov_frme_cd": false,
+                    "brnd_nm": "엠엘비",
+                    "goods_no": 185427061,
+                    "goods_nm": "남여공용 아트웍 항공점퍼 뉴욕 양키스 31JP26541-50L",
+                    "price1": "",
+                    "price2": "160060",
+                    "original_price": 188300,
+                    "discounted_price": 160060,
+                    "sale_rate": 14,
+                    "flag": null,
+                    "is_sold_out": false,
+                    "has_coupon": true,
+                    "has_wish": false,
+                    "is_sale_promotion": false,
+                    "review_count": 0,
+                    "bought_sum": 0,
+                    "md_tip": null,
+                    "promotion_text": "",
+                    "dlv_fee_tp": "Y",
+                    "smartpick_yn": "Y",
+                    "sold_out_cd_yn": null,
+                    "limit_age_yn": "N"
+                }, {
+                    "img_url": "http://image.lotte.com/goods/63/97/41/76/1/176419763_1_280.jpg",
+                    "link_url": "/product/m/product_view.do?goods_no=176419763",
+                    "mov_frme_cd": false,
+                    "brnd_nm": "이메텍",
+                    "goods_no": 176419763,
+                    "goods_nm": "(전용커버 증정) 프리미엄 순면 전기요 2인용 804A4(Made in ltaly)",
+                    "price1": "",
+                    "price2": "165540",
+                    "original_price": 178000,
+                    "discounted_price": 165540,
+                    "sale_rate": 7,
+                    "flag": null,
+                    "is_sold_out": false,
+                    "has_coupon": true,
+                    "has_wish": false,
+                    "is_sale_promotion": false,
+                    "review_count": 1,
+                    "bought_sum": 0,
+                    "md_tip": null,
+                    "promotion_text": "",
+                    "dlv_fee_tp": "Y",
+                    "smartpick_yn": "N",
+                    "sold_out_cd_yn": null,
+                    "limit_age_yn": "N"
+                }],
+                "conr_set_disp_prio_rnk": 8,
+                "conts_disp_prio_rnk": 0
+            }, {
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5494835_36556_37838_30_13007597_92.jpg",
+                    "link_url": "/planshop/viewPlanShopDetail.lotte?spdp_no=1380867",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "/product/product_list.do?curDispNo=1380867",
+                    "alt_cont": "H커넥트 브랜드 데이~ 아우터 2만원대부터!"
+                },
+                "text": {
+                    "banner_nm": "H커넥트 브랜드 데이~ 아우터 2만원대부터!",
+                    "link_url": "/planshop/viewPlanShopDetail.lotte?spdp_no=1380867",
+                    "mov_frme_cd": false,
+                    "note_cont": "/product/product_list.do?curDispNo=1380867"
+                },
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": [{
+                    "img_url": "http://image.lotte.com/goods/06/51/37/94/1/194375106_1_280.jpg",
+                    "link_url": "/product/m/product_view.do?goods_no=194375106",
+                    "mov_frme_cd": false,
+                    "brnd_nm": "에이치커넥트",
+                    "goods_no": 194375106,
+                    "goods_nm": "[2만원 깜짝할인]여성 윤아 안감누빔싱글코트(YC56A45)",
+                    "price1": "",
+                    "price2": "67920",
+                    "original_price": 79900,
+                    "discounted_price": 67920,
+                    "sale_rate": 14,
+                    "flag": null,
+                    "is_sold_out": false,
+                    "has_coupon": true,
+                    "has_wish": false,
+                    "is_sale_promotion": false,
+                    "review_count": 0,
+                    "bought_sum": 0,
+                    "md_tip": null,
+                    "promotion_text": "",
+                    "dlv_fee_tp": "Y",
+                    "smartpick_yn": "Y",
+                    "sold_out_cd_yn": null,
+                    "limit_age_yn": "N"
+                }],
+                "conr_set_disp_prio_rnk": 9,
+                "conts_disp_prio_rnk": 0
+            }, {
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5494835_36556_37902_30_13007597_90.jpg",
+                    "link_url": "/planshop/viewPlanShopDetail.lotte?spdp_no=5372360",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "/product/product_list.do?curDispNo=5372360",
+                    "alt_cont": "디올 홀리데이 룩 스테이트 오브 골드 출시!"
+                },
+                "text": {
+                    "banner_nm": "디올 홀리데이 룩 스테이트 오브 골드 출시!",
+                    "link_url": "/planshop/viewPlanShopDetail.lotte?spdp_no=5372360",
+                    "mov_frme_cd": false,
+                    "note_cont": "/product/product_list.do?curDispNo=5372360"
+                },
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": [{
+                    "img_url": "http://image.lotte.com/goods/27/85/21/92/1/192218527_1_280.jpg",
+                    "link_url": "/product/m/product_view.do?goods_no=192218527",
+                    "mov_frme_cd": false,
+                    "brnd_nm": "디올",
+                    "goods_no": 192218527,
+                    "goods_nm": "[2015XMASLOOK]꾸띄르 크리에이션 팔레트",
+                    "price1": "",
+                    "price2": "99750",
+                    "original_price": 105000,
+                    "discounted_price": 99750,
+                    "sale_rate": 5,
+                    "flag": null,
+                    "is_sold_out": false,
+                    "has_coupon": true,
+                    "has_wish": false,
+                    "is_sale_promotion": false,
+                    "review_count": 1,
+                    "bought_sum": 0,
+                    "md_tip": null,
+                    "promotion_text": "",
+                    "dlv_fee_tp": "Y",
+                    "smartpick_yn": "N",
+                    "sold_out_cd_yn": null,
+                    "limit_age_yn": "N"
+                }],
+                "conr_set_disp_prio_rnk": 10,
+                "conts_disp_prio_rnk": 0
+            }, {
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5494835_36556_37903_30_13007597_72.jpg",
+                    "link_url": "/planshop/viewPlanShopDetail.lotte?spdp_no=5375822",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "/product/product_list.do?curDispNo=5375822",
+                    "alt_cont": "빈폴/제이에스티나/루이까또즈外 브랜드 모음전!"
+                },
+                "text": {
+                    "banner_nm": "빈폴/제이에스티나/루이까또즈外 브랜드 모음전!",
+                    "link_url": "/planshop/viewPlanShopDetail.lotte?spdp_no=5375822",
+                    "mov_frme_cd": false,
+                    "note_cont": "/product/product_list.do?curDispNo=5375822"
+                },
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": [{
+                    "img_url": "http://image.lotte.com/goods/15/75/80/40/40807515_1_280.jpg",
+                    "link_url": "/product/m/product_view.do?goods_no=40807515",
+                    "mov_frme_cd": false,
+                    "brnd_nm": "메트로시티",
+                    "goods_no": 40807515,
+                    "goods_nm": "토트겸 크로스백 M31MF406Z",
+                    "price1": "",
+                    "price2": "286890",
+                    "original_price": 339390,
+                    "discounted_price": 286890,
+                    "sale_rate": 15,
+                    "flag": null,
+                    "is_sold_out": false,
+                    "has_coupon": true,
+                    "has_wish": false,
+                    "is_sale_promotion": false,
+                    "review_count": 29,
+                    "bought_sum": 0,
+                    "md_tip": null,
+                    "promotion_text": "",
+                    "dlv_fee_tp": "Y",
+                    "smartpick_yn": "N",
+                    "sold_out_cd_yn": null,
+                    "limit_age_yn": "N"
+                }],
+                "conr_set_disp_prio_rnk": 11,
+                "conts_disp_prio_rnk": 0
+            }, {
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5494835_36556_37904_30_13007597_49.jpg",
+                    "link_url": "/planshop/viewPlanShopDetail.lotte?spdp_no=5372442",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "/product/product_list.do?curDispNo=5372442",
+                    "alt_cont": "타미힐거 겨울아이템 최대 30% OFF!"
+                },
+                "text": {
+                    "banner_nm": "타미힐거 겨울아이템 최대 30% OFF!",
+                    "link_url": "/planshop/viewPlanShopDetail.lotte?spdp_no=5372442",
+                    "mov_frme_cd": false,
+                    "note_cont": "/product/product_list.do?curDispNo=5372442"
+                },
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": [{
+                    "img_url": "http://image.lotte.com/goods/75/82/95/76/1/176958275_1_280.jpg",
+                    "link_url": "/product/m/product_view.do?goods_no=176958275",
+                    "mov_frme_cd": false,
+                    "brnd_nm": "타미힐피거",
+                    "goods_no": 176958275,
+                    "goods_nm": "(30％할인) 롯본남성 F/W 2종택1 퀼팅 디테일 레글런 맨투맨 TMMP3KOE38D0B60",
+                    "price1": "",
+                    "price2": "93240",
+                    "original_price": 148000,
+                    "discounted_price": 93240,
+                    "sale_rate": 10,
+                    "flag": null,
+                    "is_sold_out": false,
+                    "has_coupon": true,
+                    "has_wish": false,
+                    "is_sale_promotion": false,
+                    "review_count": 0,
+                    "bought_sum": 0,
+                    "md_tip": null,
+                    "promotion_text": "타미의 스테디셀러인 맨투맨 스타일",
+                    "dlv_fee_tp": "Y",
+                    "smartpick_yn": "N",
+                    "sold_out_cd_yn": null,
+                    "limit_age_yn": "N"
+                }],
+                "conr_set_disp_prio_rnk": 12,
+                "conts_disp_prio_rnk": 0
+            }, {
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5494835_36556_38113_30_13007597_15.jpg",
+                    "link_url": "/planshop/viewPlanShopDetail.lotte?spdp_no=5374504",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "/product/product_list.do?curDispNo=5374504",
+                    "alt_cont": "한삼인/세노비스/솔가外 건강식품 대전~"
+                },
+                "text": {
+                    "banner_nm": "한삼인/세노비스/솔가外 건강식품 대전~",
+                    "link_url": "/planshop/viewPlanShopDetail.lotte?spdp_no=5374504",
+                    "mov_frme_cd": false,
+                    "note_cont": "/product/product_list.do?curDispNo=5374504"
+                },
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": [{
+                    "img_url": "http://image.lotte.com/goods/97/95/22/11/1/111229597_1_280.jpg",
+                    "link_url": "/product/m/product_view.do?goods_no=111229597",
+                    "mov_frme_cd": false,
+                    "brnd_nm": "농협홍삼한삼인",
+                    "goods_no": 111229597,
+                    "goods_nm": "순수홍삼(50ml*20포) 2박스 무료배송! / 6년근 홍삼추출액",
+                    "price1": "",
+                    "price2": "37800",
+                    "original_price": 42000,
+                    "discounted_price": 37800,
+                    "sale_rate": 10,
+                    "flag": null,
+                    "is_sold_out": false,
+                    "has_coupon": true,
+                    "has_wish": false,
+                    "is_sale_promotion": false,
+                    "review_count": 31,
+                    "bought_sum": 0,
+                    "md_tip": null,
+                    "promotion_text": "2BOX! 무료배송 가격",
+                    "dlv_fee_tp": "Y",
+                    "smartpick_yn": "Y",
+                    "sold_out_cd_yn": null,
+                    "limit_age_yn": "N"
+                }],
+                "conr_set_disp_prio_rnk": 13,
+                "conts_disp_prio_rnk": 0
+            }],
+            "total_count": 7
+        },
+        "card_banner_list": {
+            "items": [{
+                "img": null,
+                "text": {
+                    "banner_nm": "<strong><span style=\"color: #ffff00\">KB국민카드 10%</span></strong> 청구 + 모바일앱 5% 추가할인",
+                    "link_url": "/planshop/planshop_view.do?spdp_no=5392322",
+                    "mov_frme_cd": false,
+                    "note_cont": "메인카드행사링크"
+                },
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": null,
+                "conr_set_disp_prio_rnk": 0,
+                "conts_disp_prio_rnk": 0
+            }],
+            "total_count": 1
+        },
+        "shoppingholic_banner_list": {
+            "items": [{
+                "img_url": "http://image.lotte.com/upload/display/corner/5494835_39558_37692_30_13007849_69.jpg",
+                "link_url": "http://molocal.ellotte.com/product/product_list.do?curDispNo=5378576",
+                "holic_prod_list": [{
+                    "img": {
+                        "banner_nm": "",
+                        "img_url": "http://image.lotte.com/upload/display/corner/5494835_39558_37692_30_13007850_206.jpg",
+                        "link_url": "/goods/viewGoodsDetail.lotte?goods_no=193586299&infw_disp_no_sct_cd=50&infw_disp_no=5387234&tracking=Search_Result&allViewYn=N",
+                        "mov_frme_cd": false,
+                        "conts_desc_cont": "1116 화장품",
+                        "alt_cont": "1116 화장품"
+                    },
+                    "text": {
+                        "banner_nm": "워너비 베스트 템! 백화점상품권 1만원증정!",
+                        "link_url": null,
+                        "mov_frme_cd": false,
+                        "note_cont": "1116 화장품"
+                    },
+                    "html": null,
+                    "goods": {
+                        "img_url": "http://image.lotte.com/goods/99/62/58/93/1/193586299_1_280.jpg",
+                        "link_url": "/product/m/product_view.do?goods_no=193586299",
+                        "mov_frme_cd": false,
+                        "brnd_nm": "설화수",
+                        "goods_no": 193586299,
+                        "goods_nm": "(M상품권)자음 기초2종 세트(+1만원 상품권 증정)",
+                        "price1": "",
+                        "price2": "114000",
+                        "original_price": 120000,
+                        "discounted_price": 114000,
+                        "sale_rate": 5,
+                        "flag": null,
+                        "is_sold_out": false,
+                        "has_coupon": true,
+                        "has_wish": false,
+                        "is_sale_promotion": false,
+                        "review_count": 2,
+                        "bought_sum": 0,
+                        "md_tip": null,
+                        "promotion_text": "",
+                        "dlv_fee_tp": "Y",
+                        "smartpick_yn": "N",
+                        "sold_out_cd_yn": null,
+                        "limit_age_yn": "N"
+                    },
+                    "planshop": null,
+                    "brand": null,
+                    "img_list": null,
+                    "text_list": null,
+                    "goods_list": null,
+                    "conr_set_disp_prio_rnk": 0,
+                    "conts_disp_prio_rnk": 0
+                }, {
+                    "img": {
+                        "banner_nm": "",
+                        "img_url": "http://image.lotte.com/upload/display/corner/5494835_39558_37692_30_13007850_207.jpg",
+                        "link_url": "/goods/viewGoodsDetail.lotte?goods_no=91108756&infw_disp_no_sct_cd=50&infw_disp_no=5387234&tracking=Search_Result&allViewYn=N",
+                        "mov_frme_cd": false,
+                        "conts_desc_cont": "1116 화장품",
+                        "alt_cont": "1116 화장품"
+                    },
+                    "text": {
+                        "banner_nm": "겨울에도 자외선 차단은 필수!",
+                        "link_url": null,
+                        "mov_frme_cd": false,
+                        "note_cont": "1116 화장품"
+                    },
+                    "html": null,
+                    "goods": {
+                        "img_url": "http://image.lotte.com/goods/56/87/10/91/91108756_1_280.jpg",
+                        "link_url": "/product/m/product_view.do?goods_no=91108756",
+                        "mov_frme_cd": false,
+                        "brnd_nm": "헤라",
+                        "goods_no": 91108756,
+                        "goods_nm": "(기획)선 메이트 데일리 or 레포츠 AD 세트",
+                        "price1": "",
+                        "price2": "30400",
+                        "original_price": 32000,
+                        "discounted_price": 30400,
+                        "sale_rate": 5,
+                        "flag": null,
+                        "is_sold_out": false,
+                        "has_coupon": true,
+                        "has_wish": false,
+                        "is_sale_promotion": false,
+                        "review_count": 53,
+                        "bought_sum": 0,
+                        "md_tip": null,
+                        "promotion_text": "",
+                        "dlv_fee_tp": "Y",
+                        "smartpick_yn": "N",
+                        "sold_out_cd_yn": null,
+                        "limit_age_yn": "N"
+                    },
+                    "planshop": null,
+                    "brand": null,
+                    "img_list": null,
+                    "text_list": null,
+                    "goods_list": null,
+                    "conr_set_disp_prio_rnk": 0,
+                    "conts_disp_prio_rnk": 0
+                }, {
+                    "img": {
+                        "banner_nm": "",
+                        "img_url": "http://image.lotte.com/upload/display/corner/5494835_39558_37692_30_13007850_208.jpg",
+                        "link_url": "/goods/viewGoodsDetail.lotte?goods_no=191966337&infw_disp_no_sct_cd=50&infw_disp_no=5387234&tracking=Search_Result&allViewYn=N",
+                        "mov_frme_cd": false,
+                        "conts_desc_cont": "1116 화장품",
+                        "alt_cont": "1116 화장품"
+                    },
+                    "text": {
+                        "banner_nm": "순한제품으로~맑고 촉촉한 피부로~",
+                        "link_url": null,
+                        "mov_frme_cd": false,
+                        "note_cont": "1116 화장품"
+                    },
+                    "html": null,
+                    "goods": {
+                        "img_url": "http://image.lotte.com/goods/37/63/96/91/1/191966337_1_280.jpg",
+                        "link_url": "/product/m/product_view.do?goods_no=191966337",
+                        "mov_frme_cd": false,
+                        "brnd_nm": "프리메라",
+                        "goods_no": 191966337,
+                        "goods_nm": "[행쇼]오가니언스 2종 세트",
+                        "price1": "",
+                        "price2": "53200",
+                        "original_price": 56000,
+                        "discounted_price": 53200,
+                        "sale_rate": 5,
+                        "flag": null,
+                        "is_sold_out": false,
+                        "has_coupon": true,
+                        "has_wish": false,
+                        "is_sale_promotion": false,
+                        "review_count": 0,
+                        "bought_sum": 0,
+                        "md_tip": null,
+                        "promotion_text": "",
+                        "dlv_fee_tp": "Y",
+                        "smartpick_yn": "N",
+                        "sold_out_cd_yn": null,
+                        "limit_age_yn": "N"
+                    },
+                    "planshop": null,
+                    "brand": null,
+                    "img_list": null,
+                    "text_list": null,
+                    "goods_list": null,
+                    "conr_set_disp_prio_rnk": 0,
+                    "conts_disp_prio_rnk": 0
+                }]
+            }, {
+                "img_url": "http://image.lotte.com/upload/display/corner/5494835_39558_37693_30_13007849_67.jpg",
+                "link_url": "http://molocal.ellotte.com/product/product_list.do?curDispNo=5379713",
+                "holic_prod_list": [{
+                    "img": {
+                        "banner_nm": "",
+                        "img_url": "http://image.lotte.com/upload/display/corner/5494835_39558_37693_30_13007850_201.jpg",
+                        "link_url": "/goods/viewGoodsDetail.lotte?goods_no=192599930&infw_disp_no_sct_cd=50&infw_disp_no=5387234&tracking=Search_Result&allViewYn=N",
+                        "mov_frme_cd": false,
+                        "conts_desc_cont": "1112 베네통 시슬리",
+                        "alt_cont": "1112 베네통 시슬리"
+                    },
+                    "text": {
+                        "banner_nm": "말이 필요없는 품질~ 믿어보세요~",
+                        "link_url": null,
+                        "mov_frme_cd": false,
+                        "note_cont": "1112 베네통 시슬리"
+                    },
+                    "html": null,
+                    "goods": {
+                        "img_url": "http://image.lotte.com/goods/30/99/59/92/1/192599930_1_280.jpg",
+                        "link_url": "/product/m/product_view.do?goods_no=192599930",
+                        "mov_frme_cd": false,
+                        "brnd_nm": "베네통",
+                        "goods_no": 192599930,
+                        "goods_nm": "팔라인배색라쿤퍼오리털패딩(BAPD55561)",
+                        "price1": "",
+                        "price2": "187900",
+                        "original_price": 220000,
+                        "discounted_price": 187900,
+                        "sale_rate": 14,
+                        "flag": null,
+                        "is_sold_out": false,
+                        "has_coupon": true,
+                        "has_wish": false,
+                        "is_sale_promotion": false,
+                        "review_count": 0,
+                        "bought_sum": 0,
+                        "md_tip": null,
+                        "promotion_text": "지금 날씨에 딱 어울리는 패딩!롯데단독★",
+                        "dlv_fee_tp": "Y",
+                        "smartpick_yn": "N",
+                        "sold_out_cd_yn": null,
+                        "limit_age_yn": "N"
+                    },
+                    "planshop": null,
+                    "brand": null,
+                    "img_list": null,
+                    "text_list": null,
+                    "goods_list": null,
+                    "conr_set_disp_prio_rnk": 0,
+                    "conts_disp_prio_rnk": 0
+                }, {
+                    "img": {
+                        "banner_nm": "",
+                        "img_url": "http://image.lotte.com/upload/display/corner/5494835_39558_37693_30_13007850_202.jpg",
+                        "link_url": "/goods/viewGoodsDetail.lotte?goods_no=192803718&infw_disp_no_sct_cd=50&infw_disp_no=5387234&tracking=Search_Result&allViewYn=N",
+                        "mov_frme_cd": false,
+                        "conts_desc_cont": "1112 베네통 시슬리",
+                        "alt_cont": "1112 베네통 시슬리"
+                    },
+                    "text": {
+                        "banner_nm": "2WAY로 활용가능한 매력 아이템!",
+                        "link_url": null,
+                        "mov_frme_cd": false,
+                        "note_cont": "1112 베네통 시슬리"
+                    },
+                    "html": null,
+                    "goods": {
+                        "img_url": "http://image.lotte.com/goods/18/37/80/92/1/192803718_1_280.jpg",
+                        "link_url": "/product/m/product_view.do?goods_no=192803718",
+                        "mov_frme_cd": false,
+                        "brnd_nm": "시슬리",
+                        "goods_no": 192803718,
+                        "goods_nm": "라이너와 따로 입을수 있는 야상점퍼 (SAPDE1561)",
+                        "price1": "",
+                        "price2": "337100",
+                        "original_price": 399000,
+                        "discounted_price": 337100,
+                        "sale_rate": 15,
+                        "flag": null,
+                        "is_sold_out": false,
+                        "has_coupon": true,
+                        "has_wish": false,
+                        "is_sale_promotion": false,
+                        "review_count": 0,
+                        "bought_sum": 0,
+                        "md_tip": null,
+                        "promotion_text": "",
+                        "dlv_fee_tp": "Y",
+                        "smartpick_yn": "Y",
+                        "sold_out_cd_yn": null,
+                        "limit_age_yn": "N"
+                    },
+                    "planshop": null,
+                    "brand": null,
+                    "img_list": null,
+                    "text_list": null,
+                    "goods_list": null,
+                    "conr_set_disp_prio_rnk": 0,
+                    "conts_disp_prio_rnk": 0
+                }, {
+                    "img": {
+                        "banner_nm": "",
+                        "img_url": "http://image.lotte.com/upload/display/corner/5494835_39558_37693_30_13007850_203.jpg",
+                        "link_url": "/goods/viewGoodsDetail.lotte?goods_no=194626140&infw_disp_no_sct_cd=50&infw_disp_no=5387234&tracking=Search_Result&allViewYn=N",
+                        "mov_frme_cd": false,
+                        "conts_desc_cont": "1112 베네통 시슬리",
+                        "alt_cont": "1112 베네통 시슬리"
+                    },
+                    "text": {
+                        "banner_nm": "기본코트 하나쯤은 꼭 필요하죠?",
+                        "link_url": null,
+                        "mov_frme_cd": false,
+                        "note_cont": "1112 베네통 시슬리"
+                    },
+                    "html": null,
+                    "goods": {
+                        "img_url": "http://image.lotte.com/goods/40/61/62/94/1/194626140_1_280.jpg",
+                        "link_url": "/product/m/product_view.do?goods_no=194626140",
+                        "mov_frme_cd": false,
+                        "brnd_nm": "시슬리",
+                        "goods_no": 194626140,
+                        "goods_nm": "원버튼 모직코트(SACTE2561)",
+                        "price1": "",
+                        "price2": "149000",
+                        "original_price": 169000,
+                        "discounted_price": 149000,
+                        "sale_rate": 11,
+                        "flag": null,
+                        "is_sold_out": false,
+                        "has_coupon": true,
+                        "has_wish": false,
+                        "is_sale_promotion": false,
+                        "review_count": 0,
+                        "bought_sum": 0,
+                        "md_tip": null,
+                        "promotion_text": "",
+                        "dlv_fee_tp": "Y",
+                        "smartpick_yn": "Y",
+                        "sold_out_cd_yn": null,
+                        "limit_age_yn": "N"
+                    },
+                    "planshop": null,
+                    "brand": null,
+                    "img_list": null,
+                    "text_list": null,
+                    "goods_list": null,
+                    "conr_set_disp_prio_rnk": 0,
+                    "conts_disp_prio_rnk": 0
+                }]
+            }],
+            "total_count": 2
+        },
+        "plusdeal_goods_list": {
+            "items": [{
+                "unit_mix": true,
+                "sale_rate": "14",
+                "coupon": true,
+                "flag": ["완벽구성"],
+                "tv_card": false,
+                "is_dept": true,
+                "is_tvhome": false,
+                "copy_nm": "반응 폭발! 런닝맨 꽃미남 특집 그 패딩!",
+                "link_url": "",
+                "img_url": "http://image.lotte.com/upload/display/mobile_banner/5532635_145810297.jpg",
+                "goods_no": 145810297,
+                "goods_nm": "[네파 이젠벅]방풍성과 내구성이 우수한 롱다운",
+                "price1": "",
+                "price2": "133880",
+                "sale_cnt": "1229",
+                "pmg_gdas_cnt": 0,
+                "pmg_byr_age_lmt_cd": "0",
+                "sold_out": false,
+                "default_img": false,
+                "curDispNo": 5542202,
+                "curDispNoSctCd": "78",
+                "genie_yn": "Y",
+                "plan_prod_yn": false,
+                "brnd_nm": "네파 이젠벅",
+                "isdlex_free": false,
+                "issmart_pick": false
+            }, {
+                "unit_mix": true,
+                "sale_rate": "10",
+                "coupon": true,
+                "flag": ["세련됐네"],
+                "tv_card": false,
+                "is_dept": true,
+                "is_tvhome": false,
+                "copy_nm": "올 겨울도 야상스타일이 대세인거 아시죠?",
+                "link_url": "",
+                "img_url": "http://image.lotte.com/upload/display/mobile_banner/5532635_183713220.jpg",
+                "goods_no": 183713220,
+                "goods_nm": "[디스커버리] 여성 다운자켓 DMDJ81561",
+                "price1": "",
+                "price2": "286400",
+                "sale_cnt": "305",
+                "pmg_gdas_cnt": 0,
+                "pmg_byr_age_lmt_cd": "0",
+                "sold_out": false,
+                "default_img": false,
+                "curDispNo": 5542202,
+                "curDispNoSctCd": "78",
+                "genie_yn": "Y",
+                "plan_prod_yn": false,
+                "brnd_nm": "디스커버리",
+                "isdlex_free": false,
+                "issmart_pick": true
+            }],
+            "total_count": 2
+        },
+        "event_banner_list": {
+            "items": [{
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5494835_44355_0_30_13008273_1.png",
+                    "link_url": "/product/m/product_list.do?curDispNo=5385045",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "",
+                    "alt_cont": "1"
+                },
+                "text": null,
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": null,
+                "conr_set_disp_prio_rnk": 1,
+                "conts_disp_prio_rnk": 999
+            }, {
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5494835_44355_0_30_13008273_2.png",
+                    "link_url": "/product/m/product_list.do?curDispNo=5375689",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "",
+                    "alt_cont": "2"
+                },
+                "text": null,
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": null,
+                "conr_set_disp_prio_rnk": 1,
+                "conts_disp_prio_rnk": 999
+            }, {
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5494835_44355_0_30_13008273_3.png",
+                    "link_url": "#",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "",
+                    "alt_cont": "sdf"
+                },
+                "text": null,
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": null,
+                "conr_set_disp_prio_rnk": 1,
+                "conts_disp_prio_rnk": 999
+            }],
+            "total_count": 3
+        },
+        "custom_recomm_prod_list": null,
+        "footer_banner_list": {
+            "items": [{
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5494835_45958_0_30_13008419_1.png",
+                    "link_url": "#",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "",
+                    "alt_cont": "푸터배너"
+                },
+                "text": null,
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": null,
+                "conr_set_disp_prio_rnk": 1,
+                "conts_disp_prio_rnk": 999
+            }],
+            "total_count": 1
+        }
+    }
+}

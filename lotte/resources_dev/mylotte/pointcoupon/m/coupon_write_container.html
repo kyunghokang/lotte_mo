@@ -1,0 +1,31 @@
+<section id="container">
+	
+	<section class="mylotte_point">
+		
+		<div class="bg_white">
+		
+			<!-- 페이퍼 쿠폰 등록 -->
+			<div class="coupon_write">
+				<p>인증번호 입력 <span>(쿠폰에 기재된 인증번호를 입력해 주세요.)</span></p>
+				<p><input ng-model="couponNumber" type="text" title="계좌번호" class="ip_style" placeholder="쿠폰번호만 입력하세요.(대소문자 구분, - 제외)"  /></p>
+			</div>
+
+			<div class="btn_areaC">
+				<a ng-click="gotoPrepage()" class="btn_style2">취소하기</a> <!-- back -->
+				<a ng-show="regist" class="btn_style3">등록하기</a> <!-- writer -->
+				<a ng-show="!regist" ng-click="couponWrite(couponNumber)" class="btn_style3">등록하기</a> <!-- writer -->
+			</div>
+			<!-- // 페이퍼 쿠폰 등록 -->	
+			
+		</div>
+		<section class="order_info t_line">
+			<ul>
+				<li>쿠폰번호는 대소문자를 구분합니다.</li>
+				<li>동일한 쿠폰은 중복등록이 불가합니다.(등록하신 쿠폰은 마이롯데에서 확인 가능)</li>
+				<li>여행/이사/상품권 등 일부 상품은 쿠폰적용이 불가합니다.</li>
+			</ul>
+		</section>
+		
+	</section>
+	
+</section>

@@ -1,0 +1,68 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplvoiceOrder" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/voice_order/voice_order_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/voice_order.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsvoiceOrder" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/voice_order/voice_order.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/voice_order.js"
+			}
+		},
+
+		"uglify" : {
+			"jsvoiceOrder" : {
+				"src" : "lotte/resources/<%= version %>/voice_order.js",
+				"dest" : "lotte/resources/<%= version %>/voice_order.min.js"
+			},
+			"tplvoiceOrder" : {
+				"src" : "lotte/resources/<%= version %>/voice_order.template.js",
+				"dest" : "lotte/resources/<%= version %>/voice_order.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssvoiceOrder" : {
+				"src" : [
+					"lotte/resources_dev/voice_order/voice_order.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/voice_order.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanvoiceOrder" : [
+				"lotte/resources/<%= version %>/voice_order.js",
+				"lotte/resources/<%= version %>/voice_order.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlvoiceOrder" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"voice_order/voice_order.html" : "voice_order/voice_order_dev.html"
+				}
+			}
+		}
+	}
+}

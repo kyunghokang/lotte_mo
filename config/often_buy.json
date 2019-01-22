@@ -1,0 +1,73 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplOftenBuy" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mylotte/often_buy/often_buy_container.html",
+                    "lotte/resources_dev/mylotte/often_buy/often_list_container.html",
+                    "lotte/resources_dev/mylotte/often_buy/soldOut_list_container.html",
+                    "lotte/resources_dev/mylotte/often_buy/recomm_product.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/often_buy.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsOftenBuy" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mylotte/often_buy/often_buy.js",
+                    "lotte/resources_dev/common/lotte_slider.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/often_buy.js"
+            }
+        },
+
+        "uglify" : {
+            "jsOftenBuy" : {
+                "src" : "lotte/resources/<%= version %>/often_buy.js",
+                "dest" : "lotte/resources/<%= version %>/often_buy.min.js"
+            },
+            "tplOftenBuy" : {
+                "src" : "lotte/resources/<%= version %>/often_buy.template.js",
+                "dest" : "lotte/resources/<%= version %>/often_buy.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssOftenBuy" : {
+                "src" : [
+                    "lotte/resources_dev/mylotte/often_buy/often_buy.css",
+                    "lotte/resources_dev/mylotte/cart/m/detail_datepicker.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/often_buy.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanOftenBuy" : [
+                "lotte/resources/<%= version %>/often_buy.js",
+                "lotte/resources/<%= version %>/often_buy.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlOftenBuy" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "/mylotte/often_buy/often_buy.html" : "/mylotte/often_buy/often_buy_dev.html"
+                }
+            }
+        }
+    }
+}

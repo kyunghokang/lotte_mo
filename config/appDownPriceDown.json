@@ -1,0 +1,38 @@
+{
+    "tasks" : {
+        "concat" : {
+            "jsappDownPriceDown" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/event/appDownPriceDown.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/appDownPriceDown.js"
+            }
+        },
+
+        "uglify" : {
+            "jsappDownPriceDown" : {
+                "src" : "lotte/resources/<%= version %>/appDownPriceDown.js",
+                "dest" : "lotte/resources/<%= version %>/appDownPriceDown.min.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssappDownPriceDown" : {
+                "src" : [
+                    "lotte/resources_dev/event/appDownPriceDown.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/appDownPriceDown.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanappDownPriceDown" : [
+                "lotte/resources/<%= version %>/appDownPriceDown.js"
+            ]
+        }
+    }
+}
+

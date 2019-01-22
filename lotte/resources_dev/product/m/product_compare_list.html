@@ -1,0 +1,21 @@
+<section ng-if="isProdCompList && ProdCompList != null" ng-controller="lotteNgSwipeCtrl" style="background:#fff">
+	<div class="prdCompareWrap">
+		<h3 class="conTit">같은 상품 비교하기 ({{ProdCompList.length}})</h3>
+		<div class="prdCompareSwipe" ng-if="isProdCompList && ProdCompList != null">
+			<ul lotte-ng-list-swipe swipe-slide-item="true" swipe-list-model="ProdCompList" swipe-max-ratio="0.2" swipe-disp-count="4" swipe-min-distance="40"  class="compareList">
+				<li  ng-repeat="item in ProdCompList">
+					<a ng-click="goProduct_view(item.goods_no)">
+						<span class="compareImgWrap">
+							<img ng-src="{{item.img_url}}" alt="" />
+						</span>
+						<span class="comparePrdInfo">
+							<span class="comparePrice"><strong>{{Fnproductview.getNumberFormat(item.final_prc)}}</strong>원</span>
+							<span class="compareBenefit" ng-if="(item.view_sale_rate != '0' && !(item.prc_dif_view_yn != 'Y' && item.inst_cpn_aply_val != null)) || item.gft_nm != null"><span ng-if="item.view_sale_rate != '0' && !(item.prc_dif_view_yn != 'Y' && item.inst_cpn_aply_val != null)">{{item.view_sale_rate}}%</span> <span>{{item.gft_nm}}</span></span>
+						</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="prdCompareFoot">지점별 특별행사에 따라 판매 가격이 다를 수 있습니다.</div>
+</section>

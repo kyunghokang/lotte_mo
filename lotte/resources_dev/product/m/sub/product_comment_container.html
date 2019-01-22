@@ -1,0 +1,273 @@
+<section ng-show="contVisible" class="cont_minheight"> <!--상품상세 서브페이지: 전체 상품평 보기-->
+	<product-sub-header></product-sub-header>
+	
+	<!--상품 상세 서브 page 기본 wrapper(한번만 사용할 것): prod_detail_page_wrap-->
+	<div class="prod_detail_page_wrap p_comment_all">
+
+		<!--전체상품평-->
+		<div class="detail_base_wrap prod_comment summary">
+
+			<!-- 전체상품평 : 별점, 열기/접기 -->
+			<!-- <p class="detail_tit fold_tap">
+				<span class="total_review">{{pageUI.loadData.stat.topCnt | currency:'':0}} 개의 상품평이 있습니다.</span>
+				<span class="starScoreWrap big"><span class="starScoreCnt" style="width:{{pageUI.loadData.stat.topScr|starScorePolicy:100}}%"></span></span> <em>(<var>{{pageUI.loadData.stat.topCnt | currency:'':0}}</var>)</em>
+			</p> -->
+			
+			<p class="detail_tit">
+				{{pageUI.loadData.totalCnt | currency:'':0}} 개의 상품평이 있습니다.
+			</p>
+			
+			<div ng-class="{hasComment:pageUI.loadData.reviewList}">
+				
+				<!-- 별점 영역 -->
+				<div class="star_wrap">
+					<span class="starScoreWrap big"><span class="starScoreCnt" style="width:{{!pageUI.loadData.avgScore?0:pageUI.loadData.avgScore|starScorePolicy:100}}%"></span></span>
+					<span class="score"><em>{{pageUI.loadData.avgScore}}</em>/5</span>
+				</div>
+				
+				<!-- 선택상품평 영역 -->
+				<div ng-if="pageUI.loadData.reviewList" class="review_wrap">
+					<dl ng-repeat="item in pageUI.loadData.reviewList">
+						<dt>{{item.gdas_item_nm}}</dt>
+						<dd>{{item.gdas_choc_item_nm}}<em>{{item.gdas_choc_item_choc_rt}}%</em></dd>
+					</dl>
+				</div>
+			</div>
+			<a ng-if="pageUI.loadData.stat || pageUI.loadData.reviewDetail" class="fold_btn shape_triangle" ng-class="{up:!pageUI.starScoreOpen,down:pageUI.starScoreOpen}" ng-click="toggleDetail()">자세히</a><!--상태변화 클래스: up -> down-->
+		</div>
+		
+		<!-- 전체상품평 : 자세히 -->
+		<div class="detail_base_wrap prod_comment comment_all detail" ng-if="pageUI.loadData.stat || pageUI.loadData.reviewDetail" ng-show="pageUI.starScoreOpen">
+			
+            <div ng-if="pageUI.loadData.stat" class="star_rating">
+            	<ul>
+            		<li>
+            			<span class="starScoreWrap"><span class="starScoreCnt" style="width:100%"></span></span>
+                		<span class="person">{{pageUI.loadData.stat.scr5Cnt}} 명</span>
+            		</li>
+            		<li>
+            			<span class="starScoreWrap"><span class="starScoreCnt" style="width:80%"></span></span>
+                		<span class="person">{{pageUI.loadData.stat.scr4Cnt}} 명</span>
+            		</li>
+            		<li>
+            			<span class="starScoreWrap"><span class="starScoreCnt" style="width:60%"></span></span>
+                		<span class="person">{{pageUI.loadData.stat.scr3Cnt}} 명</span>
+            		</li>
+            		<li>
+            			<span class="starScoreWrap"><span class="starScoreCnt" style="width:40%"></span></span>
+                		<span class="person">{{pageUI.loadData.stat.scr2Cnt}} 명</span>
+            		</li>
+            		<li>
+            			<span class="starScoreWrap"><span class="starScoreCnt" style="width:20%"></span></span>
+                		<span class="person">{{pageUI.loadData.stat.scr1Cnt}} 명</span>
+            		</li>
+            	</ul>
+                
+            </div>
+            <div ng-if="pageUI.loadData.reviewDetail" class="review_list_wrap">
+            	<ul>
+            		<li class="review_list" ng-repeat="(key, value) in pageUI.loadData.reviewDetail">
+            			<span class="title">{{value.title}}</span>
+            			<dl class="score_list" ng-repeat="obj in value.list" ng-class="{on:$index === 0}">
+							<dt>
+								{{obj.gdas_choc_item_nm}}
+							</dt>
+							<dd>
+								<span class="barScoreWrap"><span class="barScoreCnt" style="width:{{obj.gdas_choc_item_choc_rt}}%"></span></span><span class="percent">{{obj.gdas_choc_item_choc_rt}}%</span>
+							</dd>
+						</dl>
+            		</li>
+            	</ul>
+			</div>
+		</div>
+		
+		<!-- 전체상품평 : 비노출 상품 -->
+		<div ng-if="pageUI.loadData.dispNtcTxt" class="detail_base_wrap prod_comment nodisp">
+			<p class="noti_disc">{{pageUI.loadData.dispNtcTxt}}</p>
+		</div>
+		
+		<!-- 전체상품평 : 고객 등록 사진 -->
+		<div class="detail_base_wrap prod_comment comment_all div_line_b10 div_line_t line_full_w" ng-if="!pageUI.loadData.dispNtcTxt && pageUI.loadData.photoList.items.length > 0">
+			<p class="detail_tit sub_tit no_pb">고객 등록 사진/영상</p>
+			<!--썸네일 이미지-->
+			<div class="thumb_list_wrap">
+				<ul class="thumb_list">
+					<li ng-repeat="n in [].constructor(5) track by $index"
+						ng-class="{play_btn:pageUI.loadData.photoList.items[$index].videoYn, 'dim_cont dim50':pageUI.loadData.photoList.items[$index] && $index == 4 && pageUI.loadData.photoMoreCnt > 0}"
+						ng-click="pageUI.loadData.photoList.items[$index] && linkThumbClick(pageUI.loadData.photoList.items[$index].contsUrl, 'm_RDC_ProdDetail_Clk_Rvw02_photo', $index === 4, $index)">
+						<span class="thumb cover" ng-if="pageUI.loadData.photoList.items[$index]"><img ng-src="{{pageUI.loadData.photoList.items[$index].imgUrl}}" alt="" /></span>
+						<span class="more_cnt verti_align" ng-if="pageUI.loadData.photoList.items[$index] && $index == 4 && pageUI.loadData.photoMoreCnt > 0">+<var>{{pageUI.loadData.photoMoreCnt}}</var></span>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- 전체상품평 : 상품평 리스트 -->
+		<div class="detail_base_wrap prod_comment comment_all">
+			
+			<!-- 전체상품평 : 필터 -->
+			<div class="filter_wrap" ng-click="showHideFilterSlider('m_RDC_ProdDetail_allRvw_Clk_Flt')">
+				<p class="filter_info"><span>{{pageUI.filterOption.filter1Names[pageUI.filterOption.filter1SelVal]}}</span></p>
+
+				<!-- 전체상품평 : 필터 아이콘 -->
+				<span class="filter" ng-class="{on:pageUI.filterOption.filter1SelVal > 0 || pageUI.filterOption.filter2SelVal < 6}">필터</span> <!--상태변화 클래스 on: 필터 적용-->
+			</div>
+
+			<ul class="cmt_list">
+				<li ng-repeat="item in pageUI.loadData.critList.items" ng-init="$pindex = $index" ng-class="{'div_line_t':$index == 0, div_line_b:$index < pageUI.loadData.critList.items.length-1}">
+					<!-- 상품평 : 작성자 -->
+					<a ng-click="goReviewerHome(item)" class="cmt_writer">
+						<span class="image" ng-style="{'background': 'url(' + ( item.reviewerImgUrl ? item.reviewerImgUrl : dummyUrl ) + ') center center / cover no-repeat'}"></span>
+						<img ng-src="{{item.reviewerImgUrl}}" on-error-src2 cur-index="{{$index + 1}}" style="display:none" />
+						<em ng-if="item.gdasTpNm && item.gdasTpNm.indexOf('선물') >= 0">{{item.reviewerNickname}}님의 {{item.gdasTpNm}}상품평</em>
+						<em ng-if="!item.gdasTpNm || item.gdasTpNm.indexOf('선물') < 0">{{item.reviewerNickname}}</em>
+						<span class="div_line_v_s" ng-if="item.wrtrTpNm">{{item.wrtrTpNm}}</span>
+						<span ng-if="item.catReviewerFlag" class="flag category">{{item.catReviewerFlag}}</span>
+						<span ng-if="item.reviewerFlag" class="flag top100">TOP{{item.reviewerFlag}}</span>
+					</a>
+					
+					<div class="item_top">
+						<!-- 상품평리스트 : 별점 -->
+						<span class="starScoreWrap"><span class="starScoreCnt" style="width:{{item.critPnt|starScorePolicy:100}}%"></span></span>
+						
+						<!-- 상품평리스트 : 등록일 -->
+						<span class="date">{{item.regDate}}</span>
+					</div>
+					
+					<!-- 상품평 : 사진, 동영상 썸네일 -->
+					<div class="review_photo_wrap" ng-style="{'min-height':item.photoList.items.length > 0 ? '70px': ''}">
+						<a ng-class="{play_btn:item.photoList.items[0].videoYn}" ng-if="!pageUI.loadData.dispNtcTxt && (item.critTpCd == 'P' || item.critTpCd == 'V') && item.photoList.items[0]"
+							ng-click="item.photoList.items[0] && showReviewOne(item.photoList.items)">
+							<span class="img_wrap">
+								<span class="image" ng-style="{'background': 'url(' + item.photoList.items[0].imgUrl + ') center center / cover no-repeat'}"/>
+								<span class="count">{{item.photoList.total_count}}</span>
+								<img ng-src="{{item.photoList.items[0].imgUrl}}" style="position:fixed;visibility:hidden" on-img-loaded cur-idx="{{$pindex}}"/>
+							</span>
+						</a>
+						<div class="each_review" ng-style="{'padding-left': (item.critTpCd == 'P' || item.critTpCd == 'V') && item.photoList.items[0] ? '75px' : '0'}">
+							<table summary="상품평">
+								<caption>상품평</caption>
+								<tbody>
+									<tr ng-repeat="obj in item.easnGdasList.items">
+										<th>{{obj.gdas_item_nm}}</th>
+										<td>{{obj.gdas_choc_item_nm}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+										
+					<!-- 옵션 -->
+					<p ng-if="item.optDesc" class="options">{{item.optDesc}}</p>
+					
+					<!-- 상품평 : 내용 -->
+					<div class="cmtShortTxt">
+						<p class="cmt_cont ellipsis_custom" ng-if="!pageUI.loadData.dispNtcTxt && item.critContHtml" ng-bind-html="item.critContHtml"></p>
+					</div>
+					
+					<!-- 추천하기 -->
+					<div class="recomm_wrap" ng-hide="item.gdasTpNm && item.gdasTpNm.indexOf('선물') >= 0">
+						<p class="info"><em>{{ (item.recommCnt || '0') | number}}</em>명이 이 상품평을 추천했습니다.</p>
+						<a ng-if="!item.recommYn" ng-click="recommClick(item)" class="btn_recomm on">추천할래요</a>
+						<a ng-if="item.recommYn" ng-click="" class="btn_recomm">추천했어요</a>
+					</div>
+					
+					<!-- 신고하기 -->
+					<a ng-hide="item.gdasTpNm && item.gdasTpNm.indexOf('선물') >= 0" ng-click="showReportPop(item)" class="btn_report">신고</a>
+				</li>
+			</ul>
+		</div>
+		<!--필터 레이어(좌측 슬라이드 메뉴)-->
+		<div class="side_filter_wrap" ng-class="{on:pageUI.filterOption.sliderOpen}"><!--상태변화 클래스: 보이기 on-->
+			<div class="side_filter_header">
+				필터 <a ng-click="hideFilterSlider('m_RDC_ProdDetail_RvwFlt_Clk_Close')" class="filter_close">닫기</a>
+			</div>
+			<div class="slide_cont">
+				<ul class="menu_depth1">
+					<li class="sort" ng-class="{open:pageUI.filterOption.filter1Open}">
+						<a ng-click="sortByOpen('m_RDC_ProdDetail_RvwFlt_Clk_Sort')">
+							<span class="filter_tit">정렬</span><span class="filter_val shape_triangle" ng-class="pageUI.filterOption.filter1Open? 'blue up': 'down'">{{pageUI.filterOption.filter1Names[pageUI.filterOption.filter1SelVal]}}</span><!--상태변화 클래스: 열림닫힘 blue up -> down-->
+						</a>
+						<!--정렬 sub depth-->
+						<ul class="menu_depth2">
+							<li ng-repeat="(key,value) in pageUI.filterOption.filter1Names | limitTo:(pageUI.loadData.dispNtcTxt && pageUI.filterOption.filter1Names[pageUI.filterOption.filter1SelVal] != '고객추천순')? 4:5" ng-class="{on:$index == pageUI.filterOption.filter1SelVal}">
+								<!--상태변화 클래스: 선택 on-->
+								<label for="{{'cmtSort'+$index}}">{{value}}</label><input type="radio" id="{{'cmtSort'+$index}}" name="cmtSort" value="{{$index}}" ng-model="pageUI.filterOption.filter1SelVal" ng-change="sortBy('m_RDC_ProdDetail_RvwFlt_Clk_Sort_0'+($index+1))" integer>
+							</li>
+						</ul>
+					</li>
+					<li ng-if="!pageUI.loadData.healthfoodYn" class="only_media">
+						<label for="only_media" class="filter_tit">
+							사진/영상 상품평만 보기<input type="checkbox" id="only_media" name="only_media" ng-model="pageUI.filterOption.media_yn" ng-change="mediaOnly()" ng-true-value="'Y'" ng-false-value="'N'">
+						</label>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 개별 상품평 크게 보기 레이어 -->
+	<div class="review_layer" ng-if="arrReviewOne && arrReviewOne.length">
+		<div class="img_swipe_wrap">
+			<div class="prd_top_imgwrap" roll-swipe-banner getcontrol="getReviewSwipeControl" one-no-swipe="true" rolling="true" width320="1" width640="1" width900="1" interval="300000" endfnc="swipeReviewEnd" info="arrReviewOne">
+				<ul class="swipeBox">
+					<li ng-repeat="item in arrReviewOne">
+						<!-- 이미지 -->
+						<div class="thumb cover2 cover3" ng-if="!item.videoYn">
+							<img ng-src="{{item.imgUrl}}" alt="상품이미지" err-src="550" ng-class="{'wid': item.typeClass == 'wid', 'hei': item.typeClass == 'hei'}"/>
+						</div>
+						<!-- 동영상 -->
+						<div ng-if="item.videoYn && item.type != 'youtube'" lotte-video class="lv_wrap" lv-src="{{arrReviewOne[$index].videoUrl | trusted}}" lv-poster="{{arrReviewOne[$index].imgUrl}}">
+							<video id="videoReview" playsinline="true" webkit-playsinline="true">
+								<source type="video/mp4">
+							</video>
+							<div ng-show="movMode==0" class="play_cover"></div>
+							<div ng-show="movMode==1" class="stop_cover"></div>
+							<div ng-show="movMode!=0" ng-click="clickCover()" class="click_cover"></div>
+							<a ng-show="movMode==0" ng-click="playVideo()" class="btn_start">비디오 재생</a>
+							<a ng-show="movMode==1" ng-click="muteVideo()" ng-class="{mute:mute}" class="btn_volume btn_text btns">{{mute?'음소거해제':'음소거'}}</a>
+							<a ng-show="movMode==1" ng-click="stopVideo()" class="btn_stop btn_text btns">일시정지</a>
+							<a ng-show="movMode==1" ng-if="!rScope.appObj.isApp" ng-click="fullVideo()" class="btn_full btn_text btns">전체화면보기</a>
+						</div>
+						<!-- 유튜브 동영상 -->
+						<div ng-if="item.videoYn && item.type == 'youtube'" class="vod_box">
+							<div class="player_wrap"><iframe title="YouTube video player" ng-src="{{trustSrc('https://www.youtube.com/embed/' + item.mpic_info.mpic_url)}}" frameborder="0" allowfullscreen class="player"></iframe></div>
+							<div class="skt_app_desc" ng-if="rScope.appObj.isSktApp && !item.sktDescLayerCloseFlag">동영상은 외부 호스팅 사용으로 SKT 데이터 프리가<br>적용되지 않으니 유의하시기 바랍니다.<button ng-click="etvMovSktDescClose($event, item)" class="btn_close">안내 레이어 닫기</button></div>
+						</div>
+					</li>
+				</ul>
+				<!-- 이미지 스와이프 좌우버튼, 플레이버튼 -->
+				<div class="btn_wrap" ng-if="arrReviewOne.length != 1 && arrReviewOne.length > 0">
+					<span class="prev_btn" ng-click="swipeBeforeReview()"></span>
+					<span class="next_btn" ng-click="swipeNextReview()"></span>
+				</div>
+				<!-- 페이징 -->
+				<div class="page_wrap" ng-if="arrReviewOne.length > 1">
+					<p class="page"><span class="cur_page">{{sb_review_index}}</span>/<span class="all">{{arrReviewOne.length}}</span></p>
+				</div>
+			</div>
+			<a class="btn_close" ng-click="dimmedClose()">닫기</a>
+		</div>
+	</div>
+	
+	<!-- 신고하기 팝업 -->
+	<div id="reportPop" report-pop ng-show="pageUI.loadData.reportList"  class="pop_report">
+		<section>
+			<h5 >불량상품평 신고하기</h5>
+			<ul>
+				<li ng-repeat="item in pageUI.loadData.reportList track by $index">
+					<input type="radio" id="reportRd{{$index}}" name="rg1" ng-value="item.dcl_accp_tp_cd"><label for="reportRd{{$index}}">{{item.dcl_accp_tp_nm}}</label>
+				</li>
+			</ul>
+			<div class="btns">
+				<a ng-click="hideReportPop()" class="btn_close">닫기</a>
+				<a ng-click="sendReport()" class="btn_report">신고하기</a>
+			</div>
+		</section>
+	</div>
+
+	<!--공통 로딩커버-->
+	<div class="loading_cover" ng-if="jsonLoading">
+		<div class="loading"></div>
+	</div>
+</section>

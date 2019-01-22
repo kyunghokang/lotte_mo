@@ -1,0 +1,82 @@
+<div class="left_nav_wrap" ng-class="{on: isShowSideCtg}">
+	<!-- 탭 -->
+	<nav class="tab_wrap" ng-class="{ctg: pageOpt.curTabIdx == 0, brd: pageOpt.curTabIdx == 1}">
+		<ul>
+			<li><button ng-click="tabChange('ctg')" class="btn_ctg">카테고리<i ng-if="intTodayDate && intLastCtgFlagDate && intTodayDate < intLastCtgFlagDate" class="reddot"></i></button></li>
+			<li><button ng-click="tabChange('brd')" class="btn_brd">브랜드</button></li>
+		</ul>
+		<button ng-click="closeSideCtg()" class="btn_close">탐색레이어 닫기</button>
+	</nav>
+
+	<!-- 카테고리 -->
+	<div lnb-tab-category ng-show="pageOpt.curTabIdx == 0" class="ctg_wrap">
+		<section class="ctg_list_wrap">
+			<h3 class="tit">일반 카테고리</h3>
+			<ul class="ctg_list" ng-class="{on: pageOpt.curCtgIdx == 0}">
+				<li ng-repeat="item in sideCtgData.ctgAll track by $index" class="depth1" ng-class="{on: pageOpt.curCtgIdx == 0 && pageOpt.curCtgDepth1Idx == $index}">
+					<a ng-click="ctgSelect(0, $index)">{{item.name}}</a>
+					<ul class="sub_list">
+						<li ng-repeat="subItem in item.lctgs track by $index " class="depth2"><a ng-click="goCategory(subItem.type, 'normal', item.name, subItem.name, subItem.link, subItem.outlink)"><span ng-if="subItem.name.indexOf('Dear Pet') > -1" class="dearpetOpenicon"></span>{{subItem.name}} <span ng-if="subItem.desc" class="desc">{{subItem.desc}}</span><span ng-if="subItem.flag" class="ctg_flag" style="color:#{{subItem.flagColor}}">{{subItem.flag}}</span></a></li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+		<section class="dept_list_wrap">
+			<h3 class="tit">롯데백화점 카테고리</h3>
+			<ul class="ctg_list" ng-class="{on: pageOpt.curCtgIdx == 1}">
+				<li ng-repeat="item in sideCtgData.ctgDept track by $index" class="depth1" ng-class="{on: pageOpt.curCtgIdx == 1 && pageOpt.curCtgDepth1Idx == $index}">
+					<a ng-click="ctgSelect(1, $index)">{{item.name}}</a>
+					<ul class="sub_list">
+						<li ng-repeat="subItem in item.lctgs track by $index " class="depth2"><a ng-click="goCategory(subItem.type, 'dept', item.name, subItem.name, subItem.link, subItem.outlink)">{{subItem.name}} <span ng-if="subItem.desc" class="desc">{{subItem.desc}}</span><span ng-if="subItem.flag" class="ctg_flag" style="color:#{{subItem.flagColor}}">{{subItem.flag}}</span></a></li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+		<section class="app_list_wrap">
+			<h3 class="tit">롯데 계열사 APP</h3>
+			<ul class="app_list">
+				<li ng-repeat="item in sideCtgData.lotteApp track by $index"><a ng-click="appLink(item.appName, item.linkUrl, item.tclick)" class="{{item.iconClass}}">{{item.name}}</a></li>
+			</ul>
+		</section>
+	</div>
+
+	<!-- 브랜드 -->
+	<div lnb-tab-brand ng-show="pageOpt.curTabIdx == 1" class="brd_wrap">
+		<section class="ctg_list">
+			<h3 class="tit">브랜드</h3>
+			<section class="brdsrh_wrap">
+				<form class="brdsrh_frm">
+					<fieldset>
+						<legend>검색</legend>
+						<input id="srhBrdKeyword" name="srhBrdKeyword" type="text" ng-model="srhBrdKeyword" placeholder="브랜드를 검색하세요" autocomplete="off" autocapitalize="off" autocorrect="off" />
+						<button ng-click="srhBrand()" type="submit" ng-click="searchBrand()" class="btn_srh">검색</button>
+					</fieldset>
+				</form>
+				<nav class="brdsrh_key_list">
+					<ul ng-if="srhKey.type == 'kor'" class="key kor">
+						<li ng-repeat="item in srhKey.kor"><button ng-click="srhBrandKey('kor', $index)" class="btn_key" ng-class="{on: srhKey.btnSelectIdx == $index && srhKey.resultType == 'kor'}">{{item}}</button></li>
+						<li><button ng-click="srhKeyChange('eng')" class="btn_key tab">ABC</button></li>
+					</ul>
+					<ul ng-if="srhKey.type == 'eng'" class="key eng">
+						<li ng-repeat="item in srhKey.eng"><button ng-click="srhBrandKey('eng', $index)" class="btn_key" ng-class="{on: srhKey.btnSelectIdx == $index && srhKey.resultType == 'eng'}">{{item}}</button></li>
+						<li><button ng-click="srhKeyChange('kor')" class="btn_key tab">ㄱㄴㄷ</button></li>
+					</ul>
+				</nav>
+			</section>
+			<section class="brdsrh_result_wrap">
+				<h4 ng-if="resultShow" class="tit" ng-show="srhResultKeyword">'{{srhResultKeyword}}' 검색결과 총 <em>{{srhResultCnt|number}}</em>건</h4>
+				<ul ng-if="resultShow && srhResultList && srhResultList.length > 0" class="result_list">
+					<li ng-repeat="item in srhResultList"><a ng-click="goBrand(item.brnd_no, $index)">{{item.brnd_nm}} <em>{{item.cnt}}</em></a></li>
+				</ul>
+
+				<div ng-if="resultShow && (!srhResultList || srhResultList.length == 0)" class="empty_result">
+					브랜드 검색 결과가 없습니다.
+				</div>
+
+				<div class="loading_wrap brd_srh_loading" ng-if="srhListLoading">
+					<p class="loading half"></p>
+				</div>
+			</section>
+		</section>
+	</div>
+</div>

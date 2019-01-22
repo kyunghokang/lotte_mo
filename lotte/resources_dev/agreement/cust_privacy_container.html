@@ -1,0 +1,28 @@
+<section class="footer_privacy">
+   <!--현재 개인정보취급방침--> 
+    <p ng-bind-html="agreementData"></p>
+    <div class="s_box04">
+		<select ng-model="selectPrvIndex" ng-change="selectPop()">
+		   <option value="-1">구버전 개인정보처리방침</option>
+		   <option ng-repeat="item in prvList" value="{{$index}}">{{item.title}}</option>    
+		</select>
+   		<div class="img_box">&nbsp;</div>
+    </div>
+    <!--과거 개이정보 취급방침
+    <div class="privacy_popup" ng-show="selectPrvIndex >= 0">
+       	<div ng-repeat="item in prvList" ng-show="$index == selectPrvIndex" class="privacy_popwrap">
+       		<h2>{{item.title}}</h2>
+       		<div ng-bind-html="item.detail" class="privacy_contents"></div>
+       		<a ng-click="closePop()" href="#" class="close_btn">닫기</a>
+       	</div>
+    </div>
+    -->
+    <div class="privacy_popup" ng-show="selectPrvIndex >= 0">
+       	<div class="privacy_pop_wrap">
+       		<h2 class="privacy_h">{{pop_title}}</h2>
+       		<div id="pop_cont" ng-bind-html="pop_detail" class="privacy_conts"></div>
+       		<a ng-click="closePop()" href="#" class="close_btn">닫기</a>
+       	</div>
+    </div>
+    
+</section>

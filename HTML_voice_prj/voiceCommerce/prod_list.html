@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+	<meta charset="utf-8">
+	<title>롯데닷컴</title>
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+	<script src="/lotte/resources_dev/common/common_load_2018.js"></script>
+	<script src="/lotte/resources_dev/common/lotte_comm_2018.js"></script>
+
+<!-- 	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/category/category.css"> -->
+<!-- 	<link rel="stylesheet" href="./prdList.css"/> -->
+<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/push/common.css"/>	
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/talk/voiceCommerce.css" />	
+
+	<script src="/lotte/resources_dev/common/lotte_ngswipe.js"></script>
+	<script src="./prdList.js"></script>
+</head>
+<body ng-controller="prdListCtrl">
+	<section id="container" class="voice_cont cont_minheight">
+		<!-- 상품리스트 -->
+		<div class="prod_list_wrap">
+			<h5 class="tit">인기 여성 오리털 롱패딩이에요.</h5>
+			<div class=" prod_box prod_list_swipe">
+				<div class="q_list" id="roll1" roll-swipe-banner rolling="false" width320="1"  width640="1" width900="1" info="test_form.goodsList.items" endfnc="setInfo" getcontrol="getControl1">
+					<ul class="swipeBox" >
+						<li>
+							<div class="prod_item">
+								<a href="#none">
+									<!-- 상품 정보 -->
+									<div class="info">
+										<p class="prod_num"><span>1</span></p>
+										
+										<!-- 20180730 플래그 추가 -->
+										<p class="prod_flag"><span>가격 인하</span></p>
+										<!-- //20180730 플래그 추가 -->
+										
+										<div class="img_area">
+											<div class="img"><img src="../images/thumb_img.png" alt="" /></div>
+											
+											<!-- 20180521 예약날짜 추가로 마크업 변경 -->
+											<div class="flag_wrap">
+												<span>최소주문 3개</span>
+												<span>12/27 배송시작</span>
+											</div>
+											<!-- //20180521 예약날짜 추가로 마크업 변경 -->		
+											
+											<!-- 20180730 스타일추천 아이콘 추가 -->
+											<span class="btn_style_recom">스타일추천</span>		
+											<!-- //20180730 스타일추천 아이콘 추가 -->						
+										</div>
+										<div class="tit_area">
+											<span class="brand">[맥]</span>
+											<span class="tit">프로 롱웨어 SPF 10 파운데이션 촉촉한</span>
+										</div>
+										<div class="prod">
+											<div class="price_wrap">
+												<span class="prod_price"><em>3,150,800</em>원</span>
+												<span class="old_price_wrap">
+													<span class="orign_price"><span>3,555,500</span>원</span>
+												</span>
+												<p class="deli_free">무료배송</p>
+											</div>
+											<div class="score_wrap" >
+												<span class="starScoreWrap">
+													<em class="starScoreCnt"  style="width:{{item.avg_gdas_stfd_val * 20}}%" ></em>
+												</span>
+												<span class="review" >(18,938)</span>
+											</div>
+										</div>
+									</div>
+								</a>								
+								<div class="menu_list">
+									<a  href="#none" class="share">공유</a>
+									<a href="#none"  class="wish" onclick="alertShow()">찜</a>
+									<a href="#none"  class="order">주문해줘</a>
+									<a href="#none"  class="detail">자세히</a>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- 상황별 노출 알럿 -->
+		<div class="alert_msg" style="display:none;">
+			<p class="msg cart" >
+				<span>장바구니에<br />찜했어요</span>
+			</p>
+			<p class="msg wish" >
+				<span>위시리스트에<br />담았어요</span>
+			</p>
+		</div>
+		<!-- //상황별 노출 알럿 -->
+
+		<!-- 상품 이미지 상세 -->
+		<div class="img_detail" style="display:none;">
+				<a href="#none" class="close">닫기</a>
+				<div class="img_area">
+				</div>
+		</div>
+		<!-- //상품 이미지 상세 -->
+		
+		
+		<!-- 20180802 연관키워드 -->
+		<div class="relation_keword_wrap">  <!-- open클래스 주면 접힌거 열립니다. -->
+			<a href="#none" class="btn_keword"></a>
+			<div class="list_box">
+				<ul>
+					<li><a href="#none">립밤</a></li>
+					<li><a href="#none">백팩</a></li>
+					<li><a href="#none">운동화</a></li>
+					<li><a href="#none">시계</a></li>					
+				</ul>
+			</div>
+		</div>
+		<!-- //20180802 연관키워드 -->
+		
+		
+		
+		<section class="voice_mic">
+			<!-- <span class="mic_txt">듣고 있어요</span> -->
+			<input class="mic_txt" value="듣고 있어요" />
+			
+			<!-- 각 버튼별 정의 -->
+			<button class="btn_mic">마이크</button>
+			<button class="btn_keyboard">키보드</button>
+			<button class="btn_submit">전송</button>
+			<!-- //각 버튼별 정의 -->
+		</section>
+		
+
+	</section>	
+
+</body>
+</html>

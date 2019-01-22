@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">
+<!----------------- current css ----------------->
+
+<link rel="stylesheet" href="/lotte/resources_dev/mylotte/purchase/m/purchase_list.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+<!--------------- current js ----------------->
+<script>
+	$(function(){
+		
+	});
+</script>
+<!---------------// current js ----------------->
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<div id="cover" style="display:block;"></div>
+
+
+<!-- L.POINT 본인 인증 서비스 팝업 1123 추가-->
+<div class="popupService">
+	<h3>
+		L.POINT 본인 인증 서비스 
+		<span class="close"></span>
+	</h3>
+	<div class="scroll">
+		<p class="txt_top"><strong>안전한 L.POINT 결제를 위해 <br>고객님의 포인트 카드 정보를 확인합니다.</strong></p>
+		<input type="text" class="input" placeholder="L.POINT 비밀번호">
+		<div class="btn">
+			<a class="btn">비밀번호 설정/재설정</a>
+		</div>
+		<ul class="guide">
+			<li>L.POINT 비밀번호를 입력해주세요.<br>(본인의  L.POINT만 사용하실 수 있습니다.)</li>
+			<li>L.POINT 비밀번호를 입력해주세요.<br>(본인의  L.POINT만 사용하실 수 있습니다.)</li>
+			<li>5회 이상 비밀번호 오류 시, 비밀번호 재설정 해주세요.</li>
+		</ul>
+		<div class="btn">
+			<a class="btn off">취소</a>
+			<a class="btn">확인</a>
+		</div>
+	</div>
+</div>
+<!--// L.POINT 본인 인증 서비스 팝업 -->
+
+<!-- container -->
+<section id="wrapper">	
+	<div class="cont_minheight">
+		
+	</div>
+</section>
+
+<section ng-include src="'/HTML/include/footer.html'"></section>
+</body>
+</html>

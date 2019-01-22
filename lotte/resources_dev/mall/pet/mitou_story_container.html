@@ -1,0 +1,35 @@
+<section ng-show="contVisible" class="cont_minheight dearpet_v4">
+    <section class="pageLoading" ng-show="pageLoading"><p class="loading half"></p></section>   
+    <section ng-show="!pageLoading">
+        <div class='sub_header_wrap'>
+            <header id="head_sub" sub-header-each ng-show="subTitle" class="fixedSubHeader " ng-class="{fixedHeader: fixedHeader && subHeaderFixed && !appObj.isNativeHeader}">
+                <div class='head_sub_inner'>
+                    <h2><a ng-click="mallMainClick('m_DC_SpeDisp_Dearpet_Clk_logo')"><span>Dear Pet</span></a></h2>
+                    <a class='share' href='#' ng-click="petShare({shareImg:screenData.top_banner[0].img_url})"><span>공유</span></a>
+                </div>
+            </header>
+        </div>
+        <section id="container">
+             <!-- 카테고리 -->
+            <div class="">
+                <pet-mall-sub-ctg></pet-mall-sub-ctg>
+            </div>
+            <!-- //카테고리 -->
+            <div class="story_sub_cate">
+                <ul>
+                    <li 
+                            ng-repeat="item in screenData.storyTab" 
+                            ng-class="{on:categoryNo==item.disp_no}"
+                            ng-click="story_cate_click(item)"
+                            class="story{{item.index}}" >
+                            <a href="#{{item.disp_no}}"></a>
+                            <span>{{item.name}}</span>
+                    </li>
+                </ul>
+            </div>
+            <!-- 컨텐츠 리스트 영역-->
+            <pet-mall-story></pet-mall-story> 
+            <!-- //컨텐츠 리스트 영역-->        
+        </section>   
+    </section>
+</section>

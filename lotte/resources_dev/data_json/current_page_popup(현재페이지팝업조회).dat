@@ -1,0 +1,44 @@
+1. 업무명 : 현재 페이지에 노출해야할 팝업 조회
+2. 담당자 : 이형근
+3. URL : http://molocal.lotte.com/json/system/current_page_popup.json?c=mlotte&udid=&v=&cn=&cdn=&schema=&ppp_tgt_pg_cd=10
+4. 파라미터
+	- ppp_tgt_pg_cd: 팝업대상페이지코드(필수), { 10, 20, 30, 40, 50 } 
+	- testDate: 현재시간(테스트용 파라미터), yyyyMMddHHmmss, 입력될 경우 조회 기준날짜를 입력된 값으로 설정한다.
+5. JSON 파라미터
+	- ppp_sn : 팝업일련번호
+	- cookie_nm : 팝업쿠키명
+	- ppp_tit_nm : 팝업제목명
+	- win_wdth_size_val : 윈도우가로사이즈값
+	- win_lnth_size_val : 윈도우세로사이즈값
+	- win_wdth_pos_val : 윈도우가로위치값
+	- win_lnth_pos_val : 윈도우세로위치값
+	- ppp_cont : 팝업내용
+	- ppp_tp_cd : 팝업유형코드 = { 'I': 정보제공형, 'C': 쿠폰다운로드형 }
+	- ppp_img_file_path_nm : 팝업이미지파일경로명
+	- ppp_lnk_url_addr : 팝업링크URL주소
+	- ppp_prt_tp_cd : 팝업출력유형코드 = { 'F': 전체화면, 'N': 일부화면 }
+	- chl_no : 채널번호
+	- dim_proc_yn : DIM처리여부
+	- cpn_no : 쿠폰번호
+	- is_function : 자바스크립함수여부
+6. JSON
+{
+  "current_page_popup" : {
+    "ppp_sn" : 95,
+    "cookie_nm" : "NOPOPUP95",
+    "ppp_tit_nm" : "앱 다운로드 유도 수정#2 #3",
+    "win_wdth_size_val" : 0,
+    "win_lnth_size_val" : 0,
+    "win_wdth_pos_val" : 0,
+    "win_lnth_pos_val" : 0,
+    "ppp_cont" : "",
+    "ppp_tp_cd" : "I",
+    "ppp_img_file_path_nm" : "http://image.lotte.com/upload/popup/143704892806695.jpg",
+    "ppp_lnk_url_addr" : "javascript:AppExec.appExecute()",
+    "ppp_prt_tp_cd" : "N",
+    "chl_no" : 0,
+    "dim_proc_yn" : true,
+    "cpn_no" : "",
+    "is_function" : true
+  }
+}

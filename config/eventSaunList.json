@@ -1,0 +1,71 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplEventSaunList" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+	                "lotte/resources_dev/event/m/eventSaunList_container.html",
+					"lotte/resources_dev/event/m/eventSaunDetail.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/eventSaunList.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsEventSaunList" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/event/m/eventSaunList.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/eventSaunList.js"
+            }
+        },
+
+        "uglify" : {
+            "jsEventSaunList" : {
+                "src" : "lotte/resources/<%= version %>/eventSaunList.js",
+                "dest" : "lotte/resources/<%= version %>/eventSaunList.min.js"
+            },
+            "tplEventSaunList" : {
+                "src" : "lotte/resources/<%= version %>/eventSaunList.template.js",
+                "dest" : "lotte/resources/<%= version %>/eventSaunList.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssEventSaunList" : {
+                "src" : [
+	                "lotte/resources_dev/event/m/event.css",
+                    "lotte/resources_dev/sns/sns.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/eventSaunList.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanEventSaunList" : [
+                "lotte/resources/<%= version %>/eventSaunList.js",
+                "lotte/resources/<%= version %>/eventSaunList.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlEventSaunList" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "event/m/eventSaunList.html" : "event/m/eventSaunList_dev.html"
+                }
+            }
+        }
+    }
+}
+

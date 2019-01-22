@@ -1,0 +1,70 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplMallMain" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mall/tenbyten/m/mall_main_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/mall_main.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsMallMain" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mall/tenbyten/m/mall_main.js",
+                    "lotte/resources_dev/common/lotte_ngswipe.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/mall_main.js"
+            }
+        },
+
+        "uglify" : {
+            "jsMallMain" : {
+                "src" : "lotte/resources/<%= version %>/mall_main.js",
+                "dest" : "lotte/resources/<%= version %>/mall_main.min.js"
+            },
+            "tplMallMain" : {
+                "src" : "lotte/resources/<%= version %>/mall_main.template.js",
+                "dest" : "lotte/resources/<%= version %>/mall_main.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssMallMain" : {
+                "src" : [
+                    "lotte/resources_dev/tenbyten/tenbyten.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/mall_main.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanMallMain" : [
+                "lotte/resources/<%= version %>/mall_main.js",
+                "lotte/resources/<%= version %>/mall_main.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlMallMain" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mall/tenbyten/m/mall_main.html" : "mall/tenbyten/m/mall_main_dev.html"
+                }
+            }
+        }
+    }
+}
+

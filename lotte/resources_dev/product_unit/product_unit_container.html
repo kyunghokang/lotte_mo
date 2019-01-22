@@ -1,0 +1,23 @@
+<section id="productContainer" >
+	<!-- unit_list type 01 -->
+	<ol class="unit_list_01" >
+		<li ng-repeat="item in products track by $index">
+			<div class="unit_deal_01"  ng-if="item.isProduct">
+				<a href="#">
+					<p class="md_talk"><span>{{item.copy_nm}}</span></p>
+					<p class="thumb">
+						<img ng-src="{{item.img_url}}" alt="{{item.copy_nm}}" />
+						<span class="flag depart" ng-if="item.is_dept"></span>
+					</p>
+				</a>
+			</div>
+			<!-- //unit_deal_01 -->
+			<div  ng-if="item.isBanner">
+					Banner :)
+			</div>
+		</li>
+	</ol>
+	<div class="listLoading" ng-if="productListLoading">
+        <p class="loading half"></p>
+    </div>
+</section>

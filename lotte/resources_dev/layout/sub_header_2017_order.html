@@ -1,0 +1,53 @@
+<section>
+	<div class="sub_header_wrap">
+		<header id="head_sub" ng-show="subTitle" class="fixedSubHeader" ng-class="{wine: screenData.isWine && !screenData.isComm, fixedHeader: fixedHeader && subHeaderFixed && !appObj.isNativeHeader}">
+			<h2 ng-class="{search:searchCntTxt}" class="{{addCls}}">
+				<!--<span ng-if="kShopUI.dispNo != '5558814'">
+					<span class="title" ng-bind="subTitle" ></span>
+					<em ng-if="searchCntTxt" class="fixed_txt" ng-bind="searchCntTxt"></em>
+				</span>
+				<span ng-if="kShopUI.dispNo == '5558814'">
+					<style>#head_sub h2 a.noAfter:after{display:none}</style>
+					<a ng-href="/mall/spec_mall.do?{{baseParam}}&dispNo=5558814#/" class="noAfter">
+					<span class="title" ng-bind="subTitle" ></span>
+					<em ng-if="searchCntTxt" class="fixed_txt" ng-bind="searchCntTxt"></em>
+					</a>
+				</span>-->
+
+				<!-- 전문관 로고 클릭 시, 홈이동 -->
+				<span ng-if="specHeadLogoLink(subTitle)!='' && !isBrandProdList">
+					<style>#head_sub h2 a.noAfter:after{display:none}</style>
+					<a ng-href="{{specHeadLogoLink(subTitle)}}" class="noAfter">
+						<span class="title" ng-bind="subTitle" ></span>
+						<em ng-if="searchCntTxt" class="fixed_txt" ng-bind="searchCntTxt"></em>
+					</a>
+				</span>
+				<span ng-if="specHeadLogoLink(subTitle)=='' && !isBrandProdList">
+					<span class="title" ng-bind="subTitle" ></span>
+					<em ng-if="searchCntTxt" class="fixed_txt" ng-bind="searchCntTxt"></em>
+				</span>
+				<span ng-if="specHeadLogoLink(subTitle)=='' && isBrandProdList">
+					<a ng-click="brandSelectAll()">
+						<span class="title" ng-bind="subTitle" ></span>
+						<em ng-if="searchCntTxt" class="fixed_txt" ng-bind="searchCntTxt"></em>
+					</a>
+				</span>
+				<span ng-if="specHeadLogoLink(subTitle)!='' && isBrandProdList">
+					<a ng-click="brandSelectAll()">
+						<span class="title" ng-bind="subTitle" ></span>
+						<em ng-if="searchCntTxt" class="fixed_txt" ng-bind="searchCntTxt"></em>
+					</a>
+				</span>
+
+
+			</h2>
+			<p class="prev {{addCls}}" ng-if="isShowBack">
+				<a ng-click="gotoPrepage()">이전</a>
+			</p>
+			<p class="this type2" ng-if="orderSgl">
+		      <a href="#" onclick="aaaa();" class="lpoint_btn3">일반주문서</a>
+		  </p>
+		</header>
+		<!--<section id="subHeaderSpace" style="padding-top:47px;"></section>-->
+	</div>
+</section>

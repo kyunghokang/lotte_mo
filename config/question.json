@@ -1,0 +1,71 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplquestion" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+					"lotte/resources_dev/custcenter/m/write_box.html",
+					"lotte/resources_dev/custcenter/m/order_pop.html",
+					"lotte/resources_dev/custcenter/m/question_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/question.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsquestion" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/custcenter/m/question.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/question.js"
+            }
+        },
+
+        "uglify" : {
+            "jsquestion" : {
+                "src" : "lotte/resources/<%= version %>/question.js",
+                "dest" : "lotte/resources/<%= version %>/question.min.js"
+            },
+            "tplquestion" : {
+                "src" : "lotte/resources/<%= version %>/question.template.js",
+                "dest" : "lotte/resources/<%= version %>/question.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssquestion" : {
+                "src" : [
+                    "lotte/resources_dev/custcenter/m/question.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/question.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanquestion" : [
+                "lotte/resources/<%= version %>/question.js",
+                "lotte/resources/<%= version %>/question.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlquestion" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "custcenter/m/question.html" : "custcenter/m/question_dev.html"
+                }
+            }
+        }
+    }
+}
+

@@ -1,0 +1,37 @@
+<section id="container">
+    <!-- contents -->
+
+    <section class="prod_inquiry">
+		<div class="noData" ng-if="empty">
+			<p>문의 내역이 없습니다.</p>
+		</div>
+        <div class="list">
+            <ol class="qna">
+                <li ng-repeat="productQuest in productQuestList track by $index">
+                    <a ng-href="{{getMylotteReinquiryDetailUrl($index)}}" ng-click="linkToDetail($index, $event)">
+                        <p class="thumb"><img ng-src="{{productQuest.img_url}}" alt="" /></p>
+                        <p class="title">
+                            <span class="name elli">{{productQuest.goods_nm}}</span>
+                            <span class="txt elli">{{productQuest.inq_ans_cont}}</span>
+                            <span class="date elli">{{productQuest.inq_mk_dtime.substring(0, 10)}}</span>
+                        </p>
+                        <p class="state" ng-show="productQuest.proc_fin">
+                            <span class="a02">답변보기</span>
+                        </p>
+                        <p class="state" ng-show="!productQuest.proc_fin">
+                            <span class="a01">답변준비중</span>
+                        </p>
+                    </a>
+                </li>
+            </ol>
+            <div class="list_more" ng-hide="currentRows >= totalRows" ng-click="getList()">
+            	<a><strong>더보기</strong> <span>({{currentRows}}/{{totalRows}})</span></a>
+            </div>
+		    <div class="listLoading" ng-show="isShowLoadingImage">
+		    	<p class="loading half"></p>
+		    </div>
+            <p class="custcenter_info"><a href="tel:1577-1110"><img ng-src="http://image.lotte.com/lotte/mo2015/angular/mylotte/prod_inquiry_custcenter_info_dc.jpg"></a></p><!--2016.04.28 수정-->
+        </div>
+    </section>
+    <!-- //contents -->
+</section>

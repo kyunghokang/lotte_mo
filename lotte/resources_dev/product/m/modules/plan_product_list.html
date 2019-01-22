@@ -1,0 +1,42 @@
+<div class="detail_base_wrap plan_prod_list div_line_b10"> <!--기획전형 상품리스트-->
+	<div ng-if="pageUI.data.planPrdInfo != null">
+
+		<div id="planPrdTopHtml" class="top_html detailLayout" ng-if="pageUI.data.planPrdInfo.topHtml"></div>
+
+		<div class="tit_wrap">
+			<p class="detail_tit">상품 자세히보기</p>
+			<p>각 상품을 터치하면 더 자세한 내용을 볼 수 있습니다.</p>
+		</div>
+	
+		<ul class="prod_list">
+			<li ng-repeat="item in pageUI.data.planPrdInfo.prdList.items" ng-class="{soldout:item.soldOutYn}">
+				<div ng-click="planProductDetailView(item.goodsNo); sendTclick('m_RDC_ProdDetail_Clk_PlanPrd'+ idxSetDigit($index+1)); logGAEvtPrdView('기획전형상품',idxSetDigit($index+1),item.goodsNo);">
+					<span class="flag_num" ng-class="{recom:$index < 4 && pageUI.data.planPrdInfo.prdList.items.length >= 10}"><span class="tit">추천</span><em>{{$index+1}}</em></span>
+					<span class="thumb cover" ng-class="{play_btn_on:item.wecandeoVodUrl, smartpick:item.smpDispYn}">
+						<img ng-src="{{item.imgUrl}}">
+						<span class="play_btn">&nbsp;</span>
+					</span>
+					<div class="info_wrap">
+						<span class="prod_tit">{{item.goodsNm}}</span>
+						<span class="price_wrap">
+							<span class="price">{{item.price | currency:'':0}}<em>원</em></span>
+							<span class="discount" ng-if="item.saleRate > 0">{{item.saleRate}}%</span>
+						</span>
+						<div class="score_wrap">
+							<span class="starScoreWrap" ng-if="item.gdasCnt > 0"><span class="starScoreCnt" style="width:{{item.gdasStfdVal|starScorePolicy:100}}%"></span></span>
+							<span class="review" ng-if="item.gdasCnt > 0">({{item.gdasCnt|number}})</span>
+						</div>
+					</div>
+				</div>
+				<div class="btn_wrap">
+					<span class="benefit"><a ng-click="planBenefitClick(item.goodsNo,'m_RDC_ProdDetail_Clk_PlanPrd_benefit');logGAEvtPrdView('기획전형상품','혜택보기_' + idxSetDigit($index+1));">혜택보기</a></span>
+					<span class="addcart"><a ng-click="addCartClick(item.goodsNo); logGAEvtPrdView('기획전형상품','장바구니_' + idxSetDigit($index+1));">장바구니</a></span>
+				</div>
+			</li>
+			<li class="blank" ng-if="pageUI.data.planPrdInfo.prdList.items.length % 2 == 1"></li>
+		</ul>
+
+		<div id="planPrdBottomHtml" class="bottom_html detailLayout" ng-if="pageUI.data.planPrdInfo.bottomHtml"></div>
+
+	</div>
+</div>

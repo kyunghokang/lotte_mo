@@ -1,0 +1,70 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplMitouStoryDetail" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/mall/pet/mitou_story_detail_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/mitou_story_detail.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsMitouStoryDetail" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/common/lotte_ngswipe.js",
+					"lotte/resources_dev/mall/pet/mitou_story_detail.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/mitou_story_detail.js"
+			}
+		},
+
+		"uglify" : {
+			"jsMitouStoryDetail" : {
+				"src" : "lotte/resources/<%= version %>/mitou_story_detail.js",
+				"dest" : "lotte/resources/<%= version %>/mitou_story_detail.min.js"
+			},
+			"tplMitouStoryDetail" : {
+				"src" : "lotte/resources/<%= version %>/mitou_story_detail.template.js",
+				"dest" : "lotte/resources/<%= version %>/mitou_story_detail.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssMitouStoryDetail" : {
+				"src" : [
+				    "lotte/resources_dev/mall/pet/dearpet.css",
+					"lotte/resources_dev/mall/pet/mitou_story_detail.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/mitou_story_detail.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanMitouStoryDetail" : [
+				"lotte/resources/<%= version %>/mitou_story_detail.js",
+				"lotte/resources/<%= version %>/mitou_story_detail.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlMitouStoryDetail" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"mall/pet/mitou_story_detail.html" : "mall/pet/mitou_story_detail_dev.html"
+				}
+			}
+		}
+	}
+}

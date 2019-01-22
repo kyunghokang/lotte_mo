@@ -1,0 +1,1469 @@
+<section class="srh_result_wrap cont_minheight" ng-show="contVisible"
+	ng-class="{
+		hideRelatedKeyword : uiStateObj.ageGenderSearched==false && (uiStateObj.relatedKeywordEnabled==false || uiStateObj.relatedKeywordNotEmpty==false),
+		andr_chrm : searchUISetting.isAndroidChrome
+	}">
+
+    <!-- 검색 결과 있음/-->
+    <section class="result_wrap" ng-if="!uiStateObj.emptyResult">
+
+        <!-- 추천검색어 /-->
+        <section recom-link class="recom_lnk" ng-if="srhResultData.recomLink && srhResultData.recomLink.label">
+            <h3>추천</h3>
+            <article><a ng-click="goRecomLink($event)">{{srhResultData.recomLink.label}}</a></article>
+        </section>
+        <!--/ 추천검색어 -->
+
+        <!-- 결과내키워드 /-->
+        <div class="reated_keyword" ng-if="(uiStateObj.ageGenderSearched == false && uiStateObj.relatedKeywordNotEmpty && uiStateObj.relatedKeywordEnabled && uiStateObj.voiceSearch == false)">
+        	<div ng-if="appObj.isIpad==true"><!-- iPad 스와이프 딜레이 버그 대응 -->
+	        	<div id="relatedKeywordSlider" ng-if="(srhResultData.reatedKeyword.length > 0) || (srhDetailData.srhTerms.super && uiStateObj.superBrnShowFlag)" class="scroll_wrap ipad_slider">
+					<ul>
+						<li ng-repeat="item in srhResultData.reatedKeyword track by $index">
+	        				<a ng-click="addRequeryKeyword(item, 'Y', $index)">{{item}}</a>
+	        			</li><li class="searchRelatedkw"><label for="rekeyword_pop" ng-click="showRelatedKWPopup()"><a>결과 내 검색</a></label></li>
+	        		</ul>
+	        	</div>
+        	</div>
+        	<div ng-if="appObj.isIpad==false"><!-- 비iPad 슬라이더 적용 -->
+	        	<div id="relatedKeywordSlider" lotte-slider ng-if="(srhResultData.reatedKeyword.length > 0) || (srhDetailData.srhTerms.super && uiStateObj.superBrnShowFlag)" class="scroll_wrap other_slider">
+					<ul>
+	        			<li ng-repeat="item in srhResultData.reatedKeyword track by $index">
+	        				<a ng-click="addRequeryKeyword(item, 'Y', $index)">{{item}}</a>
+	        			</li><li class="searchRelatedkw"><label for="rekeyword_pop" ng-click="showRelatedKWPopup()"><a>결과 내 검색</a></label></li>
+	        		</ul>
+	        	</div>
+        	</div>
+        </div>
+
+		<div ng-if="!uiStateObj.emptyKeyword && !uiStateObj.initFlag">
+			<div ng-if="uiStateObj.ageGenderSearched==false" class="srh_temrs_area">
+		        <section search-filter-layer class="srh_terms_wrap">
+					<div class="left">전체 <em>{{srhResultData.tCnt|number}}</em>개</div>
+		        	<div class="right">
+						<span class="unit_listType type1" ng-click="changeTemplate('search_list_2017');" ng-show="templateType2=='search_image_2017'"></span>
+						<span class="unit_listType type2" ng-click="changeTemplate('search_image_2017');" ng-show="templateType2=='search_list_2017'"></span>
+						<a ng-click="showHideSortPop(true)" class="sort"><span>{{uiStateObj.sortTypeArr[uiStateObj.sortTypeIdx].shortLabel}}</span></a>
+						<a ng-click="showHideSideSearch()" class="filter" ng-class="{disabled:!uiStateObj.detailSearchDataLoaded, on:checkResetDisabled()}"><span>필터</span></a>
+		        	</div>
+		        </section>
+		        <!--/ 검색 필터 -->
+
+        		<!-- 오탈자 -->
+		        <div class="autoCorrection" ng-if="srhResultData.orgKeyword">
+		        	<div class="org">'<em>{{postParams.keyword}}</em>'(으)로 자동변환한 검색결과 입니다.</div>
+		        	<div class="cor"><a ng-click="searchByOriginalKeyword()">'<em>{{srhResultData.orgKeyword}}</em>'(으)로 검색결과 보기</a></div>
+		        </div>
+	        </div>
+
+	        <!-- 성별연력 모아보기 펼침 -->
+	        <!-- <div class="ageGndGrp ageGndOpen" ng-if="uiStateObj.ageGenderSearched==true">
+		        <h4><em ng-if="postParams.keyword && postParams.keyword != ''">'{{srhResultData.keyword}}' </em>인기 상품 모아보기</h4>
+		        <div>남녀 세대별 인기상품을 모아보세요!</div>
+				<ul>
+					<li ng-repeat="item in srhResultData.ageGndrGrpLst track by $index"
+						ng-class="{fm:item.gender=='F', ml:item.gender=='M', dim:(item.age+','+item.gender)!=postParams.pop}"
+						ng-click="setAgeGender(item, $index, 2)"><span>{{item.age}}</span></li>
+				</ul>
+				<a ng-click="setAgeGender(null, 0, 3)" class="cancelBtn">취소</a>
+	        </div> -->
+	        <!-- 성별연력 모아보기 펼침 -->
+        </div>
+
+		<div class="listWrap" ng-class="{templateTypeImage:templateType2=='search_image_2017'}">
+			<!-- 검색결과 상품 상단/-->
+			<div ng-controller="productCtrl" ng-show="srhResultData.tCnt" class="productControlWrap">
+
+				<!-- 텍스트 배너 추가 2018 -->
+				<!-- #kyungho
+				<div ng-if="srhResultData.advtTxtBnrInfo" class="advTextBanner">
+					<a ng-click="gotoURL(srhResultData.advtTxtBnrInfo.linkUrl, {tclick:srhResultData.advtTxtBnrInfo.tclick})">
+						<span class="advtb_img"><img ng-src="{{srhResultData.advtTxtBnrInfo.imgUrl}}" /></span>
+						<span class="advtb_txt">
+							<span class="subtitle">{{srhResultData.advtTxtBnrInfo.title}}</span>
+							<span class="title">{{srhResultData.advtTxtBnrInfo.subTitle}}</span>
+						</span>
+					</a>
+				</div> 
+				-->
+				<!-- 텍스트 배너 추가 2018 -->
+
+				<!-- 딜상품 리스트 - 스와이프형/-->
+	            <div class="deal_prdlst" ng-controller="lotteNgSwipeCtrl" ng-if="uiStateObj.ageGenderSearched==false && checkDealListShow()">
+	            	<div class="srh_subtitle">'{{srhResultData.keyword}}' 빅딜 인기 상품</div>
+	                <div class="deal_swipe_wrap" ng-controller="productCtrl">
+	                    <div product-container template-type="swipe_deal" products="prdDealList" tclick="m_DC_SrhResult_Clk_Bigdeal_idx"></div>
+	                </div>
+	            </div>
+				<!-- /딜상품 리스트 - 스와이프형-->
+
+				<!-- s: unit list area -->
+				<div class="unitWrap" ng-if="srhResultData.listMid2 && srhResultData.listMid2.length > 0">
+					<div product-container
+                        template-type="search_image_2017"
+                        templatetype="templateType2"
+                        total-count="srhResultData.tCnt"
+                        srh-keyword="srhResultData.keyword"
+                        products="srhResultData.listMid2"></div>
+	            </div>
+				
+				<!-- 롯데슈퍼 검색배너 -->
+	            <div class="ldBanner" ng-if="srhDetailData.srhTerms.super && uiStateObj.superBrnShowFlag"><!-- ng-if 슈퍼플래그 값으로 구분할지 결정 -->
+					<a ng-click="lsSearchLink(srhResultData.keyword)" class="anchor">
+						<span class="ftType1">가장신선한 상품을 오늘 배송받는</span>
+						<span class="ftType2">{{srhResultData.keyword | superCutTxt}}<em ng-repeat="item in postParams.reQuery" ng-if="item.indexOf('오늘장보기') < 0">&nbsp;{{item}}</em></span> <span class="ftType3">장보기</span>
+					</a>
+				</div>
+				<!-- //롯데슈퍼 검색배너 -->
+
+				<!-- 기획전형 상품 20180307 박해원 -->
+				<search-plan-shop></search-plan-shop>
+				
+				<div class="unitWrap" ng-if="srhResultData.listMid3 && srhResultData.listMid3.length > 0">
+					<div product-container
+                        template-type="search_image_2017"
+                        templatetype="templateType2"
+                        total-count="srhResultData.tCnt"
+                        srh-keyword="srhResultData.keyword"
+                        products="srhResultData.listMid3"></div>
+	            </div>
+
+	            <div ng-if="uiStateObj.ageGenderSearched==false && srhResultData.relatedKeyword && srhResultData.relatedKeyword.length > 0"
+	            	class="list_related_keyword">
+					<div class="srh_subtitle">'{{srhResultData.keyword}}'연관 검색어</div>
+					<ul>
+						<!-- 검색키워드만 하이라이트 되야함 ckh -->
+						<li ng-repeat="rekey in srhResultData.relatedKeyword" ng-if="$index < 10"><a ng-click="goSearch(rekey.keyword, 'm_RDC_SrhResult_Clk_relatedkwd_inx'+numberFill(($index+1),3))"><span ng-bind-html="relationKeyword(rekey.keyword)"></span></a></li>
+						<!-- //검색키워드만 하이라이트 되야함 ckh -->
+					</ul>
+				</div>
+
+	            <div class="advBanner" ng-if="uiStateObj.ageGenderSearched==false && srhResultData.advtBnrLst && srhResultData.advtBnrLst.items && srhResultData.advtBnrLst.items.length > 0">
+					<div class="srh_subtitle">'{{srhResultData.keyword}}' 볼 만한 기획전</div>
+					<div class="advBanWrap">
+						<div class="unit unit_bn_promo typeB" ng-if='srhResultData.advtBnrLst.items.length == 1'>
+							<ul class="fclear swipeBox">
+								<li>
+									<a ng-click="advBnrLink(srhResultData.advtBnrLst.items[0].linkUrl, $index)">
+										<span class="img"><img ng-src="{{srhResultData.advtBnrLst.items[0].imgUrl}}" /></span>
+										<div class="bnrTit">
+											<span class="tit" ng-bind-html="srhResultData.advtBnrLst.items[0].title"></span><br />
+											<span class="sbt">{{srhResultData.advtBnrLst.items[0].subTitle}}</span>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="unit unit_bn_promo typeB" ng-if='srhResultData.advtBnrLst.items.length > 1' roll-swipe-banner rolling="true" width320="1" width640="1" width900="1" interval="300000" endfnc="swipeEnd">
+							<ul class="fclear swipeBox">
+								<li ng-repeat="item in srhResultData.advtBnrLst.items track by $index" ng-if="srhResultData.advtBnrLst.items.length > 1">
+									<a ng-click="advBnrLink(item.linkUrl, $index)">
+										<span class="img"><img ng-src="{{item.imgUrl}}" /></span>
+										<div class="bnrTit">
+											<span class="tit" ng-bind-html="item.title"></span><br />
+											<span class="sbt">{{item.subTitle}}</span>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="paging-num" ng-if="srhResultData.advtBnrLst.items.length > 1">
+			                <span class="numWrap"><span class="currentNum">{{advtBnrLstSwipeIdx}}</span>/<span class="totalNum">{{srhResultData.advtBnrLst.items.length}}</span></span>
+			            </div><!-- //기획전3개 이상일때 스와이프 숫자 인디케이터 노출 ckh -->
+					</div>
+	            </div><!-- //갯수 1개여도 스와이프 되고 리피트 영역 사라짐 -->
+
+				<div class="unitWrap" ng-if="srhResultData.listRest && srhResultData.listRest.length > 0">
+					<div product-container
+						template-type="search_image_2017" 
+                        templatetype="templateType2"
+                        total-count="srhResultData.tCnt"
+                        srh-keyword="srhResultData.keyword"
+                        products="srhResultData.listRest"></div>
+	            </div>
+
+			    <!-- 실시간 맞춤 추천 상품 데이터 추가 -->
+			    <section recom-data class="recommond_wrap2"
+			    	ng-show="uiStateObj.ageGenderSearched==false && srhResultData.prdLst.items.length < 5 && tpmlData.recommondData.items.length > 0"></section>
+
+			    <section class="blankCd{{moduleData.blankCd}}">
+					<!--M30	추천 상품 일반형-->
+					<div class="moduleCon" ng-if="prdData.prdList.items.length > 2">
+						<div class="gTop_title">
+							<p><em ng-if="loginInfo.isLogin"><strong>{{loginInfo.name}}님</strong>을 위한 </em>{{prdData.txt}}</p>
+						</div>
+						<div  lotte-slider class="swipe_wrap" ng-if="prdData.prdList.items.length > 0">
+							<ul class="prd_unit_type01_line">
+								<li ng-repeat="item in prdData.prdList.items">
+									<a ng-click="mainProductClick(item.goodsNo, moduleData.tclick + '_Swp_Prd'+numberFill(($index+1),2) + '&_reco=M_main_' + rScope.pageUI.curDispNo)">
+										<div class="imageCon">
+											<img ng-src="{{item.imgUrl}}" alt="" />
+											<!-- <span class="rkNum">{{$index + 1}}</span>  -->
+										</div>
+										<div class="titleCon">
+											<div class="name">{{item.goodsNm}}</div>
+											<div class="ti"><strong>{{item.price | number}}</strong>원<em ng-if="item.isPlanPrd">~</em></div>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+	        </div>
+            <!-- e: unit list area -->
+		</div>
+    </section>
+    <!--/ 검색 결과 있음 -->
+    <!-- 검색 결과 없음 /-->
+    <section class="empty_result_wrap" ng-if="uiStateObj.emptyResult && !uiStateObj.emptyKeyword" ng-class="{voice:uiStateObj.voiceSearch==true}">
+    	<div ng-if="uiStateObj.voiceSearch==false">
+	        <section search-filter-layer class="srh_terms_wrap" ng-if="checkResetDisabled()">
+				<div class="left">전체 <em>{{srhResultData.tCnt|number}}</em>개</div>
+	        	<div class="right">
+					<span class="unit_listType type1" ng-click="changeTemplate('search_list_2017');" ng-show="templateType2=='search_image_2017'"></span>
+					<span class="unit_listType type2" ng-click="changeTemplate('search_image_2017');" ng-show="templateType2=='search_list_2017'"></span>
+					<a ng-click="showHideSortPop(true)" class="sort"><span>{{uiStateObj.sortTypeArr[uiStateObj.sortTypeIdx].shortLabel}}</span></a>
+					<a ng-click="showHideSideSearch()" class="filter" ng-class="{disabled:!uiStateObj.detailSearchDataLoaded, on:checkResetDisabled()}"><span>필터</span></a>
+	        	</div>
+		    </section>
+	        <!-- 검색 결과 없음 20160708 문구변경 /-->
+	        <section class="empty_result" ng-class="{hasfilter:checkResetDisabled()}">
+	            <p class="result">
+		            <span class="error_keyword">'{{srhResultData.keyword}}'<i ng-repeat="item in postParams.reQuery">&nbsp;{{item}}</i></span>
+		            <strong>
+		            	<em ng-if="checkResetDisabled()">필터링</em>
+		            	<em ng-if="!checkResetDisabled()">검색</em>
+		            	결과가 없습니다.
+		            </strong>
+	            </p>
+	        </section>
+	        <!-- 20180306 스마트픽 검색실패 페이지 코너추가 -->
+	        <!-- <section class="empty_result smartpick" ng-if="srhResultData.smpBanner.imgUrl && srhResultData.smpBanner.linkUrl">
+	            <p class="result"><strong>검색된 상품이 없습니다.<br/><span class="error_keyword">스마트픽</span> 상품 찾으세요?</strong></p>
+				<div class="smartpick_banner">
+					<a ng-href="{{baseLink(srhResultData.smpBanner.linkUrl)}}" ng-link3d-touch><img ng-src="{{srhResultData.smpBanner.imgUrl}}"></a>
+				</div>
+	        </section> -->
+	        <!-- 20180306 스마트픽 검색실패 페이지 코너추가 -->
+	        <!--/ 검색 결과 없음 -->
+	        
+	        <!-- 검색실패 코너 신규 -->
+			<!-- 텍스트 배너 -->
+			<div ng-if="srhResultData.advtTxtBnrInfo" class="advTextBanner">
+				<a ng-click="gotoURL(srhResultData.advtTxtBnrInfo.linkUrl, {tclick:srhResultData.advtTxtBnrInfo.tclick})">
+					<span class="advtb_img"><img ng-src="{{srhResultData.advtTxtBnrInfo.imgUrl}}" /></span>
+					<span class="advtb_txt">
+						<span class="subtitle">{{srhResultData.advtTxtBnrInfo.title}}</span>
+						<span class="title">{{srhResultData.advtTxtBnrInfo.subTitle}}</span>
+					</span>
+				</a>
+			</div>
+			<!-- 텍스트 배너 -->
+			<!-- 이미지 배너 -->
+            <div class="advBanner" ng-if="srhResultData.advtBnrLst.items.length > 0">
+				<div class="srh_subtitle">'{{srhResultData.keyword}}' 볼 만한 기획전</div>
+				<div class="advBanWrap" ng-if="srhResultData.advtBnrLst.items.length == 1">
+					<div class="unit unit_bn_promo typeB">
+						<ul class="fclear swipeBox">
+							<li>
+								<a ng-click="advBnrLink(srhResultData.advtBnrLst.items[0].linkUrl, $index)">
+									<span class="img"><img ng-src="{{srhResultData.advtBnrLst.items[0].imgUrl}}" /></span>
+									<div class="bnrTit">
+										<span class="tit" ng-bind-html="srhResultData.advtBnrLst.items[0].title"></span><br />
+										<span class="sbt">{{srhResultData.advtBnrLst.items[0].subTitle}}</span>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="advBanWrap" ng-if="srhResultData.advtBnrLst.items.length > 1">
+					<div class="unit unit_bn_promo typeB" roll-swipe-banner rolling="true" width320="1" width640="1" width900="1" interval="300000" endfnc="swipeEnd">
+						<ul class="fclear swipeBox">
+							<li ng-repeat="item in srhResultData.advtBnrLst.items track by $index" ng-if="srhResultData.advtBnrLst.items.length > 1">
+								<a ng-click="advBnrLink(item.linkUrl, $index)">
+									<span class="img"><img ng-src="{{item.imgUrl}}" /></span>
+									<div class="bnrTit">
+										<span class="tit" ng-bind-html="item.title"></span><br />
+										<span class="sbt">{{item.subTitle}}</span>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="paging-num">
+		                <span class="numWrap"><span class="currentNum">{{advtBnrLstSwipeIdx}}</span>/<span class="totalNum">{{srhResultData.advtBnrLst.items.length}}</span></span>
+		            </div>
+				</div>
+            </div>
+			<!-- 이미지 배너 -->
+	        <!-- 검색실패 코너 신규 -->
+            
+
+	        <!-- 오탈자 /-->
+	        <section class="miss_keyword" ng-if="srhResultData.missKeyword && srhResultData.missKeyword.keyword && srhResultData.missKeyword.keyword != ''">
+	            <a ng-click="goSearch(srhResultData.missKeyword.keyword, 'M_SEARCH_FAIL')">
+	                <h3>혹시 이 단어를 찾으셨나요?</h3>
+	                <div class="result">{{srhResultData.missKeyword.keyword}}<span class="desc">(검색결과 {{srhResultData.missKeyword.cnt | number}}개)</span><span class="btn_result">결과보기</span></div>
+	            </a>
+	        </section>
+	        <!--/ 오탈자 -->
+			<!-- 실시간 맞춤 추천 상품 데이터 추가 -->
+		    <section recom-data class="recommond_wrap2" ng-show="tpmlData.recommondData.items.length > 0"></section>
+	        <!-- 급상승 검색어 /-->
+	        <section fav-lst class="favlst">
+	            <h3>인기검색어</h3>
+	            <ul>
+	                <li ng-repeat="item in srhResultData.favLst.items"><a ng-click="goSearch(item.keyword, 'm_RDC_search_fail_Clk_' + numberFill(($index+1),2))"><span class="no">{{$index + 1}}</span>{{item.keyword}}</a></li>
+	            </ul>
+	        </section>
+	        <!--/ 급상승 검색어 -->
+	    </div>
+	    <div ng-if="uiStateObj.voiceSearch" class="empty_voice_warp">
+	    	<div class="result_text">
+	    		<div class="keyword" ng-bind-html="srhResultData.keyword"></div>
+	    		<div>검색 결과가 없습니다.</div>
+	    		<div class="retry">다시 한번 말씀해 주세요</div>
+	    	</div>
+	    	<div class="result_button">
+	    		<a ng-click="openSpeechSearch()">다시 검색</a>
+	    	</div>
+            <!-- 20160711 실시간 맞춤 추천 상품 데이터 -->
+		    <section class="recommond_wrap">
+		        <div class="title">
+		            <h3>이런상품 어떠세요?</h3>
+		        </div>
+		        <div class="recommond_swipe" ng-controller="lotteNgSwipeCtrl" recom-data>
+			        <ul lotte-ng-list-swipe swipe-slide-item="true" swipe-list-model="tpmlData.recommondData.items" swipe-disp-count="3" swipe-max-ratio="0.2" swipe-min-distance="40" >
+			            <li ng-repeat="item in tpmlData.recommondData.items track by $index">
+		                   <a ng-click="gotoLinkM('&_reco=M_search',{{$index + 1}}, 0, item)">
+		                       <div class="imageCon">
+		                           <img ng-src="{{item.img_url}}">
+		                       </div>
+		                       <div class="titleCon">
+		                           <div class="name">{{item.goods_nm}}</div>
+		                           <div class="t1"><b>{{item.sale_price | number}}</b>원<em ng-if="item.is_plan_prod" class="plan_prod_limit">~</em></div>
+		                       </div>
+		                   </a>
+			            </li>
+			        </ul>
+			        <section class="page">
+		               <div ng-repeat="item in swipeBullet" ng-class="{on:$index == (swipeIdx/3)}"><span>{{$index+1}}</span></div>
+		            </section>
+		           </div>
+		    </section>
+		    <!-- //실시간 맞춤 추천 상품 데이터 -->
+	    </div>
+    </section>
+    <!--/ 검색 결과 없음 -->
+
+
+
+	<!-- 기획전형 상품 - 검색결과 없고 딜전용만 있는 경우 -->
+	<div ng-if="uiStateObj.planShopOnly">
+		<search-plan-shop></search-plan-shop>
+		<!-- 실시간 맞춤 추천 상품 데이터 추가 -->
+	    <section recom-data class="recommond_wrap2" ng-show="tpmlData.recommondData.items.length > 0"></section>
+	</div>
+	
+	<section class="noData" ng-if="!srhResultData.prdLst.tcnt && ! isShowLoading && !uiStateObj.emptyResult && !uiStateObj.planShopOnly">
+		해당하는 상품이 없습니다.
+	</section>
+	
+	<scroll-count></scroll-count>
+    <loading-bar></loading-bar>
+    <!-- 20160108 검색만족도 . 김응 -->
+    <div class="survey" ng-class="{bottom:srhResultData.tCnt < 30, noprod:survey_noprod_stat}"
+    	xxx-ng-if="uiStateObj.ageGenderSearched==false && !(uiStateObj.emptyResult && !uiStateObj.emptyKeyword) && uiStateObj.voiceSearch==false"
+    	ng-if="uiStateObj.ageGenderSearched==false && uiStateObj.voiceSearch==false">
+		<div class="surveyBox">
+			<div class="caseA" ng-class="{hide:survey_state != 0}">
+				<p class="title"><em>"</em><strong><span></span> <var></var></strong><em>" 검색결과 어떠셨어요?</em></p>
+				<div class="button">
+					<a class="no mg" ng-click="survey_check(1, '')">아쉬워요</a>
+					<a class="good"  ng-click="survey_check(2, '좋아요!')">좋아요</a>
+				</div>
+			</div>
+			<div class="caseB" ng-class="{hide:survey_state != 1}">
+				<div class="caseB1">
+					<p class="title">아쉬운 점을 롯데닷컴에 보내주세요!</p>
+					<div class="button">
+						<a class="no mg subbt" ng-click="survey_check(3, '찾는브랜드 없음')">찾는브랜드 없음</a>
+						<label class="no subbt" for="survey_noprd_ta" ng-click="survey_noprod()" xxx-ng-click="survey_check(4, '찾는상품 없음')">찾는상품 없음</label>
+						<a class="no mg subbt"  ng-click="survey_check(5, '관련없는 상품')" ng-if="!noSearchKeywordFlag">관련없는 상품</a>
+					</div>
+				</div>
+				<div class="caseB2">
+					<p class="title">찾으시는 상품을 보내주세요!</p>
+					<div class="text"><textarea class="survey_noprd_ta" ng-model="survey_noprd_ta" placeholder="의견 하나하나 귀기울여 듣겠습니다."></textarea></div>
+					<div class="button">
+						<a class="no mg" ng-click="survey_check(4, '')">다음에 할게요</a>
+						<a class="good" ng-click="survey_noprod_send()" ng-class="{on:survey_noprd_ta.length > 0}">보내기</a><!-- //내용 입력시 버튼 활성화 클래스: on -->
+					</div>
+				</div>
+			</div>
+			<div class="caseC" ng-class="{hide:survey_state < 3}">
+				<img src="http://image.lotte.com/lotte/mo2017/search/survey_icon1.png">
+				<p class="title2">고맙습니다!</p>
+				<p class="title3">소중한 의견에 감사드립니다.</p>
+			</div>
+			<div class="caseC type2" ng-class="{hide:survey_state != 2}">
+				<img src="http://image.lotte.com/lotte/mo2017/search/survey_icon1.png">
+				<!--http://image.lotte.com/ellotte/mo2015/angular/common/survey_icon1-1.png-->
+				<p class="title2">고맙습니다!</p>
+				<p class="title3">언제나 노력하는 롯데닷컴이 되겠습니다.</p>
+			</div>
+        </div>
+    </div>
+
+    <!-- 상세검색 사이드바 -->
+    <div class="side_search_wrap" ng-class="{on:searchUISetting.isShowSideBar, sub:searchUISetting.isShowSub}" ng-if="uiStateObj.detailSearchDataLoaded">
+		<div class="ssw_header">
+			<div class="ssw_header1">
+				<div class="cropview">
+					<a class="ssw_title main" ng-click="hideSubSearch()"><em>필터</em></a>
+					<span class="ssw_title sub">{{searchUISetting.title}}</span>
+				</div>
+				<a ng-click="closeSidebarBtnClk()" class="ssw_close">close</a>
+			</div>
+			<div class="ssw_header2">
+				<span>검색결과 <em>{{srhResultData.tCnt|number}}</em>개</span>
+				<a class="reset_all" ng-click="resetAllSearchTerm()"
+					ng-hide="searchUISetting.slide=='research'"
+					ng-class="{disabled:!checkResetDisabled()}">초기화</a>
+				<a class="category" ng-if="searchUISetting.slide=='category' && srhResultData.ctgLst.items && srhResultData.ctgLst.items.length > 0" ng-click="srhFilterCtgInit(true);searchTclick2016('Cate_ALL')" ng-class="{selected:checkCategoryAllBtn()}">
+					전체 총 <em>{{srhResultData.ctgLst.items.length | number}}</em>개 카테고리
+				</a>
+			</div>
+		</div>
+		<div class="ssw_content">
+			<div class="ssw_slide main">
+				<ul>
+					<!-- CATEGORY -->
+					<li class="foldable_tab category" ng-class="{opened:foldable.category=='category', disabled:!(srhResultData.ctgLst.items && srhResultData.ctgLst.items.length > 0)}">
+						<div class="ftwrap">
+							<a ng-click="showSubSearch($event)" data-slide="category" data-label="카테고리">
+								<span class="title">카테고리</span>
+								<!-- <span class="detail">{{uiStateObj.selectedCategory.ctgName}}</span> -->
+								<span class="detail cate"><em ng-repeat="nm in uiStateObj.selectedCategory.ctgName">{{nm}}</em></span>
+							</a>
+						</div>
+					</li>
+					<li class="foldable category" ng-if="foldable.category=='category'">
+						<div>
+							<!-- 1뎁스 대대카 -->
+							<ul class="cate_d1 openable" ng-if="srhResultData.ctgLst.items && srhResultData.ctgLst.items.length > 0">
+								<!-- <li class="nochild total" ng-class="{selected:uiStateObj.selectedCategory.ctgName==''}">
+									<a><em>전체</em> (총 {{srhResultData.ctgLst.items.length | number}}개 카테고리)</a>
+								</li> -->
+								<li ng-repeat="ctg1 in srhResultData.ctgLst.items track by $index"
+									ng-if="uiStateObj.selectedCategory.depth1 == null || uiStateObj.selectedCategory.depth1 == ctg1.ctgNo"
+									ng-class="{selected:uiStateObj.selectedCategory.depth1 == ctg1.ctgNo}"
+									id="ctg_{{ctg1.ctgNo}}" data-name="{{ctg1.ctgName}}" data-no="{{ctg1.ctgNo}}" data-depth="0">
+									<a class="ctgName" ng-click="categoryItemClick($event, ctg1, ctg1)">
+										{{ctg1.ctgName}}
+										<em ng-if="ctg1.mall && ctg1.mall != ''">({{ctg1.mall}})</em>
+									</a>
+									<a class="ctgBtn" ng-click="deselectCategory(1, ctg1)"></a>
+									<!-- 2뎁스 대카 -->
+									<ul class="cate_d2 openable" ng-if="uiStateObj.selectedCategory.depth1 == ctg1.ctgNo && ctg1.subCtgLst.items.length > 0">
+										<li ng-repeat="ctg2 in ctg1.subCtgLst.items track by $index" id="ctg_{{ctg2.ctgNo}}"
+											ng-if="uiStateObj.selectedCategory.depth2 == null || uiStateObj.selectedCategory.depth2 == ctg2.ctgNo"
+											data-name="{{ctg2.ctgName}}" data-no="{{ctg2.ctgNo}}" data-depth="1" data-mall="{{ctg2.mall}}"
+											ng-class="{selected:uiStateObj.selectedCategory.depth2 == ctg2.ctgNo}">
+											<a class="ctgName" ng-click="categoryItemClick($event, ctg2, ctg1, ctg2)">
+												{{ctg2.ctgName}}
+												<em ng-if="ctg2.mall && ctg2.mall != ''">({{ctg2.mall}})</em>
+												<em class="count">({{ctg2.cnt | number}})</em>
+											</a>
+											<a class="ctgBtn" ng-click="deselectCategory(2, ctg1, ctg2)"></a>
+											<!-- 3뎁스 중카 -->
+											<ul class="cate_d3 openable" ng-if="uiStateObj.selectedCategory.depth2 == ctg2.ctgNo && ctg2.subCtgLst.items.length > 0">
+												<li ng-repeat="ctg3 in ctg2.subCtgLst.items track by $index" id="ctg_{{ctg3.ctgNo}}"
+													ng-if="uiStateObj.selectedCategory.depth3 == null || uiStateObj.selectedCategory.depth3 == ctg3.ctgNo"
+													data-name="{{ctg3.ctgName}}" data-no="{{ctg3.ctgNo}}" data-depth="2"
+													ng-class="{selected:uiStateObj.selectedCategory.depth3 == ctg3.ctgNo, nocheck:uiStateObj.selectedCategory.depth4.length > 0}">
+													<a class="ctgName" ng-click="categoryItemClick($event, ctg3, ctg1, ctg2, ctg3)">
+														{{ctg3.ctgName}}
+														<em class="count">({{ctg3.cnt | number}})</em>
+													</a>
+													<a class="ctgBtn" ng-click="deselectCategory(3, ctg1, ctg2, ctg3)"></a>
+													<!-- 4뎁스 소카 -->
+													<ul class="cate_d4" ng-if="uiStateObj.selectedCategory.depth3 == ctg3.ctgNo && ctg3.subCtgLst.items.length > 0">
+														<li ng-repeat="ctg4 in ctg3.subCtgLst.items track by $index" id="ctg_{{ctg4.ctgNo}}"
+															data-name="{{ctg4.ctgName}}" data-no="{{ctg4.ctgNo}}" data-depth="3"
+															ng-class="{selected:uiStateObj.selectedCategory.depth4.indexOf(ctg4.ctgNo)>=0}">
+															<a class="ctgName" ng-click="categoryItemClick($event, ctg4, ctg1, ctg2, ctg3, ctg4)">
+																{{ctg4.ctgName}}
+																<em class="count">({{ctg4.cnt | number}})</em>
+															</a>
+															<a class="ctgBtn"></a>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<ul class="cate_d1 openable" ng-if="!srhResultData.ctgLst.items || srhResultData.ctgLst.items.length == 0">
+								<li class="nochild">
+									<a>해당하는 카테고리가 없습니다.</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<!-- CATEGORY -->
+					
+					<!-- BRAND -->
+					<li class="foldable_tab brand" ng-class="{opened:foldable.brand=='brand', disabled:!srhResultData.brdLst.tcnt}">
+						<div class="ftwrap">
+							<a ng-click="showSubSearch($event)" data-slide="brand" data-label="브랜드">
+								<span class="title">브랜드</span>
+								<!-- <span class="detail brand"><em ng-repeat="item in postParams.brdNmArr track by $index">{{item}}</em></span> -->
+								<!-- <span class="detail brand"><em ng-repeat="item in uiStateObj.brandArr track by $index" ng-if="item.dimm===false">{{item.brdName}}</em></span> -->
+								<span class="detail brand"><em ng-repeat="item in srhResultData.brdLstRender track by $index | orderBy : uiStateObj.srhFilterBrdSort : brdName : -cnt" ng-if="item.dimm===false && item.checked ">{{item.brdName}}</em></span>
+							</a>
+						</div>
+					</li>
+					<li class="foldable brand" ng-if="foldable.brand=='brand'">
+						<div>
+							<ul ng-if="srhResultData.brdLst.items && srhResultData.brdLst.items.length > 0">
+								<li class="sortopt_wrap">
+			                    	<div>
+				                    	<div class="sortopt">
+				                    		<label for="brandsort2" ng-class="{on:uiStateObj.srhFilterBrdSort == 'brdName'}">가나다<input type="radio" id="brandsort2" name="brdSort" value="brdName" ng-model="uiStateObj.srhFilterBrdSort" ng-change="srhFilterBrdSortChange('brdName')" /></label>
+				                    		<label for="brandsort1" ng-class="{on:uiStateObj.srhFilterBrdSort == '-cnt'}">상품수<input type="radio" id="brandsort1" name="brdSort" value="-cnt" ng-model="uiStateObj.srhFilterBrdSort" ng-change="srhFilterBrdSortChange('-cnt')" /></label>
+				                    	</div>
+			                    	</div>
+			                    </li>
+			                    <!-- selected brands -->
+			                    <li class="selected_title">
+			                    	<span class="title">선택한 브랜드 <span class="qty"><em>{{uiStateObj.brandArr.length | number}}/{{srhResultData.brandList.items.length | number}}</em></span></span>
+			                    </li>
+			                    <li ng-if="(uiStateObj.brandArr.length > 0) && (item.dimm == false)" class="selected_item" ng-repeat="item in uiStateObj.brandArr | orderBy : uiStateObj.srhFilterBrdSort : brdName : -cnt">
+									<label for="brand_select{{$index}}" ng-class="{selected:(postParams.brdNoArr.indexOf(item.brdNo) != -1)}">
+										<span class="name">{{item.brdName}}</span><span class="count">({{item.cnt | number}})</span>
+										<input type="checkbox" id="brand_select{{$index}}" name="brand_select{{$index}}" ng-click="triggerChkBrdPost(item, true)" ng-model="item.checked" ng-disabled="item.dimm">
+									</label>
+			                    </li>
+			                    <li ng-if="(uiStateObj.brandArr.length > 0) && (item.dimm == true)" class="selected_item" ng-repeat="item in uiStateObj.brandArr | orderBy : uiStateObj.srhFilterBrdSort : brdName : -cnt">
+									<label for="brand_select{{$index}}" ng-class="{selected:(postParams.brdNoArr.indexOf(item.brdNo) != -1), disabled:(item.dimm)}">
+										<span class="name">{{item.brdName}}</span><span class="count">({{item.cnt | number}})</span>
+										<input type="checkbox" id="brand_select{{$index}}" name="brand_select{{$index}}" ng-click="triggerChkBrdPost(item, true)" ng-model="item.checked" ng-disabled="item.dimm">
+									</label>
+			                    </li>
+			                    <!-- selected brands -->
+			                    <!-- brands list -->
+								<li ng-repeat="item in srhResultData.brdLstRender">
+									<label for="brand{{$index}}" ng-class="{selected:(postParams.brdNoArr.indexOf(item.brdNo) != -1), disabled:(item.dimm)}">
+										<span class="name">{{item.brdName}}</span><span class="count">({{item.cnt | number}})</span>
+										<input type="checkbox" id="brand{{$index}}" name="brand{{$index}}" ng-click="srhChkBrdPost(item)" ng-model="item.checked" ng-disabled="item.dimm">
+									</label>
+								</li>
+			                    <!-- brands list -->
+							</ul>
+							<ul ng-if="!srhResultData.brdLst.items || !srhResultData.brdLst.items.length">
+								<li><a>해당하는 브랜드가 없습니다.</a></li>
+							</ul>
+						</div>
+					</li>
+					<!-- BRAND -->
+					
+					<!-- 03 SORT -->
+					<!-- <li class="foldable_tab" ng-class="{opened:foldable.sort=='sort'}">
+						<a ng-click="showSubSearch($event)" data-slide="sort" data-label="정렬">
+							<span class="title">정렬</span>
+							<span class="detail">{{uiStateObj.sortTypeArr[uiStateObj.sortTypeIdx].label}}</span>
+						</a>
+					</li>
+					<li class="foldable" ng-if="foldable.sort=='sort'">
+						<div>
+							<ul>
+								<li ng-class="{on:uiStateObj.sortTypeIdx==$index}" ng-repeat="item in uiStateObj.sortTypeArr">
+									<label for="sortTypeDetail{{$index}}">
+										{{item.label}}
+										<a ng-if="item.notice" class="sort_notice" ng-click="showHideSortGuide($event)"></a>
+										<input type="radio" id="sortTypeDetail{{$index}}" name="sortTypeDetail" value="{{item.value}}" ng-model="postParams.sort" ng-change="srhSortPost($index)" />
+									</label>
+								</li>
+							</ul>
+						</div>
+					</li> -->
+					<!-- 03 SORT -->
+
+					<!-- STORE -->
+					<li class="foldable_tab store" ng-class="{opened:foldable.store=='store' , disabled:!srhDetailData.srhTerms.dept && !srhDetailData.srhTerms.tvhome && !srhDetailData.srhTerms.super && !srhDetailData.srhTerms.brdstore}">
+						<div class="ftwrap">
+							<a ng-click="showSubSearch($event)" data-slide="store" data-label="매장">
+								<span class="title">매장</span>
+								<span class="detail store">
+									<em ng-if="postParams.deptYN=='Y' && srhDetailData.srhTerms.dept">백화점</em><em ng-if="postParams.tvhomeYN=='Y' && srhDetailData.srhTerms.tvhome">홈쇼핑</em><em ng-if="postParams.superYN=='Y' && srhDetailData.srhTerms.super">프레시</em><em ng-if="postParams.brdstoreYN=='Y' && srhDetailData.srhTerms.brdstore">브랜드 스토어</em>
+								</span>
+							</a>
+						</div>
+					</li>
+					<li class="foldable foldable_tab" ng-if="foldable.store=='store'">
+						<div>
+							<ul>
+								<li>
+									<label for="ssws_store1" ng-class="{selected:postParams.deptYN=='Y',disabled:!srhDetailData.srhTerms.dept}">
+										백화점<input type="checkbox" id="ssws_store1" name="ssws_store1"
+												ng-model="postParams.deptYN"
+												ng-change="srhDetailChange('deptYN')"
+												ng-true-value="'Y'"
+												ng-false-value="'N'"
+												ng-disabled="!srhDetailData.srhTerms.dept">
+									</label>
+								</li>
+								<li>
+									<label for="ssws_store2" ng-class="{selected:postParams.tvhomeYN=='Y',disabled:!srhDetailData.srhTerms.tvhome}">
+										홈쇼핑<input type="checkbox" id="ssws_store2" name="ssws_store2"
+												ng-model="postParams.tvhomeYN"
+												ng-change="srhDetailChange('tvhomeYN')"
+												ng-true-value="'Y'"
+												ng-false-value="'N'"
+												ng-disabled="!srhDetailData.srhTerms.tvhome">
+									</label>
+								</li>
+								<li>
+									<label for="ssws_store3" ng-class="{selected:postParams.superYN=='Y',disabled:!srhDetailData.srhTerms.super}">
+										프레시<input type="checkbox" id="ssws_store3" name="ssws_store3"
+												ng-model="postParams.superYN"
+												ng-change="srhDetailChange('superYN')"
+												ng-true-value="'Y'"
+												ng-false-value="'N'"
+												ng-disabled="!srhDetailData.srhTerms.super">
+									</label>
+								</li>
+								<li>
+									<label for="ssws_store4" ng-class="{selected:postParams.brdstoreYN=='Y',disabled:!srhDetailData.srhTerms.brdstore}">
+										브랜드 스토어<input type="checkbox" id="ssws_store4" name="ssws_store4"
+												ng-model="postParams.brdstoreYN"
+												ng-change="srhDetailChange('brdstoreYN')"
+												ng-true-value="'Y'"
+												ng-false-value="'N'"
+												ng-disabled="!srhDetailData.srhTerms.brdstore">
+									</label>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<!-- STORE -->
+
+					<!-- BENEFIT -->
+					<li class="foldable_tab benefit" ng-class="{opened:foldable.benefit=='benefit'}">
+						<div class="ftwrap">
+							<a ng-click="showSubSearch($event)" data-slide="benefit" data-label="가격/혜택/선물포장">
+								<span class="title">가격/혜택/선물포장</span>
+								<span class="detail benefit">
+									<em class="price" ng-if="uiStateObj.srhDetailSearchClicked">{{uiStateObj.priceMinUTemp|number}}원 ~ {{uiStateObj.priceMaxUTemp|number}}원</em>
+									<em ng-if="postParams.freeInstYN=='Y'">무이자 할부</em>
+									<em ng-if="postParams.pointYN=='Y'">포인트 적립</em>
+									<em ng-if="postParams.pkgYN=='Y'">무료 선물 포장</em>
+									<em ng-if="postParams.freeGiftYN=='Y' && srhDetailData.freeGiftYN ">사은품 제공</em>
+								</span>
+							</a>
+						</div>
+					</li>
+					<li class="foldable" ng-if="foldable.benefit=='benefit'">
+						<div>
+							<div class="price">
+								<span class="ipt ipt_min">
+									<input only-number="int" id="priceMinU" name="priceMinU" type="number" pattern="\d*" inputmode="numeric"
+										ng-model="postParams.priceMinU"
+										placeholder="{{postParams.priceMinUTemp | number}}"
+										ng-focus="srhFilterDetailPriceFocus('priceMinU')"
+										ng-blur="postParams.priceMinUFocus = false; srhDetailPriceValidate('min');"
+										ng-keyup="srhDetailPriceMaxlen($event,'min')" />
+									<span class="number_format"
+										ng-if="!postParams.priceMinUFocus && postParams.priceMinU"
+										ng-class="{on:uiStateObj.srhDetailSearchClicked}"
+										ng-click="srhFilterDetailPriceIpt('priceMinU')">{{postParams.priceMinU | number}}</span>
+								</span>
+								<span class="ipt ipt_max">
+									<input only-number="int" id="priceMaxU" name="priceMaxU" type="number" pattern="\d*" inputmode="numeric"
+										ng-model="postParams.priceMaxU"
+										placeholder="{{postParams.priceMaxUTemp | number}}"
+										ng-focus="srhFilterDetailPriceFocus('priceMaxU')"
+										ng-blur="postParams.priceMaxUFocus = false; srhDetailPriceValidate('max')"
+										ng-keyup="srhDetailPriceMaxlen($event,'max')" />
+									<span class="number_format"
+										ng-if="!postParams.priceMaxUFocus && postParams.priceMaxU"
+										ng-class="{on:uiStateObj.srhDetailSearchClicked}"
+										ng-click="srhFilterDetailPriceIpt('priceMaxU')">{{postParams.priceMaxU | number}}</span>
+								</span>
+							</div>
+							<div class="button">
+								<button class="btn_search" ng-click="srhDetailSearchPrice()">검색</button>
+							</div>
+							<ul>
+								<li>
+									<label for="ssws_bendfit3" ng-class="{selected:postParams.freeInstYN=='Y'}">
+										무이자 할부
+										<input type="checkbox" id="ssws_bendfit3" name="ssws_bendfit3"
+											ng-model="postParams.freeInstYN"
+											ng-change="srhDetailChange('freeInstYN')"
+											ng-true-value="'Y'" ng-false-value="'N'">
+									</label>
+								</li>
+								<li>
+									<label for="ssws_bendfit4" ng-class="{selected:postParams.pointYN=='Y'}">
+										포인트 적립
+										<input type="checkbox" id="ssws_bendfit4" name="ssws_bendfit4"
+											ng-model="postParams.pointYN"
+											ng-change="srhDetailChange('pointYN')"
+											ng-true-value="'Y'" ng-false-value="'N'">
+									</label>
+								</li>
+								<li>
+									<label for="ssws_bendfit5" ng-class="{selected:postParams.pkgYN=='Y'}">
+										무료 선물 포장
+										<input type="checkbox" id="ssws_bendfit5" name="ssws_bendfit5"
+											ng-model="postParams.pkgYN"
+											ng-change="srhDetailChange('pkgYN')"
+											ng-true-value="'Y'" ng-false-value="'N'">
+									</label>
+								</li>
+								<li ng-if="srhDetailData.freeGiftView">
+									<label for="ssws_bendfit6" ng-class="{selected:postParams.freeGiftYN=='Y', disabled:!srhDetailData.freeGiftYN}">
+										사은품 제공
+										<input type="checkbox" id="ssws_bendfit6" name="ssws_bendfit6"
+											ng-model="postParams.freeGiftYN"
+											ng-change="srhDetailChange('freeGiftYN')"
+											ng-disabled="!srhDetailData.freeGiftYN"
+											ng-true-value="'Y'" ng-false-value="'N'">
+									</label>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<!-- BENEFIT -->
+					
+					<!-- DELIVERY -->
+					<li class="foldable_tab delivery" ng-class="{opened:foldable.delivery=='delivery'}">
+						<div class="ftwrap">
+							<a ng-click="showSubSearch($event)" data-slide="delivery" data-label="배송">
+								<span class="title">배송</span>
+								<span class="detail delivery">
+									<em ng-if="postParams.smpickYN=='Y' && uiStateObj.smpickBranchName != ''">스마트픽 - {{uiStateObj.smpickBranchName}}</em>
+									<em ng-if="postParams.delSevenYN=='Y' && srhDetailData.srhTerms.seven">내 주변 픽업</em>
+									<em ng-if="postParams.freeDeliYN=='Y'">무료배송</em>
+									<em ng-if="postParams.delQuickYN=='Y' && srhDetailData.srhTerms.quick">퀵배송</em>
+									<em ng-if="postParams.delTdarYN=='Y' && srhDetailData.srhTerms.tdar">오늘도착</em>
+								</span>
+							</a>
+						</div>
+					</li>
+					<li class="foldable delivery_fold" ng-if="foldable.delivery=='delivery'">
+						<div>
+							<ul>
+								<li ng-class="{opened:searchUISetting.smartPickSub, selected:postParams.smpickYN=='Y' || postParams.delSevenYN=='Y' , disabled:!srhDetailData.srhTerms.smpick && !srhDetailData.srhTerms.seven}">
+									<a ng-click="showHideSmartPick()">스마트픽</a>
+									<ul class="branches" ng-if="searchUISetting.smartPickSub">
+										<li ng-class="{opened:searchUISetting.smartPickList, selected:postParams.smpickYN=='Y', disabled:!srhDetailData.srhTerms.smpick}">
+											<a ng-click="showHideDepartmentPick($event)">백화점 픽업</a>
+											<ul id="smartPickBranchList" ng-if="searchUISetting.smartPickList">
+												<!-- <li ng-class="{selected:postParams.smpickBranchNo==''}">
+													<a ng-click="smpickBranchChange({'name':'전체', 'branchNo':''})">전체</a>
+												</li> -->
+												<li ng-repeat="item in srhDetailData.srhTerms.smpickBranch" ng-class="{selected:postParams.smpickBranchNo==item.branchNo}">
+													<a ng-click="smpickBranchChange(item)">{{item.name}}</a>
+												</li>
+											</ul>
+										</li>
+										<li class="delivery_fold_smp">
+											<label for="ssws_delivery12" ng-class="{selected:postParams.delSevenYN=='Y', disabled:!srhDetailData.srhTerms.seven}">
+												내 주변 픽업
+												<a class="sort_notice" ng-click="showHideSortGuide($event)"></a>
+												<input type="checkbox" id="ssws_delivery12" name="ssws_delivery12"
+														ng-model="postParams.delSevenYN"
+														ng-change="srhDetailChange('delSevenYN')"
+														ng-true-value="'Y'" ng-false-value="'N'"
+														ng-disabled="!srhDetailData.srhTerms.seven">
+											</label>
+										</li>
+									</ul>
+								</li>
+								<li class="freeDel">
+									<label for="ssws_bendfit1" ng-class="{selected:postParams.freeDeliYN=='Y'}">
+										무료배송
+										<input type="checkbox" id="ssws_bendfit1" name="ssws_bendfit1"
+												ng-model="postParams.freeDeliYN"
+												ng-change="srhDetailChange('freeDeliYN')"
+												ng-true-value="'Y'" ng-false-value="'N'">
+									</label>
+								</li>
+								<li>
+									<label for="ssws_delivery3" ng-class="{selected:postParams.delQuickYN=='Y', disabled:!srhDetailData.srhTerms.quick}">
+										퀵배송
+										<input type="checkbox" id="ssws_delivery3" name="ssws_delivery3"
+												ng-model="postParams.delQuickYN"
+												ng-change="srhDetailChange('delQuickYN')"
+												ng-true-value="'Y'" ng-false-value="'N'"
+												ng-disabled="!srhDetailData.srhTerms.quick">
+									</label>
+								</li>
+								<li>
+									<label for="ssws_delivery2" ng-class="{selected:postParams.delTdarYN=='Y', disabled:!srhDetailData.srhTerms.tdar}">
+										오늘도착
+										<input type="checkbox" id="ssws_delivery2" name="ssws_delivery2"
+												ng-model="postParams.delTdarYN"
+												ng-change="srhDetailChange('delTdarYN')"
+												ng-true-value="'Y'" ng-false-value="'N'"
+												ng-disabled="!srhDetailData.srhTerms.tdar">
+									</label>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<!-- DELIVERY -->
+					
+					<!-- COLOR -->
+					<li class="foldable_tab color" ng-class="{opened:foldable.color=='color', disabled:srhDetailData.srhColorList2.length==0}">
+						<div class="ftwrap">
+							<a ng-click="showSubSearch($event)" data-slide="color" data-label="컬러">
+								<span class="title">컬러</span>
+								<div class="detail color_list">
+									<ul>
+										<li ng-repeat="item in postParams.selectedColor2 | limitTo:6" class="c{{item}} i{{$index}}"><span class="colorBg"></span></li><li ng-if="postParams.selectedColor2.length>6" class="ellipsis">...</li>
+									</ul>
+								</div>
+							</a>
+						</div>
+					</li>
+					<li class="foldable color_fold" ng-if="foldable.color=='color' && srhDetailData.srhColorList2.length > 0">
+						<div>
+							<div ng-if="srhDetailData.srhColorList && srhDetailData.srhColorList.length > 0">
+								<div class="color_list">
+									<ul>
+										<li ng-repeat="item in srhDetailData.srhColorList" class="c{{item.colorCd}}" data-color-cd="{{item.colorCd}}"
+											ng-if="item.selected || item.avail"
+											ng-class="{on:item.selected, disabled:!item.avail}" ng-click="srhSelectColor(item)"><a class="colorBg"></a><span class="name">{{item.name}}</span></li>
+									</ul>
+								</div>
+							</div>
+							<span class="instruct" ng-if="!srhDetailData.srhColorList || srhDetailData.srhColorList.length == 0">해당하는 컬러가 없습니다.</span>
+						</div>
+					</li>
+					<!-- COLOR -->
+					
+					<!-- 스타일 -->
+					<li class="foldable_tab" ng-if="srhResultData.srhFeelList && srhResultData.srhFeelList.length > 0" ng-class="{opened:foldable.style=='style', disabled:srhResultData.feelListCnt==0}">
+						<div class="ftwrap">
+							<a href="#" ng-click="showSubSearch($event)" data-slide="style" data-label="스타일">
+								<span class="title">스타일</span>
+								<span class="detail feel_list">
+									<!-- <em ng-repeat="item in postParams.selectedStyleNmArr track by $index | limitTo:2" ng-if="item.dimm===false">{{item.feelNm}}</em> -->
+									<em ng-repeat="item in srhResultData.srhFeelList track by $index | limitTo:2" ng-if="item.dimm===false && item.checked">{{item.feelNm}}</em>
+								</span>
+							</a>
+						</div>
+					</li>
+					<li class="foldable" ng-if="foldable.style =='style'">
+						<div class="ssws_wrap">
+							<div>
+								<div class="feel_list">
+									<ul>
+										<li ng-repeat="item in srhResultData.srhFeelList" data-feel-no="{{item.feelNo}}"  ng-if="!item.dimm"
+											ng-class="{on:item.selected}">
+											<label for="selectStyle{{$index}}" ng-class="{selected:item.checked,disabled:item.dimm}">
+												<span class="name">{{item.feelNm}}</span><span class="count">({{item.feelcnt | number}})</span>
+												<input type="checkbox" id="selectStyle{{$index}}" name="selectStyle" value="{{item.feelNo}}"
+													ng-model="item.checked" ng-change="srhSelectStyle(item)" ng-disabled="item.dimm" />
+											</label>
+										</li>
+										<li ng-repeat="item in srhResultData.srhFeelList" data-feel-no="{{item.feelNo}}" ng-if="item.dimm && item.checked"
+											ng-class="{on:item.selected}">
+											<label for="selectStyle{{$index}}" ng-class="{selected:item.checked,disabled:item.dimm}">
+												<span class="name">{{item.feelNm}}</span><span class="count">({{item.feelcnt | number}})</span>
+												<input type="checkbox" id="selectStyle{{$index}}" name="selectStyle" value="{{item.feelNo}}"
+													ng-model="item.checked" ng-change="srhSelectStyle(item)" ng-disabled="item.dimm" />
+											</label>
+										</li>
+										<!-- <li ng-repeat="item in srhResultData.srhFeelList" data-feel-no="{{item.feelNo}}" ng-if="item.dimm && !item.checked"
+											ng-class="{on:item.selected}">
+											<label for="selectStyle{{$index}}" ng-class="{selected:item.checked,disabled:item.dimm}">
+												<span class="name">{{item.feelNm}}</span><span class="count">({{item.feelcnt | number}})</span>
+												<input type="checkbox" id="selectStyle{{$index}}" name="selectStyle" value="{{item.feelNo}}"
+													ng-model="item.checked" ng-change="srhSelectStyle(item)" ng-disabled="item.dimm" />
+											</label>
+										</li> -->
+									</ul>
+								</div>
+							</div>
+						</div>
+					</li>
+					<!-- //스타일 -->
+					
+					<!-- 신발사이즈 -->
+					<li class="foldable_tab shoe" ng-if="srhResultData.shoseSizeLst && srhResultData.shoseSizeLst.length > 0" ng-class="{opened:foldable.shoe=='shoe', disabled:srhResultData.shoseSizeCnt==0}">
+						<div class="ftwrap">
+							<a ng-click="showSubSearch($event)" data-slide="shoe" data-label="신발 사이즈">
+								<span class="title">신발 사이즈</span>
+								<span class="detail shoe"><em ng-repeat="item in srhResultData.shoseSizeLst" ng-if="item.checked && !item.dimm">{{item.shoseNm}}</em></span>
+							</a>
+						</div>
+					</li>
+					<li class="foldable shoe_fold" ng-if="foldable.shoe=='shoe'">
+						<div class="shoe_list">
+							<ul>
+								<li ng-repeat="item in srhResultData.shoseSizeLst" ng-if="!item.dimm || item.checked">
+									<label for="shoesSize{{$index}}" ng-class="{disabled:item.dimm , checked:item.checked}">
+										<span class="name">{{item.shoseNm}}</span><span class="count">({{item.shoseCnt | number}})</span>
+										<input type="checkbox" id="shoesSize{{$index}}" name="shoesSize" value="{{item.shoseNm}}"
+											ng-model="item.checked" ng-change="shoeSizeChaned(item.shoseNm)" ng-disabled="item.dimm" />
+									</label>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<!-- 신발사이즈 -->
+
+					<!-- 별점 -->
+					<li class="foldable_tab star" ng-if="srhResultData.starPointLst && srhResultData.starPointLst.length > 0" ng-class="{opened:foldable.star=='star' , disabled:srhResultData.starPoinCnt==0}">
+						<div class="ftwrap">
+							<a ng-click="showSubSearch($event)" data-slide="star" data-label="별점">
+								<span class="title">별점</span>
+								<div class="detail star" ng-if="srhResultData.starPoinCnt > 0">{{uiStateObj.starPointArr[uiStateObj.starPointIdx].label}}</div>
+							</a>
+						</div>
+					</li>
+					<li class="foldable star_fold" ng-if="foldable.star=='star'">
+						<div>
+							<ul>
+								<li ng-repeat="item in uiStateObj.starPointArr">
+									<label for="starPoint{{$index}}" ng-class="{disabled:item.dimm}">
+										<span ng-if="$index > 0">
+											<em ng-repeat="n in [0,1,2,3,4]" ng-class="{on:n < item.value}" ></em>
+										</span> {{item.label}}
+										<input type="radio" id="starPoint{{$index}}" name="starPoint" value="{{item.value}}"
+											ng-model="postParams.starPoint" ng-change="starPointChanged($index)" ng-disabled="item.dimm" />
+									</label>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<!-- 별점 -->
+					
+					<!-- RESEARCH -->
+					<li class="foldable_tab research" ng-class="{opened:foldable.research=='research',disabled:uiStateObj.emptyResult}">
+						<div class="ftwrap">
+							<label ng-click="showSubSearch($event)" data-slide="research" data-label="결과 내 검색" for="{{appObj.isTablet?'':'rekeyword'}}">
+								<span class="title">결과 내 검색</span>
+							</label>
+						</div>
+					</li>
+					<li class="foldable" ng-if="foldable.research=='research'">
+						<div>
+							<div class="re-search">
+								<!-- <div class="searchOpt">
+									<label for="searchOpt1" ng-class="{on:uiStateObj.researchOpt == '-cnt'}">포함단어<input type="radio" id="searchOpt1" name="searchOpt" value="-cnt" ng-model="uiStateObj.researchOpt" ng-change="selectKeywordLayer(0)"></label>
+									<label for="searchOpt2" ng-class="{on:uiStateObj.researchOpt == 'brdName'}">제외단어<input type="radio" id="searchOpt2" name="searchOpt" value="brdName" ng-model="uiStateObj.researchOpt" ng-change="selectKeywordLayer(1)"></label>
+								</div> -->
+								<div class="keyword">
+									<input type="search" autocomplete="off" autocapitalize="off" autocorrect="off" id="rekeyword" name="rekeyword"
+										ng-model="postParams.rekeyword" ng-keypress="srhDetailSearchKeypress($event)" 
+										ng-disabled="uiStateObj.relatedKeywordEnabled==false" placeholder="키워드를 입력해주세요."/>
+								</div>
+								<div class="searchOpt">
+									<label for="searchCheck" ng-class="{on:uiStateObj.researchOpt == 'brdName'}">제외단어<input type="checkbox" id="searchCheck" name="searchCheck" ng-model="uiStateObj.researchCheck" ng-change="selectKeywordLayer2()" xxx-ng-model="uiStateObj.researchOpt" xxx-ng-change="selectKeywordLayer(1)"></label>
+								</div>
+								<div class="button">
+									<button class="btn_search" ng-click="srhDetailSearchKeyword()" ng-disabled="uiStateObj.relatedKeywordEnabled==false">검색</button>
+								</div>
+								<div class="keywords">
+									<div class="guide">결과 내 검색 시 설정한 모든 필터 조건은 해제됩니다.</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<!-- RESEARCH -->
+				</ul>
+				
+				<!-- 08 RESEARCH -->
+				<!-- <div class="re-search">
+					<label class="title">결과 내 검색</label>
+					<div class="searchOpt">
+						<label for="searchOpt1" ng-class="{on:uiStateObj.researchOpt == '-cnt'}">포함단어<input type="radio" id="searchOpt1" name="searchOpt" value="-cnt" ng-model="uiStateObj.researchOpt" ng-change="selectKeywordLayer(0)"></label>
+						<label for="searchOpt2" ng-class="{on:uiStateObj.researchOpt == 'brdName'}">제외단어<input type="radio" id="searchOpt2" name="searchOpt" value="brdName" ng-model="uiStateObj.researchOpt" ng-change="selectKeywordLayer(1)"></label>
+					</div>
+					<div class="keyword">
+						<input type="search" autocomplete="off" autocapitalize="off" autocorrect="off" id="rekeyword" name="rekeyword"
+							ng-model="postParams.rekeyword" ng-keypress="srhDetailSearchKeypress($event)" 
+							ng-disabled="uiStateObj.relatedKeywordEnabled==false" placeholder="키워드를 입력해주세요."/>
+					</div>
+					<div class="button">
+						<button class="btn_search" ng-click="srhDetailSearchKeyword()" ng-disabled="uiStateObj.relatedKeywordEnabled==false">검색</button>
+					</div>
+					<div class="keywords">
+						<div class="guide">키워드 검색시 설정한 모든 필터 조건은 해제됩니다.</div>
+					</div>
+				</div> -->
+				<!-- 08 RESEARCH -->
+			</div>
+			<div class="ssw_slide sub">
+
+				<!-- 01 CATEGORY -->
+				<!-- <div class="ssws_wrap ssws_category" ng-show="searchUISetting.slide=='category'">
+					------- 1뎁스 대대카 -------
+					<ul class="cate_d1 openable" ng-if="srhResultData.ctgLst.items && srhResultData.ctgLst.items.length > 0">
+						<li ng-repeat="ctg1 in srhResultData.ctgLst.items track by $index"
+							ng-class="{selected:uiStateObj.selectedCategory.depth1 == ctg1.ctgNo}"
+							id="ctg_{{ctg1.ctgNo}}" data-name="{{ctg1.ctgName}}" data-no="{{ctg1.ctgNo}}" data-depth="0">
+							<a ng-click="categoryItemClick($event, ctg1)">{{ctg1.ctgName}}<em ng-if="ctg1.mall && ctg1.mall != ''"> ({{ctg1.mall}})</em></a>
+							------- 2뎁스 대카 -------
+							<ul class="cate_d2 openable" ng-if="ctg1.subCtgLst && ctg1.subCtgLst.items && ctg1.subCtgLst.items.length > 0">
+								<li ng-repeat="ctg2 in ctg1.subCtgLst.items track by $index" id="ctg_{{ctg2.ctgNo}}"
+									data-name="{{ctg2.ctgName}}" data-no="{{ctg2.ctgNo}}" data-depth="1" data-mall="{{ctg2.mall}}"
+									ng-class="{selected:uiStateObj.selectedCategory.depth2 == ctg2.ctgNo}">
+									<a ng-click="categoryItemClick($event, ctg2)">
+										{{ctg2.ctgName}}
+										<em ng-if="ctg2.mall && ctg2.mall != ''">({{ctg2.mall}})</em>
+										<em class="count">({{ctg2.cnt | number}})</em>
+									</a>
+									------- 3뎁스 중카 -------
+									<ul class="cate_d3 openable" ng-if="ctg2.subCtgLst && ctg2.subCtgLst.items && ctg2.subCtgLst.items.length > 0">
+										<li ng-repeat="ctg3 in ctg2.subCtgLst.items track by $index" id="ctg_{{ctg3.ctgNo}}"
+											data-name="{{ctg3.ctgName}}" data-no="{{ctg3.ctgNo}}" data-depth="2"
+											ng-class="{selected:uiStateObj.selectedCategory.depth3 == ctg3.ctgNo, nocheck:uiStateObj.selectedCategory.depth4 != null}">
+											<a ng-click="categoryItemClick($event, ctg3)">
+												{{ctg3.ctgName}}
+												<em class="count">({{ctg3.cnt | number}})</em>
+											</a>
+											------- 4뎁스 소카 -------
+											<ul class="cate_d4" ng-if="ctg3.subCtgLst && ctg3.subCtgLst.items && ctg3.subCtgLst.items.length > 0">
+												<li ng-repeat="ctg4 in ctg3.subCtgLst.items track by $index" id="ctg_{{ctg4.ctgNo}}"
+													data-name="{{ctg4.ctgName}}" data-no="{{ctg4.ctgNo}}" data-depth="3"
+													ng-class="{selected:uiStateObj.selectedCategory.depth4 == ctg4.ctgNo}">
+													<a ng-click="categoryItemClick($event, ctg4)">
+														{{ctg4.ctgName}}
+														<em class="count">({{ctg4.cnt | number}})</em>
+													</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<ul class="cate_d1 openable" ng-if="!srhResultData.ctgLst.items || srhResultData.ctgLst.items.length == 0">
+						<li class="nochild">
+							<a>해당하는 카테고리가 없습니다.</a>
+						</li>
+					</ul>
+				</div> -->
+				<!-- 01 CATEGORY -->
+
+				<!-- 02 BRAND -->
+				<!-- <div class="ssws_wrap ssws_brand" ng-if="searchUISetting.slide=='brand'">
+					<ul ng-if="srhResultData.brdLst.items && srhResultData.brdLst.items.length > 0">
+						<li class="sortopt_wrap">
+	                    	<div>
+		                    	<div class="sortopt">
+		                    		<label for="brandsort2" ng-class="{on:uiStateObj.srhFilterBrdSort == 'brdName'}">가나다<input type="radio" id="brandsort2" name="brdSort" value="brdName" ng-model="uiStateObj.srhFilterBrdSort" ng-change="srhFilterBrdSortChange('brdName')" /></label>
+		                    		<label for="brandsort1" ng-class="{on:uiStateObj.srhFilterBrdSort == '-cnt'}">상품수<input type="radio" id="brandsort1" name="brdSort" value="-cnt" ng-model="uiStateObj.srhFilterBrdSort" ng-change="srhFilterBrdSortChange('-cnt')" /></label>
+		                    	</div>
+	                    	</div>
+	                    </li>
+	                    <li class="selected_title">
+	                    	<span class="title">선택한 브랜드 <span class="qty"><em>{{uiStateObj.brandArr.length}}/{{srhResultData.brandList.items.length}}</em>개</span></span>
+	                    </li>
+	                    <li ng-if="(uiStateObj.brandArr.length > 0) && (item.dimm == false)" class="selected_item" ng-repeat="item in uiStateObj.brandArr | orderBy : uiStateObj.srhFilterBrdSort : brdName : -cnt">
+							<label for="brand_select{{$index}}" ng-class="{selected:(postParams.brdNoArr.indexOf(item.brdNo) != -1)}">
+								<span class="name">{{item.brdName}}</span><span class="count">({{item.cnt | number}})</span>
+								<input type="checkbox" id="brand_select{{$index}}" name="brand_select{{$index}}" ng-click="triggerChkBrdPost(item, true)" ng-model="item.checked" ng-disabled="item.dimm">
+							</label>
+	                    </li>
+	                    <li ng-if="(uiStateObj.brandArr.length > 0) && (item.dimm == true)" class="selected_item" ng-repeat="item in uiStateObj.brandArr | orderBy : uiStateObj.srhFilterBrdSort : brdName : -cnt">
+							<label for="brand_select{{$index}}" ng-class="{selected:(postParams.brdNoArr.indexOf(item.brdNo) != -1), disabled:(item.dimm)}">
+								<span class="name">{{item.brdName}}</span><span class="count">({{item.cnt | number}})</span>
+								<input type="checkbox" id="brand_select{{$index}}" name="brand_select{{$index}}" ng-click="triggerChkBrdPost(item, true)" ng-model="item.checked" ng-disabled="item.dimm">
+							</label>
+	                    </li>
+						<li ng-repeat="item in srhResultData.brdLstRender">
+							<label for="brand{{$index}}" ng-class="{selected:(postParams.brdNoArr.indexOf(item.brdNo) != -1), disabled:(item.dimm)}">
+								<span class="name">{{item.brdName}}</span><span class="count">({{item.cnt | number}})</span>
+								<input type="checkbox" id="brand{{$index}}" name="brand{{$index}}" ng-click="srhChkBrdPost(item)" ng-model="item.checked" ng-disabled="item.dimm">
+							</label>
+						</li>
+					</ul>
+					<ul ng-if="!srhResultData.brdLst.items || !srhResultData.brdLst.items.length">
+						<li><a>해당하는 브랜드가 없습니다.</a></li>
+					</ul>
+				</div> -->
+				<!-- 02 BRAND -->
+
+				<!-- 03 SORT -->
+				<!-- <div class="ssws_wrap ssws_sort" ng-if="searchUISetting.slide=='sort'">
+					<ul>
+						<ul>
+							<li ng-class="{on:uiStateObj.sortTypeIdx==$index}" ng-repeat="item in uiStateObj.sortTypeArr">
+								<label for="sortTypeDetail{{$index}}">
+									{{item.label}}
+									<input type="radio" id="sortTypeDetail{{$index}}" name="sortTypeDetail" value="{{item.value}}" ng-model="postParams.sort" ng-change="srhSortPost($index)" />
+								</label>
+							</li>
+						</ul>
+					</ul>
+					<div class="sort_guide" id="sortGuideButton">
+						<a ng-click="showHideSortGuide()" ng-class="{on:tipShow}">인기/판매순</a>
+					</div>
+				</div> -->
+				<!-- 03 SORT -->
+				
+				<!-- 04 BENEFIT -->
+				<!-- <div class="ssws_wrap ssws_benefit" ng-if="searchUISetting.slide=='benefit'">
+					<span class="title">가격 직접 입력</span>
+					<div class="price">
+						<span class="ipt ipt_min">
+							<input only-number="int" id="priceMinU" name="priceMinU" type="number" placeholder="{{srhResultData.price.min | number}}"
+							ng-model="postParams.priceMinUTemp"
+							ng-focus="postParams.priceMinUFocus = true"
+							ng-blur="postParams.priceMinUFocus = false; srhDetailPriceValidate('min');"
+							min="{{srhResultData.price.min}}"
+							max="{{postParams.priceMaxUTemp}}"
+							ng-keyup="srhDetailPriceMaxlen('min')"
+							/>ng-keyup="srhDetailSearchActiveChk()"
+							<span class="number_format"
+								ng-if="!postParams.priceMinUFocus && postParams.priceMinUTemp"
+								ng-click="srhFilterDetailPriceIpt('priceMinU')">{{postParams.priceMinUTemp | number}}</span>
+						</span>
+						<span class="ipt ipt_max">
+							<input only-number="int" id="priceMaxU" name="priceMaxU" type="number" placeholder="{{srhResultData.price.max | number}}"
+							ng-model="postParams.priceMaxUTemp"
+							ng-focus="postParams.priceMaxUFocus = true"
+							ng-blur="postParams.priceMaxUFocus = false; srhDetailPriceValidate('max')"
+							min="{{postParams.priceMinUTemp}}"
+							max="{{srhResultData.price.max}}"
+							ng-keyup="srhDetailPriceMaxlen('max')"
+							/>ng-keyup="srhDetailSearchActiveChk()"
+							<span class="number_format"
+								ng-if="!postParams.priceMaxUFocus && postParams.priceMaxUTemp"
+								ng-click="srhFilterDetailPriceIpt('priceMaxU')">{{postParams.priceMaxUTemp | number}}</span>
+						</span>
+					</div>
+					<div class="button">
+						<button class="btn_search" ng-click="srhDetailSearchPrice()">검색</button>
+					</div>
+					<ul>
+						<li>
+							<label for="ssws_bendfit3">
+								무이자 할부
+								<input type="checkbox" id="ssws_bendfit3" name="ssws_bendfit3"
+										ng-model="postParams.freeInstYN"
+										ng-change="srhDetailChange('freeInstYN')"
+										ng-true-value="'Y'" ng-false-value="'N'">
+							</label>
+						</li>
+						<li>
+							<label for="ssws_bendfit4">
+								포인트 적립
+								<input type="checkbox" id="ssws_bendfit4" name="ssws_bendfit4"
+										ng-model="postParams.pointYN"
+										ng-change="srhDetailChange('pointYN')"
+										ng-true-value="'Y'" ng-false-value="'N'">
+							</label>
+						</li>
+						<li>
+							<label for="ssws_bendfit5">
+								무료 선물 포장
+								<input type="checkbox" id="ssws_bendfit5" name="ssws_bendfit5"
+										ng-model="postParams.pkgYN"
+										ng-change="srhDetailChange('pkgYN')"
+										ng-true-value="'Y'" ng-false-value="'N'">
+							</label>
+						</li>
+					</ul>
+				</div> -->
+				<!-- 04 BENEFIT -->
+
+				<!-- 05 DELIVERY -->
+				<!-- <div class="ssws_wrap ssws_delivery" ng-if="searchUISetting.slide=='delivery'">
+					<ul>
+						<li ng-class="{opened:searchUISetting.smartPickSub, selected:postParams.smpickYN=='Y' || postParams.delSevenYN=='Y'}">
+							<a ng-click="showHideSmartPick()">스마트픽</a>
+							<ul class="branches" ng-if="searchUISetting.smartPickSub">
+								<li ng-class="{opened:searchUISetting.smartPickList, selected:postParams.smpickYN=='Y', disabled:!srhDetailData.srhTerms.smpick}">
+									<a ng-click="showHideDepartmentPick($event)">백화점 픽업</a>
+									<ul id="smartPickBranchList" ng-if="searchUISetting.smartPickList">
+										<li ng-class="{selected:postParams.smpickBranchNo==''}">
+											<a ng-click="smpickBranchChange({'name':'전체', 'branchNo':''})">전체</a>
+										</li>
+										<li ng-repeat="item in srhDetailData.srhTerms.smpickBranch" ng-class="{selected:postParams.smpickBranchNo==item.branchNo}">
+											<a ng-click="smpickBranchChange(item)">{{item.name}}</a>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<label for="ssws_delivery12" ng-class="{selected:postParams.delSevenYN=='Y', disabled:!srhDetailData.srhTerms.seven}">
+										세븐일레븐/하이마트/롯데슈퍼 픽업
+										<input type="checkbox" id="ssws_delivery12" name="ssws_delivery12"
+												ng-model="postParams.delSevenYN"
+												ng-change="srhDetailChange('delSevenYN')"
+												ng-true-value="'Y'" ng-false-value="'N'"
+												ng-disabled="!srhDetailData.srhTerms.seven">
+									</label>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<label for="ssws_delivery2" ng-class="{selected:postParams.delTdarYN=='Y', disabled:!srhDetailData.srhTerms.tdar}">
+								오늘도착
+								<input type="checkbox" id="ssws_delivery2" name="ssws_delivery2"
+										ng-model="postParams.delTdarYN"
+										ng-change="srhDetailChange('delTdarYN')"
+										ng-true-value="'Y'" ng-false-value="'N'"
+										ng-disabled="!srhDetailData.srhTerms.tdar">
+							</label>
+						</li>
+						<li>
+							<label for="ssws_delivery3" ng-class="{selected:postParams.delQuickYN=='Y', disabled:!srhDetailData.srhTerms.quick}">
+								퀵배송
+								<input type="checkbox" id="ssws_delivery3" name="ssws_delivery3"
+										ng-model="postParams.delQuickYN"
+										ng-change="srhDetailChange('delQuickYN')"
+										ng-true-value="'Y'" ng-false-value="'N'"
+										ng-disabled="!srhDetailData.srhTerms.quick">
+							</label>
+						</li>
+					</ul>
+				</div> -->
+				<!-- 05 DELIVERY -->
+
+				<!-- 06 COLOR -->
+				<!-- <div class="ssws_wrap ssws_color" ng-if="searchUISetting.slide=='color'">
+					<div ng-if="srhDetailData.srhColorList && srhDetailData.srhColorList.length > 0">
+						<span class="instruct">※복수 선택이 가능합니다.</span>
+						<div class="color_list">
+							<ul>
+								<li ng-repeat="item in srhDetailData.srhColorList" class="c{{item.colorCd}}" data-color-cd="{{item.colorCd}}"
+									ng-class="{on:item.selected}" ng-click="srhSelectColor(item)"><a></a></li>
+							</ul>
+						</div>
+					</div>
+					<span class="instruct" ng-if="!srhDetailData.srhColorList || srhDetailData.srhColorList.length == 0">해당하는 컬러가 없습니다.</span>
+				</div> -->
+				<!-- 06 COLOR -->
+
+				<!-- 07 PRICE -->
+				<!-- <div class="ssws_wrap ssws_price" ng-if="searchUISetting.slide=='price'">
+					<div class="price">
+						<span class="ipt ipt_min">
+							<input only-number="int" id="priceMinU" name="priceMinU" type="number" placeholder="최저가"
+							ng-model="postParams.priceMinUTemp"
+							ng-focus="postParams.priceMinUFocus = true"
+							ng-blur="postParams.priceMinUFocus = false; srhDetailPriceValidate('min');"
+							min="{{srhResultData.price.min}}"
+							max="{{postParams.priceMaxUTemp}}"
+							ng-keyup="srhDetailPriceMaxlen('min')"
+							/>
+							<span class="number_format"
+								ng-if="!postParams.priceMinUFocus && postParams.priceMinUTemp"
+								ng-click="srhFilterDetailPriceIpt('priceMinU')">{{postParams.priceMinUTemp | number}}</span>
+						</span>
+						<span class="ipt ipt_max">
+							<input only-number="int" id="priceMaxU" name="priceMaxU" type="number" placeholder="최고가"
+							ng-model="postParams.priceMaxUTemp"
+							ng-focus="postParams.priceMaxUFocus = true"
+							ng-blur="postParams.priceMaxUFocus = false; srhDetailPriceValidate('max')"
+							min="{{postParams.priceMinUTemp}}"
+							max="{{srhResultData.price.max}}"
+							ng-keyup="srhDetailPriceMaxlen('max')"
+							/>
+							<span class="number_format"
+								ng-if="!postParams.priceMaxUFocus && postParams.priceMaxUTemp"
+								ng-click="srhFilterDetailPriceIpt('priceMaxU')">{{postParams.priceMaxUTemp | number}}</span>
+						</span>
+					</div>
+					<div class="button">
+						<button class="btn_search" ng-click="srhDetailSearchPrice()">검색</button>
+					</div>
+				</div> -->
+				<!-- 07 PRICE -->
+
+				<!-- 08 RESEARCH -->
+				<!-- <div class="ssws_wrap ssws_research" ng-if="searchUISetting.slide=='research'">
+					<div class="re-search">
+						<div>
+							<button class="btn_storeSel layerBtn" ng-class="{on:searchUISetting.keywordIncExc}" ng-click="showKeywordLayer()"
+								ng-disabled="uiStateObj.relatedKeywordEnabled==false">{{searchUISetting.researchTypeArr[searchUISetting.researchIdx].label}}</button>
+							<div class="keyword_layer" ng-if="searchUISetting.keywordIncExc">
+								<ul>
+									<li ng-repeat="item in searchUISetting.researchTypeArr track by $index" ng-class="{on:searchUISetting.researchIdx==$index}"
+										ng-click="selectKeywordLayer($index)"><a>{{item.label}}</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="keyword">
+							<input type="search" autocomplete="off" autocapitalize="off" autocorrect="off" id="rekeyword" name="rekeyword"
+								ng-model="postParams.rekeyword" ng-keypress="srhDetailSearchKeypress($event)" ng-focus="srhDetailSearchFocus()"
+								ng-disabled="uiStateObj.relatedKeywordEnabled==false" />
+							<label ng-if="postParams.rekeyword.length <= 0">{{searchUISetting.researchIdx==0?'결과 내 검색':'결과 내 제외'}}</label>
+						</div>
+						<div class="button">
+							<button class="btn_search" ng-click="srhDetailSearchKeyword()" ng-disabled="uiStateObj.relatedKeywordEnabled==false">검색</button>
+						</div>
+					</div>
+				</div> -->
+				<!-- 08 RESEARCH -->
+
+				<!-- 09 STORE -->
+				<!-- <div class="ssws_wrap ssws_store" ng-if="searchUISetting.slide=='store'">
+					<ul>
+						<li><span class="instruct">복수 선택이 가능합니다.</span></li>
+						<li>
+							<label for="ssws_store1" ng-class="{disabled:!srhDetailData.srhTerms.dept}">
+								백화점<input type="checkbox" id="ssws_store1" name="ssws_store1"
+										ng-model="postParams.deptYN"
+										ng-change="srhDetailChange('deptYN')"
+										ng-true-value="'Y'"
+										ng-false-value="'N'"
+										ng-disabled="!srhDetailData.srhTerms.dept">
+							</label>
+						</li>
+						<li>
+							<label for="ssws_store2" ng-class="{disabled:!srhDetailData.srhTerms.tvhome}">
+								홈쇼핑<input type="checkbox" id="ssws_store2" name="ssws_store2"
+										ng-model="postParams.tvhomeYN"
+										ng-change="srhDetailChange('tvhomeYN')"
+										ng-true-value="'Y'"
+										ng-false-value="'N'"
+										ng-disabled="!srhDetailData.srhTerms.tvhome">
+							</label>
+						</li>
+						<li>
+							<label for="ssws_store3" ng-class="{disabled:!srhDetailData.srhTerms.super}">
+								슈퍼<input type="checkbox" id="ssws_store3" name="ssws_store3"
+										ng-model="postParams.superYN"
+										ng-change="srhDetailChange('superYN')"
+										ng-true-value="'Y'"
+										ng-false-value="'N'"
+										ng-disabled="!srhDetailData.srhTerms.super">
+							</label>
+						</li>
+						<li>
+							<label for="ssws_store4" ng-class="{disabled:!srhDetailData.srhTerms.brdstore}">
+								브랜드 스토어<input type="checkbox" id="ssws_store4" name="ssws_store4"
+										ng-model="postParams.brdstoreYN"
+										ng-change="srhDetailChange('brdstoreYN')"
+										ng-true-value="'Y'"
+										ng-false-value="'N'"
+										ng-disabled="!srhDetailData.srhTerms.brdstore">
+							</label>
+						</li>
+					</ul>
+				</div> -->
+				<!-- 09 STORE -->
+			</div>
+		</div>
+    </div>
+    <!-- 상세검색 사이드바 -->
+
+	<!-- 결과내 검색 레이어 -->
+    <div class="ly_research" ng-if="uiStateObj.relatedKwywordOpenFlag">
+    	<div class="popupWrap">
+    		<div class="popupHead"><label for="rekeyword_pop" ng-click="showRelatedKWPopup()">결과 내 검색</label></div>
+    		<div class="popupBody">
+    			<input type="search" autocomplete="off" autocapitalize="off" autocorrect="off" id="rekeyword_pop" name="rekeyword_pop"
+					placeholder="{{searchUISetting.researchIdx==0?'결과 내 검색':'결과 내 제외'}}"
+					ng-model="postParams.rekeyword" ng-keypress="srhDetailSearchKeypress($event)" ng-keyup="srhDetailSearchKeyUp($event)" 
+					ng-disabled="uiStateObj.relatedKeywordEnabled==false" />
+					<label ng-click="delResrhText()" ng-class="{btn_del:postParams.rekeyword.length > 0}" for="rekeyword_pop">검색어 삭제</label><!-- //검색어 삭제 버튼 추가 ckh -->
+    		</div>
+    		<div class="popupFoot">
+    			<button ng-click="hideRelatedKWPopup()">취소</button>
+    			<button class="btn_search" ng-click="srhDetailSearchKeyword('pop')" ng-disabled="uiStateObj.relatedKeywordEnabled==false || uiStateObj.relatedKeywordEntered==false">검색</button><!-- //확인버튼 검색으로 텍스트수정 ckh -->
+    		</div>
+    	</div>
+    </div>
+	<!-- 결과내 검색 레이어 -->
+
+    <!-- 정렬 안내 레이어 -->
+    <!-- <div class="sortGuidePop" ng-show="tipShow">
+    	<div class="layerPop_dim" ng-click="showHideSortGuide()"></div>
+		<div class="layerPop" id="pop_sortGuide">
+			<div class="popWrap">
+				<p class="tlt">
+					인기순이란?
+				</p>
+				<p class="desc">
+					검색정확도 및 판매실적 등을 점수화하여 상품을 정렬합니다.
+                    <br>
+                    (단, 광고 상품은 별도기준에 따라 상단 정렬) 
+				</p>
+				<p class="tlt">
+					판매순이란?
+				</p>
+				<p class="desc">
+					최근 15일동안 많이 판매된 상품을 누적한 기준으로 상품을 정렬합니다. 
+				</p>
+			</div>
+			<a class="btn_close" ng-click="showHideSortGuide()">닫기</a>
+		</div>
+	</div> -->
+    <!-- 정렬 안내 레이어 -->
+
+	<!-- 리뷰 팝업 레이어 -->
+	<div class="srhReviewPop" id="srhReviewPop" ng-if="reviewPopData">
+    	<div class="layerPop_dim" ng-click="hideReviewPop()"></div>
+    	<div class="layerPop">
+    		<div class="cont">
+	    		<div>
+	    			<div ng-if="reviewPopData.gdasNo!=0">
+		    			<div class="star">
+							<span class="starScoreWrap"><span class="starScoreCnt" style="width:{{ ((reviewPopData.gdasStfdVal*2)|ceil)*10 }}%"></span></span>
+		    			</div>
+		    			<div class="text" ng-bind-html="reviewPopData.gdasCont"></div>
+		    			<div class="img" ng-if="reviewPopData.imgUrl" style="background-image:url({{reviewPopData.imgUrl}})"></div>
+	    			</div>
+	    			<div ng-if="reviewPopData.gdasNo==0">
+			    		<div class="text notavail">
+			    			<div>유효하지 않은 상품평 입니다.</div>
+			    			<!-- <div ng-if="reviewPopData.goodsNo">다른 상품평을 보시겠습니까?</div> -->
+			    		</div>
+	    			</div>
+	    			<a class="review" ng-if="reviewPopData.gdasNo!=0" xxx-ng-if="reviewPopData.goodsNo" ng-click="gotoProductReview()">다른 상품평 보기</a>
+	    		</div>
+    		</div>
+    		<a class="close" ng-click="hideReviewPop()">닫기</a>
+    	</div>
+	</div>
+	<!-- 리뷰 팝업 레이어 -->
+	
+	<!-- 정렬 레이어 -->
+	<div class="sortLayerPop" id="sortLayerPop" ng-if="sortLayerPopVisible" ontouchmove="return false;">
+		<div class="layerPop_dim" ng-click="showHideSortPop(false)"></div>
+		<div class="layerPop">
+			<div class="cont">
+				<div>
+					<div class="title">정렬</div>
+					<div class="list">
+						<ul>
+							<li class="{on:uiStateObj.sortTypeIdx==$index}" ng-repeat="item in uiStateObj.sortTypeArr">
+								<label for="sortTypePop{{$index}}">
+									{{item.label}}
+									<input type="radio" id="sortTypePop{{$index}}" name="sortTypePop" value="{{item.value}}" ng-model="postParams.sort" ng-change="srhSortPost($index)" />
+								</label>
+								<div class="guide" ng-if="item.label=='인기순'">검색 정확도 및 판매 실적 등을 점수화하여 상품을 정렬합니다.<br/>(단, 광고 상품은 별도 기준에 따라 상단 정렬)</div>
+								<div class="guide" ng-if="item.label=='판매순'">최근 7일동안 많이 판매된 상품을 누적한 기준으로 상품을 정렬합니다.</div>
+							</li>
+						</ul>
+					</div>
+					<div class="btn">
+						<a ng-click="showHideSortPop(false)">닫기</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 정렬 레이어 -->
+	
+	
+	<search-detail-popup></search-detail-popup>
+	
+	
+</section>

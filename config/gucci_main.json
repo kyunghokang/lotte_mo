@@ -1,0 +1,70 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplGucciMain" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mall/gucci/gucci_main_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/gucci_main.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsGucciMain" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/common/lotte_ngswipe.js",
+                    "lotte/resources_dev/mall/gucci/gucci_main.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/gucci_main.js"
+            }
+        },
+
+        "uglify" : {
+            "jsGucciMain" : {
+                "src" : "lotte/resources/<%= version %>/gucci_main.js",
+                "dest" : "lotte/resources/<%= version %>/gucci_main.min.js"
+            },
+            "tplGucciMain" : {
+                "src" : "lotte/resources/<%= version %>/gucci_main.template.js",
+                "dest" : "lotte/resources/<%= version %>/gucci_main.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssGucciMain" : {
+                "src" : [
+                    "lotte/resources_dev/mall/gucci/gucci_main.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/gucci_main.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanGucciMain" : [
+                "lotte/resources/<%= version %>/gucci_main.js",
+                "lotte/resources/<%= version %>/gucci_main.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlGucciMain" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mall/gucci/gucci_main.html" : "mall/gucci/gucci_main_dev.html"
+                }
+            }
+        }
+    }
+}
+

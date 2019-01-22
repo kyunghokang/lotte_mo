@@ -1,0 +1,69 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplLongChamp" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/mall/longchamp/longchamp_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/longchamp.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsLongChamp" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/mall/longchamp/longchamp.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/longchamp.js"
+			}
+		},
+
+		"uglify" : {
+			"jsLongChamp" : {
+				"src" : "lotte/resources/<%= version %>/longchamp.js",
+				"dest" : "lotte/resources/<%= version %>/longchamp.min.js"
+			},
+			"tplLongChamp" : {
+				"src" : "lotte/resources/<%= version %>/longchamp.template.js",
+				"dest" : "lotte/resources/<%= version %>/longchamp.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssLongChamp" : {
+				"src" : [
+					"lotte/resources_dev/mall/longchamp/longchamp.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/longchamp.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanLongChamp" : [
+				"lotte/resources/<%= version %>/longchamp.js",
+				"lotte/resources/<%= version %>/longchamp.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlLongChamp" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"mall/longchamp/longchamp.html" : "mall/longchamp/longchamp_dev.html"
+				}
+			}
+		}
+	}
+}
+

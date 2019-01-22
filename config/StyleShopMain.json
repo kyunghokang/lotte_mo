@@ -1,0 +1,94 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplStyleShopMain" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/main/lotte_header_main_2016.html",
+                    "lotte/resources_dev/main/main_container_2016.html",
+                    "lotte/resources_dev/main/tpml/tpml_bigdeal.html",
+                    "lotte/resources_dev/main/tpml/tpml_dept.html",
+                    "lotte/resources_dev/main/tpml/tpml_event.html",
+                    "lotte/resources_dev/main/tpml/tpml_planshop.html",
+                    "lotte/resources_dev/main/tpml/tpml_recom.html",
+                    "lotte/resources_dev/main/tpml/tpml_storyshop.html",
+                    "lotte/resources_dev/main/tpml/tpml_shopnshop.html",
+                    "lotte/resources_dev/main/tpml/tpml_styleshop.html",
+                    "lotte/resources_dev/main/tpml/tpml_normal.html",
+                    "lotte/resources_dev/main/template_fall.html",
+                    "lotte/resources_dev/layer/main_popup.html",
+                    "lotte/resources_dev/layer/app_down_bnr.html",
+                    "lotte/resources_dev/layer/layer_coupon.html",
+                    "lotte/resources_dev/main/tpml/tpml_giftpacking.html",
+                    "lotte/resources_dev/main/template_holiday.html",
+                    "lotte/resources_dev/main/template_fall.html",
+                    "lotte/resources_dev/styleshop/StyleShopMain_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/StyleShopMain.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsStyleShopMain" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/common/lotte_slider.js",
+                    "lotte/resources_dev/common/lotte_ngswipe.js",
+                    "lotte/resources_dev/layer/main_popup.js",
+                    "lotte/resources_dev/main/app_info.js",
+                    "lotte/resources_dev/layer/main_popup.js",
+                    "lotte/resources_dev/layer/lotte_coupon_layer.js",
+                    "lotte/resources_dev/styleshop/StyleShopMain.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/StyleShopMain.js"
+            }
+        },
+
+        "uglify" : {
+            "jsStyleShopMain" : {
+                "src" : "lotte/resources/<%= version %>/StyleShopMain.js",
+                "dest" : "lotte/resources/<%= version %>/StyleShopMain.min.js"
+            },
+            "tplStyleShopMain" : {
+                "src" : "lotte/resources/<%= version %>/StyleShopMain.template.js",
+                "dest" : "lotte/resources/<%= version %>/StyleShopMain.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssStyleShopMain" : {
+                "src" : [
+                    "lotte/resources_dev/styleshop/StyleShopMain.css",
+                    "lotte/resources_dev/main/main_2016.css",
+                    "lotte/resources_dev/layer/main_popup.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/StyleShopMain.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanStyleShopMain" : [
+                "lotte/resources/<%= version %>/StyleShopMain.js",
+                "lotte/resources/<%= version %>/StyleShopMain.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlStyleShopMain" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "styleshop/StyleShopMain.html" : "styleshop/StyleShopMain_dev.html"
+                }
+            }
+        }
+    }
+}

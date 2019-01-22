@@ -1,0 +1,32 @@
+<section class="order_pop" ng-class="{no_data: order_list_no}">
+	<span class="close" ng-click="orderPopClose()"></span>
+	<div class="wrap">			
+		<div class="list_no" ng-if="order_list_no">
+			<h3>주문내역조회(최근3개월)</h3>
+			<div><i></i>주문 내역이 없습니다.</div>
+		</div>			
+		<div class="list_wrap" ng-if="order_list_wrap">
+			<h3>주문내역조회(최근3개월)</h3>
+			<div class="guide">
+				<span>문의하실 상품을 터치 해주세요.</span>
+			</div>
+			<div class="scroll">
+				<section class="list" ng-repeat="i in orderListData">
+					<p class="order_num">주문번호 : {{i.view_ord_no}}</p>
+					<div class="product" data-ordno="{{i.ord_no}}" data-idx="{{$index}}" ng-repeat="j in i.goods_list.items" 
+							ng-click="listSelect(i.view_ord_no, i.ord_no, $index)">
+						<div class="select_mask"><span></span></div>
+						<dl>
+							<dt><img ng-src="{{j.img_url}}" alt=""></dt>
+							<dd>
+								<p class="pname" ng-bind-html="j.goods_desc"></p>
+								<p class="presult">{{j.ord_qty}} 개 / {{j.rmit_nm}} / {{j.ord_state_nm}}</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+	<div class="btn_end" ng-if="!order_list_no" ng-click="listSelectEnd()">선택완료</div>
+</section>

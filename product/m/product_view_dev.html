@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+	<meta charset="utf-8">
+	<title>롯데닷컴-product_view</title>
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+
+	<script>
+		var APP_KEY = "7fa1e44757a94fd89921";
+		var SERVER_TIME = new Date();
+	</script>
+	 
+	<!-- build:template
+	<link rel="stylesheet" type="text/css" href="/lotte/resources/<%= version %>/common.min.css"/>
+	/build -->
+	<!-- build:remove -->
+	<script src="/lotte/resources_dev/common/common_load_2018.js"></script>
+	<!-- /build -->
+
+	<!-- build:template
+	<link rel="stylesheet" type="text/css" href="/lotte/resources/<%= version %>/product_view_2017.min.css"/>
+	/build -->
+	<!-- build:remove -->
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/sns/sns.css"/>
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/layer/main_popup.css"/>
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/product/m/product_view_2017.css"/>
+	<!-- /build -->
+
+	<!-- build:template
+	<script src="/lotte/resources/<%= version %>/common.min.js"></script>
+	/build -->
+	<!-- build:remove -->
+	<!-- /build -->
+
+	<!-- build:template
+	<script src="/lotte/resources/<%= version %>/product_view_2017.min.js"></script>
+	/build -->
+	<!-- build:remove -->
+    <script src="/lotte/lib/angular/angular-route.min.js"></script>
+	<script src="/lotte/resources_dev/sns/lotte_sns.js"></script>
+	<script src="/lotte/lib/kakao/kakao-1.20.0.js"></script>
+	<script src="/lotte/resources_dev/common/lotte_slider.js"></script>
+	<script src="/lotte/resources_dev/common/lotte_ngswipe.js"></script>
+	<script src="/lotte/resources_dev/common/style_recom.js"></script>
+	<script src="/lotte/resources_dev/layer/main_popup.js"></script>
+	<script src="/lotte/resources_dev/common/lotte_video.js"></script>
+	<script src="/lotte/resources_dev/product/m/product_view_2017.js"></script>
+
+	<!-- modules -->	
+	<script src="/lotte/resources_dev/product/m/modules/product_option.js"></script>
+	<script src="/lotte/resources_dev/product/m/modules/product_detail_info.js"></script>
+	<script src="/lotte/resources_dev/product/m/modules/plan_product_list.js"></script>
+	<script src="/lotte/resources_dev/product/m/modules/best_category_products.js"></script>
+	<script src="/lotte/resources_dev/product/m/modules/similar_style_recommend.js"></script>
+	<script src="/lotte/resources_dev/product/m/modules/product_comment.js"></script>
+	<script src="/lotte/resources_dev/product/m/modules/product_qna.js"></script>
+	<script src="/lotte/resources_dev/product/m/modules/brand_best.js"></script>
+	<script src="/lotte/resources_dev/product/m/modules/product_best_view.js"></script>
+	<script src="/lotte/resources_dev/product/m/modules/md_recommend_product.js"></script>
+	<script src="/lotte/resources_dev/product/m/modules/together_plan_list.js"></script>
+	<script src="/lotte/resources_dev/product/m/modules/plan_product_detail.js"></script>
+	<script src="/lotte/resources_dev/product/m/modules/chanel_relation_info.js"></script>
+	<script src="/lotte/resources_dev/product/m/modules/product_bottom_banner.js"></script>
+	<!-- /build -->
+	
+	<!-- build:template
+	<script src="/lotte/resources/<%= version %>/product_view_2017.tpl.js"></script>
+	/build -->
+</head>
+<body ng-controller="ProductCtrl">
+	<div id="wrapper" ng-show="showWrap">
+		<lotte-header></lotte-header>
+		<lotte-search></lotte-search>
+
+		<share-pop></share-pop>
+
+		<lotte-container></lotte-container>
+		<section ng-view ng-show="contVisible" class="cont_minheight"></section>
+
+		<lotte-footer></lotte-footer>
+		<lotte-btntop></lotte-btntop>
+	</div>
+
+	<lotte-main-popup ppp-tgt-pg-cd="20"></lotte-main-popup>
+
+	<lotte-side-category></lotte-side-category>
+	<lotte-side-mylotte></lotte-side-mylotte>
+	<lotte-comm-footer></lotte-comm-footer>
+</body>
+</html>

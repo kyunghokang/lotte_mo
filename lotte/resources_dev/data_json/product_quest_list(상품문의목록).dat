@@ -1,0 +1,61 @@
+1. 업무명: MY > 상품 문의 목록
+2. 담당자: 이형근
+3. URL: http://molocal.lotte.com/json/mylotte/product/product_quest_list.json?page_num=1&display_cnt=10
+4. 파라미터
+	- page_num : 현재 페이지 번호
+	- display_cnt : 한페이지당 목록 갯수
+5. JSON 파라미터
+	- total_rows : 데이터 전체 개수
+	- inq_no : 문의번호
+	- inq_ans_cont : 문의내용
+	- goods_no : 상품번호
+	- mbr_no : 회원번호
+	- brnd_nm : 브랜드명
+	- goods_nm : 상품명
+	- img_url : 이미지URL
+	- proc_fin : 답변완료여부
+	- inq_mk_dtime : 문의날짜
+	- page_no : 소속페이지
+6. 성공 시
+{
+  "product_quest_list" : {
+    "total_rows" : 3,
+    "list" : {
+      "items" : [ {
+        "inq_no" : "18214678",
+        "inq_ans_cont" : "구찌 상품 문의 테스트 #2",
+        "goods_no" : "148179191",
+        "mbr_no" : null,
+        "brnd_nm" : "구찌",
+        "goods_nm" : "gg 슈프림 캔버스 스몰 토트백",
+        "img_url" : "http://image.lotte.com/goods/91/91/17/48/1/148179191_1_280.jpg",
+        "proc_fin" : true,
+        "inq_mk_dtime" : "2015-09-08 16:00:41",
+        "page_no" : null
+      }, {
+        "inq_no" : "18212714",
+        "inq_ans_cont" : "구찌 1:1 문의 테스트",
+        "goods_no" : "126503850",
+        "mbr_no" : null,
+        "brnd_nm" : "",
+        "goods_nm" : "구찌 전문관 Q&A",
+        "img_url" : "http://image.lotte.com/goods/50/38/50/26/1/126503850_1_280.jpg",
+        "proc_fin" : true,
+        "inq_mk_dtime" : "2015-09-08 13:54:27",
+        "page_no" : null
+      }, {
+        "inq_no" : "17597125",
+        "inq_ans_cont" : "상품 문의 테스트",
+        "goods_no" : "157733626",
+        "mbr_no" : null,
+        "brnd_nm" : "에스케이투",
+        "goods_nm" : "(8월)피테라 풀라인업 스타트 키트 세트",
+        "img_url" : "http://image.lotte.com/goods/26/36/73/57/1/157733626_1_280.jpg",
+        "proc_fin" : true,
+        "inq_mk_dtime" : "2015-07-03 15:00:46",
+        "page_no" : null
+      } ],
+      "total_count" : 3
+    }
+  }
+}

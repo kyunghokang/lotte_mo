@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">	
+<!----------------- current css ----------------->
+
+<link rel="stylesheet" href="/lotte/resources_dev/mylotte/update.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+<script>
+$(function(){
+	//var dH = screen.height;
+	//$(".updatePoster").css("height",dH-50)
+
+	$(".tab_nav li").click(function(){
+		$(".tab_nav li").removeClass("on");
+		$(this).addClass("on");
+		
+		$(".tab_con").removeClass("on");
+		$(".tab_con").eq($(this).index()).addClass("on")
+	});
+});
+</script>
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<!-- container -->
+<section id="container">
+	
+	<section class="updatePoster">
+		<div class="posterWrap">
+			<div class="poster"><div><img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/updatePoster.png" alt=""></div></div>
+			<div class="posterDown">
+				<div><img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/updateText.png" alt=""></div>
+				<div class="btnArea"><a href="#none" class="btn">업데이트 하기</a></div>
+			</div>
+		</div>
+	</section>
+	
+</section>
+<!-- //container -->
+
+<!-- footer 
+<section ng-include src="'/HTML/include/footer.html'"></section>
+-->
+</body>
+</html>

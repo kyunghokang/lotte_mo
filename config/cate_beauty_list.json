@@ -1,0 +1,70 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplCateBeauty" : {
+                "options": {
+                "prefix":"/",
+                "module" : "app"
+              },
+                "src" : [
+                    "lotte/resources_dev/category/m/cate_beauty_list_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/cate_beauty_list.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsCateBeauty" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "/lotte/resources_dev/common/lotte_ngswipe.js",
+                    "lotte/resources_dev/common/lotte_slider.js",
+                    "lotte/resources_dev/category/m/cate_beauty_list.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/cate_beauty_list.js"
+            }
+        },
+
+        "uglify" : {
+            "jsCateBeauty" : {
+                "src" : "lotte/resources/<%= version %>/cate_beauty_list.js",
+                "dest" : "lotte/resources/<%= version %>/cate_beauty_list.min.js"
+            },
+            "tplCateBeauty" : {
+                "src" : "lotte/resources/<%= version %>/cate_beauty_list.template.js",
+                "dest" : "lotte/resources/<%= version %>/cate_beauty_list.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssCateBeauty" : {
+                "src" : [
+                    "lotte/resources_dev/category/m/cate_beauty_list.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/cate_beauty_list.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanCateBeauty" : [
+                "lotte/resources/<%= version %>/cate_beauty_list.js",
+                "lotte/resources/<%= version %>/cate_beauty_list.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlCateBeauty" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "category/m/cate_beauty_list.html" : "category/m/cate_beauty_list_dev.html"
+                }
+            }
+        }
+    }
+}

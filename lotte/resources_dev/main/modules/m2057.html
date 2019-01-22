@@ -1,0 +1,71 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!--M57 백화점 딜..-->
+	<div ng-if="moduleData.items.length > 2">
+		<div class="gTop_title">
+			<p><b>롯데백화점 카테고리별 빅딜</b></p>
+		</div>
+		<div class="moduleCon">
+			<div class="unit unit_cate bigdeal">
+				<style>
+					.unit_cate .subcate ul li.on span:after,
+					.tpml_brw .unit_cate.bigdeal .subcate ul li.on span:after {border-color:{{lineColor}};}
+				</style>
+				<div class="subcate">
+					<ul class="div3">
+						<li ng-repeat="item in moduleData.items" ng-click="logGAEvtModuleEach($index + 1, item.txt, item.txt);tabClick($event, $index)" ng-class="{on:$index == moduleData.uiData.tabIdx}">
+							<span>
+								<var ng-style="$index == moduleData.uiData.tabIdx ? {color:fontColor} : ''">{{item.txt}}</var>
+							</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="unit unit_bigdeal">
+				<ul>
+					<li ng-repeat="item in moduleData.items[moduleData.uiData.tabIdx].dealList.items">
+						<a ng-click="logGAEvtModuleEach(moduleData.uiData.tabIdx + 1, item.goodsNo, moduleData.items[moduleData.uiData.tabIdx].txt,$index + 1);mainProductClick(item.goodsNo, moduleData.tclick +'_'+  moduleData.items[moduleData.uiData.tabIdx].dispNo + '_Clk_unit'+numberFill(($index+1),2))">
+							<!-- 품절 -->
+							<div class="soldout" ng-if="item.isSoldOut">SOLD OUT</div>
+
+							<!-- 상품 이미지 : 대표이미지 불러오는 경우 class='thumb default_img' 코너이미지 불러오는 경우 class='thumb' -->
+							<!--<div class="thumb"><img ng-src="{{item.imgUrl}}"></div>-->
+							<div class="thumb" ng-style="{'background-image':'url({{item.imgUrl}})'}"></div>
+                            <!--명절 및 기타 좌측 상단 플래그 20170118-->
+                            <div class="s_flag" ng-if="item.emImgUrl">
+                                <img ng-src="{{item.emImgUrl}}">
+                            </div>
+
+							<!-- 상품정보 -->
+							<div class="info">
+								<div class="flag_wrap">
+									<span class="flag2" ng-repeat="(k,v) in item.flag" ng-class="{depart:v == 'dept', himart:v == 'himart', 'tv_shopping':v == 'tvhome', 'smartpick':v == 'smartpick', 'free_ship':v == 'freeDlv', 'gift_pack':v == 'present'}">{{v | dealFlagName}}</span>
+									<!--<span class="flag2 depart">롯데백화점</span>-->
+									<!--<span class="flag2 himart">하이마트</span>-->
+									<!--<span class="flag2 tv_shopping">롯데홈쇼핑</span>-->
+									<!--<span class="flag2 smartpick">스마트픽</span>-->
+									<!--<span class="flag2 free_ship">무료배송</span>-->
+									<!--<span class="flag2 gift_pack">선물포장</span>-->
+								</div>
+
+								<div class="prod">
+									<!--메시지-->
+									<p class="msg">{{item.mdTip}}</p>
+									<!-- 상품명 -->
+									<p class="prodname">{{item.goodsNm}}</p>
+									<!-- 상품가격 -->
+									<p class="price"><span class="discount" ng-if="!item.isPlanPrd && item.saleRate > 0"><span class="dis_rate">{{item.saleRate}}<sub>%</sub></span><em ng-if="item.isCoupon">쿠폰<br/>포함</em></span><b>{{item.price | currency: '':0}}</b>원<em class="plan_prod_limit" ng-if="item.isPlanPrd">~</em></p>
+								</div>
+
+								<!-- 구매 개수 및 입력형 Flag -->
+								<div class="sale_wrap" ng-if="item.saleCnt > 0">
+									<span class="no"><em>{{item.saleCnt | number}}</em>개 구매 중</span>
+								</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>

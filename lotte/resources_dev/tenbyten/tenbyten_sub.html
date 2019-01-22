@@ -1,0 +1,36 @@
+<section>
+    <div class="location">
+        <a class="loc" ng-class="{last:sshopUI.curSSCtgName == ''}" ng-click="kshopSctgClick(sshopUI.curSCtgNo)">{{sshopUI.curSCtgName}}</a>
+        <a ng-if="sshopUI.curSSCtgName != ''" class="loc sel_box" ng-click="kshopSsctgClick()">{{sshopUI.curSSCtgName}}</a>
+    </div>
+    <div class="kshop_sub_con">
+        <!-- 코너데이터 영역 /-->
+        <div ng-if="sshopUI.sCtgBnrShowFlag" ng-bind-html="subData.topHtml" class="sub_cont"></div>
+        <!-- /코너데이터 영역 -->
+
+        <!-- 상품 리스트 /-->
+        <section prd-lst class="prd_lst">
+            <ul class="sh-unit">
+                <li ng-repeat="item in subData.prdList.items">
+                    <comm-unit></comm-unit>
+                </li>
+            </ul>
+        </section>
+        <!--/ 상품 리스트 -->
+
+        <!--  레이어팝업 /-->    
+        <div ly-kshop class="ly_kshop" ng-if ="sshopUI.ssCtgLayerOpenFlag">
+            <div class="cover" ng-click="lyTenbytenClose()"></div>
+            <div class="kshop_ssctgs_lst">
+                <header><span class="tit">{{sshopUI.curSCtgName}}</span></header>
+                <div class="ssctgs_wrap">
+                    <ul id="ssctgsLst">
+                        <li ng-repeat="item in sshopUI.ssCtgList"><label for="kshop_list{{$index}}"><input type="radio" id="kshop_list{{$index}}" name="kshop_lst" ng-value="item.ctg_no" ng-model="sshopUI.curSSCtgNo" ng-change="ctgChange(item.ctg_no);" />{{item.name}}</label></li>
+                    </ul>
+                </div>
+                <div class="btn_wrap"><button class="btn_close" ng-click="lyTenbytenClose()">닫기</button></div>
+            </div>
+        </div>
+        <!-- /레이어팝업 -->
+    </div>
+</section>

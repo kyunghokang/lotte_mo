@@ -1,0 +1,72 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplwishlist" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mylotte/wish/m/wish_container.html",
+                    "lotte/resources_dev/mylotte/wish/m/wish_normal_list_container.html",
+                    "lotte/resources_dev/mylotte/wish/m/wish_soldout_list_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/wish_list.template.js"
+            }
+        },
+
+        "concat" : {
+            "jswishlist" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+					"lotte/resources_dev/common/lotte_ngswipe.js",
+                    "lotte/resources_dev/mylotte/wish/m/wish.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/wish_list.js"
+            }
+        },
+
+        "uglify" : {
+            "jswishlist" : {
+                "src" : "lotte/resources/<%= version %>/wish_list.js",
+                "dest" : "lotte/resources/<%= version %>/wish_list.min.js"
+            },
+            "tplwishlist" : {
+                "src" : "lotte/resources/<%= version %>/wish_list.template.js",
+                "dest" : "lotte/resources/<%= version %>/wish_list.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "csswishlist" : {
+                "src" : [
+                    "lotte/resources_dev/mylotte/wish/m/wish.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/wish_list.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanwishlist" : [
+                "lotte/resources/<%= version %>/wish_list.js",
+                "lotte/resources/<%= version %>/wish_list.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlwishlist" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mylotte/wish/m/wish_list.html" : "mylotte/wish/m/wish_list_dev.html"
+                }
+            }
+        }
+    }
+}
+

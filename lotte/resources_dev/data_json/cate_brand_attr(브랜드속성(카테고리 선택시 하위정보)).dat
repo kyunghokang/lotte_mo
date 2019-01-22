@@ -1,0 +1,74 @@
+1. 업무명 : 브랜드 속성(카테고리 선택시 하위정보)
+2. 담당자 : 신주섭
+3. URL : 
+	 http://mapi.lotte.com/json/cate_brand_attr.json?mGrpNo=7321&cateNo=5374443&cateDepth=2
+	 http://mapi.lotte.com/json/cate_brand_attr.json?mGrpNo=7321&cateNo=5375831&cateDepth=3
+	 http://mapi.lotte.com/json/cate_brand_attr.json?mGrpNo=7321&cateNo=5375858&cateDepth=4
+4. 파라미터
+	- mGrpNo : 브랜드샵 메인에서 선택된 구분코드(EX 화장품)
+	- cateNo : 카테고리 번호
+	- cateDepth : 카테고리 Depth
+5. JSON 파라미터
+	1) cateList.Items : 속성 값 배열
+		- disp_no : 카테고리 코드
+		- disp_nm : 카테고리명
+		- cate_depth : 카테고리 Depth		
+	2) ERROR : 에러 정보
+	    - ERROR_CODE : 에러코드(0000 OR 0 아니면 모두 에러)
+		- ERROR_MSG : 에러메시지		
+	3) uprCateList : 상위 카테고리 정보(파라메터 cateNo에 대한 정보)
+		- disp_no : 카테고리 코드
+		- disp_nm : 카테고리명
+		- cate_depth : 카테고리 Depth		
+6. JSON
+{
+  "cateList" : {
+    "items" : [ {
+      "disp_no" : "5375831",
+      "disp_nm" : "1인용/싱글소파",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "0",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : "3"
+    }, {
+      "disp_no" : "5375919",
+      "disp_nm" : "2~3인용",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "0",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : "3"
+    }, {
+      "disp_no" : "5375935",
+      "disp_nm" : "4인용",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "0",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : "3"
+    }, {
+      "disp_no" : "5375973",
+      "disp_nm" : "5인용 이상",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "0",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : "3"
+    } ],
+    "total_count" : 4
+  },
+  "ERROR" : {
+    "ERROR_CODE" : "0",
+    "ERROR_MSG" : ""
+  },
+  "uprCateList" : [ {
+    "disp_no" : "5374443",
+    "disp_nm" : "소파/소파베드/리클라이너",
+    "lnk_url_addr" : null,
+    "cate_cnt" : "0",
+    "mall_nm" : null,
+    "lcate_nm" : null,
+    "cate_depth" : "2"
+  } ]
+}

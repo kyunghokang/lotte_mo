@@ -1,0 +1,68 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplBigDeal" : {
+				"options": {
+					"prefix":"/",
+					"module" : "app"
+				},
+				"src" : [
+				],
+				"dest" : "lotte/resources/<%= version %>/bigDeal.template.js"
+			}
+		},
+		
+		"concat" : {
+			"jsBigDeal" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/event/bigDeal.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/bigDeal.js"
+			}
+		},
+		
+		"uglify" : {
+			"jsBigDeal" : {
+				"src" : "lotte/resources/<%= version %>/bigDeal.js",
+				"dest" : "lotte/resources/<%= version %>/bigDeal.min.js"
+			},
+			"tplBigDeal" : {
+				"src" : "lotte/resources/<%= version %>/bigDeal.template.js",
+				"dest" : "lotte/resources/<%= version %>/bigDeal.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssBigDeal" : {
+				"src" : [
+					"lotte/resources_dev/event/bigDeal.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/bigDeal.min.css"
+			}
+		},
+
+		"processhtml" : {
+			"htmlBigDeal" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"event/bigDeal.html" : "event/bigDeal_dev.html"
+				}
+			}
+		},
+		
+		"clean" : {
+			"cleanBigDeal" : [
+				"lotte/resources/<%= version %>/bigDeal.js",
+				"lotte/resources/<%= version %>/bigDeal.template.js"
+			]
+		}
+	}
+}
+

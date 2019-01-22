@@ -1,0 +1,100 @@
+1. 업무명 : 상품상세 > 기획전형 상품 단품옵션정보
+2. 담당자 : 신홍균
+3. URL : http://mrenewdev.lotte.com/json/product/select_goods_opt_info.json?goods_no=47401763
+
+4. 파라미터
+	업음
+5. JSON 파라미터(필수:*)
+	- *goods_no : 상품번호
+	
+6. JSON
+{
+  "type" : "object",
+  "id" : "urn:jsonschema:com:lotte:mobile2:product:bean:SelectGoodsOptInfoEntity",
+  "properties" : {
+    "sale_prc" : {
+      "type" : "string",
+      "description" : "판매가"
+    },
+    "inst_cpn_aply_unit_price" : {
+      "type" : "string",
+      "description" : "쿠폰할인금액"
+    },
+    "master_disp_no" : {
+      "type" : "string",
+      "description" : "대표전시번호"
+    },
+    "inv_qty" : {
+      "type" : "string",
+      "description" : "재고수량"
+    },
+    "goods_nm" : {
+      "type" : "string",
+      "description" : "상품명"
+    },
+    "min_lmt_qty" : {
+      "type" : "string",
+      "description" : "최소구매수량"
+    },
+    "max_lmt_qty" : {
+      "type" : "string",
+      "description" : "최대구매수량"
+    },
+    "immed_pay_dscnt_amt" : {
+      "type" : "string",
+      "description" : "즉시할인가"
+    },
+    "goods_cmps_cd" : {
+      "type" : "string",
+      "description" : "상품분류코드"
+    },
+    "item_dtl" : {
+      "type" : "object",
+      "id" : "urn:jsonschema:com:lotte:mobile2:common:bean:ItemEntity<java:util:List<com:lotte:mobile2:product:bean:ProductItemDtlEntity>>",
+      "description" : "옵션",
+      "properties" : {
+        "items" : {
+          "type" : "any",
+          "description" : "items"
+        },
+        "item" : {
+          "type" : "object",
+          "id" : "urn:jsonschema:com:lotte:mobile2:product:bean:ProductItemDtlEntity",
+          "properties" : {
+            "value_type" : {
+              "type" : "string",
+              "description" : "옵션타입코드"
+            },
+            "item" : {
+              "type" : "object",
+              "id" : "urn:jsonschema:com:lotte:mobile2:common:bean:ItemEntity<java:util:List<com:lotte:mobile2:product:bean:ProductItemEntity>>",
+              "description" : "단품목록",
+              "properties" : {
+                "items" : {
+                  "type" : "any",
+                  "description" : "items"
+                },
+                "total_count" : {
+                  "type" : "integer",
+                  "description" : "총 갯수: 총 갯수를 리턴하지 않는 경우 -1"
+                }
+              }
+            },
+            "selected_item_no" : {
+              "type" : "string",
+              "description" : "선택된 아이템 번호"
+            },
+            "name" : {
+              "type" : "string",
+              "description" : "단품명"
+            }
+          }
+        },
+        "total_count" : {
+          "type" : "integer",
+          "description" : "총 갯수: 총 갯수를 리턴하지 않는 경우 -1"
+        }
+      }
+    }
+  }
+}

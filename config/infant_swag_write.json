@@ -1,0 +1,69 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplbabySwagWrite" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/mall/baby/swag_write_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/swag_baby_write.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsbabySwagWrite" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/mall/baby/swag_baby_write.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/swag_baby_write.js"
+			}
+		},
+
+		"uglify" : {
+			"jsbabySwagWrite" : {
+				"src" : "lotte/resources/<%= version %>/swag_baby_write.js",
+				"dest" : "lotte/resources/<%= version %>/swag_baby_write.min.js"
+			},
+			"tplbabySwagWrite" : {
+				"src" : "lotte/resources/<%= version %>/swag_baby_write.template.js",
+				"dest" : "lotte/resources/<%= version %>/swag_baby_write.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssbabySwagWrite" : {
+				"src" : [
+					"lotte/resources_dev/mall/baby/swag_baby_write.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/swag_baby_write.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanbabySwagWrite" : [
+				"lotte/resources/<%= version %>/swag_baby_write.js",
+				"lotte/resources/<%= version %>/swag_baby_write.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlbabySwagWrite" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"/mall/baby/swag_write.html" : "/mall/baby/swag_baby_write_dev.html"
+				}
+			}
+		}
+	}
+}
+

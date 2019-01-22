@@ -1,0 +1,48 @@
+<div tpml-twenty ng-if="pageUI.curMenuDispNo == '5554294'" class="cont_wrap tpml_twenty padding" ng-class="{pad:screenType > 1}">
+	<!-- Html 코너 영역 --> 
+    <section ng-if="tpmlData.contData.top_html" class="top_html_corner_area" ng-bind-html="tpmlData.contData.top_html"></section>
+	
+	<section class="twenty_tab">
+		<ul>
+			<li ng-class="{on: tpmlData.uiOpt.take == 'B'}"><button ng-click="tabChange('B');" class="btn_tab tab_yes">혜택을 봄</button></li>
+			<li ng-class="{on: tpmlData.uiOpt.take == 'S'}"><button ng-click="tabChange('S');" class="btn_tab tab_no">할인해 봄</button></li>
+		</ul>
+	</section>
+	
+	<div class="tab_contArea">
+		<section ng-if="tpmlData.uiOpt.take == 'B' || screenType > 1" class="tab_cont tab_benefit">
+			<p ng-if="tpmlData.contData.tab_cont.goods != null" class="benefit_sale" ng-class="{'is_soldout': tpmlData.contData.tab_cont.goods != null && tpmlData.contData.tab_cont.goods.is_soldout}">
+				<a ng-click="goTwentyLink(tpmlData.contData.tab_cont.goods, 'm_menu_5554294_benefit1')"><img ng-src="{{tpmlData.contData.tab_cont.goods.img_url}}" alt="" /></a>
+			</p>	
+			<!-- 쿠폰받기 --> 
+			<p id="benefit_coupon" ng-if="tpmlData.contData.tab_cont.coupon != null" class="benefit_coupon" ng-class="{'is_end': tpmlData.contData.tab_cont.coupon.is_end}" >
+				<a ng-click="getCoupon(tpmlData.contData.tab_cont.coupon.coupon_no)"><img ng-src="{{tpmlData.contData.tab_cont.coupon.img_url}}" alt="" /></a>
+			</p>		
+		</section>
+		
+		<section ng-if="tpmlData.uiOpt.take == 'S' || screenType > 1" class="tab_cont tab_sale">
+			<ul ng-if="tpmlData.contData.tab_cont.banners[0]">
+				<li>
+					<a ng-click="goTwentyLink(tpmlData.contData.tab_cont.banners[0], 'm_menu_5554294_sale1')"><img ng-src="{{tpmlData.contData.tab_cont.banners[0].img_url}}" alt="" /></a>
+				</li>
+			</ul>
+			<!-- Html 코너 영역 -->
+    		<section ng-if="tpmlData.contData.bot_html" class="bot_html_corner_area" ng-bind-html="tpmlData.contData.bot_html | toTrustedHtml"></section>
+		</section>
+	</div>
+	<ul ng-if="tpmlData.contData.tab_cont.banners[1]">
+		<li>
+			<a ng-click="goTwentyLink(tpmlData.contData.tab_cont.banners[1], 'm_menu_5554294_sale1')"><img ng-src="{{tpmlData.contData.tab_cont.banners[1].img_url}}" alt="" /></a>
+		</li>
+	</ul>
+	<section ng-if="tpmlData.contData.banners.length > 0" class="twenty_banner_list">
+		<h3><img src="http://image.lotte.com/lotte/mo2015/angular/main/twenty_together_title.png" alt="# 함께해 봄" /></h3>
+		<ul>
+			<li ng-repeat="item in tpmlData.contData.banners">
+				<a ng-click="goTwentyLink(item, 'm_menu_5554294_to{{$index + 1}}')"><img ng-src="{{item.img_url}}" alt="" /></a>
+			</li>
+		</ul>
+	</section>
+	
+	
+</div>

@@ -1,0 +1,649 @@
+<meta charset="utf-8">
+<title>롯데닷컴 </title>
+<meta http-equiv="cache-control" content="no-cache"/>
+<meta http-equiv="expires" content="0"/>
+<meta http-equiv="pragma" content="no-cache"/>
+<meta name="format-detection" content="telephone=no" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width" id="viewport" />
+<link rel='apple-touch-icon-precomposed' href='http://image.lotte.com/lotte/mobile/common/icon2.png' />
+<link rel="stylesheet" href="http://m.lotte.com/common3/css/common2013_20150528_v1.css" />
+<link rel="stylesheet" href="http://m.lotte.com/common3/css/order2013_20150428_v1.css" />
+<!-- SVN 테스트용 20180910-->
+<script type="text/JavaScript" src="https://m.lotte.com/common/js/jquery-1.7.1.min.js"></script> 
+<script type="text/javascript" src="https://m.lotte.com/common3/js/jquery.merge.js"></script>
+<script type="text/javascript" src="https://m.lotte.com/common3/js/common_20150427_v1.js"></script>
+<script type="text/javascript" src="https://m.lotte.com/common3/js/bookmark.js?v=20140919"></script>
+<script type="text/javascript" src="https://m.lotte.com/common3/js/app_interface_v1.js"></script>
+<script type="text/javascript" src="https://m.lotte.com/common3/js/kakao-1.0.7.js"></script>
+<script type="text/javascript" src="https://m.lotte.com/common3/js/smp/smp.common.js?v=20140725"></script>
+<!--// SVN 테스트용 20180910-->
+
+<!--<script type="text/JavaScript" src="http://m.lotte.com/common/js/jquery-1.7.1.min.js"></script> 
+<script type="text/javascript" src="http://m.lotte.com/common3/js/jquery.merge.js"></script>
+<script type="text/javascript" src="http://m.lotte.com/common3/js/common_20150427_v1.js"></script>
+<script type="text/javascript" src="http://m.lotte.com/common3/js/bookmark.js?v=20140919"></script>
+<script type="text/javascript" src="http://m.lotte.com/common3/js/app_interface_v1.js"></script>
+<script type="text/javascript" src="http://m.lotte.com/common3/js/kakao-1.0.7.js"></script>
+<script type="text/javascript" src="http://m.lotte.com/common3/js/smp/smp.common.js?v=20140725"></script>-->
+
+    <style>
+            body{margin:0;font-size:14px}
+            div,p,ul,li,table,th,td,textarea,input,span,form,h1,h2,h3,h4,h5,h6,dt,dl,dd {font-size:14px}
+            body section {padding: 41px 0;width: 100%;height: 100%;box-sizing: border-box;overflow-y: scroll}            
+            header{width:100%;position: fixed;top: 0;z-index: 2;background:#749eff;color:#fff;text-align:center;height:40px;line-height:39px;font-size:16px;font-weight:bold;border-bottom:1px solid #d0d0d0} /*20180910 수정*/
+            header a img.close{width:67px;height:35px;position: absolute;right:0}
+            body a{text-decoration:none}
+            .matable{display:table;width:100%;color:#888;font-size:14px;margin-top:6px;line-height:29px}
+            .matable .macell{display:table-cell;height:20px;box-sizing: border-box;}/*20161121*/
+            .matable .macell.title{width:85px;padding-left:15px}
+            .matable .macell.search{width:auto}
+            .matable .macell.search input[type=text]{font-size:14px;width:98%;height:30px;border-radius:5px;border:1px solid #ccc;padding:0 9px;box-sizing: border-box}
+            .matable .macell.search select{width:48%;height:30px;border-radius:5px;border:1px solid #ccc;padding:0 20px 0 9px;box-sizing: border-box;-webkit-appearance:none;background:url(http://image.lotte.com/lotte/mo2015/angular/detail/cross_select.png) no-repeat right;background-size:25px 28px}
+            .matable .macell.button{width:65px;padding-left:10px}
+            .matable .macell.button a{display:block;background:#f3f3f3;width:41px;height:30px;text-align: center;color:#666;border:1px solid #ccc;border-radius:5px;font-size:13px}
+            .result_7e_wrap_{margin-top:16px;width:100%;padding-top:75%;overflow:hidden;position:relative}
+            .result_7e_wrap_ .box{position:absolute;top:0;width:100%;height:100%}
+            #map-canvas{width:100%;height:100%;}
+            .result_7e_wrap_ .mapStr{font-size:14px;width:100%;height:100%;text-align:center;background:#eee;padding-top:33%;box-sizing: border-box;color:#999}
+            .result_7e_select_{margin-top:15px;min-height: 102px}
+            .result_7e_select_ .matable{margin-top:3px;line-height:16px;display:none}
+            .result_7e_select_ .macell{color:#333;font-size:14px;text-align:left}
+            .result_7e_select_ .macell.cell1{padding-left:15px;width:76px}
+            .pop-footer_ {margin-top:10px;text-align: center}
+            .pop-footer_ a{display:inline-block;color:#719cff;border:1px solid #719cff;border-radius:20px;width:123px;height:40px;line-height:39px;text-align:center}
+            .pop-footer_ a.ok_7e{background:#719cff;color:#fff;margin-left:5px }
+            
+            .posInfo{margin-top:3px}
+            .posInfo .matable{margin-top:5px}
+            .posInfo .matable .macell{color:#333;line-height:16px}
+            .posInfo .matable .macell.cell1{width:90px;padding-left:20px}
+            .info_map_wrap{width: 100%;margin-top:10px;padding-bottom:200px;overflow: hidden;position:relative;top:0;height:100%;box-sizing: border-box}
+            .info_map_wrap .box{position:relative;top:0;width:100%;height:100%}
+            .mart_pos{padding: 3px 3px 5px 3px;background: #efefef;color:#333;height:25px;margin:0;font-size:13px}
+            .info_map_wrap.smallmap{margin-top:25px;padding-bottom:25px}
+
+            /* 20180910 추가*/
+            .lock_pic_cont{width:100%;padding:21px 0}
+            .lock_pic_cont img{float:left;width:20px;height:auto}
+            .lock_pic_cont span{float:left;padding:0 6px 0 4px;font-size:14px;color:#888}
+            .lock_pic_cont a{display:inline-block;margin-top:2px;vertical-align:middle}
+            .lock_pic_cont a img{width:14px}
+            .lock_pic_cont .lock_pic_cont_sub{float:right;padding-right:12px}
+
+            .lock_pic_help_pop{display:none;position:fixed;top:50%;left:50%;z-index:5;width:288px;margin-top:-80px;margin-left:-144px;background-color:#fff;text-align:center;font-size:13px;color:#222}
+            .lock_pic_help_pop h2{height:46px;line-height:44px;margin:0;border-bottom:solid 1px #cfcfcf;font-size:17px;box-sizing:border-box}
+            .lock_pic_help_pop p{margin:0}
+            .lock_pic_help_pop p i{display:inline-block;width:20px;height:20px;margin-top:-2px;background:url('http://image.lotte.com/lotte/mo2015/angular/detail/lock_pic_icon.png') no-repeat center;background-size:100% auto;vertical-align:middle}
+            .lock_pic_help_pop .lpp_txt01{padding-top:22px}
+            .lock_pic_help_pop .lpp_txt02{padding:13px 0 24px 0}
+            .lock_pic_help_pop a{position:absolute;top:0;right:0;width:12px;margin:15px 9px 0 0}
+            .lock_pic_help_pop a img{width:100%}
+            .lock_pic_dimm{display:none;position:fixed;z-index:4;width:100%;height:100%;background-color:rgba(0,0,0,0.5)}
+
+            .crossp_point_list ul{display:inline-block;width:100%;margin:0 0 14px 0;padding:0}
+            .crossp_point_list li{float:left;position:relative;width:25%;height:84px;padding:6px;border-left:solid 1px #f8f8f8;border-bottom:solid 1px #e9e9e9;background-size:78px auto;background-repeat:no-repeat;background-position:center 26px;list-style:none;box-sizing:border-box}
+            .crossp_point_list li:first-child{border-left:0}
+            .crossp_point_list li input[type="checkbox"]{position:absolute;top:6px;left:6px;vertical-align:top;border-radius:0;height:40px;padding-left:10px;color:#333;-webkit-appearance:none;-moz-appearance:none;border-color:#ccc;background-image:none;box-sizing:border-box;-webkit-box-sizing:border-box;}
+            .crossp_point_list li input[type="checkbox"]{background:url(http://image.lotte.com/lotte/mo2015/angular/common/icon_login_check_box.png) no-repeat 0 0;background-size:50px 25px;width:20px;height:20px}
+            .crossp_point_list li input[type="checkbox"]:checked {background-position:-25px 0}
+            .crossp_point_list li label p{position:absolute;left:0;bottom:12px;width:100%;margin:0;font-size:12px;color:#aaa;text-align:center;}
+            .crossp_point_list li input[type="checkbox"]:checked + label p{color:#333;font-weight:bold} 
+            .crossp_point_list li label{display:inline-block;width:100%;height:100%;font-size:0;-webkit-appearance:none;-moz-appearance:none}
+            .crossp_point_list input:focus{outline:none;}
+            /* // 20180910 추가*/
+        </style>
+        
+</head>
+
+<body>
+    <section>
+
+    <!-- 20180910 추가 -->
+    <div class="lock_pic_dimm"></div>
+    <div class="lock_pic_help_pop">
+       <h2>락커픽업 서비스 안내</h2>
+       <p class="lpp_txt01">
+         <i></i>
+         <span>스티커가 붙어있다면<br/>릭커픽업 서비스가 가능한 매장입니다.</span>
+       </p> 
+       <p class="lpp_txt02">교환권에서 락커번호를 확인하세요!</p>
+       <a href="javascript:$('.lock_pic_help_pop, .lock_pic_dimm').hide()">
+           <img src="http://image.lotte.com/lotte/mo2015/angular/detail/lock_pic_help_close_btn.png" />
+       </a>
+    </div> 
+    <!-- // 20180910 추가 -->
+    
+    <header>픽업 지점찾기<a href="javascript:popupResult();"><img src="http://image.lotte.com/lotte/mo2015/angular/detail/cross_close.png" class="close"></a></header>
+        <div class="searchBox">
+            <!-- 20180910 수정 -->
+            <div class="crossp_point_list" style="display:block">
+                <ul>
+                    <li style="background-image:url('http://image.lotte.com/lotte/images/smartp/crossp_chk_list_logo_01.png')">
+                        <input type="checkbox" id="chk_1000" name="crspk_corp" value="1000:^:1" class="check_p01" checked>
+                        <label for="chk_1000">
+                            <p>세븐일레븐</p>
+                        </label>
+                    </li>
+                    <li style="background-image:url('http://image.lotte.com/lotte/images/smartp/crossp_chk_list_logo_02_2.png')"><!-- 20181205 이미지경로 수정 -->
+                        <input type="checkbox" id="chk_3000" name="crspk_corp" value="3000:^:1" class="check_p01" checked>
+                        <label for="chk_3000">
+                            <p>하이마트</p>
+                        </label>
+                    </li>
+                    <li style="background-image:url('http://image.lotte.com/lotte/images/smartp/crossp_chk_list_logo_03.png')">
+                        <input type="checkbox" id="chk_4000" name="crspk_corp" value="4000:^:1" class="check_p01" checked>
+                        <label for="chk_4000">
+                            <p>롯데슈퍼</p>
+                        </label>
+                    </li>
+                    <li style="background-image:url('http://image.lotte.com/lotte/images/smartp/crossp_chk_list_logo_04.png')">
+                        <input type="checkbox" id="chk_5000" name="crspk_corp" value="5000:^:1" class="check_p01" checked>
+                        <label for="chk_5000">
+                            <p>롯데리아</p>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+            <!-- // 20180910 수정 -->
+            <div class="matable">
+                <div class="macell title">지역검색</div>
+                <div class="macell search">
+                    <select name="sido_nm" class="selComp" id="sido_nm" onchange="sidoChange()">                         
+                    </select>  
+                    <select name="gugun_nm" class="selComp" id="gugun_nm">
+                        <option value="">시/군/구</option>
+                    </select>                         
+                </div>    
+                <div class="macell button">    
+                    <a href="javascript:crspkInfoSearch('A');" class="sear">검색</a>
+                </div>    
+            </div>
+            <div class="matable">
+                <div class="macell title">지점검색</div>
+                <div class="macell search">
+                    <input type="text" name="crspk_str_str_name" id="crspk_str_str_name" value="" placeholder="매장명" /> 
+                </div>    
+                <div class="macell button">    
+                    <a href="javascript:crspkInfoSearch('N');" class="sear">검색</a>
+                </div>    
+            </div>
+            <!-- 20180910 추가 -->
+            <div class="lock_pic_cont">
+                <div class="lock_pic_cont_sub">
+                    <img src="http://image.lotte.com/lotte/mo2015/angular/detail/lock_pic_icon.png" />
+                    <span>락커픽업 가능매장</span>
+                    <a href="javascript:$('.lock_pic_help_pop, .lock_pic_dimm').show()">
+                        <img src="http://image.lotte.com/lotte/mo2015/angular/detail/lock_pic_help_icon.png" />
+                    </a>
+                </div>
+            </div>
+            <!-- // 20180910 추가 -->
+        </div>           
+        <div class="result_7e_wrap_">
+           <div class="box">
+                <div class="mapStr">픽업 지점을 검색해주세요.</div>
+                <div id="map-canvas"></div>                       
+           </div>
+        </div>
+        <div class="result_7e_select_">
+            <div class="matable">
+                <div class="macell cell1">매장명</div>
+                <div class="macell cell2"><span id="crspk_str_str_nm"></span></div>    
+            </div>               
+            <div class="matable">
+                <div class="macell cell1">매장주소</div>
+                <div class="macell cell2"><span id="crspk_str_post_addr"></span> <span id="crspk_str_dtl_addr"></span></div>    
+            </div>               
+            <div class="matable">
+                <div class="macell cell1">연락처</div>
+                <div class="macell cell2"><span id="crspk_str_phon"></span></div>    
+            </div>
+            <div class="matable">
+                <div class="macell cell1">영업시간 </div>
+                <div class="macell cell2"><span id="crspk_biz_time"></span></div>    
+            </div>
+            <input type="hidden" name="crspk_corp_cd" id="crspk_corp_cd" value=""/>
+            <input type="hidden" name="crspk_corp_str_sct_cd" id="crspk_corp_str_sct_cd" value=""/>
+            <input type="hidden" name="crspk_str_no" id="crspk_str_no" value=""/>
+        </div>
+        <div class="pop-footer_">
+    <!-- 크로스픽 반품맵 변경 -->
+        
+    <!-- 크로스픽 반품맵 변경 -->
+            <a href="javascript:popupResult();" class="close_7e">취소</a>
+            <a href="javascript:popupResult('Y');" class="ok_7e">확인</a>
+        
+        </div>   
+        
+        <!--=============  상품상세에서 편의점 지점 찾기 영역 끝 ===================-->   
+        
+          <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=WY94ifCqxm6TqcDoTWKt&submodules=geocoder"></script>
+          <!-- naverMap_v3 Asynchronously Loading the API ********************************************* -->
+          <script type="text/javascript">
+            
+            var crspk_info; // 크로스픽업 점포 정보 JSON
+            var map; // 지도
+            var marker; // 마커
+            var markers = []; // 마커 배열
+            //var ele_obj = ["crspk_corp_cd", "crspk_corp_str_sct_cd", "crspk_str_no", "crspk_str_str_nm", "crspk_str_post_no", "crspk_str_phon", "crspk_str_post_addr", "crspk_str_dtl_addr", "crspk_str_stnm_post_addr", "crspk_str_stnm_dtl_addr"]; // 선택된 정보 셋팅 값
+            var input_obj = ["crspk_corp_cd", "crspk_corp_str_sct_cd", "crspk_str_no"]; // 선택된 정보 input 
+            var ele_obj = ["crspk_str_str_nm", "crspk_str_phon", "crspk_str_post_addr", "crspk_str_dtl_addr", "crspk_biz_time"]; // 선택된 정보 셋팅 값
+            var sido_gugun_arr = [];
+            var map_loaded_tf = false;
+            var chk_search_div = ""; // 검색버튼 구분
+            var mbrAddrInitTf = false; // 회원 기본 주소 셋팅 여부
+            
+            var mapLocation = new naver.maps.LatLng('37.5675451', '126.9773356'); // 지도에서 가운데로 위치할 위도와 경도
+            var mapOptions = {
+                center: mapLocation, // 지도에서 가운데로 위치할 위도와 경도(변수)
+                zoom: 12 // 지도 zoom단계
+                
+            };
+            var map = new naver.maps.Map(document.getElementById("map-canvas"),mapOptions);
+
+          // 초기화
+            var map_initialize = function() {
+                var mapLocation = new naver.maps.LatLng('37.5675451', '126.9773356'); // 지도에서 가운데로 위치할 위도와 경도
+                map.setCenter(mapLocation);
+            };
+            
+            var page_initialize = function() {
+ 
+                // 지역 옵션 배열 생성
+                searchCrssSidoGugunListAjax(); // 시/도 조회
+
+            }
+            
+            // 마커 표시
+            var crspkMarkerDisplay = function(){
+              if (crspk_info!=null && crspk_info.length>0){
+                var diff_area_tf = false; // 다른 지역 존재 시
+                var pre_post_3_no = ""; // 이전 우편번호 3자리
+                var position_exist_idx = -1; // 지점 위치 존재 index
+
+                // 마커 생성
+                for (var i=0; i<crspk_info.length; i++){
+                  crspkMarkerCreate(i);
+
+                  if (!diff_area_tf && pre_post_3_no != "" && pre_post_3_no != (crspk_info[i].CRSPK_STR_POST_NO).substring(0, 3)){ // 우편번호 앞 3자리가 다르면
+                      diff_area_tf = true;
+                  }
+
+                  pre_post_3_no = (crspk_info[i].CRSPK_STR_POST_NO).substring(0, 3);
+                  
+                  if (position_exist_idx == -1 && crspk_info[i].CRSPK_POSITION_EXIST_YN == "Y"){
+                      position_exist_idx = i;
+                  }
+                }
+
+                if (!mbrAddrInitTf && 'N'!='Y' && '0000'=='0000' && '서울 성북구 정릉동'!=''){ // 회원 기본 주소 (최초1회 조회)
+                    mbrAddrInitTf = true;
+                    naver.maps.Service.geocode({address: '서울 성북구 정릉동'}, function(status, response) { // 지역 검색 시 중앙
+                        if (status == naver.maps.Service.Status.OK) {
+                            map.setCenter(response.result.items[0].point);
+                        } else {
+                            console.log("주소검색에 실패하였습니다.");
+                        }
+                    });
+                    
+                    map.setZoom(15);
+                }else if(diff_area_tf && chk_search_div == 'N'){ // 지점명 검색 시 지역이 다른 경우 (서울 명동/천안 명동)
+                    map.setCenter(new naver.maps.LatLng('36', '128')); // 대한민국 중앙으로
+                    map.setZoom(6);
+                }else if (crspk_info.length > 1){ // 결과가 2 이상이면
+                    // 지도 중앙 지정
+                    var address = '';
+
+                    if (position_exist_idx < 0){
+                        if (chk_search_div == 'A'){ // 지역 검색
+                            address = $('#sido_nm').val() + " " + ($("#gugun_nm").val()==null?"":$("#gugun_nm").val());
+                        }else if (chk_search_div == 'N'){ // 지점명 검색
+                            address = crspk_info[0].CRSPK_STR_POST_ADDR;
+                        }
+                        
+                        naver.maps.Service.geocode( {address: address}, function(status, response) { // 지역 검색 시 중앙
+                            if (status == naver.maps.Service.Status.OK) {
+                                map.setCenter(response.result.items[0].point);
+                            } else {
+                                console.log("주소검색에 실패하였습니다.");
+                            }
+                        });
+                    }else{
+                        map.setCenter({lat:Number(crspk_info[position_exist_idx].CRSPK_STR_LATITUDE_VAL), lng:Number(crspk_info[position_exist_idx].CRSPK_STR_LONGITUDE_VAL)});
+                    }
+                    
+                    map.setZoom(12);
+                }
+              }
+            }
+
+            // 마커 생성
+            var crspkMarkerCreate = function(crspk_idx){
+                var marker_img = "";
+                var store_div = crspk_info[crspk_idx].CRSPK_CORP_CD+":^:"+crspk_info[crspk_idx].CRSPK_CORP_STR_SCT_CD; // 브랜드 구분
+                
+                if (store_div == "1000:^:1"){ // 세븐일레븐
+                    marker_img = "postion_7e_off";
+                }else if (store_div == "1000:^:2"){ // 바이더 웨이
+                    marker_img = "postion_7e_off";
+                }else if (store_div == "3000:^:1"){ // 하이마트
+                    marker_img = "postion_hm_off";
+                }else if (store_div == "4000:^:1"){ // 롯데슈퍼
+                    marker_img = "postion_ls_off";
+                }else if (store_div == "5000:^:1"){ // 20180607 롯데리아 추가
+                    marker_img = "postion_ll_off";
+                }
+                
+                if (crspk_info[crspk_idx].CRSPK_POSITION_EXIST_YN == "Y"){ // 점 위치 정보가 존재하면
+                    markers[crspk_idx] = new naver.maps.Marker({
+                        position: {lat:Number(crspk_info[crspk_idx].CRSPK_STR_LATITUDE_VAL), lng:Number(crspk_info[crspk_idx].CRSPK_STR_LONGITUDE_VAL)},
+                        map: map,
+                        title: crspk_str_nm,
+                        icon: "http://image.lotte.com/lotte/images/smartp/"+marker_img+".png"
+                    });
+                    
+                    naver.maps.Event.addListener(markers[crspk_idx], "click", function() {crspkMarkerSelect(markers[crspk_idx], crspk_idx);}); // 마커 클릭시 이벤트 지정
+
+                    // 주소가 하나일 경우 주소 중앙 셋팅
+                    if (crspk_info.length == 1){
+                        map.setCenter(markers[crspk_idx].position);
+                        map.setZoom(15);
+                        crspkMarkerSelect(markers[crspk_idx], crspk_idx); // 이벤트 발생
+                    }
+                }else{
+                  var address = crspk_info[crspk_idx].CRSPK_STR_POST_ADDR + " " + crspk_info[crspk_idx].CRSPK_STR_DTL_ADDR; // DB에서 주소 가져와서 검색.
+                  var crspk_str_nm = crspk_info[crspk_idx].CRSPK_STR_STR_NM; // 마커 타이틀
+                  
+                  naver.maps.Service.geocode( {'address': address}, function(status, response) {    // 지역 검색 시 중앙
+                    if (status == naver.maps.Service.Status.OK) {
+                        markers[crspk_idx] = new naver.maps.Marker({
+                            position: response.result.items[0].point,
+                            map: map,
+                            title: crspk_str_nm,
+                            icon: "http://image.lotte.com/lotte/images/smartp/"+marker_img+".png"
+                        });
+                       
+                        naver.maps.Event.addListener(markers[crspk_idx], "click", function() {crspkMarkerSelect(markers[crspk_idx], crspk_idx);}); // 마커 클릭시 이벤트 지정
+                       
+                       // 주소가 하나일 경우 주소 중앙 셋팅
+                       if (crspk_info.length == 1){
+                           map.setCenter(markers[crspk_idx].position);
+                           map.setZoom(15);
+                           crspkMarkerSelect(markers[crspk_idx], crspk_idx); // 이벤트 발생
+                       }
+                    } else if (status == naver.maps.Service.Status.ERROR){
+                        //setTimeout(function() {crspkMarkerCreate(crspk_idx);}, 500);
+                        markers[crspk_idx] = null;
+                    } else {
+                      markers[crspk_idx] = null;
+                      console.log(crspk_str_nm + "의 주소검색에 실패하였습니다.");
+                    }
+                  });
+                }
+            }
+
+            // 마커 삭제
+            var crspkMarkerRemoveAll = function(){
+              for (var i=0; i < markers.length; i++){
+                  if (markers[i]!=null && typeof(markers[i])!="undefined"){
+                    markers[i].setMap(null);
+                }
+              }
+            }
+
+            // 마커 선택
+            var crspkMarkerSelect = function(crspk_marker, sel_idx){
+              // 모든 마커 이미지 초기화 
+              for (var i=0; i < markers.length; i++){
+                if (markers[i]!=null){
+                    var markers_url = markers[i].icon;
+                    if (markers_url.indexOf("_7e_") > -1){ // 세븐일레븐, 바이더웨이
+                        markers[i].setIcon("http://image.lotte.com/lotte/images/smartp/postion_7e_off.png"); 
+                    }else if (markers_url.indexOf("_hm_") > -1){ // 하이마트
+                        markers[i].setIcon("http://image.lotte.com/lotte/images/smartp/postion_hm_off.png"); 
+                    }else if (markers_url.indexOf("_ls_") > -1){ // 롯데슈퍼
+                        markers[i].setIcon("http://image.lotte.com/lotte/images/smartp/postion_ls_off.png"); 
+                    }else if (markers_url.indexOf("_ll_") > -1){ // 20180607 롯데리아 추가
+                        markers[i].setIcon("http://image.lotte.com/lotte/images/smartp/postion_ll_off.png"); 
+                    }
+                }
+              }
+              var selected_url = crspk_marker.icon;
+              // 선택된 마커 이미지 변경
+              if (selected_url.indexOf("_7e_")>-1){ // 세븐일레븐, 바이더웨이
+                crspk_marker.setIcon("http://image.lotte.com/lotte/images/smartp/postion_7e_on.png"); 
+              }else if (selected_url.indexOf("_hm_")>-1){ // 하이마트
+                crspk_marker.setIcon("http://image.lotte.com/lotte/images/smartp/postion_hm_on.png"); 
+              }else if (selected_url.indexOf("_ls_")>-1){ // 롯데슈퍼
+                crspk_marker.setIcon("http://image.lotte.com/lotte/images/smartp/postion_ls_on.png"); 
+              }else if (selected_url.indexOf("_ll_")>-1){ // 20180607 롯데리아 추가
+                crspk_marker.setIcon("http://image.lotte.com/lotte/images/smartp/postion_ll_on.png"); 
+              }
+              
+
+              // 편의점 정보 셋팅 1
+              for (var i=0; i < input_obj.length; i++){
+                $('#'+input_obj[i]).val(crspk_info[sel_idx][input_obj[i].toUpperCase()]);
+              } 
+
+
+              // 편의점 정보 셋팅 2
+              for (var i=0; i < ele_obj.length; i++){
+                $('#'+ele_obj[i]).html(crspk_info[sel_idx][ele_obj[i].toUpperCase()]);
+              }    
+                $(".result_7e_select_ .matable").show();
+            }
+
+            // 지역 검색
+            var crspkInfoSearch = function(search_div){
+              crspkMarkerRemoveAll(); // 기존 마커 제거
+              markers = []; // 마커 배열 초기화
+            
+              var params = '{"search_div":"'+search_div+'"';
+              
+              if (search_div=='A'){ // 지역검색 (AREA)
+                  if ($("#sido_nm").val()==""){
+                      alert("시/도를 선택해 주세요.");
+                      return;
+                  }
+                  
+                  params += ',"sido_nm":"'+$("#sido_nm").val()+'"';
+                  params += ',"gugun_nm":"'+($("#gugun_nm").val()==null?'':$("#gugun_nm").val())+'"';
+
+                  // 편의점 브랜드 조회 조건
+                  var crspk_corp_str = "";
+                  $("input[name=crspk_corp]:checkbox:checked").each(function() { 
+                      crspk_corp_str += ((crspk_corp_str!=""?";;;;;":"")+$(this).val());
+                  });
+                  
+                  if (crspk_corp_str!=""){
+                    if (crspk_corp_str.indexOf("1000:^:1")>-1){ // 세븐일레븐이 존재하면
+                        crspk_corp_str += (";;;;;1000:^:2"); // 세븐일레븐 조회 시 바이더웨이도 함께 조회
+                    }
+                    params += ',"crspk_corp":"'+crspk_corp_str+'"';
+                  }
+              }else if (search_div=='B'){ // 특정 지점 검색 (BRANCH)
+                  params += ',"crspk_corp_cd":"null"';
+                  params += ',"crspk_corp_str_sct_cd":"null"';
+                  params += ',"crspk_str_no":"null"';
+              }else{ // 지점명 검색 (NAME)
+                  var search_nm = $("#crspk_str_str_name").val();
+                  
+                  if (search_nm.length < 1 || search_nm=='점'){
+                      alert('점 이름을 입력하세요.');
+                      return;
+                  }
+                  
+                  params += ',"crspk_str_str_nm":"'+search_nm+'"';
+                  
+                  // 편의점 브랜드 조회 조건
+                  var crspk_corp_str = "";
+                  $("input[name=crspk_corp]:checkbox:checked").each(function() { 
+                      crspk_corp_str += ((crspk_corp_str!=""?";;;;;":"")+$(this).val());
+                  });
+                  
+                  if (crspk_corp_str!=""){
+                    if (crspk_corp_str.indexOf("1000:^:1")>-1){ // 세븐일레븐이 존재하면
+                        crspk_corp_str += (";;;;;1000:^:2"); // 세븐일레븐 조회 시 바이더웨이도 함께 조회
+                    }
+                    params += ',"crspk_corp":"'+crspk_corp_str+'"';
+                  }
+              }
+              params += "}";
+              
+              chk_search_div = search_div; // 조회구분
+
+              // 편의점 정보 초기화 1
+              for (var i=0; i < input_obj.length; i++){
+                $('#'+input_obj[i]).val('');
+              } 
+
+              // 편의점 정보 초기화 2
+              for (var i=0; i < ele_obj.length; i++){
+                $('#'+ele_obj[i]).html('');
+              }
+              $(".result_7e_select_ .matable").hide();
+              
+              $.ajax({
+                  type: "POST",
+                  url: "/json/smartpick/searchCrssShopListAjax.json",
+                  data: JSON.parse(params),
+                  dataType: "json",
+                  success: function(data){                    
+                      if (data.responseCode!="0000"){
+                          $(".mapStr").show().text("수령 가능한 지점이 없습니다.");
+                          return;
+                      }
+                      
+                      $(".mapStr").hide();
+
+                      crspk_info = JSON.parse(data.crspk_stores);
+                      console.log(crspk_info);
+                      if (!map_loaded_tf){ // 지도 1회 생성
+                        map_initialize();
+                        map_loaded_tf = true;
+                      }
+                      
+                      crspkMarkerDisplay();
+                  }
+              });
+            }
+            
+            // 시도 조회
+            var searchCrssSidoGugunListAjax = function(){
+                var jsonlink = '/json/smartpick/searchCrssSidoGugunListAjax.json';  
+                $.getJSON(jsonlink , '', function(data){
+                    if (data.length < 1){
+                        $(".mapStr").show().text("시/도 조회 시 오류가 발생하였습니다.");
+                        return;
+                    }
+                    //console.log(data);
+                    var sido_gugun_obj = JSON.parse(data.sido_gugun);
+                    var sido_opt_str = "<option value=''>시/도</option>";
+                    for (key in sido_gugun_obj){ // 시/도
+                        if (sido_gugun_obj.hasOwnProperty(key)){
+                            sido_opt_str += "<option value='" + key + "'>" + key + "</option>";
+                            
+                            sido_gugun_arr.push(key); // 시/도
+                            
+                            sido_gugun_arr[key] = sido_gugun_obj[key]; // 구/군
+                        }
+                    }
+                    
+                    $("#sido_nm").html(sido_opt_str); // 시/도 셋팅
+                    
+                    // 구군 셋팅
+                    // sidoChange();
+                    
+                    // 회원 기본 주소관련
+                    if (!mbrAddrInitTf && 'N'!='Y' && '0000'=='0000' && '서울특별시'!=''){ // 최초 정상조회
+                        $("#sido_nm").val('서울특별시');
+                        $("#sido_nm").change();
+                        $("#gugun_nm").val('성북구');
+                        
+                        crspkInfoSearch('A'); // 지역 검색
+                    }else{
+                        mbrAddrInitTf = true;
+                    }
+                });
+            }
+
+            // 지역 시도 선택
+            var sidoChange = function(){
+                var sido = $("#sido_nm").val();
+                var gugun = sido_gugun_arr[sido];
+                var gugun_opt = "";
+                
+                if (gugun.length < 1){
+                    $("#gugun_nm").attr("disabled", true);
+                }else if (gugun.length == 1 && $.trim(gugun[0]) == ""){
+                    $("#gugun_nm").attr("disabled", true);          
+                }else{
+                    $("#gugun_nm").attr("disabled", false);
+                    for (var i=0; i < gugun.length; i++){
+                        gugun_opt += "<option value='" + gugun[i] + "'>" + gugun[i] + "</option>";
+                    }
+                }
+
+                $("#gugun_nm").html(gugun_opt);
+            }
+
+            // 결과 셋팅, 창 닫기
+            var popupResult = function(set_yn){
+                if (set_yn=='Y'){
+                    if($(".result_7e_select_ .matable").css("display") == "none"){
+                        alert("픽업 지점을 선택해주세요.");
+                        return;
+                    }
+                    var paramObj = {
+                        "name" : $("#crspk_str_str_nm").text(),
+                        "address": $("#crspk_str_post_addr").text() +" "+ $("#crspk_str_dtl_addr").text(),
+                        "tel" : $("#crspk_str_phon").text(),
+                        "crspk_corp_cd" : $("#crspk_corp_cd").val(),           
+                        "crspk_corp_str_sct_cd" : $("#crspk_corp_str_sct_cd").val(),           
+                        "crspk_str_no" : $("#crspk_str_no").val()   
+                    };
+                    
+                    // angular로 구현하지 않은 경우
+                    if (''!=''){
+                        var targetObj = {
+                            "cart_sn" : ""
+                        };
+                        
+                        $.extend(paramObj, targetObj);
+                    }
+                    
+                    if ('N'=='Y'){ // 택배 -> 크로스픽
+                        parent.chgCrspkWithNormal('C', '', paramObj.crspk_corp_cd, paramObj.crspk_corp_str_sct_cd, paramObj.crspk_str_no, 'Y'); // 변경구분, 카드순번, 점정보..., iframe 닫기 여부
+                    }else{
+                        parent.searchMartResult(paramObj); //매장명, 주소, 전화 정보 전달 (주문서외 사용)
+                    }
+                }
+                //부모창의 함수 호출 : 닫기 
+                parent.searchMartClose();
+            }
+              
+            $('#crspk_str_str_name').bind("click", function(){
+                $(this).attr('value', '');
+            });
+            
+            //google.maps.event.addDomListener(window, 'load', initialize); // 지도 초기화
+            // 화면 초기화
+            $(window).load(function(){
+                //페이지 초기화
+                page_initialize();
+            });
+          </script>
+        <div style="display:none">
+            <iframe src="" name="paction_frame" width="0" height="0" title="빈 프레임"></iframe>
+            <div id="tempFormDiv">
+                <form name="tempForm" method="post" action=""><!-- 201303 form 서식미흡(action 속성부재) -->
+                    <input type="hidden" name="method" />
+                    <div id="divTemp"></div>
+                </form>
+            </div>
+        </div>            
+        
+    </section>        
+</body>
+</html>

@@ -1,0 +1,64 @@
+<section>
+<!-- 남들은 뭘 샀지 -->
+		<div class="peopleBuy"  ng-if="SaleBestData.buybest.items.length == 0">
+			<h3>남들은 <strong>뭘 샀지?</strong></h3>
+			<div class="swipe3type">
+				<div class="swipeWrap">
+					<!-- li 3개씩 묶어주세요 -->
+					<ul>
+						<li ng-repeat="item in SaleBestData.buybest.items">
+							<a href="#none">
+								<span class="imgWrap">
+									<img src="{{item.sale_img_url}}" alt="" />
+								</span>
+								<span class="sPrdTit"> {{item.goods_nm}}</span>
+								<span class="sPrice"><strong>{{item.sale_prc}}</strong>원</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="paging">
+					<ol>
+						<li class="on"><span>1</span></li>
+						<li><span></span>2</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+		<!-- 남들은 뭘 봤지 -->
+		<div class="peopleView" ng-if="SaleBestData.relation.items.length == 0">
+			<h3>남들은 <strong>뭘 봤지?</strong></h3>
+			<div class="swipe3type">
+				<div class="swipeWrap">
+					<!-- li 3개씩 묶어주세요 -->
+					<ul>
+						<li ng-repeat="item in SaleBestData.relation.items">
+							<a href="#none">
+								<span class="imgWrap">
+									<img src="{{item.sale_img_url}}" alt="" />
+								</span>
+								<span class="sPrdTit"> {{item.goods_nm}}</span>
+								<span class="sPrice"><strong>{{item.sale_prc}}</strong>원</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="paging">
+					<ol>
+						<li class="on"><span>1</span></li>
+						<li><span></span>2</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+		<!-- 관련 기획전 -->
+		<div class="detailExhibition" ng-if="SaleBestData.planshop.items.length == 0">
+			<h4>관련 기획전</h4>
+			<ul>
+				<li ng-repeat="item in SaleBestData.planshop.items">
+					<a href="#none">{{item.planshopNm}}</a>
+				</li>
+			</ul>
+		</div>
+
+</section>		

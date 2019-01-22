@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+	<meta charset="utf-8">
+	<title>롯데닷컴</title>
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+
+	<!-- 기존 css -->
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/common/lotte.css" />
+	<link rel="stylesheet" type="text/css" href="../header_2018.css" /> <!-- 롯데슈퍼관련 헤더 수정 -->
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/layout/sub_header_2017.css" />
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/layout/footer.css" />
+	<link rel="stylesheet" type="text/css" href="../actionbar_2018.css" /> <!-- 롯데슈퍼관련 액션바 수정 -->
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/common/lotte_sidectg_2017_1.css" />
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/search/layer_srh_2017.css" />
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/sns/sns.css" />
+
+	<link rel="stylesheet" href="mylotte_2018.css"/>
+	<!-- 기존 css -->
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script><!-- 코딩용 angular js -->
+
+</head>
+<body ng-controller="ProductCtrl">
+
+	<div id="wrapper">
+
+		<section>
+			<header class="sub_header_top_wrap" id="lotteHeader">
+				<div class="inner_wrap headerFixed">
+					<h1 class="logo"><button class="btn_main">LOTTE.COM</button></h1>
+					<button class="btn_prev">이전</button>
+					<div class="header_srh_wrap web">
+						<div class="srh_box">
+							<label for="keyword" class="btn_srh"></label>
+						</div>
+					</div>
+					<button class="btn_ctg">카테고리</button>
+					<button class="btn_cart">장바구니<i class="cnt">5</i></button>
+					<div class="btn_super"><img src="http://image.lotte.com/lotte/mo2018/common/DotcomText.png" alt="" /></div>
+				</div>
+			</header>
+		</section>
+
+		<section>
+			<div class="sub_header_wrap">
+				<header id="head_sub" class="fixedSubHeader fixedHeader">
+					<h2>
+						<span>
+							<span class="title">마이롯데</span>
+						</span>
+					</h2>
+				</header>
+			</div>
+		</section>
+
+		<!-- -->
+		<section ng-show="contVisible" class="cont_minheight">
+            <!-- 마이롯데_메인 리뉴얼-->
+            <section class="mylotteMain2">
+                <div class="myHead" ng-if="loginInfo.isLogin">
+                    <div class="myInfo">
+                        박병선
+                        <span> 회원님</span>
+                    </div>
+                    <div class="config">
+                        <a ng-href="{{myLotteMainLinkObj.smartAlarmUrl}}" class="alarmIcon"><span class="lib" ng-class="{new:alarmFlag}"></span>알림</a>
+                        <a class="configIcon" onClick="showAppConfig();" ng-if="appObj.isApp" ng-class="{update:appObj.needUpdateApp}"><span class="lib"></span>설정</a>
+                    </div>
+                </div>
+
+                <div class="myPoint" ng-if="loginInfo.isLogin">
+                    <ul class="utable bot">
+                        <li class="ucell" ng-click="lPointClick()"><div class="cir t1"><p><span class="lib"></span><b>2,912</b>점</p></div></li>
+                        <li class="ucell" ng-click="lMoneyClick()"><div class="cir t2"><p><span class="lib"></span><b>0</b>점</p></div></li>
+                        <li class="ucell" ng-click="depositClick()"><div class="cir t3"><p><span class="lib"></span><b>0</b>점</p></div></li>
+                    </ul>
+                    <!--포인트 정보-->
+                    <ul class="utable text" ng-class="{login:loginInfo.isLogin}">
+                        <li class="ucell line" ng-click="cloverClick()">
+                            <dl>
+                                <dt>클로버</dt>
+                                <dd><b>100</b>개</dd>
+                            </dl>
+                        </li>
+                        <li class="ucell" ng-click="couponClick()">
+                            <dl>
+                                <dt>쿠폰</dt>
+                                <dd><b>0</b>장</dd>
+                            </dl>
+                        </li>
+                       <!-- <li class="ucell btn2" ng-if="!newVer">
+                            <a href="#" class="btnType1 arr">참좋은혜택 <span class="lib"/></a>
+                            <a href="#" class="btnType2 arr">절친쿠폰북<span class="lib"/></a>
+                        </li>-->
+                        <li class="ucell btn2" ng-if="newVer">
+                            <a href="#" class="btnType1 arr">멤버십&쿠폰존<span class="lib"/></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="myHead" style="display:none">
+                    <div class="myInfo">고객님, 반갑습니다.</div>
+                    <div class="config">
+                        <a href="#" class="alarmIcon"><span class="lib"></span> 알림</a>
+                        <a class="configIcon"><span class="lib"></span> 설정</a>
+                    </div>
+                </div>
+                <div class="myPoint" style="display:none">
+                    <ul class="utable bot">
+                        <div class="loginMessage">
+                            <p>지금 로그인 하시면,<br>
+                            포인트 및 쿠폰, 위시리스트 정보를<br>
+                            빠르게 확인하실 수 있습니다.</p>
+                            <div class="login_btn_wrap">
+                              <a class="member_join" href="#none" >회원가입</a>
+                              <a class="lib" href="#none">로그인</a>
+                            </div>
+                        </div>
+                    </ul>
+                    <!--포인트 정보-->
+                    <ul class="utable text">
+                        <li class="info">혜택등급별 혜택, 앱 전용 쿠폰!<br>지금 바로 만나보세요~!</li>
+                        <li class="ucell btn2 login">
+                            <a href="#" class="btnType1 arr" ng-if="!newVer">참좋은혜택<span class="lib"/></a>
+                            <a href="#" class="btnType1 arr" ng-if="newVer">멤버십&쿠폰존<span class="lib"/></a>
+                           <!-- <a href="#" class="btnType2 arr">절친쿠폰북<span class="lib"/></a>-->
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 위시리스트, 최근본상품 버튼-->
+                <ul class="utable btn22">
+                    <li class="ucell">
+                        <a href="#">위시리스트 2<span class="lib"/></a>
+                    </li>
+                    <li class="ucell">
+                        <a href="#" ng-click="myLotteLateProd()">최근본상품 5<span class="lib"/></a>
+                    </li>
+                </ul>
+
+                <!--주문/배송조회-->
+                <div class="deliveryInfo borderTopBottom" ng-if="loginInfo.isLogin">
+                    <div class="oneLineInfo"><a ng-href="{{myLotteMainLinkObj.ordLstUrl}}"><b>주문배송조회</b> <span class="type2">(취소/변경/교환/반품 신청)</span><span class="lib"/></a></div>
+                    <ul class="utable">
+                        <li class="ucell">
+                            <div class="t1">주문접수<span class="lib"/></div>
+                            <span class="n1 number">1</span>
+                        </li>
+                        <li class="ucell">
+                            <div class="t1">주문완료<span class="lib"/></div>
+                            <span class="n1 number">1</span>
+                        </li>
+                        <li class="ucell">
+                            <div class="t1">출고지시<span class="lib"/></div>
+                            <span class="n1">0</span>
+                        </li>
+                        <li class="ucell">
+                            <div class="t1">상품준비<span class="lib"/></div>
+                            <span class="n1">0</span>
+                        </li>
+                        <li class="ucell">
+                            <div class="t1">발송완료</div>
+                            <span class="n1">0</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="superInfo borderTopBottom">
+                    <div class="ti">장보기몰</div>
+                    <ul class="utable">
+                        <li class="ucell">
+                            <a href="">장보기#자주구매</a>
+                            <span class="lib"></span>
+                        </li>
+                        <li class="ucell">
+                            <a href="">장보기몰 주문내역</a>
+                            <span class="lib"></span>
+                        </li>
+                    </ul>
+                    <ul class="utable">
+                        <li class="ucell">
+                            <a href="">장보기 위시리스트</a>
+                            <span class="lib"></span>
+                        </li>
+                        <li class="ucell">
+                            <a href="">장보기 GO</a>
+                            <span class="lib"></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="borderTopBottom pad">
+                    <!--<div class="oneLineInfo" ng-if="!loginInfo.isLogin"><a ng-href="{{myLotteMainLinkObj.ordLst2Url}}">주문배송조회 <span class="type2">(취소/변경/교환/반품 신청)</span><span class="lib"/></a></div>-->
+                    <div class="oneLineInfo"><a ng-href="{{myLotteMainLinkObj.critViewUrl}}"><b>상품평 작성 0</b><span class="lib"/></a></div>
+                    <div class="oneLineInfo"><a ng-href="{{myLotteMainLinkObj.presentList}}">선물함<span class="lib"/></a></div>
+                    <div class="oneLineInfo" ng-class="{nb:!loginInfo.isLogin}"><a ng-href="{{myLotteMainLinkObj.ordCancelUrl}}">취소/교환/반품 조회<span class="lib"/></a></div>
+                    <div class="oneLineInfo nb"><a href='#' ng-click="smartPickClick()">스마트픽/e-쿠폰교환권 <b>{{myLotteMainInfo.smpOrderCount | textOrNumber : 0 }}</b><span class="lib"/></a></div>
+                </div>
+
+                <div class="borderTopBottom pad">
+                    <div class="oneLineInfo">
+                                    <a ng-href="{{myLotteMainLinkObj.talkIntroUrl}}">실시간 채팅상담 <em class="lib" ng-if="myLotteMainInfo.chatCnt > 0"></em><span class="lib"/></a>
+                                </div>
+                                <div class="oneLineInfo"><a ng-href="{{myLotteMainLinkObj.cscenterMain}}">1:1 문의/답변 <span class="lib"/></a></div>
+                                <div class="oneLineInfo nb"><a ng-href="{{myLotteMainLinkObj.QandA}}">나의 상품 Q&#x26;A <span class="lib"/></a></div>
+                                <div class="oneLineInfo nb"><a ng-href="{{myLotteMainLinkObj.eventGumeUrl}}">이벤트 응모내역 <span class="lib"/></a></div>
+                </div>
+
+                <div class="borderTopBottom footInfo">
+                   <ul class="utable">
+                        <li class="ucell"><a ng-href="{{myLotteMainLinkObj.lPayEasyUrl}}">L.pay<br>간편결제 신청</a></li>
+                        <li class="ucell"><a ng-href="{{myLotteMainLinkObj.orderAlarmYnUrl}}">주문정보<br>수신설정</a></li>
+                        <!-- 2016-11-29 --<li class="ucell"><a ng-href="{{myLotteMainLinkObj.ecouponListUrl}}">e-쿠폰<br>환불 관리</a></li><!-- //2016-11-29 -->
+                        <!--<li class="ucell"><a ng-href="{{myLotteMainLinkObj.receiptEventUrl}}">영수증<br>이벤트</a></li>-->
+                        <li class="ucell"><a ng-href="{{myLotteMainLinkObj.attendEventUrl}}">출석체크<br>이벤트</a></li>
+                   </ul>
+                   <ul class="utable">
+                       <li class="ucell nb"><a ng-href="{{myLotteMainLinkObj.smartpayUrl}}">스마트 페이<br>관리</a></li>
+                       <li class="ucell nb"><a ng-click="memeberChagne()">회원정보<br>수정</a></li>
+                       <li class="ucell nb line1"><a ng-click="memberOut()">회원 탈퇴</a></li>
+                   </ul>
+                   <member-popup ng-if="memberLoginPopup == true"></member-popup>
+                </div>
+            </section>
+
+
+            <!-- 로딩이미지 -->
+            <!--<div class="pageLoading" ng-if="isShowLoadingImage"><p class="loading half"></p></div>-->
+
+            <!-- //마이롯데_메인 -->
+            <welcome-popup ng-show="welcomeFlag == true"></welcome-popup>
+        </section>
+		<!-- -->
+
+		<!-- footer -->
+		<footer id="footer">
+			<ul class="menu01">
+				<li><a class="ng-binding" href="#">마이롯데</a><i></i>	</li>
+				<li><a ng-click="pcClick()">PC버전</a><i></i></li>
+				<li><a href="#">장바구니</a><i></i></li>
+				<li><a href="#">고객센터</a><i></i></li>
+				<li><a href="#" ng-click="loginProc()" ng-bind="(loginInfo.isLogin)?'로그아웃':'로그인'" class="ng-binding">로그아웃</a></li>
+			</ul>
+			<div class="info">
+				<ul class="menu02">
+					<li><strong>(주)롯데닷컴</strong></li>
+					<li><a ng-click="ftcClick()">사업자정보확인</a></li>
+					<li><a ng-click="forwardClick()">채무지급보증안내</a></li>
+				</ul>
+				<p class="add">
+					<span class="addFirst">대표이사 : 김형준</span>
+					<span class="line">서울시 중구 을지로 158 10층(을지로4가, 삼풍빌딩)</span>
+					<span class="line">사업자등록번호 : 101-81-52964 통신판매업신고 : 중구 제00402호</span>
+					<span class="line">고객만족센터 : <a href="tel:1577-1110">1577-1110</a>  webmaster@lotte.com</span>
+					<span class="line">개인정보보호책임자 : 윤상선</span> <span class="line">청소년보호책임자 : 김찬기</span>
+					<span>호스팅 사업자 : (주)롯데닷컴</span>
+				</p>
+			</div>
+			<div class="menu03">
+				<ul>
+					<li><a href="#">이용약관</a></li>
+					<li><a href="#"><strong>개인정보처리방침</strong></a></li>
+					<li><a href="#">청소년보호정책</a></li>
+				</ul>
+			</div>
+			<div class="capyright">Copyright © LOTTE.com, Inc. All rights Reserved.</div>
+		</footer>
+		<!-- //footer -->
+
+		<!-- quick_btn -->
+		<div class="quick_btn">
+			<div ng-show="visible" class="">
+				<a class="btn_back ng-hide" ng-click="gotoPrepageSide()" ng-show="quickBackBtn">뒤로</a><a class="btn_top" ng-click="gotoTop()">위로</a>
+			</div>
+			<div class="btn_talk" ng-click="gotoTalk()"><a href="#" class="qbta0"><img src="http://image.lotte.com/lotte/mo2017/common/talkFloatAni.gif"></a></div>
+		</div>
+		<!-- quick_btn -->
+	</div>
+
+	<!-- lotteActionbar -->
+	<section id="lotteActionbar" class="actionbar">
+		<ul class="actionbar_wrap">
+			<li class="ctg"><button class="btn_ctg">카테고리</button></li>
+			<li class="order"><button class="btn_order">#자주구매</button></li>
+			<li class="home on"><button class="btn_main">홈</button></li>
+			<li class="mylotte"><button class="btn_mylotte">마이롯데</button></li>
+			<li class="recent active"><!-- //최근 본 상품이 있을때 클래스 추가:active -->
+				<button class="btn_recent">최근본상품
+					<span class="img" style="background-image: url(http://image.lotte.com/goods/56/56/59/51/4/451595656_1_280.jpg);"></span>
+				</button>
+			</li>
+		</ul>
+	</section>
+	<!-- //lotteActionbar -->
+</body>
+</html>

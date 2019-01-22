@@ -1,0 +1,99 @@
+■ LCMS ( 11520065 / 광놈213! ) 김낙운
+http://lcms.lotte.com:9000/cms/index.jsp ( 81002867 / 박병선1@# )
+
+
+============================== 롯데 닷컴 작업 경로 ==============================
+/app/lottecom_api.js 
+/config/lottemain2017.json
+링크정보 /lotte/resources_dv/common/lotte_svc_dev.js
+롯데슈퍼 로그인ID http://mprj1.lotte.com/json/cn/login_check.json?bigdataFlag=Y 에서 loginInfo.seedCustId 사용
+this.loginData = "/json/login_check.json";
+------------------------------------------------------------------------------
+■ 메인헤더
+/main/main_2018.html
+/main/main_2018_dev.html (main_2018.css, main_2017.js 경로수정)
+
+/lotte/resources_dev/main/lotte_header_main_2018.html (구조변경 및 롯데슈퍼 로그추가)
+/lotte/resources_dev/main/main_2018.js (lotte_header_main_2018.html 경로수정)
+/lotte/resources_dev/main/main_2018.css (기존 css수정 및 97~108줄 추가)
+
+작업내역
+헤더정보 JSON http://localhost/json/main_new/getAppHeaderIcon.json 
+슈퍼링크 http://m.lottesuper.co.kr/handler/united/gateway/WishListIf?stpoint=DOTCOM&dotcustId=seedCustId값
+------------------------------------------------------------------------------
+■ 서브헤더
+/lotte/resources_dev/common/common_load_2018.js (header_2018.css 경로수정)
+/lotte/resources_dev/common/lotte_comm_2018.js (header_2018.html 경로수정, 2166~2196줄 추가)
+
+/lotte/resources_dev/layout/header_2017.html
+/lotte/resources_dev/layout/header_2018.css // 롯데슈퍼관련 서브헤더 수정
+------------------------------------------------------------------------------
+■ 액션바
+/main/main_2018_dev.html (common_load_2018.js 경로수정)
+/lotte/resources_dev/common/common_load_2018.js (lotte_comm_2018.js, actionbar_2018.css 경로수정)
+/lotte/resources_dev/common/lotte_comm_2018.js (actionbar_2018.html 경로수정)
+
+/lotte/resources_dev/layout/lotte_comm_2018.html
+/lotte/resources_dev/layout/actionbar_2018.css // 롯데슈퍼관련 액션바 수정
+
+lateProdData
+/json/product/late_view_product.json
+------------------------------------------------------------------------------
+■ 장바구니
+/mylotte/cart/m/cart_list_2018.html
+/mylotte/cart/m/cart_list_2018_dev.html (cart_2018.js, cart_2018.css, common_load_2018.js 경로수정)
+
+/lotte/resources_dev/mylotte/cart/m/cart_container_2018.html
+/lotte/resources_dev/mylotte/cart/m/cart_2018.js (cart_container_2018.html 경로수정)
+/lotte/resources_dev/mylotte/cart/m/cart_2018.css
+
+위시리스트 http://m.lottesuper.co.kr/handler/united/gateway/WishListIf?stpoint=DOTCOM&dotcustId=3830124
+------------------------------------------------------------------------------
+■ 위시리스트
+/mylotte/wish/m/wish_list_2018.html
+/mylotte/wish/m/wish_list_2018_dev.html
+
+/lotte/resources_dev/mylotte/wish/m/wish_container_2018.html
+/lotte/resources_dev/mylotte/wish/m/wish_2018.js (wish_container.html 경로수정)
+/lotte/resources_dev/mylotte/wish/m/wish_2018.css
+------------------------------------------------------------------------------
+■ 마이롯데
+/mylotte/m/mylotte.html
+/mylotte/m/mylotte_dev.html (mylotte_main_2018.js, mylotte_2018.css, common_load_2018.js 경로수정)
+
+/lotte/resources_dev/mylotte/m/mylotte_main_container_2018.html (126~150줄 추가)
+/lotte/resources_dev/mylotte/m/mylotte_main_2018.js (mylotte_main_container_2018.html 경로수정, 483~514 추가) 
+/lotte/resources_dev/mylotte/mylotte_2018.css (278~285줄 추가)
+
+■ 장보기몰 링크
+#자주구매 http://m.lottesuper.co.kr/handler/mypage/wishlist/QuickBuy-OftenBuyList?tracking=M_Main_category_quickbuy
+주문내역 http://m.lottesuper.co.kr/handler/mypage/main/MyPageOrder-Start?tracking=M_myLotte_menu_01
+위시리스트 http://m.lottesuper.co.kr/handler/mypage/wishlist/WishList?tracking=M_Main_category_wishlist
+장보기 GO http://m.lottesuper.co.kr
+
+seedCustId 여부에 따라서 파라메터 추가 (stpoint=DOTCOM&dotcustId=seedCustId값)
+------------------------------------------------------------------------------
+■ 검색
+
+/search/search_list_2018.html
+/search/search_list_2018_dev.html (search_list_2018.js, search_list_2018.css 경로수정)
+
+/lotte/resources_dev/search/search_list_container_2018.html (178~185줄 추가)
+/lotte/resources_dev/search/search_list_2018.js (search_list_container_2018.html 경로수정, 2105부분 수정, 2392~2401줄 추가)
+/lotte/resources_dev/search/search_list_2018.css (1227~1239줄 추가)
+
+
+http://m.lottesuper.co.kr/handler/search/Search-Result?query=검색어&stpoint=DOTCOM&dotcustId=3830124
+
+큐레이션형 리스트형 구분 dispUnitType 
+
+큐레이션형 
+10개뒤 롯데슈퍼
+18개 밑에 연관 검색어
+
+prd_srh_curationAlist
+
+리스트형 
+10개뒤 롯데슈퍼
+22개뒤 연관 검색어
+------------------------------------------------------------------------------

@@ -1,0 +1,376 @@
+﻿<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+	<meta charset="utf-8">
+	<title>롯데닷컴</title>
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+
+	<!-- 기존 css -->
+	<link rel="stylesheet" type="text/css" href="common.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/layer/main_popup.css"/>
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/layer/coupon_layer.css"/>
+	<!-- 기존 css -->
+
+	<!--<link rel="stylesheet" type="text/css" href="unit_list_01.css"/>-->
+	<!--<link rel="stylesheet" type="text/css" href="unit_2017.css">-->
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/main/main_2017.css"><!-- 신규 main css-->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script><!-- 코딩용 angular js -->
+
+</head>
+<body ng-controller="MainCtrl">
+	<!-- -->
+	<div id="wrapper">
+		<!-- main_header -->
+		<section id="main_header" class="main_header" >
+			<div class="header_wrap fixed">
+				<div class="inner_wrap">
+					<div class="header_top_wrap">
+						<h1 class="logo"><button ng-click="gotoMainHeader()" class="btn_main">LOTTE.COM</button></h1>
+						<button ng-click="showSideCtgHeader()" class="btn_ctg">카테고리</button>
+						<button ng-click="gotoCart()" class="btn_cart">장바구니<!-- ngIf: cartCount && cartCount > 0 --></button>
+					</div>
+					<div class="header_srh_wrap web">
+						<div class="srh_box">
+							<label ng-click="showSrhLayerHeader()" for="keyword" class="btn_srh ng-binding"></label>
+							<!-- ngIf: appObj.isApp -->
+						</div>
+					</div>
+					<div id="gnb" class="nav_swipe_wrap">
+						<nav class="main_nav">
+							<ul>
+								<li class="on"><a href="#">이거어때</a></li>
+								<li><a href="#">BIG딜</a></li>
+								<li>
+									<span class="cate_flag ng-binding ng-scope">HOT</span>
+									<a href="#">선물포장</a>
+								</li>
+								<li>
+									<span class="cate_flag ng-binding ng-scope">HOT</span>
+									<a href="#">10%적립</a>
+								</li>
+								<li><a href="#">백화점</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- main_header -->
+
+		<!-- container_wrap -->
+		<div class="container_wrap">
+			<section id="container">
+				<div id="swipeLeftContainer" class="cont_warp">
+					<div id="contentContainer" class="cont_wrap">
+						<!-- 퍼블리싱 시작-->
+						<div class="moduleCon">
+							<div class="gTop_title">
+								<span>베스트</span>
+								<p>많이 구매한 스트라이프 원피스</p>
+							</div>
+							<div class="glr_list">
+								<ul>
+									<li>
+										<a href="#">
+											<div class="thumb">
+												<img src="http://image.lotte.com/goods/67/58/60/65/3/365605867_1_550.jpg" alt="" />
+											</div>
+											<p class="flag">BEST</p>
+											<p class="info"><span>126,000</span>원~</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<div class="thumb">
+												<img src="http://image.lotte.com/goods/48/50/65/40/2/240655048_1_280.jpg" alt="" />
+											</div>
+											<p class="info"><span>48,000</span>원~</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<div class="thumb">
+												<img src="http://image.lotte.com/goods/95/31/40/59/3/359403195_1_280.jpg" alt="" />
+											</div>
+											<p class="info"><span>126,000</span>원~</p>
+										</a>
+									</li>
+									<li class="clear"></li>
+									<li>
+										<a href="#">
+											<div class="thumb">
+												<img src="http://image.lotte.com/goods/91/42/92/53/3/353924291_1_280.jpg" alt="" />
+											</div>
+											<p class="info"><span>42,600</span>원~</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<div class="thumb">
+												<img src="http://image.lotte.com/goods/12/39/62/56/3/356623912_1_280.jpg" alt="" />
+											</div>
+											<p class="info"><span>78,000</span>원~</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<div class="thumb">
+												<img src="http://image.lotte.com/goods/93/54/72/62/3/362725493_1_280.jpg" alt="" />
+											</div>
+											<p class="info"><span>16,000</span>원~</p>
+										</a>
+									</li>
+								</ul>
+							</div>
+
+							<div class="gTop_title">
+								<p>많이 구매한 크로스백</p>
+							</div>
+							<div class="glr_list">
+								<ul>
+									<li>
+										<a href="#">
+											<div class="thumb">
+												<img src="http://image.lotte.com/goods/67/58/60/65/3/365605867_1_550.jpg" alt="" />
+											</div>
+											<p class="flag">BEST</p>
+											<p class="info"><span>126,000</span>원~</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<div class="thumb">
+												<img src="http://image.lotte.com/goods/48/50/65/40/2/240655048_1_280.jpg" alt="" />
+											</div>
+											<p class="info"><span>126,000</span>원~</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<div class="thumb">
+												<img src="http://image.lotte.com/goods/95/31/40/59/3/359403195_1_280.jpg" alt="" />
+											</div>
+											<p class="info"><span>126,000</span>원~</p>
+										</a>
+									</li>
+									<li class="clear"></li>
+									<li>
+										<a href="#">
+											<div class="thumb">
+												<img src="http://image.lotte.com/goods/91/42/92/53/3/353924291_1_280.jpg" alt="" />
+											</div>
+											<p class="info"><span>126,000</span>원~</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<div class="thumb">
+												<img src="http://image.lotte.com/goods/12/39/62/56/3/356623912_1_280.jpg" alt="" />
+											</div>
+											<p class="info"><span>126,000</span>원~</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<div class="thumb">
+												<img src="http://image.lotte.com/goods/93/54/72/62/3/362725493_1_280.jpg" alt="" />
+											</div>
+											<p class="info"><span>126,000</span>원~</p>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div class="btnMore">
+								<span class="btnArea"><a href="#more"><span>베스트 더보기</span></a></span>
+							</div>
+						</div>
+
+						<div class="moduleCon">
+							<div class="gTop_title">
+								<p><strong>박보검님</strong>이 최근 본 패션</p>
+							</div>
+							<div class="glr_list">
+								<ul>
+									<li>
+										<a href="#">
+											<div class="thumb">
+												<img src="http://image.lotte.com/goods/67/58/60/65/3/365605867_1_550.jpg" alt="" />
+											</div>
+											<p class="info"><span>126,000</span>원~</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<div class="thumb">
+												<img src="http://image.lotte.com/goods/48/50/65/40/2/240655048_1_280.jpg" alt="" />
+											</div>
+											<p class="info"><span>126,000</span>원~</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<div class="thumb">
+												<img src="http://image.lotte.com/goods/95/31/40/59/3/359403195_1_280.jpg" alt="" />
+											</div>
+											<p class="info"><span>126,000</span>원~</p>
+										</a>
+									</li>
+									<li class="clear"></li>
+									<li>
+										<a href="#">
+											<div class="thumb">
+												<img src="http://image.lotte.com/goods/91/42/92/53/3/353924291_1_280.jpg" alt="" />
+											</div>
+											<p class="info"><span>126,000</span>원~</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<div class="thumb">
+												<img src="http://image.lotte.com/goods/12/39/62/56/3/356623912_1_280.jpg" alt="" />
+											</div>
+											<p class="info"><span>126,000</span>원~</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<div class="thumb">
+												<img src="http://image.lotte.com/goods/93/54/72/62/3/362725493_1_280.jpg" alt="" />
+											</div>
+											<p class="info"><span>126,000</span>원~</p>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div class="btnMore">
+								<span class="btnArea"><a href="#more"><span>더보기</span></a></span>
+							</div>
+						</div>
+
+						<div class="moduleCon">
+							<div class="gTop_title">
+								<p><strong>박보검님</strong>을 위한 추천 패션</p>
+							</div>
+							<div class="glr_list">
+								<ul>
+									<li>
+										<a href="#">
+											<div class="thumb">
+												<img src="http://image.lotte.com/goods/67/58/60/65/3/365605867_1_550.jpg" alt="" />
+											</div>
+											<p class="info"><span>48,000</span>원~</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<div class="thumb">
+												<img src="http://image.lotte.com/goods/48/50/65/40/2/240655048_1_280.jpg" alt="" />
+											</div>
+											<p class="info"><span>48,000</span>원~</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<div class="thumb">
+												<img src="http://image.lotte.com/goods/95/31/40/59/3/359403195_1_280.jpg" alt="" />
+											</div>
+											<p class="info"><span>126,000</span>원~</p>
+										</a>
+									</li>
+									<li class="clear"></li>
+									<li>
+										<a href="#">
+											<div class="thumb">
+												<img src="http://image.lotte.com/goods/91/42/92/53/3/353924291_1_280.jpg" alt="" />
+											</div>
+											<p class="info"><span>42,600</span>원~</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<div class="thumb">
+												<img src="http://image.lotte.com/goods/12/39/62/56/3/356623912_1_280.jpg" alt="" />
+											</div>
+											<p class="info"><span>78,000</span>원~</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<div class="thumb">
+												<img src="http://image.lotte.com/goods/93/54/72/62/3/362725493_1_280.jpg" alt="" />
+											</div>
+											<p class="info"><span>16,000</span>원~</p>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<!-- 퍼블리싱 끝-->
+
+					</div>
+				</div>
+			</section>
+		</div>
+		<!-- //container_wrap -->
+
+		<!-- footer -->
+		<footer id="footer">
+			<ul class="menu01">
+				<li><a class="ng-binding" href="#">마이롯데</a><i></i>	</li>
+				<li><a ng-click="pcClick()">PC버전</a><i></i></li>
+				<li><a href="#">장바구니</a><i></i></li>
+				<li><a href="#">고객센터</a><i></i></li>
+				<li><a href="#" ng-click="loginProc()" ng-bind="(loginInfo.isLogin)?'로그아웃':'로그인'" class="ng-binding">로그아웃</a></li>
+			</ul>
+			<div class="info">
+				<ul class="menu02">
+					<li><strong>(주)롯데닷컴</strong></li>
+					<li><a ng-click="ftcClick()">사업자정보확인</a></li>
+					<li><a ng-click="forwardClick()">채무지급보증안내</a></li>
+				</ul>
+				<p class="add">
+					<span class="addFirst">대표이사 : 김형준</span>
+					<span class="line">서울시 중구 을지로 158 10층(을지로4가, 삼풍빌딩)</span>
+					<span class="line">사업자등록번호 : 101-81-52964 통신판매업신고 : 중구 제00402호</span>
+					<span class="line">고객만족센터 : <a href="tel:1577-1110">1577-1110</a>  webmaster@lotte.com</span>
+					<span class="line">개인정보보호책임자 : 윤상선</span> <span class="line">청소년보호책임자 : 김찬기</span>
+					<span>호스팅 사업자 : (주)롯데닷컴</span>
+				</p>
+			</div>
+			<div class="menu03">
+				<ul>
+					<li><a href="#">이용약관</a></li>
+					<li><a href="#"><strong>개인정보처리방침</strong></a></li>
+					<li><a href="#">청소년보호정책</a></li>
+				</ul>
+			</div>
+			<div class="capyright">Copyright © LOTTE.com, Inc. All rights Reserved.</div>
+		</footer>
+		<!-- //footer -->
+
+		<!-- quick_btn -->
+		<div class="quick_btn">
+			<div ng-show="visible" class="">
+				<a class="btn_back ng-hide" ng-click="gotoPrepageSide()" ng-show="quickBackBtn">뒤로</a><a class="btn_top" ng-click="gotoTop()">위로</a>
+			</div>
+			<a class="btn_talk" ng-click="gotoTalk()">톡상담</a>
+		</div>
+		<!-- quick_btn -->
+	</div>
+
+	<!-- lotteActionbar -->
+	<section id="lotteActionbar" class="actionbar" ng-show="!appObj.isApp &amp;&amp; !actionbarHideFlag">
+		<ul class="actionbar_wrap">
+			<li class="home on" ng-class="{on:cur_pageid == 1 &amp;&amp; !isShowSideCtg}"><button ng-click="gotoMainFooter()" class="btn_main">홈</button></li>
+			<li class="ctg" ng-class="{on: isShowSideCtg}"><button ng-click="showSideCtgFooter()" class="btn_ctg">카테고리</button></li>
+			<li class="order" ng-class="{on:cur_pageid == 2}"><button ng-click="gotoOrderLstFooter()" class="btn_order">주문배송</button></li>
+			<li class="mylotte" ng-class="{on:cur_pageid == 3}"><button ng-click="gotoMyPageFooter()" class="btn_mylotte">마이롯데</button></li>
+		</ul>
+	</section>
+	<!-- //lotteActionbar -->
+</body>
+</html>

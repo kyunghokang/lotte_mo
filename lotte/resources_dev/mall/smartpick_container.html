@@ -1,0 +1,32 @@
+<div class="cont_wrap">
+	<!-- 최상단 띠배너 -->
+	<section ng-if="winWidth >= 640 && screenData.reward_banner && screenData.reward_banner.banner_nm == 'rewardevent'" class="top_banner_list">
+		<ul>
+			<li><a ng-click="linkUrl(screenData.reward_banner.img_link, screenData.reward_banner.mov_frme_cd, 'm_DC_Smartpick_{{ctgDispNo}}_rewardevent')"><img ng-src="{{screenData.reward_banner.img_url}}" alt="{{screenData.reward_banner.banner_nm}}" /></a></li>
+
+			<!-- 640 이상일때만 나오는 출석 도장 이벤트 -->
+			<li ng-if="winWidth >= 640"><a ng-click="linkUrl(eventLinkObj.eventAttendUrl, false, 'm_DC_Smartpick_{{ctgDispNo}}_tabletbanner')"><img src="http://image.lotte.com/lotte/mo2015/angular/banner_201507_attend.png" alt="출석도짱" /></a></li>
+		</ul>
+	</section>
+
+	<section class="pageLoading" ng-show="pageLoading"><p class="loading half"></p></section>
+	<section ng-show="!pageLoading">
+	<div ng-controller="productCtrl">
+		<div product-container 
+			template-type="mixdeal" 
+			templatetype="templateType" 
+			products="screenData.bannerMixContents" 
+			banners="screenData.deal_banners" 
+			more-product-continer="getProductData()" 
+			win-width="winWidth"
+			tclick-prod="m_DC_Smartpick_{{ctgDispNo}}_unit" 
+			tclick-banner="m_DC_Smartpick_{{ctgDispNo}}_banner" 
+			tclick-banner-idx-key="bannerIdx" 
+			class="prd_lst_wrap"></div>
+
+		<!-- Product Load Loading -->
+		<div class="listLoading" ng-if="productListLoading && !pageLoading">
+			<p class="loading half"></p>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,80 @@
+<section ng-show="contVisible" class="cont_minheight">
+	<div class="cart_prod_wrap" ng-class="{wide:screenType > 2}">
+		<div class="mTop_title" ng-if="screenType < 2">
+			<p><strong class="m3F20B">장바구니에 담은,</strong></p>
+			<p><span class="m6F14" >바로 그 상품!</span></p>
+		</div>
+		<div class="mTop_title" ng-if="screenType > 1" >
+			<p><strong class="m3F20B">위시리스트에 담은, </strong><span>바로 그 상품!</span></p>
+		</div>	
+		<div class="cart_unit" ng-if="cartRecomTopGood" ng-class="{on:cartRecomCouponBnr}">
+			<a ng-click="cartRecomGoUrl(cartRecomTopGood, $index+1, 'cartTopPrd')">
+				<div class="thumb">
+					<img ng-src="{{cartRecomTopGood.img_url}}" alt="{{cartRecomTopGood.goods_nm}}"/>
+				</div>
+				<div class="info">
+					<p class="flag">
+						<span class="flag depart" ng-if="cartRecomTopGood.is_dept">롯데백화점</span>
+						<span class="flag etv" ng-if="cartRecomTopGood.is_tvhome && !cartRecomTopGood.is_dept">롯데홈쇼핑</span>
+						<span class="flag smart" ng-show="cartRecomTopGood.smartpick_yn=='Y'||cartRecomTopGood.issmart_pick">스마트픽</span>
+					</p>
+					<div class="tit">
+						<span ng-bind-html="cartRecomTopGood.brnd_nm|titleToHtml"></span><span  ng-bind-html="cartRecomTopGood.goods_nm|titleToHtml"></span>
+					</div>
+					<p class="pr_box">
+						<span class="price2" ng-show="cartRecomTopGood.price1 && !cartRecomTopGood.plan_prod_yn && cartRecomTopGood.price1 !='0' "><em>{{cartRecomTopGood.price1|number}}</em>원</span>
+						<span class="price"><em>{{cartRecomTopGood.price2|number}}</em>원<span ng-show="cartRecomTopGood.plan_prod_yn">~</span></span>
+					</p>
+				</div>
+			</a>
+		</div>
+		<div class="coupon_box" ng-if="cartRecomCouponBnr != null">
+			<div ng-if="!cartRecomCouponBnr.banner_nm" ng-class="{wide:screenType > 2}" class="coupon_contents">
+				<a ng-click="cartRecomGoUrl(cartRecomCouponBnr, $index, 'bnr1')"><img ng-src="{{cartRecomCouponBnr.img_url}}" alt="#"></a>
+			</div>
+			<div ng-if="cartRecomCouponBnr.banner_nm" ng-class="{wide:screenType > 2}" class="coupon_contents">
+				<a ng-click="cartRecomRegNewCoupon({{cartRecomCouponBnr.banner_nm}})"><img ng-src="{{cartRecomCouponBnr.img_url}}" alt="#"></a>
+			</div>
+		</div>
+		<div class="cart_moreBtn">
+			<a ng-click="cartMoreUrl()"><span>장바구니 더 보러 가기</span></a>
+		</div>
+	</div>
+	<div class="recomm_goods min260" ng-if="cartList_recomm_good.items && goodListIdx != 0" ng-class="{wide:screenType > 2}">
+		<div class="mTop_title">
+			<p><span class="m6F14" >이 상품을 눈여겨본</span></p>
+			<p><strong class="m3F20B">다른 고객들이 함께 본 상품</strong></p>
+		</div>
+		<ul>
+			<li ng-repeat="item in cartList_recomm_good.items track by $index" ng-hide="$index == goodListIdx">
+				<a href="#" ng-click="cartRecomGoUrl(item, $index+1, 'cartPrdList')">
+					<span class="imageCon"><img ng-src="{{item.img_url}}" alt="{{item.goods_nm}}" /></span>
+					<span class="brandname">{{item.brand_nm}}</span>
+					<span class="goodname">{{item.goods_nm}}</span>
+					<span class="price">{{item.sale_price | number:0}}<em>원<em ng-if="item.is_plan_prod" class="plan_prod_limit">~</em></em></span>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="plan_bnr_list" ng-if="cartRecomData.spdp_list.total_count != 0" ng-class="{wide:screenType > 2}">
+		<div class="mTop_title">
+			<p><span class="m6F14" >이 상품을 눈여겨본</span></p>
+			<p><strong class="m3F20B">다른 고객들이 함께 본 기획전</strong></p>
+		</div>
+		<ul>
+			<li ng-repeat="item in cartRecomData.spdp_list.items track by $index" ng-if="($index < 4)">
+				<a ng-click="cartRecomGoUrl(item, $index+1, 'planBnr')"><img ng-src="{{item.img_url}}" alt=""></a>
+			</li>
+
+		</ul>
+	</div>
+	<a ng-href="/mylotte/m/myfeed.do?{{baseParam}}&tclick=m_DC_cartpush_Clk_more" class="btn_more_recom"><span>더 많은 추천을 원하신다면? &gt;</span></a>
+	<div class="plan_bottom_bnr" ng-if="cartRecomData.bottom_ban_list.items">
+		<ul>
+			<li ng-repeat="item in cartRecomData.bottom_ban_list.items track by $index" ng-if="$index < 1"> 
+				<a ng-click="cartRecomGoUrl(item, $index, 'bnr2')" ><img ng-src="{{item.img_url}}" alt="#"></a>
+			</li>
+		</ul>
+	</div>
+	<div id="msg" style="display: none">&nbsp;</div> 							
+</section>

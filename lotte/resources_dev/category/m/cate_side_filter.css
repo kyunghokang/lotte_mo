@@ -1,0 +1,555 @@
+[placeholder]{color: #797979 !important;}
+[placeholder]:focus::-webkit-input-placeholder {color: #797979 !important;transition: none !important; opacity: 1 !important;}
+
+#container .ajax_loading{overflow:hidden;position:fixed;top:0;left:0;width:100%;height:100%;text-indent:100%;white-space:nowrap;background-color:rgba(255,255,255,0.01);z-index:1000;
+	-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0);}
+
+/* 레이어팝업 */
+.layerPop{display:none;position:absolute;right:0;top:0;border:1px solid #719cff;background:#fff;width:100%;padding:10px;z-index:100;}
+.layerBtn.on ~ .layerPop{display:block;}
+.layerPop .btn_close{position:absolute;right:5px;top:5px;background:url(http://image.lotte.com/lotte/mo2017/filter/ic_pop_close.png) 0 0 no-repeat;background-size:40px auto;;width:22px;height:22px;text-indent:-9999em;font-size:0;}
+
+
+/* 상세검색 사이드바 */
+.side_search_wrap{position:fixed;top:0;right:0;width:292px;height:100%;background-color:#f3f3f3;z-index:150;
+	-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;backface-visibility:hidden;
+	-webkit-transition:-webkit-transform .2s;transition:transform .2s;
+	-webkit-transform: translate(292px, 0);transform: translate(292px, 0);
+}
+.srh_frm legend{display:none}
+.side_search_wrap.on{-webkit-transform: translate(0, 0);transform: translate(0, 0);}
+
+.side_search_wrap .ssw_header{position:relative;background-color:#719cff;z-index:1;}
+.side_search_wrap .ssw_header .ssw_header1{height:46px;}
+.side_search_wrap .ssw_header .ssw_header1 .cropview{position:relative;height:100%;margin-right:40px;overflow:hidden;}
+.side_search_wrap .ssw_header .ssw_title{display:block;position:absolute;top:10px;left:75px;width:142px;height:26px;line-height:26px;text-align:center;color:#fff;font-size:18px;letter-spacing:-1px;}
+.side_search_wrap .ssw_header .ssw_title.main{-webkit-transition:left .2s, width .2s, color .2s;transition:left .2s, width .2s, color .2s;}
+/* .side_search_wrap.sub .ssw_header .ssw_title.main{left:12px;width:57px;line-height:27px;text-align:left;color:#719cff}
+.side_search_wrap.sub .ssw_header .ssw_title.main:before{content:"";display:inline-block;width:27px;height:27px;vertical-align:middle;
+	background:url(http://image.lotte.com/lotte/mo2017/filter/ic_filter_back.png) no-repeat 0 0;background-size:27px 27px;} */
+.side_search_wrap .ssw_header .ssw_title.sub{opacity:0;-webkit-transform:translate(200px, 0);transform:translate(200px, 0);-webkit-transition:opacity 0.2s, -webkit-transform .2s;opacity 0.2s, transition:transform .2s;}
+.side_search_wrap.sub .ssw_header .ssw_title.sub{opacity:0;-webkit-transform:translate(0, 0);transform:translate(0, 0);}
+.side_search_wrap .ssw_header .ssw_close{display:block;width:20px;height:20px;position:absolute;top: 19px;right: 14px;text-indent:-999px;overflow:hidden;background: url(http://image.lotte.com/lotte/mo2017/filter/checkbox_radio_1809.png) no-repeat -20px -100px;background-size: 40px auto;}
+.side_search_wrap .ssw_header .ssw_header2{height:38px;position:relative;}
+.side_search_wrap .ssw_header .ssw_header2 span{display: block;margin-left: 14px;line-height: 38px;font-size: 12px;color: #fff;}
+.side_search_wrap .ssw_header .ssw_header2 em{font-weight:700;}
+.side_search_wrap .ssw_header .ssw_header2 .reset_all{display:block;position:absolute;height:26px;top:6px;right:10px;padding:0 8px;line-height:25px;
+	text-align:center;border-radius:13px;color:#fff;font-size:13px;letter-spacing:-1px;}
+.side_search_wrap .ssw_header .ssw_header2 .reset_all.disabled{opacity:0.5;pointer-events:none;}
+.side_search_wrap .ssw_header .ssw_header2 .reset_all:before{content: "";display: inline-block;width: 19px;height: 16px;vertical-align: middle;margin-right: 2px;-webkit-transform: translate(0,-1px);transform: translate(0,-1px);background: url(http://image.lotte.com/lotte/mo2017/filter/checkbox_radio_1809.png) 0 -100px no-repeat;background-size: 40px auto;}
+
+.side_search_wrap .ssw_content{position:absolute;overflow:hidden;top:84px;bottom:0;left:0;right:0;}
+.side_search_wrap .ssw_content .ssw_slide{position:absolute;overflow:auto;-webkit-overflow-scrolling:touch;top:0;left:0;bottom:0;width:100%;-webkit-transition:left .2s;transition:left .2s;}
+/* .side_search_wrap.sub .ssw_content .ssw_slide.main{left:-100%;} */
+.side_search_wrap .ssw_content .ssw_slide.main > ul.isApp {padding-bottom: 50px;}
+.side_search_wrap .ssw_content .ssw_slide.main > ul > li{height:44px;border-bottom:1px solid #dcdcdc;position:relative;font-size:13px;background-color: #f3f3f3;}
+.side_search_wrap .ssw_content .ssw_slide.main > ul > li.foldable{height:auto;border-bottom: 1px solid #f3f3f3;line-height: 43px;background-color: #fff;}
+.side_search_wrap .ssw_content .ssw_slide.main li a{display:block;}
+.side_search_wrap .ssw_content .ssw_slide.main li label{display:block;cursor:pointer;}
+.side_search_wrap .ssw_content .ssw_slide.main > ul > li.foldable_tab.opened:after {
+    background-position: -20px -140px;
+}
+.side_search_wrap .ssw_content .ssw_slide.main > ul > li.foldable_tab .ftwrap{transform: translate3d(0,0,0);}
+.side_search_wrap .ssw_content .ssw_slide.main > ul > li.foldable_tab .ftwrap:after{content:"";display:block;position:absolute;width:10px;height:5px;top:21px;right:20px;
+	background:url(http://image.lotte.com/lotte/mo2017/filter/checkbox_radio_1809.png) no-repeat 0 -140px;background-size:40px auto;pointer-events:none;}
+.side_search_wrap .ssw_content .ssw_slide.main > ul > li.foldable_tab.opened .ftwrap:after{background-position:-20px -140px;}
+.side_search_wrap .ssw_content .ssw_slide.main > ul > li.foldable_tab.opened.disabled .ftwrap:after{background-position:0 -140px;}
+.side_search_wrap .ssw_content .ssw_slide.main > ul > li.foldable_tab.opened.fixtop .ftwrap{position:fixed;right:0;top:84px;width:292px;height:44px;z-index:100;background:#f3f3f3;border-bottom:1px solid #dcdcdc;}
+.side_search_wrap .ssw_content .ssw_slide.main > ul > li.foldable_tab .ftwrap > a:after{content:"";clear:both;display:table;}
+@media screen and (max-width:360px){
+	.side_search_wrap .ssw_content .ssw_slide.main > ul > li.foldable_tab.opened.fixtop .ftwrap{width:270px;}
+}
+.side_search_wrap .ssw_content .ssw_slide.main li .title{float: left;margin-left: 17px;line-height: 44px;color: #333;font-size: 15px;font-weight: 400;}
+.side_search_wrap .ssw_content .ssw_slide.main li.disabled {pointer-events: none;}
+.side_search_wrap .ssw_content .ssw_slide.main li.disabled .title{color:#aaa;}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail{float: right;margin-right: 44px;line-height:44px;color:#7291cf;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size: 12px;text-align:right;}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail em{display:inline;font-weight:initial}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.benefit em + em:before,
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.benefit span + span:before,
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.brand em + em:before,
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.research em + em:before,
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.feel_list em + em:before,
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.feel_list span + span:before,
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.shoe em + em:before,
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.shoe span + span:before,
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.delivery em + em:before,
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.delivery span + span:before,
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.store em + em:before,
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.store span + span:before{content:", ";}
+/* .side_search_wrap .ssw_content .ssw_slide.main li .detail.benefit em.price:after{content:"원";}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.benefit em.min:after{content:"원~";}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.benefit em.max:before{content:"~";}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.benefit em.min + em.max:before{content:"";} */
+
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.cate {width: 161px;}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.brand {width: 176px;}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.store {width: 191px;}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.benefit {width: 89px;}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.delivery {width: 191px;}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.color_list {width: 180px;}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.feel_list {width: 176px;}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.shoe {width: 140px;}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.star {width: 191px;}
+
+
+@media screen and (max-width:360px){
+	.side_search_wrap{width:270px;}
+	
+	.side_search_wrap .ssw_content .ssw_slide.main li .detail.cate {width: 139px;}
+	.side_search_wrap .ssw_content .ssw_slide.main li .detail.brand {width: 154px;}
+	.side_search_wrap .ssw_content .ssw_slide.main li .detail.store {width: 169px;}
+	.side_search_wrap .ssw_content .ssw_slide.main li .detail.benefit {width: 67px;}
+	.side_search_wrap .ssw_content .ssw_slide.main li .detail.delivery {width: 169px;}
+	.side_search_wrap .ssw_content .ssw_slide.main li .detail.color_list {width: 168px;}
+	.side_search_wrap .ssw_content .ssw_slide.main li .detail.feel_list {width: 154px;}
+	.side_search_wrap .ssw_content .ssw_slide.main li .detail.shoe {width: 118px;}
+	.side_search_wrap .ssw_content .ssw_slide.main li .detail.star {width: 169px;}
+	
+}
+
+.ssws_wrap li{min-height:43px;line-height:43px;border-bottom:1px solid #f1f1f1;position:relative;font-size:13px;}
+.ssws_wrap li a{display:block;padding:0 15px 0 25px;}
+.ssws_wrap li a.selected{color:#71a1ff;}
+.ssws_wrap .instruct{display:block;padding:0 23px;color:#999;font-size:13px;}
+.ssws_wrap li label{display:block;position:relative;padding: 0 15px 0 25px;color:#333;white-space:nowrap;font-size: 15px;font-weight: normal}
+.ssws_wrap li label input[type='radio']{border:none;width:20px;height:20px;position:absolute;top:50%;left:0;margin:-10px 0;
+	-moz-box-apperance:none;-webkit-appearance:none;appearance:none;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;
+	background:transparent url(http://image.lotte.com/lotte/mo2017/filter/checkbox_radio_1809.png) no-repeat;background-size:40px auto; background-position: -20px 0;}
+.ssws_wrap.ssws_price li label input[type=radio]{right:15px;left:initial}
+.ssws_wrap li label input[type='radio']:checked{background-position: -20px -20px;}
+.ssws_wrap li label input[type='radio']:focus{outline:none;}
+.side_search_wrap .ssw_content .ssw_slide.main .ssws_wrap li .sortopt label{display:inline-block;padding-left:27px;padding-right:0;margin-left:15px;}
+.side_search_wrap .ssw_content .ssw_slide.main .ssws_wrap li .sortopt label + label {margin-left: 50px;}
+.ssws_wrap.ssws_sort li label{font-weight:bold}
+
+.ssws_wrap li.selected_title{height:28px;background:#F3F3F3;line-height: 28px;min-height: 28px;border-top: 1px solid #DCDCDC;border-bottom: 1px solid #DCDCDC;color: #999;font-size: 12px;}
+.side_search_wrap .ssw_content .ssw_slide.main .ssws_wrap li.selected_title .title{display:block; float:none; padding: 0 15px;margin-left: 0;line-height: 28px;font-size: 11px;color: #919191;font-weight: normal}
+.ssws_wrap li.selected_title .qty{float:right;}
+
+/* .ssws_wrap{margin-bottom:40px} */
+
+.ssws_wrap li label input[type='checkbox']{
+	position:absolute;top:11px;right:15px;width:20px;height:20px;
+	background:#fff url(http://image.lotte.com/lotte/mo2017/filter/checkbox_radio_1809.png) 0 0 no-repeat;background-size:40px auto;
+}
+.ssws_wrap li label input[type='checkbox']:checked{background-position:0 -20px;}
+.ssws_wrap li label.disabled{opacity: .5;}
+.ssws_wrap li label.selected{color:#719CFF;}
+.ssws_wrap li label.selected.disabled{color:#333;}
+.ssws_wrap li.on > label{color:#719CFF}
+.ssw_slide.main label.disabled input[type=checkbox]:checked{background-position:0 -40px;}
+
+.ssws_research .radios{height:30px;}
+.ssws_research label{display:inline-block;position:relative;padding:0 15px;padding-left:25px;font-size:13px;color:#333;white-space:nowrap;}
+.ssws_research label input[type='radio']{border:none;width:21px;height:21px;position:absolute;top:50%;left:0;width:20px;height:20px;margin:-10px 0;
+	-moz-box-apperance:none;-webkit-appearance:none;appearance:none;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;
+	background:url(http://image.lotte.com/lotte/mo2015/angular/common/spr_search_result_20160226.png) -10px -100px no-repeat;background-size:200px 150px}
+.ssws_research label input[type='radio']:checked{background-position:-35px -100px;}
+.ssws_research label input[type='radio']:focus{outline:none;}
+
+.ssws_wrap .openable li{border-bottom:none;}
+.ssws_wrap .openable li a{border-bottom:1px solid #f3f3f3;}
+.ssws_wrap .openable li.checked > a{color:#719CFF ;border-bottom:1px solid #e9e9e9}
+.ssws_wrap .openable li.allcate a span{color:#999;margin-left:5px;}
+.ssws_wrap .openable li.indicator a{color:#999;height:40px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.ssws_wrap .openable li.indicator span ~ span:before{content:">";margin:0 4px;}
+.ssws_wrap .openable li > ul{display:none;height:auto;overflow:hidden;/* transition:height 0.2s; */}
+.ssws_wrap .openable li.open > ul{display:block;height:auto;overflow:hidden;/* transition:height 0.2s; */}
+.ssws_wrap li .count{font-size:12px;color:#999;margin-left:4px;}
+.ssws_wrap li.checked > a > .count{color:#719CFF;}
+.ssws_wrap li.fixtop > div{position:fixed;top:86px;right:0;height:41px;width:100%;background-color:#fff;z-index:1;overflow:hidden;}
+.ssws_wrap.ssws_brand li.fixtop > div{height:40px;border-bottom:1px solid #ddd;}
+.ssws_wrap li.fixtop.selected_brand > div{top:127px;}
+.ssws_wrap li.selected_item{background:#F3F3F3;border-bottom:1px solid #e0e0e0}
+.ssws_wrap li .selected .count{color: #719CFF;}
+.ssws_wrap li.selected_item label{color:#719CFF}
+.ssws_wrap li .selected.disabled .count , .ssws_wrap li.selected_item .disabled label{color: #999;}
+.ssws_wrap li.sortopt_wrap{border-bottom:none;background-color: #E5E5E5;}
+
+.ssws_wrap.ssws_category .openable li a{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding-right:35px;}
+.ssws_wrap.ssws_category .openable li.cecked a{color:#5884f3}
+.ssws_wrap.ssws_category .openable li a .flag{display:none;width:50px;height:20px !important;vertical-align:middle;margin-right:5px;
+	background:url(http://image.lotte.com/lotte/mo2015/angular/cate/cate_side_search_flag.jpg) no-repeat 0 0;background-size:50px auto;}
+.ssws_wrap.ssws_category .openable li.department a .flag{display:inline-block;background-position:0 0;}
+.ssws_wrap.ssws_category .openable li.youngplaza a .flag{display:inline-block;background-position:0 -20px;}
+.ssws_wrap .cate_d1 li a{font-size:15px;}
+.ssws_wrap .cate_d2 li a{padding-left:41px;border-bottom:1px solid #e9e9e9}
+.ssws_wrap .cate_d3 li a{padding-left:55px;font-size:14px;}
+.ssws_wrap .cate_d4 li a{padding-left:70px;}
+.ssws_wrap .cate_d5 li a{padding-left:85px;}
+
+
+.ssws_wrap .cate_d2 li a:not(.handle):after{content:"";position: absolute;top: 11px;right: 15px;width: 20px;height: 20px;background: url(http://image.lotte.com/lotte/mo2017/filter/checkbox_radio_1809.png) no-repeat #fff;background-size: 40px auto;}
+.ssws_wrap .cate_d2 li.checked > a:not(.handle):after{background: url(http://image.lotte.com/lotte/mo2017/filter/checkbox_radio_1809.png) 0 -20px no-repeat;background-size: 40px auto;}
+
+.ssws_wrap .openable li a.handle{display:block;position:absolute;top:0;right:3px;padding:0;width:44px;height:44px;text-indent:999px;overflow:hidden;border:none;pointer-events:none;}
+.ssws_wrap .openable li.open > a.handle:after{content:"";display:block;position:absolute;width:12px;height:12px;top:15px;right:16px;
+	background:url(http://image.lotte.com/lotte/mo2017/filter/checkbox_radio_1809.png) 0 -260px no-repeat;background-size:40px auto;}
+.ssws_wrap .openable li.nochild a.handle{display:none;}
+.ssws_wrap .cate_d2 li a.handle,
+.ssws_wrap .cate_d3 li a.handle,
+.ssws_wrap .cate_d4 li a.handle,
+.ssws_wrap .cate_d5 li a.handle{display:none;}
+
+
+.ssws_wrap li.selected_brand a{height:40px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#5b87ea;}
+.ssws_wrap li.selected_brand em ~ em:before{content:",";margin-right:3px;}
+
+.ssws_wrap.ssws_sort label input[type='radio']{position:absolute;left:auto;right:15px;}
+.ssws_wrap.ssws_sort .sort_guide{height:20px;line-height:20px;text-align:right;margin:15px 15px 0;position:relative;}
+.ssws_wrap.ssws_sort .sort_guide > a{color:#333;font-size:13px;}
+.ssws_wrap.ssws_sort .sort_guide > a:before{content:"";display:inline-block;overflow:hidden;width:13px;height:13px;margin:0 5px 2px 0;vertical-align:middle;
+	background:url(http://image.lotte.com/lotte/mo2015/angular/common/ic_qMark.png) 0px 0px no-repeat;background-size:13px;}
+.ssws_wrap.ssws_sort .sort_guide > a.on:before{background:url(http://image.lotte.com/lotte/mo2015/angular/common/ic_qMark.png) 0px -13px no-repeat;background-size:13px;}
+.sortGuidePop{position:fixed;top:0;left:0;right:0;bottom:0;z-index:1000;}
+.sortGuidePop .layerPop_dim{position:relative;width:100%;height:100%;background-color:rgba(0,0,0,0);}
+.sortGuidePop .layerPop{right:13px;top:25px;width:180px;padding:16px 15px;display:block;background:#f1f1f1;border-radius:2px;border:none}
+.sortGuidePop .layerPop p{text-align:left;font-size:13px;line-height:17px;letter-spacing:-1px;}
+.sortGuidePop .layerPop .tlt{color:#333;font-weight:bold;padding-top:15px;padding-bottom:8px;}
+.sortGuidePop .layerPop p:first-child{padding-top:0;}
+
+.ssws_color .instruct{display:block;margin:0 auto;width:232px;height:45px;line-height:45px;}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail .color_list{margin:0 auto;width:232px;left: auto;}
+.color_list {width: auto;margin-left: 5px;padding: 10px 15px 20px;}
+.color_list ul{padding:0;}
+.color_list ul li{display:block;position:relative;float:left;margin:8px 0 0;padding-right: 5px;box-sizing: border-box;width:20%;height:auto;line-height: inherit;overflow:hidden;border-bottom:none;}
+.color_list ul li .colorBg{display:block;position:relative;width:100%;height:43px;box-sizing:border-box;}
+.color_list ul li.on .colorBg:after{content:"";display:block;position:absolute;top:14px;left:12px;width:22px;height:15px;background:url(http://image.lotte.com/lotte/mo2017/filter/checkbox_radio_1809.png) no-repeat 0 -200px;background-size:40px auto;}
+.color_list ul li.c010 .colorBg{background-color:#ddbd97;}
+.color_list ul li.c020 .colorBg{background-color:#f60;}
+.color_list ul li.c030 .colorBg{background-color:#ff0000;}
+.color_list ul li.c040 .colorBg{background-color:#ff0;}
+.color_list ul li.c040.on .colorBg:after{background-position: 0 -220px}
+.color_list ul li.c040.on.disabled .colorBg:after{background-position: -20px -180px;}
+.color_list ul li.c050 .colorBg{background-color:#90ee90;}
+.color_list ul li.c060 .colorBg{background-color:#093;}
+.color_list ul li.c070 .colorBg{background-color:#87cdfa;}
+.color_list ul li.c080 .colorBg{background-color:#191970;}
+.color_list ul li.c090 .colorBg{background-color:#00f;}
+.color_list ul li.c100 .colorBg{background-color:#706c3d;}
+.color_list ul li.c110 .colorBg{background-color:#783c24;}
+.color_list ul li.c120 .colorBg{background-color:#9932cc;}
+.color_list ul li.c130 .colorBg{background-color:#ff80ff;}
+.color_list ul li.c140 .colorBg{background-color:#ff88ae;}
+.color_list ul li.c150 .colorBg{background-color:#fff;border:1px solid #e7e7e7;}
+.color_list ul li.c150.on .colorBg:after{background-position: 0 -220px}
+.color_list ul li.c150.on.disabled .colorBg:after{background-position: -20px -180px;}
+.color_list ul li.c160 .colorBg{background-color:#d3d3d3;}
+.color_list ul li.c170 .colorBg{background-color:#666;}
+.color_list ul li.c180 .colorBg{background-color:#000;}
+.color_list ul li .name{display:block;min-height:16px;margin-top:2px;text-align:center;line-height: initial;font-size:11px;}
+.color_list ul li.disabled{pointer-events: none;}
+.color_list ul li.on.disabled .colorBg:after{left:12px;top:11px;width:20px;height:20px;background-position:0 -180px;}
+.color_list ul:after{content:"";display:block;height:0;clear:both;}
+
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.color_list{box-sizing:border-box;margin:0 44px 0 0;padding:10px 0 0 0;pointer-events:none;}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.color_list ul{margin:0;height:23px;overflow:hidden;}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.color_list ul li{display:inline-block;width:23px;height:23px;box-sizing:border-box;float:none;margin:0 0 0 4px;vertical-align:top;}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.color_list ul li:first-child{margin-left:0;}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.color_list ul li:after{content:none;}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.color_list ul li .colorBg{width:23px;height:23px;}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.color_list ul li.ellipsis{width:auto;line-height:20px;color:#719cff;line-height:12px;font-size:16px;margin-left:4px;}
+.andr_chrm .side_search_wrap .ssw_content .ssw_slide.main li .detail.color_list ul li.ellipsis{line-height:14px;}
+
+.ssws_research input[type='search'],
+.ssws_wrap.ssws_price input[type='number']{
+	width:100%;height:32px;border:1px solid #aaaaaa;padding:6px 5px;color:#333 !important;font-size:14px;
+	-moz-box-apperance:none;-webkit-appearance:none;appearance:none;-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;box-sizing: border-box;
+	/* Galaxy S4 Android 4.2 오류 방지 */
+	border-top-left-radius:3px;border-top-right-radius:3px;border-bottom-left-radius:3px;border-bottom-right-radius:3px;
+	}
+.ssws_wrap.ssws_price input[type='number']{text-align:right}
+.ssws_wrap.ssws_price .price .subtitle{font-weight:bold}
+.ssws_wrap.ssws_price .price li a.subtitle{padding-left:17px;border-bottom:none}
+.ssws_wrap.ssws_price .price li.open{border-bottom:#e9e9e9}
+.ssws_wrap.ssws_price .price .input_wrap > div:first-child{padding: 16px 17px 7px;height: 32px;}
+.ssws_wrap.ssws_price .price span{display:block;float:left;width:4%;text-align:center}
+.ssws_wrap.ssws_price .price span.ipt{position:relative;width:50%;box-sizing:border-box;line-height:32px;font-size: 14px;}
+.ssws_wrap.ssws_price .price span.ipt.ipt_min{width:45%;padding-right:8px;}
+.ssws_wrap.ssws_price .price span.ipt.ipt_max{width:55%;padding-left:19px;padding-right:15px;}
+.ssws_wrap.ssws_price .price span.ipt.ipt_max:before{content:"원~ ";display:block;position:absolute;left:-5px;top:0;color:#999;}
+.ssws_wrap.ssws_price .price span.ipt.ipt_max:after{content:"원";display:block;position:absolute;right:0;top:0;color:#999;}
+.ssws_wrap.ssws_price .price span.number_format{overflow:hidden;position:absolute;top:2px;left:2px;bottom:2px;right:16px;color:#333;
+	width:auto;height:auto;line-height:18px;border:none;padding:6px 5px;font-size:14px;background-color:#fff;text-align:right;
+	-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;
+	/* Galaxy S4 Android 4.2 오류 방지 */
+	border-top-left-radius:3px;border-top-right-radius:3px;border-bottom-left-radius:3px;border-bottom-right-radius:3px;
+}
+.ssws_wrap.ssws_price .price span.number_format.on{color:#7291cf}
+.ssws_wrap.ssws_price .price span.ipt.ipt_min span.number_format{right:9px;}
+.ssws_wrap.ssws_price .price span.ipt.ipt_max span.number_format{left:21px;}
+.ssws_wrap.ssws_price .button{text-align:center;margin:0 17px 12px;}
+.ssws_wrap.ssws_price .button .btn_search{
+	-moz-box-apperance:none;-webkit-appearance:none;appearance:none;
+	-moz-box-sizing: border-box;-webkit-box-sizing:border-box;box-sizing:border-box;
+	/* Galaxy S4 Android 4.2 오류 방지 */
+	border-top-left-radius:3px;border-top-right-radius:3px;border-bottom-left-radius:3px;border-bottom-right-radius:3px;
+	width:100%;height:40px;line-height:40px;color:#fff;font-size:18px;border:none;background-color:#85a8f2;
+	}
+.ssws_wrap.ssws_price .instruct{padding-left:17px;letter-spacing:-1px;color:#333;font-weight:bold;border-bottom:none}
+@media screen and (max-width:340px){
+	.ssws_wrap.ssws_price .instruct{font-size:12px;;}
+}
+.ssws_wrap.ssws_price .options li{background:#f1f1f1;border-bottom:1px solid #f1f1f1}
+.ssws_wrap.ssws_price .options.open li{border-bottom:1px solid #e9e9e9}
+.ssws_wrap.ssws_price .options li:first-child{background:none}
+.ssws_wrap.ssws_price .options li.sub{display:none}
+.ssws_wrap.ssws_price .options.open li.sub{display:block}
+.ssws_wrap.ssws_price .benefit {border-top:1px solid #f1f1f1}
+.ssws_wrap.ssws_price li a{padding-left:35px;position:relative;}
+.ssws_wrap.ssws_price li em ~ em:before{content:"~";margin:0 4px;}
+.ssws_wrap.ssws_price li a.selected:after{content:"";display:inline-block;width:13px;height:13px;vertical-align:middle;margin-left:6px;
+	background:url(http://image.lotte.com/lotte/mo2015/angular/search/search_2016_07.png) no-repeat -50px 0;background-size:100px auto;}
+.side_search_wrap button{
+	overflow: hidden;
+  	border: 0;
+  	background-color: transparent;
+  	-webkit-appearance: none;
+  	-moz-appearance: none;
+  	appearance: none;
+  	outline-color: transparent;
+}
+
+.search2016_bg{background:url(http://image.lotte.com/lotte/mo2015/angular/search/search_2016_07.png) no-repeat 0 0;background-size:100px auto;}
+
+.result_wrap.categoryWrap .listWrap{margin-top:10px}
+
+.srh_terms_wrap_area{height:43px;}
+.srh_terms_wrap{display:none;position:relative;background-color:#fff;border-bottom:1px solid #e9e9e9;z-index:49;transform:translateZ(0);-webkit-transform:translateZ(0);}
+.srh_terms_wrap.show{display:block;height: 43px;}
+.srh_terms_wrap .result_cnt{float:left;margin-left: 14px;height: 43px;line-height: 43px;color: #333;font-size: 14px;}
+.srh_terms_wrap .result_cnt em{font-size:15px;color:#333;margin-left:4px;font-weight:bold}
+.srh_terms_wrap a{display:inline-block;height:28px;line-height:28px;letter-spacing:-1px;color:#333;font-size:13px;vertical-align:middle;}
+.srh_terms_wrap .right{position: absolute;top:0;right:0;text-align: right;}
+.srh_terms_wrap .right a{box-sizing:border-box;padding:0 22px 0 10px;position:relative;}
+.srh_terms_wrap .right a.disabled{opacity:0.5;pointer-events:none;}
+.srh_terms_wrap .right a.sort{float:left;position: relative;height: 43px;line-height: 43px;min-width: 43px;box-sizing: border-box;padding: 0 15px;font-size: 14px;color: #333;vertical-align: middle;letter-spacing: -1px;}
+.srh_terms_wrap .right a.sort span{position:relative;display: inline-block;line-height: 14px;padding-left: 18px;font-size:12px;}
+.srh_terms_wrap .right a.sort span:after {content: "";display: block;width: 14px;height: 14px;position: absolute;left: 0;top: 50%;-webkit-transform: translate(0,-6px);transform: translate(0,-6px);background: url(http://image.lotte.com/lotte/mo2017/filter/checkbox_radio_1809.png) 0 -280px no-repeat;background-size: 40px auto;background-color: white;}
+
+.srh_terms_wrap .right ul{float:left;width:40px;height:40px;vertical-align:middle;}
+.srh_terms_wrap .right a:before{content:"";display:block;width:1px;height:13px;background-color:#c8c8c8;position:absolute;top:15px;left:0;pointer-events:none;}
+.srh_terms_wrap .right ul li.pr10{padding-right:10px;}
+.srh_terms_wrap .right ul li.pr10 label{display:inline-block; padding-top:2px;}
+.srh_terms_wrap .right ul li.pr10 label input{margin-top:-3px;}
+.srh_terms_wrap .right ul li.no{opacity:0.5};
+.srh_terms_wrap .right label{display:block;padding:0 5px;font-size:12px;color:#333;letter-spacing:-.7px;}
+.srh_terms_wrap .right label.disabled{opacity:0.3;}
+.srh_terms_wrap .right label input[type='checkbox']{
+	position:absolute;top:11px;right:15px;width:20px;height:20px;
+	background:#fff url(http://image.lotte.com/lotte/mo2017/filter/checkbox_radio_1809.png) 0 0 no-repeat;background-size:20px 20px;
+}
+.srh_terms_wrap .right label input[type='checkbox']:checked{background:url(http://image.lotte.com/lotte/mo2017/filter/checkbox_radio_1809.png) 0 0 no-repeat;background-size:20px 20px;}
+.srh_terms_wrap .right .layerPop ul li{width:50%;}
+.srh_terms_wrap .right .unit_listType{display:inline-block;width:38px;height:43px;}
+.srh_terms_wrap .right .unit_listType:after{content: "";display: block;width: 14px;height: 14px;position: absolute;top: 14px;left: 12px;background: url(http://image.lotte.com/lotte/mo2017/filter/checkbox_radio_1809.png) 0 -300px no-repeat; background-size: 40px auto;}
+.srh_terms_wrap .right .unit_listType.type2:after{background-position: -20px -300px;top: 15px;}
+
+
+.srh_terms_wrap .right .filter {display: inline-block}
+.srh_terms_wrap .right .filter a{display:block;height:auto;margin:9px 14px 0 0;padding:5px 12px 5px 25px;color:#fff;background-color:#719cff;font-weight:normal;font-size: 12px;line-height: 16px;border-radius:1px;}
+.srh_terms_wrap .right .filter a:before{position: absolute;content: "";display: block;top:50%;left:9px;width:12px;height:12px;margin-top:-6px;background:url(http://image.lotte.com/lotte/mo2017/filter/ic_filter_off_2018.png) 0 0 no-repeat;	background-size:12px 12px;}
+.srh_terms_wrap .right .filter a.on:after {display: block;content: "";position: absolute;top:-4px;right:-4px;left: auto;width: 15px;height: 15px;background: url(http://image.lotte.com/lotte/mo2017/filter/ic_filter_on_2018.png) no-repeat;background-size: 15px auto;z-index: 1;}
+
+/* 스마트픽 지점 레이어 */
+.ly_smpick{position:fixed;top:0;width:100%;height:100%;z-index:1000}
+.ly_smpick .cover{width:100%;height:100%;background-color:rgba(0,0,0,0);}
+.ly_smpick .smpick_lst{overflow:hidden;position:absolute;top:50%;left:50%;width:280px;height:296px;margin:-155px -140px;background-color:#fff;
+	/* Galaxy S4 Android 4.2 오류 방지 */
+	border-top-left-radius:10px;border-top-right-radius:10px;border-bottom-left-radius:10px;border-bottom-right-radius:10px;
+	box-shadow:2px 2px 4px 0 rgba(0,0,0,0.3);}
+.ly_smpick .smpick_lst header{padding:15px 10px 10px 10px;background-color:#f6f6f6;
+	-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}
+.ly_smpick .smpick_lst header span{display:block;overflow:hidden;width:229px;height:44px;margin:0 auto;background:url(http://image.lotte.com/lotte/mo2015/angular/common/ly_smpick_branch_tit.png) 0 0 no-repeat;background-size:229px 44px;text-indent:100%;white-space:nowrap;}
+.ly_smpick .smpick_lst .branch_wrap{overflow-y:scroll;height:190px;border-bottom:1px solid #e6e6e6;-webkit-overflow-scrolling:touch;}
+.ly_smpick .smpick_lst .branch_wrap ul li{border-bottom:1px solid #f2f2f2;}
+.ly_smpick .smpick_lst .branch_wrap ul li label{display:block;position:relative;padding:0 20px;font-size:15px;color:#333;line-height:43px;}
+.ly_smpick .smpick_lst .branch_wrap ul li input[type='radio']{
+	-moz-box-apperance:none;-webkit-appearance:none;appearance:none;
+	-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;
+	position:absolute;top:50%;right:20px;width:22px;height:22px;border:none !important;margin:-11px 0;
+	background:url(http://image.lotte.com/lotte/mo2015/angular/common/spr_search_result_20160226.png) -10px -100px no-repeat;background-size:200px 150px;}
+.ly_smpick .smpick_lst .branch_wrap ul li input[type='radio']:checked{background-position:-35px -100px;border:none !important;
+	-moz-box-apperance:none;-webkit-appearance:none;appearance:none;
+	-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}
+.ly_smpick .smpick_lst .btn_wrap .btn_close{display:block;width:100%;padding:9px;text-align:center;color:#333;font-size:13px;
+font-family:'나눔고딕',NanumGothic,'맑은고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,Helvetica,sans-serif;border:none;background-color:#fff;
+-moz-box-apperance:none;-webkit-appearance:none;appearance:none;}
+.prod_list_deal .unit_deal_01 .thumb:after{content:"BIG딜";display:block;overflow:hidden;position:absolute;top:5px;right:5px;width:35px;height:17px;text-indent:100%;
+	background:transparent url(http://image.lotte.com/lotte/mobile/unit/icon_bigdeal.png) 0 0 no-repeat;background-size:35px 17px;white-space:nowrap;}
+	
+/* 배송 css 추가 20170403 */
+.ssws_wrap.ssws_delivery .branches{background:#f1f1f1;}
+.ssws_wrap.ssws_delivery li{border-top:1px solid #f1f1f1;border-bottom:none;background-color: #fff;}
+.ssws_wrap.ssws_delivery .branches li{border-top:1px solid #e9e9e9}
+.ssws_wrap.ssws_delivery > ul > li:first-child{border-top:none;border-bottom: 1px solid #e9e9e9;}
+.ssws_wrap.ssws_delivery > ul > li.opened:first-child{border-top:none;}
+.ssws_wrap.ssws_delivery > ul > li:nth-child(2){border-top:none}
+.ssws_wrap.ssws_delivery > ul{border-bottom:1px solid #f1f1f1;}
+.ssws_wrap.ssws_delivery li a{position:relative;font-size: 15px;}
+.ssws_wrap.ssws_delivery li a:after{content:"";display: block;position: absolute;width: 10px;height: 5px;top: 21px;right: 20px;background: url(http://image.lotte.com/lotte/mo2017/filter/checkbox_radio_1809.png) 0 -140px no-repeat; background-size: 40px auto;}
+/* .ssws_wrap.ssws_delivery li.disabled a:after{display:none} */
+.ssws_wrap.ssws_delivery li > a.opened:after{background-position: -20px -140px;}
+
+
+.ssws_wrap.ssws_delivery li.selected > a{color:#719CFF;}
+.ssws_wrap.ssws_delivery li.disabled > a{opacity:0.5;pointer-events:none;}
+.ssws_wrap.ssws_delivery .branches li > a , .ssws_wrap.ssws_delivery .branches li > label {padding-left:32px;}
+.ssws_wrap.ssws_delivery .branches li > ul a {padding-left:50px;}
+.ssws_wrap.ssws_delivery .branches li > ul a:before {content: "";display: block;width: 7px;height: 8px;border-bottom: 1px solid #b7b7b7;border-left: 1px solid #b7b7b7;position: absolute;top: 18px;left: 35px;box-sizing: border-box;}
+.ssws_wrap.ssws_delivery .branches li > ul a:after{width:20px;height:20px;top:12px;right:15px;-webkit-transform:none;transform:none;
+	background: url(http://image.lotte.com/lotte/mo2017/filter/checkbox_radio_1809.png) -20px 0 no-repeat;background-size: 40px auto;border-radius:50%}
+.ssws_wrap.ssws_delivery .branches li > ul li.selected a:after{background-position: -20px -20px;}
+.ssws_wrap.ssws_delivery li a.sort_notice:after{content:none;}
+.side_search_wrap .ssws_wrap.ssws_delivery li a.sort_notice{display:inline-block;width:16px;height:16px;vertical-align:middle;background: url(http://image.lotte.com/lotte/mo2017/filter/checkbox_radio_1809.png) no-repeat 0 -120px;background-size:40px auto;}
+
+.ssws_wrap.ssws_delivery .branches li.opened>a:after {background-position: -20px -140px;}
+
+/* 카테고리 체크박스 */
+.ssws_wrap .cate_d2 li input[type=checkbox]{
+	position:absolute;top:11px;right:15px;width:20px;height:20px;
+	background:#fff url(http://image.lotte.com/lotte/mo2017/filter/checkbox_radio_1809.png) 0 0 no-repeat;background-size:40px auto;
+}
+.ssws_wrap .cate_d2 li input[type=checkbox]:checked{
+	 background:url(http://image.lotte.com/lotte/mo2017/filter/checkbox_radio_1809.png) 0 -20px no-repeat;background-size:40px auto;;
+}
+
+.ssws_wrap .cate_d1 > li > a span{font-weight:normal;line-height: 12px;}
+.sub_header_top_wrap .inner_wrap.headerFixed{z-index:99}
+.ssws_wrap .openable li.allcate{min-height:31px;height:31px;padding-left:17px;line-height:31px;background:#f1f1f1;border-bottom:1px solid #e9e9e9}
+.ssws_wrap .openable li.allcate em{font-weight:bold}
+
+/* 별점 */
+.side_search_wrap .ssw_content .ssw_slide.main li.foldable.star_fold span{display:inline-block;height:14px;width:78px;}
+.side_search_wrap .ssw_content .ssw_slide.main li.foldable.star_fold span em{display:inline-block;width:14px;height:14px;
+	background:url(http://image.lotte.com/lotte/mo2017/filter/checkbox_radio_1809.png) no-repeat 0 -240px;background-size:40px auto;}
+.side_search_wrap .ssw_content .ssw_slide.main li.foldable.star_fold span em.on{background-position:-20px -240px;}
+.side_search_wrap .ssw_content .ssw_slide.main li.foldable.star_fold span em ~ em{margin-left:2px;}
+.side_search_wrap .ssw_content .ssw_slide.main li.foldable.star_fold label input[type=radio]{position:absolute;left:auto;right:15px;}
+
+/* 신발 사이즈 */
+.side_search_wrap .ssw_content .ssw_slide.main li.foldable.shoe_fold .shoe_list{padding:10px 20px 20px;}
+.side_search_wrap .ssw_content .ssw_slide.main li.foldable.shoe_fold ul:after{content:"";display:block;clear:both;}
+.side_search_wrap .ssw_content .ssw_slide.main li.foldable.shoe_fold li{float:left;width:25%;height:auto;min-height:auto;margin-top:10px; border-bottom:none;}
+.side_search_wrap .ssw_content .ssw_slide.main li.foldable.shoe_fold li label{margin:0 5px 0 0;padding:10px 5px;border:1px solid #cccccc;text-align:center;line-height:12px;font-size:12px;}
+.side_search_wrap .ssw_content .ssw_slide.main li.foldable.shoe_fold li label.checked{background-color:#719cff}
+.side_search_wrap .ssw_content .ssw_slide.main li.foldable.shoe_fold li label.checked .name{color:#fff;}
+.side_search_wrap .ssw_content .ssw_slide.main li.foldable.shoe_fold li label.disabled{background-color:#f3f3f3;opacity:1;}
+.side_search_wrap .ssw_content .ssw_slide.main li.foldable.shoe_fold li label.disabled .name{color:#aaaaaa;}
+.side_search_wrap .ssw_content .ssw_slide.main li.foldable.shoe_fold li .count{display: none}
+.side_search_wrap .ssw_content .ssw_slide.main li.foldable.shoe_fold li input[type=checkbox]{position:absolute;opacity:0;}
+
+/* fixed_tab */
+.side_search_wrap .ssw_content .fixed_tab{position:absolute;top:0;left:0;right:0;height:44px;background-color:#f3f3f3;border-bottom:1px solid #dcdcdc;z-index:10;}
+.side_search_wrap .ssw_content .fixed_tab a{display:block;}
+.side_search_wrap .ssw_content .fixed_tab span.title{display:block;margin-left:17px;line-height:44px;font-size:15px;}
+.side_search_wrap .ssw_content .fixed_tab .disabled span.title{color:#aaa;}
+.side_search_wrap .ssw_content .fixed_tab span.detail{display:block;position:absolute;left:130px;right:45px;top:0;height:43px;line-height:43px;font-size:12px;color:#7f9cff;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.side_search_wrap .ssw_content .fixed_tab span.detail em{display:inline;}
+.side_search_wrap .ssw_content .fixed_tab span.detail em + em:before{content:", ";}
+.side_search_wrap .ssw_content .fixed_tab > a:after{content:"";display:block;position:absolute;width:10px;height:5px;top:21px;right:22px;
+	background:url(http://image.lotte.com/lotte/mo2017/filter/checkbox_radio_1809.png) no-repeat 0 -140px;background-size:40px auto;}
+.side_search_wrap .ssw_content .fixed_tab > a.opened:after{background-position:-20px -140px;}
+.side_search_wrap .ssw_content .fixed_tab > a.opened.disabled:after{background-position:0 -140px;}
+.side_search_wrap .ssw_content .fixed_tab > a.disabled{pointer-events:none;}
+
+.side_search_wrap .ssw_content .fixed_tab .detail.color_list{display:block;box-sizing:border-box;padding-top:10px;margin:0;pointer-events:none;}
+.side_search_wrap .ssw_content .fixed_tab .detail.color_list{display:block;position:absolute;left:130px;right:45px;top:0;height:44px;line-height:44px;font-size:12px;text-align:right;color:#719CFF;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.side_search_wrap .ssw_content .fixed_tab .detail.color_list ul{margin:0;height:25px;overflow:hidden;}
+.side_search_wrap .ssw_content .fixed_tab .detail.color_list ul li{display:inline-block;width:25px;height:25px;box-sizing:border-box;float:none;vertical-align:top;/*border: 1px solid #e0e0e0;*/}
+.side_search_wrap .ssw_content .fixed_tab .detail.color_list ul li.i1{margin-left:4px;}
+.side_search_wrap .ssw_content .fixed_tab .detail.color_list ul li.i2{margin-left:4px;}
+.side_search_wrap .ssw_content .fixed_tab .detail.color_list ul li:after{content:none;}
+.side_search_wrap .ssw_content .fixed_tab .detail.color_list ul li.c150 {border: 1px solid #e0e0e0;}
+.side_search_wrap .ssw_content .fixed_tab .detail.color_list ul li a{width:25px;height:25px;}
+.side_search_wrap .ssw_content .fixed_tab .detail.color_list ul li.c150 a { border: none; }
+.side_search_wrap .ssw_content .fixed_tab .detail.color_list ul li.ellipsis{width:auto;line-height:20px;color:#719cff;line-height:12px;font-size:16px;margin-left:4px; border: none; }
+
+/* 결과 내 검색 */
+.side_search_wrap .ssw_content .ssw_slide.main .foldable_tab.research .title{display: block;float:none}
+.ssw_slide.main input[type='search']{
+	width:100%;height:36px;line-height:15px;border:1px solid #ddd;padding:6px 5px;color:#333;font-size:15px;
+	-moz-box-apperance:none;-webkit-appearance:none;appearance:none;-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;box-sizing: border-box;
+	position: relative;z-index: 1;background-color: transparent;font-size:13px;
+	/* Galaxy S4 Android 4.2 오류 방지 */
+	border-top-left-radius:3px;border-top-right-radius:3px;border-bottom-left-radius:3px;border-bottom-right-radius:3px;
+}
+.ssws_wrap.ssws_research .re-search{margin:22px 17px;position:relative;}
+.ssws_wrap.ssws_research .re-search .keyword{margin-top:6px;}
+.ssw_slide.main .re-search .button{margin-top:7px;}
+.ssw_slide.main .re-search .button .btn_search{
+	-moz-box-apperance:none;-webkit-appearance:none;appearance:none;
+	-moz-box-sizing: border-box;-webkit-box-sizing:border-box;box-sizing:border-box;
+	/* Galaxy S4 Android 4.2 오류 방지 */
+	border-top-left-radius:3px;border-top-right-radius:3px;border-bottom-left-radius:3px;border-bottom-right-radius:3px;
+	width:100%;height:40px;line-height:40px;color:#fff;font-size:17px;border:none;background-color:#86a8f2;
+}
+.ssw_slide.main .re-search .button .btn_search:disabled{opacity:0.5;}
+.ssw_slide.main .searchOpt{min-height:40px}
+.ssw_slide.main .searchOpt label{display:inline-block;padding:15px 15px 15px 27px;font-weight:normal}
+.side_search_wrap .ssw_content .ssw_slide.main li.foldable .re-search{padding:16px 15px 20px;margin:0;}
+.side_search_wrap .ssw_content .ssw_slide.main li.foldable .re-search .button{-moz-box-apperance: none;-webkit-appearance: none;appearance: none;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;width: 100%;height: 40px;line-height: 40px;color: #fff;font-size: 17px;border: none;background-color: #85a8f2;border-radius: 3px;}
+
+.side_search_wrap .ssw_content .ssw_slide.main li.foldable .keyword{line-height: 100%;}
+.side_search_wrap .ssw_content .ssw_slide.main li.foldable .searchOpt{position:absolute;top:15px;right:15px;min-height:36px;}
+.side_search_wrap .ssw_content .ssw_slide.main li.foldable .searchOpt label{padding:0;padding-right:25px;line-height:36px;font-size:12px;}
+.ssw_slide.main label.on{color:#7291cf}
+.ssw_slide.main .searchOpt label input[type=checkbox]{
+	position:absolute;top:11px;right:0;width:20px;height:20px;
+	background:#fff url(http://image.lotte.com/lotte/mo2017/filter/checkbox_radio_1809.png) 0 0 no-repeat;background-size:40px auto;
+}
+.ssw_slide.main .searchOpt label input[type='checkbox']:checked {background-position: 0 -20px;}
+.ssw_slide.main .keywords{padding-top: 10px;}
+.ssw_slide.main .keywords .guide{position:relative;color:#999;letter-spacing:-1px;line-height:13px;font-size:11px;letter-spacing:0;}
+.ssw_slide.main .keywords .keyword_list {position:relative;min-height: 28px;padding-bottom: 5px;}
+.ssw_slide.main .keywords .keyword_list:after {content:"";clear:both;display:table}
+.ssw_slide.main .keywords .keyword_list li {float:left;height: 24px;border-radius: 12px;min-height: 24px;line-height: 24px;margin-right: 5px;margin-bottom: 6px;border: 1px solid #7391cf;}
+.ssw_slide.main .keywords .keyword_list li:last-child {margin-right: 0;}
+.ssw_slide.main .keywords .keyword_list li a:after, .ssw_slide.main .keywords .keyword_list li a:before {content: "";display: block;width: 13px;height: 1px;background-color: #7391cf;position: absolute;top: 13px;right: 7px;pointer-events: none;}
+.ssw_slide.main .keywords .keyword_list li a:before {transform: rotate(45deg);-webkit-transform: rotate(45deg);}
+.ssw_slide.main .keywords .keyword_list li a:after {transform: rotate(-45deg);-webkit-transform: rotate(-45deg);}
+.ssw_slide.main .keywords .keyword_list li a {display: block;position: relative;padding: 2px 25px 2px 11px;line-height: 20px;color: #7391cf;font-size: 12px;}
+
+/* 정렬 레이어 */
+.sortLayerPop{position:fixed;top:0;left:0;right:0;bottom:0;z-index:1000;}
+.sortLayerPop .layerPop_dim{position:relative;width:100%;height:100%;background-color:rgba(0,0,0,0.6);}
+.sortLayerPop .layerPop{display:block;left:36px;right:36px;top:25px;width:auto;padding:0;border:none;border-radius:4px;background-color:#fff;opacity:0;}
+.sortLayerPop .layerPop .cont .title{font-size:18px;text-align:center;font-weight:bold;height:60px;line-height:64px;}
+.sortLayerPop .layerPop .btn:before{content:"";display:block;height:20px;}
+.sortLayerPop .layerPop .btn a{display:block;text-align:center;height:44px;line-height:44px;box-sizing:border-box;border-top:1px solid #E0E0E0;font-size:14px;}
+.sortLayerPop .layerPop .list{margin:0 20px;}
+.sortLayerPop .layerPop .list .guide{font-size:11px;padding-left:30px;margin-top:5px;letter-spacing:-0.01em;}
+
+.sortLayerPop li ~ li{margin-top:14px;}
+.sortLayerPop label{display:block;position:relative;font-size:15px;color:#333;white-space:nowrap;padding-left:30px;height:20px;line-height:20px;}
+.sortLayerPop label input[type=radio]{border:none;width:20px;height:20px;position:absolute;top:0;left:0;
+	-moz-box-apperance:none;-webkit-appearance:none;appearance:none;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;
+	background:url(http://image.lotte.com/lotte/mo2017/filter/checkbox_radio_1809.png) -20px 0 no-repeat;background-size:40px auto}
+.sortLayerPop label input[type=radio]:checked{background-position:-20px -20px;}
+.sortLayerPop label input[type=radio]:focus{outline:none;}
+.sortLayerPop .searchOpt{min-height:40px}
+.sortLayerPop .searchOpt label{display:inline-block;padding:15px 15px 15px 27px;font-weight:normal}
+.sortLayerPop .keyword{position:relative}
+.sortLayerPop label.disabled{opacity:.5}
+.sortLayerPop label.on{color:#7291cf}
+.sortLayerPop label input[type=checkbox]{
+	position:absolute;top:11px;right:15px;width:20px;height:20px;
+	background:#fff url(http://image.lotte.com/lotte/mo2017/filter/checkbox_radio_1809.png) 0 0 no-repeat;background-size:40px auto;
+}
+.sortLayerPop label input[type=checkbox]:checked{background-position:0 -20px;}
+.sortLayerPop label.disabled input[type=checkbox]:checked{background-position:0 -40px;}
+.sortLayerPop .keywords{padding-top: 10px;}
+.sortLayerPop .keywords .guide{color:#999;position:relative;letter-spacing:-1px;line-height:18px;}
+
+
+/* 스크롤 기능 구현으로 unit_cate_prod.css 오버라이드 */
+body .head_sub_cateDepth{position:relative;top:0;z-index:1;}
+body .result_wrap.cate_prod{position:relative; margin:0;padding-top:48px;z-index:0;}
+body .srh_terms_wrap_area{position:absolute;width:100%;z-index:100;top:0;}
+body .srh_terms_wrap_area.fixed{position:fixed;top:48px;}
+body .srh_terms_wrap_area.app.fixed{position:fixed;top:0;}
+
+/* noData 오버라이드 */
+.noData{padding:154px 0;color:#333333;font-size:20px;font-weight:bold;}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
+	name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet"
+	href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">
+<!----------------- current css ----------------->
+
+<link rel="stylesheet" href="/lotte/resources_dev/product/m/detail.css">
+<link rel="stylesheet" href="/lotte/resources_dev/product/m/detail_datepicker.css">
+<link rel="stylesheet" href="/lotte/resources_dev/product/m/detail_popup.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<!-- container -->
+<section id="container">
+    <input id="test_input1" ng-click="datePickerOpen({target:'test_input1'})">
+    <input id="test_input2" ng-click="datePickerOpen({target:'test_input2'})">
+    <input id="test_input3" ng-click="datePickerOpen({target:'test_input3'})">
+</section>
+
+<!-- datepicker -->
+<section id="datepicker" ng-if="datePickerYn" date-picker>
+    <span class="close" ng-click="datePickerClose()"></span>
+    <div class="head">
+        <span class="prev" ng-click="datePrev()">Prev</span>
+	    <span class="next" ng-click="dateNext()">Next</span>
+	    <h5>
+	       <strong ng-bind="date | date:'yyyy'"></strong> 년 
+	       <strong ng-bind="date | date:'MM'"></strong> 월
+	    </h5>
+    </div>
+    <section class="calendar">
+	    <div class="week" ng-repeat="val in dateHead" ng-class="{sun:($index == 0)}">{{val}}</div>
+	    <div ng-repeat="i in day"><span ng-class="{today:($index == today + 1)}" ng-click="pick(i)" ng-if="i > 0"><strong ng-class="{on:(cdate.getDate() == i)}">{{i}}</strong></span></div>
+	</section>
+</section>
+
+<!-- footer -->
+<section ng-include src="'/HTML/include/footer.html'"></section>
+
+</body>
+</html>

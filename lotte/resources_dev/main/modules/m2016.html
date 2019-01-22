@@ -1,0 +1,32 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!-- M16 기획전 일반형.-->
+	<div class="moduleCon">
+		<div class="prd_unit_type01_main">
+			<a ng-click="logGAEvtModuleEach('-', moduleData.topTxt + ' ' + moduleData.btmTxt);planClick(moduleData.linkUrl, moduleData.tclick + '_Clk_Ban01')">
+				<div class="thumb">
+					<img ng-src="{{moduleData.imgUrl}}" alt="" />
+					<div class="bg_mask"><img src="http://image.lotte.com/lotte/mo2017/main/bg_mask.png" alt="" /></div>
+				</div>
+				<div class="info bg_store">
+					<p>{{moduleData.topTxt}}</p>
+					<ul>
+						<li>{{moduleData.btmTxt}}</li>
+					</ul>
+				</div>
+			</a>
+		</div>
+		<ul class="prd_unit_type01 float_ul" ng-if="moduleData.prdList.items.length == 3">
+			<li ng-repeat="item in moduleData.prdList.items">
+				<a ng-click="logGAEvtModuleEach($index + 1, item.goodsNo);mainProductClick(item.goodsNo, moduleData.tclick + '_Clk_Prd'+numberFill(($index+1),2))">
+					<div class="imageCon">
+						<img ng-src="{{item.imgUrl}}" alt="" />
+					</div>
+					<div class="titleCon">
+						<div class="name">{{item.goodsNm}}</div>
+						<div class="ti"><strong>{{item.price | number}}</strong>원<em ng-if="item.isPlanPrd">~</em></div>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</div>
+</section>

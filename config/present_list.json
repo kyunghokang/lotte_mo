@@ -1,0 +1,64 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplPresentList" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mylotte/present/present_list_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/present_list.template.js"
+            }
+        },
+        "concat" : {
+            "jsPresentList" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mylotte/present/present_common.js",
+                    "lotte/resources_dev/mylotte/present/present_list.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/present_list.js"
+            }
+        },
+        "uglify" : {
+            "jsPresentList" : {
+                "src" : "lotte/resources/<%= version %>/present_list.js",
+                "dest" : "lotte/resources/<%= version %>/present_list.min.js"
+            },
+            "tplPresentList" : {
+                "src" : "lotte/resources/<%= version %>/present_list.template.js",
+                "dest" : "lotte/resources/<%= version %>/present_list.tpl.js"
+            }
+        },
+        "cssmin" : {
+            "cssPresentList" : {
+                "src" : [
+                    "lotte/resources_dev/mylotte/present/present_list.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/present_list.min.css"
+            }
+        },
+        "clean" : {
+            "cleanPresentList" : [
+                "lotte/resources/<%= version %>/present_list.js",
+                "lotte/resources/<%= version %>/present_list.template.js"
+            ]
+        },
+        "processhtml" : {
+            "htmlPresentList" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mylotte/present/present_list.html" : "mylotte/present/present_list_dev.html"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+
+<!-- test common css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">
+<!-- //공통 css -->
+<!----------------- current css ----------------->
+
+<link rel="stylesheet" href="/lotte/resources_dev/tenbyten/tenbyten.css">
+
+<!----------------- current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+<script src="tenbyten.js"></script>
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<!-- container -->
+<section id="container">
+	<!-- category -->
+	<nav class="box_cate">
+		<div class="big_cate">
+			<ul>
+				<li><a href="#">가구</a></li>
+				<li><a href="#">침구/패브릭</a></li>
+				<li><a href="#">인테리어/조명</a></li>
+				<li><a href="#">주방</a></li>
+				<li><a href="#">생활/수잡</a></li>
+				<li><a href="#">침구/패브릭02</a></li>
+				<li><a href="#">인테리어/조명02</a></li>
+				<li><a href="#">주방02</a></li>
+			</ul>
+		</div>
+		<!-- class on 으로 활성화 -->
+		<div class="big_cate_all ">
+			<button class="open_btn">더보기</button>
+			<ul>
+				<li><a href="#">가구</a></li>
+				<li><a href="#">침구/패브릭</a></li>
+				<li><a href="#">인테리어/조명</a></li>
+				<li><a href="#">주방</a></li>
+				<li><a href="#">가구</a></li>
+				<li><a href="#">침구/패브릭</a></li>
+				<li><a href="#">인테리어/조명</a></li>
+				<li><a href="#">주방</a></li>
+			</ul>
+		</div>
+		<!-- class on 으로 활성화 -->
+		<div class="mid_cate ">
+			<ul>
+				<li><a href="#">홈바/아일랜드식탁</a></li>
+				<li><a href="#">식탁(2인)</a></li>
+				<li><a href="#">식탁(4인 이상) </a></li>
+				<li><a href="#">수납장</a></li>
+			</ul>
+			<ul>
+				<li>
+					<a href="#" class="hasCate">홈바/아일랜드식탁02</a><!-- D:20150921 하위메뉴있을때만 클래스 hasCate 추가 -->
+					<!-- D:20150921 마크업추가 -->
+					<div class="cca">
+						<a href="#" class="ng-binding ng-scope">전체보기</a>
+						<a href="#" class="ng-binding ng-scope">숄더백/호보백</a>
+						<a href="#" class="ng-binding ng-scope">토트백/탑핸들백/보스턴백</a>
+						<a href="#" class="ng-binding ng-scope">클러치/이브닝백</a>
+					</div>
+					<!-- //D:20150921 마크업추가 -->
+				</li>
+				<li><a href="#">식탁(2인)02</a></li>
+				<li><a href="#">식탁(4인 이상) 02</a></li>
+				<li><a href="#">수납장02</a></li>
+			</ul>
+			<ul>
+				<li><a href="#">홈바/아일랜드식탁03</a></li>
+				<li><a href="#">식탁(2인)</a></li>
+				<li><a href="#">식탁(4인 이상) </a></li>
+				<li><a href="#">수납장</a></li>
+			</ul>
+			<ul>
+				<li><a href="#">홈바/아일랜드식탁04</a></li>
+				<li><a href="#">식탁(2인)</a></li>
+				<li><a href="#">식탁(4인 이상) </a></li>
+				<li><a href="#">수납장</a></li>
+			</ul>
+			<ul>
+				<li><a href="#">홈바/아일랜드식탁05</a></li>
+				<li><a href="#">식탁(2인)</a></li>
+				<li><a href="#">식탁(4인 이상) </a></li>
+				<li><a href="#">수납장</a></li>
+			</ul>
+			<ul>
+				<li><a href="#">홈바/아일랜드식탁06</a></li>
+				<li><a href="#">식탁(2인)</a></li>
+				<li><a href="#">식탁(4인 이상) </a></li>
+				<li><a href="#">수납장</a></li>
+			</ul>
+			<ul>
+				<li><a href="#">홈바/아일랜드식탁02</a></li>
+				<li><a href="#">식탁(2인)02</a></li>
+				<li><a href="#">식탁(4인 이상) 02</a></li>
+				<li><a href="#">수납장02</a></li>
+			</ul>
+			<ul>
+				<li><a href="#">홈바/아일랜드식탁03</a></li>
+				<li><a href="#">식탁(2인)</a></li>
+				<li><a href="#">식탁(4인 이상) </a></li>
+				<li><a href="#">수납장</a></li>
+			</ul>
+			<ul>
+				<li><a href="#">홈바/아일랜드식탁04</a></li>
+				<li><a href="#">식탁(2인)</a></li>
+				<li><a href="#">식탁(4인 이상) </a></li>
+				<li><a href="#">수납장</a></li>
+			</ul>
+			<ul>
+				<li><a href="#">홈바/아일랜드식탁05</a></li>
+				<li><a href="#">식탁(2인)</a></li>
+				<li><a href="#">식탁(4인 이상) </a></li>
+				<li><a href="#">수납장</a></li>
+			</ul>
+			<ul>
+				<li><a href="#">홈바/아일랜드식탁06</a></li>
+				<li><a href="#">식탁(2인)</a></li>
+				<li><a href="#">식탁(4인 이상) </a></li>
+				<li><a href="#">수납장</a></li>
+			</ul>
+		</div>
+	</nav>
+	<!-- //category -->
+
+	<!-- main-slider -->
+	<div class="main_slide">
+		<button class="btn prev">Preview</button>
+		<div class="mask">
+			<ul class="list">
+				<li><a href="#"><img src="http://image.lotte.com/lotte/mo2015/angular/thumb/main_slide.png" alt="텐바이텐 배너이미지"></a></li>
+				<li><a href="#"><img src="http://image.lotte.com/lotte/mo2015/angular/thumb/main_slide.png" alt="텐바이텐 배너이미지"></a></li>
+				<li><a href="#"><img src="http://image.lotte.com/lotte/mo2015/angular/thumb/main_slide.png" alt="텐바이텐 배너이미지"></a></li>
+				<li><a href="#"><img src="http://image.lotte.com/lotte/mo2015/angular/thumb/main_slide.png" alt="텐바이텐 배너이미지"></a></li>
+				<li><a href="#"><img src="http://image.lotte.com/lotte/mo2015/angular/thumb/main_slide.png" alt="텐바이텐 배너이미지"></a></li>
+			</ul>
+		</div>
+		<button class="btn next">Next</button>
+	</div>
+	<!-- //main-slider -->
+
+	<!-- WHAT’s NEW slider -->
+	<div class="main_slide type2">
+		<p class="tit_banner">WHAT’s NEW</p>
+		<div class="mask">
+			<ul class="list">
+				<li><a href="#"> <img src="http://image.lotte.com/lotte/mo2015/angular/thumb/slide_thum.png" alt="텐바이텐 배너이미지"> <span class="name">[천이백엠] 위너스 PM책상 126</span> <span class="value"> <strong>34,590</strong>원
+					</span>
+				</a> <a href="#"> <img src="http://image.lotte.com/lotte/mo2015/angular/thumb/slide_thum02.png" alt="텐바이텐 배너이미지"> <span class="name">[천이백엠] 위너스 PM책상 126</span> <span class="value"> <strong>34,590</strong>원
+					</span>
+				</a></li>
+				<li><a href="#"> <img src="http://image.lotte.com/lotte/mo2015/angular/thumb/slide_thum.png" alt="텐바이텐 배너이미지"> <span class="name">[천이백엠] 위너스 PM책상 126</span> <span class="value"> <strong>34,590</strong>원
+					</span>
+				</a> <a href="#"> <img src="http://image.lotte.com/lotte/mo2015/angular/thumb/slide_thum02.png" alt="텐바이텐 배너이미지"> <span class="name">[천이백엠] 위너스 PM책상 126</span> <span class="value"> <strong>34,590</strong>원
+					</span>
+				</a></li>
+				<li><a href="#"> <img src="http://image.lotte.com/lotte/mo2015/angular/thumb/slide_thum.png" alt="텐바이텐 배너이미지"> <span class="name">[천이백엠] 위너스 PM책상 126</span> <span class="value"> <strong>34,590</strong>원
+					</span>
+				</a> <a href="#"> <img src="http://image.lotte.com/lotte/mo2015/angular/thumb/slide_thum02.png" alt="텐바이텐 배너이미지"> <span class="name">[천이백엠] 위너스 PM책상 126</span> <span class="value"> <strong>34,590</strong>원
+					</span>
+				</a></li>
+				<li><a href="#"> <img src="http://image.lotte.com/lotte/mo2015/angular/thumb/slide_thum.png" alt="텐바이텐 배너이미지"> <span class="name">[천이백엠] 위너스 PM책상 126</span> <span class="value"> <strong>34,590</strong>원
+					</span>
+				</a> <a href="#"> <img src="http://image.lotte.com/lotte/mo2015/angular/thumb/slide_thum02.png" alt="텐바이텐 배너이미지"> <span class="name">[천이백엠] 위너스 PM책상 126</span> <span class="value"> <strong>34,590</strong>원
+					</span>
+				</a></li>
+
+			</ul>
+		</div>
+	</div>
+	<!-- //WHAT’s NEW slider -->
+
+	<!-- MD’s PICK slider -->
+	<div class="main_slide type2">
+		<p class="tit_banner">MD’s PICK</p>
+		<div class="mask">
+			<ul class="list">
+				<li><a href="#"> <img src="http://image.lotte.com/lotte/mo2015/angular/thumb/slide_thum.png" alt="텐바이텐 배너이미지"> <span class="name">[천이백엠] 위너스 PM책상 126</span> <span class="value"> <strong>34,590</strong>원
+					</span>
+				</a> <a href="#"> <img src="http://image.lotte.com/lotte/mo2015/angular/thumb/slide_thum02.png" alt="텐바이텐 배너이미지"> <span class="name">[천이백엠] 위너스 PM책상 126</span> <span class="value"> <strong>34,590</strong>원
+					</span>
+				</a></li>
+				<li><a href="#"> <img src="http://image.lotte.com/lotte/mo2015/angular/thumb/slide_thum.png" alt="텐바이텐 배너이미지"> <span class="name">[천이백엠] 위너스 PM책상 126</span> <span class="value"> <strong>34,590</strong>원
+					</span>
+				</a> <a href="#"> <img src="http://image.lotte.com/lotte/mo2015/angular/thumb/slide_thum02.png" alt="텐바이텐 배너이미지"> <span class="name">[천이백엠] 위너스 PM책상 126</span> <span class="value"> <strong>34,590</strong>원
+					</span>
+				</a></li>
+				<li><a href="#"> <img src="http://image.lotte.com/lotte/mo2015/angular/thumb/slide_thum.png" alt="텐바이텐 배너이미지"> <span class="name">[천이백엠] 위너스 PM책상 126</span> <span class="value"> <strong>34,590</strong>원
+					</span>
+				</a> <a href="#"> <img src="http://image.lotte.com/lotte/mo2015/angular/thumb/slide_thum02.png" alt="텐바이텐 배너이미지"> <span class="name">[천이백엠] 위너스 PM책상 126</span> <span class="value"> <strong>34,590</strong>원
+					</span>
+				</a></li>
+				<li><a href="#"> <img src="http://image.lotte.com/lotte/mo2015/angular/thumb/slide_thum.png" alt="텐바이텐 배너이미지"> <span class="name">[천이백엠] 위너스 PM책상 126</span> <span class="value"> <strong>34,590</strong>원
+					</span>
+				</a> <a href="#"> <img src="http://image.lotte.com/lotte/mo2015/angular/thumb/slide_thum02.png" alt="텐바이텐 배너이미지"> <span class="name">[천이백엠] 위너스 PM책상 126</span> <span class="value"> <strong>34,590</strong>원
+					</span>
+				</a></li>
+
+			</ul>
+		</div>
+	</div>
+	<!-- // MD’s PICK slider -->
+
+	<!-- BEST OF BEST slider -->
+	<div class="main_slide type2">
+		<p class="tit_banner">BEST OF BEST</p>
+		<div class="mask">
+			<ul class="list">
+				<li><a href="#"> <img src="http://image.lotte.com/lotte/mo2015/angular/thumb/slide_thum.png" alt="텐바이텐 배너이미지"> <span class="name">1[천이백엠] 위너스 PM책상 126</span> <span class="value"> <strong>34,590</strong>원
+					</span>
+				</a> <a href="#"> <img src="http://image.lotte.com/lotte/mo2015/angular/thumb/slide_thum02.png" alt="텐바이텐 배너이미지"> <span class="name">1[천이백엠] 위너스 PM책상 126</span> <span class="value"> <strong>34,590</strong>원
+					</span>
+				</a></li>
+				<li><a href="#"> <img src="http://image.lotte.com/lotte/mo2015/angular/thumb/slide_thum.png" alt="텐바이텐 배너이미지"> <span class="name">2[천이백엠] 위너스 PM책상 126</span> <span class="value"> <strong>34,590</strong>원
+					</span>
+				</a> <a href="#"> <img src="http://image.lotte.com/lotte/mo2015/angular/thumb/slide_thum02.png" alt="텐바이텐 배너이미지"> <span class="name">2[천이백엠] 위너스 PM책상 126</span> <span class="value"> <strong>34,590</strong>원
+					</span>
+				</a></li>
+				<li><a href="#"> <img src="http://image.lotte.com/lotte/mo2015/angular/thumb/slide_thum.png" alt="텐바이텐 배너이미지"> <span class="name">3[천이백엠] 위너스 PM책상 126</span> <span class="value"> <strong>34,590</strong>원
+					</span>
+				</a> <a href="#"> <img src="http://image.lotte.com/lotte/mo2015/angular/thumb/slide_thum02.png" alt="텐바이텐 배너이미지"> <span class="name">3천이백엠] 위너스 PM책상 126</span> <span class="value"> <strong>34,590</strong>원
+					</span>
+				</a></li>
+				<li><a href="#"> <img src="http://image.lotte.com/lotte/mo2015/angular/thumb/slide_thum.png" alt="텐바이텐 배너이미지"> <span class="name">4[천이백엠] 위너스 PM책상 126</span> <span class="value"> <strong>34,590</strong>원
+					</span>
+				</a> <a href="#"> <img src="http://image.lotte.com/lotte/mo2015/angular/thumb/slide_thum02.png" alt="텐바이텐 배너이미지"> <span class="name">4[천이백엠] 위너스 PM책상 126</span> <span class="value"> <strong>34,590</strong>원
+					</span>
+				</a></li>
+
+			</ul>
+		</div>
+	</div>
+	<!-- // BEST OF BEST slider -->
+
+</section>
+<!-- //container -->
+
+<section ng-include src="'/HTML/include/footer.html'"></section>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<div> <!--product module: product-qna [상품상세] QnA-->
+	<div class="prd_title mt10">
+		<p ng-click="pageUI.loadData.product_qna.totalCnt && linkClick(pageUI.loadData.product_qna.viewAllLinkUrl, 'm_RDC_ProdDetail_Clk_QNA'); pageUI.loadData.product_qna.totalCnt && logGAEvtPrdView('Q&A','문의등록수');">Q&amp;A <em class="cnt" ng-class="{disable:!pageUI.loadData.product_qna.totalCnt}">({{(!pageUI.loadData.product_qna.totalCnt? 0:pageUI.loadData.product_qna.totalCnt) | currency:'':0}})</em></p>
+		<div class="pt_rbtn"><span class="btn_sty2" ng-click="linkClick(pageUI.loadData.product_qna.inqQuestUrl, 'm_RDC_ProdDetail_Clk_QNA_Quest'); logGAEvtPrdView('Q&A','상품문의하기');">상품문의하기</span></div>
+	</div>
+
+	<div class="qna_area">
+		<!--데이터 없을때-->
+		<p class="empty_ment div_line_t" ng-if="!pageUI.loadData.product_qna.totalCnt || pageUI.loadData.product_qna.totalCnt == 0">Q&A를 통해서 궁금증을 해결하세요.</p>
+
+		<ul>
+			<li ng-repeat="item in pageUI.loadData.product_qna.qnaList.items | limitTo : 3">
+				<div class="customerInfo">
+					{{item.wrtrId}}님 <em>|</em> {{item.inqMkDt}}
+				</div>
+				<div class="question">
+					<div class="qtShortTxt">
+						<strong>Q :</strong> {{item.inqCont | qtShortTxt}}
+						<a class="qna_more" ng-click="moreQuestion();" ng-if="item.inqCont.length > 73">......더보기</a>
+					</div>
+					<div class="qtLongTxt">
+						<strong>Q :</strong> {{item.inqCont}}
+					</div>
+				</div>
+				<div class="answer">
+					<div class="asShortTxt">
+						<strong>A :</strong> {{item.ansCont | asShortTxt}}
+						<span class="qna_more" ng-click="moreAnswer();" ng-if="item.ansCont.length > 46">......더보기</span>
+					</div>
+					<div class="asLongTxt">
+						<strong>A :</strong> {{item.ansCont}}
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="btnMore" ng-if="pageUI.loadData.product_qna.totalCnt > 0">
+		<span class="btnArea"><a ng-click="linkClick(pageUI.loadData.product_qna.viewAllLinkUrl, 'm_RDC_ProdDetail_Clk_QNA_more');logGAEvtPrdView('Q&A','전체보기');"><span>{{pageUI.loadData.product_qna.totalCnt | currency:'':0}}개 Q&amp;A 전체 보기</span></a></span>
+	</div>
+	
+	<!--배송/교환/반품 안내-->
+	<div class="detail_base_wrap benefit_compare div_line_b10 mt10" ng-click="linkClick(pageUI.data.callUrlInfo.exchangeInfoUrl,'m_RDC_ProdDetail_Clk_DlrInfo');logGAEvtPrdView('배송/교환/반품안내','자세히보기');">
+		<span class="tit">배송/교환/반품 안내</span>
+		<span class="price right_clamp">&nbsp;</span>
+	</div>
+
+</div>

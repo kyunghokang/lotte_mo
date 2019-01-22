@@ -1,0 +1,70 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplm1200m" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mall/m1200m/m1200m_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/m1200m.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsm1200m" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mall/m1200m/m1200m.js",
+                    "lotte/resources_dev/common/lotte_ngswipe.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/m1200m.js"
+            }
+        },
+
+        "uglify" : {
+            "jsm1200m" : {
+                "src" : "lotte/resources/<%= version %>/m1200m.js",
+                "dest" : "lotte/resources/<%= version %>/m1200m.min.js"
+            },
+            "tplm1200m" : {
+                "src" : "lotte/resources/<%= version %>/m1200m.template.js",
+                "dest" : "lotte/resources/<%= version %>/m1200m.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssm1200m" : {
+                "src" : [
+                    "lotte/resources_dev/tenbyten/tenbyten.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/m1200m.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanm1200m" : [
+                "lotte/resources/<%= version %>/m1200m.js",
+                "lotte/resources/<%= version %>/m1200m.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlm1200m" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mall/m1200m/m1200m.html" : "mall/m1200m/m1200m_dev.html"
+                }
+            }
+        }
+    }
+}
+

@@ -1,0 +1,27 @@
+<ol class="prod_list_deal">
+	<li ng-repeat="item in products track by $index">
+		<!-- 딜상품 -->
+		<div class="unit_deal_01">
+			<a href="#" ng-click="clickUnit()">
+				<p class="md_talk" ng-if="item.copyNm && item.mdtipType == 1"><span>{{item.copyNm}}</span></p>
+				<p class="thumb"><!-- 대표이미지 불러오는 경우 class='thumb normal' 코너이미지 불러오는 경우 clas='thumb' -->
+					<img ng-src="{{item.imgUrl}}" alt="{{item.goodsNm}}" err-src />
+					<span class="flag depart" ng-if="item.isDept">롯데백화점</span>
+					<span class="flag etv" ng-if="item.isTvhome && !item.isDept">롯데홈쇼핑</span>
+					<span class="flag smart">스마트픽</span>
+				</p>
+				<div class="info" ng-class="{true:item.useCpn == 'coupon'}"><!-- 쿠폰포함이 있는 경우 class='info true', 쿠폰포함이 없는 경우 class='info' -->
+					<p class="prod">
+						<span class="tit">{{item.goodsNm}}</span>
+						<span class="price"><em>{{item.price | number}}</em>원~</span>
+						<span class="sale">
+							<em class="no" ng-show="item.saleCnt">{{item.saleCnt |number}}</em>개 판매 중
+							<em class="flag tag" ng-repeat="flag in item.flag">{{flag}}</em>
+						</span>
+					</p>
+				</div>
+			</a>
+		</div>
+		<!-- //딜상품 -->
+	</li>
+</ol>

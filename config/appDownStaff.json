@@ -1,0 +1,68 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplAppDownStaff" : {
+				"options": {
+					"prefix":"/",
+					"module" : "app"
+				},
+				"src" : [
+				],
+				"dest" : "lotte/resources/<%= version %>/appDownStaff.template.js"
+			}
+		},
+		
+		"concat" : {
+			"jsAppDownStaff" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/event/appDownStaff.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/appDownStaff.js"
+			}
+		},
+		
+		"uglify" : {
+			"jsAppDownStaff" : {
+				"src" : "lotte/resources/<%= version %>/appDownStaff.js",
+				"dest" : "lotte/resources/<%= version %>/appDownStaff.min.js"
+			},
+			"tplAppDownStaff" : {
+				"src" : "lotte/resources/<%= version %>/appDownStaff.template.js",
+				"dest" : "lotte/resources/<%= version %>/appDownStaff.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssAppDownStaff" : {
+				"src" : [
+					"lotte/resources_dev/event/appDownStaff.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/appDownStaff.min.css"
+			}
+		},
+
+		"processhtml" : {
+			"htmlAppDownStaff" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"event/appDownStaff.html" : "event/appDownStaff_dev.html"
+				}
+			}
+		},
+		
+		"clean" : {
+			"cleanAppDownStaff" : [
+				"lotte/resources/<%= version %>/appDownStaff.js",
+				"lotte/resources/<%= version %>/appDownStaff.template.js"
+			]
+		}
+	}
+}
+

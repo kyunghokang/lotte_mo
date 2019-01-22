@@ -1,0 +1,73 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplMyLotteMain2018" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mylotte/m/mylotte_main_container_2018.html",
+                    "lotte/resources_dev/mylotte/m/popup_mem.html",
+  					"lotte/resources_dev/mylotte/m/popup_welcomePop.html",
+  					"lotte/resources_dev/mylotte/m/popup_review.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/mylotte_2018.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsMyLotteMain2018" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mylotte/m/mylotte_main_2018.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/mylotte_2018.js"
+            }
+        },
+
+        "uglify" : {
+            "jsMyLotteMain2018" : {
+                "src" : "lotte/resources/<%= version %>/mylotte_2018.js",
+                "dest" : "lotte/resources/<%= version %>/mylotte.min.js"
+            },
+            "tplMyLotteMain2018" : {
+                "src" : "lotte/resources/<%= version %>/mylotte_2018.template.js",
+                "dest" : "lotte/resources/<%= version %>/mylotte.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssMyLotteMain2018" : {
+                "src" : [
+                    "lotte/resources_dev/mylotte/mylotte_2018.css",
+                    "lotte/resources_dev/mylotte/popup_mem_edit.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/mylotte.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanMyLotteMain2018" : [
+                "lotte/resources/<%= version %>/mylotte_2018.js",
+                "lotte/resources/<%= version %>/mylotte_2018.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlMyLotteMain2018" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mylotte/m/mylotte_2018.html" : "mylotte/m/mylotte_2018_dev.html"
+                }
+            }
+        }
+    }
+}
+

@@ -1,0 +1,55 @@
+{
+	"tasks" : {
+		"concat" : {
+			"jsorderSingle" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/order_single/order_single.js",
+					"lotte/resources_dev/order_single/order_single_form.js",
+					"common3/js/function.js",
+					"common3/js/storage.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/order_single.js"
+			}
+		},
+
+		"uglify" : {
+			"jsorderSingle" : {
+				"src" : "lotte/resources/<%= version %>/order_single.js",
+				"dest" : "lotte/resources/<%= version %>/order_single.min.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssorderSingle" : {
+				"src" : [
+					"lotte/resources_dev/order_single/order_single.css",
+					"lotte/resources_dev/order_single/order_popup.css",
+                    "lotte/resources_dev/layer/datepicker.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/order_single.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanorderSingle" : [
+				"lotte/resources/<%= version %>/order_single.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlorderSingle" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"order_single/order_single.html" : "order_single/order_single_dev.html"
+				}
+			}
+		}
+	}
+}

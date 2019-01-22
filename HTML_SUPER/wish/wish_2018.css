@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+/* 위시리스트 카테고리 UI 추가 */
+.wish_cate_list { margin-bottom: 10px; }
+.wish_cate_list ul { overflow: hidden; margin-right: -0.1% }
+.wish_cate_list li { float: left; width: 33.3%; background: #f1f1f1; box-sizing: border-box; /*margin:-1px 0 0 -1px; */}
+.wish_cate_list a { display: block; position: relative; text-align: center; line-height: 35px; height: 35px; font-size: 13px; color: #333; background: #fff; box-sizing: border-box; }
+.wish_cate_list a.on { color: #7291cf; font-weight: bold; }
+.wish_cate_list a:before {display: block;content: "";position: absolute;left: -1px;right: 0;bottom: 0;top: -1px;box-sizing: border-box;border: 1px solid #ddd;}
+.wish_cate_list a.on:before {border: 1px solid #7291cf;top: 0;right: 0px;bottom: 0;z-index: 1;}
+.wish_cate_list li:nth-child(1) a:before,
+.wish_cate_list li:nth-child(4) a:before,
+.wish_cate_list li:nth-child(7) a:before,
+.wish_cate_list li:nth-child(10) a:before { left: 0; }
+.wish_cate_list li:nth-child(-n+3) a:before { top: 0; }
+.wish_cate_list li:nth-child(n+4) a:before { top: -1px; }
+
+/* 위시리스트 목록 없음 추가 */
+.noList { padding: 67px 0; text-align: center; }
+.msgMall { font-size: 16px; color: #bbb; text-align: center; letter-spacing: -1px; line-height: 20px; }
+.btnMall { display: inline-block; width: 235px; line-height: 42px; text-align: center; box-sizing: border-box; border: 1px solid #7291cf; border-radius: 2px; font-size: 15px; color: #7291cf; }
+.msgMall + .btnMall { margin-top: 37px; }
+.btnMall em, .btnMall span:after { display: inline-block; vertical-align: middle; background: url(/HTML_SUPER/images/spr_lotte_2018.png) no-repeat; background-size: 300px 300px;}
+.btnMall em { width: 101.5px; height: 14px; text-indent: -999em; background-position: 0 0; }
+.btnMall span * { vertical-align: middle; }
+.btnMall span:after { position: relative; content: ""; top: -1px; width: 6.5px; height: 11px; background-position: 0 -25px; margin-left: 7px; }
+
+/* 롯데슈퍼 플래그 추가 */
+.flag.super, .flag.dlv { display: inline-block; height: 17px; padding: 0 4px; line-height: 17px !important; font-size: 10px; box-sizing: border-box; }
+.flag.super { background: #40ac46; color: #fff; }
+.flag.dlv { border: 1px solid #f54c27; color: #f54c27; }
+
+/* 품절상품 목록 추가 */
+.wish_header { border-bottom: none; }
+#discontinue_list .product_list_01 li .group.soldOut {padding: 9px 10px;}
+#discontinue_list .product_list_01 li .group.soldOut + .btn_list { height: auto; padding: 0; }
+#discontinue_list .product_list_01 li .group.soldOut + .btn_list .btn_style2 { top: -34px; }
+.product_list_01 .group.soldOut span.cont01 { display: block; height: 87px; min-height: 87px; box-sizing: border-box; }
+.product_list_01 .group.soldOut .money_coupon,
+.product_list_01 .group.soldOut .money { position: absolute; left: 0; bottom: 0; }
+
+.mylotte .product_list_01>li .group .delivery { display: block; text-align: center; }
+.mylotte .product_list_01>li .group .delivery > span { display: inline-block; vertical-align: middle; float: none !important; }
+.mylotte .product_list_01>li .group .delivery > span + span { margin-left: 5px; }

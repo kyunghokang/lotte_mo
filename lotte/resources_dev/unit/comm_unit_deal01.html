@@ -1,0 +1,41 @@
+<div class="comm-unit-deal01" dom-load-directive2>
+
+    <!-- 상품 이미지 -->
+    <div class="prd_img">
+        <a href="#" ng-click="clickUnit()">
+            <div class="md_tip" ng-if="item.copyNm && item.mdtipType == 1"><span>{{item.copyNm}}</span></div>
+            <div class="img_wrap">
+                <img ng-src="{{item.imgUrl}}" alt="{{item.goodsNm}}" />
+                <div class="mall_flag" ng-if="item.isDept || item.isTvhome">
+                    <span class="dept" ng-if="item.isDept">롯데백화점</span>
+                    <span class="tvhome" ng-if="item.isTvhome && !item.isDept">롯데홈쇼핑</span>
+                </div>
+            </div>
+            <div class="md_tip" ng-if="item.copyNm && item.mdtipType == 2"><span>{{item.copyNm}}</span></div>
+        </a>
+    </div>
+
+    <!-- 상품 정보 -->
+    <div class="prd_info_wrap">
+        <a href="#" ng-click="clickUnit()" class="info">
+            <div class="prd_coupon" ng-class="{coupon_y:item.useCpn == 'coupon'}" ng-if="item.saleRate && item.saleRate != 0">
+                <span class="coupon_yn" ng-if="item.useCpn == 'coupon'">쿠폰포함</span>
+                <span class="num">{{item.saleRate}}</span>
+                <span class="unit">%</span>
+            </div>
+            <div class="prd_info">
+                <div class="prd_name">{{item.goodsNm}}</div>
+                <div class="prd_price">
+                    <span class="num">{{item.price | number}}</span><span class="unit">원<em ng-if="item.multiPrice">~</em></span>
+                </div>
+            </div>
+            <ul class="prd_flag" ng-if="item.flag">
+                <li ng-repeat="flag in item.flag">{{flag}}</li>
+            </ul>
+        </a>
+    </div>
+
+    <!-- 판매정보 -->
+    <div class="sale_cnt" ng-if="item.saleCnt && item.saleCnt > 0"><span class="num">{{item.saleCnt | number}}</span>개 구매중</div>
+
+</div>

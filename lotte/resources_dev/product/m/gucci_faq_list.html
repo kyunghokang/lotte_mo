@@ -1,0 +1,10 @@
+    <section  class="gucci_faq_list" ng-show="isFaqListData">
+        <ul>
+        	<li ng-repeat="item in faqListData.items" ng-model="item_no"  >
+                <a href="#submain_gucci"><em class="number">{{$index+1}}.</em>{{item.bbc_tit_nm }}</a>
+                <ul>
+                    <li ng-bind-html="item.bbc_fcont">{{item.bbc_fcont}}</li>
+                </ul>
+            </li>
+        </ul>
+    </section>

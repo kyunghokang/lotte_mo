@@ -1,0 +1,67 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplPresentDetail" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mylotte/present/present_detail_container.html",
+                    "lotte/resources_dev/mylotte/address_info.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/present_detail.template.js"
+            }
+        },
+        "concat" : {
+            "jsPresentDetail" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mylotte/present/present_common.js",
+                    "lotte/resources_dev/mylotte/present/present_detail.js",
+                    "lotte/resources_dev/mylotte/address_info.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/present_detail.js"
+            }
+        },
+        "uglify" : {
+            "jsPresentDetail" : {
+                "src" : "lotte/resources/<%= version %>/present_detail.js",
+                "dest" : "lotte/resources/<%= version %>/present_detail.min.js"
+            },
+            "tplPresentDetail" : {
+                "src" : "lotte/resources/<%= version %>/present_detail.template.js",
+                "dest" : "lotte/resources/<%= version %>/present_detail.tpl.js"
+            }
+        },
+        "cssmin" : {
+            "cssPresentDetail" : {
+                "src" : [
+                    "lotte/resources_dev/mylotte/present/present_detail.css",
+                    "lotte/resources_dev/mylotte/address_info.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/present_detail.min.css"
+            }
+        },
+        "clean" : {
+            "cleanPresentDetail" : [
+                "lotte/resources/<%= version %>/present_detail.js",
+                "lotte/resources/<%= version %>/present_detail.template.js"
+            ]
+        },
+        "processhtml" : {
+            "htmlPresentDetail" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mylotte/present/present_detail.html" : "mylotte/present/present_detail_dev.html"
+                }
+            }
+        }
+    }
+}

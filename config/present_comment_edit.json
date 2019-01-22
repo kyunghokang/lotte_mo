@@ -1,0 +1,70 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplPresentCommentEdit" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mylotte/present/present_comment_edit_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/present_comment_edit.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsPresentCommentEdit" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+					"lotte/resources_dev/mylotte/present/present_comment_edit.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/present_comment_edit.js"
+            }
+        },
+
+        "uglify" : {
+            "jsPresentCommentEdit" : {
+                "src" : "lotte/resources/<%= version %>/present_comment_edit.js",
+                "dest" : "lotte/resources/<%= version %>/present_comment_edit.min.js"
+            },
+            "tplPresentCommentEdit" : {
+                "src" : "lotte/resources/<%= version %>/present_comment_edit.template.js",
+                "dest" : "lotte/resources/<%= version %>/present_comment_edit.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssPresentCommentEdit" : {
+                "src" : [
+					"lotte/resources_dev/mylotte/mylotte.css",
+					"lotte/resources_dev/mylotte/present/present_comment_write.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/present_comment_edit.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanPresentCommentEdit" : [
+                "lotte/resources/<%= version %>/present_comment_edit.js",
+                "lotte/resources/<%= version %>/present_comment_edit.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlPresentCommentEdit" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mylotte/present/present_comment_edit.html" : "mylotte/present/present_comment_edit_dev.html"
+                }
+            }
+        }
+    }
+}
+

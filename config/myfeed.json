@@ -1,0 +1,72 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplMyFeed" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/myfeed/myfeed_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/myfeed.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsMyFeed" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/common/lotte_slider.js",
+					"lotte/resources_dev/common/lotte_console.js",
+					"lotte/resources_dev/common/lotte_ngswipe.js",
+					"lotte/resources_dev/myfeed/myfeed_service.js",
+					"lotte/resources_dev/myfeed/myfeed.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/myfeed.js"
+			}
+		},
+
+		"uglify" : {
+			"jsMyFeed" : {
+				"src" : "lotte/resources/<%= version %>/myfeed.js",
+				"dest" : "lotte/resources/<%= version %>/myfeed.min.js"
+			},
+			"tplMyFeed" : {
+				"src" : "lotte/resources/<%= version %>/myfeed.template.js",
+				"dest" : "lotte/resources/<%= version %>/myfeed.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssMyFeed" : {
+				"src" : [
+					"lotte/resources_dev/myfeed/myfeed.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/myfeed.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanMyFeed" : [
+				"lotte/resources/<%= version %>/myfeed.js",
+				"lotte/resources/<%= version %>/myfeed.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlMyFeed" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"myfeed/myfeed.html" : "myfeed/myfeed_dev.html"
+				}
+			}
+		}
+	}
+}

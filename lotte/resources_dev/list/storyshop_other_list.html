@@ -1,0 +1,24 @@
+<div class="sts_sub" ng-if="srhObj.ss_yn" ng-class="{on:isStsLstOpen}">
+    <div class="stss_box">
+        <a href="" ng-click="toggleStsListOpen()" class="stss_head">
+            다른 스토리 더보기<span class="icon_arrow ml"></span>
+        </a>
+         <div class="stss_list">
+            <div class="stss_top">
+                <span class="icon_arrow toup" ng-click="moveStLst('up')"></span>
+            </div>
+            <div class="stss_cont">
+                <a href="" ng-click="goOtherStoryShop($index)" ng-repeat="item in contents.stsLst">
+                    {{item.title}}
+                    <div class="stss_day">{{item.startDate}}</div>
+                </a>
+            </div>
+            <div class="stss_foot">
+                <span class="icon_arrow todown" ng-click="moveStLst('down')"></span> 
+                <div class="stss_close" ng-click="toggleStsListOpen()">
+                    <span class="icon_arrow close"></span>
+                </div>
+            </div>        
+        </div>
+    </div>
+</div>

@@ -1,0 +1,89 @@
+<section ng-show="contVisible" class="cont_minheight">
+  <!-- <section>
+		<div class='sub_header_wrap'>
+      <header id="head_sub" class="fixedSubHeader " ng-class="{fixedHeader: fixedHeader && subHeaderFixed && !appObj.isNativeHeader}">
+				<div class='head_sub_inner'>
+					<h2><a ng-click="mallMainClick('m_DC_SpeDisp_Reviewer_Clk_logo')"><span>사전보고</span></a></h2>
+					<a class='share' href='#' ng-click="petShare({shareImg:screenData.top_banner[0].img_url})"><span>공유</span></a>
+				</div>
+			</header>
+		</div>
+	</section> -->
+  <div class="top_tit_img_wrap" ng-bind-html="reviewer_mall.main_banner"></div>
+  <div class="fix" ng-class="{on: isMainHeaderFixed, app:appObj.isApp}">
+    <div class="cte_spe_wrap">
+        <div class="cate swipe_wrap">
+          <ul class="slide_ul">
+            <li ng-repeat="item in reviewer_mall.tab_nm_list.items" ng-class="{on:$index == reviewer_mall.tab_nm_list.tabIdx}">
+              <a ng-click="tabClick(item, $index)">{{item.text_conts_tit_nm}}</a>
+            </li>
+          </ul>
+        </div>
+    </div>
+  </div>
+  <!-- <div class="cate swipe_wrap" lotte-slider>
+    <ul>
+      <li ng-repeat="item in reviewer_mall.tab_nm_list.items" ng-class="{on:$index == reviewer_mall.tab_nm_list.tabIdx}">
+        <a ng-click="tabClick(item, $index)">{{item.text_conts_tit_nm}}</a>
+      </li>
+    </ul>
+  </div> -->
+  <ul class="pre_mov_ul">
+    <li ng-repeat="item in product.moviePrd">
+      <div class="pre_mov_top">
+        <img ng-src={{item.user_img_url}} alt="">
+        <dl>
+          <dt>{{item.review_title}}</dt>
+          <dd>ID : <span>{{item.wrtr_nknm_nm}}</span></dd>
+        </dl>
+      </div>
+      <!-- 동영상1 -->
+  		<div class="mov_wrap">
+  			<div>
+  				<div class="lv_wrap" lotte-video lv-no-alert="false" lv-src="{{item.movie_url}}" lv-detail-url="{{getProductUrl(item, tclick + '_Clk_video', $index)}}" lv-poster="{{item.video_img_url}}">
+  					<!-- <video id="{{item.movid}}" preload="none" playsinline="true" webkit-playsinline="true"  video-poster="{{item.video_img_url}}" poster="{{item.video_img_url}}"> -->
+  					<video id="{{item.movid}}" preload="none" playsinline="true" webkit-playsinline="true">
+  						<!-- <source type="video/mp4"  ng-src="{{item.movie_url | trusted}}"> -->
+  						<source type="video/mp4">
+  					</video>
+            <div ng-show="movMode==0" class="play_cover"></div>
+						<div ng-show="movMode==1" class="stop_cover"></div>
+						<div ng-show="movMode!=0" ng-click="clickCover()" class="click_cover"></div>
+						<a ng-show="movMode==0" ng-click="movPlayTclick($index);playVideo()" class="btn_start">비디오 재생</a>
+						<a ng-show="movMode==1" ng-click="movVolume('btnVolume1');muteVideo()" ng-class="{mute:mute}" class="btn_volume btn_text btns">{{mute?'음소거해제':'음소거'}}</a>
+						<a ng-show="movMode==1" ng-click="movPauseTclick($index);stopVideo()" class="btn_stop btn_text btns">일시정지</a>
+						<a ng-show="movMode==1" ng-click="goDetailPage()" class="btn_goods btn_text btns">자세히보기</a>
+						<!-- <a ng-show="movMode==1" ng-if="!rScope.appObj.isApp" ng-click="fullVideo()" class="btn_full btn_text btns">전체화면보기</a> -->
+
+            <!-- <div class="play_cover"></div>
+						<div class="stop_cover"></div>
+						<div class="click_cover"></div>
+            <a id="btnVolume1" ng-click="movVolume('btnVolume1')" class="btn_move_volume btn_text">음소거</a>
+						<a ng-click="movPlayTclick($index)" class="btn_move_start">비디오 재생</a>
+						<a ng-click="movPauseTclick($index)" class="btn_move_stop btn_text">일시정지</a>
+            <a ng-click="goDetailPage()" class="btn_move_goods btn_text">상품보기</a> -->
+            <!-- <a ng-click="mainProductClick(item, tclick + '_Clk_video',$index)" class="btn_move_goods btn_text">상품보기</a> -->
+
+					</div>
+
+  			</div>
+        <a class="pre_mov_bot" ng-click="preBotTclick(item,$index)">
+          <img ng-src="{{item.prd_img_url}}" class="bot_img" alt="">
+          <span ng-if="item.soldout" class="soldout">품절</span>
+          <div class="right_area">
+            <p class="tit1">{{item.goods_nm}}</p>
+            <div class="tit2"><span class="tit3">{{item.price2 | currency: '':0}}</span><span class="tit4">원</span><em class="plan_prod_limit" ng-if="item.is_plan_prod">~</em><del class="tit5" ng-show="item.price1!=item.price2 && item.price1 !=0">{{item.price1 | currency: '':0}}원</del></div>
+            <div class="user_feedback" ng-click="linkClick(pageUI.data.callUrlInfo.commentDtlUrl,'m_RDC_ProdDetail_Clk_Rvw01')" ng-if="item.avg_gdas_stfd_val > 0">
+							<span class="starScoreWrap"><span class="starScoreCnt" style="width:{{item.avg_gdas_stfd_val / 5 * 100}}%"></span></span>
+							<span class="review">({{item.gdas_cnt}})</span>
+						</div>
+          </div>
+        </a>
+  		</div>
+      <!-- <script type="text/javascript">
+                 setTimeout(function(){autoVideoPlay("{{item.prdInfo.movieID}}", "#autoVideo1");}, 1500);
+       </script> -->
+    </li>
+  </ul>
+  <div class="more_list" ng-show="isMovie" ng-click="moremov()">영상 더보기</div>
+</section>

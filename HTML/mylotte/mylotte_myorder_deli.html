@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">
+<!----------------- current css ----------------->
+
+<link rel="stylesheet" href="/lotte/resources_dev/mylotte/purchase/m/purchase_list.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+<!--------------- current js ----------------->
+<script>
+	$(function(){
+		
+	});
+</script>
+<!---------------// current js ----------------->
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<!-- container -->
+<section id="container">
+	<section class="delivery_detail">
+		<div class="info_tbl_wrap">
+			<h3>기본정보</h3>
+			<table class="deli_tbl">
+				<caption>배송조회 기본정보 테이블</caption>
+				<tbody>
+					<tr>
+						<th scope="row">송장번호</th>
+						<td>1234567890123</td>
+					</tr>
+					<tr>
+						<th scope="row">택배사</th>
+						<td>한진택배<span class="deli_tel">(1599-1588)</span></td>
+					</tr>
+					<tr>
+						<th scope="row">사업소</th>
+						<td>사업소(02-456-9876)</td>
+					</tr>
+					<tr>
+						<th scope="row">택배기사 연락처</th>
+						<td>010-5255-8520</td>
+					</tr>
+					<tr>
+						<th scope="row">인수자</th>
+						<td>이가현</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="progress_tbl_wrap">
+			<h3>진행상태</h3>
+			<table class="deli_tbl">
+				<caption>배송조회 진행상태 테이블</caption>
+				<thead>
+					<tr>
+						<th scope="col">도착일시</th>
+						<th scope="col">배송상태</th>
+						<th scope="col">도착지</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>2016.06.24<br />16:14:30</td>
+						<td class="state">배송완료</td>	
+						<td>양평동</td>
+					</tr>
+					<tr>
+						<td>2016.06.24<br />16:14:30</td>
+						<td class="state">택배기사출발</td>
+						<td>양평동</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- 조회하지 못할경우 클래스 error_tbl 추가 -->
+			<table class="deli_tbl error_tbl">
+				<caption>배송조회 진행상태 테이블</caption>
+				<thead>
+					<tr>
+						<th scope="col">도착일시</th>
+						<th scope="col">배송상태</th>
+						<th scope="col">도착지</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td colspan="3">죄송합니다. 해당 주문에 대한 배송조회 내역이 없습니다.<br />고객센터로 문의하시기 바랍니다.</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+</section>
+
+<section ng-include src="'/HTML/include/footer.html'"></section>
+</body>
+</html>

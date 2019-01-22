@@ -1,0 +1,35 @@
+<section ng-show="contVisible" ng-class="{'tablet':screenType > 1}">
+	<div class="style_intro_wrap">
+		<div ng-if="topBanner.length > 1" class="swipe_wrap" id="topBnrSwipe1" roll-swipe-banner rolling="true" width320="1" width640="1" width900="1" info="topBanner" getcontrol="getSwipeControl" endfnc="transitionComplete">
+	        <ul class="swipeBox">
+	            <li ng-repeat="item in topBanner track by $index">
+	            	<img ng-if="screenType > 1" ng-src="{{item.img_url_tablet}}">
+	            	<img ng-if="screenType <= 1" ng-src="{{item.img_url}}">
+	            </li>
+	        </ul>
+	        <span class="arrow prev" ng-click="swipeBefore()"></span>
+    		<span class="arrow next" ng-click="swipeNext()"></span>
+    	</div>
+	</div>
+	<div class="style_push_bottom">
+		<img ng-if="screenType > 1" src="http://image.lotte.com/lotte/mo2017/search/style_intro_bg_tablet.jpg"/>
+		<span ng-if="screenType > 1" class="text item0"></span>
+		<span ng-if="screenType > 1" class="text item1"></span>
+		<span ng-if="screenType > 1" class="text item2"></span>
+		<span ng-if="screenType > 1" class="btn"></span>
+		
+		<img ng-if="screenType <= 1" src="http://image.lotte.com/lotte/mo2017/search/style_intro_bg_new.jpg"/>
+		<img ng-if="screenType <= 1" class="text item0" src="http://image.lotte.com/lotte/mo2018/search/style_text_new_01.jpg"/>
+		<img ng-if="screenType <= 1" class="text item1" style="display:none" src="http://image.lotte.com/lotte/mo2017/search/style_text_new_02.jpg"/>
+		<img ng-if="screenType <= 1" class="text item2" style="display:none" src="http://image.lotte.com/lotte/mo2017/search/style_text_new_03.jpg"/>
+		
+		<input 
+		 id="file_input"
+         type="file"
+         onchange="angular.element(this).scope().detectFile(this)" 
+		 ng-click="callAppUpload($event)"
+         accept="image/*"
+         />
+	</div>
+	<loading-bar id="loading" style="display:none"></loading-bar>
+</section>

@@ -1,0 +1,3317 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<script>
+    var APP_KEY = "7fa1e44757a94fd89921";
+    var SERVER_TIME = new Date();
+    var purchaseSubTitle = "주문/배송조회 상세";
+</script>
+<script>
+	var LOTTE_CONSTANTS = [];
+	LOTTE_CONSTANTS['MAPI_HOST_API'] = "http://mo.lotte.com";
+	LOTTE_CONSTANTS['MAPI_HOST_SSL_API'] = "http://mo.lotte.com";
+	LOTTE_CONSTANTS['M_HOST_MOBILE'] = "http://mo.lotte.com";
+	LOTTE_CONSTANTS['M_HOST_SSL'] = "http://mo.lotte.com";
+	LOTTE_CONSTANTS['PC_HOST_WEB'] = "http://www.lotte.com";
+	// 1차분 호환성을 위해 중복 정의
+	var MAPI_HOST_API = LOTTE_CONSTANTS['MAPI_HOST_API'];
+	var MAPI_HOST_SSL_API = LOTTE_CONSTANTS['MAPI_HOST_SSL_API'];
+	var M_HOST_MOBILE = LOTTE_CONSTANTS['M_HOST_MOBILE'];
+	var M_HOST_SSL = LOTTE_CONSTANTS['M_HOST_SSL'];
+	var PC_HOST_WEB = LOTTE_CONSTANTS['PC_HOST_WEB'];
+	LOTTE_CONSTANTS['SPLIT_GUBUN_1'] = ":^:"; 
+	LOTTE_CONSTANTS['SPLIT_GUBUN_3'] = ";;;;;"; 
+	LOTTE_CONSTANTS['ONENONE_BUY_LOGIN'] = "1"; 
+	LOTTE_CONSTANTS['IMALL_BUY_LOGIN'] = "4";
+	LOTTE_CONSTANTS['ST_STD_CD_PAY_MEAN_CD_L_POINT'] = "21";
+	LOTTE_CONSTANTS['ST_STD_CD_PAY_MEAN_CD_LOTTE_POINT'] = "19";
+	LOTTE_CONSTANTS['ST_STD_CD_PAY_MEAN_CD_DEPOSIT'] = "20";
+	LOTTE_CONSTANTS['DEFAULT_LATE_VIEW_GOODS_COUNT'] = "20";
+	//rudolph start
+	LOTTE_CONSTANTS['NORMAL_LOGIN'] = "0";
+	LOTTE_CONSTANTS['ONENONE_BUY_LOGIN'] = "1"; 
+	LOTTE_CONSTANTS['CART_BUY_LOGIN'] = "2";
+	LOTTE_CONSTANTS['ORDER_SEARCH_LOGIN'] = "3";
+	LOTTE_CONSTANTS['IMALL_BUY_LOGIN'] = "4"; 
+	LOTTE_CONSTANTS['IMALL_CART_BUY_LOGIN'] = "5" 
+	LOTTE_CONSTANTS['LOGIN_SEED'] = "MDOTCOM";
+	LOTTE_CONSTANTS['ORDER_PROTOCAL'] = "http";
+	LOTTE_CONSTANTS['MOBILE_DOMAIN'] = "mo.lotte.com";
+	LOTTE_CONSTANTS['ELLOTTE_HOST_API'] = "http://mapi.ellotte.com";
+	LOTTE_CONSTANTS['ELLOTTE_HOST_SSL_API'] = "https://mapi.ellotte.com";
+	LOTTE_CONSTANTS['ELLOTTE_HOST_MOBILE'] = "http://mo.ellotte.com";
+	LOTTE_CONSTANTS['ELLOTTE_HOST_SSL'] = "http://mo.ellotte.com";    
+	LOTTE_CONSTANTS['ELLOTTE_LOGIN_SEED'] = "NMELLOTTE";
+	LOTTE_CONSTANTS['ELLOTTE_IOS_APP_SCHEMA'] = "ellotte001";
+	LOTTE_CONSTANTS['ELLOTTE_ANDROID_APP_SCHEMA'] = "ellotte002";
+	//rudolph end
+	//shpark97:150925 - start
+	LOTTE_CONSTANTS['PAYTYPE_CARD_047'] = "047";
+	LOTTE_CONSTANTS['PAYTYPE_CARD_029'] = "029";
+	LOTTE_CONSTANTS['PAYTYPE_CARD_031'] = "031";
+	LOTTE_CONSTANTS['PAYTYPE_CARD_048'] = "048";
+	LOTTE_CONSTANTS['EXP_MY_LOTTE_KO'] = "마이롯데";
+	//shpark97:150925 - end
+</script>
+<!-- /WEB-INF/view/mylotte/purchase/m/purchase_view.jsp -->
+<script src="/lotte/resources_dev/common/common_load_2017.js"></script>
+<script src="/common3/js/SpeedTrapInsert.js"></script>
+<script src="/common4/js/lib/crittercismClientLibraryMin.js"></script>
+<script>
+	/**
+	 * Crittercism
+	 */
+	$(document).ready(function () {
+		try {
+			Crittercism.init({appId: '550904cce0697fa449637803', appVersion: '20160119_ang'});
+			// if (getCookie) {
+			// 	var crittercismMbrNo = getCookie("MBRNO");
+			// 	if (crittercismMbrNo) {
+			// 		Crittercism.setUsername(crittercismMbrNo);
+			// 	}
+			// 	if (location.href && navigator.userAgent) {
+			// 		Crittercism.leaveBreadcrumb("User Visited " + location.href); // 사용자 방문 페이지 로깅
+			// 		Crittercism.leaveBreadcrumb("User Browser Agent : " + navigator.userAgent); // 사용자 브라우저 UserAgent 로깅
+			// 	}
+			// }
+		} catch (e) {}
+	});
+	/**
+	 * WISELOG TRACKING SCRIPT CODE
+	 * DO NOT MODIFY THIS SCRIPT CODE.
+	 * COPYRIGHT (C) 1999-2010 NETHRU INC. ALL RIGHTS RESERVED.
+	 */
+	(function () {
+	var nl = document.createElement('script'); nl.type = 'text/javascript';
+	nl.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'm.lotte.com/common4/js/lib/wl6.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(nl, s);
+	var done = false;
+	nl.onload = nl.onreadystatechange = function() {
+		if ( !done && (!this.readyState || this.readyState === "loaded" || this.readyState === "complete") ) {
+			done = true;
+			_n_sid = "m.lotte.com";
+			_n_uid_cookie = "MBRNO";
+			n_logging();
+			nl.onload = nl.onreadystatechange = null;
+		}
+	}
+	})();
+	// Cosem Log Gathering Script V.2.0
+	var cosem_Request = function () {
+	var cookieDay = 30; // 쿠키설정 날짜
+	var accountCode = "19";
+	this.getParameter = function (name) {
+		var rtnval = ''; var nowAddress = unescape( location.href ); var parameters = (nowAddress.slice(nowAddress.indexOf('?')+1,nowAddress.length)).split('&');
+		for(var i = 0 ; i < parameters.length ; i++){
+			var varName = parameters[i].split('=')[0];if(varName.toUpperCase() == name.toUpperCase()){rtnval = parameters[i].split('=')[1]; break;};}; return rtnval;
+		}
+		this.imageURL = function(){ var cosem = this.getParameter('cosemkid'); var cosem_kid = ""; var cosemProtocol = ( location.protocol=="https:" )? "https:" :"http:";
+		if( cosem.length == 0 ) cosem = this.getParameter('cosem');
+		if( cosem.length > 0 ) { cosem_kid = "&kid=" + cosem + "&referer=" + encodeURIComponent(location.href);
+		var image = new Image(); image.src = cosemProtocol + "//" + "tracking.icomas.co.kr" + "/Script/script3.php" + "?aid="+accountCode+"&ctime=" + cookieDay + cosem_kid;};};
+		this.tracking = function( ){ var obj = this; setTimeout( function(){ obj.imageURL(); }, 10); };
+	};
+	var cosemRequest = new cosem_Request();
+	cosemRequest.tracking( );
+	// Facebook Pixel Code (DPA)
+	!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+	n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+	n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;
+	t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+	document,"script","//connect.facebook.net/en_US/fbevents.js");
+	try {
+		fbq("init", "500204110159268");
+		fbq("track", "PageView");
+	} catch (e) {
+		console.log("Facebook Pixel Script Error.");
+	}
+</script>
+<!-- Facebook Pixel Code (DPA) noscript -->
+<noscript>
+<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=500204110159268&ev=PageView&noscript=1"/>
+</noscript>
+<script>
+	function goAdultSci(loginChk) {
+		if(loginChk != "Y"){
+			if(!confirm("19세 미만 청소년 접근이 제한된 정보로 본인인증이 필요합니다.")){
+				// 2015.01.12 iylee 상품상세의 경우, 인증창을 띄우지 않은 경우 main으로 이동되게 한다.
+				if(location.href.indexOf('/product_view.do')>-1){
+					self.location.href = "http://mo.lotte.com/main.do?c=mlotte&udid=&v=&cn=&cdn=";
+					return;
+				} else {
+					return;
+				}
+			}
+		}	
+		var backUrl = "";
+		if(location.href.indexOf('adultChk=Y')>-1){
+			backUrl = location.href;
+		}else{
+			backUrl = location.href+'&adultChk=Y';
+		}
+		localStorage.removeItem('sci_param'); // 주문서로 전달하기 위한 파리메터
+		localStorage.removeItem('sci_action'); // 주문서 이전 사은품 선택 페이지 url
+		localStorage.removeItem('sci_login_href'); // 로그인 폼 url
+			window.location = 'http://mo.lotte.com/sci/pcc_V3_seed.jsp?adultChk=Y&c=mlotte&udid=&v=&cn=&cdn=&returnDomain=mo.lotte.com&backUrl='+encodeURIComponent(backUrl,'UTF-8');
+	}
+</script>
+<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/mylotte/purchase/m/purchase_view.css"/>
+<script src="/common3/js/function.js"></script>
+<script src="/common3/js/jquery-ui.min.js"></script>
+<script src="/common3/js/main2012.js"></script>
+<script src="/common3/js/kakao-1.0.7.js"></script>
+<script src="/common3/js/smp/smp.common.sendpick.js"></script>
+<script src="/lotte/resources_dev/mylotte/purchase/m/purchase_view.js"></script>
+<script>Kakao.init("574659987ca46095c123d71f72abac14");</script>
+<script>
+//2011.06.05 휴무 체크 추가 smartix.mwyoon
+var yoil = "N"; //요일 저장, Y:토요일
+var d = new Date(); //Date 선언
+var theDay = ""; //날짜 추출
+var hour = ""; //시간 추출
+//2011.06.05 휴무 체크 추가 smartix.mwyoon
+function close() { //휴무
+	alert("죄송합니다. 고객님,\n전화 문의는 평일(월~금) : 9:00~20:00\n토요일 : 9:00~13:00 까지 입니다.");
+}
+function smartGift(){
+	alert("죄송합니다. 모바일 롯데 상품권 카드는 결제변경이 어렵습니다. 주문취소 후 재주문 바랍니다.");
+    return;
+}
+//옵션 수정후 리턴 페이지
+function fn_getfinishOption(data){
+	alert(data);
+}
+//스마트픽 방문예정일 변경 팝업
+function fn_smpRsvDtChgPopupOpen(ordDtlSn, smpVstFcstDtime, candidateDtList, mngStartTime, mngEndTime){
+	$(window).scrollTop(0);
+	$('#smartpickReservationChange').show()
+	$("#smpRsvChgOrdDtlSn").val(ordDtlSn);
+	$("#smpVstFcstDt").val(smpVstFcstDtime);
+	$('#now_reservation').html("고객님의 현재 예약일은 <strong>" + smpVstFcstDtime.substr(4,2) + "월" + smpVstFcstDtime.substr(6,2) + "일</strong> 입니다.");
+	$('#smpMngTime').html(mngStartTime.substr(0,2) + ":" + mngStartTime.substr(2,2) + "~" + mngEndTime.substr(0,2) + ":" + mngEndTime.substr(2,2));
+	$("#smpRsvChgDtCombo").empty();
+	$("#smpRsvChgDtCombo").append("<option value=''>선택하세요</option>");
+	var options = candidateDtList.split(",");			//옵션들이 구분자 , 로 연결되어있음
+	for(var idx=0;idx<options.length-1;idx++){
+		var optionItem = options[idx].split("/");
+		$("#smpRsvChgDtCombo").append("<option value=" + optionItem[0] + ">" + optionItem[1] + "</option>");
+	}
+}
+//스마트픽 방문예정일 변경 가능 날짜 SelectBox 세팅
+function fn_smpRsvChgDtComboChange(obj){
+	if( $(obj).val() == $('#smpVstFcstDtime').val() ){
+		alert("현재 예약일과 동일합니다. 다른 날짜를 선택해 주세요");
+		$("#smpRsvChgDtCombo").val("");
+	}
+}
+//스마트픽 방문예정일 예약변경하기
+function goSmpRsvDtChg(){
+	var ord_no = $("#f_order_n").val();
+	var ord_dtl_sn = $("#smpRsvChgOrdDtlSn").val();
+	var smp_vst_fcst_dtime = $("#smpRsvChgDtCombo").val();
+	var smp_tp_cd = $("#pick_view_smp_tp_cd_"+ord_no+"_"+ord_dtl_sn).val();
+	var ecpn_no = $("#pick_view_ecpn_no_"+ord_no+"_"+ord_dtl_sn).val().replace(/ /g,"");
+	if( $("#smpRsvChgDtCombo").val() == null || $("#smpRsvChgDtCombo").val() == "" ){
+		 alert("날짜를 선택해주세요");
+		 return;
+	}
+	if( $("#smpSodDt_"+ord_no+"_"+ord_dtl_sn).val().indexOf($("#smpRsvChgDtCombo").val(),0) >= 0 ){
+		alert("매장 휴일입니다. 다른 날짜를 선택해 주세요");
+		return;
+	}
+	if( $("#smpRsvChgDtCombo").val() == $("#smpVstFcstDt").val() ){
+		alert("현재 예약일과 동일합니다. 다른 날짜를 선택해 주세요");
+		return;
+	}
+   $.ajax({
+	   	async: false
+	  , type: "POST"
+	  , dataType:"json"
+	  , url: "/smartpick/smpRsvDtChg.do?c=mlotte&udid=&v=&cn=&cdn="
+	  , data: {
+	    	ord_no : ord_no,
+	    	ord_dtl_sn : ord_dtl_sn,
+	    	smp_vst_fcst_dtime : smp_vst_fcst_dtime,
+	    	smp_tp_cd : smp_tp_cd,
+	    	ecpn_no : ecpn_no
+		} 
+	  , success:function(data) {
+		  	if( data.rsltCd == "0000" ){
+		  		$('#smartpickReservationChange').hide()
+				alert("예약일 변경이 완료되었습니다.");
+	    		location.reload();
+		  	} else{
+		  		alert("예약일 변경에 실패하였습니다. 날짜와 시간을 다시 확인해주세요.");
+		  	}
+	   	}
+	  , error: function(request, status, err) {
+			alert("예약일 변경에 실패하였습니다. 날짜와 시간을 다시 확인해주세요.");
+		}
+   });
+}
+function timeChk(yoil) { //시간 체크
+	if (yoil == "Y") { //토요일경우
+		if (parseInt(hour) >= 9 && parseInt(hour) <= 13) {
+			location.href = "tel:1577-1110";
+		} else {
+			close();
+		}
+	} else { //평일
+		if (parseInt(hour) >= 9 && parseInt(hour) <= 20) {
+			location.href = "tel:1577-1110";
+		} else {
+			close();
+		}
+	}
+}
+function closeChk(theDay) { //휴무  체크
+	theDay = d.getDay(); //날짜 추출
+	hour = d.getHours(); //시간 추출
+	if (theDay == 0) { //일요일
+		close();
+	} else if (theDay == 6) { //토요일
+		timeChk("Y");
+	} else {
+		timeChk("N");
+	}
+}
+// 주문취소
+function orderCancel(btnFlag){
+	var pick_view_smp_goods_type = $("#pick_view_smp_goods_type_00").val();
+	var pick_view_smp_date = $("#pick_view_smp_date_00").val();
+	if(pick_view_smp_date==null || pick_view_smp_date=="" || pick_view_smp_date.trim()==""){
+	}else{
+		if (pick_view_smp_goods_type==null || pick_view_smp_goods_type=="" || pick_view_smp_goods_type.trim()=="") {
+			alert("고객센터를 통해 주문취소만 가능합니다.\n고객센터로 문의 하세요.");
+			return;
+		}
+	}
+	var pointCheck = '';
+	if ( pointCheck=='' ) pointCheck = false;
+	if ( pointCheck ) {
+		alert("해당 포인트는 모바일에서 주문 취소 할 수 없습니다.\n고객센터로 문의 하세요.");
+		return;
+	}
+	var complexCheck = '';
+	if ( complexCheck=='' ) complexCheck = false;
+	if ( complexCheck ) {
+		alert("복합결제 상품은 모바일에서 주문취소 할 수 없습니다.\n고객센터로 문의 하세요.");
+		return;
+	}
+    /*if (btnFlag == "1"){
+	    if(confirm("주문취소는 롯데닷컴 웹사이트 및 고객센터에서 접수하실 수 있습니다. 고객센터로 전화 연결하시겠습니까?")){
+	        document.location.href = "tel:1577-1110";
+	    }
+	}else if (btnFlag == "2"){
+		payment_yn.val("Y");
+	}*/
+	var prodCk = $('input[name=prodCk]');
+	var ordSnCk = $('input[name=ordSnCk]');
+	var prodVal = "";
+	var ordVal = "";
+	for ( var i=0; i<ordSnCk.length; i++ ) {
+		prodVal = (prodVal=="")?$(prodCk[i]).val():prodVal+","+$(prodCk[i]).val();
+		ordVal = (ordVal=="")?$(ordSnCk[i]).val():ordVal+","+$(ordSnCk[i]).val();
+	}
+	$('#prodVal').val(prodVal);
+	$('#ordVal').val(ordVal);
+	document.frm_cancel.submit();
+}
+// 주문취소 불가 메시지
+function orderCancelImpsbl(){
+	if(confirm('본 주문은 롯데닷컴 웹사이트에서\n주문취소가 가능합니다.\n고객센터로 연결하시겠습니까?')){
+		closeChk();
+	}
+}
+// 쿠폰 상세
+function goPickView(ordno, orddtlsn, goodsno, smartkpick_yn, ecpn_cret_meth_cd, entr_no, confirm_msg_yn){
+	// 동의 메시지 출력
+	if (confirm_msg_yn == 'Y' && !confirm(MSG_ECPN_CONF_001)){ 
+		return;
+	}
+	var page = "pick_view";
+	if (entr_no=='318902'){
+		page = "pick_gift";
+	}
+	var query_str = "&ordno="+ordno+"&orddtlsn="+orddtlsn+"&goodsno="+goodsno+"&smartkpick_yn="+smartkpick_yn+"&ecpn_cret_meth_cd="+ecpn_cret_meth_cd+"&grockle_yn=N&grockle_mbr_no=";
+	location.href = "http://mo.lotte.com/smartpick/"+page+".do?c=mlotte&udid=&v=&cn=&cdn=" + query_str;
+}
+function showTrackingMore(url){
+	if(isApp){
+		openNativePopup('배송추적', url);
+	}else {
+		window.open(url);
+	}
+}
+//유형선택
+function viewPickType(ordno, orddtlsn, mmslmtcnt, smp_goods_type){
+	$("#smartpick_frm input[name=ord_no]").val(ordno);
+	$("#smartpick_frm input[name=ord_dtl_sn]").val(orddtlsn);
+	$("#smartpick_frm input[name=mms_lmt_cnt]").val(mmslmtcnt);
+	$('#coupon_select').css("z-index","9999").show();
+	$('#cover').css("z-index","9998").show();
+	//이쿠폰
+	if (smp_goods_type=='0102ETC') {
+		$('#ecpn_rfd_imp').show();
+	} else {
+		$('#ecpn_rfd_imp').hide();	
+	}
+	goSendKakao();	// 카카오톡링크 3.5로 업그레이드 관련 수정 jyyoon6
+}
+function closePickType(){
+	$('#coupon_select,#cover').hide();
+}
+//문자 전송
+function goSendMMS(){
+	var ordno = $("#smartpick_frm input[name=ord_no]").val();
+	var orddtlsn = $("#smartpick_frm input[name=ord_dtl_sn]").val();
+	var mmslmtcnt = $("#smartpick_frm input[name=mms_lmt_cnt]").val();
+	var sendTxt = "";
+	if("" == 'Y'){
+		sendTxt = "내상담정보";
+	} else {
+		sendTxt = "교환권";
+	}
+	// 전송횟수 체크
+	if (mmslmtcnt!=null && mmslmtcnt!=""){
+		alert("스마트픽" + sendTxt + "전송은 총 "+mmslmtcnt+"회까지만 가능합니다.");
+		return;		
+	}
+	if(ordno==null || ordno=="" || orddtlsn==null || orddtlsn==""){
+		alert( sendTxt + "보내기를 선택하여 주십시요.");
+		return;
+	}
+	var query_str = "&ord_no="+ordno+"&ord_dtl_sn="+orddtlsn+"&smartpick_yn=Y&grockle_yn=N&grockle_mbr_no=";
+	location.href = "http://mo.lotte.com/smartpick/pick_gift.do?c=mlotte&udid=&v=&cn=&cdn=" + query_str;
+}
+//카카오톡 전송
+var kakaoMsg = "";
+function goSendKakao(){	
+	var ordno = $("#smartpick_frm input[name=ord_no]").val();
+	var orddtlsn = $("#smartpick_frm input[name=ord_dtl_sn]").val();
+	var sendTxt = "";
+	if("" == 'Y'){
+		sendTxt = "내상담정보";
+	} else {
+		sendTxt = "교환권";
+	}
+	if(ordno==null || ordno=="" || orddtlsn==null || orddtlsn==""){
+		alert( sendTxt + "보내기를 선택하여 주십시요."); 
+		return;
+	}
+	if (typeof smpSendpick != 'object' || typeof smpSendpick.setKakaoLink != 'function') {
+		return;
+	}
+	kakaoMsg = smpSendpick.setKakaoLink({
+			ord_no : $("#smartpick_frm input[name=ord_no]").val(),
+			goods_no : $("#pick_view_goods_no_"+ordno+"_"+orddtlsn).val(),
+			entr_no : $("#pick_view_entr_no_"+ordno+"_"+orddtlsn).val(),
+			smp_goods_type : $("#pick_view_smp_goods_type_"+ordno+"_"+orddtlsn).val(),
+			smp_cpn_issu_tp_cd : $("#pick_view_smp_cpn_issu_tp_cd_"+ordno+"_"+orddtlsn).val(),
+			shop_cnt : $("#pick_view_shop_cnt_"+ordno+"_"+orddtlsn).val(),
+			shop_nm : $("#pick_view_shop_nm_"+ordno+"_"+orddtlsn).val(),
+			ecpn_no : $("#pick_view_ecpn_no_"+ordno+"_"+orddtlsn).val(),
+			exch_ecpn_no : $("#pick_view_exch_ecpn_no_"+ordno+"_"+orddtlsn).val(),
+			goods_nm : $("#pick_view_goods_nm_"+ordno+"_"+orddtlsn).val(),
+			opt_desc : $("#pick_view_opt_desc_"+ordno+"_"+orddtlsn).val(),
+			input_opt : $("#pick_view_input_opt_"+ordno+"_"+orddtlsn).val(),
+			ord_qty : $("#pick_view_ord_qty_"+ordno+"_"+orddtlsn).val(),
+			ord_amt : $("#pick_view_ord_amt_"+ordno+"_"+orddtlsn).val(),
+			loc_desc : $("#pick_view_loc_desc_"+ordno+"_"+orddtlsn).val(),
+			use_lmt : $("#pick_view_use_lmt_"+ordno+"_"+orddtlsn).val(),
+			smp_date : $("#pick_view_smp_date_"+ordno+"_"+orddtlsn).val(),
+			smp_aval_date : $("#pick_view_smp_aval_date_"+ordno+"_"+orddtlsn).val(),
+			smp_msg : $("#pick_view_smp_msg_"+ordno+"_"+orddtlsn).val(),
+			cbl_tel : $("#pick_view_cbl_tel_"+ordno+"_"+orddtlsn).val(),
+			smp_tp_cd : $("#pick_view_smp_tp_cd_"+ordno+"_"+orddtlsn).val(),
+			orderer_nm : $("#pick_view_sndr_nm_"+ordno+"_"+orddtlsn).val(),
+			smp_yn : '',
+			goods_img : $("#pick_view_img_url_"+ordno+"_"+orddtlsn).val(),
+			rfd_tgt_cd : $("#pick_view_rfd_tgt_cd_"+ordno+"_"+orddtlsn).val(),
+			auto_rfd_tgt_yn : $("#pick_view_auto_rfd_tgt_yn_"+ordno+"_"+orddtlsn).val(),
+			rfd_psbl_tgt_yn : $("#pick_view_rfd_psbl_tgt_yn_"+ordno+"_"+orddtlsn).val()
+		}); 
+}
+/**
+ * 앱용 카카오톡링크 발송 함수
+ * 카카오톡링크 3.5버전 업데이트로인해 추가 jyyoon6
+ */
+function tabletSendKakao(){
+	var shareUrl = "../../../spp.do";
+	var shareImg = "http://image.lotte.com/lotte/mobile/common/icon3.png";
+	var params = {url:shareUrl, title:kakaoMsg, imageUrl:shareImg};
+	window.location='lotteshare://kakaotalk/query?'+JSON.stringify(params);
+	closePickType();
+}
+if (typeof com == 'undefined') var com = {};
+if (typeof com.lotte == 'undefined') com.lotte = {};
+if (typeof com.lotte.util == 'undefined') com.lotte.util = {};
+/* dynamic script loading */
+com.lotte.util.LoadScript = function(src, callback, charset, defer, id) {
+	if (typeof src != 'string' || src == '' || src == 'undefined') return;
+	var isLoaded= false;
+	var head	= document.getElementsByTagName('head')[0];	
+	var script	= document.createElement('script');
+	var charset	= (charset && typeof charset == 'string') ? charset : 'UTF-8';
+	if (id && typeof id == 'string' && id != ''){
+		script.id = id;
+	}
+	script.src = src;
+	script.charset = charset;
+	script.type	 = 'text/javascript';
+	script.async = true;
+	script.defer = (typeof defer == 'boolean') ? defer : true;
+	if (typeof callback == 'function') {
+		script.onreadystatechange = function() {
+			if (this.readyState == 'loaded' || this.readyState == 'complate') {
+				if (isLoaded) return;
+				window.setTimeout(callback(), 1);
+				isLoaded = true;				
+			}
+		};
+		script.onload = function() {
+			if (isLoaded) return;
+			window.setTimeout(callback(), 1);
+			isLoaded = true;
+		};
+	}	
+	head.appendChild(script);
+};
+//네이버지도
+function naver_store_map(arg, isLoadScript, smpEtNo, smpEtContrNo, smp_goods_type){
+	if (typeof isLoadScript != 'boolean' || isLoadScript === false) 
+	{	// NaverMap Loading 개선, 2014-07-03 by sylee58@lotte.com
+		com.lotte.util.LoadScript("http://map.naver.com/js/naverMap.naver?key=956f6f619b13d3caf5540349078f9593", function(){naver_store_map(arg, true, smpEtNo, smpEtContrNo, smp_goods_type);});
+		return;	
+	}
+	$( '#cover' ).css({ 'display' : 'block', 'height' : '100%', 'top' : 0 });
+	var cal_top = $("body").scrollTop() + 100;//$('#calculator').scroll().top;
+	var	loading_style = "position:absolute;width:100%;opacity:1;z-index:999;top:"+cal_top+"px";
+	$('#shop_location').removeClass("shop_location");
+	$('#shop_location').attr("style", loading_style);	
+	var smp_ecpn_yn = (smp_goods_type=='0102ETC'?'Y':'N'); // 이쿠폰 여부
+	var req_data = 'goods_no='+arg+'&smp_entr_no='+smpEtNo+'&smp_entr_contr_no='+smpEtContrNo+'&smp_ecoupon_yn='+smp_ecpn_yn+'&c=mlotte&udid=&v=&cn=&cdn=';
+	$.ajax({
+        type: 'post'
+        , async: true
+        , url: '/product/m/mobileNaverMap.do?'
+        , data: req_data
+        , beforeSend : function () { $( '#loading' ).css( 'display', 'block' ); }
+        , success: function(response) {
+        	$("#shop_location").html(response);
+        	$("#shop_location").show();
+        }
+    	, error: function(err) {
+        	alert('매장위치 조회 중 오류가 발생하였습니다.\n잠시 후 조회해 주세요.');
+    		$("#shop_location").hide();
+    	}
+    	, complete : function () { $( '#loading' ).css( 'display', 'none' ); }
+    });
+}
+var soldoutCheck = "";
+function init(id) {
+	// 달력
+    $("input[calendar=Y]").datepicker({ monthNames: ['1월','2월','3월','4월','5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'] });
+	$("input[calendar=Y]").datepicker("option", "dayNames", ['일', '월', '화', '수', '목', '금', '토']);
+	$("input[calendar=Y]").datepicker("option", "dayNamesShort", ['일', '월', '화', '수', '목', '금', '토']);
+	$("input[calendar=Y]").datepicker("option", "dayNamesMin", ['일', '월', '화', '수', '목', '금', '토']);
+	$("input[calendar=Y]").datepicker("option", "showOn", "button" );
+	$("input[calendar=Y]").datepicker("option", "buttonImage", "http://image.lotte.com/lotte/mobile/btn/icon_cal.png" );
+	$("input[calendar=Y]").datepicker("option", "buttonImageOnly", true );
+    $("input[calendar=Y]").datepicker("option", {dateFormat:'yy-mm-dd'});
+    //첫번째 값 선택
+	$("#"+id+" select[name=opt_value1]").find('option').prop('selected',false).eq(0).prop('selected','selected');
+	$("#"+id+" select[name=opt_value2]").find('option').prop('selected',false).eq(0).prop('selected','selected');
+	$("#"+id+" select[name=opt_value3]").find('option').prop('selected',false).eq(0).prop('selected','selected');
+	$("#"+id+" select[name=opt_value4]").find('option').prop('selected',false).eq(0).prop('selected','selected');
+	$("#"+id+" select[name=opt_value5]").find('option').prop('selected',false).eq(0).prop('selected','selected');
+    //$('#qtySelect').hide(); 
+    $("#"+id+" #qtySelect").hide();
+    $('.d_btn').hide(); 
+    $("label[for='option3']").each( function (index, value){
+        if( $(this).text() =="수량"  ){
+        	$("label[for='option3']").eq(index).hide();
+        }
+    });
+    $('#qtyNm').hide();
+    $('#qtySp').height("23");
+    // 옵션 선택 초기화
+	// 옵션 정보 조회
+	var checkVal = $('#'+id+' .selectBox1').length;
+	if(checkVal > 0){
+		optionChange((checkVal-1), $("#opt_value"+checkVal), "load", id);
+	}
+	initOption(id);
+	setOrderQty("input", $('#valDiv_'+id+' input[name=order_qty]').val() ,id);
+}
+function dateOpen(seq) {
+	parent.showDate($('#frmId').val(), seq); 
+}
+function optionChange(optnum, obj, div, id){
+    itemno  = $("#frm_send input[name=itemno]:hidden").val();
+    optcount  = $("#"+id+" select[name^=opt_value]").length;	// 옵션갯수
+    optval  = $("#"+id+" select[name=opt_value" + optnum + "]").val();
+    invMgmtYn  =   $("input[name=invMgmtYn]:hidden").val();
+    if ( optnum == optcount ) {
+		// 마지막 옵션 선택시 수량 변경 및 품절 확인
+	    // init order qty
+	    //initOrderQty(optval, id);
+	    // check soldout
+	    if ( isSoldout(optval) ) {
+	    	//setSoldoutQty();
+	        alert('선택하신 옵션은 품절입니다.');
+	        return;
+	    }else{
+			soldoutCheck = "N";
+	    }
+	    $('#valDiv_'+id+' input[name=itemno]').val( getOptItemNo(optval) );//option value를 split하고 첫번째 값을 세팅.
+    } else if ( optnum == (optcount - 1) ) {
+    	var optno1 = "", optno2 = "", optno3 = "", optno4 = "";
+    	var sel_opt_no = $("#opt_value"+optcount).val().split("^")[0]; // 현재 선택 된 값
+    	//$("#opt_value"+optcount).attr('selectedIndex','0');	// 마지막 옵션은 비선택 상태로 변경한다.
+    	$("#"+id+" #opt_value"+optcount+" option:first").attr("selected", true); // 마지막 옵션은 비선택 상태로 변경한다.
+    	$("#"+id+" #opt_value"+optcount+" option:first").prop("selected", true); // 마지막 옵션은 비선택 상태로 변경한다.
+    	opt1    = $("#"+id+" select[name=opt_value1]").val();
+        opt2    = $("#"+id+" select[name=opt_value2]").val();
+        opt3    = $("#"+id+" select[name=opt_value3]").val();
+        opt4    = $("#"+id+" select[name=opt_value4]").val();
+        if ( opt1 != '' && opt1 != undefined ) { 
+            optno1	= getOptItemNo(opt1);
+        }
+        if ( opt2 != '' && opt2 != undefined ) {
+            optno2	= getOptItemNo(opt2);
+    	}
+        if ( opt3 != '' && opt3 != undefined ) {
+            optno3	= getOptItemNo(opt3);
+        }
+        if ( opt4 != '' && opt4 != undefined ) {
+            optno4	= getOptItemNo(opt4);
+        }
+        var goodsno = $('#valDiv_'+id+' input[name=goodsno]').val();
+        $.ajax({
+            type: 'get'
+            , async: false
+            , url: '/product/new_product_option_change.do?c=mlotte&udid=&v=&cn=&cdn='
+            , data: 'goodsno='+goodsno+'&optcnt=' + optcount + '&optnum=' + optnum 
+            	+ '&opt1=' + optno1 + '&opt2=' + optno2 + '&opt3=' + optno3 + '&opt4=' + optno4 +'&invMgmtYn='+invMgmtYn+'&id='+id
+            , success: function(response) {
+                $("div#script").html(response);
+				//############### 동일 옵션 표시하지 않게 처리하기(옵션이 2개이상일때) START ####################
+            	//마지막 바로 이전 옵션선택시 마지막 옵션이 현재옵션이랑 동일하면 표시하지 않게 처리
+                if(optnum==(optcount-1)){
+	                var $selectList = $("#"+id).find("select[name^=opt_value]"); //select박스 목록
+	                var cnt = 0;					//동일한 옵션이 선택된 옵션 개수
+    				var orgOptDesc = $("#"+id).find("input[name=orgOption]").val(); //옵션값
+    				//alert(orgOptDesc);
+    				var optionList = new Array();
+    				var options = orgOptDesc.split(",");			//옵션들이 구분자 , 로 연결되어있음
+    				for(var idx=0;idx<options.length;idx++){
+    					var optionItem = options[idx].split(":");
+    					var optionJson = {							//이전에 선택한 옵션 구해오기
+    							name : optionItem[0],					//옵션명
+    							value : optionItem[1]					//옵션값
+    					}
+    					optionList.push(optionJson);
+    					if(idx<options.length-1){					//마지막select이전까지만 체크해서 이전옵션과 동일한 옵션 개수 알아내기
+	    					if(optionItem[1]==$selectList.eq(idx).val().split("^")[0]){
+	    						cnt++;
+	    					}
+    					}
+    				}
+    				if(cnt==(optcount-1)){				//마지막 옵션중에서 동일한 옵션 하나 삭제
+        				$selectList.eq($selectList.size()-1).find("option[value^="+optionList[optionList.length-1].value+"]").remove();
+    				}
+                }
+				//############### 동일 옵션 표시하지 않게 처리하기(옵션이 2개이상일때) END ####################
+            }
+        });
+        // 최초 화면 로드 시 기본값 셋팅
+        if (div=="load" && sel_opt_no!=""){
+	        var options = $("#"+id+" #opt_value"+optcount+" option");
+	        for(var i=0; i<options.length; i++){
+	        	if (sel_opt_no == options[i].value.split("^")[0]){
+	        		//$("#opt_value"+optcount).attr('selectedIndex',i);
+	        		$("#"+id+" #opt_value"+optcount+" option:eq("+i+")").attr('selected',true);
+	        		break;
+	        	}
+	        }
+		}
+    } else {
+        // 하위 옵션을 초기화 한다.
+		for(i=optnum+1; i<optcount+1; i++) {
+			//$("#opt_value"+i).attr('selectedIndex','0');
+			$("#"+id+" #opt_value"+i+" option:first").attr('selected',true);
+		}
+    }
+}
+//2013.02.12
+//주문수량 세팅하기
+function setOrderQty(inputType,orderQty, id){
+	if(soldoutCheck != "Y"){
+		$('#valDiv_'+id+' input[name=order_qty]:hidden').val(orderQty);
+	}else{
+		//alert("품절된 상품입니다.");
+	}
+}
+//품절선택시 수량선택 해제처리
+function setSoldoutQty(id){
+	soldoutCheck = "Y";
+	//$(".n_button").removeClass("on");
+	$('#valDiv_'+id+' input[name=order_qty]:hidden').val("0");	
+}
+function getOptItemNo(optval) {
+    return initOptValue(optval)[1];
+}
+function initOrderQty(optval, id) {
+    qty = initOptValue(optval)[3];// sample : value^itemno^soldout^qty 중 문자열 split하고 맨 마지막 qty
+    limit_max   = $('#valDiv_'+id+' input[name=lmt_cnt_max]:hidden').val();
+    limit_min   = parseInt($('#valDiv_'+id+' input[name=lmt_cnt_min]:hidden').val()) + 3;
+    start = 1 , end = 50;
+    if ( parseInt(limit_max) > 0 ) {
+        end = limit_max;
+    }
+    if ( parseInt(limit_min) > 0 ) {
+        start = limit_min;       
+    }
+    if ( qty != '' && qty > 0 ) {
+        if ( parseInt(end) > parseInt(qty) ) end = qty;
+        if ( parseInt(start) > parseInt(end) ) end = start;
+        if(parseInt(end)>50) end=50;
+    }
+    if ( isSoldout(optval) ) {
+        $("#"+id+" select[name=qty]").append("<option value='N'>품절</option>");
+        $('#valDiv_'+id+' input[name=order_qty]:hidden').val("0");	
+    } else {
+         for (i=1; i<=parseInt(end); i++){
+			//if(i == parseInt(start)) $("select[name=qty]").append("<option value =''>"+start+"개 이상</option>");             
+            $("#"+id+" select[name=qty]").append("<option value='"+ i +"'>"+ i +"</option>");//품절 아니면 옵션 추가
+        }
+    }
+}
+function initOptValue(optval) {
+    // sample : value^itemno^soldout^qty
+    return optval.split("^");
+}
+function isSoldout(optval) {
+    soldout = initOptValue(optval)[2];
+    if ( soldout == 'Y') {
+        return true;
+    } else  {
+        var qty = initOptValue(optval)[3];
+        if (qty == "0") return true;
+        else return false;
+    }
+}
+function goSubmit(id) {
+	purchaseUpdate(id);
+}
+function purchaseUpdate(id) {
+	var dl_idx = id.substring(id.indexOf("_")+1);
+	var id_idx = id.substring(id.indexOf('_') - 1, id.indexOf('_'));
+	//기본 값 담기
+	$('#frm_send input[name=cart_sn]:hidden').val($('#valDiv_'+id+' input[name=cart_sn]').val());
+	$('#frm_send input[name=goodsno]:hidden').val($('#valDiv_'+id+' input[name=goodsno]').val());
+	$('#frm_send input[name=itemno]:hidden').val($('#valDiv_'+id+' input[name=itemno]').val());
+	$('#frm_send input[name=order_qty]:hidden').val($('#valDiv_'+id+' input[name=order_qty]').val());
+    var opt_name1   = $("#"+id+" input[name=opt_name1]").val();
+    var opt_name2   = $("#"+id+" input[name=opt_name2]").val();
+    var opt_name3   = $("#"+id+" input[name=opt_name3]").val();
+    var opt_name4   = $("#"+id+" input[name=opt_name4]").val();
+    var opt_name5   = $("#"+id+" input[name=opt_name5]").val();
+    var opt_value1  = $("#"+id+" select[name=opt_value1]").val();
+    var opt_value2  = $("#"+id+" select[name=opt_value2]").val();
+    var opt_value3  = $("#"+id+" select[name=opt_value3]").val();
+    var opt_value4  = $("#"+id+" select[name=opt_value4]").val();
+    var opt_value5  = $("#"+id+" select[name=opt_value5]").val();
+    if ( $.trim(opt_name1) != '' && $.trim(opt_value1) == '' ) {
+        alert(opt_name1 + '을(를) 선택해주세요.');
+        return;
+    } else if ( $.trim(opt_name2) != '' && $.trim(opt_value2) == '' ) {
+        alert(opt_name2 + '을(를) 선택해주세요.');
+        return;
+    } else if ( $.trim(opt_name3) != '' && $.trim(opt_value3) == '' ) {
+        alert(opt_name3 + '을(를) 선택해주세요.');
+        return;
+    } else if ( $.trim(opt_name4) != '' && $.trim(opt_value4) == '' ) {
+        alert(opt_name4 + '을(를) 선택해주세요.');
+        return;
+    } else if ( $.trim(opt_name5) != '' && $.trim(opt_value5) == '' ) {
+        alert(opt_name5 + '을(를) 선택해주세요.');
+        return;
+    } else if (setGoodsChocDesc(id)){
+        return;
+    }
+    var optionYn = false;
+    var descYn = "N";
+    //변경된거 체크
+    var optionLeng = $("#"+id+" input[key=optKey]").length;
+	var thisOption = "";
+	for ( var i=1; i<=optionLeng; i++ ) {
+		var value = $("#"+id+" #opt_value"+i).val();
+		if ( i>1 ) thisOption = thisOption+","+$('#opt_name'+i).val()+":"+value.split("^")[0];
+		else  thisOption = $('#opt_name'+i).val()+":"+value.split("^")[0];
+	}
+	if ( thisOption != $('#dfOption'+ dl_idx ).val() ) {
+		optionYn = true;
+	}
+	var descYn = optionCkCheck(id);
+	//변경 사항 없음.
+	if ( !optionYn && !descYn ) {
+		$("#"+id).hide();
+		return;
+	}
+	$('#puForm_'+id_idx+'_'+dl_idx).append("<input type=\"hidden\" name=\"optionYn\" value=\""+optionYn+"\"/>");
+	$('#puForm_'+id_idx+'_'+dl_idx).append("<input type=\"hidden\" name=\"descYn\" value=\""+descYn+"\"/>");
+    $('#frm_send input[name=goodsChocDesc]:hidden').val($('#valDiv_'+id+' input[name=ck_desc]').val());
+    optcount  = $("#"+id+" select[name^=opt_value]").length;	// 옵션갯수
+    for (var i=1; i<=optcount; i++){
+	    if( isSoldout($("#"+id+" select[name=opt_value"+i+"]").val()) ){
+	       alert("선택하신 제품은 품절되었습니다.");
+	       return;
+	   }
+    }
+    var inputOpVal = $('input[name=opt_input_value]');
+    var inputOpType = $('input[name=opt_input_type]');
+    var inputOpName = $('input[name=opt_input_name]');
+	for ( var i=0; i<inputOpVal.length; i++ ) {
+		$('#puForm_'+id_idx+'_'+dl_idx).append("<input type=\"hidden\" name=\"goods_choc_code\" value=\""+$(inputOpType[i]).val()+"\"/>");
+		$('#puForm_'+id_idx+'_'+dl_idx).append("<input type=\"hidden\" name=\"goods_choc_name\" value=\""+$(inputOpName[i]).val()+"\"/>");
+		$('#puForm_'+id_idx+'_'+dl_idx).append("<input type=\"hidden\" name=\"goods_choc_value\" value=\""+$(inputOpVal[i]).val()+"\"/>");
+	}
+	$('#puForm_'+id_idx+'_'+dl_idx+' input[name=pu_chg_item_no]').val($('#valDiv_'+id+' input[name=itemno]:hidden').val());
+	var pu_chg_item_no = $('#valDiv_'+id+' input[name=itemno]').val();	
+	var pu_imall_yn = ('195476'=='13145'?'Y':'N');
+	$('#puForm_'+id_idx+'_'+dl_idx+' input[name=pu_imall_yn]:hidden').val(pu_imall_yn);
+ 	var url = "/mylotte/purchase/registMbrItemOption.do?c=mlotte&udid=&v=&cn=&cdn=";
+	var params =$('#puForm_'+id_idx+'_'+dl_idx).serialize();
+	// 비회원인 경우
+	if ('N'=='Y'){
+		params += '&grockle_yn=Y';
+		params += '&grockle_mbr_no=';
+	}
+	/**
+	 * For Test
+	console.log("!!!!!!!! params :\n" + params);
+	return;
+	 */
+	$.post(url,params, function(obj){
+		if ( obj=="" ) {
+			alert("옵션 변경이 완료 되었습니다.");
+			refresh();
+		} else {
+			alert("옵션 변경에 실패 하였습니다. \n 고객센터에 연락 바랍니다");
+		}
+	});
+}
+//달력에서 값 변경 시
+function setDate(obj, seq, id){
+	var text = $(obj).val();
+	$("#"+id+" input[name=opt_input_value]:eq("+seq+")").val(text);
+}
+//텍스트 박스 클릭 했을 때 달력 보이기
+function viewCalendar(obj, id){
+	$("#"+id+" input[name="+obj.name+"_btn]").datepicker("show");
+}
+//입력형 상품 체크 및 파라메터 생성
+function setGoodsChocDesc(id){
+	if ($("#"+id+"input[name=opt_input_name]") == "undefiend") {
+		 return true; 
+	} // 입력형이 없을 경우
+	var goodsChocDesc = "";
+	var opt_len = $("#"+id+" input[name=opt_input_name]").length;
+	var opt_name = "";
+	var opt_type = "";
+	var opt_value= "";
+	for (var i = 0 ; i < opt_len ; i++){
+		opt_type = $("#"+id+" input[name=opt_input_type]:eq("+i+")").val();
+		opt_name = $("#"+id+" input[name=opt_input_name]:eq("+i+")").val();
+		opt_value= $("#"+id+" input[name=opt_input_value]:eq("+i+")").val();
+		if ( opt_name != '' && opt_value == '' ) {
+	        alert(opt_name + '을(를) 입력해주세요.');
+	        return true;
+	    }
+		// '-' 삭제
+	    opt_value = opt_value.replace(/-/gi, "");
+		if (i > 0) { goodsChocDesc += ";;;;;"; }
+		goodsChocDesc += opt_type;
+		goodsChocDesc += ":"+opt_name;
+		goodsChocDesc += ":"+opt_value;
+	}
+	$('#valDiv_'+id+' input[name=ck_desc]:hidden').val( goodsChocDesc );
+	return false;
+}
+function initOption(id) {
+	$("#ocs_"+id+" input[name=opt_name_ck_1]").val($("#"+id+" input[name=opt_name1]").val());
+	$("#ocs_"+id+" input[name=opt_name_ck_2]").val($("#"+id+" input[name=opt_name2]").val());
+	$("#ocs_"+id+" input[name=opt_name_ck_3]").val($("#"+id+" input[name=opt_name3]").val());
+	$("#ocs_"+id+" input[name=opt_name_ck_4]").val($("#"+id+" input[name=opt_name4]").val());
+	$("#ocs_"+id+" input[name=opt_name_ck_5]").val($("#"+id+" input[name=opt_name5]").val());
+	$("#ocs_"+id+" input[name=opt_value_ck_1]").val($("#"+id+" select[name=opt_value1]").val());
+	$("#ocs_"+id+" input[name=opt_value_ck_2]").val($("#"+id+" select[name=opt_value2]").val());
+	$("#ocs_"+id+" input[name=opt_value_ck_3]").val($("#"+id+" select[name=opt_value3]").val());
+	$("#ocs_"+id+" input[name=opt_value_ck_4]").val($("#"+id+" select[name=opt_value4]").val());
+	$("#ocs_"+id+" input[name=opt_value_ck_5]").val($("#"+id+" select[name=opt_value5]").val());
+	setGoodsChocDesc(id);
+	$("#ocs_"+id+" input[name=goods_desc_ck]").val($('#valDiv_'+id+' input[name=ck_desc]:hidden').val());
+}
+function optionCkCheck(id) {
+	var ck = false;
+	setGoodsChocDesc(id);
+	var goods_desc = ($('#valDiv_'+id+' input[name=ck_desc]:hidden').val()==undefined)?"":$('#valDiv_'+id+' input[name=ck_desc]:hidden').val();
+	if ( $("#ocs_"+id+" input[name=goods_desc_ck]").val()!=goods_desc ) ck = true;
+	return ck;	
+}
+function fnClear(obj) {
+    obj.style.background = ''; 
+}
+function disableItems(arg) {
+	if( arg ) {
+		//dimmed('show');
+		$("#cover").show();
+	}
+	else {
+		//dimmed('hide');
+		$("#cover").hide();
+	}
+}
+var smpSendpick = false;
+$(window).load(function(){
+	//교환권 카카오톡 발송 공통
+	smpSendpick = new com.lotte.smp.sendpick(false
+		, ".kkc"
+		, "#smartpick_frm input[name=ord_no]"
+		, "#smartpick_frm input[name=ord_dtl_sn]"
+		, [318902, 409877, 303833, 13602, 11070, 453929, 456432, 13791, 458791, 459325, 462832, 304180] 
+		, {
+			TYPE_DEP : "0101DEP", 
+			TYPE_ETC : "0101ETC", 
+			TYPE_NOM : "0102ETC"	
+		}
+		, "mlotte"
+		, (('206'==''||''=='')?false:!appChkVer('', '206'))
+	);
+	$(".tab_addr #li_new").find("input").attr("disabled", true);
+	$(".tab_addr #li_new").find("select").attr("disabled", true);
+	$("dd.deli_" + $("select[name=deli_select]").val()).show();
+	var name1 = "deli_"+$("select[name=deli_select]").val();
+    var objNm1 =$("input[name="+name1+"]:hidden").val();
+    $("input[name=defaultNm]:hidden").val(objNm1);
+	$(".tab_addr > li > a").click(function(){
+		$(this).parent().siblings().removeClass("on")
+		$(this).parent().siblings().children().find("input, select").prop("disabled", true);
+		$(this).parent().siblings().children().next().hide();
+		$(this).parent().addClass("on");
+		$(this).parent().children().find("input, select").prop("disabled", false);
+		// 연락처 1번 처리
+		$(this).siblings().find('[id^=deli_phone_val_]').each(function() {
+			var $slct = $(this).find("select[name=inpcell1]");		// this = div
+			if ($slct.length <= 0 || $slct.val() == "직접입력") {
+				$slct.prop("disabled", true).parent();
+			} else {
+				$(this).find("input[name=inpcell1]").prop("disabled", true);
+			}
+		});
+		$(this).parent().children().next().css("display","block");
+		if ( $(this).parent().find("dd[name^=gift_msg_form_]").css("display") == "block" ) {
+			$(this).parent().find("input[name^=gift_yn_]:radio").eq(0).prop("checked", true);
+			//$(this).find("input[name^=gift_yn_]:radio").eq(0).click();
+		} else {
+			$(this).parent().find("input[name^=gift_yn_]:radio").eq(1).prop("checked", true);
+			//$(this).find("input[name^=gift_yn_]:radio").eq(1).click();
+		}
+		if ($(this).parent().attr("id") == "li_mine") { // 내배송지 탭
+			switchDeliOption("mine", $(this).attr("cnt"), $(this).next().find("[name=deli_select]").val());
+			$("#" + $(this).parent().parent().parent().attr("id") +" select[name=deli_select]").change();
+		} else if ($(this).parent().attr("id") == "li_new") { // 새배송지 탭
+			switchDeliOption("new", $(this).attr("cnt"), "");
+		}
+	});
+	// 연락처 직접입력 선택
+	jQuery.fn.selectMenu = function(options) {
+		var $select = $(this);
+		var $input = $select.parent().next();
+		$select.on("change", function() {
+			if ($select.val() == "직접입력") {
+				$select.prop("disabled", true).parent().hide();
+				$input.prop("disabled", false).show().focus();
+				$input.on("click", function() {
+					$(this).focus();
+				}).trigger("click");
+			}
+		});
+		$input.on("focusin", inputFocusInHandler);
+		function inputFocusInHandler() {
+			var $select = $(this);
+			$input.on("focusout", inputFocusOutHandler );
+			$select.val(" ");
+			setTimeout(function() {
+				$select.val("");
+			}, 100);
+		}
+		function inputFocusOutHandler() {
+			$input.off("focusout", inputFocusOutHandler);
+			if ($(this).val() == "") {
+				$input.prop("disabled", true).hide();
+				$select.prop("disabled", false).parent().show();
+				$select.find("option:eq(0)").prop("selected", true);
+			}
+		}
+	}
+	$(".phone_modi").each(function(index) {
+		$( this ).selectMenu();
+	});
+	// 배송메시지 직접입력 선택
+	var $delMsg = $(".del_msg");
+	var $delMsgInput = $delMsg.parent().siblings(".txt01.mgb0");
+	$delMsg.on("change", function() {
+		if ($(this).val() == "직접입력") {
+			$(this).parent().hide();
+			$(this).parent().next().show().focus().click(function() {
+				$(this).focus();
+			}).trigger("click");
+		}
+		/*
+		else {
+			$('#rcvmessage_' + $(this).parent().parent().parent().attr("id").substring("deli_msg_".length)).val(this.value);
+		}
+		*/
+	});
+	$delMsgInput.on("focusin", delMsgFocusInHandler);
+	function delMsgFocusInHandler() {
+		$delMsgInput.on("focusout", delMsgFocusOutHandler );
+		var $select = $(this);
+		if ($select.val() == "" ) {
+			$select.val(" ");
+			setTimeout(function() {
+				$select.val("");
+			}, 100 );
+		}
+	}
+	function delMsgFocusOutHandler() {
+		$delMsgInput.off("focusout", delMsgFocusOutHandler );
+		if ($(this).val() == "") {
+			$delMsgInput.hide();
+			$(this).prev().show().children("select")
+					.find("option:eq(0)").prop("selected", true);;
+		}
+	}
+	//지번주소와 도로명 주소 탭
+	$(".tab_addr_detail > li > a").click(function(){
+		$(this).parent().siblings().removeClass("on").children().next().hide();
+		$(this).parent().addClass("on").children().next().eq(0).show().nextAll().hide(); // FIXME
+	});
+	// 배송지 '주소찾기' 버튼
+	$(".tit_addr_search").on("click", function(){
+		var addrSearch = $(this);
+		addrSearch.toggleClass("show");
+		if (addrSearch.hasClass("show")){
+			addrSearch.children(".txt").replaceWith( "<span class=\"txt\">취소하기</span>" );
+			addrSearch.parent().next().show().next().hide();
+			addrSearch.parent().next().find("input").val("");			// 필드 초기화
+			addrSearch.parent().next().find("[id^=result_seq1_]").hide().empty();		// 주소검색 결과 초기화
+			addrSearch.parent().find("[id^=txt_zip]").val("");
+			addrSearch.parent().next().find("li:eq(0) a").click();
+		} else {
+			addrSearch.children(".txt").replaceWith( "<span class=\"txt\">주소찾기</span>" );
+			if ( addrSearch.parent().find("[name=stnm_inp_zip1]").val().length > 0) {
+				addrSearch.parent().find("[id^=txt_zip1]").val(addrSearch.parent().find("[name=stnm_inp_zip1]").val());
+				addrSearch.parent().find("[id^=txt_zip2]").val(addrSearch.parent().find("[name=stnm_inp_zip2]").val());
+			} else {
+				addrSearch.parent().find("[id^=txt_zip1]").val(addrSearch.parent().find("[name=inpzip1]").val());
+				addrSearch.parent().find("[id^=txt_zip2]").val(addrSearch.parent().find("[name=inpzip2]").val());
+			}
+			addrSearch.parent().next().hide().next().show();
+		}
+	});
+	$(".addrInput").on("focusin", function() {
+		if ($(".wrap_addr_detail").css("display") == "none") {
+			$(".tit_addr_search").trigger("click");
+		}
+	});
+	//받는 분 세팅 끝
+	$("select[name=deli_select]").change(function() {
+		var deli_id = $(this).attr("id");
+		var deli_idx = $(this).attr("data-idx");
+		$("#editAddress_"+deli_idx+" dd[class*=deli_]").hide();
+		$("#editAddress_"+deli_idx+" dd.deli_" + $(this).val()).show();
+		$("#editAddress_" + deli_idx + " #li_mine input[name=inprmitnm]").val( $("#editAddress_"+deli_idx+" #deliVal_rmitnm_" + $(this).val()).val() );
+		$("#editAddress_" + deli_idx + " #li_mine input[name=go_dlvpNm]").val( $("#editAddress_"+deli_idx+" #deliVal_dlvpnm_" + $(this).val()).val() );
+		$("#editAddress_" + deli_idx + " #li_mine input[name=inpzip1]").val( $("#editAddress_"+deli_idx+" #deliVal_zip1_" + $(this).val()).val() );
+		$("#editAddress_" + deli_idx + " #li_mine input[name=inpzip2]").val( $("#editAddress_"+deli_idx+" #deliVal_zip2_" + $(this).val()).val() );
+		$("#editAddress_" + deli_idx + " #li_mine input[name=inpaddr1]").val( $("#editAddress_"+deli_idx+" #deliVal_addr1_" + $(this).val()).val() );
+		$("#editAddress_" + deli_idx + " #li_mine input[name=inpaddr2]").val( $("#editAddress_"+deli_idx+" #deliVal_addr2_" + $(this).val()).val() );
+		$("#editAddress_" + deli_idx + " #li_mine input[name=stnm_inp_zip1]").val( $("#editAddress_"+deli_idx+" #deliVal_stnmzip1_" + $(this).val()).val() );
+		$("#editAddress_" + deli_idx + " #li_mine input[name=stnm_inp_zip2]").val( $("#editAddress_"+deli_idx+" #deliVal_stnmzip2_" + $(this).val()).val() );
+		$("#editAddress_" + deli_idx + " #li_mine input[name=stnm_inp_addr1]").val( $("#editAddress_"+deli_idx+" #deliVal_stnmaddr1_" + $(this).val()).val() );
+		$("#editAddress_" + deli_idx + " #li_mine input[name=stnm_inp_addr2]").val( $("#editAddress_"+deli_idx+" #deliVal_stnmaddr2_" + $(this).val()).val() );
+		$("#editAddress_" + deli_idx + " #li_mine input[name=inpzip1]").val( $("#editAddress_"+deli_idx+" #deliVal_zip1_" + $(this).val()).val() );
+		$("#editAddress_" + deli_idx + " #li_mine input[name=inpzip2]").val( $("#editAddress_"+deli_idx+" #deliVal_zip2_" + $(this).val()).val() );
+		$("#editAddress_" + deli_idx + " #li_mine input[name=inpzip2]").val( $("#editAddress_"+deli_idx+" #deliVal_zip2_" + $(this).val()).val() );
+		$("#editAddress_" + deli_idx + " #li_mine input[name=inpzip1]").val( $("#editAddress_"+deli_idx+" #deliVal_zip1_" + $(this).val()).val() );
+		$("#editAddress_" + deli_idx + " #li_mine input[name=inpzip2]").val( $("#editAddress_"+deli_idx+" #deliVal_zip2_" + $(this).val()).val() );
+		$("#editAddress_" + deli_idx + " #li_mine input[name=inpzip2]").val( $("#editAddress_"+deli_idx+" #deliVal_zip2_" + $(this).val()).val() );
+		// 배송옵션 컨트롤 추가, 2014-12-30, hglee4
+		switchDeliOption("mine", deli_idx, $(this).val());
+	});
+	$(".safe_num").click(function(){// D:20150915 연락처제공안내 팝업
+		if($(this).hasClass("on")){
+			$(this).removeClass("on");
+			$(this).next(".tooltip").hide();
+		}else{
+			$(this).addClass("on");
+			$(this).next(".tooltip").show();
+		}
+	});
+	$(".btnClose").click(function(){
+		$(this).parent(".tooltip").hide();
+		$(".safe_num").removeClass("on");
+	});
+	// 새로운배송지 탭 노출여부
+	if(location.href.indexOf("deli_div_") > 0){
+		var idx = location.href.substring(location.href.indexOf("deli_div_") + "deli_div_".length);
+		if( $("#deli_chg_psb_" + idx).val() == "Y" ){
+			editAddressOpen(idx);
+			$("#editAddress_" + idx + " #li_new a").click();
+		}
+	}
+});
+function selectAddress(deli_cnt, proc_div, addr_gbn, post_no, post_addr, dtl_addr, bldg_nm) {
+	var mid = " #li_new";
+	if ($("input[name=grockle_name]").length > 0) {
+		// 비회원일때
+		mid = "";
+	}
+	// 주문시 전송되는 지번 주소
+	var $inpZip1 = $("#editAddress_" + deli_cnt + mid + " input[name=inpzip1]");
+	var $inpZip2 = $("#editAddress_" + deli_cnt + mid + " input[name=inpzip2]");
+	var $inpAddr1 = $("#editAddress_" + deli_cnt + mid + " input[name=inpaddr1]");
+	var $inpAddr2 = $("#editAddress_" + deli_cnt + mid + " input[name=inpaddr2]");
+	// 주문시 전송되는 도로명 주소
+	var $stnmInpZip1 = $("#editAddress_" + deli_cnt + mid + " input[name=stnm_inp_zip1]");
+	var $stnmInpZip2 = $("#editAddress_" + deli_cnt + mid + " input[name=stnm_inp_zip2]");
+	var $stnmInpAddr1 = $("#editAddress_" + deli_cnt + mid + " input[name=stnm_inp_addr1]");
+	var $stnmInpAddr2 = $("#editAddress_" + deli_cnt + mid + " input[name=stnm_inp_addr2]");
+	// 화면에 표시되는 주소
+	var $txtZip1 = $("#txt_zip1_" + deli_cnt);
+	var $txtZip2 = $("#txt_zip2_" + deli_cnt);
+	var $txtZipTot = $("#txt_zip_tot_" + deli_cnt);
+	var $txtAddr1 = $("#txt_addr1_" + deli_cnt);
+	var $txtAddr2 = $("#txt_addr2_" + deli_cnt);
+	// 임시저장 폼
+	var $tempZip1 = $("#temp_zip1_" + deli_cnt);
+	var $tempZip2 = $("#temp_zip2_" + deli_cnt);
+	var $tempAddr1 = $("#temp_addr1_" + deli_cnt);
+	var $tempAddr2 = $("#temp_addr2_" + deli_cnt);
+	//var $tempBldg = $("#temp_bldg_" + deli_cnt);
+	if (proc_div=="S" && addr_gbn=="J"){ // 지번 주소 검색일 때
+		// addrHtml = 우편번호\n우편주소+상세주소
+		var addrHtml = "<br/>" + post_addr;
+		$("#txt_seq2_J_" + deli_cnt).html(addrHtml);
+		// 선택한 주소의 실제 값은 hidden에 할당
+		$tempZip1.val(post_no.substring(0, 3));
+		$tempZip2.val(post_no.substring(3, 6));
+		$tempAddr1.val(post_addr);
+		$("#seq1_J_" + deli_cnt).hide();
+		$("#seq2_J_" + deli_cnt).show();
+		$("#inp_seq2_J_" + deli_cnt).val(dtl_addr).focus(); // 상세주소 입력란에 포커싱
+	} else if (proc_div=="S" && addr_gbn=="N") { // 도로명 주소 검색
+		$tempZip1.val(post_no.substring(0, 3));
+		$tempZip2.val(post_no.substring(3, 6));
+		$tempAddr1.val(post_addr);
+		if (bldg_nm.length > 0) { // 건물명이 있을 경우 상세주소에 포함
+			dtl_addr += " " + bldg_nm;
+		}
+		$tempAddr2.val(dtl_addr);
+		// 화면에 표시
+		var addrHtml = "<br/>" + post_addr + " " + dtl_addr;
+		$("#txt_seq2_N_" + deli_cnt).html(addrHtml);
+		$("#seq1_N_" + deli_cnt).hide();
+		$("#seq2_N_" + deli_cnt).show();
+		$("#inp_seq2_N_" + deli_cnt).focus(); // 상세주소 입력란에 포커싱
+	} else if (proc_div=="M" && addr_gbn=="J") { // 지번 -> 도로명
+		// 지번주소 설정
+		$inpZip1.val($tempZip1.val());
+		$inpZip2.val($tempZip2.val());
+		$inpAddr1.val($tempAddr1.val());
+		$inpAddr2.val($tempAddr2.val());
+		// 도로명주소 설정
+		$txtZip1.add($stnmInpZip1).val(post_no.substring(0, 3));
+		$txtZip2.add($stnmInpZip2).val(post_no.substring(3, 6));
+		$txtZipTot.val($txtZip1.val()+$txtZip2.val());
+		$txtAddr1.add($stnmInpAddr1).val(post_addr);
+		$txtAddr2.add($stnmInpAddr2).val(dtl_addr);
+	} else if (proc_div=="M" && addr_gbn=="N") { // 도로명 -> 지번
+		// 도로명주소 설정
+		$stnmInpZip1.val($tempZip1.val());
+		$stnmInpZip2.val($tempZip2.val());
+		$stnmInpAddr1.val($tempAddr1.val());
+		$stnmInpAddr2.val($tempAddr2.val());
+		// 지번주소 설정
+		$txtZip1.add($inpZip1).val(post_no.substring(0, 3));
+		$txtZip2.add($inpZip2).val(post_no.substring(3, 6));
+		$txtZipTot.val($txtZip1.val()+$txtZip2.val());
+		$txtAddr1.add($inpAddr1).val(post_addr);
+		$txtAddr2.add($inpAddr2).val(dtl_addr);
+	} else if (proc_div=="M" && addr_gbn=="J_alone") { // 지번 하나만 사용되는 경우
+		// 화면표시값과 지번주소 설정
+		$txtZip1.add($inpZip1).val($tempZip1.val());
+		$txtZip2.add($inpZip2).val($tempZip2.val());
+		$txtZipTot.val($txtZip1.val()+$txtZip2.val());
+		$txtAddr1.add($inpAddr1).val($tempAddr1.val());
+		$txtAddr2.add($inpAddr2).val($tempAddr2.val());			
+		// 도로명주소 히든폼 초기화
+		$stnmInpZip1.add($stnmInpZip2).add($stnmInpAddr1).add($stnmInpAddr2).val("");
+	} else if (proc_div=="M" && addr_gbn=="N_select") { // 도로명 -> 지번 변환 후 도로명을 선택한 경우
+		// 도로명주소 설정
+		$txtZip1.add($stnmInpZip1).val($tempZip1.val());
+		$txtZip2.add($stnmInpZip2).val($tempZip2.val());
+		$txtZipTot.val($txtZip1.val()+$txtZip2.val());
+		$txtAddr1.add($stnmInpAddr1).val($tempAddr1.val());
+		$txtAddr2.add($stnmInpAddr2).val($tempAddr2.val());
+		// 지번주소 설정
+		$inpZip1.val(post_no.substring(0, 3));
+		$inpZip2.val(post_no.substring(3, 6));
+		$inpAddr1.val(post_addr);
+		$inpAddr2.val(dtl_addr);
+	}
+	if (proc_div == "M") {
+		// 주소 변환일 경우 검색 레이어 닫기
+		$("#search_addr_trigger_" + deli_cnt).click()
+		$('#txt_addr_wrap_' + deli_cnt).show();
+	}
+}
+function searchAddress(deli_cnt, proc_div, addr_gbn, commonParam) {
+	var reqData = "proc_div=" + proc_div + "&addr_gbn=" + addr_gbn + "&deli_cnt=" + deli_cnt;	
+	var layerId = "";
+	var callBack = null;
+	if (proc_div=="S" && addr_gbn=="J"){ // 지번 주소 조회
+		var $dongName = $("#inp_seq1_J_" + deli_cnt);
+		if ($.trim($dongName.val()).length <= 0) { // validation
+			alert("읍/면/동을 입력해 주세요.");
+			$dongName.focus();
+			return false;
+		}
+		reqData += "&dong_nm=" + $dongName.val();
+		callBack = function(resp) {
+			$("#result_seq1_J_" + deli_cnt).html(resp).show();
+		};
+	} else if (proc_div=="S" && addr_gbn=="N"){ // 도로명 주소 조회
+		var $key1 = $("#key1_seq1_N_" + deli_cnt);
+		var $key2 = $("#key2_seq1_N_" + deli_cnt);
+		var $key3 = $("#key3_seq1_N_" + deli_cnt);
+		var $key4 = $("#key4_seq1_N_" + deli_cnt);
+		var $key5 = $("#key5_seq1_N_" + deli_cnt);
+		// validation start
+		var invalid = false;
+		$key1.add($key2).add($key3).each(function() {
+			if ($.trim($(this).val()).length <= 0) {
+				alert("조회 필수항목을 입력해 주세요.");
+				$(this).focus();
+				invalid = true;
+				return false; // each break
+			}
+		});
+		if (invalid) {
+			return false; // function exit
+		}
+		// validation end
+		reqData += "&keyword1=" + $key1.val() + "&keyword2=" + $key2.val() 
+				+ "&keyword3=" + $key3.val(); 
+		if ($key4.val() != ""){
+			// 건물본번호가 입력되었을 때
+			reqData += ("&keyword4=" + $key4.val()); 
+		}
+		if ($key5.val() != ""){
+			// 건물명이 입력되었을 때
+			reqData += ("&keyword5=" + $key5.val()); 
+		}
+		callBack = function(resp) {
+			$("#result_seq1_N_" + deli_cnt).html(resp).show();
+		};
+	} else if (proc_div=="M" && addr_gbn=="J"){ // 지번 -> 도로명
+		var $addr2 = $("#inp_seq2_J_" + deli_cnt);
+		if ($.trim($addr2.val()).length <= 0) { // validation
+			alert("상세주소를 입력해 주세요.");
+			$addr2.focus();
+			return false; // function exit
+		}
+		var zipcode = $("#temp_zip1_" + deli_cnt).val() + $("#temp_zip2_" + deli_cnt).val();
+		var addr1 = $("#temp_addr1_" + deli_cnt).val();
+		var addr2 = $addr2.val();
+		reqData += "&zipcode=" + zipcode.replace("-", "") + "&addr1=" + addr1 
+				+ "&addr2=" + addr2;
+		$("#temp_addr2_" + deli_cnt).val(addr2); // 임시폼 설정(상세주소)
+		callBack = function(resp) {
+			$("#seq2_J_" + deli_cnt).hide();
+			$("#seq3_J_" + deli_cnt).html(resp).show();
+		};
+	} else if (proc_div=="M" && addr_gbn=="N"){ // 도로명 -> 지번
+		var $addr2  = $("#inp_seq2_N_" + deli_cnt);
+		var zipcode = $("#temp_zip1_" + deli_cnt).val() + $("#temp_zip2_" + deli_cnt).val();
+		var addr1 = $("#temp_addr1_" + deli_cnt).val();
+		var addr2 = $("#temp_addr2_" + deli_cnt).val() + " " + $addr2.val();
+		reqData += "&zipcode=" + zipcode.replace("-", "") + "&addr1=" + addr1 
+				+ "&addr2=" + addr2;
+		$("#temp_addr2_" + deli_cnt).val(addr2); // 임시폼 설정(상세주소)
+		callBack = function(resp) {
+			$("#seq2_N_" + deli_cnt).hide();
+			$("#seq3_N_" + deli_cnt).html(resp).show();
+		};
+	}
+	$.ajax({
+		type: "post", 
+		async: false, 
+		url: "/popup/ord_search_address.do?" + commonParam, 
+		data: reqData, 
+		success: function(resp) {
+			callBack(resp);
+			return true;
+		}
+	});
+}
+function switchDeliOption(mode, deli_cnt, dlvpSn) {
+	var $rdioBtnU = $("#editAddress_" + deli_cnt + " input[name=deli_chk_" + deli_cnt + "]:radio[value='U']");
+	var $rdioBtnC = $("#editAddress_" + deli_cnt + " input[name=deli_chk_" + deli_cnt + "]:radio[value='C']");
+	if (mode == "mine") {
+		$rdioBtnC.prop("checked", false);
+		if ($("#deli_phone_text_" + deli_cnt + "_" + dlvpSn).is(":hidden")) {
+			// 수정버튼(배송지 > 연락처의 우측버튼)이 클릭되어 해당 영역이 숨겨진 상태일 때				
+			$rdioBtnU.prop("checked", true);
+		} else {
+			$rdioBtnU.prop("checked", false);
+		}
+	} else if (mode == "new") {
+		$rdioBtnC.prop("checked", true);
+		//배송지수정 정보가 있을수 있음으로 초기화한다.
+		$("#editAddress_"+deli_cnt+" input[name=go_dlvpNm]").val("");
+		$("#editAddress_"+deli_cnt+" input[name=inprmitnm]").val("");
+		$("#editAddress_"+deli_cnt+" input[name=inpzip1]").val("");
+		$("#editAddress_"+deli_cnt+" input[name=inpzip2]").val("");
+		$("#editAddress_"+deli_cnt+" input[name=inpaddr1]").val("");
+		$("#editAddress_"+deli_cnt+" input[name=inpaddr2]").val("");
+		$("#txt_zip_"+deli_cnt).text("");
+		$("#txt_addr_"+deli_cnt).text("");
+		$("#editAddress_"+deli_cnt+" input[name=stnm_inp_zip1]").val("");
+		$("#editAddress_"+deli_cnt+" input[name=stnm_inp_zip2]").val("");
+		$("#editAddress_"+deli_cnt+" input[name=stnm_inp_addr1]").val("");
+		$("#editAddress_"+deli_cnt+" input[name=stnm_inp_addr2]").val("");	
+		$("#txt_stnm_zip_"+deli_cnt).text("");
+		$("#txt_stnm_addr_"+deli_cnt).text("");
+		$("#editAddress_"+deli_cnt+" input[name=inptel1]").val("");
+		$("#editAddress_"+deli_cnt+" input[name=inptel2]").val("");
+		$("#editAddress_"+deli_cnt+" input[name=inptel3]").val("");
+		$("#editAddress_"+deli_cnt+" select[name=inpcell1]").prop("disabled", false).parent().show();
+		$("#editAddress_"+deli_cnt+" input[name=inpcell1]").prop("disabled", true).hide();
+		$("#editAddress_"+deli_cnt+" select[name=inpcell1]").val("010");
+		$("#editAddress_"+deli_cnt+" input[name=inpcell1]").val("");
+		$("#editAddress_"+deli_cnt+" input[name=inpcell2]").val("");
+		$("#editAddress_"+deli_cnt+" input[name=inpcell3]").val("");
+		$("#txt_zip1_" +deli_cnt).val("");
+		$("#txt_zip2_" +deli_cnt).val("");
+		$("#txt_addr1_"+deli_cnt).val("");
+		$("#txt_addr2_"+deli_cnt).val("");
+		$("#editAddress_"+deli_cnt+" input[name=inprmitnm]").attr("placeholder", "이름");
+		$("#editAddress_"+deli_cnt+" input[name=go_dlvpNm]").attr("placeholder", "배송지명");
+		if(deli_cnt == 1 && $("#editAddress_"+deli_cnt+" #deli_mine").length > 0) {
+			//새로운 배송지 클릭시 주문자 수정 input 초기화
+			var $spanWrap = $("#orderer_name_text_" + deli_cnt + "_new");
+			var $inptWrap = $("#orderer_name_val_" + deli_cnt + "_new");
+			var $span = $spanWrap.find("#nameSp");
+			var $inpt = $inptWrap.find("#nameInpt");
+			var nameText = $span.text();
+			$inpt.val("");
+			$("#changeNameNC").show();	
+			$("#changeMyDlvpCncl").hide();
+			$spanWrap.show();
+			$inptWrap.hide();
+			//배송메시지 복사 초기화
+			if($("#editAddress_"+deli_cnt+" #li_mine select[name=deli_msg]").length > 0) {
+				$("#editAddress_"+deli_cnt+" #li_new select[name=deli_msg]").val("");
+				$("#editAddress_"+deli_cnt+" #li_new select[name=deli_msg]").parent().show();
+				$("#editAddress_"+deli_cnt+" #li_new select[name=deli_msg]").parent().next().hide();
+				$("#editAddress_"+deli_cnt+" #li_new input[name=rcvmessage]").val("");
+			}
+		}
+	}
+}
+// 주문자명 수정
+// @param mode mod:수정 | cnfm:완료 | back:취소
+// @param deli_cnt 상품별 배송지 순번
+// @param suffix 새배송지 여부 접미사
+// @return void
+function changeName(mode, deli_cnt, suffix) {
+	var $spanWrap = $("#orderer_name_text_" + deli_cnt + suffix);
+	var $inptWrap = $("#orderer_name_val_" + deli_cnt + suffix);
+	var $span = $spanWrap.find("#nameSp"); 
+	var $inpt = $inptWrap.find("#nameInpt");
+	if (mode == "mod") {
+		var nameText = $span.text();
+		$inpt.val(nameText);
+		$spanWrap.hide();
+		$inptWrap.show();
+	} else if (mode == "cnfm") {
+		var nameVal = $inpt.val();
+		if ($.trim(nameVal) == "") {
+			nameVal = $span.text();
+		}
+		// 모든 배송지의 주문자명 일괄저장
+		$("[id^='orderer_name_text']").show().find("#nameSp").text(nameVal);
+		$("[id^='orderer_name_val']").hide().find("#nameInpt").val(nameVal);
+	}
+}
+// 연락처 수정 가능하도록 입력필드 노출
+// @param deli_cnt 상품별 배송지 순번
+// @param dlvpSn 내배송지 순번(값이 없을경우 새로운 배송지)
+// @return void
+function changePhone(deli_cnt, dlvpSn) {
+	$("#deli_phone_text_" + deli_cnt + "_" + dlvpSn).hide();
+	$("#deli_phone_val_" + deli_cnt + "_" + dlvpSn).show();
+	switchDeliOption("mine", deli_cnt, dlvpSn);		// 코드 위치 주의
+}
+// 내배송지 수정/수정취소
+// @param deli_cnt 상품별 배송지 순번
+// @param gbn 수정/수정취소여부
+// @return void
+function changeMyDlvp(deli_cnt, gbn) {
+	//alert(deli_cnt+"/"+gbn);
+	// 내 배송지 수정
+	if (gbn=="mod") {
+		//셀렉트박스에서 선택된 배송지 순번 조회
+		deliDlvpSn =  $("#deli_select_"+deli_cnt).val();  //선택된 dlvpSn
+		//기본배송지의 경우 수정 불가 알럿
+		if ( $("#editAddress_"+deli_cnt+" #deliVal_basedlvpyn_" + deliDlvpSn).val() == 'Y') {
+			alert("기본 배송지는 마이롯데 > 회원정보 에서 수정 가능합니다.");
+			return;
+		}
+		//수정옵션 radio 체크
+		$("#editAddress_" + deli_cnt + " input[name=deli_chk_" + deli_cnt + "]:radio[value='U']").prop("checked", true);
+		$("#editAddress_"+deli_cnt+" #deli_mine").hide(); //배송지 정보 텍스트 영역
+		$("#editAddress_"+deli_cnt+" #deli_new").show();  //배송지 정보 input 영역
+		$("#changeNameN").hide();			  //[내 배송지 수정] 버튼 숨김
+		$("#changeMyDlvpCncl").show();		  //[수정 취소] 버튼 표시
+		$("#dlvpuseyn_dd_"+deli_cnt).hide();  //[내 배송지 목록에 추가] 체크박스 숨김
+		$("#dlvp_reuse_mod").show();	      //[지금 배송지를 다음에도 사용] 체크박스 표시
+		// 배송지 텍스트 컴포넌트 비활성
+		$("#editAddress_"+deli_cnt+" #deli_mine").children().find("input, select").prop("disabled", true);
+		// 배송지 수정(입력) 컴포넌트 활성
+		$("#editAddress_"+deli_cnt+" #deli_new").children().find("input, select").prop("disabled", false);
+		//주문자 text, input박스, 버튼
+		var $spanWrap = $("#orderer_name_text_" + deli_cnt + "_new");
+		var $inptWrap = $("#orderer_name_val_" + deli_cnt + "_new");
+		var $span = $spanWrap.find("#nameSp");
+		var $inpt = $inptWrap.find("#nameInpt");
+		var nameText = $span.text();
+		$inpt.val(nameText);
+		$spanWrap.hide();				//주문자 텍스트 숨김
+		$inptWrap.show();				//주문자 input 표시
+		$("#changeNameNC").hide();		//완료버튼 숨김
+		$("#changeMyDlvpCncl").show();	//수정취소 버튼 노출
+		// 선택된 주소정보를 input컴포넌트로 복사
+		stnmDlvZip1 = $("#editAddress_"+deli_cnt+" deliVal_stnmzip1_" + deliDlvpSn).val();
+		//우편번호 및 주소 히든값
+		$("#editAddress_"+deli_cnt+" input[name=inpzip1]" ).val($("#editAddress_"+deli_cnt+" #deliVal_zip1_"  + deliDlvpSn).val());
+		$("#editAddress_"+deli_cnt+" input[name=inpzip2]" ).val($("#editAddress_"+deli_cnt+" #deliVal_zip2_"  + deliDlvpSn).val());
+		$("#editAddress_"+deli_cnt+" input[name=inpaddr1]").val($("#editAddress_"+deli_cnt+" #deliVal_addr1_" + deliDlvpSn).val());
+		$("#editAddress_"+deli_cnt+" input[name=inpaddr2]").val($("#editAddress_"+deli_cnt+" #deliVal_addr2_" + deliDlvpSn).val());
+		$("#editAddress_"+deli_cnt+" input[name=stnm_inp_zip1]" ).val($("#editAddress_"+deli_cnt+" #deliVal_stnmzip1_"  + deliDlvpSn).val());
+		$("#editAddress_"+deli_cnt+" input[name=stnm_inp_zip1]" ).val($("#editAddress_"+deli_cnt+" #deliVal_stnmzip2_"  + deliDlvpSn).val());
+		$("#editAddress_"+deli_cnt+" input[name=stnm_inp_addr1]").val($("#editAddress_"+deli_cnt+" #deliVal_stnmaddr1_" + deliDlvpSn).val());
+		$("#editAddress_"+deli_cnt+" input[name=stnm_inp_addr2]").val($("#editAddress_"+deli_cnt+" #deliVal_stnmaddr2_" + deliDlvpSn).val());			
+		//우편번호 및 주소 노출값  -- 도로명 주소가 우선적으로 노출
+		if (  stnmDlvZip1 != null && stnmDlvZip1 != "" ) {
+			$("#txt_zip1_" +deli_cnt).val($("#editAddress_" +deli_cnt+" #deliVal_stnmzip1_"  + deliDlvpSn).val());
+			$("#txt_zip2_" +deli_cnt).val($("#editAddress_" +deli_cnt+" #deliVal_stnmzip2_"  + deliDlvpSn).val());
+			$("#txt_addr1_"+deli_cnt).val($("#editAddress_" +deli_cnt+" #deliVal_stnmaddr1_" + deliDlvpSn).val());
+			$("#txt_addr2_"+deli_cnt).val($("#editAddress_" +deli_cnt+" #deliVal_stnmaddr2_" + deliDlvpSn).val());				
+		} else {
+			$("#txt_zip1_" +deli_cnt).val($("#editAddress_" +deli_cnt+" #deliVal_zip1_"  + deliDlvpSn).val());
+			$("#txt_zip2_" +deli_cnt).val($("#editAddress_" +deli_cnt+" #deliVal_zip2_"  + deliDlvpSn).val());
+			$("#txt_addr1_"+deli_cnt).val($("#editAddress_" +deli_cnt+" #deliVal_addr1_" + deliDlvpSn).val());
+			$("#txt_addr2_"+deli_cnt).val($("#editAddress_" +deli_cnt+" #deliVal_addr2_" + deliDlvpSn).val());
+		}
+		//이름,배송지명
+		$("#editAddress_"+deli_cnt+" input[name=inpdlvpnm]").val($("#editAddress_"+deli_cnt+" #deliVal_dlvpnm_" + deliDlvpSn).val());
+		$("#editAddress_"+deli_cnt+" input[name=inprmitnm]").val($("#editAddress_"+deli_cnt+" #deliVal_rmitnm_" + deliDlvpSn).val());
+		//전화번호
+		var cellSctnoSel = $("#editAddress_"+deli_cnt+" #deliVal_cellsctno_" + deliDlvpSn).val();
+		$("#editAddress_"+deli_cnt+" input[name=inptel1]").val($("#editAddress_"+deli_cnt+" #deliVal_cbltelrgnno_" + deliDlvpSn).val());
+		$("#editAddress_"+deli_cnt+" input[name=inptel2]").val($("#editAddress_"+deli_cnt+" #deliVal_cblteltxnono_" + deliDlvpSn).val());
+		$("#editAddress_"+deli_cnt+" input[name=inptel3]").val($("#editAddress_"+deli_cnt+" #deliVal_cbltelendno_" + deliDlvpSn).val());
+		$("#editAddress_"+deli_cnt+" select[name=inpcell1]").val(cellSctnoSel);
+		$("#editAddress_"+deli_cnt+" input[name=inpcell1]").val(cellSctnoSel);
+		if (  cellSctnoSel=='010' || cellSctnoSel=='011' || cellSctnoSel=='016'  || cellSctnoSel=='017' 
+			||cellSctnoSel=='018' || cellSctnoSel=='019' || cellSctnoSel=='0502' || cellSctnoSel=='0505') {
+			$("#editAddress_"+deli_cnt+" input[name=inpcell1]").prop("disabled", true).hide();
+		} else {
+			$("#editAddress_"+deli_cnt+" select[name=inpcell1]").prop("disabled", true).parent().hide();
+			$("#editAddress_"+deli_cnt+" input[name=inpcell1]").prop("disabled", false).show();
+		}
+		$("#editAddress_"+deli_cnt+" input[name=inpcell2]").val($("#editAddress_"+deli_cnt+" #deliVal_celltxnono_" + deliDlvpSn).val());
+		$("#editAddress_"+deli_cnt+" input[name=inpcell3]").val($("#editAddress_"+deli_cnt+" #deliVal_cellendno_" + deliDlvpSn).val());
+		//배송메시지 복사
+		//alert("배송메시지 가능--->"+ $("#editAddress_"+deli_cnt+" #li_mine select[name=deli_msg]").length);
+		if($("#editAddress_"+deli_cnt+" #li_mine select[name=deli_msg]").length > 0) {
+			delimsgsel = $("#editAddress_"+deli_cnt+" #li_mine select[name=deli_msg]").val();
+			$("#editAddress_"+deli_cnt+" #li_new select[name=deli_msg]").val(delimsgsel);
+			if (delimsgsel == "직접입력") {
+				$("#editAddress_"+deli_cnt+" #li_new select[name=deli_msg]").parent().hide();
+				$("#editAddress_"+deli_cnt+" #li_new select[name=deli_msg]").parent().next().show();
+				$("#editAddress_"+deli_cnt+" #li_new input[name=rcvmessage]").val($("#editAddress_"+deli_cnt+" #li_mine input[name=rcvmessage]").val());
+			}	
+		}
+		//alert("선물 메시지 가능--->"+$("#editAddress_"+deli_cnt+" #deli_mine #gift_msg_sel_"+deli_cnt).length);
+		if($("#editAddress_"+deli_cnt+" #deli_mine #gift_msg_sel_"+deli_cnt).length > 0) {
+			var $deliMineParent = $("#editAddress_"+deli_cnt+" #deli_mine");
+			var $deliNewParent  = $("#editAddress_"+deli_cnt+" #deli_new");
+			$deliNewParent.find("input[name^=gift_yn_]:radio").eq(0).prop("checked", ($deliMineParent.find("input[name^=gift_yn_]:radio").eq(0).prop("checked")));
+			$deliNewParent.find("input[name^=gift_yn_]:radio").eq(1).prop("checked", ($deliMineParent.find("input[name^=gift_yn_]:radio").eq(1).prop("checked")));
+			$deliNewParent.find("input[name^=receivename_]").val($deliMineParent.find("input[name^=receivename_]").val());
+			$deliNewParent.find("textarea[name^=sendmessage_]").val($deliMineParent.find("textarea[name^=sendmessage_]").val());
+			$deliNewParent.find("input[name^=sendname]").val($deliMineParent.find("input[name^=sendname]").val());
+		}
+	// 내 배송지 수정취소
+	} else if (gbn=="cncl") {
+		//수정옵션 radio 체크해제
+		$("#editAddress_" + deli_cnt + " input[name=deli_chk_" + deli_cnt + "]:radio[value='U']").prop("checked", false);
+		$("#editAddress_"+deli_cnt+" #deli_new").hide();  //배송지 정보 input 영역 숨김
+		$("#editAddress_"+deli_cnt+" #deli_mine").show(); //배송지 정보 텍스트 영역 표시
+		$("#changeMyDlvpCncl").hide();		  //[수정 취소] 버튼
+		$("#changeNameN").show();			  //[내 배송지 수정] 버튼		
+		// 배송지 텍스트 컴포넌트 활성
+		$("#editAddress_"+deli_cnt+" #deli_mine").children().find("input, select").prop("disabled", false);
+		// 배송지 수정(입력) 컴포넌트 비활성
+		$("#editAddress_"+deli_cnt+" #deli_new").children().find("input, select").prop("disabled", true);
+		//주문자 text, input박스, 버튼
+		var $spanWrap = $("#orderer_name_text_" + deli_cnt + "_new");
+		var $inptWrap = $("#orderer_name_val_" + deli_cnt + "_new");
+		var $span = $spanWrap.find("#nameSp");
+		var $inpt = $inptWrap.find("#nameInpt");
+		var nameText = $span.text();
+		$inpt.val("");
+		$("#changeNameNC").show();		//완료버튼 표시
+		$("#changeMyDlvpCncl").hide();  //수정취소 버튼 숨김
+		$spanWrap.show();				//주문자 텍스트 표시
+		$inptWrap.hide();				//주문자 input 숨김
+		//배송메시지 복사 초기화
+		if($("#editAddress_"+deli_cnt+" #li_mine select[name=deli_msg]").length > 0) {
+			$("#editAddress_"+deli_cnt+" #li_new select[name=deli_msg]").val("");
+			$("#editAddress_"+deli_cnt+" #li_new select[name=deli_msg]").parent().show();
+			$("#editAddress_"+deli_cnt+" #li_new select[name=deli_msg]").parent().next().hide();
+			$("#editAddress_"+deli_cnt+" #li_new input[name=rcvmessage]").val("");
+		}
+	}
+}
+function defaultDeli(seq) {
+	$('#deli_select option').eq(seq).attr("selected","selected");
+}
+/*
+function changeAddr(chVal, deli_idx) {
+	$("#editAddress_"+deli_idx+" input[name=go_dlvpNm]").val($('#div_'+chVal +' input[name=dlvpnm]').val());
+	$("#editAddress_"+deli_idx+" input[name=inprmitnm]").val($('#div_'+chVal +' input[name=rmitnm]').val());
+	$("#editAddress_"+deli_idx+" input[name=inpzip1]").val($('#div_'+chVal +' input[name=dlvzip1]').val());
+	$("#editAddress_"+deli_idx+" input[name=inpzip2]").val($('#div_'+chVal +' input[name=dlvzip2]').val());
+	$("#editAddress_"+deli_idx+" input[name=inpaddr1]").val($('#div_'+chVal +' input[name=postaddr]').val());
+	$("#editAddress_"+deli_idx+" input[name=inpaddr2]").val($('#div_'+chVal +' input[name=dtladdr]').val());
+	$("#txt_zip_"+deli_idx).text($("#editAddress_"+deli_idx+" input[name=inpzip1]").val()+"-"+$("#editAddress_"+deli_idx+" input[name=inpzip2]").val());
+	$("#txt_addr_"+deli_idx).text($("#editAddress_"+deli_idx+" input[name=inpaddr1]").val()+" "+$("#editAddress_"+deli_idx+" input[name=inpaddr2]").val());	
+	$("#editAddress_"+deli_idx+" input[name=stnm_inp_zip1]").val($('#div_'+chVal +' input[name=stnm_dlv_zip1]').val());
+	$("#editAddress_"+deli_idx+" input[name=stnm_inp_zip2]").val($('#div_'+chVal +' input[name=stnm_dlv_zip2]').val());
+	$("#editAddress_"+deli_idx+" input[name=stnm_inp_addr1]").val($('#div_'+chVal +' input[name=stnm_post_addr]').val());
+	$("#editAddress_"+deli_idx+" input[name=stnm_inp_addr2]").val($('#div_'+chVal +' input[name=stnm_dtl_addr]').val());
+	$("#txt_stnm_zip_"+deli_idx).text($("#editAddress_"+deli_idx+" input[name=stnm_inp_zip1]").val()+($("#editAddress_"+deli_idx+" input[name=stnm_inp_zip1]").val()==""||$("#editAddress_"+deli_idx+" input[name=stnm_inp_zip2]").val()==""?"":"-")+$("#editAddress_"+deli_idx+" input[name=stnm_inp_zip2]").val());
+	$("#txt_stnm_addr_"+deli_idx).text($("#editAddress_"+deli_idx+" input[name=stnm_inp_addr1]").val()+" "+$("#editAddress_"+deli_idx+" input[name=stnm_inp_addr2]").val());
+	$("#editAddress_"+deli_idx+" input[name=inptel1]").val($('#div_'+chVal +' input[name=cbltelrgnno]').val());
+	$("#editAddress_"+deli_idx+" input[name=inptel2]").val($('#div_'+chVal +' input[name=cblteltxnono]').val());
+	$("#editAddress_"+deli_idx+" input[name=inptel3]").val($('#div_'+chVal +' input[name=cbltelendno]').val());
+	$("#editAddress_"+deli_idx+" input[name=inpcell2]").val($('#div_'+chVal +' input[name=celltxnono]').val());
+	$("#editAddress_"+deli_idx+" input[name=inpcell3]").val($('#div_'+chVal +' input[name=cellendno]').val());
+	$("#editAddress_"+deli_idx+" select[name=inpcell1]").find('option[value='+$('#div_'+chVal +' input[name=cellendno]').val()+']').attr("selected",true);
+	if ($("#editAddress_"+deli_idx+" input[name=inpsearch]").length > 0){
+		$("#editAddress_"+deli_idx+" input[name=inpsearch]")[0].style.background = '';
+	}
+}
+*/
+function fn_checkDeliv(chVal, deli_idx) {
+	//alert("# fn_checkDeliv\n - chVal : " + chVal + "\n - deli_idx : " + deli_idx);
+	// 최초 값
+	var dlvpnm = $('#div_'+chVal +' input[name=dlvpnm]').val();
+	var inprmitnm = $('#div_'+chVal +' input[name=rmitnm]').val();
+	var inpaddr1 = $('#div_'+chVal +' input[name=postaddr]').val();
+	var inpaddr2 = $('#div_'+chVal +' input[name=dtladdr]').val();
+	var tel1 = $('#div_'+chVal +' input[name=cbltelrgnno]').val();
+	var tel2 = $('#div_'+chVal +' input[name=cblteltxnono]').val();
+	var tel3 = $('#div_'+chVal +' input[name=cbltelendno]').val();
+	var cel1 = $('#div_'+chVal +' input[name=cellsctno]').val();
+	var cel2 = $('#div_'+chVal +' input[name=celltxnono]').val();
+	var cel3 = $('#div_'+chVal +' input[name=cellendno]').val();
+	var stnm_inp_addr1 = "";
+	var stnm_inp_addr2 = "";
+	if ($("#editAddress_"+deli_idx+" input[name=stnm_inp_zip1]").length > 0){
+		stnm_inp_addr1 = $('#div_'+chVal +' input[name=stnm_post_addr]').val();
+		stnm_inp_addr2 = $('#div_'+chVal +' input[name=stnm_dtl_addr]').val();
+	}
+	var bl = false;
+	if (inprmitnm!=$('#editAddress_'+deli_idx+' input[name=inprmitnm]').val()) {
+		bl = true;
+	}
+	if (inpaddr1!=$('#editAddress_'+deli_idx+' input[name=inpaddr1]').val()) {
+		bl = true;
+	}
+	if (inpaddr2!=$('#editAddress_'+deli_idx+' input[name=inpaddr2]').val()) {
+		bl = true;
+	}
+	if (tel1!=$('#editAddress_'+deli_idx+' input[name=inptel1]').val()) {
+		bl = true;
+	}
+	if (tel2!=$('#editAddress_'+deli_idx+' input[name=inptel2]').val()) {
+		bl = true;
+	}
+	if (tel3!=$('#editAddress_'+deli_idx+' input[name=inptel3]').val()) {
+		bl = true;
+	}
+	if (cel1!=$('#editAddress_'+deli_idx+' select[name=inpcell1]').val()) {
+		bl = true;
+	}
+	if (cel2!=$('#editAddress_'+deli_idx+' input[name=inpcell2]').val()) {
+		bl = true;
+	}
+	if (cel3!=$('#editAddress_'+deli_idx+' input[name=inpcell3]').val()) {
+		bl = true;
+	}
+	if (dlvpnm!=$('#editAddress_'+deli_idx+' input[name=go_dlvpNm]').val()) {
+		bl = true;
+	}
+	if ($("#editAddress_"+deli_idx+" input[name=stnm_inp_zip1]").length > 0){
+		if (stnm_inp_addr1!=$('#editAddress_'+deli_idx+' input[name=stnm_inp_addr1]').val()) {
+			bl = true;
+		}
+		if (stnm_inp_addr2!=$('#editAddress_'+deli_idx+' input[name=stnm_inp_addr2]').val()) {
+			bl = true;
+		}
+	}
+	return bl;
+}
+function saveDeli(deli_idx) {
+	var mid = " #li_mine ";
+	$("#editAddress_"+deli_idx).find("li").each(function(){
+		if( $(this).attr("id") == "li_mine" ){
+			if( $(this).attr("class") == "" ){
+				mid = " #li_new ";
+			}
+		}
+	});
+	var deliDlvpSn  = $("#deli_select_"+deli_idx).val();
+	//전화번호
+	$("#editAddress_"+deli_idx+" input[name=inptel1]").val($("#editAddress_"+deli_idx+" #deliVal_cbltelrgnno_" + deliDlvpSn).val());
+	$("#editAddress_"+deli_idx+" input[name=inptel2]").val($("#editAddress_"+deli_idx+" #deliVal_cblteltxnono_" + deliDlvpSn).val());
+	$("#editAddress_"+deli_idx+" input[name=inptel3]").val($("#editAddress_"+deli_idx+" #deliVal_cbltelendno_" + deliDlvpSn).val());
+	if( mid == " #li_new " ){
+		// 우편번호
+		$("#editAddress_"+deli_idx+" input[name=inpzip1]:hidden").val($("#editAddress_"+deli_idx+mid+" #txt_zip1_" + deli_idx).val());
+		$("#editAddress_"+deli_idx+" input[name=inpzip2]:hidden").val($("#editAddress_"+deli_idx+mid+" #txt_zip2_" + deli_idx).val());
+		$("#editAddress_"+deli_idx+" input[name=inpaddr1]").val($("#editAddress_"+deli_idx+mid+" #txt_addr1_" + deli_idx).val());
+		$("#editAddress_"+deli_idx+" input[name=inpaddr2]").val($("#editAddress_"+deli_idx+mid+" #txt_addr2_" + deli_idx).val());
+	}
+	else {
+		// 전화번호
+		var cellSctnoSel = $("#editAddress_"+deli_idx+" #deliVal_cellsctno_" + deliDlvpSn).val();
+		$("#editAddress_"+deli_idx+" select[name=inpcell1]").val(cellSctnoSel);
+		$("#editAddress_"+deli_idx+" input[name=inpcell1]").val(cellSctnoSel);
+		$("#editAddress_"+deli_idx+" input[name=inpcell2]").val($("#editAddress_"+deli_idx+" #deliVal_celltxnono_" + deliDlvpSn).val());
+		$("#editAddress_"+deli_idx+" input[name=inpcell3]").val($("#editAddress_"+deli_idx+" #deliVal_cellendno_" + deliDlvpSn).val());
+	}
+	var rmitnm		= $("#editAddress_"+deli_idx+" input[name=inprmitnm]").val();
+	var go_dlvpNm 	= $("#editAddress_"+deli_idx+" input[name=go_dlvpNm]").val();
+	var dlvzip1		= $("#editAddress_"+deli_idx+" input[name=inpzip1]:hidden").val();
+	var dlvzip2		= $("#editAddress_"+deli_idx+" input[name=inpzip2]:hidden").val();
+	var postaddr	= $("#editAddress_"+deli_idx+" input[name=inpaddr1]").val();
+	var dtladdr		= $("#editAddress_"+deli_idx+" input[name=inpaddr2]").val();
+	var cellsctno		= $("#editAddress_"+deli_idx+" select[name=inpcell1]").val();
+	var celltxnono		= $("#editAddress_"+deli_idx+" input[name=inpcell2]").val();
+	var cellendno		= $("#editAddress_"+deli_idx+" input[name=inpcell3]").val();
+	var cbltelrgnno		= $("#editAddress_"+deli_idx+" input[name=inptel1]").val();
+	var cblteltxnono	= $("#editAddress_"+deli_idx+" input[name=inptel2]").val();
+	var cbltelendno		= $("#editAddress_"+deli_idx+" input[name=inptel3]").val();
+	if( cbltelrgnno == "" ){
+		$("#editAddress_"+deli_idx+" input[name=inptel1]").val("000");
+		cbltelrgnno = "000";
+	}
+	if( cblteltxnono == "" ){
+		$("#editAddress_"+deli_idx+" input[name=inptel2]").val("000");
+		cblteltxnono = "000";
+	}
+	if( cbltelendno == "" ){
+		$("#editAddress_"+deli_idx+" input[name=inptel3]").val("000");
+		cbltelendno = "000";
+	}
+	/*
+	alert("# rmitnm : " + rmitnm
+			+ "\n# dlvzip1 : " + dlvzip1
+			+ "\n# dlvzip2 : " + dlvzip2
+			+ "\n# postaddr : " + postaddr
+			+ "\n# dtladdr : " + dtladdr
+			+ "\n# cellsctno : " + cellsctno
+			+ "\n# celltxnono : " + celltxnono
+			+ "\n# cellendno : " + cellendno
+			+ "\n# cbltelrgnno : " + cbltelrgnno
+			+ "\n# cblteltxnono : " + cblteltxnono
+			+ "\n# cbltelendno : " + cbltelendno
+			+ "\n# go_dlvpNm : " + go_dlvpNm);
+	 */
+	if ( $.trim(go_dlvpNm)== '' ) {
+		alert('배송지 명을 입력해주세요.');
+		return;
+	} else if ( $.trim(rmitnm) == '' ) {
+		alert('받으시는 분을 입력해주세요.');
+		$("input[name=inprmitnm]").focus();
+		return;
+	} else if ( $.trim(dlvzip1) == '' ||  $.trim(postaddr) == '' ) {
+		alert('주소를 검색 후 입력해주세요.');
+		$("input[name=inpsearch]").focus();
+		return;
+	} else if ( $.trim(dtladdr) == '' ) {
+		alert('나머지 주소를  입력해주세요.');
+		$("input[name=inpaddr2]").focus();
+		return;
+	} else if ( !$.trim(cbltelrgnno).isNum() || ($.trim(cbltelrgnno).length < 2 || $.trim(cbltelrgnno).length > 4) ) {
+		alert('연락처를 2~4자리 숫자로 입력해주세요.');
+		$("input[name=inptel1]").focus();
+		return;
+	} else if ( !$.trim(cblteltxnono).isNum() || ($.trim(cblteltxnono).length < 3 || $.trim(cblteltxnono).length > 4) ) {
+		alert('연락처를 3~4자리 숫자로 입력해주세요.');
+		$("input[name=inptel2]").focus();
+		return;
+	} else if ( !$.trim(cbltelendno).isNum() || ($.trim(cbltelendno).length < 3 || $.trim(cbltelendno).length > 4) ) {
+		alert('연락처를 3~4자리 숫자로 입력해주세요.');
+		$("input[name=inptel3]").focus();
+		return;
+	} else if ( !$.trim(celltxnono).isNum() || ($.trim(celltxnono).length < 3 || $.trim(celltxnono).length > 4) ) {
+		alert('연락처를 3~4자리 숫자로 입력해주세요.');
+		$("input[name=inpcell2]").focus();
+		return;
+	} else if ( !$.trim(cellendno).isNum() || ($.trim(cellendno).length < 3 || $.trim(cellendno).length > 4) ) {
+		alert('연락처를 3~4자리 숫자로 입력해주세요.');
+		$("input[name=inpcell3]").focus();
+		return;
+	} 
+	//변경된내용 체크
+	var isNewTab = $("#editAddress_"+deli_idx+" .tab_addr > li").eq(0).attr("class");
+	var chVal = $("#editAddress_"+deli_idx+" select[name=deli_select]").val();
+	var status = 'D';
+	if(isNewTab == ""){    //새 배송지 등록 시에는 무조건 수정으로 처리 
+		status = 'I';
+	}else{
+		if(fn_checkDeliv(chVal, deli_idx)){         //그외는 입력 값에 의해 처리 
+			status = 'I';
+		}else{
+			//배송지가 변경 되나
+			if($('#o_org_dlvp_sn_'+deli_idx).val() != chVal){
+				status = 'U';
+			}
+			var org_rcvMsg = $("input[name=rcvMessage_" + deli_idx + "]").val();
+			var crt_rcvMsg = $(mid + "#deli_msg_" + deli_idx + " select[name=deli_msg]").val();
+			if( "직접입력" == crt_rcvMsg ){
+				crt_rcvMsg = $(mid + "#deli_msg_" + deli_idx + " #rcvmessage_" + deli_idx).val();
+			}
+			if( org_rcvMsg != crt_rcvMsg ){
+				$("#rcvmessage_"+deli_idx).val(crt_rcvMsg);
+				status = 'U';
+			}
+		}
+	}
+	/*
+	alert("# status : " + status); 
+	return;
+	*/
+	if ( status == 'D' ){ 
+		alert("변경된 값이 없습니다");
+		return;
+	}
+	$("#deli_send input[name=base_dlvp_yn]").val( $('#div_'+chVal +' input[name=basedlvpyn]').val() );
+	if ( chVal=='' ){ 
+		$("#deli_send input[name=base_dlvp_yn]").val( 'N' );
+	} else {
+		$("#deli_send input[name=base_dlvp_yn]").val( $('#div_'+chVal +' input[name=basedlvpyn]').val() );
+	} 
+	$("#deli_send input[name=org_base_dlvp_yn]").val( $('#o_org_base_dlvp_yn_'+deli_idx).val() );
+	$("#deli_send input[name=dlvp_sn]").val($('#editAddress_'+deli_idx+' select[name=deli_select]').val() );
+	$("#deli_send input[name=org_dlvp_sn]").val( $('#o_org_dlvp_sn_'+deli_idx).val() );
+	$("#deli_send input[name=dlvp_nm]").val( $('#editAddress_'+deli_idx+' input[name=go_dlvpNm]').val() );
+	$("#deli_send input[name=rmit_nm]").val( $("#editAddress_"+deli_idx+" input[name=inprmitnm]").val() );
+	$("#deli_send input[name=post_no]").val( $("#editAddress_"+deli_idx+" input[name=inpzip1]").val()+$("#editAddress_"+deli_idx+" input[name=inpzip2]").val() );	
+	$("#deli_send input[name=post_addr]").val( $("#editAddress_"+deli_idx+" input[name=inpaddr1]").val() );
+	$("#deli_send input[name=dtl_addr]").val( $("#editAddress_"+deli_idx+" input[name=inpaddr2]").val() );
+	if ($("#editAddress_"+deli_idx+" input[name=stnm_inp_zip1]").length > 0){
+		$("#deli_send input[name=stnm_post_no]").val( $("#editAddress_"+deli_idx+" input[name=stnm_inp_zip1]").val()+$("#editAddress_"+deli_idx+" input[name=stnm_inp_zip2]").val() );	
+		$("#deli_send input[name=stnm_post_addr]").val( $("#editAddress_"+deli_idx+" input[name=stnm_inp_addr1]").val() );
+		$("#deli_send input[name=stnm_dtl_addr]").val( $("#editAddress_"+deli_idx+" input[name=stnm_inp_addr2]").val() );
+	}
+	$("#deli_send input[name=cell_sct_no]").val( $('#editAddress_'+deli_idx+' select[name=inpcell1]').val() );
+	$("#deli_send input[name=cell_txno_no]").val( $("#editAddress_"+deli_idx+" input[name=inpcell2]").val() );
+	$("#deli_send input[name=cell_end_no]").val( $("#editAddress_"+deli_idx+" input[name=inpcell3]").val() );
+	$("#deli_send input[name=cbl_tel_rgn_no]").val( $('#editAddress_'+deli_idx+' input[name=inptel1]').val() );
+	$("#deli_send input[name=cbl_tel_txno_no]").val( $("#editAddress_"+deli_idx+" input[name=inptel2]").val() );
+	$("#deli_send input[name=cbl_tel_end_no]").val( $("#editAddress_"+deli_idx+" input[name=inptel3]").val() );
+	$("#deli_send input[name=dlv_memo_cont]").val( $("#rcvmessage_"+deli_idx).val() );
+	$("#deli_send input[name=status]").val( status );
+	$("#deli_send input[name=ord_dtl_sn]").val($('#editAddress_'+deli_idx+' input[name=deli_ord_dtl_sn]').val());
+	$("#deli_send input[name=ord_no]").val( '201602112075301' );
+	var imallCheck = '195476';
+	var url = "";
+	if ( imallCheck=='13145' ) {
+		url = "/mylotte/purchase/update_deli_imall.do?c=mlotte&udid=&v=&cn=&cdn=";
+	} else {
+		url = "/mylotte/purchase/update_deli.do?c=mlotte&udid=&v=&cn=&cdn=";
+	}
+	var params = $('#deli_send').serialize();
+	$.post(url, params, function(data){
+		if ( data=='0000' ) {
+			location.href = "/mylotte/purchase/purchase_view.do?orderNo=201602112075301&c=mlotte&udid=&v=&cn=&cdn=";
+		}
+	});
+}
+function editAddressOpen(deli_idx){
+	var shVal = $('#dv_dlvpSn_'+deli_idx).val();
+	$('#editAddress_'+deli_idx+' select[name=deli_select]').find('option[value='+shVal+']').prop("selected",true);
+	$("#editAddress_"+deli_idx+" select[name=deli_select]").change();
+	//changeAddr(shVal, deli_idx);
+	$("#deli_div_"+deli_idx  + " .detail_order_info").hide();
+	$("#editAddress_"+deli_idx).parent().parent().show();
+	$("#editAddress_"+deli_idx).show();
+	// 배송메시지 선택하기
+	var org_rcvMsg = $("input[name=rcvMessage_" + deli_idx + "]").val();
+	$("#li_mine #deli_msg_" + deli_idx + " select[name=deli_msg]").val(org_rcvMsg);
+}
+function editAddressClose(seq,chVal, deli_idx){
+	$("#deli_div_"+deli_idx  + " .detail_order_info").show();
+	$("#editAddress_"+deli_idx).parent().parent().hide();
+	$("#editAddress_"+deli_idx).hide();
+	//changeAddr(chVal, deli_idx);
+}
+function toggleOption(seq, id, cartSn, qty, frmId, prodOptions) {
+	var crt_order_options = $("input[name=crt_order_options" + seq + "_" + id + "]").val();
+	var frmObj = $('#optionFrm'+id+'_'+seq);
+	if ( frmObj.length>0 ) {
+		var hiddenYn = $(frmObj).css("display");
+		if ( hiddenYn == "block" ) {
+			$("#popHeightLayer").css("height", "0px");
+			$('#popt'+id+'_'+seq).removeClass("selected");
+			$("#optionFrm"+id+"_"+seq).hide();
+			$("#optionFrm"+id+"_"+seq).empty();
+		} else if ( hiddenYn == "none" ) {
+			var imallYn = "N";
+			var option = $('#inputOt').val();
+			$('#popt'+id+'_'+seq).addClass("selected");
+			var f = eval("document.optionForm_"+id);
+			var data = $(f).serialize();
+			var url = "/product/cart_option.do?c=mlotte&udid=&v=&cn=&cdn=&seq="+seq+"&id="+id+"&cart_sn="+cartSn+"&order_qty="+qty+"&imallYn="+imallYn+"&frmId="+frmId;
+			$.post( url, data, function(obj){
+				$("#optionFrm"+id+"_"+seq).html(obj);
+				$("#optionFrm"+id+"_"+seq + " [name^=opt_value]").each(function(){
+					$(this).prepend('<option value>선택하세요</option>');
+				});
+				if ( option!="" ) {
+					var goods_choc_desc_arr = option.split(';;;;;');
+					for(var opCnt=0; goods_choc_desc_arr[opCnt] != "" && opCnt < goods_choc_desc_arr.length; opCnt++){
+						var goods_choc_desc_dtl = goods_choc_desc_arr[opCnt].split(':');
+						$('input[name=opt_input_value]').eq(opCnt).val(goods_choc_desc_dtl[2]);
+					}
+				}
+				$("#optionFrm"+id+"_"+seq).show();
+				init("optionFrm"+id+"_"+seq);
+				//############### 동일 옵션 표시하지 않게 처리하기(옵션이 1개일때) START ####################
+				var productItemDtlSize = $("#optionFrm"+id+"_"+seq+" input[name=productItemDtlSize]").val();		//옵션개수
+				if(productItemDtlSize=="1"){
+					//옵션중에서 동일한 옵션 하나 삭제
+					var $selectList = $("#optionFrm"+id+"_"+seq).find("select[key=gg]");
+					var optionItem = prodOptions.split(":");			//옵션들이 구분자 , 로 연결되어있음
+					try {
+						$selectList.eq(0).find("option[value^="+optionItem[1]+"]").remove();
+					}
+					catch(e){
+						console.log(e);
+					}
+				}
+				//############### 동일 옵션 표시하지 않게 처리하기(옵션이 1개일때) END ####################
+				for( var i = 0; i < crt_order_options.split("|").length; i++ ){
+					$("#optionFrm"+id+"_"+seq+" dd[id=crt_order_options]").eq(i).text(crt_order_options.split("|")[i]);
+				}
+			});
+		}
+	}
+}
+function refresh() {
+	var orderno = $('#f_order_n').val();
+	var str_href = "http://mo.lotte.com/mylotte/purchase/purchase_view.do?c=mlotte&udid=&v=&cn=&cdn=&orderNo="+orderno;
+	// 비회원인 경우
+	if ('N'=='Y'){
+		str_href += '&grockle_yn=Y';
+		str_href += '&grockle_mbr_no=';
+	}
+	location.href = str_href;
+}
+// 무통장 입금 계좌변경
+function fn_viewChangeAccount(ord_no){
+	var url = "/mylotte/purchase/m/ChangeAccount_pop.do?c=mlotte&udid=&v=&cn=&cdn=&grockle_yn=N&grockle_mbr_no=";
+	$.ajax({
+		type: 'post'
+		,async: false
+		,url: url
+		// ,data: 'orderNo=201304285418640'
+		,data: 'orderNo='+ord_no
+		, success: function(response) {
+			$("#cover").show();
+			$("#popup_result").attr("class", "account_change_pop");
+			$("#popup_result").show();
+			//$("#wrapper").hide();
+			$("div#popup_result").html(response);
+		}
+		, error: function(request, status, err) {
+			alert('죄송합니다. 잠시 후 다시 이용해 주세요.');
+			}
+	});
+}
+// 카드변경 팝업 호출
+function cardChgPop(ord_no,pay_sn,cardYn,smartGoodsYn) {
+	var url = "/mylotte/purchase/m/CardChange_pop.do?c=mlotte&udid=&v=&cn=&cdn=";
+	$.ajax({
+		type: 'post'
+		,async: false
+		,url: url
+		//,data: 'orderNo=201404303911462&cardYn=Y'
+		,data: 'orderNo='+ord_no+'&pay_sn='+pay_sn+'&cardYn='+cardYn+'&smartGoodsYn='+smartGoodsYn
+		, success: function(response) {
+			$("#cover").show();
+			$("#popup_result").attr("class", "card_change_pop");
+			$("#popup_result").show();
+			//$("#wrapper").hide();
+			$("div#popup_result").html(response);
+		}
+		, error: function(request, status, err) {
+			alert('죄송합니다. 잠시 후 다시 이용해 주세요.');
+		}
+	});
+}
+function errback(msg, pagenum) {
+	// 새로운 디자인
+	if (pagenum.length == 0){
+		pagenum = -1;
+	}
+    if (msg) {
+        document.write('<section class="order_none">');
+        document.write('	<div class="box">');
+        document.write('		<div class="txt">');
+        document.write('			<p>');
+        document.write('				<span class="txt01">');
+        document.write(						msg	);
+        document.write('				</span>');
+        document.write('			</p>');
+        document.write('		</div>');
+        document.write('		<div class="btn">');
+        document.write('			<a href="javascript:navback()" class="a_btn col02"><span>이전 페이지 가기</span></a>');
+        document.write('		</div>');
+        document.write('	</div>');
+        document.write('</section>');
+    } 
+    else {
+        history.go(pagenum);
+    }
+}
+function chImg(objThis, i) {
+	// ellotte_jklee16
+	if ( window.location.href.indexOf(".ellotte.com") >= 0 ) {
+		objThis.src="http://image.lotte.com/ellotte/images/common/product/no_"+i+".gif" 
+	}else{
+		objThis.src="http://image.lotte.com/lotte/images/common/product/no_"+i+".gif" 
+	}
+}
+//현재 선택된 팝업레이어 이름
+var crtSelProdLayer = '';
+/**
+ * 상품선택 팝업 레이어 보이기
+ * @param 액션(cart:재구매, query:일대일문의)
+ */
+function showSelectProductPopupLayer(layerName){
+    var jPopupLayer = $('#selProdLayer');
+    var cover = $('#cover');
+	var selPopProd = jPopupLayer.find('input[type=checkbox]:checked');
+	var params = [];
+	// 현재 오픈된 팝업 레이어명 저장
+	crtSelProdLayer = layerName;
+	closeSelProdLayer();
+	console.log(crtSelProdLayer);
+	// Default 전체 체크
+//	for( var i = 0; i < jPopupLayer.find("section > div").length; i++ ){
+//		jPopupLayer.find("section > div").attr("class", "product on");
+//	}
+	// 팝업 내 안내문구
+	var info_msg = "문의하실 상품을 터치 해주세요.";
+	if( layerName == "cart" ){
+		info_msg = "장바구니에 담을 상품을 선택 해주세요.";
+		$("p[name^=pop_desc_buy]").each(function(){ $(this).show(); });
+	}
+	else {
+		$("p[name^=pop_desc_query]").each(function(){ $(this).show(); });
+	}
+	$("#pop_info_msg").text(info_msg);
+	// 팝업 보이기
+	jPopupLayer.css("z-index","9999").show();
+	cover.css("z-index","9998").show();	
+}
+$(function(){
+    $("#cover").click(function(){
+		$(this).hide();
+		closeSelProdLayer();
+		closePickType();
+		$("#popup_result").hide();
+		$("#pickup_desk").hide();
+		$("#brch_location").hide();
+		$("#shop_location").hide();
+    });
+});
+/**
+ * 상품선택 팝업 레이어 숨기기
+ */
+function closeSelProdLayer() {
+	var jPopupLayer = $('#selProdLayer');
+	for( var i = 0; i < jPopupLayer.find("section > div").length; i++ ){
+		jPopupLayer.find("section > div").attr("class", "product");
+	}
+	$("#cover").hide();
+	jPopupLayer.hide();
+	$("p[name^=pop_desc_query]").each(function(){ $(this).hide(); });
+	$("p[name^=pop_desc_buy]").each(function(){ $(this).hide(); });
+}
+/**
+ * 상품 선택 유효성 검사
+ */
+function sendPopProd(obj) {
+	var isChecked = false;
+	var msg = "상품을 선택하세요.";
+	if ('query' == crtSelProdLayer) {
+		msg = "문의하실 상품을 선택해주세요.";
+	}
+	for( var i = 0; i < $(obj).parent().find("section > div").length; i++ ){
+		if( $(obj).parent().find("section > div").eq(i).attr("class") == "product on" ){
+			isChecked = true;
+			break;
+		}
+	}
+	if( !isChecked ){
+		alert(msg);
+		return;
+	}
+/*
+	if (0 == selPopProd.length) {
+	}
+*/
+	// 재구매
+	if ('cart' == crtSelProdLayer) {
+		addCart();
+	// 1:1문의
+	} else if ('query' == crtSelProdLayer) {
+		sendQuery();
+	}
+}
+/**
+ * 1:1문의
+ */
+function sendQuery() {
+	var jPopupLayer = $('#selProdLayer');
+	var selPopProd = jPopupLayer.find('input[type=checkbox]:checked');
+	var url = 'http://mo.lotte.com/custcenter/m/question.do?c=mlotte&udid=&v=&cn=&cdn=';
+	var params = [];
+	// 필수 param
+	var ord_no = "ord_no=" + $("#f_order_n").val();
+	var ord_dtl_sn_arr = new Array();
+	$("input[name=pop_ord_dtl_sn][data-goodsprocsn=1]").each(function(){ if($(this).parent().hasClass("on")){ ord_dtl_sn_arr.push("ord_dtl_sn=" + $(this).val()); } });
+	params.push(ord_no);
+	params.push(ord_dtl_sn_arr.join("&"));
+	url += "&" + params.join('&');
+	location.href = url; 
+}
+/**
+ * 재구매(장바구니 담기)
+ */
+function addCart() {
+	var jPopupLayer = $('#selProdLayer');
+	var url = '/json/mylotte/cart_ins.json?c=mlotte&udid=&v=&cn=&cdn=';
+	var params = [];
+	// 구분자
+	var addKey = ":^:";
+	// param
+	var goods_no_arr = new Array(), item_no_arr = new Array(), ord_qty_arr = new Array(), disp_no_arr = new Array(),
+		infw_disp_no_sct_cd_arr = new Array(), goods_cmps_cd_arr = new Array(), mast_disp_no_arr = new Array(),
+		shop_memo_tp_cd_arr = new Array(), shop_memo_cont_arr = new Array(), goods_choc_desc_arr = new Array(),
+		conr_no_arr = new Array(), smp_tp_cd_arr = new Array(), smp_deli_loc_sn_arr = new Array(), smp_shop_no_arr = new Array(), smp_rsv_dtime_arr = new Array();
+	// param temp
+	var temp_arr = new Array();
+	$("input[name=pop_goods_no]").each(function(){ if($(this).parent().hasClass("on")){ goods_no_arr.push($(this).val()); } });
+	$("input[name=pop_itemNo]").each(function(){ if($(this).parent().hasClass("on")){ item_no_arr.push($(this).val()); } });
+	$("input[name=pop_orderPrdQty]").each(function(){ if($(this).parent().hasClass("on")){ ord_qty_arr.push($(this).val()); } });
+	$("input[name=pop_dispNo]").each(function(){ if($(this).parent().hasClass("on")){ disp_no_arr.push($(this).val()); } });
+	$("input[name=pop_infw_disp_no_sct_cd]").each(function(){ if($(this).parent().hasClass("on")){ infw_disp_no_sct_cd_arr.push($(this).val()); } });
+	$("input[name=pop_goods_cmps_cd]").each(function(){ if($(this).parent().hasClass("on")){ goods_cmps_cd_arr.push($(this).val()); } });
+	$("input[name=pop_mast_disp_no]").each(function(){ if($(this).parent().hasClass("on")){ mast_disp_no_arr.push($(this).val()); } });
+	$("input[name=pop_shop_memo_tp_cd]").each(function(){ if($(this).parent().hasClass("on")){ shop_memo_tp_cd_arr.push($(this).val()); } });
+	$("input[name=pop_shop_memo_cont]").each(function(){ if($(this).parent().hasClass("on")){ shop_memo_cont_arr.push($(this).val()); } });
+	$("input[name=pop_goods_choc_desc]").each(function(){ if($(this).parent().hasClass("on")){ goods_choc_desc_arr.push($(this).val()); } });
+	$("input[name=pop_conr_no]").each(function(){ if($(this).parent().hasClass("on")){ conr_no_arr.push($(this).val()); } });
+	$("input[name=pop_smp_tp_cd]").each(function(){ if($(this).parent().hasClass("on")){ smp_tp_cd_arr.push($(this).val()); } });
+	$("input[name=pop_smp_deli_loc_sn]").each(function(){ if($(this).parent().hasClass("on")){ smp_deli_loc_sn_arr.push($(this).val()); } });
+	$("input[name=pop_smp_shop_no]").each(function(){ if($(this).parent().hasClass("on")){ smp_shop_no_arr.push($(this).val()); } });
+	$("input[name=pop_smp_rsv_dtime]").each(function(){ if($(this).parent().hasClass("on")){ smp_rsv_dtime_arr.push($(this).val()); } });
+	$("input[name=pop_goods_no]").each(function(){ if($(this).parent().hasClass("on")){ temp_arr.push(""); } });	
+	params.push('goods_no=' + goods_no_arr.join(addKey));
+	params.push('item_no=' + item_no_arr.join(addKey));
+	params.push('ord_qty=' + ord_qty_arr.join(addKey));
+	params.push('infw_disp_no=' + disp_no_arr.join(addKey));
+	params.push('infw_disp_no_sct_cd=' + infw_disp_no_sct_cd_arr.join(addKey));
+	params.push('goods_cmps_cd=' + goods_cmps_cd_arr.join(addKey));
+	// 없으면 서버단 에러남(IndexOutOfException)
+	params.push('cart_sn=' + temp_arr.join(addKey));
+	params.push('mast_disp_no=' + mast_disp_no_arr.join(addKey));
+	params.push('shop_memo_tp_cd=' + shop_memo_tp_cd_arr.join(addKey));
+	params.push('shop_memo_cont=' + shop_memo_cont_arr.join(addKey));
+	params.push('goods_choc_desc=' + goods_choc_desc_arr.join(addKey));
+	params.push('conr_no=' + conr_no_arr.join(addKey));
+	params.push('cmps_qty=' + temp_arr.join(addKey));
+	params.push('smp_vst_shop_no=' + smp_shop_no_arr.join(addKey));
+	params.push('smp_vst_rsv_dtime=' + smp_rsv_dtime_arr.join(addKey));
+	params.push('master_goods_yn=' + temp_arr.join(addKey));
+	params.push('tckt_sia_dt=' + temp_arr.join(addKey));
+	params.push('tckt_sia_seq=' + temp_arr.join(addKey));
+	params.push('sess_id=' + temp_arr.join(addKey));
+	params.push('smp_tp_cd=' + smp_tp_cd_arr.join(addKey));
+	params.push('smp_deli_loc_sn=' + smp_deli_loc_sn_arr.join(addKey));
+	params.push('std_goods_no=' + temp_arr.join(addKey));
+	$.ajax({
+		type: 'post',
+		url: url + "&" + params.join('&'),
+		success: function(response) {
+			if (!confirm("장바구니에 상품이 담겼습니다. \n장바구니로 이동하시겠습니까?")){
+				closeSelProdLayer();
+	            return;
+	        }
+			// 장바구니에서 해당상품 강조표시 하기 위한 param
+			var goods_nos = '&goods_nos=' + goods_no_arr.join();
+			location.href = '/mylotte/cart/m/cart_list.do?c=mlotte&udid=&v=&cn=&cdn=' + goods_nos;
+		},
+		error: function(request, status, err) {
+			var msg = "프로그램 오류로 인해 처리되지 않았습니다.";
+			try {
+				if( request.responseJSON.error.response_code == 'M000200' ){
+					msg = request.responseJSON.error.response_msg; 
+				}
+			}
+			catch(e){}
+			alert(msg);
+		}
+	});
+}
+function chkPopProduct(obj){
+	var crt_cls = $(obj).attr("class");
+	if( crt_cls.split("product")[1].length > 0 ){
+		$(obj).attr("class", "product");
+	}
+	else {
+		$(obj).attr("class", "product on");
+	}
+}
+function closePopup(){
+	$("#CONFIRM_LAYER").hide();
+	$("#wrapper").show();
+}
+function showPopup(orderNo) {
+	var url = "http://mo.lotte.com/mylotte/cscenter/m/cash_bill_list.do?c=mlotte&udid=&v=&cn=&cdn=&ord_no=" + orderNo + "&grockle_yn=N&grockle_mbr_no=";
+	$("#CONFIRMFORM").attr("target", "CONFIRM_FRAME");
+	$("#CONFIRMFORM").attr("action", url);
+	$("#CONFIRMFORM").submit();
+	setTimeout(function(){
+		$("#wrapper").hide();
+		$("#CONFIRM_FRAME").css("width"	,"100%");
+		$("#CONFIRM_FRAME").css("height","100%");
+		$("#CONFIRM_FRAME").show();
+		$("#CONFIRM_LAYER").show();
+	},200);
+}
+</script>
+</head>
+<body ng-controller="PurchaseViewCtrl">
+<!-- <section id="pageLoading">
+		<p class="loading"></p>
+	</section> -->
+<section id="cover"></section>
+<div id="wrapper" class="cont_minheight" ng-show="showWrap">
+	<lotte-header></lotte-header>
+	<lotte-search></lotte-search>
+	<sub-header></sub-header>
+	<script>
+function show_smp_notice(smp_tp_cd, smp_deli_loc_sn, smp_shop_working_time, smp_deli_loc_nm, smp_deli_loc_desc){ // 픽업 구분, 스마트픽 인도장소 일련번호, 픽업 시간, 스마트픽 인수장소명
+	var sketch_img = "http://image.lotte.com/lotte/mobile/mobile_new/common/new_"+smp_deli_loc_sn+"_deli_loc_map.jpg";
+	if (smp_tp_cd=='2'){
+		$('#smp_title').text('스마트픽 픽업 데스크 위치'); // 타이틀
+		$('#smp_shop_working_time').text(smp_shop_working_time); // 픽업가능시간
+	}else if (smp_tp_cd=='3'){
+		$('#smp_title').text('스마트픽 픽업 라커 위치'); // 타이틀
+		$('#smp_shop_working_time').text(smp_shop_working_time); // 픽업가능시간
+	}
+	$('#smp_deli_loc_nm').text(smp_deli_loc_nm); // 픽업위치안내
+	try{
+		$('.map_img a').find('a').prop("href", sketch_img); // 약도 이미지 링크
+		$('.map_img a img').prop("src", sketch_img); // 약도 이미지
+	}catch(err){
+		$('.map_img a').find('a').attr("href", sketch_img); // 약도 이미지 링크
+		$('.map_img a img').attr("src", sketch_img); // 약도 이미지
+	}
+	// 약도 정보
+	var map_info = smp_deli_loc_desc;
+	$('#map_info').html(map_info);
+	if (true){
+		//dimmedOpen({target:"pickup_desk"});
+		$("#pickup_desk").show();
+		$("#cover").show();
+	}else{
+		//dimmedOpen({target:"brch_location"});
+		$("#brch_location").show();
+		$("#cover").show();
+	}
+	$(".map_img").find("img").load(function(){
+		var tg = null;
+		var th = 300;
+		try{
+			th = $(".pickup_map").height();
+		}catch(e){}
+		if (true){
+			tg = $('#pickup_desk');
+		}else{
+			tg = $('#brch_location');
+		}
+		tg.css({"margin-top": -((parseInt(th)/2)) + "px"});
+	});
+	/*
+	if (true){ // 모바일이면
+		$('#pickup_desk').css("top", Math.max(0, (($(window).height() - $('#pickup_desk').outerHeight()) / 2) + $(window).scrollTop()) + "px");
+		$('#pickup_desk, #wrap_dimBg, #cover').show();
+	}else{
+		$('#brch_location').css("top", Math.max(0, (($(window).height() - $('#brch_location').outerHeight()) / 2) + $(window).scrollTop()) + "px");
+		$('#brch_location, #wrap_dimBg').show();
+	}
+	$("#wrap_dimBg").css("position", "fixed");
+	*/
+}
+$(function(){
+	$("#pickup_desk .pickup_close").click(function(){
+		//dimmedClose({target:"pickup_desk"});
+		$("#pickup_desk").hide();
+		$("#cover").hide();
+	});
+	$("#brch_location .brch_close").click(function(){
+		//dimmedClose({target:"brch_location"});
+		$("#brch_location").hide();
+		$("#cover").hide();
+	});
+});
+	</script>
+	<style>
+.pickup_map .header {position:relative;}
+.pickup_map .header h2 {background-color:#fff;text-align:center;position:relative;color:#333;font-size:16px;height:44px;padding:12px 0;text-shadow:1px 1px #0849ad, -1px 1px #0849ad, 1px 0px #0849ad, 0px 1px #0849ad, 0px -1px #0849ad, -1px 0px #0849ad, -1px -1px #0849ad, 1px -1px #0849ad;box-sizing:border-box;-webkit-box-sizing:border-box}
+.pickup_map dl {padding:10px 15px 10px 20px !important;overflow:hidden;border:0 !important;}
+.pickup_map dl.pad {padding-top:0 !important;}
+.pickup_map dl dt {font-size:11px;color:#606060;letter-spacing:-1px;float:left;padding:0;height:auto !important;width:30%;}
+.pickup_map dl dd {font-size:11px;color:#161616;letter-spacing:-1px;height:auto !important;padding-top:0 !important;}
+.pickup_map .close {position:absolute;top:0;right:0;letter-spacing:-1px;}
+.pickup_map .close {text-indent:-9999em;color:transparent;display:block;padding:14px 8px 12px 20px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.pickup_map .close:before {content:"";position:absolute;top:14px;right:8px;background:url(http://image.lotte.com/lotte/mo2015/angular/common/btn_close_gray.png) no-repeat 0 0;background-size:12px 12px;width:13px;height:13px;display:inline-block}
+.pickup_map .map_img {margin-bottom:0;}
+.pickup_map .map_img p {padding:15px 0 10px 20px;font-weight:bold;display:block !important;margin-top:0;color:#161616;}
+.pickup_map .map_img img {width:100%}
+	</style>
+	<style>
+	.pickup_map {position:fixed;display:none;top:50%;left:50%;width:320px;margin-left:-160px; margin-top:-160px;background:#fff;z-index:1000;}
+	html.pickup_desk_act .pickup_map {display:block;}
+	.pickup_map .header h2{background:#fff;text-shadow:none;color:#333;}
+	.pickup_map dl {overflow:hidden;}
+	.pickup_map dl dt {float:left;width:26%;padding-left:5px;font-size:12px;background:url(http://image.lotte.com/lotte/mobile/mobile_new/product/blt5.gif) no-repeat 0 center;background-size:2px 2px;}
+	.pickup_map dl dd {float:right;width:70%;font-size:12px;letter-spacing:-0.5px;}
+	.pickup_map dl dd strong {display:inline-block;padding-bottom:5px;}
+	</style>
+	<div id="pickup_desk" class="pickup_map">
+		<div class="header">
+			<h2 id="smp_title">스마트픽 픽업장소 안내</h2>
+			<a href="#" class="close pickup_close">닫기</a>
+		</div>
+		<div class="map_img">
+			<a href="http://image.lotte.com/lotte/mobile/mobile_new/common/pickup_map_desk.jpg"><img src="http://image.lotte.com/lotte/mobile/mobile_new/common/pickup_map_desk.jpg" alt="픽업장소 안내 약도" style="pointer-events:none"/></a>
+		</div>
+		<dl>
+			<dt>픽업 위치 안내</dt>
+			<dd>
+			<strong id="smp_deli_loc_nm"></strong>
+			<p id="map_info">
+			</p>
+			</dd>
+		</dl>
+		<dl class="pad">
+			<dt>픽업 가능 시간</dt>
+			<dd id="smp_shop_working_time"></dd>
+		</dl>
+	</div>
+	<div id="popup_result" style="display:none">
+	</div>
+	<section id="order" class="myOrderDetail">
+	<!-- 구찌일때  취소버튼 숨김-->
+	<div class="tipsDetail" style="display:none;">
+		<a href="javascript:orderCancel();">주문취소</a>
+		<a href="javascript:showSelectProductPopupLayer('cart');">재구매</a>
+		<a href="javascript:showSelectProductPopupLayer('query');">1:1문의</a>
+	</div>
+	<div class="order_unit unit_top">
+		<h3>
+		<span class="date">16.02.11</span>
+		2016-02-11-2075301 </h3>
+		<div class="btn_tipsDetail">
+			<a href="javascript:orderCancel();">주문취소</a>
+			<a href="javascript:showSelectProductPopupLayer('cart');">재구매</a>
+			<a href="javascript:showSelectProductPopupLayer('query');">1:1문의</a>
+		</div>
+	</div>
+	<input type="hidden" id="f_order_n" value="201602112075301"/>
+	<!-- 상품+배송지 시작 -->
+	<div class="order_unit">
+		<ul>
+			<!-- 상품 시작 -->
+			<input type="hidden" id="ordSnCk" name="ordSnCk" value="677297215"/>
+			<input type="hidden" id="prodCk" name="prodCk" value="Y"/>
+			<!-- 결제정보 수정 -->
+			<!-- 반품진행중인 상품은 상품가격 표시에서 제외 -->
+			<!-- 결제정보 수정 끝 -->
+			<!-- 주문취소관련 -->
+			<!-- 주문취소관련 -->
+			<!-- 배송지 변경 -->
+			<!-- 배송지 변경 -->
+			<input type="hidden" id="deli_chg_psb_1" value="N"/>
+			<a name="195919100"></a>
+			<li>
+			<!-- 상품정보 -->
+			<div class="order_goods">
+				<span class="thumb">
+				<input type="hidden" name="opt_chg_ordProdCo" value="195476"/>
+				<input type="hidden" name="opt_chg_ordDtlStatCode" value=""/>
+				<input type="hidden" name="goodsTpCd" value="10"/>
+				<input type="hidden" name="checkSet" value="N"/>
+				<input type="hidden" name="prod_itemMgmtYn" value=""/>
+				<input type="hidden" name="prod_delivYn" value="10"/>
+				<input type="hidden" name="prod_itemMgmtYn" value=""/>
+				<input type="hidden" name="manggo_change_psb_yn" value="Y"/>
+				<a href="http://mo.lotte.com/product/product_view.do?c=mlotte&udid=&v=&cn=&cdn=&goods_no=195919100">
+				<img src="http://image.lotte.com/goods/00/91/91/95/1/195919100_1_150.jpg" alt="상품이미지" title="[카파(잠실)]여성용 기모안감 변형없는 반바지레깅스 [KGFP482FO]" onerror="chImg(this,150)"/>
+				</a>
+				<input type="hidden" name="pick_view_goods_no_201602112075301_677297215" id="pick_view_goods_no_201602112075301_677297215" value="195919100"/>
+				<input type="hidden" name="pick_view_entr_no_201602112075301_677297215" id="pick_view_entr_no_201602112075301_677297215" value="19115"/>
+				<input type="hidden" name="pick_view_smp_goods_type_201602112075301_677297215" id="pick_view_smp_goods_type_201602112075301_677297215" value="0101DEP"/>
+				<input type="hidden" name="pick_view_smp_cpn_issu_tp_cd_201602112075301_677297215" id="pick_view_smp_cpn_issu_tp_cd_201602112075301_677297215" value="01"/>
+				<input type="hidden" name="pick_view_shop_cnt_201602112075301_677297215" id="pick_view_shop_cnt_201602112075301_677297215" value="0"/>
+				<input type="hidden" name="pick_view_ecpn_no_201602112075301_677297215" id="pick_view_ecpn_no_201602112075301_677297215" value="2004 2164 1446"/>
+				<input type="hidden" name="pick_view_exch_ecpn_no_201602112075301_677297215" id="pick_view_exch_ecpn_no_201602112075301_677297215" value="2009 6944 5960"/>
+				<input type="hidden" name="pick_view_goods_nm_201602112075301_677297215" id="pick_view_goods_nm_201602112075301_677297215" value="[카파(잠실)]여성용 기모안감 변형없는 반바지레깅스 [KGFP482FO]"/>
+				<input type="hidden" name="pick_view_opt_desc_201602112075301_677297215" id="pick_view_opt_desc_201602112075301_677297215" value="색상:DMG,사이즈:65(55)"/>
+				<input type="hidden" name="pick_view_input_opt_201602112075301_677297215" id="pick_view_input_opt_201602112075301_677297215" value=""/>
+				<input type="hidden" name="pick_view_ord_qty_201602112075301_677297215" id="pick_view_ord_qty_201602112075301_677297215" value="1"/>
+				<input type="hidden" name="pick_view_ord_amt_201602112075301_677297215" id="pick_view_ord_amt_201602112075301_677297215" value="39,900"/>
+				<input type="hidden" name="pick_view_shop_nm_201602112075301_677297215" id="pick_view_shop_nm_201602112075301_677297215" value="카파 7B 남성"/>
+				<input type="hidden" name="pick_view_smp_date_201602112075301_677297215" id="pick_view_smp_date_201602112075301_677297215" value="2016년02월16일 "/>
+				<input type="hidden" name="pick_view_loc_desc_201602112075301_677297215" id="pick_view_loc_desc_201602112075301_677297215" value=""/>
+				<input type="hidden" name="pick_view_use_lmt_201602112075301_677297215" id="pick_view_use_lmt_201602112075301_677297215" value="지정된 픽업장소에서만 상품 수령이 가능"/>
+				<input type="hidden" name="pick_view_smp_aval_date_201602112075301_677297215" id="pick_view_smp_aval_date_201602112075301_677297215" value="2016년02월11일 ~ 2016년03월12일"/>
+				<input type="hidden" name="pick_view_smp_msg_201602112075301_677297215" id="pick_view_smp_msg_201602112075301_677297215" value=""/>
+				<input type="hidden" name="pick_view_cbl_tel_201602112075301_677297215" id="pick_view_cbl_tel_201602112075301_677297215" value="1577-1110"/>
+				<input type="hidden" name="pick_view_smp_tp_cd_201602112075301_677297215" id="pick_view_smp_tp_cd_201602112075301_677297215" value="1"/>
+				<input type="hidden" name="pick_view_sndr_nm_201602112075301_677297215" id="pick_view_sndr_nm_201602112075301_677297215" value="임유진"/>
+				<input type="hidden" name="pick_view_img_url_201602112075301_677297215" id="pick_view_img_url_201602112075301_677297215" value="http://image.lotte.com/goods/00/91/91/95/1/195919100_1_150.jpg"/>
+				<input type="hidden" name="pick_view_rfd_tgt_cd_201602112075301_677297215" id="pick_view_rfd_tgt_cd_201602112075301_677297215" value=""/>
+				<input type="hidden" name="pick_view_auto_rfd_tgt_yn_201602112075301_677297215" id="pick_view_auto_rfd_tgt_yn_201602112075301_677297215" value="N"/>
+				<input type="hidden" name="pick_view_rfd_psbl_tgt_yn_201602112075301_677297215" id="pick_view_rfd_psbl_tgt_yn_201602112075301_677297215" value="Y"/>
+				<input type="hidden" name="pick_view_smp_goods_type_00" id="pick_view_smp_goods_type_00" value="0101DEP"/>
+				<input type="hidden" name="pick_view_smp_date_00" id="pick_view_smp_date_00" value="2016년02월16일"/>
+				</span>
+				<span class="cont01">
+				<p class="icon">
+					<span class="flag depart">롯데백화점</span>
+					<!-- flag tag 무료배송 -->
+					<span class="flag smart">스마트픽</span>
+				</p>
+				<a href="http://mo.lotte.com/product/product_view.do?c=mlotte&udid=&v=&cn=&cdn=&goods_no=195919100">
+				<p class="tl">
+					[카파(잠실)]여성용 기모안감 변형없는 반바지레깅스 [KGFP482FO]
+				</p>
+				</a>
+				<input type="hidden" id="dfOption1" value="색상:DMG,사이즈:65(55)"/>
+				<p class="option">
+					색상:DMG<span>|</span>사이즈:65(55)
+				</p>
+				<input type="hidden" name="crt_order_options1_1" value="색상:DMG|사이즈:65(55)"/>
+				<!-- 브랜드명 세팅 -->
+				<input type="hidden" id="inputOt" value=""/>
+				<p class="money">
+					 39,900원 X 1개 = <span class="price"><span>39,900</span>원</span>
+				</p>
+				<!-- 상품구분 추가 -->
+				<p>
+					 스마트픽상품 
+					<!-- 상품구분 추가 끝 -->
+				</p>
+				</span>
+				<span class="cont01">
+				<p class="option2">
+					<em>상품준비</em>
+					<span>
+						<!-- 20160620 E쿠폰 문구 추가 -->
+						<!-- (D) 바로 전송 선택 또는 예약발송 불가할 경우 -->
+						<span class="txt">교환권이 발송되었습니다.<br/>받는 분 : 이쿠폰님</span>
+
+						<!-- (D) 예약 전송한 경우 발송일 10시부터 노출 -->
+						<span class="txt">6월 2일에 교환권을 보내드릴 예정입니다.<br/>받는 분 : 이쿠폰님</span>
+						<!-- //20160620 E쿠폰 문구 추가 -->
+
+						<!-- 교환권 보내기 버튼 -->
+						<span class="btnMore trackingMore">
+							<a href="#none" class="" onclick="viewPickType('201602112075301', '677297215', '', '0101DEP');return false;">교환권 보내기</a>
+							<!-- 2016.02.22 교환권 보내기 버튼 -->
+						</span>
+					<!-- //교환권 보내기 버튼 -->
+					</span>
+				</p>
+				</span>
+			</div>
+			<!-- //상품정보 -->
+			<!-- 스마트픽 교환권 사용안내 -->
+			<div class="order_section">
+				<!-- 스마트픽상품 교환권 정보 -->
+				<h3>교환권 사용안내</h3>
+				<!-- 교환권 사용안내 -->
+				<table class="tbl_order_list detail_order_info" summary="받으시는 분, 연락처, 주소, 배송 주의사항 안내표">
+				<caption>교환권 사용안내</caption>
+				<colgroup>
+				<col width="30%">
+				<col width="70%">
+				</colgroup>
+				<tbody>
+				<tr>
+					<th scope="row" class="lh22">
+						픽업 예정일
+					</th>
+					<td>
+						 2016년02월16일 <a href="javascript:fn_smpRsvDtChgPopupOpen('677297215', '20160216', '20160213/02.13(토),20160214/02.14(일),20160215/02.15(월),' , '1030', '1900' );" class="z_btn smp_reserv_chg">
+						<!-- 0212 텍스트 변경 -->
+						변경하기</a>
+						<input type="hidden" id="smpVstFcstDtime_201602112075301_677297215" name="smpVstFcstDtime_201602112075301_677297215" value="20160216"/>
+						<input type="hidden" id="smpSodDt_201602112075301_677297215" name="smpSodDt_201602112075301_677297215" value=""/>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row" class="lh28">
+						픽업장소
+					</th>
+					<td>
+						 카파 7B 남성 <a href="javascript:naver_store_map('195919100', false, '19115', '', '0101DEP');" class="btnLoc">픽업장소</a>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						사용제한
+					</th>
+					<td>
+						지정된 픽업장소에서만 상품 수령이 가능
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						주의사항
+					</th>
+					<td>
+						픽업예정일 + 1일까지 상품 수령 가능 ( 미수령 시 주문취소 )
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						문의전화
+					</th>
+					<td>
+						1577-1110
+					</td>
+				</tr>
+				<!-- //교환권 사용안내 -->
+				</tbody>
+				</table>
+			</div>
+			<!-- //스마트픽 교환권 사용안내 -->
+			</li>
+			<!-- //상품 시작 -->
+			<!-- //매장위치 레이어01 -->
+			<section id="shop_location" class="shop_location" style="display: block;">
+			</section>
+			<!-- 매장위치 레이어01// -->
+			<!-- //교환권 유형 선택 -->
+			<form id="smartpick_frm" name="smartpick_frm" method="post" action="">
+				<input type="hidden" name="ord_no" value=""/>
+				<input type="hidden" name="ord_dtl_sn" value=""/>
+				<input type="hidden" name="mms_lmt_cnt" value=""/>
+			</form>
+			<div id="coupon_select" style="display:none;">
+				<div id="wrapper">
+					<header id="head_sub">
+					<h2>교환권 유형 선택</h2>
+					<!-- <p class="close"><a href="#none" onclick="closePickType();">닫기</a></p> -->
+					</header>
+					<section id="smart_pick">
+					<div class="coupon_send">
+						<a href="javascript:goSendMMS();" class="mms">MMS 보내기</a>
+						<a href="javascript:closePickType();" class="kkc">카카오톡 보내기</a>
+					</div>
+					<ul class="info_list">
+						<li>MMS 전송은 총 3회까지 재전송이 가능합니다.</li>
+						<li>일부 상품은 상품준비 된 후 고객님께 별도의 안내를 드립니다.</li>
+						<li id="ecpn_rfd_imp" style="display:none;">환불대상은 변경이 불가능합니다.</li>
+					</ul>
+					<div class="btn_c">
+						<a href="#none" class="a_btn" onclick="closePickType();">닫기</a>
+					</div>
+					</section>
+				</div>
+			</div>
+			<!-- 배송비bar 추가 -->
+			<!-- 교환권 유형 선택// -->
+		</ul>
+	</div>
+	<!-- 배송지 정보 -->
+	<div class="order_section " id="deli_div_1" style="display:none">
+		<input type="hidden" name="rcvMessage_1" value=""/>
+		<!-- 스마트픽상품 배송지 정보 -->
+	</div>
+	<!-- //배송지 정보 -->
+	<div class="cart_list_order" style="display:none;">
+		<div class="order_section pdb10">
+			<div class="order_product_list" id="editAddress_1" style="display:none;">
+				<ul class="tab_addr clearfix">
+					<input type="hidden" name="dv_dlvpSn" id="dv_dlvpSn_1" value=""/>
+					<input type="hidden" name="deli_ord_dtl_sn" id="deli_ord_dtl_sn_1" value=""/>
+					<li id="li_mine" class="on">
+					<a href="javascript:void(0)" class="tit" cnt="1">내 배송지</a>
+					<dl id="deli_mine" class="pdb0" style="display:;">
+						<dd>
+						<div class="s_title">
+							받는분
+						</div>
+						<div class="s_text">
+							<span class="s_box02">
+							<select style="width:100%" name="deli_select" id="deli_select_1" data-idx="1">
+								<option value="313312399" selected>
+								임유진 (회사) </option>
+								<option value="326271738">
+								임유진 (제주도) </option>
+								<option value="326910994">
+								임유진 (HOME) </option>
+								<option value="325966481">
+								박순희 (부산집) </option>
+							</select>
+							<input type="hidden" name="inprmitnm" id="inprmitnm_1" value="임유진"/>
+							<input type="hidden" name="go_dlvpNm" id="go_dlvpNm_1" value="회사"/>
+							<input type="hidden" name="inpbasedlvpyn" id="inpbasedlvpyn_1" value="N"/>
+							<input type="hidden" name="inpzip1" value="045"/>
+							<input type="hidden" name="inpzip2" value="48"/>
+							<input type="hidden" name="inpaddr1" value="서울특별시중구을지로4가"/>
+							<input type="hidden" name="inpaddr2" value="삼풍상가10층"/>
+							<input type="hidden" name="stnm_inp_zip1" value="045"/>
+							<input type="hidden" name="stnm_inp_zip2" value="48"/>
+							<input type="hidden" name="stnm_inp_addr1" value="서울중구을지로"/>
+							<input type="hidden" name="stnm_inp_addr2" value="158,10층(을지로4가,삼풍상가)"/>
+							<span class="img_box">
+							<i></i>
+							</span>
+							</span>
+						</div>
+						</dd>
+						<dd class="deli_313312399" style="display:none;">
+						<input type="hidden" id="deliVal_rmitnm_313312399" value="임유진"/>
+						<input type="hidden" id="deliVal_dlvpnm_313312399" value="회사"/>
+						<input type="hidden" id="deliVal_zip1_313312399" value="045"/>
+						<input type="hidden" id="deliVal_zip2_313312399" value="48"/>
+						<input type="hidden" id="deliVal_addr1_313312399" value="서울특별시중구을지로4가"/>
+						<input type="hidden" id="deliVal_addr2_313312399" value="삼풍상가10층"/>
+						<input type="hidden" id="deliVal_stnmzip1_313312399" value="045"/>
+						<input type="hidden" id="deliVal_stnmzip2_313312399" value="48"/>
+						<input type="hidden" id="deliVal_stnmaddr1_313312399" value="서울중구을지로"/>
+						<input type="hidden" id="deliVal_stnmaddr2_313312399" value="158,10층(을지로4가,삼풍상가)"/>
+						<input type="hidden" id="deliVal_cbltelrgnno_313312399" value="000"/>
+						<input type="hidden" id="deliVal_cblteltxnono_313312399" value="000"/>
+						<input type="hidden" id="deliVal_cbltelendno_313312399" value="0000"/>
+						<input type="hidden" id="deliVal_cellsctno_313312399" value="010"/>
+						<input type="hidden" id="deliVal_celltxnono_313312399" value="9651"/>
+						<input type="hidden" id="deliVal_cellendno_313312399" value="0228"/>
+						<input type="hidden" id="deliVal_basedlvpyn_313312399" value="N"/>
+						<div class="s_title">
+							주소
+						</div>
+						<div class="s_text">
+							<span class="combo long_txt">
+							서울중구을지로 158,10층(을지로4가,삼풍상가) </span>
+						</div>
+						</dd>
+						<dd class="deli_313312399" style="display:none;">
+						<div class="s_title">
+							 연락처 <a href="#" class="safe_num">안심번호 서비스 안내</a>
+							<div class="tooltip" style="display:none;">
+								<div class="tit">
+									연락처 제공 안내
+								</div>
+								<div class="cont">
+									<ul>
+										<li>고객님의 연락처는 안심번호 서비스로 보호받고 있습니다.</li>
+										<li>안심번호 서비스란, <strong>고객님의 연락처를 1회성 임시번호(050-000-0000)로 자동전환 하여 택배사에 전달함으로써 개인정보 유출을 사전에 방지</strong>하는 서비스 입니다.</li>
+										<li><strong>택배기사님이 부재시 전화를 드리거나, 배송진행상황을 택배사에서 SMS로 안내해 드릴 수 있습니다.</strong></li>
+									</ul>
+								</div>
+								<a href="#" class="btnClose">닫기</a>
+							</div>
+						</div>
+						<div id="deli_phone_text_1_313312399" class="s_text">
+							<span class="combo pdl12">010-9651-0228</span>
+						</div>
+						</dd>
+						<dd class="deli_326271738" style="display:none;">
+						<input type="hidden" id="deliVal_rmitnm_326271738" value="임유진"/>
+						<input type="hidden" id="deliVal_dlvpnm_326271738" value="제주도"/>
+						<input type="hidden" id="deliVal_zip1_326271738" value="633"/>
+						<input type="hidden" id="deliVal_zip2_326271738" value="39"/>
+						<input type="hidden" id="deliVal_addr1_326271738" value="제주특별자치도 제주시 조천읍 북촌리"/>
+						<input type="hidden" id="deliVal_addr2_326271738" value="703-29"/>
+						<input type="hidden" id="deliVal_stnmzip1_326271738" value="633"/>
+						<input type="hidden" id="deliVal_stnmzip2_326271738" value="39"/>
+						<input type="hidden" id="deliVal_stnmaddr1_326271738" value="제주 제주시 조천읍 북촌12길"/>
+						<input type="hidden" id="deliVal_stnmaddr2_326271738" value="33-11 (북촌리)"/>
+						<input type="hidden" id="deliVal_cbltelrgnno_326271738" value="00"/>
+						<input type="hidden" id="deliVal_cblteltxnono_326271738" value="9651"/>
+						<input type="hidden" id="deliVal_cbltelendno_326271738" value="0228"/>
+						<input type="hidden" id="deliVal_cellsctno_326271738" value="010"/>
+						<input type="hidden" id="deliVal_celltxnono_326271738" value="9651"/>
+						<input type="hidden" id="deliVal_cellendno_326271738" value="0228"/>
+						<input type="hidden" id="deliVal_basedlvpyn_326271738" value="N"/>
+						<div class="s_title">
+							주소
+						</div>
+						<div class="s_text">
+							<span class="combo long_txt">
+							제주 제주시 조천읍 북촌12길 33-11 (북촌리) </span>
+						</div>
+						</dd>
+						<dd class="deli_326271738" style="display:none;">
+						<div class="s_title">
+							 연락처 <a href="#" class="safe_num">안심번호 서비스 안내</a>
+							<div class="tooltip" style="display:none;">
+								<div class="tit">
+									연락처 제공 안내
+								</div>
+								<div class="cont">
+									<ul>
+										<li>고객님의 연락처는 안심번호 서비스로 보호받고 있습니다.</li>
+										<li>안심번호 서비스란, <strong>고객님의 연락처를 1회성 임시번호(050-000-0000)로 자동전환 하여 택배사에 전달함으로써 개인정보 유출을 사전에 방지</strong>하는 서비스 입니다.</li>
+										<li><strong>택배기사님이 부재시 전화를 드리거나, 배송진행상황을 택배사에서 SMS로 안내해 드릴 수 있습니다.</strong></li>
+									</ul>
+								</div>
+								<a href="#" class="btnClose">닫기</a>
+							</div>
+						</div>
+						<div id="deli_phone_text_1_326271738" class="s_text">
+							<span class="combo pdl12">010-9651-0228</span>
+						</div>
+						</dd>
+						<dd class="deli_326910994" style="display:none;">
+						<input type="hidden" id="deliVal_rmitnm_326910994" value="임유진"/>
+						<input type="hidden" id="deliVal_dlvpnm_326910994" value="HOME"/>
+						<input type="hidden" id="deliVal_zip1_326910994" value="026"/>
+						<input type="hidden" id="deliVal_zip2_326910994" value="36"/>
+						<input type="hidden" id="deliVal_addr1_326910994" value="서울 동대문구 장안동"/>
+						<input type="hidden" id="deliVal_addr2_326910994" value="432-10번지 허브빌리지 203호"/>
+						<input type="hidden" id="deliVal_stnmzip1_326910994" value="026"/>
+						<input type="hidden" id="deliVal_stnmzip2_326910994" value="36"/>
+						<input type="hidden" id="deliVal_stnmaddr1_326910994" value="서울 동대문구 천호대로83길"/>
+						<input type="hidden" id="deliVal_stnmaddr2_326910994" value="16, 203호(장안동,허브빌리지)"/>
+						<input type="hidden" id="deliVal_cbltelrgnno_326910994" value="070"/>
+						<input type="hidden" id="deliVal_cblteltxnono_326910994" value="4239"/>
+						<input type="hidden" id="deliVal_cbltelendno_326910994" value="2801"/>
+						<input type="hidden" id="deliVal_cellsctno_326910994" value="010"/>
+						<input type="hidden" id="deliVal_celltxnono_326910994" value="9651"/>
+						<input type="hidden" id="deliVal_cellendno_326910994" value="0228"/>
+						<input type="hidden" id="deliVal_basedlvpyn_326910994" value="Y"/>
+						<div class="s_title">
+							주소
+						</div>
+						<div class="s_text">
+							<span class="combo long_txt">
+							서울 동대문구 천호대로83길 16, 203호(장안동,허브빌리지) </span>
+						</div>
+						</dd>
+						<dd class="deli_326910994" style="display:none;">
+						<div class="s_title">
+							 연락처 <a href="#" class="safe_num">안심번호 서비스 안내</a>
+							<div class="tooltip" style="display:none;">
+								<div class="tit">
+									연락처 제공 안내
+								</div>
+								<div class="cont">
+									<ul>
+										<li>고객님의 연락처는 안심번호 서비스로 보호받고 있습니다.</li>
+										<li>안심번호 서비스란, <strong>고객님의 연락처를 1회성 임시번호(050-000-0000)로 자동전환 하여 택배사에 전달함으로써 개인정보 유출을 사전에 방지</strong>하는 서비스 입니다.</li>
+										<li><strong>택배기사님이 부재시 전화를 드리거나, 배송진행상황을 택배사에서 SMS로 안내해 드릴 수 있습니다.</strong></li>
+									</ul>
+								</div>
+								<a href="#" class="btnClose">닫기</a>
+							</div>
+						</div>
+						<div id="deli_phone_text_1_326910994" class="s_text">
+							<span class="combo pdl12">010-9651-0228</span>
+						</div>
+						</dd>
+						<dd class="deli_325966481" style="display:none;">
+						<input type="hidden" id="deliVal_rmitnm_325966481" value="박순희"/>
+						<input type="hidden" id="deliVal_dlvpnm_325966481" value="부산집"/>
+						<input type="hidden" id="deliVal_zip1_325966481" value="467"/>
+						<input type="hidden" id="deliVal_zip2_325966481" value="26"/>
+						<input type="hidden" id="deliVal_addr1_325966481" value="부산 강서구 명지동"/>
+						<input type="hidden" id="deliVal_addr2_325966481" value="1647-1번지 에일린의뜰 111동 1803호"/>
+						<input type="hidden" id="deliVal_stnmzip1_325966481" value="467"/>
+						<input type="hidden" id="deliVal_stnmzip2_325966481" value="26"/>
+						<input type="hidden" id="deliVal_stnmaddr1_325966481" value="부산 강서구 명지국제5로"/>
+						<input type="hidden" id="deliVal_stnmaddr2_325966481" value="60, 111동 1803호 (명지동,에일린의뜰)"/>
+						<input type="hidden" id="deliVal_cbltelrgnno_325966481" value="010"/>
+						<input type="hidden" id="deliVal_cblteltxnono_325966481" value="6680"/>
+						<input type="hidden" id="deliVal_cbltelendno_325966481" value="1214"/>
+						<input type="hidden" id="deliVal_cellsctno_325966481" value="010"/>
+						<input type="hidden" id="deliVal_celltxnono_325966481" value="3265"/>
+						<input type="hidden" id="deliVal_cellendno_325966481" value="5137"/>
+						<input type="hidden" id="deliVal_basedlvpyn_325966481" value="N"/>
+						<div class="s_title">
+							주소
+						</div>
+						<div class="s_text">
+							<span class="combo long_txt">
+							부산 강서구 명지국제5로 60, 111동 1803호 (명지동,에일린의뜰) </span>
+						</div>
+						</dd>
+						<dd class="deli_325966481" style="display:none;">
+						<div class="s_title">
+							 연락처 <a href="#" class="safe_num">안심번호 서비스 안내</a>
+							<div class="tooltip" style="display:none;">
+								<div class="tit">
+									연락처 제공 안내
+								</div>
+								<div class="cont">
+									<ul>
+										<li>고객님의 연락처는 안심번호 서비스로 보호받고 있습니다.</li>
+										<li>안심번호 서비스란, <strong>고객님의 연락처를 1회성 임시번호(050-000-0000)로 자동전환 하여 택배사에 전달함으로써 개인정보 유출을 사전에 방지</strong>하는 서비스 입니다.</li>
+										<li><strong>택배기사님이 부재시 전화를 드리거나, 배송진행상황을 택배사에서 SMS로 안내해 드릴 수 있습니다.</strong></li>
+									</ul>
+								</div>
+								<a href="#" class="btnClose">닫기</a>
+							</div>
+						</div>
+						<div id="deli_phone_text_1_325966481" class="s_text">
+							<span class="combo pdl12">010-3265-5137</span>
+						</div>
+						</dd>
+						<!-- 배송메시지 -->
+						<dd id="deli_msg_1">
+						<div class="s_title">
+							배송메시지
+						</div>
+						<div class="s_text">
+							<span class="s_box02">
+							<select name="deli_msg" class="del_msg" data-idx="1" style="width:100%">
+								<option value="" selected="selected">배송메시지 선택하기</option>
+								<option value="부재시 경비실에 맡겨주세요.">부재시 경비실에 맡겨주세요.</option>
+								<option value="빠른 배송 부탁드립니다.">빠른 배송 부탁드립니다.</option>
+								<option value="부재시 핸드폰으로 연락바랍니다.">부재시 핸드폰으로 연락바랍니다.</option>
+								<option value="배송 전 연락바랍니다.">배송 전 연락바랍니다.</option>
+								<option value="직접입력">직접 입력하기 (20자 이내)</option>
+							</select>
+							<span class="img_box">
+							<i></i>
+							</span>
+							</span>
+							<input type="text" class="txt01 mgb0" id="rcvmessage_1" name="rcvmessage" style="display:none;" maxlength="20" placeholder="직접 입력하기 (20자 이내)">
+						</div>
+						</dd>
+					</dl>
+					</li>
+					<li id="li_new" class="">
+					<a href="javascript:void(0)" style="left:50%;" class="tit" cnt="1">새로운 배송지</a>
+					<dl id="deli_new" class="pdb0" style="display:none;">
+						<dd>
+						<div class="s_title">
+							받는분
+						</div>
+						<div class="s_text flex">
+							<input type="text" name="inprmitnm" class="txt01" style="width:55%;" placeholder="이름" onchange="$('#inprmitnm_1').val(this.value);"/>
+							<input type="text" name="go_dlvpNm" class="txt01" style="width:42%;float:right;" placeholder="배송지명" onchange="$('#go_dlvpNm_1').val(this.value);"/>
+						</div>
+						</dd>
+						<dd class="txtarea">
+						<div class="s_title">
+							주소
+						</div>
+						<div class="s_text flex">
+							<input type="hidden" name="inpzip1"/>
+							<input type="hidden" name="inpzip2"/>
+							<input type="hidden" name="inpaddr1"/>
+							<input type="hidden" name="inpaddr2"/>
+							<input type="hidden" name="stnm_inp_zip1"/>
+							<input type="hidden" name="stnm_inp_zip2"/>
+							<input type="hidden" name="stnm_inp_addr1"/>
+							<input type="hidden" name="stnm_inp_addr2"/>
+							<input type="hidden" id="temp_zip1_1"/>
+							<input type="hidden" id="temp_zip2_1"/>
+							<input type="hidden" id="temp_addr1_1"/>
+							<input type="hidden" id="temp_addr2_1"/>
+							<input type="hidden" id="txt_zip1_1" class="txt01" readonly="readonly" style="width:29%;"/>
+							<input type="hidden" id="txt_zip2_1" class="txt01" readonly="readonly" style="width:29%;"/>
+							<input type="text" id="txt_zip_tot_1" class="txt01" readonly="readonly" style="width:55%;"/>
+							<a href="#none" id="search_addr_trigger_1" class="btn_typeA tit_addr_search" style="width:39%;"><span class="txt">주소찾기</span></a>
+						</div>
+						<div class="addr_boxline" style="display: none;">
+							<div class="wrap_addr_detail">
+								<ul class="tab_addr_detail clearfix">
+									<li class="on">
+									<a href="#none" class="tab_tit">지번주소</a>
+									<div id="seq1_J_1" class="tab_txt">
+										<div class="flex mgb15 srch_input">
+											<div>
+												<input type="search" id="inp_seq1_J_1" class="txt01" placeholder="동(읍/면/리) 이름입력"/>
+											</div>
+											<a href="javascript: searchAddress('1', 'S', 'J', 'c=mlotte&udid=&v=&cn=&cdn=')" class="btn_typeA mgl2">검색</a>
+										</div>
+										<ul id="result_seq1_J_1" style="display:none;">
+										</ul>
+									</div>
+									<div id="seq2_J_1" class="tab_txt" style="display: none;">
+										<p id="txt_seq2_J_1" class="txt_addr1">
+										</p>
+										<div class="flex mgb15 srch_input">
+											<div>
+												<input type="search" id="inp_seq2_J_1" class="txt01" placeholder="나머지 주소 입력"/>
+											</div>
+											<a href="javascript: searchAddress('1', 'M', 'J', 'c=mlotte&udid=&v=&cn=&cdn=')" class="btn_typeA mg12">입력</a>
+										</div>
+									</div>
+									<div id="seq3_J_1" class="tab_txt" style="display: none;">
+									</div>
+									</li>
+									<li>
+									<a href="#none" class="tab_tit">도로명주소</a>
+									<div id="seq1_N_1" class="tab_txt" style="display:none;">
+										<div class="flex">
+											<span class="s_box02 mgb10" style="width:49%;">
+											<select id="key1_seq1_N_1">
+												<option value="" selected="selected">＊시/도 선택</option>
+												<option value="서울">서울</option>
+												<option value="부산">부산</option>
+												<option value="대구">대구</option>
+												<option value="인천">인천</option>
+												<option value="광주">광주</option>
+												<option value="대전">대전</option>
+												<option value="울산">울산</option>
+												<option value="세종">세종</option>
+												<option value="경기">경기</option>
+												<option value="강원">강원</option>
+												<option value="충북">충북</option>
+												<option value="충남">충남</option>
+												<option value="전북">전북</option>
+												<option value="전남">전남</option>
+												<option value="경북">경북</option>
+												<option value="경남">경남</option>
+												<option value="제주">제주</option>
+												<option value="서울">서울</option>
+											</select>
+											<span class="img_box">
+											<i></i>
+											</span>
+											</span>
+											<input type="text" class="txt01 mgb10" id="key2_seq1_N_1" style="width:49%;" placeholder="＊시/군/구 입력">
+										</div>
+										<div class="flex">
+											<input type="text" class="txt01 mgb10" id="key3_seq1_N_1" style="width:49%;" placeholder="＊도로명 입력">
+											<input type="number" class="txt01 mgb10" id="key4_seq1_N_1" style="width:49%; text-align:left;" placeholder="건물번호 입력">
+										</div>
+										<div class="flex mgb10 srch_input">
+											<div>
+												<input type="text" class="txt01" id="key5_seq1_N_1" placeholder="건물명 입력">
+											</div>
+											<a href="javascript: searchAddress('1', 'S', 'N', 'c=mlotte&udid=&v=&cn=&cdn=')" class="btn_typeA mgl2">검색</a>
+										</div>
+										<ul id="result_seq1_N_1">
+										</ul>
+									</div>
+									<div id="seq2_N_1" class="tab_txt" style="display: none;">
+										<p id="txt_seq2_N_1" class="txt_addr1">
+										</p>
+										<div class="flex mgb10">
+											<input type="search" id="inp_seq2_N_1" class="txt01" placeholder="나머지 주소 입력"/>
+											<a href="javascript: searchAddress('1', 'M', 'N', 'c=mlotte&udid=&v=&cn=&cdn=')" class="btn_typeA mgl2">입력</a>
+										</div>
+									</div>
+									<div id="seq3_N_1" class="tab_txt" style="display: none;">
+									</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div id="txt_addr_wrap_1" class="s_text pdt0">
+							<input type="text" id="txt_addr1_1" class="txt01 mgb5" readonly="readonly" style="width:100%;"/>
+							<input type="text" id="txt_addr2_1" class="txt01 mgb5" readonly="readonly" style="width:100%;"/>
+						</div>
+						</dd>
+						<dd class="txtarea">
+						<div class="s_title">
+							 연락처 <a href="#" class="safe_num">안심번호 서비스 안내</a>
+							<div class="tooltip" style="display:none;">
+								<div class="tit">
+									연락처 제공 안내
+								</div>
+								<div class="cont">
+									<ul>
+										<li>고객님의 연락처는 안심번호 서비스로 보호받고 있습니다.</li>
+										<li>안심번호 서비스란, <strong>고객님의 연락처를 1회성 임시번호(050-000-0000)로 자동전환 하여 택배사에 전달함으로써 개인정보 유출을 사전에 방지</strong>하는 서비스 입니다.</li>
+										<li><strong>택배기사님이 부재시 전화를 드리거나, 배송진행상황을 택배사에서 SMS로 안내해 드릴 수 있습니다.</strong></li>
+									</ul>
+								</div>
+								<a href="#" class="btnClose">닫기</a>
+							</div>
+						</div>
+						<div id="deli_phone_val_1" class="s_text flex">
+							<span class="s_box02" style="width:33%">
+							<select name="inpcell1" class="phone_modi">
+								<option value="010">010</option>
+								<option value="011">011</option>
+								<option value="016">016</option>
+								<option value="017">017</option>
+								<option value="018">018</option>
+								<option value="019">019</option>
+								<option value="0502">0502</option>
+								<option value="0505">0505</option>
+								<option value="직접입력">직접입력</option>
+							</select>
+							<span class="img_box">
+							<i></i>
+							</span>
+							</span>
+							<input type="tel" class="txt01 mgb0" name="inpcell1" disabled="disabled" style="display: none; width:31%;" maxlength="4" pattern="[0-9]*"/>
+							<input type="tel" class="txt01 mgb0" name="inpcell2" style="width:31%;" maxlength="4" pattern="[0-9]*">
+							<input type="tel" class="txt01 mgb0" name="inpcell3" style="width:31%;" maxlength="4" pattern="[0-9]*">
+							<input type="hidden" name="inptel1" value=""/>
+							<input type="hidden" name="inptel2" value=""/>
+							<input type="hidden" name="inptel3" value=""/>
+						</div>
+						</dd>
+						<!-- 배송메시지 -->
+						<dd class="mgt5" id="deli_msg_1">
+						<div class="s_title">
+							배송메시지
+						</div>
+						<div class="s_text">
+							<span class="s_box02">
+							<select name="deli_msg" class="del_msg" data-idx="1" style="width:100%">
+								<option value="" selected="selected">배송메시지 선택하기</option>
+								<option value="부재시 경비실에 맡겨주세요.">부재시 경비실에 맡겨주세요.</option>
+								<option value="빠른 배송 부탁드립니다.">빠른 배송 부탁드립니다.</option>
+								<option value="부재시 핸드폰으로 연락바랍니다.">부재시 핸드폰으로 연락바랍니다.</option>
+								<option value="배송 전 연락바랍니다.">배송 전 연락바랍니다.</option>
+								<option value="직접입력">직접 입력하기 (20자 이내)</option>
+							</select>
+							<span class="img_box">
+							<i></i>
+							</span>
+							</span>
+							<!-- 직접 입력하기 활성화시! (default시 빠짐) -->
+							<input type="text" class="txt01 mgb0" id="rcvmessage_1" name="rcvmessage" style="display:none;" maxlength="20" placeholder="직접 입력하기 (20자 이내)">
+						</div>
+						</dd>
+					</dl>
+					</li>
+				</ul>
+				<div id="deli_option_1" style="display:none;">
+					<!-- 기존 배송정보에 업데이트 -->
+					<input type="radio" class="radio01" name="deli_chk_1" value="U"/>
+					<!-- 새로운 배송지로 추가 -->
+					<input type="radio" class="radio01" name="deli_chk_1" value="C"/>
+				</div>
+				<div style="padding-top:10px;text-align:center;">
+					<span class="add_a">
+					<a href="javascript:editAddressClose('','', '1');" class="a_btn col02"><span>닫기</span></a>
+					<a href="javascript:saveDeli('1');" class="a_btn col01"><span>배송지변경</span></a>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //상품+배송지 시작 -->
+	<div id="div_313312399" name="deliDiv">
+		<input type="hidden" name="basedlvpyn" value="N"/>
+		<input type="hidden" name="dlvpsn" value="313312399"/>
+		<input type="hidden" name="dlvpnm" value="회사"/>
+		<input type="hidden" name="rmitnm" value="임유진"/>
+		<input type="hidden" name="dlvzip1" value="045"/>
+		<input type="hidden" name="dlvzip2" value="48"/>
+		<input type="hidden" name="postaddr" value="서울특별시중구을지로4가"/>
+		<input type="hidden" name="dtladdr" value="삼풍상가10층"/>
+		<input type="hidden" name="stnm_dlv_zip1" value="045"/>
+		<input type="hidden" name="stnm_dlv_zip2" value="48"/>
+		<input type="hidden" name="stnm_post_addr" value="서울중구을지로"/>
+		<input type="hidden" name="stnm_dtl_addr" value="158,10층(을지로4가,삼풍상가)"/>
+		<input type="hidden" name="cellsctno" value="010"/>
+		<input type="hidden" name="celltxnono" value="9651"/>
+		<input type="hidden" name="cellendno" value="0228"/>
+		<input type="hidden" name="cbltelrgnno" value="000"/>
+		<input type="hidden" name="cblteltxnono" value="000"/>
+		<input type="hidden" name="cbltelendno" value="0000"/>
+		<input type="hidden" name="usrsortrnk" value="-1"/>
+	</div>
+	<div id="div_326271738" name="deliDiv">
+		<input type="hidden" name="basedlvpyn" value="N"/>
+		<input type="hidden" name="dlvpsn" value="326271738"/>
+		<input type="hidden" name="dlvpnm" value="제주도"/>
+		<input type="hidden" name="rmitnm" value="임유진"/>
+		<input type="hidden" name="dlvzip1" value="633"/>
+		<input type="hidden" name="dlvzip2" value="39"/>
+		<input type="hidden" name="postaddr" value="제주특별자치도 제주시 조천읍 북촌리"/>
+		<input type="hidden" name="dtladdr" value="703-29"/>
+		<input type="hidden" name="stnm_dlv_zip1" value="633"/>
+		<input type="hidden" name="stnm_dlv_zip2" value="39"/>
+		<input type="hidden" name="stnm_post_addr" value="제주 제주시 조천읍 북촌12길"/>
+		<input type="hidden" name="stnm_dtl_addr" value="33-11 (북촌리)"/>
+		<input type="hidden" name="cellsctno" value="010"/>
+		<input type="hidden" name="celltxnono" value="9651"/>
+		<input type="hidden" name="cellendno" value="0228"/>
+		<input type="hidden" name="cbltelrgnno" value="00"/>
+		<input type="hidden" name="cblteltxnono" value="9651"/>
+		<input type="hidden" name="cbltelendno" value="0228"/>
+		<input type="hidden" name="usrsortrnk" value="0"/>
+	</div>
+	<div id="div_326910994" name="deliDiv">
+		<input type="hidden" name="basedlvpyn" value="Y"/>
+		<input type="hidden" name="dlvpsn" value="326910994"/>
+		<input type="hidden" name="dlvpnm" value="HOME"/>
+		<input type="hidden" name="rmitnm" value="임유진"/>
+		<input type="hidden" name="dlvzip1" value="026"/>
+		<input type="hidden" name="dlvzip2" value="36"/>
+		<input type="hidden" name="postaddr" value="서울 동대문구 장안동"/>
+		<input type="hidden" name="dtladdr" value="432-10번지 허브빌리지 203호"/>
+		<input type="hidden" name="stnm_dlv_zip1" value="026"/>
+		<input type="hidden" name="stnm_dlv_zip2" value="36"/>
+		<input type="hidden" name="stnm_post_addr" value="서울 동대문구 천호대로83길"/>
+		<input type="hidden" name="stnm_dtl_addr" value="16, 203호(장안동,허브빌리지)"/>
+		<input type="hidden" name="cellsctno" value="010"/>
+		<input type="hidden" name="celltxnono" value="9651"/>
+		<input type="hidden" name="cellendno" value="0228"/>
+		<input type="hidden" name="cbltelrgnno" value="070"/>
+		<input type="hidden" name="cblteltxnono" value="4239"/>
+		<input type="hidden" name="cbltelendno" value="2801"/>
+		<input type="hidden" name="usrsortrnk" value="1"/>
+	</div>
+	<div id="div_325966481" name="deliDiv">
+		<input type="hidden" name="basedlvpyn" value="N"/>
+		<input type="hidden" name="dlvpsn" value="325966481"/>
+		<input type="hidden" name="dlvpnm" value="부산집"/>
+		<input type="hidden" name="rmitnm" value="박순희"/>
+		<input type="hidden" name="dlvzip1" value="467"/>
+		<input type="hidden" name="dlvzip2" value="26"/>
+		<input type="hidden" name="postaddr" value="부산 강서구 명지동"/>
+		<input type="hidden" name="dtladdr" value="1647-1번지 에일린의뜰 111동 1803호"/>
+		<input type="hidden" name="stnm_dlv_zip1" value="467"/>
+		<input type="hidden" name="stnm_dlv_zip2" value="26"/>
+		<input type="hidden" name="stnm_post_addr" value="부산 강서구 명지국제5로"/>
+		<input type="hidden" name="stnm_dtl_addr" value="60, 111동 1803호 (명지동,에일린의뜰)"/>
+		<input type="hidden" name="cellsctno" value="010"/>
+		<input type="hidden" name="celltxnono" value="3265"/>
+		<input type="hidden" name="cellendno" value="5137"/>
+		<input type="hidden" name="cbltelrgnno" value="010"/>
+		<input type="hidden" name="cblteltxnono" value="6680"/>
+		<input type="hidden" name="cbltelendno" value="1214"/>
+		<input type="hidden" name="usrsortrnk" value="3"/>
+	</div>
+	<!-- 주문자 정보(비회원) -->
+	<span class="seper_area"></span>
+	<!-- 주문금액 -->
+	<div class="order_sum">
+		<ul>
+			<!-- 결제 정보 START -->
+			<!-- 인터파크티켓 에매수수료 -->
+			<!-- 인터파크티켓 배송료 -->
+			<!-- 인터파크티켓 취소수수료 -->
+			<li>
+			<span class="title">주문금액</span>
+			<span class="price"><strong><span class="num">39,900</span></strong>원</span>
+			</li>
+			<li class="first">
+			<span class="title">상품가격</span>
+			<span class="price"><strong><span class="num">
+			39,900</span></strong>원</span>
+			</li>
+			<li>
+			<span class="title">배송비</span>
+			<span class="price">(+) <span class="num">0</span>원</span>
+			</li>
+			<li>
+			<span class="title">즉석쿠폰</span>
+			<span class="price">
+			(-) <span class="num">6,780</span>원</span>
+			</li>
+		</ul>
+	</div>
+	<!-- 결제정보 -->
+	<form id="CONFIRMFORM" name="CONFIRMFORM" action="http://mo.lotte.com/mylotte/cscenter/m/cash_bill_list.do?c=mlotte&udid=&v=&cn=&cdn=&ord_no=201602112075301" method="post" target="CONFIRM_FRAME">
+	</form>
+	<div class="order_sum">
+		<ul>
+			<li class="clear">
+			<span class="title">결제정보</span>
+			<div class="btnArea">
+				<a href="javascript:showPopup('201602112075301')">영수증</a>
+			</div>
+			</li>
+			<li class="sum2">
+			<p>
+				<span class="title">
+				L.pay </span>
+				<span class="price">
+				<strong>33,120원</strong>
+				<em>
+				2016.02.11 롯데카드 [일시불] </em>
+				</span>
+			</p>
+			</li>
+			<!-- 승인/취소내역 -->
+			<!-- 결제금액 -->
+			<li>
+			<span class="title">결제금액</span>
+			<span class="price"><span class="num">33,120</span>원</span>
+			</li>
+		</ul>
+	</div>
+	<!-- 총결제금액 -->
+	<div class="order_sum">
+		<ul>
+			<li class="sum4">
+			<p>
+				<span class="title">총 결제금액</span>
+				<span class="price"><strong>33,120</strong>원</span>
+			</p>
+			</li>
+		</ul>
+	</div>
+	</section>
+	<!-- 20150512 추가 : 스마트픽 예약 변경 레이어 -->
+	<div class="commonPop" id="smartpickReservationChange" style="display:none;">
+		<div class="bg">
+		</div>
+		<input type="hidden" id="smpRsvChgOrdDtlSn" name="smpRsvChgOrdDtlSn" value="">
+		<input type="hidden" id="smpVstFcstDt" name="smpVstFcstDt" value="">
+		<div class="box">
+			<div class="popBox">
+				<div class="cont">
+					<!-- <img src="http://image.lotte.com/lotte/mobile/mobile_new/order/smartpickChangePop_title.png" alt="스마트픽 예약변경" /> -->
+					<div class="smartPopTit">
+						스마트픽 예약변경
+					</div>
+					<p id="now_reservation" class="now_reservation">
+					</p>
+					<dl class="reservation_selection">
+						<dt>날짜</dt>
+						<dd>
+						<span class="s_box02">
+						<select id="smpRsvChgDtCombo" name="smpRsvChgDtCombo" style="width:100%" onchange="javascript:fn_smpRsvChgDtComboChange(this);">
+						</select>
+						</span>
+						</dd>
+						<dt>시간</dt>
+						<dd>
+						<p id="smpMngTime">
+						</p>
+						</dd>
+					</dl>
+					<ul class="blt1">
+						<li>매장 휴점일에는 날짜 선택이 불가합니다.</li>
+						<li>예약일 변경은 <span class="fc04">최초 1회</span>만 가능합니다.</li>
+					</ul>
+					<!-- <a href="javascript:goSmpRsvDtChg();"><img src="http://image.lotte.com/lotte/mobile/mobile_new/order/smartpickChangePop_btn.png" alt="예약변경하기" /></a> -->
+					<a href="javascript:goSmpRsvDtChg();" class="smp_reserv_chg">예약변경하기</a>
+				</div>
+				<a href="javascript:$('#smartpickReservationChange').hide()">
+				<div class="foot">
+					닫기
+				</div>
+				</a>
+			</div>
+		</div>
+	</div>
+	<!-- // 20150512 추가 : 스마트픽 예약 변경 레이어 -->
+	<!-- 주문취소관련 -->
+	<form name="frm_cancel" id="frm_cancel" method="post" action="http://mo.lotte.com/order/order_cancel_form.do?c=mlotte&udid=&v=&cn=&cdn=">
+		<input type="hidden" name="ordno" value="201602112075301">
+		<input type="hidden" name="orgGubun" value="C">
+		<input type="hidden" name="arr_ord_dtl_sn" value="677297215">
+		<input type="hidden" name="arr_cancel_qty" value="1">
+		<input type="hidden" name="canl_qty_yn" value="Y">
+		<input type="hidden" name="payment_yn" value="N">
+		<input type="hidden" name="init_yn" value="Y"/>
+		<input type="hidden" name="grockle_yn" value="N">
+		<input type="hidden" name="grockle_mbr_no" value="">
+		<input type="hidden" id="prodVal" name="prodVal" value=""/>
+		<input type="hidden" id="ordVal" name="ordVal" value=""/>
+		<input type="hidden" name="imallYn" value="N"/>
+	</form>
+	<form id="frm_send" name="frm_send" method="post" action="">
+		<input type="hidden" id="cart_sn" name="cart_sn" value=""/>
+		<input type="hidden" name="goodsno" value=""/>
+		<input type="hidden" name="goodsChocDesc" value=""/>
+		<!-- 입력형 상품 옵션 정보 -->
+		<input type="hidden" name="itemno" value=""/>
+		<input type="hidden" name="qty" value=""/>
+		<input type="hidden" id="sendQty" name="order_qty" value=""/>
+		<!-- 주문수량 -->
+		<input type="hidden" name="opt_name1" value=""/>
+		<input type="hidden" name="opt_name2" value=""/>
+		<input type="hidden" name="opt_name3" value=""/>
+		<input type="hidden" name="opt_name4" value=""/>
+		<input type="hidden" name="opt_name5" value=""/>
+		<input type="hidden" name="opt_value1" value=""/>
+		<input type="hidden" name="opt_value2" value=""/>
+		<input type="hidden" name="opt_value3" value=""/>
+		<input type="hidden" name="opt_value4" value=""/>
+		<input type="hidden" name="opt_value5" value=""/>
+	</form>
+	<form id="deli_send" name="deli_send" method="post" action="">
+		<input type="hidden" name="dlvp_sn" value=""/>
+		<input type="hidden" name="dlvp_nm" value=""/>
+		<input type="hidden" name="rmit_nm" value=""/>
+		<input type="hidden" name="cbl_tel_rgn_no" value=""/>
+		<input type="hidden" name="cbl_tel_txno_no" value=""/>
+		<input type="hidden" name="cbl_tel_end_no" value=""/>
+		<input type="hidden" name="cbl_tel_exno_no" value=""/>
+		<input type="hidden" name="cell_sct_no" value=""/>
+		<input type="hidden" name="cell_txno_no" value=""/>
+		<input type="hidden" name="cell_end_no" value=""/>
+		<input type="hidden" name="post_no" value=""/>
+		<input type="hidden" name="post_addr" value=""/>
+		<input type="hidden" name="dtl_addr" value=""/>
+		<input type="hidden" name="stnm_post_no" value=""/>
+		<input type="hidden" name="stnm_post_addr" value=""/>
+		<input type="hidden" name="stnm_dtl_addr" value=""/>
+		<input type="hidden" name="dlv_memo_cont" value=""/>
+		<input type="hidden" name="corp_post_no_sn" value=""/>
+		<input type="hidden" name="base_dlvp_yn" value=""/>
+		<input type="hidden" name="org_base_dlvp_yn" value=""/>
+		<input type="hidden" name="org_dlvp_sn" value=""/>
+		<input type="hidden" name="org_dlv_memo_cont" value=""/>
+		<input type="hidden" name="ord_dtl_sn" value=""/>
+		<input type="hidden" name="deliv_btn" value="true"/>
+		<input type="hidden" name="status" value=""/>
+		<input type="hidden" name="ord_no" value=""/>
+		<input type="hidden" name="click_yn" value="N"/>
+		<input type="hidden" name="is_ticket" value="false"/>
+	</form>
+	<!-- 상품 선택 팝업 레이어 -->
+	<section class="order_pop reorder" id="selProdLayer">
+	<span class="close" onclick="javascript:closeSelProdLayer();"></span>
+	<div class="wrap">
+		<div class="list_wrap">
+			<h3>상품 선택</h3>
+			<div class="guide">
+				<span id="pop_info_msg">문의하실 상품을 터치 해주세요.</span>
+			</div>
+			<div class="scroll">
+				<section class="list">
+				<!--<p class="order_num">주문번호 : 201602112075301</p>-->
+				<p class="order_num">
+					 주문번호 : 2016-02-11-2075301
+				</p>
+				<!-- 상품 시작 -->
+				<div class="product" onclick="javascript:chkPopProduct(this);">
+					<input type="hidden" name="pop_ord_dtl_sn" value="677297215" data-goodsprocsn="1"/>
+					<input type="hidden" name="pop_goods_no" value="195919100"/>
+					<input type="hidden" name="pop_itemNo" value="1"/>
+					<input type="hidden" name="pop_orderPrdQty" value="1"/>
+					<input type="hidden" name="pop_dispNo" value="5539740"/>
+					<input type="hidden" name="pop_infw_disp_no_sct_cd" value="64"/>
+					<input type="hidden" name="pop_goods_cmps_cd" value="50"/>
+					<input type="hidden" name="pop_mast_disp_no" value="0"/>
+					<input type="hidden" name="pop_shop_memo_tp_cd" value=""/>
+					<input type="hidden" name="pop_shop_memo_cont" value=""/>
+					<input type="hidden" name="pop_goods_choc_desc" value=""/>
+					<input type="hidden" name="pop_conr_no" value="0"/>
+					<input type="hidden" name="pop_smp_shop_no" value="131340"/>
+					<input type="hidden" name="pop_smp_rsv_dtime" value="20160216"/>
+					<input type="hidden" name="pop_smp_tp_cd" value="1"/>
+					<input type="hidden" name="pop_smp_deli_loc_sn" value="0"/>
+					<div class="select_mask">
+						<span></span>
+					</div>
+					<dl>
+						<dt>
+						<img src="http://image.lotte.com/goods/00/91/91/95/1/195919100_1_150.jpg" alt="상품이미지" title="[카파(잠실)]여성용 기모안감 변형없는 반바지레깅스 [KGFP482FO]" onerror="chImg(this,150)"/>
+						</dt>
+						<dd>
+						<p class="pname">
+							[카파(잠실)]여성용 기모안감 변형없는 반바지레깅스 [KGFP482FO]
+						</p>
+						<!--										<p>색상:DMG<span>|</span>사이즈:65(55)</p>-->
+						<!--										<p class="presult">-->
+						<!--											39,900원  X 1개 = -->
+						<!--											<span class="price"><span>39,900</span>원</span>-->
+						<!--										</p>-->
+						<p class="presult" name="pop_desc_query" style="display:none;">
+							1 개 / / 고객님께 발송할 상품을 준비하고 있습니다.
+						</p>
+						<p class="presult" name="pop_desc_buy" style="display:none;">
+							 색상:DMG<span>|</span>사이즈:65(55)
+						</p>
+						</dd>
+					</dl>
+				</div>
+				</section>
+			</div>
+		</div>
+	</div>
+	<div class="btn_end" onclick="javascript:sendPopProd(this);">
+		선택완료
+	</div>
+	</section>
+</div>
+</div>
+<lotte-footer></lotte-footer>
+<lotte-btntop></lotte-btntop>
+
+<lotte-search></lotte-search>
+<lotte-side-category></lotte-side-category>
+<lotte-side-mylotte></lotte-side-mylotte>
+<lotte-footer-actionbar></lotte-footer-actionbar>
+
+<lotte-comm-footer></lotte-comm-footer>
+<div id="CONFIRM_LAYER" style="display:none;position:absolute;z-index:5000;top:0px;left:0;width:100%;height:100%;">
+	<iframe id="CONFIRM_FRAME" name="CONFIRM_FRAME" src="/dacom/xansim/iframe.jsp" style="width:100%;height:100%;display:none;border:none;" ></iframe>
+</div>
+<div id="script" style="display:none">ajax 응답 데이터 출력영역</div>
+<script>
+$(window).load(function(){
+	$("#pageLoading").hide();
+	$("#order").show();
+});
+</script>
+</body>
+</html>

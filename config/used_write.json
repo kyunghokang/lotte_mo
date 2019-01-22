@@ -1,0 +1,71 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplusedWrite" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/mall/used_write_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/used_write.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsusedWrite" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+                    "lotte/lib/jquery/load-image.all.min.js",
+                    "lotte/lib/jquery/ng-pinch-zoom.js",
+					"lotte/resources_dev/mall/used_write.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/used_write.js"
+			}
+		},
+
+		"uglify" : {
+			"jsusedWrite" : {
+				"src" : "lotte/resources/<%= version %>/used_write.js",
+				"dest" : "lotte/resources/<%= version %>/used_write.min.js"
+			},
+			"tplusedWrite" : {
+				"src" : "lotte/resources/<%= version %>/used_write.template.js",
+				"dest" : "lotte/resources/<%= version %>/used_write.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssusedWrite" : {
+				"src" : [
+					"lotte/resources_dev/mall/used_write.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/used_write.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanusedWrite" : [
+				"lotte/resources/<%= version %>/used_write.js",
+				"lotte/resources/<%= version %>/used_write.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlusedWrite" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"mall/used_write.html" : "mall/used_write_dev.html"
+				}
+			}
+		}
+	}
+}
+

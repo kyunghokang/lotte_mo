@@ -1,0 +1,120 @@
+<ul class="product_list_01">
+	<!-- 롯데닷컴 위시리스트 -->
+	<li ng-repeat="product in loadedProductList track by $index">
+		<!-- UI 디버깅용 -->
+		<div ng-if="isWishDebug">
+			<p>goodsNo : {{product.goodsNo}}</p>
+			<p>브랜드명 : {{product.brand}}</p>
+			<p>dispNo : {{product.dispNo}}</p>
+			<p>resultCd : {{product.resultCd}}</p>
+			<p>saleStatCd : {{product.saleStatCd}}</p>
+			<p>옵션상품(item_mgmt_yn) : {{product.item_mgmt_yn}}</p>
+			<p>기획전형상품(is_sale_promotion) : {{product.is_sale_promotion}}</p>
+			<p>스마트픽찾기가능여부(smp_psb_yn) : {{product.smp_psb_yn}}</p>
+			<p>스마트픽찾기만가능여부(smp_only_yn) : {{product.smp_only_yn}}</p>
+			<p>배송방법 0:택배, 1:스마트픽, 2:퀵배송(is_checked_ship) : {{product.is_checked_ship}}</p>
+			<p>쿠폰포함여부 : {{product.has_coupon}}</p>
+			<p>최소가능수량 : {{product.min_lmt_qty}}</p>
+			<p>최대가능수량 : {{product.max_lmt_qty}}</p>
+			<p>구매수량제한여부 : {{product.pur_qty_lmt_yn}}</p>
+			<p style="color:{{isNeededOption(product) ? 'red' : 'blue'}};">옵션상품이필요한상품인지 : {{isNeededOption(product)}}</p>
+		</div>
+
+		<div class="group">
+			<div class="chk"><!-- {{$index + 1}} --><input type="checkbox" title="선택" class="check01" ng-checked="product.is_checked" ng-click="changeEachCheckbox($index)"></div>
+			<a href="javascript:void(0);" ng-click="goGoodsDetail(product, false, 'goods')"></a>
+			<span class="thumb">
+				<img ng-src="{{product.imgUrl}}" alt="{{product.dispGoodsNm}}" err-src />
+			</span>
+			<span class="cont01">
+				<p class="status_list">
+					<span class="brand" ng-if="isShowEllotteBrandNm(product)">{{product.brand}}</span>
+					<span ng-if="product.cpcg_dlv_yn == 'Y'" class="flag run_fish">런닝피쉬</span>
+					<span class="flag {{flag.class}}" ng-repeat="flag in product.mall_flags">{{flag.name}}</span>
+				</p>
+				<p class="tl">{{getFormattedGoodsNm(product)}}</p>
+				<div class="money_coupon">
+					<p class="money">
+						<span class="price"><strong>{{getPriceInfo(product).discounted | number:0}}</strong>원<span ng-if="product.is_sale_promotion"> ~</span></span>
+						<del class="small" ng-if="getPriceInfo(product).original">{{getPriceInfo(product).original | number:0}}원</del>
+					</p>
+
+					<p class="coupon">
+						<span class="percent" ng-if="getPriceInfo(product).sale_rate">{{getPriceInfo(product).sale_rate}}<em>%</em></span>
+						<span class="tx" ng-if="product.has_coupon && getPriceInfo(product).sale_rate">쿠폰포함</span>
+					</p>
+				</div>
+
+				<span ng-init="product.is_checked_ship = 1" ng-if="'Y' == product.smp_psb_yn && 'Y' == product.smp_only_yn">스마트픽 찾기</span>
+				<div class="delivery" ng-init="product.is_checked_ship = 0" ng-if="'Y' == product.smp_psb_yn || ('Y' == product.smp_psb_yn && product.quick_psb_yn == 'Y')">
+					<span ng-if="product.smp_only_yn != 'Y'"><input type="radio" id="{{'deli_type'+$index+'_1'}}" name="delivery_ck_{{product.goodsNo}}" class="radio01" ng-model="product.is_checked_ship" ng-value="0" /><label for="{{'deli_type'+$index+'_1'}}"> 택배</label></span>
+					<span ng-if="product.quick_psb_yn == 'Y' && product.goodsCmpsCd != '30'" ng-click="artQuick(product,$index)"><input type="radio" id="{{'deli_type'+$index+'_2'}}" name="delivery_ck_{{product.goodsNo}}" class="radio01" ng-model="product.is_checked_ship" ng-value="2" ng-disabled="!product.isQuickPrd || !quickDay" /><label for="{{'deli_type'+$index+'_2'}}"> 퀵배송</label><a ng-click="quickPopClk()" class="ic_question">퀵 배송 안내</a></span>
+					<span><input type="radio" id="{{'deli_type'+$index+'_3'}}" name="delivery_ck_{{product.goodsNo}}" class="radio01" ng-model="product.is_checked_ship" ng-value="1" /><label for="{{'deli_type'+$index+'_3'}}"> 스마트픽</label></span>
+				</div>
+			</span>
+		</div>
+		<div class="btn_list">
+			<span class="l_area"><a href="javascript:void(0);" ng-click="deleteOneProduct($index, product.seq)"  class="btn_del">삭제</a></span>
+			<span ng-if="!(product.ec_goods_artc_cd == '30' || product.ec_goods_artc_cd == '31')" class="r_area">
+				<a href="javascript:void(0);" ng-click="addCart($index)"class="btn_style2">장바구니</a>
+				<a href="javascript:void(0);" ng-click="goOrder($index)" class="btn_style3">바로구매</a>
+			</span>
+			<span ng-if="product.ec_goods_artc_cd == '30' || product.ec_goods_artc_cd == '31'" class="r_area">
+				<a ng-click="goGoodsDetail(product, false, 'goods')"class="btn_style4">상세보기</a>
+			</span>
+		</div>
+	</li>
+
+	<!-- 롯데슈퍼 위시리스트 -->
+	<li ng-repeat="product in superWishListInfo.showWishList track by $index">
+		<!-- UI 디버깅용 -->
+		<div ng-if="isWishDebug">
+			<p>성인상품여부 : {{product.ADULT_GOODS_YN}}</p>
+			<p>상품명 : {{product.GOODS_NM}}</p>
+			<p>상품번호 : {{product.GOODS_NO}}</p>
+			<p>정상가 : {{product.NORM_PRC}}</p>
+			<p>옵션상품구분코드 : {{product.OPT_GOODS_SCT_CD}}</p>
+			<p>주문최대수량 : {{product.ORD_PSB_MAX_QRY}}</p>
+			<p>주문최소수량 : {{product.ORD_PSB_MIN_QRY}}</p>
+			<p>정기배송최대혜택가격 : {{product.RGLR_DLV_PRC}}</p>
+			<p>판매가 : {{product.SALE_PRC}}</p>
+			<p>판매단위 : {{product.SALE_UNIT_VAL}}</p>
+			<p>품절여부 : {{product.STOCKOUT}}</p>
+			<p>상품이미지 경로 : {{product.PRODIMG_PATH}}</p>
+		</div>
+
+		<div class="group">
+			<div class="chk"><!-- s{{$index + 1}} --><input type="checkbox" title="선택" class="check01" ng-checked="product.is_checked" ng-click="chkSuperWish($index)"></div>
+			<a href="javascript:void(0);" ng-click="goSuperProd(product.GOODS_NO)"></a>
+			<span class="thumb">
+				<img ng-src="{{product.PRODIMG_PATH}}" alt="" err-src />
+			</span>
+			<span class="cont01">
+				<p class="status_list">
+					<span class="brand"></span>
+					<span class="flag super">롯데프레시</span>
+					<span class="flag dlv" ng-if="product.DLVTP_GOODS">{{getDecodeUri(product.DLVTP_GOODS)}}</span>
+					<span class="flag smart" ng-if="product.SMARTPICKYN == 'Y'">스마트픽</span>
+				</p>
+				<p class="tl">{{getDecodeUri(product.GOODS_NM)}}</p>
+				<div class="money_coupon">
+					<p class="money">
+						<span class="price"><strong>{{product.SALE_PRC | number:0}}</strong>원<span ng-if="product.is_sale_promotion"></span></span>
+						<del class="small" ng-if="product.NORM_PRC && product.NORM_PRC > product.SALE_PRC">{{product.NORM_PRC | number:0}}원</del>
+					</p>
+
+					<p class="coupon">
+						<span class="percent" ng-if="getSuperSaleRate(product) >= 5">{{getSuperSaleRate(product)}}<em>%</em></span>
+					</p>
+				</div>
+			</span>
+		</div>
+		<div class="btn_list">
+			<span class="l_area"><a href="javascript:void(0);" ng-click="delSuperWish(product.seq)"  class="btn_del">삭제</a></span>
+			<span class="r_area">
+				<a href="javascript:void(0);" ng-click="superWishCartOrder(product, 'N')" class="btn_style2">장바구니</a>
+				<a href="javascript:void(0);" ng-click="superWishCartOrder(product, 'Y')" class="btn_style3">바로구매</a>
+			</span>
+		</div>
+	</li>
+</ul>

@@ -1,0 +1,171 @@
+<section ng-show="contVisible" class="cont_minheight">
+	<section id="evt_purchase" ng-show="!isShowLoadingImage">
+	<!-- event purchase apply -->
+	    <div class="purchaseApplyWrap" ng-if="eventInfo.evtNo">
+	        
+	        <!-- image banner -->
+	        <img class="banner" ng-src="{{eventInfo.evtDtlImg1PathNm}}{{eventInfo.evtDtlImg1FileNm}}" ng-alt="{{eventInfo.evtDtlImg1FileNm}}">
+	        <!-- //image banner -->
+	        
+	        <!-- purchase period -->
+	        <div class="periodWrap">
+	            <ul class="period">
+	                 <li>
+	                    <span>구매기간</span>
+	                    <span>{{eventInfo.purStrtDtime}}~{{eventInfo.purEndDtime}}</span>
+	                </li>
+	                <li>
+	                    <span>신청기간</span>
+	                    <span>{{eventInfo.sbscSgtStrtDtime | strToDate2}}~{{eventInfo.sbscSgtEndDtime | strToDate2}}</span>
+	                </li>
+	                <li>
+	                    <span>지급예정</span>
+	                    <span>{{eventInfo.tm1sPayDt | strToDate}} 18시 이후</span>
+	                </li>
+	                <li class="desc">
+	                    <span>참여대상</span>
+	                    <span><span ng-show="eventInfo.gftSgtPayTpCd">{{eventInfo.evtCrcmNm}} {{eventInfo.gftSgtPayTpNm}} </span>{{eventInfo.gftSgtSumStdNm}}기준 <span>{{eventInfo.fvrPolcStrtAmt | number}}</span>원 이상 구매</span>
+	                </li>
+	 			    <span ng-if="eventInfo.eventStatus == 003" class="lb_status">신청진행중</span>
+			        <span ng-if="eventInfo.eventStatus == 005" class="lb_status">지급준비중</span>
+			        <span ng-if="eventInfo.eventStatus == 007" class="lb_status">지급완료</span>
+			        <!-- <span ng-if="eventInfo.eventStatus == 008" class="lb_status">마감</span> -->
+	            </ul>
+	        </div>
+	        <!-- //purchase period -->
+	        
+	        <!-- desc title -->
+	        <div class="desc_tlt">
+	            <span class="txt">나의 대상 금액 및 혜택</span>
+	            <a ng-click="myListClick(eventInfo.evtNo)" class="btn_single">자세히 보기</a>
+	        </div>
+	        <!-- //desc title -->
+			<my-eventlist ng-if="myEventViewFlag"></my-eventlist>
+	        <!-- apply range -->
+	        <div class="price_range" ng-if="loginInfo.isLogin">
+	            <ul>
+	                <li>
+	                    <p class="tlt">총 행사 대상 금액</p>
+	                    <p class="price"><span>{{eventInfo.totalAmount | number}}</span><span class="unit">원</span></p>
+	                </li>
+	                <li>
+	                    <p class="tlt">예상 총 {{evtFvrTpTitle(eventInfo.evtFvrTpCd)}}</p>
+	                    <p class="price" ng-class="{two:eventInfo.evtFvrTpCd == '99' && eventInfo.etcGoodNm.length>17}">
+	                    <span ng-if="eventInfo.evtFvrTpCd == '99' && eventInfo.etcGoodNm == ''">-</span>
+	                    <span>{{evtFvrTpValue(eventInfo.evtFvrTpCd)}}</span><span class="unit" ng-if="eventInfo.evtFvrTpCd == '10' || eventInfo.evtFvrTpCd == '20'">점</span></p>
+	                </li>
+	            </ul>	            
+		        <div ng-if="eventInfo.areadyEnter == false">
+					<span>
+						<a ng-click="joinEventClick(eventInfo.evtNo)" ng-if="eventInfo.eventStatus == '003' || eventInfo.eventStatus == '002'" class="btn_l point">{{joinEvetClickTitle}}</a>
+					</span>
+					
+				</div>
+				
+				<div ng-if="eventInfo.areadyEnter == true">		        
+			        <span ng-if="eventInfo.eventStatus == 005" class="btn_l point">지급준비중</span>
+			        <span ng-if="eventInfo.eventStatus == 007" class="btn_l point">지급완료</span>
+					<span>
+						<a ng-click="joinEventEndClick()" ng-if="eventInfo.eventStatus == '003' || eventInfo.eventStatus == '002'" class="btn_l point">신청완료</a>
+					</span>
+				</div>
+				
+				<p class="noti">※기간 내 이벤트 미신청 고객님은 지급 대상에서 제외됩니다.※</p>
+	            <p ng-if="eventInfo.inAreadyEnter == 'Y'">※ 대상금액 및 사은품은 결제완료 기준으로 안내되며 사은품 지급시 발송완료 주금금액에 한해 지급됩니다. 주문취소/반품/결제수단 변경 시 지급 사은품은 변경될 수 있습니다.</p>
+	            <!--지급준비중,지급완료 문구및 설명은 디자인컨펌 후, 추가 될 예정입니다.-->
+	        </div>
+	        <div class="price_range" ng-if="!loginInfo.isLogin">
+	            <ul>
+	                <li>
+	                    <p class="tlt">총 행사 대상 금액</p>
+	                    <p class="price">?</p>
+	                </li>
+	                <li>
+	                    <p class="tlt">예상 총 {{evtFvrTpTitle(eventInfo.evtFvrTpCd)}} </p>
+	                    <p class="price">?</p>
+	                </li>
+	            </ul>
+	            <a ng-click="goLoginClick()" class="btn_l point">로그인</a><!--로그인 일경우 "로그인" 문구만 넣어주시면 됩니다-->
+	            <!--지급준비중,지급완료 문구및 설명은 디자인컨펌 후, 추가 될 예정입니다.-->
+	        </div>
+	        <!-- //apply range -->
+	        
+	        <!-- info table -->
+	        <div class="tblInfoWrap">
+	            <table class="tbl_info">
+	                <tbody>
+	                    <tr>
+	                        <th><span>결제금액</span></th>
+	                        <th><span>혜택</span></th>
+	                    </tr>						
+	                    <tr ng-repeat="items in eventInfoList">
+	                        <td>{{items.fvrPolcStrt | number}}원 이상</td>
+	                        <td>{{items.fvrNm}}</td>
+	                    </tr>						
+	                </tbody>
+	            </table>
+	        </div>
+	        <!-- //info table -->
+	        
+	        <div class="infoWrap">
+	            <p ng-bind-html="eventInfo.mobileDesc"></p>
+	        </div>
+	        
+	         <!-- desc title -->
+	        <div class="desc_tlt">
+	            <span class="txt">행사대상상품보기</span>
+	        </div>
+	        <!-- //desc title -->
+	        
+	        <!--info-->
+	        <div class="infoWrap">
+	            <div class="noti">
+	                <p class="tlt">※ 행사 대상상품</p>
+	                <p class="info" ng-bind-html="eventInfo.giftFcont2">
+	                </p>
+	            </div>
+				<!-- 20160629 행사
+	            <div class="noti">
+	                <p class="tlt">※ 행사 제외상품</p>
+	                <p class="info">
+	                    백화점, 하이마트 (행사품목을 제외한 일부상품) 상품 및 복지몰, 판촉몰, 제휴몰, B2E몰, 카드몰, 법인몰 상품 및 경유 결제시 제외
+	                </p>
+	            </div>
+				제외상품 -->
+	        </div>
+	        <div class="infoWrap">
+	            <ul class="bullet_list gray">
+	                
+	                <li>구매기간 중 주문/결제를 완료하셔야 대상 금액에 포함됩니다.</li>
+	                <li>고객님께서 구매하신 상품이 대상 품목에 포함되는지 여부는 위의
+	                ‘나의 대상금액’ 우측 [자세히보기] 에서 확인하실 수 있습니다.</li>
+	                <li>고객님의 주문내역 중 배송비 결제액 등 일부 상품은 행사 대상 금
+	                액 에서 제외됩니다.</li>
+	                <li>구매사은 신청은 1회 신청시 자동 참여되며, 최종 누적금액으로 혜
+	                택이 지급됩니다.  (단, 주문취소/반품/결제수단 변경시 최종 누적
+	                금액에 포함되지 않습니다.)</li>
+	                <li>포인트 신청 대상금액은 결제완료 기준으로 표기되며, 포인트 지급
+	                시 발송완료 주문 금액에 한하여 해당 포인트 금액이 지급일 18시
+	                이후에 지급됩니다.</li>
+	                <li>포인트 적립 이후 주문취소/반품/결제 수단 변경 시 지급된 포인트
+	                는 회수됩니다.</li>
+	                <li>본 행사는 바로 방문을 통한 구매내역에 한해 제공됩니다. 바로 방
+	                문시 화면 하단 우측에 [바로 방문 ON] 으로 표시되어 있습니다.</li>
+	                <li>바로 방문은 앱 또는 모바일웹, 인터넷을 통한 주문만 해당되며, 제
+	                휴 사이트 등을 통하여 결제 시 대상에서 제외되오니 이 점 양지해 
+	                주시기 바랍니다.</li>
+	                <li>본 행사는 포인트 예산 소진시 조기 종료 될 수 있습니다.</li>
+	                <li>배송 지연, 미발송 등에 의한 포인트 미지급 금액은 물품을 받으신
+	                후 당사 고객센터 (1577-1110)로 연락 주시면 정상 지급해 드립니다.</li>
+	            </ul>
+	        </div>
+	        <!-- //info-->
+		</div>
+		<!-- s: 구매사은 이벤트신청 내역이 없을 경우-->
+			<p ng-if="!eventInfo.evtNo" class="nodata" style="display:none;" ng-class="{ngShow:eventInfo.evtNo && !eventInfoLoading}">진행중인 구매사은 이벤트가 없습니다.</p>
+	</section>
+	<div class="listLoading" ng-show="isShowLoadingImage" style="height:300px">
+    	<p class="noData"><p class="loading half"></p></p>
+    </div>
+	<!-- e: 구매사은 이벤트신청 내역이 없을 경우-->
+</section>

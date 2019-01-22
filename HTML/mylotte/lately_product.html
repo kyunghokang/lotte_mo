@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">	
+<!----------------- current css ----------------->
+
+<link rel="stylesheet" href="/lotte/resources_dev/unit/unit_list.css">	
+<link rel="stylesheet" href="/lotte/resources_dev/product/m/lately_product.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<!-- container -->
+<section id="container">
+	
+	<!-- lately_product -->
+	
+	<section class="mylotte" id="wishListView">
+		<!-- 위시리스트 header -->
+		<section class="wish_header">
+			<span>총 1건</span>
+			<div class="btn_list">
+				<a href="#" name="selectAll" class="btn_style1 check_all_del">전체삭제</a>
+			</div>
+		</section>
+		<!--// 위시리스트 header -->
+
+		<!-- 최근 본 상품 -->
+		<section class="lately_list" id="lately_list">
+			<ul class="product_list_01">
+				<li product-list01>
+					<div class="group">
+						<span class="thumb02">
+							<a href="#"><img src="/images/lotte2015/temp/img_prd_01.jpg" alt="" /></a>
+						</span>
+						<span class="cont01">
+							<p class="flag">
+								<span class="flag depart">롯데백화점</span>
+								<span class="flag etv">롯데홈쇼핑</span>
+								<span class="flag smart">스마트픽</span>
+								<span class="flag free">무료배송</span>
+							</p>
+							<a href="#">
+								<p class="tl">[쿠기] 여기서만 골라도 여신~ 블라우스/원피스/스커트</p>
+							</a>
+							<div class="money_coupon">
+								<p class="money">
+									<span class="price"><strong>35,460</strong></span>
+									<del class="small">39,400원</del>
+								</p>
+								<p class="coupon">
+									<span class="percent">25%</span>
+									<span class="tx">쿠폰포함</span>
+								</p>
+							</div>
+						</span>
+						<!-- detail -->
+						<p class="detail"><a href="#">남들은 뭘 봤지?</a></p>
+						<div class="detail_view">
+							<div id="touchSlider1" class="touchSlider">
+								<ul>
+									<li>
+										<a href="#">
+											<span class="thumb03"><img src="/images/lotte2015/temp/img_prd_03.jpg" alt=""></span>
+											<p>[미소페] 수입화 최신 유행 클리퍼더비 슈즈</p>
+											<span class="price">115,200원</span>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<span class="thumb03"><img src="/images/lotte2015/temp/img_prd_02.jpg" alt=""></span>
+											<p>[소다] 프로모션 상품 비지니스 캐쥬얼</p>
+											<span class="price">153,720원</span>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<span class="thumb03"><img src="/images/lotte2015/temp/img_prd_01.jpg" alt=""></span>
+											<p>[소다] MD추천 프로모션 상품</p>
+											<span class="price">112,500원</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<ol id="touchSlider1_paging" class="bullet" style="text-align:center;">
+								<li ng-repeat="item in swipeBullet" ng-class="{on:$index==swipeIdx}">{{$index}}</li>
+								<li class="btn_page">page2</li>
+								<li class="btn_page">page3</li>
+								<li class="btn_page">page4</li>
+							</ol>
+						</div>
+						<!-- // detail -->
+					</div>
+				</li>
+				<li product-list01>
+					<div class="group on">
+						<span class="thumb02">
+							<a href="#"><img src="/images/lotte2015/temp/img_prd_02.jpg" alt="" /></a>
+						</span>
+						<span class="cont01">
+							<a href="#">
+								<p class="tl">[쿠기] 여기서만 골라도 여신~ 블라우스/원피스/스커트</p>
+							</a>
+							<div class="money_coupon">
+								<p class="money">
+									<span class="price"><strong>35,460</strong></span>
+								</p>
+								<p class="coupon">
+									<span class="percent">25%</span>
+								</p>
+							</div>
+						</span>
+						<!-- detail -->
+						<p class="detail"><a href="#">남들은 뭘 봤지?</a></p>
+						<div class="detail_view">
+							<div id="touchSlider2" class="touchSlider">
+								<ul>
+									<li>
+										<a href="#">
+											<span class="thumb03"><img src="/images/lotte2015/temp/img_prd_02.jpg" alt=""></span>
+											<p>[소다] 프로모션 상품 비지니스 캐쥬얼</p>
+											<span class="price">153,720원</span>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<span class="thumb03"><img src="/images/lotte2015/temp/img_prd_01.jpg" alt=""></span>
+											<p>[소다] MD추천 프로모션 상품</p>
+											<span class="price">112,500원</span>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<span class="thumb03"><img src="/images/lotte2015/temp/img_prd_03.jpg" alt=""></span>
+											<p>[미소페] 수입화 최신 유행 클리퍼더비 슈즈</p>
+											<span class="price">115,200원</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<ol id="touchSlider1_paging" class="bullet" style="text-align:center;">
+								<li class="btn_page on">page1</li>
+								<li class="btn_page">page2</li>
+								<li class="btn_page">page3</li>
+								<li class="btn_page">page4</li>
+							</ol>
+						</div>
+						<!-- // detail -->
+					</div>
+				</li>
+				<li product-list01>
+					<div class="group">
+						<span class="thumb02">
+							<a href="#"><img src="/images/lotte2015/temp/img_prd_03.jpg" alt="" /></a>
+						</span>
+						<span class="cont01">
+							<a href="#">
+								<p class="tl">[쿠기] 여기서만 골라도 여신~ 블라우스/원피스/스커트</p>
+							</a>
+							<div class="money_coupon">
+								<p class="money">
+									<span class="price"><strong>35,460</strong></span>
+									<del class="small">39,400원</del>
+								</p>
+							</div>
+						</span>
+						<!-- detail -->
+						<p class="detail"><a href="#">남들은 뭘 봤지?</a></p>
+						<div class="detail_view">
+							<div id="touchSlider3" class="touchSlider">
+								<ul>
+									<li>
+										<a href="#">
+											<span class="thumb03"><img src="/images/lotte2015/temp/img_prd_01.jpg" alt=""></span>
+											<p>[소다] MD추천 프로모션 상품</p>
+											<span class="price">112,500원</span>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<span class="thumb03"><img src="/images/lotte2015/temp/img_prd_02.jpg" alt=""></span>
+											<p>[소다] 프로모션 상품 비지니스 캐쥬얼</p>
+											<span class="price">153,720원</span>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<span class="thumb03"><img src="/images/lotte2015/temp/img_prd_03.jpg" alt=""></span>
+											<p>[미소페] 수입화 최신 유행 클리퍼더비 슈즈</p>
+											<span class="price">115,200원</span>
+										</a>
+									</li>
+								</ul>
+							</div>							
+							<ol id="touchSlider1_paging" class="bullet" style="text-align:center;">
+								<li class="btn_page on">page1</li>
+								<li class="btn_page">page2</li>
+								<li class="btn_page">page3</li>
+								<li class="btn_page">page4</li>
+							</ol>
+						</div>
+						<!-- // detail -->
+					</div>
+				</li>
+			</ul>
+		</section>		
+		<!-- // 최근 본 상품 -->
+
+	</section>
+	
+
+</section>
+<!-- //container -->
+
+<!-- footer -->
+<section ng-include src="'/HTML/include/footer.html'"></section>
+
+</body>
+</html>

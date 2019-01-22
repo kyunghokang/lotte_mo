@@ -1,0 +1,152 @@
+<div template-trend class="cont_wrap template_trend padding">
+	<!-- 최상단 띠배너 -->
+	<section ng-if="screenData.top_banner_list[0]" class="top_banner_list">
+		<ul>
+			<li><a ng-click="linkUrl(screenData.top_banner_list[0].img_link, screenData.top_banner_list[0].mov_frme_cd, 'm_menu_{{mainTemplateType}}_rewardevent')"><img ng-src="{{screenData.top_banner_list[0].img_url}}" alt="{{screenData.top_banner_list[0].banner_nm}}" /></a></li>
+
+			<!-- 640 이상일때만 나오는 출석 도장 이벤트 -->
+			<li ng-if="winWidth >= 640"><a ng-click="linkUrl(eventLinkObj.eventAttendUrl, false, 'm_menu_{{mainTemplateType}}_tabletbanner')"><img src="http://image.lotte.com/lotte/mo2015/angular/banner_201507_attend.png" alt="출석도짱" /></a></li>
+		</ul>
+	</section>
+
+	<!-- 상단 스와이프 배너 : first_banner_list -->
+	<section ng-if="screenData.first_banner_list && screenData.first_banner_list.length > 0" 
+		ng-controller="lotteNgSwipeCtrl" class="top_swipe_wrap">
+		<div class="swipe_wrap">
+			<ul lotte-ng-list-swipe
+				swipe-id="TrendFirstBanner"
+				swipe-list-model="screenData.first_banner_list"
+				swipe-slide-item="true"
+				swipe-max-ratio="0.2"
+				swipe-min-distance="40"
+				swipe-responsive="true"
+				swipe-responsive320="1"
+				swipe-responsive640="2"
+				swipe-responsive900="2">
+				<li ng-repeat="item in screenData.first_banner_list" ng-if="$index < 5">
+					<a ng-click="linkUrl(item.img_link, item.mov_frme_cd, 'm_menu_{{mainTemplateType}}_swipe' +($index + 1))">
+						<div class="img_wrap">
+							<img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}" />
+							<span ng-if="item.is_dept" class="flag dept">롯데백화점</span>
+							<span ng-if="!item.is_dept &&item.is_tvhome" class="flag tvhome">롯데홈쇼핑</span>
+						</div>
+						<div class="desc_wrap">
+							<p class="bnr_nm">{{item.banner_nm}}</p>
+							<p class="bnr_note">{{item.note_cont}}</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<button class="btn_prev" ng-show="swipeIdx != 0" ng-click="beforeSlide()">이전</button>
+			<button class="btn_next" ng-show="swipeIdx != screenData.first_banner_list.length - 1" ng-click="nextSlide()">다음</button>
+		</div>
+		<ul ng-if="screenData.first_banner_list && screenData.first_banner_list.length > 1" class="indicator">
+			<li ng-repeat="item in screenData.first_banner_list" ng-if="$index < 5" ng-class="{on: swipeIdx == $index}"><span>{{$index}}</span></li>
+		</ul>
+	</section>
+
+	<!-- 배너 1, 상품 3 영역 : mid_banner_list (최대2개) 
+	<section ng-if="screenData.mid_banner_list && screenData.mid_banner_list.length > 0" class="mid_banner_list">
+		<ul>
+			<li ng-repeat="item in screenData.mid_banner_list" ng-if="$index < 2">
+				<a ng-click="linkUrl(item.img_link, item.mov_frme_cd, 'm_menu_{{mainTemplateType}}_surprise' + ($index + 1))">
+					<div class="img_wrap">
+						<img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}" />
+						<span ng-if="item.is_dept" class="flag dept">롯데백화점</span>
+						<span ng-if="!item.is_dept &&item.is_tvhome" class="flag tvhome">롯데홈쇼핑</span>
+					</div>
+				</a>
+				<ul class="prd_thumb_lst">
+					<li><a ng-click="linkUrl(item.img_link, item.mov_frme_cd, 'm_menu_{{mainTemplateType}}_surprise' + ($index + 1), {recent_goods_no: {{item.goods_no_1}}})"><img ng-src="{{item.goods_img_1}}" alt="{{item.banner_nm}}" /></a></li>
+					<li><a ng-click="linkUrl(item.img_link, item.mov_frme_cd, 'm_menu_{{mainTemplateType}}_surprise' + ($index + 1), {recent_goods_no: {{item.goods_no_2}}})"><img ng-src="{{item.goods_img_2}}" alt="{{item.banner_nm}}" /></a></li>
+					<li><a ng-click="linkUrl(item.img_link, item.mov_frme_cd, 'm_menu_{{mainTemplateType}}_surprise' + ($index + 1), {recent_goods_no: {{item.goods_no_3}}})"><img ng-src="{{item.goods_img_3}}" alt="{{item.banner_nm}}" /></a></li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+	-->
+	
+	<!-- 배너 1, 상품 3 영역 : mid_banner_list (최대2개) -->
+	<!--20160119 서프라이즈 배너 개선 new0119-->
+	<section ng-if="screenData.mid_banner_list && screenData.mid_banner_list.length > 0" class="mid_banner_list new0119">
+		<ul>
+			<li ng-repeat="item in screenData.mid_banner_list" ng-if="$index < 2">
+				<a ng-click="linkUrl(item.img_link, item.mov_frme_cd, 'm_menu_{{mainTemplateType}}_surprise' + ($index + 1))">
+				    <div class="brandName">
+				        <p><span>{{item.banner_nm}}</span>{{item.note_cont}}</p>
+				    </div>
+					<div class="img_wrap">
+						<img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}" />
+						<span ng-if="item.is_dept" class="flag dept">롯데백화점</span>
+						<span ng-if="!item.is_dept &&item.is_tvhome" class="flag tvhome">롯데홈쇼핑</span>
+					</div>
+				</a>
+				<ul class="prd_thumb_lst">
+					<li><a ng-click="linkUrl(item.img_link, item.mov_frme_cd, 'm_menu_{{mainTemplateType}}_surprise' + ($index + 1), {recent_goods_no: {{item.goods_no_1}}})"><img ng-src="{{item.goods_img_1}}" alt="{{item.banner_nm}}" /></a></li>
+					<li><a ng-click="linkUrl(item.img_link, item.mov_frme_cd, 'm_menu_{{mainTemplateType}}_surprise' + ($index + 1), {recent_goods_no: {{item.goods_no_2}}})"><img ng-src="{{item.goods_img_2}}" alt="{{item.banner_nm}}" /></a></li>
+					<li><a ng-click="linkUrl(item.img_link, item.mov_frme_cd, 'm_menu_{{mainTemplateType}}_surprise' + ($index + 1), {recent_goods_no: {{item.goods_no_3}}})"><img ng-src="{{item.goods_img_3}}" alt="{{item.banner_nm}}" /></a></li>
+				</ul>
+			</li>
+		</ul>
+	</section>	
+	
+	<!-- brand_top_banner (최대 10개) -->
+	<section ng-if="screenData.brand_top_banner && screenData.brand_top_banner.length > 0" class="brand_top_banner">
+		<ul>
+			<li ng-repeat="item in screenData.brand_top_banner" ng-if="$index < 10 && 
+				(winWidth < 640 ||
+				(
+				    (winWidth >= 640 && winWidth < 900 && screenData.brand_top_banner.length - 1 != $index) ||
+				    (winWidth >= 640 && winWidth < 900 && screenData.brand_top_banner.length - 1 == $index && $index % 2 == 1) ||
+				    (winWidth >= 900 && screenData.brand_top_banner.length - 2 > $index) || 
+				    (winWidth >= 900 && screenData.brand_top_banner.length - 2 == $index &&  $index % 3 > 0) ||
+				    (winWidth >= 900 && screenData.brand_top_banner.length - 1 == $index &&  $index % 3 == 2)
+				)
+				)">
+				<a ng-click="linkUrl(item.img_link, item.mov_frme_cd, 'm_menu_{{mainTemplateType}}_unit' + ($index + 1))">
+					<div class="img_wrap">
+						<img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}" />
+						<span ng-if="item.is_dept" class="flag dept">롯데백화점</span>
+						<span ng-if="!item.is_dept &&item.is_tvhome" class="flag tvhome">롯데홈쇼핑</span>
+					</div>
+					<div class="desc_wrap">{{item.banner_nm}}</div>
+				</a>
+			</li>
+		</ul>
+	</section>
+
+	<!-- small_banner_list -->
+	<section ng-if="screenData.small_banner_list && screenData.small_banner_list.length > 0" class="small_banner_list">
+		<h3 ng-if="screenData.small_banner_title">{{screenData.small_banner_title}}</h3>
+		<ul>
+			<li ng-repeat="item in screenData.small_banner_list" ng-if="$index < 4">
+				<a ng-click="linkUrl(item.img_link, item.mov_frme_cd, 'm_menu_{{mainTemplateType}}_theme' + ($index + 1))">
+					<div class="img_wrap">
+						<img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}" />
+						<span ng-if="item.is_dept" class="flag dept">롯데백화점</span>
+						<span ng-if="!item.is_dept &&item.is_tvhome" class="flag tvhome">롯데홈쇼핑</span>
+					</div>
+					<div class="desc_wrap">
+						<span class="txt title">{{item.banner_nm}}</span>
+						<span class="txt">{{item.note_cont}}</span>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</section>
+
+	<!-- brand_banner_list -->
+	<div product-container
+		template-type="planshop"
+		templatetype="templateType"
+		products="screenData.brand_banner_list"
+		more-product-continer="getProductData()"
+		tclick="m_menu_{{mainTemplateType}}_unit"
+		tclick-start-idx="11"
+		class="brand_banner_list"></div>
+
+	<!-- Product Load Loading -->
+	<div class="listLoading" ng-if="productListLoading && !pageLoading">
+		<p class="loading half"></p>
+	</div>
+</div>

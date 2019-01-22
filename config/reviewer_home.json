@@ -1,0 +1,69 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplReviewerHome" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/product/m/reviewer_home_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/reviewer_home.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsReviewerHome" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/common/lotte_video.js",
+					"lotte/resources_dev/product/m/reviewer_home.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/reviewer_home.js"
+			}
+		},
+
+		"uglify" : {
+			"jsReviewerHome" : {
+				"src" : "lotte/resources/<%= version %>/reviewer_home.js",
+				"dest" : "lotte/resources/<%= version %>/reviewer_home.min.js"
+			},
+			"tplReviewerHome" : {
+				"src" : "lotte/resources/<%= version %>/reviewer_home.template.js",
+				"dest" : "lotte/resources/<%= version %>/reviewer_home.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssReviewerHome" : {
+				"src" : [
+					"lotte/resources_dev/product/m/reviewer_home.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/reviewer_home.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanReviewerHome" : [
+				"lotte/resources/<%= version %>/reviewer_home.js",
+				"lotte/resources/<%= version %>/reviewer_home.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlReviewerHome" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"product/m/reviewer_home.html" : "product/m/reviewer_home_dev.html"
+				}
+			}
+		}
+	}
+}

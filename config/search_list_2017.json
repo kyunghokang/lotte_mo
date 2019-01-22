@@ -1,0 +1,75 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplSearchList2017" : {
+				"options": {
+					"prefix":"/",
+					"module" : "app"
+				},
+				"src" : [
+					"lotte/resources_dev/layer/layer_coupon.html",
+					"lotte/resources_dev/layer/main_popup.html",
+					"lotte/resources_dev/layer/app_down_bnr.html",
+					"lotte/resources_dev/search/search_list_2017_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/search_list_2017.template.js"
+			}
+		},
+		"concat" : {
+			"jsSearchList2017" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/search/search_list_2017.js",
+					"lotte/resources_dev/layer/main_popup.js",
+					"lotte/resources_dev/layer/lotte_coupon_layer.js",
+					"lotte/resources_dev/common/lotte_swipe.js",
+					"lotte/resources_dev/common/lotte_slider.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/search_list_2017.js"
+			}
+		},
+		"uglify" : {
+			"jsSearchList2017" : {
+				"src" : "lotte/resources/<%= version %>/search_list_2017.js",
+				"dest" : "lotte/resources/<%= version %>/search_list.min.js",
+				"_dest" : "lotte/resources/<%= version %>/search_list_2017.min.js"
+			},
+			"tplSearchList2017" : {
+				"src" : "lotte/resources/<%= version %>/search_list_2017.template.js",
+				"dest" : "lotte/resources/<%= version %>/search_list.tpl.js",
+				"_dest" : "lotte/resources/<%= version %>/search_list_2017.tpl.js"
+			}
+		},
+		"cssmin" : {
+			"cssSearchList2017" : {
+				"src" : [
+					"lotte/resources_dev/layer/coupon_layer.css",
+					"lotte/resources_dev/layer/main_popup.css",
+					"lotte/resources_dev/search/search_list_2017.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/search_list.min.css",
+				"_dest" : "lotte/resources/<%= version %>/search_list_2017.min.css"
+			}
+		},
+		"clean" : {
+			"cleanSearchList2017" : [
+				"lotte/resources/<%= version %>/search_list_2017.js",
+				"lotte/resources/<%= version %>/search_list_2017.template.js"
+			]
+		},
+		"processhtml" : {
+			"htmlSearchList2017" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"search/search_list_2017.html" : "search/search_list_2017_dev.html"
+				}
+			}
+		}
+	}
+}

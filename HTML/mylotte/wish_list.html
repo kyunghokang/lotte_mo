@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">	
+<!----------------- current css ----------------->
+
+<link rel="stylesheet" href="/lotte/resources_dev/unit/unit_list.css">
+<link rel="stylesheet" href="/lotte/resources_dev/mylotte/wish/m/wish.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<!-- container -->
+<section id="container">	
+	<!-- 위시리스트 -->
+	
+	<section class="mylotte" id="wishListView">
+		<!-- 위시리스트 header -->
+		<section class="wish_header">
+			<span>전체 00개</span>
+			<div class="btn_list">
+				<a href="#" name="selectAll" class="btn_style1 check_all">전체선택</a>
+				<a href="#" name="deleteSelected" class="btn_style1 check_del">선택삭제</a>
+			</div>
+		</section>
+		<!--// 위시리스트 header -->
+
+		<!-- 상품 목록 -->
+		<section class="wish_list" id="wish_list">
+			<ul class="product_list_01">
+				<li>
+					<div class="group">
+						<div class="chk"><input type="checkbox" title="선택" class="check01" ></div>
+						<span class="thumb">
+							<a href="#"><img src="/images/lotte2015/temp/img_prd_01.jpg" alt="" /></a>
+						</span>
+						<span class="cont01">
+							<p class="flag">
+								<span class="flag depart">롯데백화점</span>
+								<span class="flag etv">롯데홈쇼핑</span>
+								<span class="flag smart">스마트픽</span>
+							</p>
+							<a href="#">
+								<p class="tl">[쿠기] 여기서만 골라도 여신~ 블라우스/원피스/스커트</p>
+							</a>
+							<div class="money_coupon">
+								<p class="money">
+									<span class="price"><strong>35,460</strong></span>
+									<del class="small">39,400원</del>
+								</p>
+								<p class="coupon">
+									<span class="percent">25%</span>
+									<span class="tx">쿠폰포함</span>
+								</p>
+							</div>
+						</span>
+					</div>
+					<div class="btn_list">
+						<span class="l_area"><a href="#" class="btn_del">삭제</a></span>
+						<span class="r_area">
+							<a href="#" class="btn_style2">장바구니</a>
+							<a href="#" class="btn_style3">바로주문</a>
+						</span>
+					</div>
+				</li>
+				<li>
+					<div class="group">
+						<div class="chk"><input type="checkbox" title="선택" class="check01" ></div>
+						<span class="thumb">
+							<a href="#"><img src="/images/lotte2015/temp/img_prd_02.jpg" alt="" /></a>
+						</span>
+						<span class="cont01">
+							<p class="flag">
+								<span class="flag depart">롯데백화점</span>
+								<span class="flag etv">롯데홈쇼핑</span>
+								<span class="flag smart">스마트픽</span>
+								<span class="flag free">무료배송</span>
+							</p>
+							<a href="#">
+								<p class="tl">[게스(구두)] 게스슈즈 BEST 부티 4종 택1</p>
+							</a>
+							<div class="money_coupon">
+								<p class="money">
+									<span class="price"><strong>35,460</strong></span>
+									<del class="small">39,400원</del>
+								</p>
+								<p class="coupon">
+									<span class="percent">25%</span>
+									<span class="tx">쿠폰포함</span>
+								</p>
+							</div>
+							<div class="delivery">
+								<span class="l_area"><input type="radio" name="delivery_ck" class="radio01" checked="checked" /> 택배로받기</span>
+								<span class="r_area"><input type="radio" name="delivery_ck" class="radio01" /> 스마트픽 찾기</span>
+							</div>
+						</span>
+					</div>
+					<div class="btn_list">
+						<span class="l_area"><a href="#" class="btn_del">삭제</a></span>
+						<span class="r_area">
+							<a href="#" class="btn_style2">장바구니</a>
+							<a href="#" class="btn_style3">바로주문</a>
+						</span>
+					</div>
+				</li>
+				<li>
+					<div class="group">
+						<div class="chk"><input type="checkbox" title="선택" class="check01" ></div>
+						<span class="thumb">
+							<a href="#"><img src="/images/lotte2015/temp/img_prd_03.jpg" alt="" /></a>
+						</span>
+						<span class="cont01">
+							<p class="flag">
+								<span class="flag depart">롯데백화점</span>
+								<span class="flag etv">롯데홈쇼핑</span>
+								<span class="flag smart">스마트픽</span>
+								<span class="flag free">무료배송</span>
+							</p>
+							<a href="#">
+								<p class="tl">[빈폴] 스카이블루 헤릿 미니토드백 여(BE4AA2301Q)</p>
+							</a>
+							<div class="money_coupon">
+								<p class="money">
+									<span class="price"><strong>35,460</strong></span>
+									<del class="small">39,400원</del>
+								</p>
+								<p class="coupon">
+									<span class="percent">25%</span>
+									<span class="tx">쿠폰포함</span>
+								</p>
+							</div>
+						</span>
+					</div>
+					<div class="btn_list">
+						<span class="l_area"><a href="#" class="btn_del">삭제</a></span>
+						<span class="r_area">
+							<a href="#" class="btn_style2">장바구니</a>
+							<a href="#" class="btn_style3">바로주문</a>
+						</span>
+					</div>
+				</li>
+			</ul>
+		</section>
+		<!-- // 상품 목록 -->
+		
+		<!-- LOADING -->
+		<div class="listLoading">
+			<p class="loading half"></p>
+		</div>
+		<!--// LOADING -->
+		
+		<!-- 더보기 버튼 -->
+		<section class="more_view">
+			<div><a href="#"><span>더보기 (<label id="currentCnt">10</label>/<label id="totalCnt">50</label>)</a></span></div>
+		</section>
+		<!--// 더보기 버튼 -->
+
+	</section>
+
+	<section class="mylotte" id="discontinueListView">
+		<!-- 위시리스트 header -->
+		<section class="wish_header discontinue">
+			<span>품절/판매종료 상품 (5) <a href="#" class="btn_open">열기</a></span>
+			<div class="btn_list">
+				<a href="#" name="selectAll" class="btn_style1 check_all_del">전체선택</a>
+			</div>
+		</section>
+		<!--// 위시리스트 header -->
+
+		<!-- 품절/판매종료 상품 -->
+		<section class="discontinue_list " id="discontinue_list">
+			<ul class="product_list_01">
+				<li>
+					<div class="group">
+						<span class="thumb">
+							<a href="#">
+								<img src="/images/lotte2015/temp/img_prd_03.jpg" alt="" />
+								<em></em><span>품절</span>
+							</a>
+						</span>
+						<span class="cont01">
+							<p class="flag">
+								<span class="flag depart off">롯데백화점</span>
+								<span class="flag etv off">롯데홈쇼핑</span>
+								<span class="flag smart off">스마트픽</span>
+								<span class="flag free off">무료배송</span>
+							</p>
+							<a href="#">
+								<p class="tl">[빈폴] 스카이블루 헤릿 미니토드백 여(BE4AA2301Q)</p>
+							</a>
+							<div class="money_coupon">
+								<p class="money">
+									<span class="price"><strong>35,460</strong></span>
+								</p>
+							</div>
+						</span>
+					</div>
+					<div class="btn_list">
+						<a href="#" class="wish_del">삭제</a>
+						<a href="#" class="btn_style2 bi-nt">재입고알림</a>
+					</div>
+				</li>
+				<li>
+					<div class="group">
+						<span class="thumb">
+							<a href="#">
+								<img src="/images/lotte2015/temp/img_prd_03.jpg" alt="" />
+								<em></em><span>판매종료</span>
+							</a>
+						</span>
+						<span class="cont01">
+							<p class="flag">
+								<span class="flag depart off">롯데백화점</span>
+								<span class="flag etv off">롯데홈쇼핑</span>
+								<span class="flag smart off">스마트픽</span>
+							</p>
+							<a href="#">
+								<p class="tl">[빈폴] 스카이블루 헤릿 미니토드백 여(BE4AA2301Q)</p>
+							</a>
+							<div class="money_coupon">
+								<p class="money">
+									<span class="price"><strong>35,460</strong></span>
+								</p>
+							</div>
+						</span>
+					</div>
+					<div class="btn_list">
+						<a href="#" class="wish_del">삭제</a>
+						<a href="#" class="btn_style2 bi-nt">재입고알림</a>
+					</div>
+				</li>
+			</ul>
+		</section>
+		<!-- // 품절/판매종료 상품 -->
+
+	
+	<!--// 위시리스트 -->
+</section>
+
+<section ng-include src="'/HTML/include/footer.html'"></section>
+
+
+</body>
+</html>

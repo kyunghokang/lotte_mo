@@ -1,0 +1,74 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplSmpBooking" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                	"lotte/resources_dev/common/templates/map_info.html",
+                    "lotte/resources_dev/smartpick/m/smartpick_booking_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/smartpick_booking.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsSmpBooking" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                	"lotte/resources_dev/common/lotte_map_v3.js",
+                    "lotte/resources_dev/smartpick/m/smartpick_booking.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/smartpick_booking.js"
+            }
+        },
+
+        "uglify" : {
+            "jsSmpBooking" : {
+                "src" : "lotte/resources/<%= version %>/smartpick_booking.js",
+                "dest" : "lotte/resources/<%= version %>/smartpick_booking.min.js"
+            },
+            "tplSmpBooking" : {
+                "src" : "lotte/resources/<%= version %>/smartpick_booking.template.js",
+                "dest" : "lotte/resources/<%= version %>/smartpick_booking.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssSmpBooking" : {
+                "src" : [
+                    "lotte/resources_dev/product/m/detail.css",
+                    "lotte/resources_dev/product/m/detail_datepicker.css",
+                    "lotte/resources_dev/product/m/detail_popup.css",
+                    "lotte/resources_dev/common/navermap.css",
+                    "lotte/resources_dev/smartpick/m/smartpick_booking.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/smartpick_booking.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanSmpBooking" : [
+                "lotte/resources/<%= version %>/smartpick_booking.js",
+                "lotte/resources/<%= version %>/smartpick_booking.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlSmpBooking" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "smartpick/m/smartpick_booking.html" : "smartpick/m/smartpick_booking_dev.html"
+                }
+            }
+        }
+    }
+}

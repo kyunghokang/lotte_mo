@@ -1,0 +1,299 @@
+<section>
+	<!-- 설명 탭 가격 -->
+	<div class="explainPrice" ng-switch on="priceInfoTp">
+		<!--  기존 가격 20161004
+		<div ng-switch-when="00">
+			<dl class="basicPrice" ng-switch
+				on="BasicData.product.goods_prc_tp_cd">
+				<dt ng-switch-when="1">기존판매가</dt>
+				<dt ng-switch-default>판매가</dt>
+				<dd>
+					<span class="prdPrice"><em class="t13">{{Fnproductview.getNumberFormat(BasicData.product.org_sale_prc)}}</em>원</span>
+				</dd>
+			</dl>			
+			<dl class="discountPrice" ng-switch
+				on="BasicData.product.goods_prc_tp_cd">
+				<dt ng-switch-when="1">가격인하가</dt>
+				<dt ng-switch-default>세일가</dt>
+				<dd>
+					<span class="prdPrice"
+						ng-if="BasicData.product.immed_pay_dscnt_amt != '0' || BasicData.product.inst_fvr_polc_tp_cd == '03' || BasicData.product.inst_fvr_polc_tp_cd == '04'"><em
+						class="t13">{{Fnproductview.getNumberFormat(BasicData.product.sale_prc)}}</em>원</span>
+					<span class="prdPrice"
+						ng-if="!(BasicData.product.immed_pay_dscnt_amt != '0' || BasicData.product.inst_fvr_polc_tp_cd == '03' || BasicData.product.inst_fvr_polc_tp_cd == '04')"><em
+						class="t13">{{Fnproductview.getNumberFormat(BasicData.product.sale_prc)}}</em>원</span>
+					<span class="t12b3"
+						ng-if="BasicData.product.sale_rate != '0.0' && BasicData.product.goods_prc_tp_cd == '1' && BasicData.product.sale_rate > 0">({{BasicData.product.sale_rate}}%↓)</span>
+					<span class="t12b"
+						ng-if="!(BasicData.product.sale_rate != '0.0' && BasicData.product.goods_prc_tp_cd == '1')">
+						<span class="t12b3">({{BasicData.product.sale_rate}}%↓)</span>
+						{{BasicData.product.hist_strt_dtime}}~{{BasicData.product.hist_end_dtime}}
+					</span>
+				</dd>
+			</dl>
+		</div>
+		 -->
+		<div ng-switch-when="01">
+			<dl class="basicPrice">
+				<!-- 20160316 서비스 수수료에서 렌탈료 변경 -->
+				<dt>렌탈료</dt>
+				<dd>
+					<span class="prdPrice"
+						ng-if="BasicData.product.goods_prc_tp_cd == '3'"><em
+						class="t13">{{Fnproductview.getNumberFormat(BasicData.product.org_sale_prc)}}</em>원</span>
+					<span class="prdPrice"
+						ng-if="BasicData.product.goods_prc_tp_cd != '3'"><em
+						class="t13">{{Fnproductview.getNumberFormat(Fnproductview.toNumber(BasicData.product.dscnt_sale_prc)
+							+ Fnproductview.toNumber(BasicData.product.em_dscnt_sale_prc))}}</em>원</span>
+				</dd>
+			</dl>
+		</div>
+		<div ng-switch-when="03">
+			<dl class="basicPrice">
+				<dt>권장소비자가</dt>
+				<dd>
+					<span class="prdPrice"><em>{{Fnproductview.getNumberFormat(BasicData.product.sale_prc)}}</em>원</span>
+					<span>(본 가격은 와인수입사가 권장하는 소비자가입니다.<br> 실제 판매가격은 지점별
+						프로모션에 따라 상이할 수 있습니다.)
+					</span>
+				</dd>
+				<dd ng-if="BasicData.product.as_cont != ''">
+					<p>{{BasicData.product.as_cont}}</p>
+				</dd>
+			</dl>
+		</div>
+		
+<!-- 20161004		<div ng-switch-default>
+			<dl class="basicPrice" ng-switch
+				on="BasicData.product.prc_dif_view_yn">
+				<dt ng-switch-when="I">가격인하가</dt>
+				<dt ng-switch-default
+					ng-if="BasicData.product.goods_prc_tp_cd == '3'">세일가</dt>
+				<dt ng-switch-default
+					ng-if="BasicData.product.goods_prc_tp_cd != '3'">판매가</dt>
+				<dd
+					ng-if="(BasicData.product.immed_pay_dscnt_amt != '0' || BasicData.product.inst_fvr_polc_tp_cd == '03' || BasicData.product.inst_fvr_polc_tp_cd == '04') && BasicData.product.goods_prc_tp_cd == '1' && BasicData.product.prc_dif_view_yn != 'I'">
+					<span class="prdPrice"><del>
+							<em>{{Fnproductview.getNumberFormat(BasicData.product.sale_prc)}}
+						</del></em>원</span>
+				</dd>
+				<dd
+					ng-if="!((BasicData.product.immed_pay_dscnt_amt != '0' || BasicData.product.inst_fvr_polc_tp_cd == '03' || BasicData.product.inst_fvr_polc_tp_cd == '04') && BasicData.product.goods_prc_tp_cd == '1' && BasicData.product.prc_dif_view_yn != 'I')">
+					<span class="prdPrice"
+						ng-if="BasicData.product.immed_pay_dscnt_amt != '0' || BasicData.product.inst_fvr_polc_tp_cd == '03' || BasicData.product.instFvrPolcTpCd == '04'"><em
+						class="t13">{{Fnproductview.getNumberFormat(BasicData.product.sale_prc)}}</em>원</span>
+					<span class="prdPrice"
+						ng-if="!(BasicData.product.immed_pay_dscnt_amt != '0' || BasicData.product.inst_fvr_polc_tp_cd == '03' || BasicData.product.instFvrPolcTpCd == '04')"><em
+						class="t13">{{Fnproductview.getNumberFormat(BasicData.product.sale_prc)}}</em>원</span>
+					<span class="case01 t12b"
+						ng-if="BasicData.product.goods_prc_tp_cd == '3'">{{BasicData.product.hist_strt_dtime}}~{{BasicData.product.hist_end_dtime}}</span>
+				</dd>
+			</dl>
+		</div>-->
+
+		<div ng-if="BasicData.brch_prom_info != null">
+			<dl class="basicPrice" ng-repeat="item in BasicData.brch_prom_info">
+				<dd>
+					<span>본 상품은 <span>{{item.brch_entr_nm }</span>쿠폰의 <span>{{item.brch_fvr_polc_tp_cd_nm
+							}}적용</span>이 가능합니다.
+					</span> <span><a ng-click="brch_cpn_down(item.brch_prom_no)">다운로드</a></span>
+				</dd>
+			</dl>
+		</div>
+		<div
+			ng-if="(BasicData.chl_no == '109329' || BasicData.chl_no == '132224' || BasicData.chl_no == '156027') && BasicData.product.sale_prc != BasicData.product.dscnt_sale_prc">
+			<dl class="basicPrice">
+				<dt>이메일특가</dt>
+				<dd>
+					<span class="prdPrice"><em>{{Fnproductview.getNumberFormat(BasicData.product.dscnt_sale_prc)}}</em>원</span>
+				</dd>
+			</dl>
+		</div>
+		<!-- 혜택 가격 20161004 제거
+		<dl class="benefitPrice"
+			ng-if="BasicData.product.immed_pay_dscnt_amt != '0' || BasicData.product.inst_fvr_polc_tp_cd == '03' || BasicData.product.inst_fvr_polc_tp_cd == '04'">
+			<dt>
+				참좋은 혜택가
+				<span class="icQst" ng-click="helpLayer({target:'giftPrice'})">?</span>
+			</dt>
+			<dd>
+				<span class="prdPrice"><em>{{Fnproductview.getNumberFormat(priceInfo.sale_price)}}</em>원</span>
+				<span class="t12b3"
+					ng-if="priceInfo.immed_pay_dscnt_amt != 'null' && priceInfo.immed_pay_dscnt_amt != ''">({{Fnproductview.getNumberFormat(priceInfo.discount_amt)}}원↓)</span>
+				<span class="flag tag detailtag"
+					ng-if="(BasicData.product.inst_fvr_polc_tp_cd == '03' || BasicData.product.inst_fvr_polc_tp_cd == '04') && BasicData.product.inst_cpn_aply_val != '0' && BasicData.product.inst_cpn_aply_val != '' ">쿠폰할인
+					<em>{{intFnc(BasicData.product.inst_cpn_aply_val)}}</em>%
+				</span>
+			</dd>
+		</dl>
+		-->
+		<!-- 무이자혜택 20160929 -->
+		<dl class="benefitPrice" ng-if="BasicData.product.nint_card_max_month != undefined && BasicData.product.nint_card_max_month != ''">
+			<dt>
+				무이자 혜택
+			</dt>
+			<dd>
+                <!--20161111 bold 처리 요청 (이선미)-->
+			    <b>{{BasicData.product.nint_card_max_month}}</b> 
+			    <span class="icCardStr" onClick="$('#icCardPopup').show()" ng-if="BasicData.product.nint_card_img_url != undefined && BasicData.product.nint_card_img_url != ''">카드안내</span>
+			</dd>
+			<!--20161125 무이자혜택 카드혜택 팝업-->
+            <div class="commonPop quick_layer icCardPop" id="icCardPopup">
+                <div class="bg" ng-click="close_quickPop()"></div>
+                <div class="box">
+                    <div class="popBox">
+                        <h2>무이자 할부 혜택</h2>
+                        <div class="cont">
+                            <img ng-src="{{BasicData.product.nint_card_img_url}}">
+                        </div>
+                        <div class="foot" onClick="$('#icCardPopup').hide()">
+                            닫기
+                        </div>
+                    </div>
+                </div>
+            </div>			
+		</dl>
+		
+		<div
+			ng-if="(BasicData.product.inst_fvr_polc_tp_cd == '05' || BasicData.product.inst_fvr_polc_tp_cd == '06')">
+			<dl class="basicPrice">
+				<dt>적립쿠폰</dt>
+				<dd>
+					<span class="prdPrice"><em>{{BasicData.product.inst_cpn_aply_val}}%
+							({{Fnproductview.getNumberFormat(BasicData.product.inst_cpn_aply_unit_price)}}</em>원
+						적립) {{BasicData.product.inst_aply_strt_dtime}} ~
+						{{BasicData.product.inst_aply_end_dtime}} </span>
+				</dd>
+			</dl>
+		</div>
+
+		<!-- 적립금 -->
+		<dl class="saveMoney"
+			ng-if="((BasicData.product.reserve_lpoint != '' && BasicData.product.reserve_lpoint != null)|| (BasicData.product.reserve_plus_card != '' && BasicData.product.reserve_plus_card != null))">
+			<dt>적립금</dt>
+			<dd>
+				<!-- LPOINT -->
+				<p class="lPoint" ng-if="BasicData.product.reserve_lpoint != '' ">
+					<span class="saveCard">L.POINT</span> <span class="prdPrice"><em>{{Fnproductview.getNumberFormat(BasicData.product.reserve_lpoint)}}</em>{{BasicData.product.reserve_tp}}</span>
+				</p>
+				<!-- 롯데포인트 플러스카드 -->
+				<span class="lCard"
+					ng-if="BasicData.product.reserve_plus_card != null && BasicData.product.reserve_plus_card != ''">
+					<span class="saveCard">롯데포인트플러스카드</span> <span class="prdPrice"><em
+						class="t13">{{Fnproductview.getNumberFormat(BasicData.product.reserve_plus_card)}}</em>{{BasicData.product.reserve_tp}}</span>
+				</span> <span class="icQst"
+					ng-if="BasicData.product.reserve_value1 != '' || BasicData.product.reserve_value2 != ''"
+					ng-click="helpLayer({target:'lottePointPlusCard',reserve_value1:BasicData.product.reserve_value1})">?</span>
+			</dd>
+		</dl>
+
+
+		<!-- 혜택 가격 2017.02.22 예약기간 노출조건 수정 -->
+		<dl class="benefitPrice"
+			ng-if="(BasicData.product.prom_card_price != null && BasicData.product.prom_card_price != '' && BasicData.product.prom_card_price != '0') && (BasicData.product.reserve_start != null && BasicData.product.reserve_end != null && BasicData.product.reserve_start != '' && BasicData.product.reserve_end != '') ">
+			<dt>예약기간</dt>
+			<dd>
+				<em>{{BasicData.product.reserve_start}}~{{BasicData.product.reserve_end}}</em><span
+					class="txt02">본 상품은 예약주문 상품입니다.</span>
+			</dd>
+		</dl>
+		<dl class="benefitPrice"
+			ng-if="BasicData.product.smp_exg_yn == 'Y' && BasicData.product.smp_sale_price != '0'">
+			<dt>스마트픽 혜택</dt>
+			<dd>
+				<em>{{Fnproductview.getNumberFormat(BasicData.product.smp_sale_price)}}</em>원
+				할인
+			</dd>
+		</dl>
+
+		<dl class="deliveryInfo"
+			ng-if="BasicData.product.smp_only_yn != 'Y' && BasicData.product.delivery_fee != '' && BasicData.product.euse_loc_desc_cont =='' && BasicData.product.delivery_fee != '0'">
+			<dt>배송비</dt>
+			<dd>{{BasicData.product.delivery_fee | number}}원
+			    <div ng-if="check_fee(BasicData.product.std_amt)">
+			        (동일업체 {{BasicData.product.std_amt | number}}원 이상 무료배송)
+			    </div>						
+			</dd>
+		</dl>
+		<dl class="deliveryInfo"
+			ng-if="BasicData.product.delivery_fee == '0' && BasicData.product.smp_only_yn != 'Y'">
+			<dt>배송비</dt>
+			<dd>무료배송 (일부지역 제외)</dd>
+		</dl>
+		<dl class="deliveryInfo"
+			ng-if="BasicData.product.delivery_info == '' && BasicData.product.euse_loc_desc_cont != ''">
+			<dt>배송정보</dt>
+			<dd>e-쿠폰 / 결제완료 시 마이롯데에서 출력가능</dd>
+		</dl>
+		<dl class="deliveryInfo"
+			ng-if="!(BasicData.product.delivery_info == '' && BasicData.product.euse_loc_desc_cont != '') && BasicData.product.delivery_info != ''">
+			<dt>배송정보</dt>
+			<dd>
+				<!--s 2016.08.18 태그-->
+				<div ng-bind-html="BasicData.product.delivery_info"></div>
+				<!--<div ng-bind-html="get_SMP_CRP()"></div>-->
+				<!--e 2016.08.18 태그 -->
+			</dd>
+		</dl>
+		<!--20160201 제조사/제조국 정보-->
+		<dl class="deliveryInfo" ng-if="makerInfo != ''">
+			<dt>제조사/제조국</dt>
+			<dd>{{makerInfo}}</dd>
+		</dl>
+		<dl class="deliveryInfo" ng-if="BasicData.product.gft_nm != ''">
+			<dt>사은품정보</dt>
+			<dd>{{BasicData.product.gft_nm}}</dd>
+		</dl>
+		<!-- 선물하기 1차 -->
+		<dl class="giftInfo"
+			ng-if="BasicData.product.fut_msg_yn=='Y' || BasicData.product.gift_pkg_yn=='Y'">
+			<dt>선물서비스</dt>
+			<dd>
+				<div class="giftInfoCon">
+					<ul>
+						<li ng-if="BasicData.product.gift_pkg_yn=='Y'"><span
+							class="btnGiftBrand"
+							ng-click="popGift('brand',BasicData.product.brnd_gift_logo)">
+								<img
+								src="http://image.lotte.com/lotte/mo2015/angular/order/brand_wrap.jpg"
+								ng-src="{{BasicData.product.brnd_gift_logo}}"
+								alt="브랜드별 무료포장 이미지" /> <span class="giftTxt">무료포장 보기</span>
+						</span></li>
+						<li ng-if="BasicData.product.fut_msg_yn=='Y'"><span
+							class="btnGiftCard" ng-click="popGift('card')"> <img
+								src="http://image.lotte.com/lotte/mo2015/angular/order/paper_card.jpg"
+								alt="종이카드 이미지" /> <span class="giftTxt">종이카드 보기</span>
+						</span></li>
+					</ul>
+				</div>
+			</dd>
+		</dl>
+		<!-- //선물하기 1차 -->
+		<div ng-if="BasicData.chanel_yn == false">	
+			<!-- 카드행사(2개이상일 때 스와이프, 인디케이터없음) -->
+			<div class="cardEvent" ng-if="prodBannerList.length > 0">
+				<ul lotte-ng-list-swipe swipe-slide-item="true" swipe-max-ratio="0.2"
+					ng-if="prodBannerList.length > 1">
+					<li ng-repeat="item in prodBannerList"><a
+						ng-click="goPromotionList(item.text1_url)"><span class="icCard"></span><span
+							ng-bind-html="item.text1"></span></a></li>
+				</ul>
+				<ul ng-if="prodBannerList.length == 1">
+					<li ng-repeat="item in prodBannerList"><a
+						ng-click="goPromotionList(item.text1_url)"><span class="icCard"></span><span
+							ng-bind-html="item.text1"></span></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div ng-if="BasicData.chanel_yn == false">	
+		<div class="insuTxtAd" ng-repeat="item in BasicData.text_ads.items"
+			ng-if="item.text1_url!='' && item.text1_url!=undefined">
+			<a
+				ng-href="{{item.text1_url+'&'+baseParam+'&tclick=m_DC_ProdDetail_Clk_Ban_2'}}"><em>AD</em><span
+				class="insuTxt"><span>{{item.text1}}</span></span></a>
+		</div>
+	</div>
+	
+	
+</section>

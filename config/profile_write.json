@@ -1,0 +1,71 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplProfileWrite" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/product/m/sub/product_sub_header.html",
+					"lotte/resources_dev/mylotte/m/profile_write_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/profile_write.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsProfileWrite" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/product/m/sub/product_sub_header.js",
+					"lotte/resources_dev/mylotte/m/profile_write.js",
+					"lotte/lib/jquery/load-image.all.min.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/profile_write.js"
+			}
+		},
+
+		"uglify" : {
+			"jsProfileWrite" : {
+				"src" : "lotte/resources/<%= version %>/profile_write.js",
+				"dest" : "lotte/resources/<%= version %>/profile_write.min.js"
+			},
+			"tplProfileWrite" : {
+				"src" : "lotte/resources/<%= version %>/profile_write.template.js",
+				"dest" : "lotte/resources/<%= version %>/profile_write.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssProfileWrite" : {
+				"src" : [
+					"lotte/resources_dev/mylotte/m/profile_write.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/profile_write.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanProfileWrite" : [
+				"lotte/resources/<%= version %>/profile_write.js",
+				"lotte/resources/<%= version %>/profile_write.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlProfileWrite" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"mylotte/m/profile_write.html" : "mylotte/m/profile_write_dev.html"
+				}
+			}
+		}
+	}
+}

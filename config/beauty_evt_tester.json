@@ -1,0 +1,68 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplevtTester" : {
+                "options": {
+                "prefix":"/",
+                "module":"app"
+              },
+                "src" : [
+                    "lotte/resources_dev/category/m/beauty_evt_tester_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/beauty_evt_tester.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsevtTester" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/category/m/beauty_evt_tester.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/beauty_evt_tester.js"
+            }
+        },
+
+        "uglify" : {
+            "jsevtTester" : {
+                "src" : "lotte/resources/<%= version %>/beauty_evt_tester.js",
+                "dest" : "lotte/resources/<%= version %>/beauty_evt_tester.min.js"
+            },
+            "tplevtTester" : {
+                "src" : "lotte/resources/<%= version %>/beauty_evt_tester.template.js",
+                "dest" : "lotte/resources/<%= version %>/beauty_evt_tester.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssevtTester" : {
+                "src" : [
+                    "lotte/resources_dev/category/m/beauty_evt_tester.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/beauty_evt_tester.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanevtTester" : [
+                "lotte/resources/<%= version %>/beauty_evt_tester.js",
+                "lotte/resources/<%= version %>/beauty_evt_tester.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlevtTester" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "category/m/beauty_evt_tester.html" : "category/m/beauty_evt_tester_dev.html"
+                }
+            }
+        }
+    }
+}

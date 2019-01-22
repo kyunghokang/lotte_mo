@@ -1,0 +1,54 @@
+<html>
+	<meta charset="utf-8">
+	<title>롯데닷컴-오늘도착 안내</title>
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" type="text/css" href="product_info_layer.css"/>
+<body>
+	<div class="webview_layer_wrap"><!-- (D) app에서 class webview_layer_wrap으로 높이값 산출함 변경되거나 삭제되면 안됨 -->
+		<div class="ptit">오늘도착 안내</div>
+		<div class="pTxtBox">
+			<div class="stit">배송가능 지역</div>
+			<ul class="dot_list">
+				<li>· 서울,경기 및 인천 일부 기준입니다</li>
+				<li>· 오늘도착이 제외되는 일부지역을 확인하세요</li>
+			</ul>
+			<div class="ul_btn"><a onclick="javascript:appGotourl('http://m.lotte.com/product/m/product_list.do?curDispNo=5387795');" class="btn_sty4">배송제외지역 확인하기</a></div>
+			<div class="stit">오늘도착 기준</div>
+			<ul class="dot_list">
+				<li>· 00시~10시 결제 시 오늘도착</li>
+				<li>· 영업일 기준으로 배송되며, 주말, 공휴일 제외됩니다.</li>
+			</ul>
+			<div class="stit">빠른배송 기준</div>
+			<ul class="dot_list">
+				<li>· 10시~24시 결제 시 다음날도착</li>
+				<li>· 영업일 기준으로 배송되며, 주말, 공휴일은 다음 첫 영업일로 부터 순차 배송됩니다.</li>
+			</ul>
+		</div>
+	</div>
+	<script>
+	// 디바이스 체크
+	function chkDevice() {
+		var device = "android",
+			agent = (navigator.userAgent).toLowerCase();
+
+		if (agent.indexOf("iphone") >= 0 || agent.indexOf("ipod") >= 0 || agent.indexOf("ipad") >= 0 ) {
+			device = "iOS";
+		}
+		return device;
+	}
+	function appGotourl(linkUrl) {
+		var url = encodeURIComponent(linkUrl);
+		if (chkDevice() == "iOS") {
+			location.href = 'lottebridge://gotourl/?' + url;
+		}else{
+			window.lottebridge.gotourl(url);
+		}
+		return false;
+	}
+	</script>
+</body>
+</html>

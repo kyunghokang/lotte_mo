@@ -1,0 +1,294 @@
+﻿<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+	<meta charset="utf-8">
+	<title>롯데닷컴</title>
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+
+	<!-- 기존 css & js -->
+	<!-- <script src="/lotte/resources_dev/common/common_load_2017.js"></script> -->
+	<link rel="stylesheet" type="text/css" href="common.min.css">
+	<link rel="stylesheet" type="text/css" href="product_view.min.css">	
+	<!-- //기존 css & js -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script><!-- 코딩용 angular js -->
+
+<style type="text/css">
+/* common */
+.sub_header_top_wrap h2{text-align:center;line-height:48px;font-size:19px;font-weight:normal;color:#fff;}
+.prd_title{position:relative;padding:15px 0;background-color:#fff;}
+.prd_title p{height:25px;padding:0 15px;font-size:16px;font-weight:bold;line-height:25px;word-break:break-all;white-space:normal;overflow:hidden;}
+.mb10{margin-bottom:10px;}
+.mt10{margin-top:10px;}
+	
+.detail_base_wrap {background-color: #fff;padding: 0 15px 20px;position: relative;line-height: 20px;}
+.detail_base_wrap .info_table {background: #f1f1f1;}
+.detail_base_wrap .info_table tr, .detail_base_wrap .info_table th {border-top:1px solid #fff;height: 35px;}
+.detail_base_wrap .info_table tr:first-child {border-top-style: none;}
+.detail_base_wrap .info_table tr td {padding:15px 20px 15px 15px;}
+.detail_base_wrap .info_table tr th{width: 54px;color: #aaa; padding:15px 0 15px 15px;text-align:left;vertical-align: top;font-weight:normal;}
+.detail_base_wrap ul li{padding-left:8px;text-indent:-8px;}
+.info_title{padding:0 15px 1px;background-color: #fff;}
+.info_title p{position:relative;line-height:42px;font-size:14px;font-weight:bold;padding-left:15px;background-color:#f1f1f1;}
+.info_title p:after{content: '';position:absolute;top:19px;right:16px;width:0;height:0;border-top-width:7px !important;border-bottom-width:7px !important;border-left-width:6px !important;border-right-width:6px !important;border-top-color: #7291cf !important;border-bottom-color: #7291cf !important;display: inline-block;margin-left: 7px;border-left: solid transparent;border-right: solid transparent;border-top: solid;}
+.info_title.on p:after{display:none;}
+.info_title.on p:before{content: '';position:absolute;top:19px;right:16px;width:0;height:0;border-top-width:7px !important;border-bottom-width:7px !important;border-left-width:6px !important;border-right-width:6px !important;border-top-color: #7291cf !important;border-bottom-color: #7291cf !important;display: inline-block;margin-left: 7px;border-left: solid transparent;border-right: solid transparent;border-bottom: solid;}
+	
+#info_list{padding-bottom:19px;background-color:#fff;}
+#info_list .detail_base_wrap{padding-bottom:1px;}
+	
+.exchangeReturnGuide{padding:0 15.5px 20px;background-color:#fff;}
+.exchangeReturnGuide .guide{}
+.exchangeReturnGuide .guide:after{content:"";display:block;clear:both;height:0;visibility:hidden;}	
+.exchangeReturnGuide .guide li{width:50%;float:left;text-align:center;}
+.exchangeReturnGuide .guide li p{margin-top:10px;line-height:17px;}
+
+.exchangeReturnGuide .btn{margin-top:20px;}
+.exchangeReturnGuide .btn a{width:100%;height:42px;display:inline-block;text-align:center;font-size:14px;font-weight:bold;line-height:42px;color:#7291cf;border:1px solid #7291cf;background-color:#fff;border-radius:4px;box-sizing:border-box;}
+.exchangeReturnGuide .desc{margin-top:18px;}	
+.exchangeReturnGuide .desc li{margin-top:5px;padding-left:8px;text-indent:-8px;line-height:17px;color:#aaaaaa;}
+.exchangeReturnGuide .desc li:first-child{margin-top:0;}
+</style>
+</head>
+<body ng-controller="MainCtrl">
+
+	<div id="wrapper">
+
+		<section>
+			<header class="sub_header_top_wrap" id="lotteHeader">
+				<div class="inner_wrap headerFixed">
+				<!-- <h1 class="logo"><button class="btn_main">LOTTE.COM</button></h1>-->
+					<button class="btn_prev">이전</button>
+					<!-- <div class="header_srh_wrap web">
+						<div class="srh_box">
+							<label for="keyword" class="btn_srh"></label>
+						</div>
+					</div> -->
+					<!-- <button class="btn_ctg">카테고리</button>
+					<button class="btn_cart">장바구니<i class="cnt">5</i></button> -->
+					<h2>배송/교환/반품/결제정보 안내</h2>
+				</div>
+			</header>
+		</section>
+
+		<section class="cont_minheight">
+
+			<!-- container -->
+			<div id="container">
+				<!-- 퍼블리싱 시작-->
+				<div class="prd_title">
+					<p>배송안내</p>
+				</div>
+				<div class="detail_base_wrap">
+					<table class="info_table">
+						<tr>
+							<th>배송비</th>
+							<td>
+								2,500원 (3만원이상 무료배송)<br />
+								제주/도서산간 지역의 경우, 추가비용 발생 가능
+							</td>
+						</tr>
+						<tr>
+							<th>배송정보</th>
+							<td>
+								<strong>택배</strong><br />
+								6/25 발송예정<br />
+								<strong>스마트픽</strong><br />
+								롯데백화점, 세븐일레븐, 하이마트에서 픽업가능<br />
+								<strong>퀵배속</strong><br />
+								주문완료 후 4시간 이내 도착
+							</td>
+						</tr>
+						<tr>
+							<th>배송지역</th>
+							<td>전국 (일부지역 제외)</td>
+						</tr>
+					</table>					
+				</div>
+								
+				<div class="prd_title mt10">
+					<p>교환/반품 접수안내</p>
+				</div>
+				<div class="exchangeReturnGuide">
+					<ul class="guide">
+						<li>
+							<div><img src="../images/product/img_purchaseGuide_01.jpg" alt="" /></div>
+							<p>마이롯데에서 <br /><strong>주문배송조회</strong>로 이동</p>
+						</li>
+						<li>
+							<div><img src="../images/product/img_purchaseGuide_02.jpg" alt="" /></div>
+							<p>주문건에서 <br /><strong>교환/반품접수</strong>  버튼선택</p>
+						</li>
+					</ul>
+					<div class="btn">
+						<a ng-click="#">교환/반품 신청하러 가기</a>						
+					</div>
+					<ul class="desc">
+						<li>· MY LOTTE에서 접수가 어려우신 경우,롯데닷컴 고객 만족센터 1577-1110 으로 문의하여 주시기 바랍니다. </li>
+						<li>· 고객님이 교환/반품 접수하신 상품은 아래의 주소로 반품됩니다.  [지번주소] 경기도 광명시 장기동 1566-22</li>
+					</ul>
+				</div>
+				
+				<div class="prd_title mt10">
+					<p>교환/반품 규정안내</p>
+				</div>
+				<div class="detail_base_wrap">
+					<table class="info_table">
+						<tr>
+							<th>교환/반품 비용</th>
+							<td>
+								<strong>예상 반품비 : 2,500원</strong><br />
+								<strong>예상 교환비 : 5,000원</strong><br />
+								<strong>(주문 상품을 1개씩 각각 반품/교환 시 상품 별로 발생하는 비용임)</strong><br /><br />
+								정확한 반품/교환비는 MY Lotte에서 반품/교환 접수 시 또는 고객센터로 문의 시 확인 가능합니다.고객님의 단순변심으로 인하여 교환/반품을 하시는 경우에는 상품등의반환에 필요한 비용을 고객님이 부담하셔야 합니다.고객님이 받으신 상품 등의 내용이 표시/광고 내용과 다르거나 계약내용과 다르게 이행되어 교환/반품을 하시는 경우에는, 교환ㆍ반품 배송비는 무료입니다.고객님께서 직접 택배로 발송하실 경우 택배비는 본인 부담입니다.중/대형 가전, 가구등 설치상품의 경우 상품, 지역, 설치비 등에 따라 반품/교환 비용이 상이할 수 있습니다.회원등급에 따라 반품·교환 비용이 상이할 수 있습니다.
+							</td>
+						</tr>
+						<tr>
+							<th>교환/반품 신청일<br />기준 </th>
+							<td>
+								고객님의 단순변심으로 인한 교환/반품은 <strong>실제 상품등을 수령하신 날부터7일이내.</strong> 단, 상품안내 페이지에 표시된 교환/반품 기간이 7일보다 긴 경우에는 그 기간 (롯데홈쇼핑 상품은 30일 이내, 의류/보석 15일 이내 가능)고객님이 받으신 상품등의 내용이 표시/광고 내용과 다르거나 계약내용과 다르게 이행된 경우에는 <strong>상품등을 수령한 날부터 3개월 이내, 그 사실을 안 날 또는 알 수 있었던 날부터 30일 이내</strong> 스마트픽 픽업 배송상품은 해당 스마트픽 픽업 지점에 상품도착일로부터 5일까지 픽업 가능합니다. 픽업가능일 경과 시 자동으로 반품되며 반품배송비 차감 후 환불됩니다. 
+							</td>
+						</tr>
+					</table>					
+				</div>
+				
+				<div id="info_list">
+					<div class="info_title on"><p>신유형 상품권 이용 약관 주요사항</p></div>
+					<div class="detail_base_wrap">
+						<table class="info_table">
+							<tr>
+								<th>신유형<br />상품권</th>
+								<td>
+									전자형, 온라인, 모바일 상품권으로서 용 방법에 따라 금액형, 물품(용역) 제공형 상품권이 이에 해당함.예시 ) 롯데리아 치즈버거 교환권(물품형), 롯데빵집 1만원권(금액형) 등.업체에서 개별적으로 등록한 상품권 이용 약관 보다 공정위, 신유형 상품권 표준 약관이 우선합니다.신유형 상품권 이용과 관련한 불편 사항은 롯데닷컴 고객센터 (Tel. 1577-1110)로 연락주시기 바랍니다.
+								</td>
+							</tr>
+							<tr>
+								<th>적용범위</th>
+								<td>
+									<ul>
+										<li>· 하기 적용 제외 사례 및 기존의 지류 상품권을 제외한 신유형 상품권</li>
+										<li>· 무상으로 제공 받은 신유형 상품권</li>
+										<li>· 운송 (버스, 기차) 통신 서비스 이용만을 목적으로 발생된 상품권</li>
+										<li>· 사용 일자가 지정된 영화/공연 티켓 등</li>
+									</ul>								
+								</td>
+							</tr>
+							<tr>
+								<th>유효기간</th>
+								<td>
+									<ul>
+										<li>· 물품(용역)제공형 : 기본 3개월+ 1회 이상 기한 연장</li>
+										<li>· 금액형 : 기본 1년 +1회 이상 기한 연장</li>
+										<li>· 1회당 연장기한 : 3개월</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<th>기한안내</th>
+								<td>유효기한 내 총 3회 기한 안내</td>
+							</tr>
+							<tr>
+								<th>환불안내</th>
+								<td>
+									금액형 : 권면금액의 60% 이상 사용 시 환불 가능(1만원권 이하 80% 사용시)물품/용역제공형 : 물품 공급이 불가능할 경우 전액 환불(유효기한 경과 후, 소멸시효 기간 5년 이내) 90% 환불
+								</td>
+							</tr>
+						</table>					
+					</div>
+
+					<div class="info_title on"><p> 환불지연 배상금 지급안내</p></div><div class="detail_base_wrap">
+						<table class="info_table">
+							<tr>
+								<td>
+									<ul>
+										<li>. 환불지연이 발생하셨을 경우 전자상거래법에 따라 환불  지연배상금 지급을 요청하실 수 있습니다.  환불이 지연되었을 경우 고객센터로 문의주시면 환불 지연배상금 지급 대상 여부를 확인 후 지급해 립니다.</li>
+										<li>
+											. 환불지연에 해당하는 경우<br />
+											  :롯데닷컴의 책임으로 상품공급이 불가한 상태로 결제일로부터 3영업일이 경과한 경우
+											  :반품 상품을 롯데닷컴이 수령한 날로부터 3영업일이 경과하도록 상품대금을 환불하지 않았을 경우
+										</li>
+										<li>
+											. 환불지연배상금액 기준 전자상거래법 제18조 규정에 따라 지급함(연이자 20%를 일할계산)
+										</li>
+									</ul>
+								</td>
+							</tr>
+						</table>					
+					</div>
+
+					<div class="info_title"><p>교환/반품 불가 사유</p></div>
+					<div class="detail_base_wrap"></div>
+
+					<div class="info_title"><p>미성년자 권리보호안내</p></div>
+					<div class="detail_base_wrap"></div>
+
+					<div class="info_title"><p>결제정보 유의사항</p></div>
+					<div class="detail_base_wrap"></div>
+				</div>
+				<!-- 퍼블리싱 끝-->
+			</div>
+			<!-- //container -->
+
+		</section>
+		<!-- //sub_header_wrap -->
+
+		<!-- footer -->
+		<footer id="footer">
+			<ul class="menu01">
+				<li><a class="ng-binding" href="#">마이롯데</a><i></i>	</li>
+				<li><a ng-click="pcClick()">PC버전</a><i></i></li>
+				<li><a href="#">장바구니</a><i></i></li>
+				<li><a href="#">고객센터</a><i></i></li>
+				<li><a href="#" ng-click="loginProc()" ng-bind="(loginInfo.isLogin)?'로그아웃':'로그인'" class="ng-binding">로그아웃</a></li>
+			</ul>
+			<div class="info">
+				<ul class="menu02">
+					<li><strong>(주)롯데닷컴</strong></li>
+					<li><a ng-click="ftcClick()">사업자정보확인</a></li>
+					<li><a ng-click="forwardClick()">채무지급보증안내</a></li>
+				</ul>
+				<p class="add">
+					<span class="addFirst">대표이사 : 김형준</span>
+					<span class="line">서울시 중구 을지로 158 10층(을지로4가, 삼풍빌딩)</span>
+					<span class="line">사업자등록번호 : 101-81-52964 통신판매업신고 : 중구 제00402호</span>
+					<span class="line">고객만족센터 : <a href="tel:1577-1110">1577-1110</a>  webmaster@lotte.com</span>
+					<span class="line">개인정보보호책임자 : 윤상선</span> <span class="line">청소년보호책임자 : 김찬기</span>
+					<span>호스팅 사업자 : (주)롯데닷컴</span>
+				</p>
+			</div>
+			<div class="menu03">
+				<ul>
+					<li><a href="#">이용약관</a></li>
+					<li><a href="#"><strong>개인정보처리방침</strong></a></li>
+					<li><a href="#">청소년보호정책</a></li>
+				</ul>
+			</div>
+			<div class="capyright">Copyright © LOTTE.com, Inc. All rights Reserved.</div>
+		</footer>
+		<!-- //footer -->
+
+		<!-- quick_btn -->
+		<div class="quick_btn">
+			<div ng-show="visible" class="">
+				<a class="btn_back ng-hide" ng-click="gotoPrepageSide()" ng-show="quickBackBtn">뒤로</a><a class="btn_top" ng-click="gotoTop()">위로</a>
+			</div>
+			<a class="btn_talk" ng-click="gotoTalk()">톡상담</a>
+		</div>
+		<!-- quick_btn -->
+	</div>
+
+	<!-- lotteActionbar -->
+	<section id="lotteActionbar" class="actionbar" ng-show="!appObj.isApp &amp;&amp; !actionbarHideFlag" style="display:block">
+		<ul class="actionbar_wrap">
+			<li class="home on" ng-class="{on:cur_pageid == 1 &amp;&amp; !isShowSideCtg}"><button ng-click="gotoMainFooter()" class="btn_main">홈</button></li>
+			<li class="ctg" ng-class="{on: isShowSideCtg}"><button ng-click="showSideCtgFooter()" class="btn_ctg">카테고리</button></li>
+			<li class="order" ng-class="{on:cur_pageid == 2}"><button ng-click="gotoOrderLstFooter()" class="btn_order">주문배송</button></li>
+			<li class="mylotte" ng-class="{on:cur_pageid == 3}"><button ng-click="gotoMyPageFooter()" class="btn_mylotte">마이롯데</button></li>
+		</ul>
+	</section>
+	<!-- //lotteActionbar -->
+</body>
+</html>

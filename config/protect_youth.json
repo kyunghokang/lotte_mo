@@ -1,0 +1,69 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplProtectYouth" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/agreement/protect_youth_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/protect_youth.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsProtectYouth" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/agreement/protect_youth.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/protect_youth.js"
+            }
+        },
+
+        "uglify" : {
+            "jsProtectYouth" : {
+                "src" : "lotte/resources/<%= version %>/protect_youth.js",
+                "dest" : "lotte/resources/<%= version %>/protect_youth.min.js"
+            },
+            "tplProtectYouth" : {
+                "src" : "lotte/resources/<%= version %>/protect_youth.template.js",
+                "dest" : "lotte/resources/<%= version %>/protect_youth.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssProtectYouth" : {
+                "src" : [
+                    "lotte/resources_dev/agreement/protect_youth.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/protect_youth.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanProtectYouth" : [
+                "lotte/resources/<%= version %>/protect_youth.js",
+                "lotte/resources/<%= version %>/protect_youth.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlProtectYouth" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "agreement/protect_youth.html" : "agreement/protect_youth_dev.html"
+                }
+            }
+        }
+    }
+}
+

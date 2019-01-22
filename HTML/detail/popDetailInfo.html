@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">	
+<!----------------- current css ----------------->
+	
+<link rel="stylesheet" href="/lotte/resources_dev/product/m/detail.css">
+<link rel="stylesheet" href="/lotte/resources_dev/product/m/detail_datepicker.css">
+<link rel="stylesheet" href="/lotte/resources_dev/product/m/detail_popup.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+</head>
+<body>
+
+<!-- layer popup -->
+<!--s: 상품상세정보 팝업-->
+<div class="layerPop detailInfoPop">
+	<div id="head_sub">
+		<h2>상품상세정보</h2>
+		<p class="close"><a href="#none">닫기</a></p>
+	</div>
+	<div class="detailLayout">
+		<div class="lPrdTop">
+			<h3>선택1</h3>
+			<div class="lPrdTit">[브랜드명] 상품명이 전체 노출되는 영역</div>
+			<div class="lPrdPriceWrap">
+				<span class="discount"><strong>25</strong>%</span>
+				<span class="price"><strong>1,279,000</strong>원</span>
+			</div>
+		</div>
+		<div class="lPrdList">
+			<div class="lPrdImg">
+				<img src="/images/lotte2015/temp/prd01.gif" alt="" />
+			</div>
+			<div class="lPrdExplain">
+				부드러운 파스텔 컬러의 여성스러운 제이에스티나의 가방과 지갑입니다. 명품과 같은 양가죽을 사용하여 부드러운 감촉과 함께 롯데닷컴의 프리미엄 감성을 느낄 수 있습니다.
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 바로주문 영역 -->
+<div class="optionLayerWrap" style="display:none">
+	<div class="optionBtnWrap">
+		<!-- 바로주문 및 기본 버튼 -->
+		<ul class="optionBtn">
+			<!-- 장바구니, 위시리스트, 재입고알림일때 클래스 btnIcon -->
+			<!-- 장바구니 : btnCard, 위시리스트 : btnWish, 재입고알림 : btnAlarm -->
+			<li class="btnIcon">
+				<a href="#none" class="btnCart">장바구니</a>
+			</li>
+			<li class="btnIcon">
+				<a href="#none" class="btnWish">위시리스트</a>
+			</li>
+			<li class="btnIcon">
+				<a href="#none" class="btnAlarm">재입고알림</a>
+			</li>
+			<!-- 바로주문, 예약주문, 스마트픽일때 클래스 btnOrder, 스마트픽일때 btnSmart -->
+			<li class="btnOrder">
+				<a href="#none">바로주문</a>
+			</li>
+		</ul>
+		<!-- 스마트픽 -->
+		<ul class="optionBtn" style="display:none">
+			<li class="btnOrder">
+				<a href="#none" class="btnSmart"><span>smart pick</span>예약주문</a>
+			</li>
+		</ul>
+		<!-- 가격노출될 경우 -->
+		<ul class="optionBtn" style="display:none">
+			<li class="btnOrder">
+				<a href="#none" class="btnPrice"><strong>총 <span>189,000</span></strong>원 1개 <em>주문</em></a>
+			</li>
+		</ul>
+		<!-- 품절일 경우 -->
+		<ul class="optionBtn" style="display:none">
+			<!-- 주문불가상품 -->
+			<li class="btnSoldout">
+				<!-- 품절일때 -->
+				<a>이 상품은 <strong>품절</strong>되었습니다.</a>
+				<!-- 모바일 불가상품 -->
+				<!-- <a><strong>모바일 주문 불가상품</strong>입니다.</a> -->
+				<!-- 판매종료 -->
+				<!-- <a><strong>판매종료</strong>된 상품입니다.</a> -->
+			</li>
+		</ul>
+	</div>
+	<div class="optionLayer">
+		<div class="dim"></div>
+		<!-- 수량, 선택된 옵션 레이어 -->
+		<div class="orderLayerWrap">
+			<a href="#none" class="btnOptionClose">팝업닫기</a>
+			<!-- 안내 문구 -->
+			<div class="orderDesc">1일 최대 00개 구매 가능합니다.</div>
+			<!-- 수량입력 -->
+			<div class="quantityWrap">
+				<div class="quantity">
+					<button class="btnMinus" qty="1"><span>-</span></button>
+					<span class="ipt_num"><input type="number" pattern="[0-9]*" name="orderQuantity" min="0" value="1"></span>
+					<button class="btnPlus" qty="3"><span>+</span></button>
+				</div>
+			</div>
+			<!-- 일반 옵션 셀렉트박스, 열릴때 클래스 on -->
+			<div class="selLayer">
+				<div class="selPick">
+					<span>(옵션명) 선택</span>
+				</div>
+			</div>
+			<!-- 상품 셀렉트박스 클래스 -->
+			<div class="selLayer">
+				<div class="selPick">
+					<span>(옵션명) 선택</span>
+				</div>
+			</div>
+			<!-- 택배, 스마트픽 선택, 선택 시 li 클래스 on -->
+			<ul class="deliSelect">
+				<li class="btnDelivery">
+					<a href="#none"><span class="icon"></span>택배로 받기</a>
+				</li>
+				<li class="btnSmartpick">
+					<a href="#none"><span class="icon"></span>스마트픽으로 찾기</a>
+				</li>
+			</ul>
+			<!-- 스마트픽 선택 시 -->
+			<div class="selWrap smartSel">
+				<select>
+					<option value="">지점</option>
+					<option value="">본점 잔여 3개</option>
+					<option value="">영등포점 잔여 1개</option>
+					<option value="">선택가능지점없음</option>
+				</select>
+				<div class="smartTxt">현재 선택하신 배송 방법은 '스마트픽'입니다.</div>
+			</div>
+			<!-- 추가정보 날짜형 -->
+			<div class="addInfoDate">
+				<input type="text" class="calendar-input" name="opt_input_value" value="" readonly="" placeholder="배송 희망일">
+				<a href="#" class="wa-datechooser-btn"><span>달력</span></a>
+			</div>
+			<!-- 추가정보 입력형 -->
+			<div class="addInfoInput">
+				<input type="text" placeholder="카드 or 리본 메시지">
+			</div>
+			<div class="addInfoInput">
+				<input type="text" placeholder="보내는 분 성함">
+			</div>
+			<div class="addInfoInput">
+				<input type="tel" placeholder="주문자 연락처">
+			</div>
+			<!-- 선택된 상품, 팝업창 높이가 전체창의 2/3넘어갈경우 선택된 상품에 스크롤 생김(높이 계산해서 height값 주세요) -->
+			<div class="orderPrdList">
+				<ul>
+					<li>
+						<div class="selPrdTit">[바바라] SAINT LAURENT 여성 토오픈 플랫 슈즈SAINT LAURENT 여성 토오픈 플랫 슈즈</div>
+						<div class="selBottom">
+							<div class="quantity">
+								<button class="btnMinus" qty="1"><span>-</span></button>
+								<span class="ipt_num"><input type="number" pattern="[0-9]*" name="orderQuantity" value="1"></span>
+								<button class="btnPlus" qty="3"><span>+</span></button>
+							</div>
+							<div class="selPrice"><strong>1,120,000</strong>원</div>
+							<a href="#none" class="selPrdDel">상품 삭제</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- 셀렉트 클릭 시 셀렉트 팝업(일반옵션) -->
+		<div class="selPopup" style="display:none">
+			<a href="#none" class="btnOptionClose">팝업닫기</a>
+			<!-- 클릭 시 클래스 on, 리스트 많을 경우 height값 주세요 -->
+			<div class="selLayer">
+				<div class="selPick">
+					<span>(옵션명) 선택</span>
+				</div>
+				<div class="selList">
+					<!-- 옵션 셀렉트일때 클래스 selOption -->
+					<ul class="selOption">
+						<li>
+							<div class="selPrdTit">멜란지그레이(MGY) x 100</div>
+							<div class="selPrdQt">잔여수량 : 1개</div>
+						</li>
+						<!-- 품절된 옵션일때 클래스 soldout -->
+						<li class="soldout">
+							<div class="selPrdTit">멜란지그레이(MGY) x 100 멜란지그레이(MGY) x 100 멜란지그레이(MGY) x 100</div>
+							<div class="selPrdQt">품절</div>
+							<a href="#none" class="icAlarm">재입고 알림</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- 셀렉트 클릭 시 셀렉트 팝업(상품) -->
+		<div class="selPopup" style="display:none">
+			<a href="#none" class="btnOptionClose">팝업닫기</a>
+			<!-- 클릭시 클래스 on, 리스트 많을 경우 height값 주세요 -->
+			<div class="selLayer on">
+				<div class="selPick">
+					<span>(옵션명) 선택</span>
+				</div>
+				<div class="selList">
+					<!-- 상품 셀렉트일때 클래스 selPrd -->
+					<ul class="selPrd">
+						<li>
+							<div class="prdImg">
+								<img src="/images/lotte2015/temp/prd02.gif" alt="" />
+							</div>
+							<div class="selPrdTit">[바바라] SAINT LAURENT 여성 토오픈 플랫 슈즈</div>
+							<div class="selDesc">1일 최대 00개 구매 가능합니다.</div>
+							<div class="selBottom">
+								<div class="selPrice"><strong>1,120,000</strong>원</div>
+							</div>
+						</li>
+						<!-- 품절된 상품일때 클랫 soldout -->
+						<li class="soldout">
+							<div class="prdImg">
+								<img src="/images/lotte2015/temp/prd02.gif" alt="" />
+							</div>
+							<div class="selPrdTit">[바바라] SAINT LAURENT 여성 토오픈 플랫 슈즈</div>
+							<div class="selDesc">1일 최대 00개 구매 가능합니다.</div>
+							<div class="selBottom">
+								<div class="selPrice"><strong>1,120,000</strong>원</div>
+								<a href="#none" class="icAlarm">재입고 알림</a>
+							</div>
+						</li>
+						<li>
+							<div class="prdImg">
+								<img src="/images/lotte2015/temp/prd02.gif" alt="" />
+							</div>
+							<div class="selPrdTit">[바바라] SAINT LAURENT 여성 토오픈 플랫 슈즈</div>
+							<div class="selDesc">1일 최대 00개 구매 가능합니다.</div>
+							<!-- 스마트픽 가능 상품일경우 -->
+							<div class="selBottom">
+								<div class="selPrice"><span class="icSmart">스마트픽 가능</span><strong>1,120,000</strong>원</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--e: 상품상세정보 팝업-->
+<!-- //layer popup -->
+</body>
+</html>

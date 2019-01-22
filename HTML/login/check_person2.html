@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">	
+<!----------------- current css ----------------->
+	
+<link rel="stylesheet" href="/lotte/resources_dev/login/login.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<!-- container -->
+<section id="container">
+	<!--------------- current html --------------->
+	
+	<style>
+	.checkPerson .txt19:before,
+	.checkPerson .buttonWrap ul li span:before {position:absolute; display:block; content:''; background:url(http://image.lotte.com/lotte/mo2015/angular/mylotte/check_person.png) no-repeat; background-size:200px;}
+	
+	.checkPerson {background:#fff; border-bottom:1px solid #ddd; color:#888; padding-bottom:20px;}
+	.checkPerson .tc {text-align:center;}
+	.checkPerson .txt19 {padding:25px 0 25px 35px; border-bottom:1px solid #ddd;}
+	.checkPerson .txt19:before {width:33px; left:6px; top:28px; height:33px; background-position:-3px -3px;}
+	.checkPerson .txt19 strong {color:#333;}
+	.checkPerson .txt {padding:25px 0; font-size:10px;}
+	.checkPerson .wrap {padding:0 10px; margin:0 auto;}
+	.checkPerson .buttonWrap {text-align:center; width:100%; padding:20px 0; overflow:hidden; border-radius:2px; border:1px solid #ddd;}
+	.checkPerson .buttonWrap a {display:inline-block; line-height:35px; height:35px; border-radius:2px; padding:0 10px; white-space:nowrap; font-size:14px; background:#6190ff; color:#fff;}
+	.checkPerson .buttonWrap ul {width:100%;}
+	.checkPerson .buttonWrap ul li {width:50%; float:left; position:relative;}
+	.checkPerson .buttonWrap ul li span {display:block; width:60px; height:100px;}
+	.checkPerson .buttonWrap ul li span:before {left:50%; margin:20px 0 0 -22px; background-position:-52px -5px; width:45px; height:58px;}
+	.checkPerson .buttonWrap ul li.ipin span:before {width:88px; height:39px; margin:30px 0 0 -51px; background-position:-102px -5px;}
+	.checkPerson .buttonWrap ul li:first-child {border-right:1px solid #ddd; margin-left:-1px;}
+	.checkPerson .txtNoMem {text-align:center; padding:40px 0;}
+	</style>
+	<div class="checkPerson">
+		<div class="wrap">
+			<p class="txt19">19세 미만의 청소년에게 접근이 제한된 정보입니다.<br><strong>본인인증 후 이용이 가능합니다.</strong></p>
+			<p class="txt">
+				본 정보는 청소년 유해매체물로써 정보통신망이용촉진 및 정보보호 등에
+				관한 법률 및 청소년보호법의 규정에 의하여 본인 확인 이후 사용 하실 수 
+				있습니다.
+			</p>
+			<!-- 
+			<p class="txtNoMem">
+				비회원 주문을 위한 본인인증이 필요합니다.
+			</p>
+			 -->
+			
+			<div class="buttonWrap">
+				<ul>
+					<li class="phone"><span></span><a href="#">휴대폰 본인인증</a></li>
+					<li class="ipin"><span></span><a href="#">아이핀 본인인증</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>		
+	
+	<!-------------// current html --------------->
+</section>
+<!-- footer -->
+<section ng-include src="'/HTML/include/footer.html'"></section>
+</body>
+</html>

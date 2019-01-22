@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+    <meta charset="utf-8">
+    <title>롯데닷컴</title>
+    <meta content="no_cache" http-equiv="cache_control">
+    <meta content="0" http-equiv="expires">
+    <meta content="no_cache" http-equiv="pragma">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+    <meta content="telephone=no" name="format-detection">
+    <!-- test css -->
+    <link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+    <link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+    <link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+    <link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+    <link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+    <link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+    <link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+    <link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">
+
+    <!----------------- current css ----------------->
+    <link rel="stylesheet" href="/lotte/resources_dev/mylotte/mylotte.css">
+    <link rel="stylesheet" href="/lotte/resources_dev/mylotte/product/m/mylotte_reinquiry_list.css">
+
+    <!---------------// current css ----------------->
+
+    <!-- test js -->
+    <script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+    <script src="/lib/angular/angular.min.js"></script>
+    <script src="/lib/angular/angular-route.min.js"></script>
+    <script src="/HTML/js/testPub.js"></script>
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<section id="container">
+    <!-- contents -->
+
+    <section class="prod_inquiry">
+
+        <div class="list">
+            <ol class="qna">
+                <li>
+                    <a href="#">
+                        <p class="thumb"><img ng-src="http://image.lotte.com/goods/10/70/74/9/9747010_1_280.jpg" alt="" /></p>
+                        <p class="title">
+                            <span class="name elli"><span class="new">새상품</span>[바바라] SAINT LAUR...    </span>
+                            <span class="txt elli">상품문의 Text max1줄 노출...</span>
+                            <span class="date elli">2015.06.30</span>
+                        </p>
+                        <p class="state">
+                            <span class="a02">답변보기</span>
+                        </p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <p class="thumb"><img ng-src="http://image.lotte.com/goods/09/61/41/86/86416109_1_280.jpg" alt="" /></p>
+                        <p class="title">
+                            <span class="name elli">[바바라] SAINT LAUREN...    </span>
+                            <span class="txt elli">상품문의 Text max1줄 노출...</span>
+                            <span class="date elli">2015.06.30</span>
+                        </p>
+                        <p class="state">
+                            <span class="a01">답변준비중</span>
+                        </p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <p class="thumb"><img ng-src="http://image.lotte.com/goods/09/50/78/84/84785009_1_280.jpg" alt="" /></p>
+                        <p class="title">
+                            <span class="name elli">[바바라] SAINT LAUREN...    </span>
+                            <span class="txt elli">상품문의 Text max1줄 노출...</span>
+                            <span class="date elli">2015.06.30</span>
+                        </p>
+                        <p class="state">
+                            <span class="a01">답변준비중</span>
+                        </p>
+                    </a>
+                </li>
+            </ol>
+            
+            <p class="custcenter_info"><img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/prod_inquiry_custcenter_info.png"></p>
+
+            <div class="list_more"><a href="#">더보기 (<span>{{csQnaListTotal}}10/{{csQnaListTotal}}20</span>)</a></div>
+        </div>
+
+    </section>
+
+    <!-- //contents -->
+</section>
+
+<section ng-include src="'/HTML/include/footer.html'"></section>
+
+</body>
+</html>

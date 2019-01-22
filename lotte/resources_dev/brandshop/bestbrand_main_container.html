@@ -1,0 +1,183 @@
+<section ng-show="contVisible" class="cont_minheight">
+	<div class="best_header_wrap">
+		<div class="fixed_header" sub-header-each>
+			<header id="bestbrandSubHead">
+				<h2>
+				<a ng-click="goBestBrandMain()" ng-style="{'background-color':screenData.head.bgColor}">
+					<img class="logo" ng-src="{{screenData.head.logo}}" alt="{{screenData.head.title}}" />
+				</a>
+				</h2>
+				<p class="share" ng-class="{black:screenData.head.bgType && screenData.head.bgType=='0'}">
+					<a ng-click="showSharePop()">공유</a>
+				</p>
+			</header>
+			<!-- GNB -->
+			<div id="gnb" ng-if="screenData.gnbMenu.length > 0" class="nav_swipe_wrap">
+				<nav main-menu lotte-slider class="main_nav" swipe-end-func="$scope.menuSwipEndFunc" ng-style="{'background-color':screenData.head.ctgBgColor}">
+					<ul>
+						<li ng-repeat="item in screenData.gnbMenu" class="dispno_{{item.disp_no}}">
+							<span class="cate_flag" ng-if="item.flag_txt">{{item.flag_txt}}</span>
+							<a ng-click="headerMenuClick(item.disp_no)" ng-style="{'color':screenData.head.color}">{{item.disp_nm}}</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+
+	<!-- TOP BANNER -->
+	<div ng-if="screenData.topBanner.length > 0" class="top_banner">
+		<a ng-if="screenData.topBanner.length == 1" ng-click="goBestBrandTop(screenData.topBanner[0].img_link, 0)">
+           <img ng-src="{{screenData.topBanner[0].img_url}}">
+        </a>
+		<div ng-if="screenData.topBanner.length > 1" class="swipe_wrap" id="topBnrSwipe1" roll-swipe-banner rolling="true" width320="1" width640="1" width900="1" info="screenData.topBanner">
+	        <ul class="swipeBox">
+	            <li ng-repeat="item in screenData.topBanner track by $index">
+	                <a ng-click="goBestBrandTop(item.img_link, $index)">
+	                   <img ng-src="{{item.img_url}}">
+	                </a>
+	            </li>
+	        </ul>
+	        <ul class="indicator roll">
+	            <li ng-repeat="item in screenData.topBanner"><span>{{$index}}</span></li>
+	        </ul>
+	    </div>
+	</div>
+	
+	<div ng-if="screenData.promotion.length > 0" class="top_banner">
+		
+	</div>
+
+	<!-- PROMOTION & NEWS -->
+    <section ng-if="screenData.promotion && screenData.promotion.length > 0" class="top_swipe_wrap themelist">
+    	<div class="titlearea">
+			<div class="title">PROMOTION & NEWS</div>
+		</div>
+		<!-- 스와이프 영역 -->
+		<div ng-if="screenData.promotion.length < 2" class="swipe_wrap promotionSwipe" id="promotionSwipe1"  roll-swipe-banner item-margin="40" rolling="false" width320="1" width640="1" width900="1" info="screenData.promotion">
+	        <ul class="swipeBox">
+	            <li ng-repeat="item in screenData.promotion track by $index">
+	            	<div>
+		                <a ng-click="goBestBrandTop(item.img_link, $index)">
+		                   <img ng-src="{{item.img_url}}">
+		                </a>
+	                </div>
+	            </li>
+	        </ul>
+	    </div>
+		<div ng-if="screenData.promotion.length >= 2" class="swipe_wrap promotionSwipe" id="promotionSwipe2"  roll-swipe-banner item-margin="40" rolling="true" width320="1" width640="1" width900="1" info="screenData.promotion">
+	        <ul class="swipeBox">
+	            <li ng-repeat="item in screenData.promotion track by $index">
+	            	<div>
+		                <a ng-click="goBestBrandTop(item.img_link, $index)">
+		                   <img ng-src="{{item.img_url}}">
+		                </a>
+	                </div>
+	            </li>
+	        </ul>
+	    </div>
+		<!-- <div class="swipe_wrap">
+			<ul lotte-ng-list-swipe
+				swipe-id="promotionBanner"
+				swipe-first-index="1"
+				swipe-list-model="screenData.promotion"
+				swipe-slide-item="true"
+				swipe-left-margin="40"
+				swipe-right-margin="40"
+				swipe-max-ratio="0.2"
+				swipe-min-distance="40"
+				swipe-responsive="true"
+				swipe-responsive320="1"
+				swipe-responsive640="1"
+				swipe-responsive900="1">
+				<li ng-repeat="item in screenData.promotion track by $index">
+					<div>
+						<a ng-click="promotionLink(item, $index)">
+				    		<img ng-src="{{item.img_url}}" />
+			    		</a>
+			    	</div>
+				</li>
+			</ul>
+		</div> -->
+
+		<!-- <ul class="indicator" ng-if="screenData.promotion && screenData.promotion.length > 1" >
+			<li ng-repeat="item in screenData.promotion track by $index" ng-class="{on: swipeIdx == $index}"><span>{{$index}}</span></li>
+		</ul> -->
+		<!-- //스와이프 영역 -->
+	</section>
+
+	<!-- NEW ARRIVALS -->
+	<section class="new_arrivals" ng-if="screenData.newArrivals && screenData.newArrivals.length > 0">
+		<div class="titlearea">
+			<div class="title">NEW ARRIVALS</div>
+		</div>
+		<div class="new_arrival_wrap">
+			<ul>
+				<li ng-repeat="item in screenData.newArrivals" ng-if="$index < 4">
+					<a ng-click="goNewArrival(item.goods_no, $index)">
+						<div class="image_wrap">
+							<img ng-src="{{item.img_url}}" alt="{{item.goods_nm}}" />
+						</div>
+						<div class="info_wrap">
+							<span class="goods_nm" ng-bind-html="item.goods_nm"></span>
+							<span class="price"><strong>{{item.sale_price | number}}</strong><em>원</em><var ng-if="item.is_plan_prod" class="plan_prod_limit">~</var></span>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</section>
+
+	<!-- BEST REVIEW -->
+	<section class="best_review" ng-if="screenData.bestReview && screenData.bestReview.length > 0">
+		<div class="titlearea">
+			<div class="title">BEST REVIEW</div>
+		</div>
+		<div class="review_wrap">
+			<ul>
+				<li ng-repeat="item in screenData.bestReview" ng-if="$index < 6">
+					<a ng-click="goPreview(item.goods_no, $index)">
+                        <div class="thumb">
+                            <img ng-src="{{item.img_url}}" alt="{{item.goods_nm}}" />
+                        </div>
+                        <div class="info">
+                            <p class="tit" ng-bind-html="item.goods_nm"></p>
+                            <div class="user_feedback">
+	                            <span class="score" ng-if="item.gdas_stfd_val > 0" ng-click="productReviewClick(item)">
+	                                <span class="starScoreWrap"><span class="starScoreCnt" ng-style="{'width':item.gdas_stfd_val*20 + '%'}"></span></span>
+	                            </span>
+	                        </div>
+	                        <p class="review" ng-bind-html="item.gdas_cont"></p>
+                        </div>
+	                </a>
+				</li>
+			</ul>
+		</div>
+	</section>
+
+	<!-- CATEGORY BEST ITEM -->
+	<section class="best_item_wrap" ng-if="screenData.bestItems && screenData.bestItems.length > 0">
+		<div class="best_item" ng-repeat="items in screenData.bestItems" ng-if="items.best_goods_list.length > 5">
+			<div class="titlearea">
+				<div class="title">{{items.disp_nm}} 베스트 아이템</div>
+			</div>
+			<div lotte-slider ng-if="items.best_goods_list.length > 0" class="swipe_wrap">
+		        <ul>
+		            <li ng-repeat="item in items.best_goods_list track by $index" ng-class="{last:item.last}">
+		                <a ng-click="goSubPage(item.goods_no, items.disp_no, $index)" ng-if="!item.last">
+		                    <div class="imageCon"><img ng-src="{{item.img_url}}"></div>
+		                    <div class="titleCon">
+		                        <span class="name">{{item.goods_nm}}</span>
+		                        <div class="t1"><span><b>{{item.sale_price | number}}</b>원<em ng-if="item.is_plan_prod" class="plan_prod_limit">~</em></span></div>
+		                    </div>
+		                    <span class="seq">{{$index + 1}}</span>
+		                </a>
+		                <div ng-if="item.last">
+		                	<a href="#" ng-click="goSubPageMore(items.disp_no)">더보기</a>
+		                </div>
+		            </li>
+		        </ul>
+		    </div>
+	    </div>
+	</section>
+</section>

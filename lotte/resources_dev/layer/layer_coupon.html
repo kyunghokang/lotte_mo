@@ -1,0 +1,36 @@
+<div class="coupon_layer_s {{couponLayer.cpnType}}" ng-if="couponLayer">
+    <div ng-if="couponLayer.cpnType=='double_coupon'">
+        <div class="cont">
+            <div>
+                <img ng-src="http://image.lotte.com/lotte/mobile/mobile_new/product/coupon_img01.jpg" alt="LOTTE.COM"/>
+            </div>
+            <img ng-src="{{imgPath + couponLayer.imgUrl}}" alt="{{couponLayer.alt}}" ng-if="couponLayer.imgUrl"/>
+            <a ng-click="downDoubleCoupon()">
+                <img ng-src="http://image.lotte.com/lotte/mobile/mobile_new/product/coupon_img03_0130.jpg" alt="중복 쿠폰 다운로드"/>
+            </a>
+        </div>
+        <div class="check">
+            <span class="today">
+                <input type="checkbox" id="choice01" ng-click="setToDayNotView();">
+                <label for="choice01">오늘하루 그만보기</label>
+            </span>
+            <span class="close"><a href="" ng-click="closeDoubleCouponLayer()">닫기</a></span>
+        </div>
+    </div>
+
+    <div ng-if="couponLayer.cpnType=='app_down'">
+        <span class="bg"></span>
+        <div class="btn_wrap">
+            <p>
+                <a ng-click="goAppStore();">
+                    <img ng-src="{{imgPath + couponLayer.imgUrl}}" alt="{{couponLayer.alt}}" class="appdown" ng-if="couponLayer.imgUrl"/>
+                </a>
+            </p>
+            <p>
+                <a ng-click="setToDayNotView();">
+                    <img ng-src="http://image.lotte.com/lotte/mobile/mobile_new/product/btn_close.png" alt="나중에 보기" class="layerclose"/>
+                </a>
+            </p>
+        </div>
+    </div>
+</div>

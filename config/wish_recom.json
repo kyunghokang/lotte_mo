@@ -1,0 +1,68 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplWishRecom" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mylotte/wish/m/wish_recom_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/wish_recom.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsWishRecom" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mylotte/wish/m/wish_recom.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/wish_recom.js"
+            }
+        },
+
+        "uglify" : {
+            "jsWishRecom" : {
+                "src" : "lotte/resources/<%= version %>/wish_recom.js",
+                "dest" : "lotte/resources/<%= version %>/wish_recom.min.js"
+            },
+            "tplWishRecom" : {
+                "src" : "lotte/resources/<%= version %>/wish_recom.template.js",
+                "dest" : "lotte/resources/<%= version %>/wish_recom.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssWishRecom" : {
+                "src" : [
+                    "lotte/resources_dev/mylotte/wish/m/wish_recom.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/wish_recom.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanWishRecom" : [
+                "lotte/resources/<%= version %>/wish_recom.js",
+                "lotte/resources/<%= version %>/wish_recom.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlWishRecom" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mylotte/wish/m/wish_recom.html" : "mylotte/wish/m/wish_recom_dev.html"
+                }
+            }
+        }
+    }
+}

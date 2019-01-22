@@ -1,0 +1,34 @@
+<section id="change_pick" class="">
+	<!-- D:20150915 스마트픽예약변경 -->
+	<div class="commonPop" >
+		<div class="bg"></div>
+		<div class="box">
+			<div class="popBox">
+				<div class="cont"> 
+					<!-- <img src="http://image.lotte.com/lotte/mobile/mobile_new/order/smartpickChangePop_title.png" alt="스마트픽 예약변경"> D:20150915 마크업삭제 / 텍스트로 대체 -->
+					<h2>스마트픽 예약변경</h2>
+					<p id="now_reservation" class="now_reservation">고객님의 현재 예약일은 <strong>{{originalDate|strToDate}}</strong> 입니다.</p>
+					<dl class="reservation_selection">
+						<dt>날짜</dt>
+						<dd>							
+							<span class="s_box02">
+								<select ng-model="changeDate" id="smpRsvChgDtCombo" name="smpRsvChgDtCombo" ng-options="changeDateFn(i) for i in changeDateList">
+									<option value="">선택해주세요.</option>
+								</select>
+							</span>
+						</dd>
+						<dt>시간</dt>
+						<dd><p id="smpMngTime">10:30~19:00</p></dd>
+					</dl>
+					<ul class="blt1">
+						<li>매장 휴점일에는 날짜 선택이 불가합니다.</li>
+						<li>예약일 변경은 <span class="fc04">최초 1회</span>만 가능합니다.</li>
+					</ul>
+					<a ng-click="changeSmartPick(changeDate, thisItems)">확인<!--<img src="http://image.lotte.com/lotte/mobile/mobile_new/order/smartpickChangePop_btn.png" alt="예약변경하기">--></a><!-- D:20150915 마크업수정 / 이미지삭제,텍스트로 대체 -->
+				</div>
+				<a ng-click="changePickClose(thisChangePickIdx)"><div class="foot">닫기</div></a>
+			</div>           
+		</div>
+	</div>
+	<!-- //D:20150915 스마트픽예약변경 -->
+</section>

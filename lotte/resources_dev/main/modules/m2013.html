@@ -1,0 +1,21 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!--M13 상품 4개형..-->
+	<div class="moduleCon">
+		<div class="unit unit_prod_4">
+			<ul>
+				<li ng-repeat="item in moduleData.prdList.items">
+					<a ng-click="logGAEvtModuleEach($index + 1, item.goodsNo);mainProductClick(item.goodsNo, moduleData.tclick + '_Clk_Prd'+numberFill(($index+1),2))">
+						<!--상품이미지-->
+						<p class="imgwrap"><img ng-src="{{item.imgUrl}}"></p>
+						<!--브랜드명-- >
+						<p class="brandname">{{item.brdNm}}</p>
+						<!--상품명-->
+						<p class="prodname">{{item.goodsNm}}</p>
+						<!--가격-->
+						<p class="price">{{item.price | number}}<em>원<em class="plan_prod_limit ng-scope" ng-if="item.isPlanPrd">~</em></em></p>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>

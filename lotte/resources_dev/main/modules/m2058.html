@@ -1,0 +1,128 @@
+<section class="sec_event_top blankCd{{moduleData.blankCd}}">
+	<!--M58 이벤트/쿠폰(마이혜택)..-->
+	<div class="moduleCon">
+		<!-- <event-icon-banner module-data="moduleData"></event-icon-banner> -->
+		<!-- <div class="event_small_banner n201811 swipe_wrap" lotte-slider>
+			<ul>
+                <li ng-click="logGAEvtModuleEach('13', '출석체크');linkClick(moduleData.linkInfo.attendUrl, '')"><div class="img_wrap"></div><p>출석체크</p></li>
+				<li ng-click="logGAEvtModuleEach('10', '쿠폰혜택');linkClick(moduleData.linkInfo.benefitUrl, '')"><div class="img_wrap"></div><p>쿠폰/혜택</p></li>
+				<li ng-click="logGAEvtModuleEach('11', '구매사은');linkClick(moduleData.linkInfo.rewordUrl, '')"><div class="img_wrap"></div><p>구매사은</p></li>
+				<li ng-click="logGAEvtModuleEach('12', '응모당첨');linkClick(moduleData.linkInfo.eventUrl, '')"><div class="img_wrap"></div><p>응모/당첨</p></li>
+				<li ng-click="logGAEvtModuleEach('13', '출석체크');linkClick(moduleData.linkInfo.attendUrl, '')"><div class="img_wrap"></div><p>출석체크</p></li>
+				<li ng-click="logGAEvtModuleEach('10', '쿠폰혜택');linkClick(moduleData.linkInfo.benefitUrl, '')"><div class="img_wrap"></div><p>쿠폰/혜택</p></li>
+				<li ng-click="logGAEvtModuleEach('11', '구매사은');linkClick(moduleData.linkInfo.rewordUrl, '')"><div class="img_wrap"></div><p>구매사은</p></li>
+				<li ng-click="logGAEvtModuleEach('12', '응모당첨');linkClick(moduleData.linkInfo.eventUrl, '')"><div class="img_wrap"></div><p>응모/당첨</p></li>
+			</ul>
+		</div> -->
+                
+		<!-- <div class="event_top_wrap">
+			<ul class="event_top left">
+				<li class="event_panel">
+					<a ng-click="logGAEvtModuleEach('01', moduleData.imgList.items[0].txt + ' ' + moduleData.imgList.items[0].eventTime);mainBannerClick(moduleData.imgList.items[0].linkUrl, moduleData.imgList.items[0].isOutLink, moduleData.tclick + '_Clk_Ban01')">
+						<div class="img_wrap"><img ng-src="{{moduleData.imgList.items[0].imgUrl}}"></div>
+						<div class="desc">
+							<p class="tit">{{moduleData.imgList.items[0].txt}}</p>
+							<p class="date">{{moduleData.imgList.items[0].eventTime}}</p>
+						</div>
+					</a>
+				</li>
+				<li class="attend_lucky2"> 출석체크, 클로버혜택
+					<p ng-if="moduleData.imgListNew.items[0]" ng-click="logGAEvtModuleEach('08', '{{moduleData.imgListNew.items[0].txt}}');linkClick('{{moduleData.imgListNew.items[0].linkUrl}}', moduleData.tclick + '_Clk_Btn01');"><img ng-src="{{moduleData.imgListNew.items[0].imgUrl}}"></p>
+					<p ng-if="moduleData.imgListNew.items[1]" ng-click="logGAEvtModuleEach('09', '{{moduleData.imgListNew.items[1].txt}}');linkClick('{{moduleData.imgListNew.items[1].linkUrl}}', moduleData.tclick + '_Clk_Btn02');"><img ng-src="{{moduleData.imgListNew.items[1].imgUrl}}"></p>					
+				</li>
+				<li class="event_panel">
+					<a ng-click="logGAEvtModuleEach('03', moduleData.imgList.items[2].txt + ' ' + moduleData.imgList.items[2].eventTime);mainBannerClick(moduleData.imgList.items[2].linkUrl, moduleData.imgList.items[2].isOutLink, moduleData.tclick + '_Clk_Ban03')">
+						<div class="img_wrap"><img ng-src="{{moduleData.imgList.items[2].imgUrl}}"></div>
+						<div class="desc">
+							<p class="tit">{{moduleData.imgList.items[2].txt}}</p>
+							<p class="date">{{moduleData.imgList.items[2].eventTime}}</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+
+			<ul class="event_top right">
+				<li class="img_banner">
+					<a ng-click="logGAEvtModuleEach('02', moduleData.imgList.items[1].txt + ' ' + moduleData.imgList.items[1].eventTime);mainBannerClick(moduleData.imgList.items[1].linkUrl, moduleData.imgList.items[1].isOutLink, moduleData.tclick + '_Clk_Ban02')"><img ng-src="{{moduleData.imgList.items[1].imgUrl}}">
+						<p class="desc_txt">{{moduleData.imgList.items[1].txt}}</p>
+					</a>
+				</li>
+				<li class="event_panel">
+					<a ng-click="logGAEvtModuleEach('04', moduleData.imgList.items[3].txt + ' ' + moduleData.imgList.items[3].eventTime);mainBannerClick(moduleData.imgList.items[3].linkUrl, moduleData.imgList.items[3].isOutLink, moduleData.tclick + '_Clk_Ban04')">
+						<div class="img_wrap"><img ng-src="{{moduleData.imgList.items[3].imgUrl}}"></div>
+						<div class="desc">
+							<p class="tit">{{moduleData.imgList.items[3].txt}}</p>
+							<p class="date">{{moduleData.imgList.items[3].eventTime}}</p>
+						</div>
+					</a>
+				</li>
+
+				로그인 후
+				<li class="coupon_area" ng-if="loginInfo.isLogin && !newVer">
+					<div class="coupon_wrap">
+						<p class="tit">
+                            <span><b>{{loginInfo.name | limitTo:5}}</b> 고객님의<br>참 좋은 쿠폰</span>
+						  </p>
+						<div class="coupon_img" ng-switch="callBackData.mbrCpnDownYn">
+							<img ng-switch-when="false" ng-src="{{callBackData.cpnImgUrl}}">
+							<img ng-switch-when="true" ng-src="{{callBackData.cpnCompleteImgUrl}}">
+						</div>
+					</div>
+					<a class="btn_down" ng-if="!callBackData.mbrCpnDownYn" ng-click="logGAEvtModuleEach('05', '쿠폰다운로드');couponDown(moduleData.tclick + '_Clk_Coupon_Btn')">쿠폰 전체 받기</a>
+					<a class="btn_down confirm" ng-if="callBackData.mbrCpnDownYn" ng-click="logGAEvtModuleEach('07', '쿠폰확인하기');linkClick(callBackData.cpnInfoUrl, moduleData.tclick + '_Clk_Check_Btn')">쿠폰 확인하기</a>
+				</li>								
+				<li class="coupon_area" ng-if="loginInfo.isLogin && newVer">				
+					<div class="coupon_wrap" ng-if="!(loginInfo.gradeCd == '60' || loginInfo.gradeCd == '70' || loginInfo.gradeCd == '80')">
+						<p class="tit">
+						    <span><b>{{loginInfo.name | limitTo:5}}</b> 고객님의<br>멤버십 쿠폰</span>
+						  </p>
+						<div class="coupon_img" ng-switch="callBackData.mbrCpnDownYn">
+							<img ng-switch-when="false" ng-src="{{callBackData.cpnImgUrl}}">
+							<img ng-switch-when="true" ng-src="{{callBackData.cpnCompleteImgUrl}}">
+						</div>
+					</div>
+					<div ng-if="!(loginInfo.gradeCd == '60' || loginInfo.gradeCd == '70' || loginInfo.gradeCd == '80')">
+                        <a class="btn_down" ng-if="!callBackData.mbrCpnDownYn" ng-click="logGAEvtModuleEach('05', '쿠폰다운로드');couponDown(moduleData.tclick + '_Clk_Coupon_Btn')">쿠폰 전체 받기</a>
+                        <a class="btn_down confirm" ng-if="callBackData.mbrCpnDownYn" ng-click="logGAEvtModuleEach('07', '쿠폰확인하기');linkClick(callBackData.cpnInfoUrl, moduleData.tclick + '_Clk_Check_Btn')">쿠폰 확인하기</a>
+					</div>
+
+					60~80
+					<div class="coupon_wrap" ng-if="(loginInfo.gradeCd == '60' || loginInfo.gradeCd == '70' || loginInfo.gradeCd == '80')">
+						<div class="tit_wrap">
+							<p class="tit_main">고객님!</p>
+							<p class="tit_sub">{{loginInfo.name | limitTo:5}} 고객님!<br/>1회 구매를 통해<br/>멤버십 쿠폰을<br>발급받으세요.</p>
+						</div>
+					</div>
+
+					<div ng-if="(loginInfo.gradeCd == '60' || loginInfo.gradeCd == '70' || loginInfo.gradeCd == '80')">
+                        <a class="btn_down confirm" ng-if="callBackData.mbrCpnDownYn" ng-click="logGAEvtModuleEach('07', '혜택확인하기');linkClick(moduleData.linkInfo.benefitUrl, moduleData.tclick + '_Clk_Check_Btn')">혜택 확인하기</a>
+					</div>					
+				</li>								
+				로그인 전
+				<li class="coupon_area" ng-if="!loginInfo.isLogin">
+					<div class="coupon_wrap">
+						<div class="tit_wrap">
+							<p class="tit_main">고객님!</p>
+							<p class="tit_sub" ng-if="!newVer">로그인하고<br/>참 좋은 혜택을<br/>확인하세요!</p>
+							<p class="tit_sub" ng-if="newVer">로그인하고<br/>멤버십 쿠폰을<br/>확인하세요!</p>
+						</div>
+					</div>
+					<a class="btn_down login" ng-click="logGAEvtModuleEach('06', '로그인하기');loginFromThis(moduleData.tclick + '_Clk_Login_Btn')">로그인</a>
+				</li>
+			</ul>
+		</div> -->
+
+<!--		<div class="event_small_banner">
+			<ul>
+				<li ng-click="logGAEvtModuleEach('10', '멤버십&쿠폰존');linkClick(moduleData.linkInfo.benefitUrl, moduleData.tclick + '_Clk_Btn03')"><div class="img_wrap"></div>
+				    <p ng-if="!newVer">참 좋은 혜택</p>
+				    <p ng-if="newVer">멤버십&쿠폰존</p>
+				</li>
+				<li ng-click="logGAEvtModuleEach('11', '구매사은');linkClick(moduleData.linkInfo.rewordUrl, moduleData.tclick + '_Clk_Btn04')"><div class="img_wrap"></div><p>구매사은</p></li>
+				<li ng-click="logGAEvtModuleEach('12', '응모당첨');linkClick(moduleData.linkInfo.eventUrl, moduleData.tclick + '_Clk_Btn05')"><div class="img_wrap"></div><p>응모/당첨</p></li>
+			</ul>
+		</div>-->
+
+	</div>
+
+</section>

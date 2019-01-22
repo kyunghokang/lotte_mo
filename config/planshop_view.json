@@ -1,0 +1,75 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplEventPlanshop" : {
+				"options": {
+					"prefix":"/",
+					"module" : "app"
+				},
+				"src" : [
+					"lotte/resources_dev/layer/main_popup.html",
+					"lotte/resources_dev/layer/app_down_bnr.html",
+                    "lotte/resources_dev/product/m/product_list_select_container2.html",
+					"lotte/resources_dev/planshop/m/planshop_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/planshop_view.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsEventPlanshop" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/planshop/m/planshop.js",
+					"lotte/resources_dev/common/lotte_unit.js",
+					"lotte/resources_dev/layer/main_popup.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/planshop_view.js"
+			}
+		},
+
+		"uglify" : {
+			"jsEventPlanshop" : {
+				"src" : "lotte/resources/<%= version %>/planshop_view.js",
+				"dest" : "lotte/resources/<%= version %>/planshop_view.min.js"
+			},
+			"tplEventPlanshop" : {
+				"src" : "lotte/resources/<%= version %>/planshop_view.template.js",
+				"dest" : "lotte/resources/<%= version %>/planshop_view.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssEventPlanshop" : {
+				"src" : [
+					"lotte/resources_dev/planshop/m/planshop.css",
+					"lotte/resources_dev/layer/main_popup.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/planshop_view.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanEventPlanshop" : [
+				"lotte/resources/<%= version %>/planshop_view.js",
+				"lotte/resources/<%= version %>/planshop_view.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlEventPlanshop" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"planshop/m/planshop_view.html" : "planshop/m/planshop_view_dev.html"
+				}
+			}
+		}
+	}
+}
+

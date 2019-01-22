@@ -1,0 +1,71 @@
+<div  template-event class="cont_wrap template_event padding">
+	<!-- 최상단 띠배너 -->
+	<section ng-if="screenData.top_banner_list[0]" class="top_banner_list">
+		<ul>
+			<li><a ng-click="linkUrl(screenData.top_banner_list[0].img_link, screenData.top_banner_list[0].mov_frme_cd, 'm_menu_{{mainTemplateType}}_rewardevent')"><img ng-src="{{screenData.top_banner_list[0].img_url}}" alt="{{screenData.top_banner_list[0].banner_nm}}" /></a></li>
+
+			<!-- 640 이상일때만 나오는 출석 도장 이벤트 -->
+			<li ng-if="winWidth >= 640"><a ng-click="linkUrl(eventLinkObj.eventAttendUrl, false, 'm_menu_{{mainTemplateType}}_tabletbanner')"><img src="http://image.lotte.com/lotte/mo2015/angular/banner_201507_attend.png" alt="출석도짱" /></a></li>
+		</ul>
+	</section>
+
+	<!-- 스와이프 배너 -->
+	<section ng-if="screenData.first_banner_list && screenData.first_banner_list.length > 0" ng-controller="lotteNgSwipeCtrl" class="top_swipe_wrap">
+		<div class="swipe_wrap">
+			<ul lotte-ng-list-swipe 
+				swipe-id="EventFirstBanner" 
+				swipe-list-model="screenData.first_banner_list" 
+				swipe-slide-item="true"  
+				swipe-max-ratio="0.2" 
+				swipe-min-distance="40"
+				swipe-responsive="true" 
+				swipe-responsive320="1" 
+				swipe-responsive640="2" 
+				swipe-responsive900="2">
+				<li ng-repeat="item in screenData.first_banner_list"><a ng-click="linkUrl(item.img_link, item.mov_frme_cd, 'm_menu_{{mainTemplateType}}_ban' + ($index + 1))"><img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}" /></a></li>
+			</ul>
+			<button class="btn_prev" ng-show="swipeIdx != 0" ng-click="beforeSlide()">이전</button>
+			<button class="btn_next" ng-show="swipeIdx != screenData.first_banner_list.length - 1" ng-click="nextSlide()">다음</button>
+		</div>
+		<ul class="indicator">
+			<li ng-repeat="item in screenData.first_banner_list" ng-class="{on: swipeIdx == $index}"><span>{{$index}}</span></li>
+		</ul>
+	</section>
+	
+	<!-- 중간 링크 영역 -->
+	<section class="link_wrap">
+		<ul>
+			<li class="item1"><a ng-click="linkUrl(eventLinkObj.eventInfoUrl, false, 'm_menu_{{mainTemplateType}}_set1')">응모/당첨</a></li>
+			<li class="item2"><a ng-click="linkUrl(eventLinkObj.eventSaunUrl, false, 'm_menu_{{mainTemplateType}}_set2')">구매사은</a></li>
+			<li class="item3"><a ng-click="linkUrl(eventLinkObj.eventBenefitUrl, false, 'm_menu_{{mainTemplateType}}_set3')">참좋은혜택</a></li>
+			<li class="item4"><a ng-click="linkUrl(eventLinkObj.eventAttendUrl, false, 'm_menu_{{mainTemplateType}}_set4')">출석도짱</a></li>
+		</ul>
+	</section>
+
+	<!-- 이벤트 리스트 -->
+	<section ng-if="screenData.event_banner_list && screenData.event_banner_list.length > 0 && (winWidth < 640 || (winWidth >= 640 && screenData.event_banner_list.length >= 2) || (winWidth >= 900 && screenData.event_banner_list.length >= 3))" class="evt_bnr_list">
+		<ul>
+			<!--ng-if="winWidth < 640 || (winWidth >= 640 && $index < 2) || (winWidth >= 900 && $index < 3)" -->
+			<li ng-repeat="item in screenData.event_banner_list">
+				<a class="item" ng-click="linkUrl(item.img_link, item.mov_frme_cd, 'm_menu_{{mainTemplateType}}_list' + ($index + 1))">
+					<div class="img_wrap"><img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}" /></div>
+					<!--<div class="desc_wrap">{{item.banner_nm}} | {{item.note_cont}}</div>-->
+					<div class="date_wrap">기간 : {{item.event_date}}<em ng-if="item.mov_frme_cd" class="out_link">새창</em></div>
+				</a>
+			</li>
+		</ul>
+	</section>
+
+	<!-- 외부고정배너 : 이벤트 -->
+	<section ng-if="screenData.outer_banner_list && screenData.outer_banner_list.length > 0" class="outlink_bnr_wrap">
+		<ul>
+			<li ng-repeat="item in screenData.outer_banner_list">
+				<a class="item" ng-click="linkUrl(item.img_link, item.mov_frme_cd, item.mov_frme_cd, 'm_menu_{{mainTemplateType}}_text' + ($index + 1))">
+					<div class="img_wrap"><img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}" /></div>
+					<div class="tit_wrap">{{item.banner_nm}}</div>
+					<div class="desc_wrap">{{item.note_cont}}</div>
+				</a>
+			</li>
+		</ul>
+	</section>
+</div>

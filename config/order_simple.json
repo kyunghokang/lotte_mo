@@ -1,0 +1,52 @@
+{
+    "tasks" : {
+        "concat" : {
+            "jsorderSimple" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/product/m/order_simple/order_simple.js",
+                    "lotte/resources_dev/product/m/order_simple/order_simple_form.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/order_simple.js"
+            }
+        },
+
+        "uglify" : {
+            "jsorderSimple" : {
+                "src" : "lotte/resources/<%= version %>/order_simple.js",
+                "dest" : "lotte/resources/<%= version %>/order_simple.min.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssorderSimple" : {
+                "src" : [
+                    "lotte/resources_dev/product/m/order_simple/order_simple.css",
+                    "lotte/resources_dev/common/lotte.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/order_simple.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanorderSimple" : [
+                "lotte/resources/<%= version %>/order_simple.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlorderSimple" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "product/m/order_simple/order_simple.html" : "product/m/order_simple/order_simple_dev.html"
+                }
+            }
+        }
+    }
+}

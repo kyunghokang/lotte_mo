@@ -1,0 +1,103 @@
+1. 업무명 :포인트내역
+2. 담당자 : 김강덕
+3. URL : 
+	http://mapi.lotte.com/json/mylotte/pointcoupon/point_info.json
+4. 파라미터
+	point_div: l_point L포인트/lt_point 롯데포인트/deposit 보관금/ clover 클로버/coupon 쿠폰  (필수)
+	display_cnt:
+	page_num:
+	search_type:4(6개월 조회)/3(3개월 조회)
+	site_no
+	goods_no
+	bz_tp_cd
+	start_date
+	end_date
+5. Json
+	1)lt_point            :  lt_point
+	2)l_point             :  l_point
+	3)deposit             :  deposit
+	4)clover_cnt          :  clover_cnt
+	5)coupon_cnt          :  coupon_cnt
+	6)total_l_point_blnc  :  총 소멸예정 L-포인트
+	7)refund_acct_yn      :  보관금 환불계좌 정보 refund_acct_yn
+	8)refund_acct_bank_cd :  보관금 환불계좌 정보 refund_acct_bank_cd
+	9)refund_acct_bank_nm :  보관금 환불계좌 정보 refund_acct_bank_nm
+	10)refund_acct_no      :  보관금 환불계좌 정보 refund_acct_no
+	11)refund_acct_holder  :  보관금 환불계좌 정보 refund_acct_holder
+	12)useable_clover      :  사용 가능 클로버
+	13)used_clover         :  사용 클로버
+	14)tobe_del_clover     :  소멸예정 클로버
+	15)pointList 포인트리스트{  
+						occur_dtime   :  일자
+						mm_title      :  상세내용
+						mm_gbn_nm     :  구분명
+						mm_gbn_value  :  구분값
+						point_info    :  포인트만료정보
+						point_sign    :  포인트 및 금액의 적립 또는 사용 (+/-)
+						occur_amt     :  포인트 및 금액
+						disapper_info :  유효기간 만료 정보
+						site_no       :  사이트정보
+						tobe_del_blnc :  소멸예정 L-포인트 및 금액
+						ord_no        :  적립예정 롯데포인트 order no
+						goods_nm      :  적립예정 롯데포인트 상품명
+						save_point    :  적립예정 롯데포인트 save_point
+						down_yn       :  적립예정 롯데포인트 down_yn			
+						}
+	16)tobeDelLPointList: 소멸예정 L포인트 			pointList 동일
+	17)saveLtPointList	: 적립예정 롯데포인트		pointList 동일
+	18)bankList 은행코드	{
+						bnk_cd 은행코드
+						bnk_nm 은행명
+						bnk_cd_selected 선택된 은행
+						}
+	19)cloverPointList 	: clover 포인트			pointList 동일
+	20)tobeDelCloverList:소멸예정 clover포인트		pointList 동일
+	21)couponList : Coupon 리스트{
+								promNm        :  쿠폰명  
+								fvrVal        :   할인율/할인금액/적립포인트
+								aplyLmtAmt    :    
+								fvrPolcTpCd   :   혜택정책유형코드 04 03할인 05 06 적립
+								fvrPolcSecCd  :   혜택정책구간코드
+								rscSctCd      :   쿠폰/쿠키구분
+								remainDay     :   남은 일수
+								avalEndDtime  :  사용기간 
+								maxFvrVal     :   최대할인
+								couponKind    :   쿠폰종류
+								unitName      :   단위
+								unitName2     :   단위
+								fvrValStr     :   할인율(금액) 문자열
+								useCondition  :   사용조건
+								index         :   위치
+								shppng_sppt_mrk_yn:  쇼핑지원권 노출 여부	
+								}
+	22)pointList_tot_cnt         :  포인트리스트 총건수
+	23)tobeDelLPointList_tot_cnt :  소멸예정 L포인트 총건수
+	24)saveLtPointList_tot_cnt   :   롯데포인트 총건수
+	25)cloverPointList_tot_cnt   :  clover tot_cnt
+	26)tobeDelCloverList_tot_cnt :  소멸예정 clover 총건수
+	27)couponList_tot_cnt        :   Coupon tot_cnt
+
+==================================================================
+포인트 조회 > 적립하기				
+1.URL :/json/mylotte/pointcoupon/point_save.json
+2.파라미터
+	ord_no  :  적립예정 롯데포인트 order no
+3.리턴 
+	resultMsg : 결과메시지
+
+==================================================================
+포인트 조회> 환불
+1.URL :/json/mylotte/pointcoupon/refund_acct_mng.json
+2.파라미터
+	ooa_nm	 : 예금주  11)refund_acct_holder
+	proc_div :	C:등록, U:수정, D:삭제, R:환불요청
+3.리턴 
+	resultMsg : 결과메시지	
+==================================================================
+포인트 조회 > 페이퍼쿠폰등록
+1.URL :/json/mylotte/pointcoupon/insert_paper_coupon.json
+2.파라미터
+	paper_no: 페이퍼쿠폰번호
+3.리턴 
+	resultMsg : 결과메시지	
+===============================================

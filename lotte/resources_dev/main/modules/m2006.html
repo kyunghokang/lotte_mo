@@ -1,0 +1,33 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!--M06 카드행사배너..-->
+	<div class="moduleCon">
+		<div class="unit unit_bn_card one" ng-if="moduleData.items.length == 1">
+			<ul class="swipeBox">
+				<li>
+					<a ng-click="logGAEvtModuleEach(moduleData.items[0], 1);mainBannerClick(moduleData.items[0].linkUrl, moduleData.items[0].isOutLink, moduleData.tclick+ '_Clk_Ban01')" ng-style="{'background-image':'url({{moduleData.items[0].imgUrl}})' }">
+						<span class="card">{{moduleData.items[0].cardTxt}}</span>
+						<span class="benefit">{{moduleData.items[0].benefitTxt}}</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="unit unit_bn_card" ng-if="moduleData.items.length > 1"
+			 roll-swipe-banner
+			 rolling="true"
+			 width320="1" width640="1"
+			 width900="1"
+			 interval="300000"
+			 info="moduleData.items"
+			 endfnc="swipeEnd">
+			<ul class="swipeBox">
+				<li ng-repeat="item in moduleData.items">
+					<a ng-click="logGAEvtModuleEach(item, $index + 1);mainBannerClick(item.linkUrl, item.isOutLink, moduleData.tclick+'_Clk_Ban' + numberFill(($index+1),2))" ng-style="{'background-image':'url({{item.imgUrl}})' }">
+						<span class="card">{{item.cardTxt}}</span>
+						<span class="benefit">{{item.benefitTxt}}</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>

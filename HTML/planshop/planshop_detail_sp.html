@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">
+<!----------------- current css ----------------->
+
+<link rel="stylesheet" href="/lotte/resources_dev/product/m/product_list.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+<script>
+$(function(){
+	$("#test").click(function(){
+		$(this).find(".btn_sel").toggleClass("on");
+		$(".tlt_selBox").toggleClass("on");
+	});	
+});
+</script>
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+
+<!-- 서브 헤더 -->
+<header id="head_sub">
+	<h2>
+		<span id="test">
+			<span class="surprise">서프라이즈<em class="count">(5)</em></span> <!--서프라이즈 일 경우 클래스 주셔야 합니다.-->
+	        <a class="btn_sel on">화살표</a><!--btn_sel 열렸을때 'on'클래스추가, 닫힐때 'on'클래스 삭제-->
+        </span>
+        <span class="tlt_selBox on">
+            <span class="on"><a href="#">헨켈 브래드별 할인 + 5% 적립쿠폰!</a></span>
+            <span><a href="#">일주일간 짜릿한 혜택 슈퍼찬스</a></span>
+            <span><a href="#">내피탈부착으로 가을~겨울 알차게!</a></span>
+            <span><a href="#">SUMMER LOOK&새학기 준비 ITEM</a></span>
+            <span><a href="#">롯데닷컴만!~에르고베이비 힙시트캐리</a></span>
+        </span>
+	</h2>
+	<p class="prev">
+		<a href="#">이전</a>
+	</p>
+    <p class="this">
+        <a href="#none">공유</a>
+    </p> 
+</header>
+<!-- //서브 헤더 -->
+<br><br><br><br><br><br><br><br><br><br><br>
+<!-- container -->
+<section id="container">
+    <!-- s: 기획전 상세 -->
+    <div class="planshop_detail">
+            
+            <!--s: 상단 배너-->
+            <div class="plan_bannerWrap">
+                <img class="banner" src="/images/lotte2015/temp/planshop_banner_03.jpg" alt="" />
+            </div>
+            <!--e: 상단 배너-->
+            
+            <!--s: 방금 그상품-->
+            <div class="plan_justPrd">
+                <div class="justPrd">
+					<a href="#">
+                        <div class="thumb">
+                            <div class="flag just"><span>방금 그상품</span></spn></div>
+                            <img src="http://image.lotte.com/goods/80/55/00/7/7005580_1_150.jpg" alt="" />                                
+                        </div>
+                        <div class="info">
+                            <p class="flag">
+                                <span class="flag depart">롯데백화점</span>
+                                <span class="flag tag">무료배송</span>
+                            </p>
+                            <span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+                            <p class="pr_box">
+                                <span class="price"><em>1,000,000</em>원</span>
+                                <span class="price2"><em>1,500,000</em>원</span>
+                            </p>
+                            <p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+                        </div>
+                    </a>
+				</div>
+        
+            </div>
+            <!--e: 방금 그상품-->
+    
+            <!--s: 대표상품 전시-->
+            <div class="prd_swipe">
+                <div class="mask">
+                    <ol class="prdList">
+                        <li>
+                            <!-- 일반상품 : 스와이프형 -->
+                            <div class="prd_item">
+                                <a href="#none">
+                                    <p class="thumb">
+                                        <span class="tlt">합리적인 소비! 여름에 사야 제맛</span>
+                                        <img src="http://image.lotte.com/upload/display/mobile_banner/5532624_172169747.jpg" alt="" />
+                                        <span class="thumb_price">
+                                            <span>
+                                                <span class="price"><em>1,838,000</em>원</span>
+                                                <span class="coupon"><em class="no">15</em><em class="po">%</em><span>쿠폰포함</span></span>
+                                            </span>
+                                        </span>
+                                    </p>
+                                    <div class="info">
+                                        <span class="flag smart">스마트픽</span>
+                                        <span class="tit">[몽클레어] 여성 롱패딩 FABREFUR(블랙) 4998820 57322</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- //일반상품 : 스와이프형 -->
+                        </li>
+                        <li>
+                            <!-- 일반상품 : 스와이프형 -->
+                            <div class="prd_item">
+                                <a href="#none">
+                                    <p class="thumb">
+                                        <span class="tlt">합리적인 소비! 여름에 사야 제맛2</span>
+                                        <img src="http://image.lotte.com/upload/display/mobile_banner/5532624_172169747.jpg" alt="" />
+                                    </p>
+                                    <div class="info">
+                                        <span class="flag smart">스마트픽</span>
+                                        <span class="tit">[몽클레어] 여성 롱패딩 FABREFUR(블랙) 4998820 57322</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- //일반상품 : 스와이프형 -->
+                        </li>
+                    </ol>
+                </div>
+                <a href="#" class="btn_prev">이전 상품 보기</a>
+                <a href="#" class="btn_next">다음 상품보기</a>
+                
+                <!--현재 페이지 class 'on' 주세요-->
+                <div class="paging">
+                    <ol>
+                        <li class="on"><span>1</span></li>
+                        <li><span></span>2</li>
+                        <li><span></span>3</li>
+                        <li><span></span>4</li>
+                        <li><span></span>5</li>
+                    </ol>
+                </div>
+            </div>
+            <!--e: 대표상품 전시-->
+    
+    
+            <!--s: 전체상품 보기-->
+            <div class="prdAllView">
+                <!--버튼-->
+                <div class="btnWrap">
+                    <span class="btnArea">
+                        <a href="#none" class="btn_prdView">전체상품<span class="btnIcon"></span></a>
+                    </span>
+                </div>
+                                
+                <div class="prdAllViewList">
+                    <!--s: 1페이지 (swipe 기능 적용하실때, 5개 단위로 묶어주시면 됩니다.)-->
+                    <div class="list">
+                        <ul>
+                            <li><a href="#none" class="on">전체상품<span>1,234</span></a></li>
+                            <li><a href="#none">환상의 라인업<span>2,758</span></a></li>
+                            <li><a href="#none">Must have item<span>763</span></a></li>
+                            <li><a href="#none">MD 추천 원피스<span>578</span></a></li>
+                            <li><a href="#none">롯데닷컴만!~에르고베이비 힙시트캐리<span>857</span></a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="#none" class="on">전체상품<span>1,234</span></a></li>
+                            <li><a href="#none">환상의 라인업<span>2,758</span></a></li>
+                            <li><a href="#none">Must have item<span>763</span></a></li>
+                            <li><a href="#none">MD 추천 원피스<span>578</span></a></li>
+                            <li><a href="#none">롯데닷컴만!~에르고베이비 힙시트캐리<span>857</span></a></li>
+                        </ul>
+                    </div>
+                    
+                    
+                    <div class="paging">
+                        <span>1/6</span>
+                        <a href="#none" class="btn_close"><span>닫기</span></a>
+                    </div>
+                </div>
+            </div>
+            <!--e: 전체상품 보기-->
+            
+            <!-- s: unit list area -->
+            <div class="unitWrap">
+                <!-- unit Deal type 02 -->
+                <link rel="stylesheet" href="/lotte/resources_dev/unit/unit_list.css">
+                <link rel="stylesheet" href="/lotte/resources_dev/unit/unit_list_02.css">
+                <!-- //unit Deal type 02 -->
+
+                <!-- 상품리스트 유형 선택 -->
+                <div class="unit_type">
+                    <p class="unit_tlt">전체<em>56</em>개<p>
+                    <ul>
+                        <li class="r1"><a href="#">리스트형</a></li>
+                        <li class="r2"><a href="#" class="on">이미지형</a></li>
+                        <li class="r3"><a href="#">스와이프형</a></li>
+                    </ul>
+                </div>
+                <!-- //상품리스트 유형 선택 -->
+                <!-- 상품리스트 : 이미지형 -->
+                <ol class="prod_list_02">
+
+                    <li>
+                        <!-- 일반상품 : 이미지형 -->
+                        <div class="unit_list_02">
+                            <a href="#">
+                                <div class="thumb">
+                                    <img src="http://image.lotte.com/goods/76/89/43/10/1/110438976_1_280.jpg" alt="데체텍스트 넣어주세요." />
+                                    <span class="unit_zoom">크게보기</span>
+                                    <p class="flag">
+                                        <span class="flag depart">롯데백화점</span>
+                                        <!-- <span class="flag etv">롯데홈쇼핑</span> -->
+                                        <span class="flag tag">무료배송</span>
+                                        <span class="flag smart">스마트픽</span>
+                                    </p>
+                                </div>
+                                <div class="info">
+                                    <span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+                                    <p class="pr_box">
+                                        <span class="price"><em>980,000</em>원</span>
+                                    </p>
+                                    <p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+                                </div>
+                                <div class="info2">
+                                    <span class="review">상품평 <em>(100)</em></span>
+                                    <span class="wish_icon">위시리스트</span>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- //일반상품 : 이미지형 -->
+                    </li>
+                    <li>
+                        <!-- 일반상품 : 이미지형 -->
+                        <div class="unit_list_02">
+                            <a href="#">
+                                <div class="thumb">
+                                    <img src="http://image.lotte.com/goods/80/55/00/7/7005580_1_150.jpg" alt="데체텍스트 넣어주세요." />
+                                    <span class="unit_zoom">크게보기</span>
+                                    <p class="flag">
+                                        <span class="flag depart">롯데백화점</span>
+                                        <!-- <span class="flag etv">롯데홈쇼핑</span> -->
+                                        <span class="flag tag">무료배송</span>
+                                        <span class="flag smart">스마트픽</span>
+                                    </p>
+                                </div>
+                                <div class="info">
+                                    <span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+                                    <p class="pr_box">
+                                        <span class="price"><em>800,000</em>원</span>
+                                        <span class="price2"><em>950,000</em>원</span>
+                                    </p>
+                                    <p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+                                </div>
+                                <div class="info2">
+                                    <span class="review">상품평 <em>(100)</em></span>
+                                    <span class="wish_icon">위시리스트</span>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- //일반상품 : 이미지형 -->
+                    </li>
+                    <li>
+                        <!-- 일반상품 : 이미지형 -->
+                        <div class="unit_list_02">
+                            <a href="#">
+                                <div class="thumb">
+                                    <img src="http://image.lotte.com/goods/86/16/67/15/1/115671686_1_150.jpg" alt="데체텍스트 넣어주세요." />
+                                    <span class="unit_zoom">크게보기</span>
+                                    <p class="flag">
+                                        <span class="flag depart">롯데백화점</span>
+                                        <!-- <span class="flag etv">롯데홈쇼핑</span> -->
+                                        <span class="flag tag">무료배송</span>
+                                        <span class="flag smart">스마트픽</span>
+                                    </p>
+                                </div>
+                                <div class="info">
+                                    <span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+                                    <p class="pr_box">
+                                        <span class="price"><em>800,000</em>원</span>
+                                        <span class="price2"><em>950,000</em>원</span>
+                                    </p>
+                                    <p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+                                </div>
+                                <div class="info2">
+                                    <span class="review">상품평 <em>(100)</em></span>
+                                    <span class="wish_icon">위시리스트</span>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- //일반상품 : 이미지형 -->
+                    </li>
+                    <li>
+                        <!-- 일반상품 : 이미지형 -->
+                        <div class="unit_list_02">
+                            <a href="#">
+                                <div class="thumb">
+                                    <img src="http://image.lotte.com/goods/20/50/59/595020_1_150.jpg" alt="데체텍스트 넣어주세요." />
+                                    <span class="unit_zoom">크게보기</span>
+                                    <p class="flag">
+                                        <span class="flag depart">롯데백화점</span>
+                                        <!-- <span class="flag etv">롯데홈쇼핑</span> -->
+                                        <span class="flag tag">무료배송</span>
+                                        <span class="flag smart">스마트픽</span>
+                                    </p>
+                                </div>
+                                <div class="info">
+                                    <span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+                                    <p class="pr_box">
+                                        <span class="price"><em>800,000</em>원</span>
+                                        <span class="price2"><em>950,000</em>원</span>
+                                    </p>
+                                    <p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+                                </div>
+                                <div class="info2">
+                                    <span class="review">상품평 <em>(100)</em></span>
+                                    <span class="wish_icon">위시리스트</span>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- //일반상품 : 이미지형 -->
+                    </li>
+                </ol>
+                <!-- //상품리스트 : 이미지형 -->
+
+            </div>
+            <!-- e: unit list area -->
+    </div>
+    <!-- e: 기획전 상세 -->
+</section>
+<!-- //container -->
+
+<!-- footer -->
+<section ng-include src="'/HTML/include/footer.html'"></section>
+
+</body>
+</html>

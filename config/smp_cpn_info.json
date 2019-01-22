@@ -1,0 +1,74 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplSmartPickView" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/common/templates/map_info.html",
+					"lotte/resources_dev/smartpick/pick_view_container.html",
+					"lotte/resources_dev/smartpick/pick_map_info.html",
+					"lotte/resources_dev/smartpick/send_pick.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/smp_cpn_info.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsSmartPickView" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/common/lotte_map_v3.js",
+                    "lotte/resources_dev/smartpick/pick_view.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/smp_cpn_info.js"
+            }
+        },
+
+        "uglify" : {
+            "jsSmartPickView" : {
+                "src" : "lotte/resources/<%= version %>/smp_cpn_info.js",
+                "dest" : "lotte/resources/<%= version %>/smp_cpn_info.min.js"
+            },
+            "tplSmartPickView" : {
+                "src" : "lotte/resources/<%= version %>/smp_cpn_info.template.js",
+                "dest" : "lotte/resources/<%= version %>/smp_cpn_info.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssSmartPickView" : {
+                "src" : [
+                    "lotte/resources_dev/common/navermap.css",
+                    "lotte/resources_dev/smartpick/smartpick.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/smp_cpn_info.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanSmartPickView" : [
+                "lotte/resources/<%= version %>/smp_cpn_info.js",
+                "lotte/resources/<%= version %>/smp_cpn_info.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlSmartPickView" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "smartpick/smp_cpn_info.html" : "smartpick/smp_cpn_info_dev.html"
+                }
+            }
+        }
+    }
+}
+

@@ -1,0 +1,85 @@
+1. 업무명 : 모바일 롯데 카테고리 상품 속성
+2. 담당자 : 신주섭
+3. URL : 
+	depth=2는 스마트픽 목록을 가져오지 못함, 3 or 4 dpeth만 스마트픽 상품을 검색 가능함
+	http://mapi.lotte.com/json/cate_attr.json?mGrpNo=7702&cateNo=5410340&cateDepth=3
+	/json/cate_brand_attr.json?mGrpNo=C7702&cateNo=5410340&cateDepth=3
+
+4. 파라미터
+	- mGrpNo : 카테고리 대대카 번호(화장품)
+	- cateNo : 선택한 카테고리 번호
+	- cateDepth : 카테고리 Depth
+
+5. JSON 파라미터
+	1) dptsRglList : 스마트픽 카테고리 내용
+	   - disp_no : 스마트픽 브랜치 번호
+	   - disp_nm : 스마트픽 지점 명
+	2) cateList.items : 카테고리 속성명
+	   - disp_no : 카테고리 번호
+	   - disp_nm : 카테고리 속성명
+	   - cate_depth : 카테고리 Depth
+	3) uprCateList : 상위 카테고리 정보
+	   - disp_no : 카테고리 번호
+	   - disp_nm : 카테고리명
+
+6. JSON
+{
+  "dptsRglList" : [ {
+    "disp_no" : "104849",
+    "disp_nm" : "청량리점",
+    "lnk_url_addr" : null,
+    "cate_cnt" : null,
+    "mall_nm" : null,
+    "lcate_nm" : null,
+    "cate_depth" : null
+  }, {
+    "disp_no" : "111169",
+    "disp_nm" : "대전점",
+    "lnk_url_addr" : null,
+    "cate_cnt" : null,
+    "mall_nm" : null,
+    "lcate_nm" : null,
+    "cate_depth" : null
+  }, {
+    "disp_no" : "20",
+    "disp_nm" : "본  점",
+    "lnk_url_addr" : null,
+    "cate_cnt" : null,
+    "mall_nm" : null,
+    "lcate_nm" : null,
+    "cate_depth" : null
+  } ],
+  "cateList" : {
+    "items" : [ {
+      "disp_no" : "5410354",
+      "disp_nm" : "14k",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "0",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : "4"
+    }, {
+      "disp_no" : "5410357",
+      "disp_nm" : "18k",
+      "lnk_url_addr" : null,
+      "cate_cnt" : "0",
+      "mall_nm" : null,
+      "lcate_nm" : null,
+      "cate_depth" : "4"
+    } ],
+    "total_count" : 2
+  },
+  "ERROR" : {
+    "ERROR_CODE" : "0",
+    "ERROR_MSG" : ""
+  },
+  "uprCateList" : [ {
+    "disp_no" : "5410340",
+    "disp_nm" : "금 반지",
+    "lnk_url_addr" : null,
+    "cate_cnt" : "0",
+    "mall_nm" : null,
+    "lcate_nm" : null,
+    "cate_depth" : "3"
+  } ]
+}

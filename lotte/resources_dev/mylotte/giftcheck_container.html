@@ -1,0 +1,234 @@
+<section ng-show="contVisible" class="cont_minheight">
+ 
+   <p ng-if="!loading">
+        <!--데이타 로딩중      http://image.lotte.com/lotte -->
+   </p>
+   <section ng-show="!checkGiftPage && loading">
+        <!--거절 메시지-->
+        <div class="refuseLayer" ng-if="refuseLayerFlag">
+           <div class="bg"></div>
+           <div class="box">
+               <div class="popBox">
+                   <div class="head_title">거절메시지 <span class="close" ng-click="refuse_rLayer(false)" ></span></div>
+                   <div class="cont">
+                       <p class="title01">선물을 한번 거절하시면 다시 받으실 수 없으며, 거절 메시지는 선물 보내신 분께 전달됩니다.</p>
+                        <select class="gift" id="refuse_message">
+                            <option value="">거절 메시지 선택</option>
+                            <option value="{{item.value}}" ng-repeat="item in giftData.gift_reject_msg">{{item.text}}</option>
+                        </select>                   
+                       <a ng-click="confirm_submit(false)" class="cancle">거절하기</a>
+                   </div>
+                </div>
+           </div>
+        </div>        
+        <!--선물카드-->
+        <div class="cardArea" style="background:{{giftData.gift_msg_info.bg_color}}">
+            <div class="cardPaper">
+                <img ng-src="{{giftData.gift_msg_info.img_url}}">
+                <div class="message">
+                    <p class="t1" ng-bind-html="giftData.gift_msg_info.msg"></p>
+                    <p class="t2">From.{{giftData.gift_msg_info.from_nm}}</p>
+                </div>
+            </div>
+        </div>
+        <!--선물정보-->
+        <div class="infoArea">
+            <ul class="topInfo">
+                <li>배송지를 입력해주시면 선물을 안전하게 전해드리겠습니다.
+                <br><b>(입력기한:{{giftData.gift_msg_info.limit_date}})</b></li>
+                <li ng-if="!loginInfo.isLogin"><span class="loginClick" ng-click="loginProc()">로그인</span> 하시면 배송지를 더욱 쉽게 입력하실 수 있습니다.</li>
+            </ul>
+            <!--선물확인-->
+            <div class="stepBox">
+                <div class="stepHead">
+                    <div class="stepIcon"></div>
+                    <b>선물확인</b>
+                    옵션이 있는 상품의 경우 마음에 들지 않으시면 옵션을 변경하실 수 있습니다. ^^
+                </div>
+                <div class="stepBody">
+                    <div class="gtable goodInfo">
+                        <div class="gcell cell1" ng-click="ProductDetailLayer()">
+                            <img ng-src="{{giftData.gift_prd_info.img_url}}" class="goodImg">
+                        </div>
+                        <div class="gcell">
+                            <p class="gflag">
+                                <span class="dept" ng-if="giftData.gift_prd_info.mall_flag.is_dept">롯데백화점</span>
+                                <span class="etv" ng-if="giftData.gift_prd_info.mall_flag.is_tvhome">롯데홈쇼핑</span>
+                                <span class="smart" ng-if="giftData.gift_prd_info.mall_flag.is_smartpick">스마트픽</span>
+                            </p>
+                            <p class="title"><span ng-if="giftData.gift_prd_info.brand_nm != '' && giftData.gift_prd_info.brand_nm != undefined">[{{giftData.gift_prd_info.brand_nm}}]</span>{{giftData.gift_prd_info.goods_nm}}</p>
+                              <p class="option" ng-repeat="item in giftData.gift_prd_info.selected_opt" ng-if="giftData.gift_prd_info.selected_opt.length > 0">
+                                  {{item.opt_name}} : {{item.opt_value}}
+                              </p>                              
+                            <a ng-if="giftData.gift_prd_info.opt_item_lst.length > 1" ng-click="changeOpt()">옵션변경</a>
+                        </div>                                                            
+                    </div> 
+                    <!--옵션변경 선택시                -->
+                    <div class="changeOpt" ng-show="optFlag">
+                        <div class="gtable optname">
+                            <div class="gcell cell1">
+                                주문한 옵션
+                            </div>
+                            <div class="gcell">
+                              <p ng-repeat="item in giftData.gift_prd_info.selected_opt">
+                                  {{item.opt_name}} : {{item.opt_value}}
+                              </p>                           
+                            </div>                                                            
+                        </div> 
+                        <div class="gtable" ng-repeat="item in giftData.gift_prd_info.opt_list" ng-init="item.selectID = 0">
+                            <div class="gcell cell1">
+                                {{item.opt_name}}
+                            </div>
+                            <div class="gcell">
+                                <select class="gift" id="prod_option_{{$index}}" ng-model="item.selectID" ng-change="checkOptCnt($index)">
+                                    <option value="0">선택하세요.</option>
+                                    <option ng-repeat="opt in item.opt_value_lst track by $index">{{opt}}</option>
+                                </select>
+                            </div>                                                            
+                        </div> 
+                        <div class="pop-footer_">
+                            <a href="#none" ng-click="changeOpt()" class="close_7e">닫기</a> 
+                            <a href="#none" ng-click="saveOpt()" class="ok_7e">옵션 저장</a>
+                        </div>                                        
+                    </div>
+                </div>
+            </div>
+            <!--배송정보입력-->
+            <div class="stepBox">
+                <div class="stepHead">
+                    <div class="stepIcon t2"></div>
+                    <b ng-class="{toppd:loginInfo.isLogin}">배송 정보 입력</b>
+                    <span ng-if="!loginInfo.isLogin"><span class="loginClick" ng-click="loginProc()">로그인</span> 하시면 등록된 배송지 선택이 가능합니다.</span>
+                </div>
+                <!--배송정보입력-->
+                <address-info></address-info>
+            </div>
+            <!--비밀번호 설정-->
+            <div class="stepBox">
+                <div class="stepHead">
+                    <div class="stepIcon t3"></div>
+                    <b>비밀번호 설정</b>
+                    선물함 비밀번호 및 입력하신 정보 보호를 위해 고객님의 동의가 필요합니다.
+                </div>
+                <div class="stepBody inputData type2">
+                    <div class="gtable">
+                        <div class="gcell ta2">선물함 비밀번호</div>                    
+                        <div class="gcell"><input type="password" placeholder="비밀번호 4자리" maxlength="4" inputmode="numeric" pattern="[0-9]*" id="pass1" title="숫자만 입력 가능합니다"></div>                    
+                    </div>
+                    <div class="gtable">
+                        <div class="gcell ta2">비밀번호 재확인</div>                    
+                        <div class="gcell"><input type="password" maxlength="4" inputmode="numeric" pattern="[0-9]*" id="pass2"></div>                    
+                    </div>
+                    <p>선물상품에 대한 배송조회 시 필요하므로 꼭 기억해주세요.</p>
+                </div>                
+            </div>
+            <!--정보제공동의-->
+            <div class="stepBox agreeInfo">
+                <div class="headTitle" ng-class="{on:agreeCheckInfo}">
+                    <input type="checkbox" class="check01" id="agreeInfoCheck" ng-model="agreeCheck">
+                    <label for="agreeInfoCheck">선물 수령을 위한 정보제공에 대한 동의</label>
+                    <div ng-click="agreeCheckInfo = !agreeCheckInfo" class="ac_more"></div>
+                </div>
+                <div class="gtable" ng-show="agreeCheckInfo">
+                    <div class="gcell">
+                        <p class="top line">목적</p>
+                        <p>선물 상품 배송 관련 정보수집</p>
+                    </div>
+                    <div class="gcell">
+                        <p class="top line">제공 항목</p>
+                        <p>수취인명, 주소, 전화번호</p>                
+                    </div>
+                    <div class="gcell">
+                        <p class="top">보유기간</p>
+                        <p>배송완료 이후 5년간</p>                
+                    </div>
+                </div>
+
+            </div>
+
+            <!--선물거절, 선물받기-->
+            <div class="gtable gBtn">
+                <div class="gcell no"><a ng-click="refuse_rLayer(true)">선물 거절</a></div>
+                <div class="gcell yes"><a ng-click="confirm_submit(true)">선물 받기</a></div>            
+            </div>
+
+            <!--기타 안내-->
+            <div class="footInfo">
+                <ul class="topInfo">
+                    <li>"선물함"에서 선물에 대한 배송 조회가 가능합니다.</li>
+                    <li>선물 받으신 상품의 교환/반품은 선물 결제자만 가능합니다.</li>
+                    <li>발송지연/발송불가의 경우 수신하시는 분께도 알림을 드립니다.</li>
+                </ul>
+            </div>        
+        </div>
+        <!--popup product detail -->
+        <div class="layerPop" ng-if="productDetailPop">
+            <div id="head_sub">
+                <h2>선물 상품 정보</h2>
+                <p class="close"><a ng-click="closeProductDetailLayer()">닫기</a></p>
+            </div>        
+            <div class="cont detailLayout" ng-bind-html="detailHtml">
+
+            </div>
+        </div>   
+       <!--앱다운배너 : 웹인경우 http://image.lotte.com/upload/display/corner/0_55155_47683_30_13010122_1.jpg
+       http://image.lotte.com/lotte/mo2015/angular/detail/default_appdown_0719_1.png
+       -->
+     <div class="app_bnr_wrap" style="background-color:{{appBanner.bg_color}}" ng-if="!appObj.isApp && appDownBann && appBanner != null">
+            <a ng-click="gotoApp();" class="btn_appdown"><img alt="롯데닷컴 앱 다운로드" ng-src="{{appBanner.img_path}}"></a>
+            <button ng-click="appDownBnrClose();" class="btn_close">앱다운로드 배너 그만보기</button>
+    </div>       
+       
+   </section>
+   <section ng-if="checkGiftPage" class="secondPage">
+      <div class="topbox" ng-if="state == 0">
+           <img src="http://image.lotte.com/lotte/mo2015/angular/detail/giftOrder_icon4.png">
+           <p><span>선물 확인이 완료</span>되었습니다.<br>감사합니다.</p>
+           <div class="subbtn">
+               <a class="tb1" ng-href="{{presentShop + '&tclick=m_DC_GiftConfirm_Accept_btn01'}}">나도 선물하기</a>
+               <a ng-href="{{presentListUrl+ '&tclick=m_DC_GiftConfirm_Accept_btn02'}}">선물함 가기</a>
+           </div>              
+      </div>
+      <div class="topbox" ng-if="state == 2">
+           <img src="http://image.lotte.com/lotte/mo2015/angular/detail/giftOrder_icon4.png">
+           <p><span>선물 주문이 취소</span>되었습니다.</p>
+           <div class="subbtn">
+               <a ng-href="{{presentShop + '&tclick=m_DC_GiftConfirm_Reject_btn01'}}" style="width:152px">선물매장 구경하기</a>
+           </div>              
+      </div>           
+      <div class="topbox" ng-if="state == 4">
+           <img src="http://image.lotte.com/lotte/mo2015/angular/detail/giftOrder_icon4.png">
+           <p><span>선물확인 경로</span>를 다시 확인해주세요.</p>
+           <div class="subbtn">
+               <a ng-href="{{presentShop + '&tclick=m_DC_GiftConfirm_Reject_btn01'}}" style="width:152px">선물매장 구경하기</a>
+           </div>              
+      </div>           
+       
+       <div class="g_listbox" ng-if="recom_prd_lst.length > 0">
+<!--            <div class="mTop_title">
+                <p class="small">선물을 보내주신 {{giftData.gift_msg_info.from_nm}}님에게</p>
+                <p class="big">감사를 표현해보세요</p>
+                <a class="sideBtn" ng-href="{{presentListUrl}}">더보기</a>
+            </div>
+-->           
+            <div class="mTop_title">
+                <p class="big">이런 선물은 어떠세요?</p>
+            </div>               
+                 <ul class="itemList">
+                <li ng-repeat="item in recom_prd_lst" ng-show="$index < 9">
+                    <a ng-click="gotoLink(item, $index)">
+                        <div class="imageCon">
+                            <img ng-src="{{item.img_url}}">
+                        </div>
+                        <div class="infoCon">
+                            <p class="title">{{item.goods_nm}}</p>
+                            <p class="price"><b>{{item.sale_price|number}}</b><span>원</span></p>
+                        </div>                        
+                    </a>
+                </li>
+            </ul>
+       </div>       
+   </section>
+</section>
+
+

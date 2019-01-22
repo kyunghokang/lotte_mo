@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">	
+<!----------------- current css ----------------->
+	
+<link rel="stylesheet" href="/lotte/resources_dev/login/login.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<!-- container -->
+<section id="container">
+	<!--------------- current html --------------->
+	
+	<div>				         
+	    <div style="margin:20px 0;display:table;width:100%">				
+	        <img src="http://image.lotte.com/lotte/mobile/sub/guide_0123_01.jpg" class="w100">				
+	        <a href="javascript:go_loginForm();"><img src="http://image.lotte.com/lotte/mobile/sub/guide_0123_02.jpg" alt="롯데닷컴으로돌아가기" class="w50" style="border:0"></a>
+	        <a href="javascript:go();"><img src="http://image.lotte.com/lotte/mobile/sub/guide_0123_03.jpg" alt="본인확인인증창 다시띄우기" class="w50" style="border:0"></a>
+	    </div>            
+	</div>
+	<!-- 본인실명확인서비스 요청 form --------------------------->
+	<div style="display:none">
+		<form name="reqPCCForm" method="post" action="https://pcc.siren24.com/pcc_V3Ltd/Cpr_Jsp/pcc_V3_j10.jsp" onsubmit="return openPCCWindow()" target="PCCV3Window">
+			<input type="hidden" name="reqInfo" value="FACE5475DCD61961512CB21FCF4C5699AF7B8D66AD8998A376DD2651F8B9ECA1C8D1439DC4942F1EE21A65A3758BAD99313BA89D4EBC7412814195C000C3B4585CD9921FA113284A306037E1F614DC6A53D0809ED3A92851802C24E186C2C9C0BE416EE2FAB4803C49EDD04E4596B46E395958EADED02ABA41C4CAB71C6CC71F4C725F4A03EA5C8EECA3975BB1ABB535FB4A1933D3BDAC66527B76FE490B958799F012CBFA302776FE0989696B7B3943440CF65A3279726B289613FF53F92AC3C6DA256E7382A69548F6B6968774219BE8DABD3C245254F8517383F4A4AEDE6A9E4FFDF8224F0F65ED30D4FB33B767D20DB94C8A613ECEC719324379F65B5BEA">
+			<input type="hidden" name="retUrl" value="32https://m.lotte.com/sci/pcc_V3_popup_seed.jsp?returnDomain=m.lotte.com">
+			<input type="submit" id="submit_btn" value="인증">
+		</form>
+	</div>
+		
+	<!-------------// current html --------------->
+</section>
+<!-- footer -->
+<section ng-include src="'/HTML/include/footer.html'"></section>
+</body>
+</html>

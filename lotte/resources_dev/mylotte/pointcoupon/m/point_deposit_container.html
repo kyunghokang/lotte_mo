@@ -1,0 +1,76 @@
+<section ng-show="contVisible" class="cont_minheight">
+	<section class="mylotte_point" ng-show="!isShowLoadingImage">
+		<!-- 탭메뉴 -->
+		<nav class="tab_nav">
+			<ul>
+				<li ><a ng-click="lPointClick()">L.POINT <span><strong>{{maxData.lt_point | number}}</strong>점</span></a></li>
+				<li><a ng-click="ltPointClick()">L-money <span><strong>{{maxData.l_point | number}}</strong>점</span></a></li>
+				<li class="on"><a ng-click="depositClick()">보관금 <span><strong>{{maxData.deposit | number}}</strong>원</span></a></li>
+			</ul>
+		</nav>
+	<div class="tab_con on">
+		<!-- 보관금 -->
+		<section class="pay_box" ng-if="maxData.deposit != 0">
+			<p class="tl">사용/환불 가능한 보관금 <span class="num">{{maxData.deposit | number}}</span>원</p>
+			<a class="btn_style2s ptr" ng-click="goRefundDetail()" >환불요청</a>
+		</section>
+		<!-- 포인트 적립.사용 내역 -->
+		<section class="point_list" ng-if="pointListData.length == 0">
+			<h3>보관금 적립/사용 내역 <span>(최근 3개월간)</span></h3>
+			<p class="cont_no">적립/사용 내역이 없습니다.</p>
+		</section>
+		<!-- // 포인트 적립.사용 내역 -->
+
+		<!-- 보관금 적립.사용 내역 보관금 (json에 없음) -->
+		<section class="point_list" ng-if="pointListData.length != 0">
+			<table id="tb_point_list" class="tbl_list_01" summary="보관금 적립.사용 내역이 나와있는 표">
+				<caption>소멸예정 내역 상세 테이블</caption>
+				<colgroup>
+					<col width="65%">
+					<col width="35%">
+				</colgroup>
+				<thead>
+					<tr>
+						<th scope="col">상세내용</th>
+						<th scope="col">적립/사용</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="items in pointListData">
+						<td>
+							<span class="date">{{items.occur_dtime | htmlRemove}}</span>
+							<p>{{items.mm_title}}</p>
+							<p>{{items.mm_gbn_nm}} {{items.mm_gbn_value}} {{items.point_info}}</p>
+						
+						<td ng-if="items.point_sign == '+'" class="point plus"><strong>+{{items.occur_amt | number}}</strong></td>
+						<td ng-if="items.point_sign == '-'" class="point minus"><strong>-{{items.occur_amt | number}}</strong></td>
+						
+					</tr>
+				</tbody>
+			</table>
+		</section>
+		<!-- // 보관금 적립.사용 내역 -->
+		<!-- 더보기 버튼 -->
+		<section class="more_view" ng-if="thisPage < page_end">
+			<div><a href="#" ng-click="moreListClick()"><span><strong>더보기</strong> (<label id="currentCnt">{{pointListData.length}}</label>/<label id="totalCnt">{{pointList_tot_cnt}}</label>)</a></span></div>
+		</section>
+		<!--// 더보기 버튼 -->
+		
+		<!-- 보관금 사용 안내 -->
+		<dl class="slideGuide" ng-click="depositViewClick1()" >
+			<dt >보관금 사용 안내</dt>
+			<dd ng-if="depositView1 == true">
+				<ul>
+				   <li>주문취소 또는 반품으로 인한 환불금을 모아놓은 가상의 계좌입니다.</li>
+				   <li>상품 구매시 현금과 동일하게 사용 가능하며, 본인 명의 계좌로 현금 이체가 가능합니다.</li>
+				   <li>현금이체 신청시점에 따른 입금시간<br/>- 당일 접수 → 익일 18시 이전 입금</li><!--20181029 문구수정-->
+				</ul>
+			</dd>
+		</dl>		
+	</div>
+	</section>
+	<!-- 로딩이미지 -->
+    <div class="listLoading" ng-show="isShowLoadingImage" style="height:300px">
+    	<p class="noData"><p class="loading half"></p></p>
+    </div>
+</section>

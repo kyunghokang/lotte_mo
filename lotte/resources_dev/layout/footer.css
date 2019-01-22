@@ -1,0 +1,121 @@
+@charset "UTF-8";
+#footer:before {content:''; display:block; width:100%; height:5px; position:relative; z-index:2; background-color:#eee;}
+#footer {position:relative;padding-bottom:51px;text-align:left;height:auto;overflow:hidden;background:#eee;clear:both;letter-spacing:-0.5px;}
+#footer .banner {width:100%}
+#footer .banner a { display:block;width:100%}
+#footer .banner img {width:100%}
+#footer .menu01 {overflow:hidden;background:#aaa;height:42px;}
+#footer .menu01 li {float:left;width:20%;text-align:center;position:relative}
+#footer .menu01 li:first-child {background:none}
+#footer .menu01 li a {color:#fff;font-size:14px;display:block;position:relative;padding:0;line-height: 42px;}
+#footer .info {padding:18px 18px 12px;color:#666;background:#eee;}
+#footer .info .menu02 li {display:inline-block;padding:0;line-height:13px;}
+#footer .info .menu02 li a {color:#333;font-size:10px;padding:0 5px;display:inline-block;}
+#footer .info .menu02 li strong {color:#333;font-size:10px;padding:0 10px 0 0;}
+#footer .info .menu02 li:before{content:'';width:1px;height:10px;margin-bottom:1px;background:#d5d5d5;display:inline-block;vertical-align:middle;}
+#footer .info .menu02 li:first-child a {padding-left:0;}
+#footer .info .menu02 li:first-child strong {padding-right:0px;}
+
+#footer .info .menu02 li:first-child:before{width:0;}
+#footer .info p {padding:14px 0px 0 0;color:#666;font-size:10px;line-height:16px;}
+#footer .info p.add span{display:inline-block;white-space:nowrap}
+#footer .info p.add span.addFirst {display:block;}
+#footer .menu03 {background:#eee;padding:0 14px;}
+#footer .menu03 li {display:inline-block}
+#footer .menu03 li a {color:#333;font-size:10px;padding:0 4px;display:inline-block;cursor:pointer}
+#footer .menu03 li:before{content:'';width:1px;height:10px;margin-bottom:1px;background:#d5d5d5;display:inline-block;vertical-align:middle;}
+#footer .menu03 li:first-child:before{width:0;}
+#footer .capyright {padding:14px 18px 17px;background:#eee;color:#666;font-size:10px;}
+#footer .bookmarListkLayer {display: none;}
+#storage_layer {display:none;position:absolute;z-index:999;width:100%;height:100%;}
+#storage_frame {display:none;border:none;background:#fff;width:100%;height:100%;}
+
+/*
+#footer .directOn {width:57px; height:57px; border-radius:100%; border:1px solid #d5d5d5; background-color:#ececec; position:absolute; right:5px; top:100px;}
+#footer .directOn i {display:block;width:34px;height:33px;margin:12px auto 0 auto;overflow:hidden; vertical-align:middle;  text-indent:-999px; font-size:0; line-height:0; background:url(http://image.lotte.com/ellotte/mo2015/angular/common/common.png) -68px -110px no-repeat;background-size:300px 300px;}
+#footer .directOff {width:57px; height:57px; border-radius:100%; border:1px solid #d5d5d5; background-color:#ececec; position:absolute; right:5px; top:100px;}
+#footer .directOff i {display:block;width:34px;height:33px;margin:12px auto 0 auto;overflow:hidden; vertical-align:middle;  text-indent:-999px; font-size:0; line-height:0; background:url(http://image.lotte.com/ellotte/mo2015/angular/common/common.png) -68px -150px no-repeat;background-size:300px 300px;}
+*/
+
+/*2016.12.06 requests*/
+#footer .directOn {width:57px; height:57px; border-radius:100%; border:1px solid #d5d5d5; background-color:#ececec; position:absolute; right:18px; top:100px;}
+#footer .directOn i {display:block;width:34px;height:33px;margin:12px auto 0 auto;overflow:hidden; vertical-align:middle;  text-indent:-999px; font-size:0; line-height:0; background:url(http://image.lotte.com/lotte/mobile/mobile_new/common/header_spr_2016.png) -4px -58px no-repeat;background-size:250px 95px;}/* 2016.12.06 requests */
+#footer .directOff {width:57px; height:57px; border-radius:100%; border:1px solid #d5d5d5; background-color:#ececec; position:absolute; right:18px; top:100px;}
+#footer .directOff i {display:block;width:34px;height:33px;margin:12px auto 0 auto;overflow:hidden; vertical-align:middle;  text-indent:-999px; font-size:0; line-height:0; background:url(http://image.lotte.com/lotte/mobile/mobile_new/common/header_spr_2016.png) -42px -58px no-repeat;background-size:250px 95px;}/* 2016.12.06 requests */
+
+#footer .directOn.no,
+#footer .directOff.no {top:65px;}
+
+/*풋터에 공지사항*/
+.footerNoti{padding:12px 10px 11px 55px;border-top:1px solid #dcdcdc;position:relative;background:#fff;}
+.footerNoti a{color:#333;font-size:14px;display:block;height:22px;line-height:23px;width:100%;overflow: hidden;word-break: break-all;white-space: nowrap;text-overflow: ellipsis;box-sizing:border-box;-webkit-box-sizing:border-box;color:#888;}
+.footerNoti a:before{width:40px;height:22px;background:#888;border-radius:15px;-webkit-border-radius:15px;position:absolute;top:11px;left:10px;content:"공지";font-size:11px;text-align:center;line-height:22px;color:#fff;}
+/*.footerNoti a:after{width:15px;height:20px;background:url("http://image.lotte.com/lotte/mobile/mobile_new/main/footer_201503_notiIcon.png") no-repeat -25px 0;background-size:40px 20px;position:absolute;top:7px;right:10px;content:""}*/
+.directPop {display:none;position:fixed;top:50%;left:5%;width:90%;margin-top:-268px;z-index:1000;}
+.directPop.on {display:block;}
+.directPop .directPopInner {background:#fff;border-radius:16px;-webkit-border-radius:16px;color:#333;font-size:14px;}
+.directPop .dTitle {font-size:17px;height:40px;line-height:38px;background:#f6f6f6;font-weight:bold;text-align:center;border-top-left-radius:16px;border-top-right-radius:16px;-webkit-border-top-left-radius:16px;-webkit-border-top-right-radius:16px;}
+.directPop .dCont {padding:0 10px;}
+.directPop .dCont .chkOn {text-align:center;padding:13px 0;font-size:16px;font-weight:bold;}
+.directPop .dCont .dInfo1 {padding:0 10px;}
+.directPop .dCont .dInfo1 li {position:relative;padding:0 0 0 8px;margin-bottom:5px;font-size:14px;}
+.directPop .dCont .dInfo1 li:before {position:absolute;top:8px;left:0;content:"";width:2px;height:2px;background:#888;}
+.directPop .dCont .dInfo1 li span {color:#719cff;}
+.directPop .dCont .dTitle2 {padding:10px 0;font-size:15px;font-weight:bold;text-align:center;border-top:1px solid #e6e6e6;margin-top:15px;}
+.directPop .dCont dl {padding-left:64px;}
+.directPop .dCont dl.android {padding-bottom:10px;padding-top:10px;}
+.directPop .dCont dl dt {position:relative;font-size:15px;font-weight:bold;line-height:1em;}
+.directPop .dCont dl dt:before {content:"";position:absolute;top:0;left:-54px;width:44px;height:44px;background:url(http://image.lotte.com/lotte/mo2015/angular/common/footerAppLogo.png) 0 0 no-repeat;background-size:44px 88px;}
+.directPop .dCont dl.android dt:before {background-position:0 -44px;}
+.directPop .dCont dl dd {padding:0 0 10px 0;line-height:1.3em;}
+.directPop .dCont dl dd li {margin-top:5px;}
+.directPop .dCont dl dd li:first-child {margin-top:0;}
+.directPop .dCont dl dd li:after  {content:" "; display:block;clear:both;overflow:hidden;}
+.directPop .dCont dl dd span {float:left;width:12px;}
+.directPop .dCont dl dd div {float:left;width:calc(100% - 12px)}
+.directPop .dClose {display:block;width:100%;height:35px;line-height:32px;text-align:center;font-size:13px;border-top:1px solid #e6e6e6;}
+
+/* 풋터 로그 및 이미지 텍스트 추가 2017-06-21*/
+.footerLogo{position:relative;height:42px;margin:0 18px;border-top:1px solid #e0e0e0;}
+.footerLogo ul:after  {content:" "; display:block;clear:both;height:0;overflow:hidden;}
+.footerLogo ul li{float:left;margin-top:14px;}
+.footerLogo ul li:before{content:'';width:1px;height:9px;margin:0 8px;background:#e0e0e0;display:inline-block;vertical-align:3px;}
+.footerLogo ul li:first-child:before{display:none;}
+.footerLogo ul li.f_logo img{width:85px;height:9px;margin-top:1.5px;}
+.footerLogo ul li.f_txt img{width:182px;height:auto;}
+
+/*바로방문 팝업 위치 조정*/
+@media (min-height: 300px) {
+	.directPop .dCont {height:150px;overflow:auto;}
+	.directPop {margin-top:-140px;}
+}
+@media (min-height: 400px) {
+	.directPop .dCont {height:230px;overflow:auto;}
+	.directPop {margin-top:-180px;}
+}
+@media (min-height: 450px) {
+	.directPop .dCont {height:310px;overflow:auto;}
+	.directPop {margin-top:-220px;}
+}
+@media (min-height: 500px) {
+	.directPop .dCont {height:330px;overflow:auto;}
+	.directPop {margin-top:-230px;}
+}
+@media (min-height: 550px) {
+	.directPop .dCont {height:auto;}
+	.directPop {margin-top:-260px;}
+}
+
+.web_toast{position:fixed;bottom:100px;width:100%;min-height:50px;background-color:rgba(0,0,0,.8);z-index:99999;color:#fff;font-size:14px;line-height:20px;padding:5px 10px;box-sizing:border-box;word-break:break-all;}
+.web_toast >button{
+position:absolute;
+top:0;right:0;width:50px;height:50px;background-color:rgba(255,255,255,.8);color:#000;z-index:100;
+-webkit-apperence:none;
+border:1px solid #000;
+outline:none
+}
+
+#footer .directOn, #footer .directOff,
+#footer .directOn.no, #footer .directOff.no,
+#footer .directOn.on, #footer .directOff.on { top:135px }
+#footer .info .menu02 li:first-child { margin-right:4px }

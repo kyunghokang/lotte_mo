@@ -1,0 +1,38 @@
+<div class="dotcomStaffBoard">
+	<div id="mbbs">
+		<img src="http://image.lotte.com/lotte/mobile/common/mbbs_topBann_renewal.png" alt="다고쳐! 모바일은 롯데닷컴 직원 전용 오류 신고 게시판입니다.">
+		<form class="ng-pristine ng-valid">
+			<div class="formBox">
+				<textarea class="bbs_text" cols="0" rows="0" name="rcvmessage" id="bbsmessage" ng-model="pageOptions.bbsmessage" placeholder='롯데닷컴 모바일의 오류 및 개선 사항을 입력해주세요.'></textarea>
+				<a id="bbs_ok" ng-click="staffBoardWrite()">등록</a>
+			</div>
+		</form>
+		<div class="bbsList">
+			<div class="bbsDetail" ng-repeat="item in screenData.boardList">
+				<div class="ba">{{screenData.totalCnt - $index}}</div>
+				<div class="bb">
+					<div>{{item.bbcFcont}}</div>
+					<div>
+						<span ng-if="item.deptNm != undefined" class="dept_name">{{item.deptNm}}</span>{{item.mbrNm}}&nbsp;&nbsp;{{item.sysRegDtime}}
+
+						<div class="btn_wrap">
+							<button ng-if="item.mbrNo == loginInfo.mbrNo" ng-click="deleteContent(item)" class="btn_del">삭제하기</button>
+						</div>
+					</div>
+				</div>
+				<div class="subbbs" ng-repeat="ritem in item.eventBoardSubList">
+					<img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_reply_0617.png" class="rep">
+					{{ritem.bbcFcont}}
+					<div class="writer">
+						<span ng-if="ritem.deptNm != undefined" class="dept_name">{{ritem.deptNm}}</span>&nbsp;&nbsp;{{ritem.sysRegDtime}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="btn_more" ng-show="screenData.boardList.length != screenData.totalCnt">
+		<p ng-click="moreContentShow()">    
+			<span>더보기 +</span>
+		</p>    
+	</div>
+</div>

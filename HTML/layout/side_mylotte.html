@@ -1,0 +1,48 @@
+<section class="side_mylotte transition" ng-class="{on:isShowSideMylotte}">
+    <!-- <div class="loadWrap"><p class="loading half"></p></div> -->
+    <loading-bar></loading-bar>
+    <div class="my_lotte">
+        <div class="my_close"><span ng-click="mylotteClose()"><i>마이페이지 닫기</i></span></div>
+        <div class="inner">
+            <ul class="user_info">
+                <li class="name" ng-if="loginInfo.isLogin"><span>{{loginInfo.name}} <span ng-if="loginInfo.isStaff">임직원</span></span>님</li>
+                <li class="name" ng-if="!loginInfo.isLogin"><span>로그인</span> 해주세요.</li>
+                <li class="btn">
+                    <a ng-href="{{myLotteLinkObj.gdBenefitUrl}}" class="link">참좋은혜택</a>
+                    <a ng-href="{{myLotteLinkObj.mylotteUrl}}" class="mypage">마이롯데</a>
+                </li>
+            </ul>
+            <div class="user_login" ng-if="!loginInfo.isLogin">지금 로그인 하시면,<br /><span>포인트</span> 및 <span>쿠폰, 알림, 위시리스트</span> 정보를<br />빠르게 확인하실 수 있습니다.<br />
+                <a href="#" ng-click="loginProc()" class="login">로그인</a>
+            </div>
+            <div class="user_point" ng-if="loginInfo.isLogin">
+                <a ng-href="{{myLotteLinkObj.myLpointUrl}}" class="point"><i>L.POINT</i>{{loginAction.lpoint}}</a>
+                <a ng-href="{{myLotteLinkObj.myLmoneyUrl}}" class="money"><i>L-MONEY</i>{{loginAction.lmoney}}</a>
+            </div>
+            <div class="user_alram" ng-if="loginInfo.isLogin">
+                <a ng-href="{{myLotteLinkObj.myCouponUrl}}" class="coupon">쿠폰<span>{{loginAction.coupon}}</span></a>
+                <a ng-href="{{myLotteLinkObj.smartAlarmUrl}}" class="alram">알림<span>{{loginAction.alarm}}</span></a>
+                <a ng-href="{{myLotteLinkObj.wishLstUrl}}" class="wish">위시<span>{{loginAction.wish}}</span></a>
+            </div>
+            <ul class="user_link">
+                <li><a ng-href="{{myLotteLinkObj.ordLst2Url}}" class="bull">주문/배송조회<span ng-if="loginAction.order > 0 && loginInfo.isLogin">{{loginAction.order}}</span></a></li>
+                <li><a ng-href="{{myLotteLinkObj.ordCancelUrl}}" class="bull">취소/교환/반품내역</a></li>
+                <li><a ng-href="{{myLotteLinkObj.questionUrl}}" class="bull">1:1문의하기</a></li>
+                <li><a ng-href="{{myLotteLinkObj.smartpayUrl}}" class="bull">스마트페이 관리</a></li>
+            </ul>
+            <div class="lately">
+                <h6>최근 본 상품</h6>
+                <div class="no" ng-if="loginAction.late_prod.items == null">최근 본 상품이 없습니다.</div>
+                <ol>
+                    <li ng-repeat="item in lateAction"><a ng-href="{{item.link_url}}"><img ng-src="{{item.img_url}}" alt="" /></a></li>
+                </ol>
+                <a ng-click="lateProdView()" class="more" ng-if="loginAction.late_prod.items != null">더보기</a>
+            </div>
+            <p class="phone">
+                <a ng-show="appObj.isApp" class="app" onClick="showAppConfig();">설정</a>
+                <a ng-href="{{myLotteLinkObj.custcenterUrl}}">고객센터</a>
+                <span ng-click="callCustmercenter();">1577-1110</span>
+            </p>
+        </div>
+    </div>
+</section>

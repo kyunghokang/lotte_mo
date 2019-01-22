@@ -1,0 +1,38 @@
+{
+    "tasks" : {
+        "concat" : {
+            "jsemailBargainList" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/planshop/m/emailBargainList.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/emailBargainList.js"
+            }
+        },
+
+        "uglify" : {
+            "jsemailBargainList" : {
+                "src" : "lotte/resources/<%= version %>/emailBargainList.js",
+                "dest" : "lotte/resources/<%= version %>/emailBargainList.min.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssemailBargainList" : {
+                "src" : [
+                    "lotte/resources_dev/planshop/m/emailBargainList.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/emailBargainList.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanemailBargainList" : [
+                "lotte/resources/<%= version %>/emailBargainList.js"
+            ]
+        }
+    }
+}
+

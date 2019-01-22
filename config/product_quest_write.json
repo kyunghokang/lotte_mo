@@ -1,0 +1,70 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplproductQuestWrite" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/product/product_quest_write_container.html",
+                    "lotte/resources_dev/product/write_box.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/product_quest_write.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsproductQuestWrite" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+					"lotte/resources_dev/product/product_quest_write.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/product_quest_write.js"
+            }
+        },
+
+        "uglify" : {
+            "jsproductQuestWrite" : {
+                "src" : "lotte/resources/<%= version %>/product_quest_write.js",
+                "dest" : "lotte/resources/<%= version %>/product_quest_write.min.js"
+            },
+            "tplproductQuestWrite" : {
+                "src" : "lotte/resources/<%= version %>/product_quest_write.template.js",
+                "dest" : "lotte/resources/<%= version %>/product_quest_write.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssproductQuestWrite" : {
+                "src" : [
+                    "lotte/resources_dev/product/product_quest_write.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/product_quest_write.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanproductQuestWrite" : [
+                "lotte/resources/<%= version %>/product_quest_write.js",
+                "lotte/resources/<%= version %>/product_quest_write.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlproductQuestWrite" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "product/product_quest_write.html" : "product/product_quest_write_dev.html"
+                }
+            }
+        }
+    }
+}
+

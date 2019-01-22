@@ -1,0 +1,131 @@
+<div template-fall class="cont_wrap template_fall">
+	<!-- 임직원 배너 2016 8월29일~ 9월4일-->
+	<div ng-if="loginInfo.isStaff && bannerShow(2016,8,29,2016,9,5)" class="recomStaffBanner b_Bg_fall02">	
+		<a href="#" ng-click="linkUrl('/product/m/product_list.do?curDispNo=5401045&tclick=B_falltap&tclick=B_groupvip')"><img ng-src="http://image.lotte.com/lotte/mo2015/angular/main/r_holidayTop_banner01.jpg" alt="품격있는 추석 선물포장을 원한다면" /></a>		
+	</div>
+	<!-- //임직원 배너 -->		
+	<!-- 임직원 배너 2016 9월5일~ 9월12일-->
+	<div ng-if="loginInfo.isStaff && bannerShow(2016,9,5,2016,9,12)" class="recomStaffBanner b_Bg_fall02">	
+		<a href="#" ng-click="linkUrl('/product/m/product_list.do?curDispNo=5401040&tclick=B_falltap&tclick=B_groupvip')"><img ng-src="http://image.lotte.com/lotte/mo2015/angular/main/r_holidayTop_banner02.jpg" alt="품격있는 추석 선물포장! 어렵지 않아요" /></a>		
+	</div>
+	<!-- //임직원 배너 -->		
+	
+	<!-- 상단 이미지 코너 스와이프 배너 영역 -->
+	<section class="top_ban_list" ng-if="screenData.top_ban_list && screenData.top_ban_list.length > 0">
+		<ul class="swipe_wrap" swipe-list-model="screenData.top_ban_list" lotte-ng-list-swipe swipe-id="EventFirstBanner" swipe-slide-item="true"
+			swipe-max-ratio="0.2" swipe-min-distance="40" swipe-responsive="true" swipe-responsive320="1" swipe-responsive640="1" swipe-responsive900="1" ng-class="{'one': screenData.top_ban_list.length == 1}">
+			<li ng-repeat="item in screenData.top_ban_list track by $index">
+				<a ng-click="linkUrl(item.img_link, item.mov_frme_cd, 'm_DC_menu_5562268_theme' + ($index + 1))"><img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}" /></a>
+			</li>
+		</ul>
+		<ul class="indicator" ng-if="screenData.top_ban_list && screenData.top_ban_list.length > 1" >
+			<li ng-repeat="item in screenData.top_ban_list track by $index" ng-class="{on: swipeIdx == $index}"><span>{{$index}}</span></li>
+		</ul>
+	</section>
+	<!-- 
+	<div class="fall_category_tab">
+		<ul>
+			<li><a ng-click="fallMenu(0)"><img ng-show="opt_dispno == 0" src="http://image.lotte.com/lotte/mo2015/angular/mall/fall/fall2_ctg_tab01_on.png" alt="신선" /><img ng-show="opt_dispno != 0" src="http://image.lotte.com/lotte/mo2015/angular/mall/fall/fall2_ctg_tab01_off.png" alt="신선" /></a></li>
+			<li><a ng-click="fallMenu(1)"><img ng-show="opt_dispno == 1" src="http://image.lotte.com/lotte/mo2015/angular/mall/fall/fall2_ctg_tab02_on.png" alt="백화점" /><img ng-show="opt_dispno != 1" src="http://image.lotte.com/lotte/mo2015/angular/mall/fall/fall2_ctg_tab02_off.png" alt="백화점" /></a></li>
+		</ul>
+	</div> -->
+	
+	<div ng-if="tpmlData.contData.ctgTabList" class="fall_category_tab">
+		<ul>		
+			<li>
+			<a ng-click="fallMenu(0)">
+				<span ng-show="opt_dispno == 0" class="on"><var style="background-color:{{tpmlData.contData.ctgTabList.items[0].bgColor}};"></var><strong>{{tpmlData.contData.ctgTabList.items[0].cate_nm}}</strong></span>
+				<span ng-show="opt_dispno != 0"><var></var><strong>{{tpmlData.contData.ctgTabList.items[0].cate_nm}}</strong></span>
+			</a>	
+			</li>
+			<li>
+			<a ng-click="fallMenu(1)">
+				<span ng-show="opt_dispno == 1" class="on"><var style="background-color:{{tpmlData.contData.ctgTabList.items[1].bgColor}};"></var><strong>{{tpmlData.contData.ctgTabList.items[1].cate_nm}}</strong></span>
+				<span ng-show="opt_dispno != 1"><var></var><strong>{{tpmlData.contData.ctgTabList.items[1].cate_nm}}</strong></span>
+			</a>
+			</li>
+		</ul>
+	</div> 
+	
+<!--	<div product-container 
+		template-type="mixdeal"
+		templatetype="templateType"
+		products="screenData.bannerMixContents"
+		banners="screenData.deal_banners" 
+		more-product-continer="getProductData()"
+		win-width="winWidth"
+		tclick-prod="m_menu_{{mainTemplateType}}_TAB{{fall_tab_idx + 1}}_unit"
+		tclick-banner="m_menu_{{mainTemplateType}}_banner"
+		tclick-banner-idx-key="bannerIdx" 
+		fall-flag="true"
+		class="prd_lst_wrap"></div>
+	<div class="listLoading" ng-if="productListLoading && !pageLoading">
+		<p class="loading half"></p>
+	</div>
+-->	
+	<section>
+		<ol class="prod_list_mix_2016 prod_list_mixdeal_2016">
+			<li ng-repeat="item in tpmlData.contData.prd_deal_list.items track by $index" class="prod swipe" ><!-- ng-if="winWidth < 640 || (winWidth >= 640 && item.isProduct)" ng-class="{prod: item.isProduct, banner: item.isBanner, swipe: item.isSwipe}" -->
+				<!-- 배너형 -->
+				<div ng-if="screenType==1 && item.deal_banner != undefined" class="bnr_wrap">
+					<a href="#" ng-click="processBannerTclick(item.deal_banner)">
+						<img ng-src="{{item.deal_banner.img_url}}" />
+					</a>
+				</div>
+				<!-- 딜상품형 -->
+				<div class="unit_mixdeal_01" ><!-- ng-if="item.isProduct" -->
+					<a ng-click="productDealClick(item)">
+						<!-- 품절 -->
+						<div class="soldout" ng-show="item.is_soldout">SOLD OUT</div>	
+						<!-- MD Talk -->
+						<div class="md_talk_wrap">
+							<p ng-class="{md_talk:item.md_tip}" class="md_talk_copy"><span> {{item.md_tip}} </span></p>
+						</div>
+	
+						<!-- 상품 이미지 : 대표이미지 불러오는 경우 class='thumb normal' 코너이미지 불러오는 경우 clas='thumb' -->
+						<div class="thumb" ><!-- ng-class="{normal:item.default_img}" default_img REMOVED -->
+							<!-- 엘포인트백 플레그 -->
+							<span ng-if="pageUI.curMenuDispNo == '5553715' && item.goods_nm.indexOf('[포인트백]') > -1" class="lpointBack_flag">엘포인트백</span>
+							<img ng-src="{{getProductImage2(item)}}" alt="{{item.goods_nm}}"/>
+	
+							<div class="prod_flag_wrap">
+								<!-- 20170323 상품홍보문구에 50주년 작성 시 엠블럼 노출 -->
+								<span class="flag emblem_50th" ng-if="item.md_tip_50">50주년 엠블럼</span>
+								<!-- END:20170323 상품홍보문구에 50주년 작성 시 엠블럼 노출 -->
+								<span class="flag depart" ng-if="item.is_dept">롯데백화점</span>
+								<span class="flag etv" ng-if="item.is_tvhome && !item.is_dept">롯데홈쇼핑</span>
+								<!--<span class="flag tag" ng-show="item.dlv_fee_tp=='Y'||item.isdlex_free">무료배송</span>-->
+								<span class="flag smart" ng-show="item.issmart_pick">스마트픽</span>
+							</div>
+						</div>
+	
+						<!-- 상품 정보 -->
+						<div class="info"><!--  ng-class="{true:item.is_coupon}" -->
+							<div class="prod">
+								<!-- 할인율 : 할인율 표시 (기획전형 상품이 아니고 할인율이 0이 아니면서 있을 경우) -->
+								<p ng-if="!item.is_plan_prod && item.sale_rate && item.sale_rate != 0" class="sale_rate_wrap">
+									<span class="sale_rate">{{item.sale_rate}}</span>
+									<span class="sale_limit">%</span>
+									<em class="sale_desc">쿠폰포함</em>
+								</p>
+	
+								<!-- 상품명 -->
+								<span class="tit" ng-bind-html="item.goods_nm"></span><!-- ng-bind-html="item.goods_nm|titleToHtml" -->
+	
+								<!-- 상품가격 -->
+								<p class="price"><span>{{item.price2}}</span>원<em ng-if="item.plan_prod_yn" class="plan_prod_limit">~</em></p>
+							</div>
+	
+							<!-- 구매 개수 및 입력형 Flag -->
+							<div class="sale_wrap">
+								<span class="no" ng-show="item.sale_cnt !='0'"><em>{{item.sale_cnt}}</em>개 구매 중</span>
+								<span ng-if="item.flag && item.flag.length > 0" class="flag_tag" >{{item.flag[0]}}</span><!-- ng-repeat="flag in item.ipt_flag" -->
+							</div>
+						</div>
+					</a>
+				</div>
+			</li>
+		</ol>
+	</section>
+
+</div>

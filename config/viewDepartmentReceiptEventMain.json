@@ -1,0 +1,68 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplReceiptEvent" : {
+                "options": {
+	            	"prefix":"/"
+            	},
+                "src" : [
+                    "lotte/resources_dev/event/m/viewDepartmentReceiptEventMain_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/viewDepartmentReceiptEventMain.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsReceiptEvent" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/event/m/viewDepartmentReceiptEventMain.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/viewDepartmentReceiptEventMain.js"
+            }
+        },
+
+        "uglify" : {
+            "jsReceiptEvent" : {
+                "src" : "lotte/resources/<%= version %>/viewDepartmentReceiptEventMain.js",
+                "dest" : "lotte/resources/<%= version %>/viewDepartmentReceiptEventMain.min.js"
+            },
+            "tplReceiptEvent" : {
+                "src" : "lotte/resources/<%= version %>/viewDepartmentReceiptEventMain.template.js",
+                "dest" : "lotte/resources/<%= version %>/viewDepartmentReceiptEventMain.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssReceiptEvent" : {
+                "src" : [
+                    "lotte/resources_dev/event/m/viewDepartmentReceiptEventMain.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/viewDepartmentReceiptEventMain.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanReceiptEvent" : [
+                "lotte/resources/<%= version %>/viewDepartmentReceiptEventMain.js",
+                "lotte/resources/<%= version %>/viewDepartmentReceiptEventMain.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlReceiptEvent" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "event/m/viewDepartmentReceiptEventMain.html" : "event/m/viewDepartmentReceiptEventMain_dev.html"
+                }
+            }
+        }
+    }
+}
+

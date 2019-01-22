@@ -1,0 +1,73 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplMallSub" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mall/m/mall_sub_container.html",
+                    "lotte/resources_dev/category/m/cate_side_search.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/mall_sub.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsMallSub" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mall/m/mall_sub.js",
+                    "lotte/resources_dev/category/m/cate_side_search.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/mall_sub.js"
+            }
+        },
+
+        "uglify" : {
+            "jsMallSub" : {
+                "src" : "lotte/resources/<%= version %>/mall_sub.js",
+                "dest" : "lotte/resources/<%= version %>/mall_sub.min.js"
+            },
+            "tplMallSub" : {
+                "src" : "lotte/resources/<%= version %>/mall_sub.template.js",
+                "dest" : "lotte/resources/<%= version %>/mall_sub.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssMallSub" : {
+                "src" : [
+                	"lotte/resources_dev/specialshop/specialshop.css",
+                    "lotte/resources_dev/category/category.css",
+					"lotte/resources_dev/category/m/cate_side_search.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/mall_sub.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanMallSub" : [
+                "lotte/resources/<%= version %>/mall_sub.js",
+                "lotte/resources/<%= version %>/mall_sub.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlMallSub" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mall/m/mall_sub.html" : "mall/m/mall_sub_dev.html"
+                }
+            }
+        }
+    }
+}
+

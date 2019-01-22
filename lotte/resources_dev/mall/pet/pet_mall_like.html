@@ -1,0 +1,139 @@
+<div class="swag_wrap" >
+
+	<div class='likeItGroup'>
+
+		<div class='' ng-repeat='item in screenData.gallery_list'>
+			<!-- 뽐내기 일경우 -->
+			<section ng-if='item.bbs_type=="S"' class="dear_wrap social photo_area swag">
+				<ul class="list_wrap" ng-if="screenData.dispGallery">
+					<li id="swaglist_{{item.bbc_no}}" ng-init="pidx=$index">
+						<div class="txt_area">
+							<div class="txt_wrap">
+								<span class="userphoto">
+									<em
+										class='pet_img'
+										ng-if="item.user_img"
+										ng-class='{
+										   horizontal:item.rotate_code==2,
+										   rotate180:item.rotate_code==3,
+										   rotate90:item.rotate_code==6,
+										   rotateM90:item.rotate_code==8,
+										   vertical:item.rotate_code==4,
+										   horizontalRotate90:item.rotate_code==5,
+										   horizontalRotateM90:item.rotate_code==7
+										}'
+										style='background:url({{item.user_img}}) center center no-repeat'>
+									</em>
+									<img
+										ng-if="!item.user_img"
+										ng-src="http://image.lotte.com/lotte/mo2015/angular/mall/v_dearpet_swag_photo.gif" />
+								</span>
+								<p>
+									<span ng-if="!item.user_img">{{ item.user_name.substr(0,6) | hidestr}}</span>
+									<span ng-if="item.user_img">{{ item.user_name }}</span>
+								</p>
+								<div class="btn_wrap">
+									{{snsSubtitleChange(item.text)}}
+									<span class="sns"><a ng-click="likeShowSharePop({prdComment:item.text.substr(0,100),shareImg:item.img_list.items[0].img_url, bbsNo :item.bbs_no})">공유</a></span>
+									<span class="modify" ng-if="item.login_id == myLoginID">
+										<a ng-click="modifyClick(item,$index)">수정/삭제</a>
+									</span>
+								</div>
+								<div class="dim" ng-click="hideModify(item,$index)"></div>
+								<!-- 수정/삭제 레이어-->
+							</div>
+							<ul ng-if="modifyOpen == $index" class="modify_wrap">
+							   <li class="modify"><a ng-href="{{getswagRewriteUrl(item,$index)}}">수정</a></li>
+							   <li class="delete"><a ng-click="deleteSwag(item, $index)">삭제</a></li>
+							   <li class="close"><a ng-click="hideModify(item,$index)">닫기</a></li>
+							</ul>
+							<div class="cont" ng-class={on:item.open}>
+								<a ng-click="contMoreClick(item)" >
+									<div class="contentsText" ng-bind-html="item.text" id="swaglist_cont{{$index}}"></div>
+								</a>
+							</div>
+							<span ng-class={on:item.more} class="btn_more" ng-if="item.big&&screenType<2"><a ng-click="contMoreClick(item)" class="more">더보기</a>
+						</div>
+						<div class="slide" ng-controller="lotteNgSwipeCtrl">
+							<button class="btn prev" ng-show="swipeIdx > 0" ng-click="beforeSlide()">Preview </button>
+							<div class="mask">
+								<ul class="list" lotte-ng-list-swipe swipe-responsive="true" swipe-responsive640="1" swipe-responsive900="1" swipe-slide-item="true" swipe-list-model="img_list" swipe-id="img_list{{$index+1}}" swipe-max-ratio="0.2"swipe-min-distance="40">
+									<!-- 이미지가 하나인경우 -->
+									<li class="one" ng-repeat="items in item.img_list.items" ng-if="item.img_list.items.length==1">
+										<span style="background-image:url({{items.img_url}})" ng-click="popOption.zoomPopup({{$index}},{{pidx}})"></span>
+									</li>
+									<!-- 이미지가 여러개인 경우 -->
+									<li ng-repeat="items in item.img_list.items"
+										ng-if="item.img_list.items.length>1 && !(img_list.length%2==1 && $index==item.img_list.length-1 && screenType > 1)"
+										ng-click="popOption.zoomPopup({{$index}},{{pidx}})">
+											<img ng-src="{{items.img_url}}">
+									</li>
+								</ul>
+							</div>
+							<button class="btn next" ng-show="swipeIdx<=(item.img_list.items.length-2)" ng-click="nextSlide()">Next</button>
+							<ol class="bullet" ng-if="item.img_list.items && item.img_list.items.length > 1">
+								<li ng-repeat="item in item.img_list.items" ng-class="{active:$index==swipeIdx}">{{$index}}</li>
+							</ol>
+						</div>
+						<div class="comment_wrap">
+							<div class="count_wrap">
+								<span id="recomm_{{item.bbc_no}}" class="like on" ng-click="recomm_click(item)">{{item.like_count}}</span>
+								<span class="reply" ng-click="commentViewClick(item,$index)" ng-class="{on:commentListIndex == $index}">{{item.reply_count}}</span>
+							</div>
+
+							<div id="commentView_{{item.bbc_no}}" class="commentview">
+								<!-- 댓글 -->
+								<comment-Module></comment-Module>
+								<!-- //댓글 -->
+							</div>
+						</div>
+					</li>
+				</ul>
+			</section>
+
+			<!-- 디어펫 그램 일경우 -->
+			<section ng-if='item.bbs_type=="D"' class="dear_wrap social photo_area dearpetgram">
+				<ul class="list_wrap" ng-if="screenData.dispGallery">
+					<li id="bbc_{{item.bbc_no}}">
+						<div class="box_area">
+							<div class="txt_area">
+								<div class="txt_wrap">
+									<span class="userphoto"><img ng-src="http://image.lotte.com/lotte/mo2015/angular/mall/v_dearpet_petgram_photo.gif" /></span>
+									<p><span>{{item.user_name}}</span></p>
+									<div class="btn_wrap" ng-init='dimg=item.img_url||item.img_list.items[0].img_url'>
+										<span class="sns"><a ng-click="likeShowSharePop({prdComment:item.goods_nm,shareImg:item.img_url, bbsNo:item.bbs_no})">공유</a></span>
+									</div>
+								</div>
+								<div class="cont" ng-class={on:item.open}>
+									<a class='detail_txt'>
+										<div class="contentsText" ng-bind-html="item.text" id="swaglist_cont{{$index}}"></div>
+									</a>
+								</div>
+								<span ng-class={on:item.more} class="btn_more" ng-if="item.big&&screenType<2"><a ng-click="contMoreClick(item)" class="more">더보기</a>
+							</div>
+							<div
+								class="img_wrap"
+								ng-click="popOption.zoomPopup(0,{{$index}})">
+								<img ng-src="{{item.img_url||item.img_list.items[0].img_url}}"></div>
+							<div class="prod">
+								<a href="#" ng-click="mallProductClick(item, 'm_DC_SpeDisp_Dearpet_Clk_Prd_L{{$index + 1}}')">
+									<div class="imgArea"><span class="img_wrap"><img ng-src="{{item.goods_img}}" alt="{{item.goods_nm}}"></span></div>
+									<div class="txt_wrap">
+										<span class="title"><var><span ng-if="item.brnd_nm">[{{item.brnd_nm}}]</span> {{item.goods_nm}}</var></span>
+										<span class="price"><span>{{item.price | number}}</span>원<var ng-if="item.is_plan_prod == true">~</var></span>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="count_wrap">
+							<span id="recomm_{{item.bbc_no}}" class="like on" ng-click="recomm_click(item)">{{item.like_count}}</span>
+						</div>
+					</li>
+				</ul>
+			</section>
+
+		</div>
+
+	</div>
+
+</div>

@@ -1,0 +1,83 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplSearchList2018" : {
+				"options": {
+					"prefix":"/",
+					"module" : "app"
+				},
+				"src" : [
+					"lotte/resources_dev/layer/layer_coupon.html",
+					"lotte/resources_dev/layer/main_popup.html",
+					"lotte/resources_dev/layer/app_down_bnr.html",
+					"lotte/resources_dev/search/search_list_2018_container.html",
+					"lotte/resources_dev/search/products/planshop/planshop_list.html",
+					"lotte/resources_dev/search/search_list_recommend.html",
+					"lotte/resources_dev/search/search_detail_popup.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/search_list_2018.template.js"
+			}
+		},
+		"concat" : {
+			"jsSearchList2018" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/search/search_list_2018.js",
+					"lotte/resources_dev/layer/main_popup.js",
+					"lotte/resources_dev/layer/lotte_coupon_layer.js",
+					"lotte/resources_dev/common/lotte_swipe.js",
+					"lotte/resources_dev/common/lotte_slider.js",
+					"lotte/resources_dev/search/products/planshop/planshop_list.js",
+					"lotte/resources_dev/common/HWSwipe.js",
+					"lotte/resources_dev/search/search_detail_popup.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/search_list_2018.js"
+			}
+		},
+		"uglify" : {
+			"jsSearchList2018" : {
+				"src" : "lotte/resources/<%= version %>/search_list_2018.js",
+				"dest" : "lotte/resources/<%= version %>/search_list.min.js",
+				"_dest" : "lotte/resources/<%= version %>/search_list_2018.min.js"
+			},
+			"tplSearchList2018" : {
+				"src" : "lotte/resources/<%= version %>/search_list_2018.template.js",
+				"dest" : "lotte/resources/<%= version %>/search_list.tpl.js",
+				"_dest" : "lotte/resources/<%= version %>/search_list_2018.tpl.js"
+			}
+		},
+		"cssmin" : {
+			"cssSearchList2018" : {
+				"src" : [
+					"lotte/resources_dev/layer/coupon_layer.css",
+					"lotte/resources_dev/layer/main_popup.css",
+					"lotte/resources_dev/search/search_list_2018.css",
+					"lotte/resources_dev/search/products/planshop/planshop_list.css",
+					"lotte/resources_dev/search/search_detail_popup.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/search_list.min.css",
+				"_dest" : "lotte/resources/<%= version %>/search_list_2018.min.css"
+			}
+		},
+		"clean" : {
+			"cleanSearchList2018" : [
+				"lotte/resources/<%= version %>/search_list_2018.js",
+				"lotte/resources/<%= version %>/search_list_2018.template.js"
+			]
+		},
+		"processhtml" : {
+			"htmlSearchList2018" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"search/search_list_2018.html" : "search/search_list_2018_dev.html"
+				}
+			}
+		}
+	}
+}

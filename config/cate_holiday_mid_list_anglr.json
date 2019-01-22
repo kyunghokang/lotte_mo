@@ -1,0 +1,73 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplCateHolidayMidList" : {
+				"options": {
+					"prefix":"/",
+					"module" : "app"
+				},
+				"src" : [
+					"lotte/resources_dev/layer/main_popup.html",
+					"lotte/resources_dev/layer/app_down_bnr.html",
+					"lotte/resources_dev/category/m/cate_holiday_mid_list_anglr_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/cate_holiday_mid_list_anglr.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsCateHolidayMidList" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/category/m/cate_holiday_mid_list_anglr.js",
+					"lotte/resources_dev/layer/main_popup.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/cate_holiday_mid_list_anglr.js"
+			}
+		},
+
+		"uglify" : {
+			"jsCateHolidayMidList" : {
+				"src" : "lotte/resources/<%= version %>/cate_holiday_mid_list_anglr.js",
+				"dest" : "lotte/resources/<%= version %>/cate_holiday_mid_list_anglr.min.js"
+			},
+			"tplCateHolidayMidList" : {
+				"src" : "lotte/resources/<%= version %>/cate_holiday_mid_list_anglr.template.js",
+				"dest" : "lotte/resources/<%= version %>/cate_holiday_mid_list_anglr.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssCateHolidayMidList" : {
+				"src" : [
+					"lotte/resources_dev/category/category.css",
+					"lotte/resources_dev/category/m/cate_holiday_mid_list_anglr.css",
+					"lotte/resources_dev/layer/main_popup.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/cate_holiday_mid_list_anglr.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanCateHolidayMidList" : [
+				"lotte/resources/<%= version %>/cate_holiday_mid_list_anglr.js",
+				"lotte/resources/<%= version %>/cate_holiday_mid_list_anglr.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlCateHolidayMidList" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"category/m/cate_holiday_mid_list_anglr.html" : "category/m/cate_holiday_mid_list_anglr_dev.html"
+				}
+			}
+		}
+	}
+}

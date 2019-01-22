@@ -1,0 +1,73 @@
+<section>   
+	<div class="colorsWarp info_colorsWarp" ng-if="BasicData.product.colors.items.length > 0">
+		<div class="color_info_img" ng-class="{off:item.goods_img_url==null}" ng-repeat="item in BasicData.product.colors.items" ng-show="ColorNo==item.color_no"><p><img ng-if="item.goods_img_url !=null" ng-src="{{item.goods_img_url}}"></p></div>
+		<div class="color_info_area">
+			<p class="color_info">
+				<span ng-repeat="item in BasicData.product.colors.items" ng-show="ColorNo==item.color_no">
+					{{item.color_nm}} <span class="soldout" ng-if="item.is_soldout == true">(품절)</span>
+				</span>
+			</p>
+	        <div class="color_list">
+				<ul class="recommond_swipe" ng-class="{small : BasicData.product.colors.items.length < 6}" lotte-ng-list-swipe swipe-id="chanelColorSwipe" swipe-list-model="chanelColorData" swipe-responsive="true" swipe-autoheight="true" swipe-responsive320="1" swipe-responsive640="1" swipe-responsive900="1" swipe-slide-item="true" swipe-max-ratio="0.2" swipe-min-distance="40" swipe-list-model="products">
+		            <li ng-repeat="item in chanelColorData">
+		                <ul>
+		                    <li ng-repeat="items in item">
+		                        <a ng-click="ColorClick(items, 'm_DC_ProdDetail_Swp_Color_idx', ($parent.$index * 6 + ($index)));" ng-class="{on:ColorNo==items.color_no}">
+			                       	<span ng-if="items.is_soldout == true" class="dim"></span>
+			                        <div>			                        
+				                        <img ng-src="{{items.cr_img_url}}">
+			                        </div>
+		                        </a>
+		                    </li>
+		                </ul>
+		            </li>
+		        </ul>	
+		    </div>  
+		    <!-- 일반형  -->
+		    <div class="swipeArr" ng-if="screenType == 1">
+                <a ng-click="beforeSlide()" ng-show="swipeBulletIdx > 0" class="arrPrev">이전</a>
+                <a ng-click="nextSlide()" ng-show="swipeBulletIdx <=(swipeBullet.length-2)" class="arrNext">다음</a>
+            </div> 
+            <!-- 테블렛형 - 처음부터 보임  -->
+     		<div class="swipeArr" ng-if="screenType > 1">
+                <a ng-click="beforeSlide()" class="arrPrev">이전</a>
+                <a ng-click="nextSlide()" class="arrNext">다음</a>
+            </div> 
+            
+		</div>       
+	</div>  
+
+<!-- 상세 플래그, 브랜드샵, 스마트픽 -->
+    <div class="titTop">
+        <!-- 단품일 때 -->
+        <span ng-if="(BasicData.product.smp_psb_yn == 'Y' && BasicData.product.smp_dept_yn == 'Y' || BasicData.product.crspk_psb_yn == 'Y')">
+            <span class="flag smart">스마트픽</span>
+        </span>
+        <!-- 기획전 일때  -->
+        <span ng-if="isAnySmp && BasicData.product.select_goods_list.items.length > 0">
+            <span class="flag smart">스마트픽</span>
+        </span>
+
+        <span ng-if="BasicData.product.smp_psb_yn == 'N' && BasicData.product.logo_img != null && (BasicData.product.select_goods_list.items == null ||BasicData.product.select_goods_list.items.length == 0)">
+            <span ng-if="BasicData.product.logo_img == 'etv'" class="flag etv">롯데홈쇼핑</span>
+        </span>
+        <h3 class="tit_chanel_logo">샤넬</h3>
+		<p class="titText titText_en" ng-bind-html="BasicData.product.eng_goods_nm"></p>
+		<p class="titText titText_kr" ng-bind-html="BasicData.product.goods_nm"></p>       
+    </div>
+    <!-- 상세 상품명 -->
+    <div class="titPriceWrap">
+        <!-- 최적가 -->
+        <div class="txt">판매가</div>
+        <p class="titPrice">
+            <strong>{{Fnproductview.getNumberFormat(priceInfo.lowPrice)}}</strong>원<span ng-if="BasicData.goods_cmps_cd=='30'">~</span>
+            <!--20161004 판매가 표시 20161031 조건 추가 -->
+            <span class="oPrice" ng-if="BasicData.product.prc_dif_view_yn == 'Y' && !(BasicData.product.org_sale_prc <= priceInfo.lowPrice)">
+                {{Fnproductview.getNumberFormat(BasicData.product.org_sale_prc)}}
+            <span>원</span></span>
+            <span class="oPrice" ng-if="BasicData.product.prc_dif_view_yn != 'Y' && !(BasicData.product.dscnt_sale_prc <= priceInfo.lowPrice)">
+                {{Fnproductview.getNumberFormat(BasicData.product.dscnt_sale_prc)}}
+            <span>원</span></span>
+        </p>
+    </div>    
+</section>

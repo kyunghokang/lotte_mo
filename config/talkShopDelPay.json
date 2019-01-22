@@ -1,0 +1,37 @@
+{
+	"tasks" : {
+		"concat" : {
+			"jsTalkShopDelPay" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/talk/voice_shopping.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/voiceShopping.js"
+			}
+		},
+
+		"uglify" : {
+			"jsTalkShopDelPay" : {
+				"src" : "lotte/resources/<%= version %>/voiceShopping.js",
+				"dest" : "lotte/resources/<%= version %>/voiceShopping.min.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssTalkShopDelPay" : {
+				"src" : [
+					"lotte/resources_dev/talk/voice_shopping.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/voiceShopping.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanTalkShopDelPay" : [
+				"lotte/resources/<%= version %>/voiceShopping.js"
+			]
+		}
+	}
+}

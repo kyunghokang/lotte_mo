@@ -1,0 +1,761 @@
+<section ng-show="contVisible" class="benefit cont_minheight" id="event" ng-class="{pad : appObj.isTablet || appObj.isIpad}">
+	<div ng-show="pageLoading" class="pageLoading"><p class="loading half"></p></div>
+    <!--20171201 등급/쿠폰존--> 
+    <section ng-show=" !pageLoading" class="zone">
+		<!-- 1) 비로그인 -->
+		<div ng-if="gradView || !loginInfo.isLogin" class="login_head">
+		    <p class="txt16">로그인 후 나의 등급 및 혜택을 확인하세요!</p>		    
+            <a href="#" ng-click="goLogin()" class="login_btn"><span class="lib loginicon"></span>로그인</a>
+		</div>
+		<!-- 2) 로그인 -->
+	    <div ng-if="loginInfo.isLogin && shutDownTime" class="head"> 
+	    	<div class="head_txt judge"> 
+                <span>{{goodBenefit.expTitle }} 고객님 반갑습니다. ^^</span>
+		                현재 등급 변경이 진행 중입니다.<br>
+		                12월 1일 오전 9시, 새로운 등급으로 만나요!<br>
+		        <a href="#none" class="x_btn">등급 심사중</a>
+			</div>
+	    </div> 		
+		<div ng-if="gradView || loginInfo.isLogin && !shutDownTime" class="login_head my_info big">
+            <div class="mtable">
+                <div class="mcell icon">
+					<span class="my_grade" ng-switch on='goodBenefit.mbrGradeCd'>
+						<img ng-switch-when="10" src="http://image.lotte.com/lotte/mo2015/angular/mylotte/grade_2017_10.png" alt="">
+						<img ng-switch-when="20" src="http://image.lotte.com/lotte/mo2015/angular/mylotte/grade_2017_20.png" alt="">
+						<img ng-switch-when="30" src="http://image.lotte.com/lotte/mo2015/angular/mylotte/grade_2017_30.png" alt="">
+						<img ng-switch-when="40" src="http://image.lotte.com/lotte/mo2015/angular/mylotte/grade_2017_40.png" alt="">
+						<img ng-switch-when="50" src="http://image.lotte.com/lotte/mo2015/angular/mylotte/grade_2017_50.png" alt="">
+						<img ng-switch-default src="http://image.lotte.com/lotte/mo2015/angular/mylotte/grade_2017_welcome.png" alt="">						
+					</span>                     
+                </div>
+                <div class="mcell info">
+                    <b>{{gradeNm}}</b>
+                    <p ng-if="goodBenefit.mbrGradeCd <= 50">{{goodBenefit.mbrNm }} <span ng-if="goodBenefit.staffYn == 'Y'" ng-click="pop_open(2)">임직원</span>님의 {{currMonth }}월 등급 </p>
+                    <p ng-if="goodBenefit.mbrGradeCd > 50">{{goodBenefit.mbrNm }} 님 환영합니다!</p>
+                </div>
+            </div>    
+        </div>
+        <!--VIP 라운지-->
+        <div class="vip_lounge" ng-if="goodBenefit.cardVipCk == 'VIP'">
+            <a href="/event/lotteCardVipEvent.do?{{baseParam}}">
+                <img ng-src="http://image.lotte.com/lotte/mo2015/angular/mylotte/vip_lounge_banner.png">
+            </a>
+        </div>
+        
+        <div class="openBox" ng-if="gradView || (loginInfo.isLogin && !shutDownTime)">
+            <div class="b_head" ng-click="openbox2 = !openbox2;sendTclick('m_DC_MemCouponZone_Clk_Lyr_1')">나의 구매실적 <span class="arrow_icon" ng-class="{on:openbox2}"></span></div>
+            <div class="b_detail"  ng-show="openbox2">
+                <div class="t1">집계기간 : {{goodBenefit.ordDt }}</div>
+                <div class="mtable buy_info">
+                    <div class="mcell">
+                        <div class="buy_title">구매건수</div>
+                        <div class="buy_detail">{{goodBenefit.ordCnt | number}}<span>건</span></div>
+                    </div>
+                    <div class="mcell">
+                        <div class="buy_title">구매금액</div>
+                        <div class="buy_detail">{{goodBenefit.ordAmt | number}}<span>원</span></div>                        
+                    </div>
+                </div>
+                
+                <!--20180222 남은 구매건수 및 금액-->
+                <div class="t1 mgt16">다음 등급까지 남은 조건</div>
+                <div class="mtable buy_info mgt10">
+                    <div class="mcell">
+                        <div class="buy_title color2">남은 구매건수</div>
+                        <div class="buy_detail">{{goodBenefit.remainCnt | number}}<span>건</span></div>
+                    </div>
+                    <div class="mcell">
+                        <div class="buy_title color2">남은 구매금액</div>
+                        <div class="buy_detail">{{goodBenefit.remainAmt | number}}<span>원</span></div>                        
+                    </div>
+                </div>                
+                   
+                <ul class="buy_ul">
+                    <li>실적은 발송 완료 기준으로 업데이트 됩니다.</li>
+                    <li>LOTTE.com / 브랜드 스토어(무지)에서의 구매가 포함됩니다.<br>
+                       <p>＊기타 브랜드 스토어, 티켓, 보험, 롯데슈퍼 등의 구매실적 제외</p>
+                        </li>
+                    <li>부당한 방법으로 획득한 고객 등급은 사후 심사를 통해 재조정 될 수 있습니다.</li>
+                    <li>신규 등급은 오전 10시 이후에 반영됩니다.<br>
+                       <p>＊골드~실버: 매월1일</p>
+                       <p>＊플래티넘+~플래티넘: 매일 </p>                        
+                    </li>
+                </ul>
+                
+            </div>
+        </div>  
+        
+        <div class="openBox">
+            <div class="b_head" ng-click="openbox1 = !openbox1;sendTclick('m_DC_MemCouponZone_Clk_Lyr_2')">등급 조건 및 혜택<span class="arrow_icon" ng-class="{on:openbox1}"></span></div>
+            <div class="b_detail super" ng-show="openbox1">
+               <div class="t1">등급 및 슈퍼패스 승급</div>
+               <div class="graph">
+                    <img ng-src="http://image.lotte.com/lotte/mo2015/angular/mylotte/benefit_superpass_20171201_pad.png">   
+                    <ul class="buy_ul color3">
+                        <li>슈퍼패스 : 조건 충족 시 일일 자동 승급</li>
+                        <li>플래티넘 2회 : 직전 반기 포함 플래티넘 조건 2회 이상 충족 </li>                        
+                    </ul>                     
+                   <div class="super_pop" ng-click="pop_open(1)">슈퍼패스 자세히 알기<span class="lib pop"></span></div>
+               </div>
+               <div class="t1">등급별 혜택 및 조건</div> 
+               
+               <!--모바일용-->
+               <div class="mobile_view">
+                   <!--플래티넘+    -->
+                   <div class="sbox">
+                       <div class="sbox_head">
+                            <div class="login_head my_info small">
+                                <div class="mtable">
+                                    <div class="mcell icon">
+                                        <span class="my_grade">
+                                            <img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/grade_2017_10.png" alt="">
+                                        </span>                     
+                                    </div>
+                                    <div class="mcell info">
+                                        <b class="color_pplus">플래티넘+</b>
+                                        <p>플래티넘 2회 달성 고객 기준</p>
+                                    </div>
+                                </div>                                                  
+                           </div>
+                       </div>
+                       <div class="sbox_detail">
+                            <div class='mtable gc_box'>
+                                <div class='mcell'><div class="lib small type10">7<span class="lib small x3"></span></div></div>
+                                <div class='mcell'>7% 추가할인 쿠폰 3장</div>
+                            </div>
+                            <div class='mtable gc_box'>
+                                <div class='mcell'><div class="lib small type11"><span class="lib small alpha"></span></div></div>
+                                <div class='mcell'>전 상품 무제한 무료배송 </div>
+                            </div>
+<!--                            <div class='mtable gc_box'>
+                                <div class='mcell'><div class="lib cs"></div></div>
+                                <div class='mcell'>플래티넘+ 회원 전담 <br>고객센터 운영</div>
+                            </div>
+-->                       </div>
+                   </div> 
+
+                   <!--플래티넘    -->
+                   <div class="sbox">
+                       <div class="sbox_head">
+                            <div class="login_head my_info small">
+                                <div class="mtable">
+                                    <div class="mcell icon">
+                                        <span class="my_grade">
+                                            <img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/grade_2017_20.png" alt="">
+                                        </span>                     
+                                    </div>
+                                    <div class="mcell info">
+                                        <b class="color_p">플래티넘</b>
+                                        <p>6건 이상 + 100만원 이상 구매 고객 기준 </p>
+                                    </div>
+                                </div>                                                  
+                           </div>
+                       </div>
+                       <div class="sbox_detail">
+                            <div class='mtable gc_box'>
+                                <div class='mcell'><div class="lib small type10">7<span class="lib small x2"></span></div></div>
+                                <div class='mcell'>7% 추가할인 쿠폰 2장</div>
+                            </div>
+                            <div class='mtable gc_box'>
+                                <div class='mcell'><div class="lib small type11"><span class="lib small x3"></span></div></div>
+                                <div class='mcell'>무료배송 쿠폰 3장 </div>
+                            </div>
+<!--                            <div class='mtable gc_box'>
+                                <div class='mcell'><div class="lib cs"></div></div>
+                                <div class='mcell'>플래티넘 회원 전담 <br>고객센터 운영</div>
+                            </div>
+-->                       </div>
+                   </div> 
+
+                   <!--플래티넘#    -->
+                   <div class="sbox">
+                       <div class="sbox_head">
+                            <div class="login_head my_info small">
+                                <div class="mtable">
+                                    <div class="mcell icon">
+                                        <span class="my_grade">
+                                            <img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/grade_2017_30.png" alt="">
+                                        </span>                     
+                                    </div>
+                                    <div class="mcell info">
+                                        <b class="color_psharp">플래티넘#</b>
+                                        <p>과거 플래티넘 달성 고객 기준</p>
+                                    </div>
+                                </div>                                                  
+                           </div>
+                       </div>
+                       <div class="sbox_detail">
+                            <div class='mtable gc_box'>
+                                <div class='mcell'><div class="lib small type10">7<span class="lib small x2"></span></div></div>
+                                <div class='mcell'>7% 추가할인 쿠폰 2장</div>
+                            </div>
+                            <div class='mtable gc_box'>
+                                <div class='mcell'><div class="lib small type11"></div></div>
+                                <div class='mcell'>무료배송 쿠폰 1장</div>
+                            </div>
+                       </div>
+                   </div> 
+
+                   <!--골드    -->
+                   <div class="sbox">
+                       <div class="sbox_head">
+                            <div class="login_head my_info small">
+                                <div class="mtable">
+                                    <div class="mcell icon">
+                                        <span class="my_grade">
+                                            <img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/grade_2017_40.png" alt="">
+                                        </span>                     
+                                    </div>
+                                    <div class="mcell info">
+                                        <b class="color_gold">골드</b>
+                                        <p>구매 금액이 50만원 이상인 고객 기준</p>
+                                    </div>
+                                </div>                                                  
+                           </div>
+                       </div>
+                       <div class="sbox_detail">
+                            <div class='mtable gc_box'>
+                                <div class='mcell'><div class="lib small type10">7<span class="lib small x2"></span></div></div>
+                                <div class='mcell'>7% 추가할인 쿠폰 2장</div>
+                            </div>
+                       </div>
+                   </div> 
+                   <!--실버    -->
+                   <div class="sbox">
+                       <div class="sbox_head">
+                            <div class="login_head my_info small">
+                                <div class="mtable">
+                                    <div class="mcell icon">
+                                        <span class="my_grade">
+                                            <img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/grade_2017_50.png" alt="">
+                                        </span>                     
+                                    </div>
+                                    <div class="mcell info">
+                                        <b class="color_silver">실버 </b>
+                                        <p>1건 이상 구매 고객 기준</p>
+                                    </div>
+                                </div>                                                  
+                           </div>
+                       </div>
+                       <div class="sbox_detail">
+                            <div class='mtable gc_box'>
+                                <div class='mcell'><div class="lib small type10">7</div></div>
+                                <div class='mcell'>7% 추가할인 쿠폰 1장</div>
+                            </div>
+                       </div>
+                   </div>                
+                   
+               </div>               
+               <!--태블릿 용-->
+               <div class="pad_view">
+                   <div class="mtable">
+                       <div class="mcell">
+                           <!--플래티넘+    -->
+                           <div class="sbox">
+                               <div class="sbox_head">
+                                    <div class="login_head my_info small">
+                                        <div class="mtable">
+                                            <div class="mcell icon">
+                                                <span class="my_grade">
+                                                    <img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/grade_2017_10.png" alt="">
+                                                </span>                     
+                                            </div>
+                                            <div class="mcell info">
+                                                <b class="color_pplus">플래티넘+</b>
+                                                <p>플래티넘 2회 달성 고객 기준</p>
+                                            </div>
+                                        </div>                                                  
+                                   </div>
+                               </div>
+                               <div class="sbox_detail">
+                                    <div class='mtable gc_box'>
+                                        <div class='mcell'><div class="lib small type10">7<span class="lib small x3"></span></div></div>
+                                        <div class='mcell'>7% 추가할인 쿠폰 3장</div>
+                                    </div>
+                                    <div class='mtable gc_box'>
+                                        <div class='mcell'><div class="lib small type11"><span class="lib small alpha"></span></div></div>
+                                        <div class='mcell'>전 상품 무제한 무료배송 </div>
+                                    </div>
+<!--                                    <div class='mtable gc_box'>
+                                        <div class='mcell'><div class="lib cs"></div></div>
+                                        <div class='mcell'>플래티넘+ 회원 전담 <br>고객센터 운영</div>
+                                    </div>
+-->                               </div>
+                           </div> 
+                           <!--플래티넘#    -->
+                           <div class="sbox">
+                               <div class="sbox_head">
+                                    <div class="login_head my_info small">
+                                        <div class="mtable">
+                                            <div class="mcell icon">
+                                                <span class="my_grade">
+                                                    <img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/grade_2017_30.png" alt="">
+                                                </span>                     
+                                            </div>
+                                            <div class="mcell info">
+                                                <b class="color_psharp">플래티넘#</b>
+                                                <p>과거 플래티넘 달성 고객 기준</p>
+                                            </div>
+                                        </div>                                                  
+                                   </div>
+                               </div>
+                               <div class="sbox_detail">
+                                    <div class='mtable gc_box'>
+                                        <div class='mcell'><div class="lib small type10">7<span class="lib small x2"></span></div></div>
+                                        <div class='mcell'>7% 추가할인 쿠폰 2장</div>
+                                    </div>
+                                    <div class='mtable gc_box'>
+                                        <div class='mcell'><div class="lib small type11"></div></div>
+                                        <div class='mcell'>무료배송 쿠폰 1장</div>
+                                    </div>
+                               </div>
+                           </div> 
+                                                      
+                       </div>
+                       <div class="mcell w12"></div>
+                       <div class="mcell">
+                           <!--플래티넘    -->
+                           <div class="sbox">
+                               <div class="sbox_head">
+                                    <div class="login_head my_info small">
+                                        <div class="mtable">
+                                            <div class="mcell icon">
+                                                <span class="my_grade">
+                                                    <img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/grade_2017_20.png" alt="">
+                                                </span>                     
+                                            </div>
+                                            <div class="mcell info">
+                                                <b class="color_p">플래티넘</b>
+                                                <p>6건 이상 + 100만원 이상 구매 고객 기준 </p>
+                                            </div>
+                                        </div>                                                  
+                                   </div>
+                               </div>
+                               <div class="sbox_detail">
+                                    <div class='mtable gc_box'>
+                                        <div class='mcell'><div class="lib small type10">7<span class="lib small x2"></span></div></div>
+                                        <div class='mcell'>7% 추가할인 쿠폰 2장</div>
+                                    </div>
+                                    <div class='mtable gc_box'>
+                                        <div class='mcell'><div class="lib small type11"><span class="lib small x3"></span></div></div>
+                                        <div class='mcell'>무료배송 쿠폰 3장 </div>
+                                    </div>
+<!--                                    <div class='mtable gc_box'>
+                                        <div class='mcell'><div class="lib cs"></div></div>
+                                        <div class='mcell'>플래티넘 회원 전담 <br>고객센터 운영</div>
+                                    </div>
+-->                               </div>
+                           </div> 
+
+                           <!--골드    -->
+                           <div class="sbox">
+                               <div class="sbox_head">
+                                    <div class="login_head my_info small">
+                                        <div class="mtable">
+                                            <div class="mcell icon">
+                                                <span class="my_grade">
+                                                    <img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/grade_2017_40.png" alt="">
+                                                </span>                     
+                                            </div>
+                                            <div class="mcell info">
+                                                <b class="color_gold">골드</b>
+                                                <p>구매 금액이 50만원 이상인 고객 기준</p>
+                                            </div>
+                                        </div>                                                  
+                                   </div>
+                               </div>
+                               <div class="sbox_detail">
+                                    <div class='mtable gc_box'>
+                                        <div class='mcell'><div class="lib small type10">7<span class="lib small x2"></span></div></div>
+                                        <div class='mcell'>7% 추가할인 쿠폰 2장</div>
+                                    </div>
+                               </div>
+                           </div> 
+                           <!--실버    -->
+                           <div class="sbox">
+                               <div class="sbox_head">
+                                    <div class="login_head my_info small">
+                                        <div class="mtable">
+                                            <div class="mcell icon">
+                                                <span class="my_grade">
+                                                    <img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/grade_2017_50.png" alt="">
+                                                </span>                     
+                                            </div>
+                                            <div class="mcell info">
+                                                <b class="color_silver">실버 </b>
+                                                <p>1건 이상 구매 고객 기준</p>
+                                            </div>
+                                        </div>                                                  
+                                   </div>
+                               </div>
+                               <div class="sbox_detail">
+                                    <div class='mtable gc_box'>
+                                        <div class='mcell'><div class="lib small type10">7</div></div>
+                                        <div class='mcell'>7% 추가할인 쿠폰 1장</div>
+                                    </div>
+                               </div>
+                           </div>                
+                                                      
+                       </div>
+                   </div>
+               </div>               
+               
+               <div class="pad_grade_bg">
+                   <div class="t1">등급 선정 기간 및 혜택 안내</div> 
+                    <ul class="buy_ul color6">
+                        <li>실버/골드: 매월 1일, 최근 6개월 기준</li>
+                        <li>플래티넘/플래티넘+: 매일, 상/하반기 기준</li>
+                        <li>상품 할인 쿠폰은 일부 상품에 적용이 제한될 수 있습니다.</li>
+                        <li style="line-height:1.6em;">등급별 무료배송 혜택을 적용하더라도, 기본 배송료를 초과하는
+						   일부 상품에 대해서는 추가 배송비가 발생할 수 있습니다.
+						   <br/>※ 무료배송 제외 케이스 예시: 일부 가전/가구 상품, 도서 
+						     산간지역, 해외 배송 등 (상품별 상세 페이지 확인 必)</li>
+                        <li>멤버십 등급 및 혜택은 당사 사정에 따라 변경 또는 종료될 수 있습니다.</li>
+                    </ul>                  
+                   
+               </div>
+            </div>
+        </div>  
+        
+        <div class="downBox big" ng-if="gradView || (loginInfo.isLogin && !shutDownTime && goodBenefit.mbrGradeCd < 60 )">            
+            <div class="down_head color_download"  ng-click="noti_msg(1)" ng-if="goodBenefit.couponInfo.mbr_down_yn == 'Y'">
+                등급쿠폰 다운로드 완료 <span class="lib down"></span>
+            </div>            
+            <div class="down_head color_bg_{{goodBenefit.mbrGradeCd}}"  ng-click="regCoupon('memberCpn', goodBenefit.mbrGradeCd);sendTclick('m_DC_MemCouponZone_Clk_Btn_1')"  ng-if="goodBenefit.couponInfo.mbr_down_yn != 'Y'">
+                등급쿠폰 전체 다운로드 <span class="lib down"></span>
+            </div>
+            <div class="down_detail">           
+               <span class="cpn_info" ng-click="pop_open(3)">쿠폰안내</span><span class="lib pop ar"></span>
+                <!--플래티넘+-->
+                <div class="down_con" ng-if="gradView || goodBenefit.mbrGradeCd == 10">
+                    <div class="down_grade"><span class="color_pplus">플래티넘+</span> 고객님 전용 혜택</div>    
+                    <div class='mtable gc_box' ng-class="{off:goodBenefit.couponInfo.mbr_down_yn == 'Y'}">
+                        <div class='mcell'><div class="lib type10">7<span class="lib x3"></span></div></div>
+                        <div class='mcell'>
+                        30,000원 이상 구매시 <br>
+                        최대 10,000원 할인
+                        <p class="mgt10">~{{currYear}}-{{currMonth}}-{{lastDayOfMonInt}}</p>
+                        </div>
+                    </div>
+                    <div class='mtable gc_box' ng-class="{off:goodBenefit.couponInfo.mbr_down_yn == 'Y'}">
+                        <div class='mcell'><div class="lib type11"><span class="lib alpha"></span></div></div>
+                        <div class='mcell'>
+                        구매금액 상관없이 <br>
+                        무제한 무료배송
+                        <p class="mgt10">~{{currYear}}-{{currMonth}}-{{lastDayOfMonInt}}</p>
+                        </div>
+                    </div>
+                </div>      
+                <!--플래티넘         -->
+                <div class="down_con" ng-if="gradView || goodBenefit.mbrGradeCd == 20">
+                    <div class="down_grade"><span class="color_p">플래티넘</span> 고객님 전용 혜택</div>    
+                    <div class='mtable gc_box' ng-class="{off:goodBenefit.couponInfo.mbr_down_yn == 'Y'}">
+                        <div class='mcell'><div class="lib type10">7<span class="lib x2"></span></div></div>
+                        <div class='mcell'>
+                        30,000원 이상 구매시 <br>
+                        최대 10,000원 할인
+                        <p class="mgt10">~{{currYear}}-{{currMonth}}-{{lastDayOfMonInt}}</p>
+                        </div>
+                    </div>
+                    <div class='mtable gc_box' ng-class="{off:goodBenefit.couponInfo.mbr_down_yn == 'Y'}">
+                        <div class='mcell'><div class="lib type11"><span class="lib x3"></span></div></div>
+                        <div class='mcell'>
+                        10,000원 이상 구매시 <br>
+                        무료배송
+                        <p class="mgt10">~{{currYear}}-{{currMonth}}-{{lastDayOfMonInt}}</p>
+                        </div>
+                    </div>
+                </div>               
+                <!--플래티넘#       -->
+                <div class="down_con" ng-if="gradView || goodBenefit.mbrGradeCd == 30">
+                    <div class="down_grade"><span class="color_psharp">플래티넘#</span> 고객님 전용 혜택</div>    
+                    <div class='mtable gc_box' ng-class="{off:goodBenefit.couponInfo.mbr_down_yn == 'Y'}">
+                        <div class='mcell'><div class="lib type10">7<span class="lib x2"></span></div></div>
+                        <div class='mcell'>
+                        30,000원 이상 구매시 <br>
+                        최대 10,000원 할인
+                        <p class="mgt10">~{{currYear}}-{{currMonth}}-{{lastDayOfMonInt}}</p>
+                        </div>
+                    </div>
+                    <div class='mtable gc_box' ng-class="{off:goodBenefit.couponInfo.mbr_down_yn == 'Y'}">
+                        <div class='mcell'><div class="lib type11"></div></div>
+                        <div class='mcell'>
+                        10,000원 이상 구매시 <br>
+                        무료배송
+                        <p class="mgt10">~{{currYear}}-{{currMonth}}-{{lastDayOfMonInt}}</p>
+                        </div>
+                    </div>
+                </div>               
+                <!--골드         -->
+                <div class="down_con" ng-if="gradView || goodBenefit.mbrGradeCd == 40">
+                    <div class="down_grade"><span class="color_gold">골드</span> 고객님 전용 혜택</div>    
+                    <div class='mtable gc_box' ng-class="{off:goodBenefit.couponInfo.mbr_down_yn == 'Y'}">
+                        <div class='mcell'><div class="lib type10">7<span class="lib x2"></span></div></div>
+                        <div class='mcell'>
+                        30,000원 이상 구매시 <br>
+                        최대 10,000원 할인
+                        <p class="mgt10">~{{currYear}}-{{currMonth}}-{{lastDayOfMonInt}}</p>
+                        </div>
+                    </div>
+                </div>               
+                <!--실버         -->
+                <div class="down_con" ng-if="gradView || goodBenefit.mbrGradeCd == 50">
+                    <div class="down_grade"><span class="color_silver">실버</span> 고객님 전용 혜택</div>    
+                    <div class='mtable gc_box' ng-class="{off:goodBenefit.couponInfo.mbr_down_yn == 'Y'}">
+                        <div class='mcell'><div class="lib type10">7</div></div>
+                        <div class='mcell'>
+                        30,000원 이상 구매시 <br>
+                        최대 10,000원 할인
+                        <p class="mgt10">~{{currYear}}-{{currMonth}}-{{lastDayOfMonInt}}</p>
+                        </div>
+                    </div>
+                </div>               
+                
+            </div>
+        </div>
+        
+        <!--스와이핑 배너 영역  -->
+        <div ng-if="goodBenefit.attributes.banner_top.total_count > 0" roll-swipe-banner class="mgt15" id="roll1" rolling="true" width320="1" width640="1" width900="1" info="goodBenefit.attributes.banner_top.items" getcontrol="getRolling1" endfnc="setInfo1"> <!-- 20180807 id변경, 함수추가 -->
+           <ul class="swipeBox">
+                <li ng-repeat="item in goodBenefit.attributes.banner_top.items">
+                    <a ng-href="{{item.img_link}}&tclick=m_EL_MemCouponZone_Clk_Ban_1">
+				    <div class="banner_box">
+				        <img ng-src="{{item.img_url}}">    
+				    </div>					                
+                    </a>
+                </li>
+            </ul>
+            <div class="couponzone_paging_wrap"> <!-- 20180807 페이징 변경 -->
+                <span class="paging">
+                    <span class="curpage">{{controlIdx1}}</span>
+                    /
+                    <span class="">{{goodBenefit.attributes.banner_top.total_count}}</span>
+                </span>
+            </div> 
+        </div>          
+                                                                      
+        <!--쿠폰존
+        couponKind : plusSale 추가할인, sale 할인, save 적립, support 쇼핑지원권, freeDlv 무료배송권      
+        -->
+        <div class="openBox cpn_zone big" ng-if="!shutDownTime">
+            <div class="b_head">쿠폰존</div>
+            
+            <div class="b_detail" ng-repeat="coupon in goodBenefit.attributes.couponList.items">
+                <div class="down_con">
+                    <div class="down_grade">{{coupon.promNm}}<span class="lib pop ar2" ng-click="pop_open(4, coupon)"></span></div>    
+                    
+                    <div class='mtable gc_box' ng-repeat="item in coupon.cpn_list.items track by $index" ng-show="$index < 5">
+                        <div class='mcell' ng-class="{off:coupon.cpn_down_yn == 'Y'}">                        
+                            <!--쿠폰종류-->
+                            <div class="lib type1" ng-if="item.couponKind == 'save' && item.unitName=='만점'">{{item.fvrValStr}}</div>                            
+                            <div class="lib type2" ng-if="item.couponKind == 'sale' && item.unitName=='만점'">{{item.fvrValStr}}</div>                            
+                            <div class="lib type3" ng-if="item.couponKind == 'save' && item.unitName=='천점'">{{item.fvrValStr}}</div>                            
+                            <div class="lib type4" ng-if="item.couponKind == 'sale' && item.unitName=='천점'">{{item.fvrValStr}}</div>                            
+                            <div class="lib type5" ng-if="item.couponKind == 'save' && item.unitName=='천원'">{{item.fvrValStr}}</div>                            
+                            <div class="lib type6" ng-if="item.couponKind == 'sale' && item.unitName=='천원'">{{item.fvrValStr}}</div>                            
+                            <div class="lib type7" ng-if="item.couponKind == 'save' && item.unitName=='%'">{{item.fvrValStr}}</div>                            
+                            <div class="lib type8" ng-if="item.couponKind == 'sale' && item.unitName=='%'">{{item.fvrValStr}}</div>                            
+                            <div class="lib type9" ng-if="item.couponKind == 'plusSave'">{{item.fvrValStr}}</div>                            
+                            <div class="lib type10" ng-if="item.couponKind == 'plusSale'">{{item.fvrValStr}}</div>                            
+                            <div class="lib type11" ng-if="item.couponKind == 'freeDlv'"></div>                            
+                        </div>
+                        <div class='mcell'>
+                            <span ng-if="item.aplyLmtAmt > 0">{{item.useCondition}}<br></span>
+                            <span ng-if="item.maxFvrVal != '0원'">최대 {{item.maxFvrVal}} 할인<p class="mgt5"></p></span>
+                        <p class="color6">~{{item.avalEndDtime | dayinfo}}</p>
+                        </div>
+                    </div>
+                                        
+                    <div class="btn_down" ng-if="coupon.cpn_down_yn == 'N' && (coupon.mbrGradeCd == '99' || goodBenefit.mbrGradeCd == coupon.mbrGradeCd)" ng-click="getCoupon(coupon.cpn_key)">쿠폰다운받기 <span class="lib down"></span></div>
+                    <div class="btn_down" ng-if="coupon.cpn_down_yn == 'N' && (coupon.mbrGradeCd != '99' && goodBenefit.mbrGradeCd != coupon.mbrGradeCd)" ng-click="noti_msg(2)">쿠폰다운받기 <span class="lib down"></span></div>
+                    <div class="btn_down off" ng-if="coupon.cpn_down_yn == 'Y'" ng-click="noti_msg(1)">쿠폰 발급 완료</div>                     
+                </div>                
+            </div>
+            
+            <div class="b_foot">
+                <p class="fh">참고하세요!</p>
+                <ul class="buy_ul color6">
+                    <li>롯데백화점 쿠폰, 무료배송권은 롯데닷컴에서 사용가능</li>
+                    <li>쿠폰은 로그인 후 다운로드 가능</li>
+                    <li>쿠폰 적용 제외: 상품권 티켓, 명품 화장품 및 일부 저마진 상품 </li>
+                </ul>
+            </div>       
+        </div>       
+                                                                                                                                                                                                                                                                                           
+        <!-- 스와이핑 배너 영역  -->
+        <div ng-if="goodBenefit.attributes.banner_bottom.total_count > 0" roll-swipe-banner class="mgt15" id="roll2" rolling="true" width320="1" width640="1" width900="1" info="goodBenefit.attributes.banner_bottom.items" getcontrol="getRolling2" endfnc="setInfo2"> <!-- 20180807 id변경, 함수추가 -->
+           <ul class="swipeBox">
+                <li ng-repeat="item in goodBenefit.attributes.banner_bottom.items">
+                    <a ng-href="{{item.img_link}}">
+				    <div class="banner_box">
+				        <img ng-src="{{item.img_url}}">    
+				    </div>					                
+                    </a>
+                </li>
+            </ul>
+            <div class="couponzone_paging_wrap"> <!-- 20180807 페이징 변경 -->
+                <span class="paging">
+                    <span class="curpage">{{controlIdx2}}</span>
+                    /
+                    <span class="">{{goodBenefit.attributes.banner_bottom.total_count}}</span>
+                </span>
+            </div>   
+        </div>    
+                                                                                                                                                                                                                                                                                                        
+      <!--20180807 L.POINT 회원 혜택 스와이핑 배너 영역-->
+      <div ng-show="goodBenefit.attributes.banner_ad.total_count > 0" roll-swipe-banner class="mgt15" id="roll3" rolling="true" width320="1" width640="1" width900="1" info="goodBenefit.attributes.banner_ad.items" getcontrol="getRolling3" endfnc="setInfo3">
+          <p class="lpoint_title">L.POINT 회원 혜택존</p>
+           <ul class="swipeBox">
+                <li ng-repeat="item in goodBenefit.attributes.banner_ad.items">
+                    <a ng-href="{{item.img_link}}">
+                    <div class="banner_box">
+                        <img ng-src="{{item.img_url}}">    
+                    </div>					                
+                    </a>
+                </li>
+            </ul>
+            <div class="couponzone_paging_wrap"> <!-- 20180807 페이징 변경 -->
+                <span class="paging">
+                    <span class="curpage">{{controlIdx3}}</span>
+                    /
+                    <span class="">{{goodBenefit.attributes.banner_ad.total_count}}</span>
+                </span>
+		    </div>
+        </div> 
+        
+             
+        <!--매일 차곡차곡  -->                   
+        <div class="openBox cpn_zone every">
+            <div class="b_head">매일매일 차곡차곡</div>
+            <div class="b_detail exline">
+                <ul class="everyday">
+                    <li ng-click="everyday_link(1)">
+                        <div ng-class="luckyboxNo == false?'icons2':'icons'"></div>
+                        <p>바로 방문 ON 하고</p>
+                        <b>출석체크<span class="icons arrow"></span></b>
+                    </li>
+                    <!-- 20180420 변경 -->
+                    <li ng-click="everyday_link(2)">
+                        <div ng-class="luckyboxNo == false?'icons2 i2':'icons i2'"></div>
+                        <p>{{eventSubTxt}}</p>
+                        <b>{{eventSubTxt2}}<span class="icons arrow"></span></b>
+                    </li>
+                    <!-- // 20180420 변경 -->
+
+                    <!--20180718 이벤트코너 변경-->
+                    <li ng-if="!validDate" ng-click="everyday_link(5)">
+                        <div ng-class="luckyboxNo == false?'icons3 i3':'icons2 i3'"></div>
+                         <p>매일 도장 찍고 혜택받는</p>
+                        <b>쇼핑메일 출석부<span class="icons arrow"></span></b>
+                    </li>
+                    <li ng-if="!validDate" ng-click="everyday_link(6)">
+                        <div ng-class="luckyboxNo == false?'icons3 i4':'icons2 i4'"></div>
+                        <p>L.POINT 회원이라면 누구나!</p>
+                        <b>럭키 엘포인트<span class="icons arrow"></span></b>
+                    </li>
+                    <!--//20180718 이벤트코너 변경-->
+
+                    <!--20180813 이벤트코너 원복-->                    	
+										<li ng-if="validDate" ng-click="everyday_link(3)">
+											<div ng-class="luckyboxNo == false?'icons2 i3':'icons i3'"></div>
+											<p>적립하고 혜택받는</p>
+											<b>클로버 마일리지<span class="icons arrow"></span></b>
+										</li>
+
+										<li ng-if="validDate" ng-click="everyday_link(4)">
+											<div ng-class="luckyboxNo == false?'icons2 i4':'icons i4'"></div>
+											<p>매일 도장 찍고 혜택받는</p>
+											<b>쇼핑메일 출석부<span class="icons arrow"></span></b>
+										</li>
+										<!--20180813 이벤트코너 원복-->
+                </ul>
+               
+            </div>
+        </div>        
+    </section>
+    <!--가이드팝업-->
+    <div class="pop_zone" ng-if="gpop_type > 0">
+        <div class="pop_bg"></div> 
+        <div class="align_box">
+           <div class="pop_box" ng-if="gpop_type == 1">
+                <div class="pop_head">슈퍼패스란?</div>
+                <div class="pop_detail">
+                   <p>
+                    플래티넘 조건 충족시,<br>
+                    플래티넘 또는 플래티넘+로 일일 자동 승급.<br>
+                    다음 반기까지 최대 11개월 혜택 유지.                       
+                   </p>
+                   <p class="mgt10">
+                    발송완료 기준 15일전까지의 구매실적을 바탕<br>으로 적용.   
+                   </p>
+                   <div class="squar mgt10 col77f13">1월 10일까지 100만원+6회를 달성한 플래티넘<br>고객의 경우, 1월25일경 플래티넘+로 자동 승급</div>                    
+                    <p class="mgt10">
+                        슈퍼패스 승급후<br>
+                        취소/반품 등으로 실적이 미달 될 경우,<br>
+                        상/하반기 등급 정리일에 등급이 하향 조정될 수<br>
+                        있습니다.
+                    </p>
+                    <div class="squar mgt10 col77f13">
+                        상반기 12월18일~6월16일(정리일 7월2일)<br>
+                        하반기 6월17일~12월17일(정리일 1월2일)
+                    </div>
+                </div>
+                <div class="pop_close" ng-click="pop_close()">닫기</div>               
+           </div>
+           <div class="pop_box" ng-if="gpop_type == 2">
+                <div class="pop_head">임직원 혜택 안내</div>
+                <div class="pop_detail">
+                   <p>
+                    혜택1:<br>
+                    상품 구매시 최대 15%의 할인 혜택을 드립니다.
+                   </p>
+                   <div class="squar mgt10 col77f13">단, 임직원 할인시 타 할인 수단 적용 불가</div>                    
+                   <p class="mgt15">
+                    혜택2:<br>
+                    임직원 전용 특가매장 운영시 상품 구매 혜택을 드립니다.
+                   </p>
+                   <div class="squar mgt10 col77f13">예) 임직원 명절 매장 등</div>                    
+                </div>
+                <div class="pop_close" ng-click="pop_close()">닫기</div>               
+           </div>
+           <div class="pop_box" ng-if="gpop_type == 3">
+                <div class="pop_head">쿠폰 사용 안내</div>
+                <div class="pop_detail">
+                   <div class="squar">
+                   ID당 매 월 1회 발급 가능하며,<br>
+                   다운로드 받은 쿠폰은 [MY LOTTE]에서<br>
+                   확인하실 수 있습니다.
+                   </div>                    
+                   <div class="squar mgt15">
+                   본 쿠폰은 반품/환불/취소시,<br>
+                   유효기간 종료시에는 재발급 되지 않습니다.
+                   </div>                    
+                   <div class="squar mgt15">
+                   플래티넘+ 전상품 무료배송 서비스와 등급별<br>
+                   무료배송권은 국내배송에 한하여 적용됩니다.
+                   </div>                    
+                   <div class="squar mgt15">
+                   상품쿠폰은 일부 상품에 적용이<br>
+                   제한될 수 있습니다.
+                   </div>                    
+                   <div class="squar mgt15">
+                   회원혜택은 당사의 사정에 따라<br>
+                   변경될 수 있습니다.
+                   </div>                                       
+                </div>
+                <div class="pop_close" ng-click="pop_close()">닫기</div>               
+           </div>
+           <div class="pop_box" ng-if="gpop_type == 4">
+                <div class="pop_head">{{gpop_item.promNm}}</div>
+                <div class="pop_detail" ng-bind-html="gpop_item.htmlGuide">
+                
+                </div>
+                <div class="pop_close" ng-click="pop_close()">닫기</div>               
+           </div>           
+        </div>
+        
+    </div>
+    
+</section>
+
+

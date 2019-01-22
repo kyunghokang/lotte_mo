@@ -1,0 +1,70 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplproductQuestWriteGucci" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/product/product_quest_write_container.html",
+                    "lotte/resources_dev/product/write_box.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/product_quest_write_gucci.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsproductQuestWriteGucci" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/product/product_quest_write.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/product_quest_write_gucci.js"
+            }
+        },
+
+        "uglify" : {
+            "jsproductQuestWriteGucci" : {
+                "src" : "lotte/resources/<%= version %>/product_quest_write_gucci.js",
+                "dest" : "lotte/resources/<%= version %>/product_quest_write_gucci.min.js"
+            },
+            "tplproductQuestWriteGucci" : {
+                "src" : "lotte/resources/<%= version %>/product_quest_write_gucci.template.js",
+                "dest" : "lotte/resources/<%= version %>/product_quest_write_gucci.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssproductQuestWriteGucci" : {
+                "src" : [
+                    "lotte/resources_dev/product/gucci_question.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/product_quest_write_gucci.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanproductQuestWriteGucci" : [
+                "lotte/resources/<%= version %>/product_quest_write_gucci.js",
+                "lotte/resources/<%= version %>/product_quest_write_gucci.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlproductQuestWriteGucci" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "product/product_quest_write_gucci.html" : "product/product_quest_write_gucci_dev.html"
+                }
+            }
+        }
+    }
+}
+

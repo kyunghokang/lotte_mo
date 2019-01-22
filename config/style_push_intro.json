@@ -1,0 +1,69 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplstylePushIntro" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/search/style_push_intro_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/style_push_intro.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsstylePushIntro" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/common/lotte_ngswipe.js",
+					"lotte/resources_dev/search/style_push_intro.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/style_push_intro.js"
+			}
+		},
+
+		"uglify" : {
+			"jsstylePushIntro" : {
+				"src" : "lotte/resources/<%= version %>/style_push_intro.js",
+				"dest" : "lotte/resources/<%= version %>/style_push_intro.min.js"
+			},
+			"tplstylePushIntro" : {
+				"src" : "lotte/resources/<%= version %>/style_push_intro.template.js",
+				"dest" : "lotte/resources/<%= version %>/style_push_intro.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssstylePushIntro" : {
+				"src" : [
+					"lotte/resources_dev/search/style_push_intro.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/style_push_intro.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanstylePushIntro" : [
+				"lotte/resources/<%= version %>/style_push_intro.js",
+				"lotte/resources/<%= version %>/style_push_intro.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlstylePushIntro" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"search/style_push_intro.html" : "search/style_push_intro_dev.html"
+				}
+			}
+		}
+	}
+}

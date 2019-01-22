@@ -1,0 +1,220 @@
+<div class="prod_detaillayer_wrap">
+	<div class="prod_detail_page_wrap plan_prod_detail" id="planProductDetail"> <!--기획전형 상품상세-->
+		<div ng-if="pageUI.planProduct.show" class="plan_prod_detail_cont">
+			<!--기획전 상품선택-->
+			<div class="detail_base_wrap plan_prod">
+				<div class="custom_select" ng-click="planProdSelectOpen($event)">
+					<div class="item_select shape_triangle blue" ng-class="{down:!pageUI.planProduct.showSelectBox, up:pageUI.planProduct.showSelectBox}">
+						<span><em>선택{{pageUI.planProduct.idx+1}}</em> {{pageUI.data.planPrdInfo.prdList.items[pageUI.planProduct.idx].goodsNm}} {{pageUI.loadData.plan_product_detail.planPrdInfo.prdList.items[pageUI.option.planProductDetail.curProdGoodIdx].goodsNm}}</span>
+					</div>
+					<div class="item_list" ng-if="pageUI.planProduct.showSelectBox">
+						<ul>
+							<li ng-repeat="item in pageUI.data.planPrdInfo.prdList.items" ng-class="{on:pageUI.planProduct.idx == $index}">
+								<a ng-click="!item.soldOutYn && planProdSelectClick(item.goodsNo, $index); sendTclick('m_RDC_ProdDetail_PlanDT_Clk_PlanPrd'+ idxSetDigit($index+1)); logGAEvtPrdView('기획전형상품상세','상세페이지로이동'); $event.stopPropagation();" ng-class="{disable:item.soldOutYn}"><em>{{!item.soldOutYn? '선택'+($index+1): '품절'}}</em> {{item.goodsNm}}</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<span class="plan_prod_close" ng-click="closePlanProductDetail()"></span>
+			</div>
+			
+			<div id="planProductDetailScrollArea" class="scroll_area_wrap">
+				<!--기본정보-->
+				<div class="detail_base_wrap basic">
+					<!--상품 타이틀-->
+					<h4 class="prod_tit">{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdInfo.goodsNm}}</h4>
+				</div>
+				<!--상품 가격-->
+				<div class="detail_base_wrap price div_line_t div_line_b10" ng-class="{minHeight:!pageUI.planProduct.data[pageUI.planProduct.goodsNo].commonInfo.chanelYn && pageUI.planProduct.data[pageUI.planProduct.goodsNo].commonInfo.goodsCmpsCd != '30' && pageUI.planProduct.data[pageUI.planProduct.goodsNo].commonInfo.saleStatCd != '30' && pageUI.planProduct.data[pageUI.planProduct.goodsNo].commonInfo.saleStatCd != '20' && pageUI.planProduct.data[pageUI.planProduct.goodsNo].commonInfo.saleMobileYn && !pageUI.planProduct.data[pageUI.planProduct.goodsNo].commonInfo.rentalYn}">
+					<div class="price_wrap" ng-class="{type2: pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.saleRate > 0}">
+						<span class="prod_price"><strong>{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.price | number}}</strong>원</span>
+						<p class="old_price_wrap" ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.saleRate > 0">
+							<span class="disc_rate"><em>{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.saleRate}}</em>%</span>
+							<span class="disc_desc" ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.couponYn">쿠폰포함</span>
+							<span class="old_price" ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.orgPrice">{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.orgPrice | number}}<span>원</span></span>
+						</p>
+					</div>
+					<div class="benefit_wrap">
+						<span class="benefit_all triangle_bottomright" ng-click="linkClick(pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.benefitInfoUrl, 'm_RDC_ProdDetail_PlanDT_Clk_PlanPrd_benefit');logGAEvtPrdView('기획전형상품상세','혜택모두보기');" ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].commonInfo.goodsCmpsCd != '30'">추가 혜택가</span>
+					</div>
+				</div>
+
+				<!-- 혜택정보 -->
+				<div class="detail_base_wrap div_line_b10" ng-if="
+				!pageUI.planProduct.data[pageUI.planProduct.goodsNo].commonInfo.chanelYn
+				&& (pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.clmDscntPromList.items.length > 0 || pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.promCard)
+				|| (pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.saveLpointAmt > 0 && pageUI.planProduct.data[pageUI.planProduct.goodsNo].commonInfo.goodsCmpsCd != '30' && !pageUI.planProduct.data[pageUI.planProduct.goodsNo].commonInfo.rentalYn)
+				|| (pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.nintCardMonth > 0 && !pageUI.planProduct.data[pageUI.planProduct.goodsNo].commonInfo.rentalYn)
+				|| pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.promEtc">
+					<p class="detail_tit">혜택정보</p>
+					<ul class="card_benefit">
+						<li class="ico_benefit card" ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.clmDscntPromList.items.length > 0 || pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.promCard">
+							<p ng-repeat="item in pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.clmDscntPromList.items">{{item.fvrDesc}} <span ng-if="item.fvrPrc > 0"><span class="point_color">{{item.fvrPrc | number}}</span>원</span></p> 
+							<p class="benefit_desc" ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.promCard && !pageUI.planProduct.data[pageUI.planProduct.goodsNo].commonInfo.rentalYn" ng-click="linkClick(pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.promCardUrl, 'm_RDC_ProdDetail_Clk_Ban01');logGAEvtPrdView('기획전형상품상세',pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.promCard);"><span class="arrow_gray">{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.promCard}}</span></p>
+						</li>
+						<li class="ico_benefit point" ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.saveLpointAmt > 0 && pageUI.planProduct.data[pageUI.planProduct.goodsNo].commonInfo.goodsCmpsCd != '30' && !pageUI.planProduct.data[pageUI.planProduct.goodsNo].commonInfo.rentalYn">L.POINT 적립 최대 <span class="point_color">{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.saveLpointAmt | number}}</span>점</li>
+						<li class="ico_benefit interest" ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.nintCardMonth > 0 && !pageUI.planProduct.data[pageUI.planProduct.goodsNo].commonInfo.rentalYn && !pageUI.planProduct.data[pageUI.planProduct.goodsNo].commonInfo.chanelYn" ng-click="nintCardClick()"><span class="arrow_gray">무이자 최대 {{pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.nintCardMonth}}개월 (<span class="point_color">{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.nintCardPrice}}</span>원x{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.nintCardMonth}}개월)</span></li>
+						<li ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.promEtc">{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.promEtc}}</li>
+						<li ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].commonInfo.culture_idne_yn == 'Y'" ng-click="pageUI.culture_idne_pop = true;sendTclick('m_RDC_ProdDetail_Clk_Ban02');">도서∙공연비 소득공제 대상상품 <span class="ico_info">?</span></li>
+					</ul>
+				</div>
+				<!-- //혜택정보 -->
+
+				<!-- 배송정보 -->
+				<div class="detail_base_wrap delivery div_line_b10" ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo != null">
+					<p class="detail_tit">배송정보</p>
+					<ul class="deli_type">
+						<!-- 출발예정 -->
+						<li class="deli_date" ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.gubunCd != '3' && pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.gubunCd != '4' && pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.gubunCd != '9'">
+							<span class="point_color">{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.dlvDate}}{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.dlvYoil}}</span> {{pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.dlvDesc}}
+						</li>
+						<!-- //출발예정 -->
+
+						<!-- 예약상품 -->
+						<li ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.gubunCd == 2">
+							{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.reserveDesc}} {{pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.reservePeriod}}
+						</li>
+						<!-- //예약상품 -->
+
+						<!-- 렌탈상품 -->
+						<li ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.gubunCd == '4'">
+							{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.dlvDate}}
+						</li>
+						<!-- //렌탈상품 -->
+
+						<!-- 설치상품 -->
+						<li ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.gubunCd == 3">
+							{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.dlvDate}}
+						</li>
+						<!-- //설치상품 -->
+
+						<!-- E쿠폰 -->
+						<li ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.gubunCd == '9'">
+							{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.dlvDate}}
+						</li>
+
+						<li ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.gubunCd == 9">
+							<p>{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.etcDesc}}</p>
+						</li>
+						<!-- //E쿠폰 -->
+	
+						<!-- 무료배송 -->
+						<li ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.dlvFreeYn != true && pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.gubunCd != '1' && pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.gubunCd != '9'">
+							<span>{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.dlvFeeTxt}} {{pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.dlvFee | number}}원</span> <span ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.price <= 100000 && pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.stdAmt > 0">({{pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.stdAmt | number}}원 이상 무료배송)</span>
+						</li>
+						<li ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.dlvFreeYn == true && pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.gubunCd != '1' && pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.gubunCd != '9'">
+							무료배송
+						</li>
+						<!-- //무료배송 -->
+	
+						<!-- 오늘도착 -->
+						<li ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.tdarDlvArea != null">
+							<span class="tit" ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.tdarDlvDate != '오늘도착'">빠른배송</span>
+							<span class="tit" ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.tdarDlvDate == '오늘도착'">{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.tdarDlvDate}}</span>
+							<div class="txt_wrap">
+								<span>
+									{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.tdarDlvArea}}
+									<span class="point_color_black" ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.tdarDlvDate != '오늘도착'">{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.tdarDlvDate}}</span>
+									<span class="ico_info" ng-click="todayArriveShipInfoClick('')">오늘도착안내</span>
+								</span>
+							</div>
+						</li>
+						<!-- //오늘도착 -->
+	
+						<!-- 퀵배송 -->
+						<li ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.quickDispYn">
+							<span class="tit">퀵배송</span>
+							<div class="txt_wrap" ng-click="linkClick(pageUI.data.callUrlInfo.quickDlvDispUrl);logGAEvtPrdView('기획전형상품상세', '퀵배송 안내');">
+								<span class="arrow_gray">{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.quickDesc}}</span>
+							</div>
+						</li>
+						<!-- //퀵배송 -->
+	
+						<!-- 스마트픽 -->
+						<li ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.smpDispYn">
+							<span class="tit smartpick">스마트픽</span> 
+							<div class="txt_wrap">
+								<span class="arrow_gray" ng-click="smpClick()">{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.smpDlvArea}}{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.smpDlvDesc}}</span>
+								<span class="smp_etc" ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo && pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.smpDlvEtc">{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.smpDlvEtc}}</span>
+							</div>	
+						</li>
+						<!-- //스마트픽 -->
+	
+						<!-- 희망일배송 -->
+						<li ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfoSetDate.gubunCd">
+							<span class="tit">
+									{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfoSetDate.dlvDate}}
+							</span>
+							<div class="txt_wrap">
+								<span>{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfoSetDate.dlvDesc}}</span>
+								<a class="ico_info" ng-click="hopePop(pageUI.openHopePop);logGAEvtPrdView('기획전형상품상세', '희망일 배송 안내');" ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfoSetDate.gubunCd == '88'">희망일배송이란</a>
+							</div>
+						</li>
+						<!-- //희망일배송 -->
+					</ul>
+				</div>
+				<!-- //배송정보 -->
+
+				<!--상품평, Q&A, 필수정보-->
+				<div class="detail_base_wrap summary_info">
+					<table>
+						<colgroup>
+							<col width="48%">
+							<col width="26%">
+							<col width="26%">
+						</colgroup>
+						<tr>
+							<td class="prod_cmt">
+								<!--별점-->
+								<div class="score_wrap" ng-click="pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdInfo.gdasStfdVal == 0 && alert('등록된 상품평이 없습니다.'); pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdInfo.gdasStfdVal > 0 && linkClick(pageUI.planProduct.data[pageUI.planProduct.goodsNo].callUrlInfo.commentDtlUrl, 'm_RDC_ProdDetail_PlanDT_Clk_PlanPrd_Rvw'); pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdInfo.gdasStfdVal > 0 && logGAEvtPrdView('기획전형상품상세','상품평보러가기');">
+									<span class="starScoreWrap"><span class="starScoreCnt" style="width:{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdInfo.gdasStfdVal|starScorePolicy:100}}%"></span></span>
+									<span class="review" ng-class="{disable:pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdInfo.gdasCnt == 0}">({{pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdInfo.gdasCnt|number}})</span>
+								</div>
+							</td>
+							<td>
+								<div ng-click="linkClick(pageUI.planProduct.data[pageUI.planProduct.goodsNo].callUrlInfo.qnaDtlUrl, 'm_RDC_ProdDetail_PlanDT_Clk_PlanPrd_QNA'); logGAEvtPrdView('기획전형상품상세','Q&A');">
+									Q&amp;A <var ng-class="{disable:pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdInfo.qnaCnt == 0}">({{pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdInfo.qnaCnt}})</var>
+								</div>
+							</td>
+							<td class="essen_info">
+								<div ng-click="linkClick(pageUI.planProduct.data[pageUI.planProduct.goodsNo].basicInfo.itemInfoMoreUrl, 'm_RDC_ProdDetail_PlanDT_Clk_PlanPrd_PrdInfo'); logGAEvtPrdView('기획전형상품상세','필수정보');">
+								필수정보
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+
+				<!--대표이미지-->
+				<div class="represent_img">
+					<!-- 동영상 -->
+					<div class="video_wrap" ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].imgInfo.wecandeoVodUrl">
+						<video id="autoVideoPlanDetail" controls="controls" video-poster="{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].imgInfo.wecandeoImgUrl}}" playsinline="true" webkit-playsinline="true">
+							<source type="video/mp4"  ng-src="{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].imgInfo.wecandeoVodUrl | trusted}}">
+						</video>
+						<div class="play_cover"></div>
+						<div class="stop_cover"></div>
+						<div class="click_cover"></div>
+						<a id="btnVolume1" ng-click="movVolume('btnVolume1')" class="btn_move_volume btn_text">음소거</a>
+						<a ng-click="movPlay()" class="btn_move_start">비디오 재생</a>
+						<a ng-click="movPause()" class="btn_move_stop btn_text">일시정지</a>
+						<!-- <a ng-click="" class="btn_move_goods btn_text">자세히보기</a> -->
+						<a ng-click="movFull()" class="btn_move_full btn_text">전체화면보기</a>								
+					</div>
+					<span class="thumb cover"><img ng-src="{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].imgInfo.imgList[0]}}"></span>
+				</div>
+
+				<!--상세 정보-->
+				<div class="detailPrdInfoWrap">
+					<section id="productDetailSelect">
+						<div class="detailLayout" id="planDetailLayout"></div>
+					</section>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--다른 기획전 상품 좌우 이동버튼-->
+	<span class="plan_prod_navi prev" ng-if="pageUI.planProduct.prevIdx != undefined" ng-click="planProdSelectClick(pageUI.data.planPrdInfo.prdList.items[pageUI.planProduct.prevIdx].goodsNo, pageUI.planProduct.prevIdx); sendTclick('m_RDC_ProdDetail_PlanDT_Clk_PlanPrd'+numberFill((pageUI.planProduct.prevIdx+1),2)); logGAEvtPrdView('기획전형상품상세','상세페이지로이동');"></span>
+	<span class="plan_prod_navi next" ng-if="pageUI.planProduct.nextIdx != undefined" ng-click="planProdSelectClick(pageUI.data.planPrdInfo.prdList.items[pageUI.planProduct.nextIdx].goodsNo, pageUI.planProduct.nextIdx); sendTclick('m_RDC_ProdDetail_PlanDT_Clk_PlanPrd'+numberFill((pageUI.planProduct.nextIdx+1),2)); logGAEvtPrdView('기획전형상품상세','상세페이지로이동');"></span>
+</div>

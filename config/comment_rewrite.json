@@ -1,0 +1,71 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplcommentRewrite" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/product/m/comment_rewrite_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/comment_rewrite.template.js"
+            }
+        },
+
+        "concat" : {
+            "jscommentRewrite" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+					"lotte/resources_dev/product/m/comment_rewrite.js",
+					"lotte/lib/jquery/load-image.all.min.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/comment_rewrite.js"
+            }
+        },
+
+        "uglify" : {
+            "jscommentRewrite" : {
+                "src" : "lotte/resources/<%= version %>/comment_rewrite.js",
+                "dest" : "lotte/resources/<%= version %>/comment_rewrite.min.js"
+            },
+            "tplcommentRewrite" : {
+                "src" : "lotte/resources/<%= version %>/comment_rewrite.template.js",
+                "dest" : "lotte/resources/<%= version %>/comment_rewrite.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "csscommentRewrite" : {
+                "src" : [
+					"lotte/resources_dev/mylotte/mylotte.css",
+					"lotte/resources_dev/product/m/comment_write.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/comment_rewrite.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleancommentRewrite" : [
+                "lotte/resources/<%= version %>/comment_rewrite.js",
+                "lotte/resources/<%= version %>/comment_rewrite.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlcommentRewrite" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "product/m/comment_rewrite.html" : "product/m/comment_rewrite_dev.html"
+                }
+            }
+        }
+    }
+}
+

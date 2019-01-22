@@ -1,0 +1,69 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplsubRanking" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/mall/ranking_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/ranking.template.js"
+			}
+		},
+
+		"concat" : {
+			"jssubRanking" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/mall/ranking.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/ranking.js"
+			}
+		},
+
+		"uglify" : {
+			"jssubRanking" : {
+				"src" : "lotte/resources/<%= version %>/ranking.js",
+				"dest" : "lotte/resources/<%= version %>/ranking.min.js"
+			},
+			"tplsubRanking" : {
+				"src" : "lotte/resources/<%= version %>/ranking.template.js",
+				"dest" : "lotte/resources/<%= version %>/ranking.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"csssubRanking" : {
+				"src" : [
+					"lotte/resources_dev/mall/ranking.css",
+					"lotte/resources_dev/product_unit/product_unit.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/ranking.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleansubRanking" : [
+				"lotte/resources/<%= version %>/ranking.js",
+				"lotte/resources/<%= version %>/ranking.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlsubRanking" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"mall/ranking.html" : "mall/ranking_dev.html"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,32 @@
+<section ng-show="contVisible" class="cont_minheight">
+	<product-sub-header></product-sub-header>
+	
+	<div class="prd_title">
+		<p>Q&amp;A <em class="cnt" ng-class="{disable:!pageUI.loadData.totalCnt}">({{(!pageUI.loadData.totalCnt? 0:pageUI.loadData.totalCnt) | currency:'':0}})</em></p>
+		<div class="pt_rbtn"><span class="btn_sty2" ng-click="linkClick(pageUI.loadData.inqQuestUrl,'m_RDC_ProdDetail_allQNA_Clk_Quest')">상품문의하기</span></div>
+	</div>
+
+	<div class="qna_area">
+		<!--데이터 없을때-->
+		<p class="empty_ment div_line_t" ng-if="!pageUI.loadData.totalCnt">Q&A를 통해서 궁금증을 해결하세요.</p>
+
+		<ul>
+			<li ng-repeat="item in pageUI.loadData.qnaList.items">
+				<div class="customerInfo">
+					{{item.wrtrId}}님 <em>|</em> {{item.inqMkDt}}
+				</div>
+				<div class="question">
+					<strong>Q :</strong> {{item.inqCont}}
+				</div>
+				<div class="answer">
+					<strong>A :</strong> {{item.ansCont}}
+				</div>
+			</li>
+		</ul>
+	</div>
+
+	<!--공통 로딩커버-->
+	<div class="loading_cover" ng-if="jsonLoading">
+		<div class="loading"></div>
+	</div>
+</section>

@@ -1,0 +1,75 @@
+<section ng-show="contVisible" class="cont_minheight dearpet_v4">
+	<section class="pageLoading" ng-show="pageLoading"><p class="loading half"></p></section>
+	<section ng-show="!pageLoading">
+		<div class="sub_header_wrap">
+			<header id="head_sub" sub-header-each ng-show="subTitle" class="fixedSubHeader " ng-class="{fixedHeader: fixedHeader && subHeaderFixed && !appObj.isNativeHeader}">
+				<div class='head_sub_inner'>
+					<h2><a ng-click="mallMainClick('m_DC_SpeDisp_Dearpet_Clk_logo')"><span>L.Dear Pet</span></a></h2>
+					<a class='share' href='#' ng-click="petShare({shareImg:screenData.event_list[0].img_url})"><span>공유</span></a>
+				</div>
+			</header>
+		</div>
+		<section id="container">
+
+			<!-- 카테고리 -->
+			<div class="">
+				<pet-mall-sub-ctg></pet-mall-ctg>
+			</div>
+			<!-- //카테고리 -->
+
+			<!-- 이미지 배너 : img_banner_list -->
+			<section
+				class='pet_event_items'
+				ng-if="screenData.event_list.length > 0"
+				class="img_banner_wrap">
+
+				<ul>
+					<li
+						ng-repeat="item in screenData.event_list track by $index"
+						ng-click='eventClick(item,"")'>
+						<a>
+							<img
+								ng-src="{{item.img_url}}"
+								alt="{{item.title}}" />
+						</a>
+						<div class='pet_event_item_footer'>
+							<p class="bnr_nm ng-binding">
+									{{item.title}}
+							</p>
+							<p
+								ng-if="!item.announcement&&item.period"
+								class="bnr_note ng-binding">
+									{{item.period}}
+							</p>
+						</div>
+					</li>
+				</ul>
+
+				<p ng-if='screenData.event_old_list.length' class='old-event'>지난 이벤트 </p>
+				<ul class='old-event-list'>
+					<li
+						ng-repeat="item in screenData.event_old_list track by $index"
+						ng-click='eventClick(item,"")'>
+						<a>
+							<img
+								ng-src="{{item.img_url}}"
+								alt="{{item.title}}" />
+						</a>
+						<div class='pet_event_item_footer'>
+							<p class="bnr_nm ng-binding">
+									{{item.title}}
+							</p>
+							<p
+								ng-if="!item.announcement&&item.period"
+								class="bnr_note ng-binding">
+									{{item.period}}
+							</p>
+						</div>
+					</li>
+				</ul>
+
+			</section>
+
+		</section>
+	</section>
+</section>

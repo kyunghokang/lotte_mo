@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+	<meta charset="utf-8">
+	<title>롯데닷컴</title>
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+
+	<!-- 기존 css & js -->
+	<!-- <script src="/lotte/resources_dev/common/common_load_2017.js"></script> -->
+	<link rel="stylesheet" type="text/css" href="common.min.css">
+	<!--<link rel="stylesheet" type="text/css" href="product_view.min.css">-->
+	<!-- //기존 css & js -->
+	<!-- 신규 css -->
+	<!--<link rel="stylesheet" type="text/css" href="product_k.css">-->
+	<!--<link rel="stylesheet" type="text/css" href="product_p.css">-->
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/product/m/sub/product_comment.css"/>
+	<!-- //신규 css -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script><!-- 코딩용 angular js -->
+
+</head>
+<body ng-controller="ProductCtrl">
+
+	<div id="wrapper">
+
+		<section>
+			<header class="sub_header_top_wrap" id="lotteHeader">
+				<div class="inner_wrap headerFixed">
+					<button class="btn_prev">이전</button>
+					<h2>전체 상품평 보기</h2>
+				</div>
+			</header>
+		</section>
+
+		<section class="cont_minheight">
+
+			<!-- container -->
+			<div id="container">
+				<!-- 퍼블리싱 시작-->
+
+				<!--상품 상세 서브 page 기본 wrapper(한번만 사용할 것): prod_detail_page_wrap-->
+				<div class="prod_detail_page_wrap p_comment_all">
+
+					<!--전체상품평-->
+					<div class="detail_base_wrap prod_comment comment_all fold">
+						<p class="detail_tit fold_tap">전체상품평 <span class="starScoreWrap big"><span class="starScoreCnt" style="width:80%"></span></span> <em>(<var>113</var>)</em>
+							<span class="fold_btn shape_triangle up">접기</span><!--상태변화 클래스: up -> down-->
+						</p>
+
+						<dl class="score_list">
+							<dt><span class="starScoreWrap"><span class="starScoreCnt" style="width:100%"></span></span> <em>(<var>113</var>)</em></dt><dd><span class="barScoreWrap"><span class="barScoreCnt" style="width:100%"></span></span><span class="percent">100%</span></dd>
+							<dt><span class="starScoreWrap"><span class="starScoreCnt" style="width:80%"></span></span> <em>(<var>45</var>)</em></dt><dd><span class="barScoreWrap"><span class="barScoreCnt" style="width:65%"></span></span><span class="percent">65%</span></dd>
+							<dt><span class="starScoreWrap"><span class="starScoreCnt" style="width:60%"></span></span> <em>(<var>15</var>)</em></dt><dd><span class="barScoreWrap"><span class="barScoreCnt" style="width:35%"></span></span><span class="percent">35%</span></dd>
+							<dt><span class="starScoreWrap"><span class="starScoreCnt" style="width:40%"></span></span> <em>(<var>5</var>)</em></dt><dd><span class="barScoreWrap"><span class="barScoreCnt" style="width:3%"></span></span><span class="percent">3%</span></dd>
+							<dt><span class="starScoreWrap"><span class="starScoreCnt" style="width:20%"></span></span> <em>(<var>1</var>)</em></dt><dd><span class="barScoreWrap"><span class="barScoreCnt" style="width:1%"></span></span><span class="percent">1%</span></dd>
+						</dl>
+					</div>
+
+					<!--고객만족도-->
+					<div class="detail_base_wrap prod_comment comment_all fold div_line_t line_full_w">
+						<p class="detail_tit sub_tit fold_tap">고객 만족도
+							<span class="fold_btn shape_triangle up">접기</span><!--상태변화 클래스: up -> down-->
+						</p>
+
+						<div class="cus_info">
+							<div class="total">
+								<ul class="starlist ng-scope">
+									<li>
+										<p class="txt3">가격</p>
+										<span class="starScoreWrap small"><span class="starScoreCnt" style="width:100%"></span></span>
+									</li>
+									<li>
+										<p class="txt3">품질</p>
+										<span class="starScoreWrap small"><span class="starScoreCnt" style="width:80%"></span></span>
+									</li>
+									<li>
+										<p class="txt3 ng-binding">디자인</p>
+										<span class="starScoreWrap small"><span class="starScoreCnt" style="width:60%"></span></span>
+									</li>
+									<li>
+										<p class="txt3 ng-binding">배송</p>
+										<span class="starScoreWrap small"><span class="starScoreCnt" style="width:40%"></span></span>
+									</li>
+								</ul>
+							</div>
+
+							<div class="size_color bod">
+								<div class="sc_cell size">
+									<p>사이즈</p>
+									<div class="sc_unit">
+										<div class="bar_percent">0<span class="symbol">%</span></div>
+										<div class="bar_con ls"></div>
+										<div class="bar_name">작다</div>
+									</div>
+									<div class="sc_unit on">
+										<div class="bar_percent">83<span class="symbol">%</span></div>
+										<div class="bar_con"></div>
+										<div class="bar_name">딱 맞다</div>
+									</div>
+									<div class="sc_unit">
+										<div class="bar_percent">17<span class="symbol">%</span></div>
+										<div class="bar_con rs"></div>
+										<div class="bar_name">크다</div>
+									</div>
+								</div>
+								<div class="sc_cell">
+									<p>색상</p>
+									<div class="sc_unit on">
+										<div class="bar_percent">0<span class="symbol">%</span></div>
+										<div class="bar_con ls"></div>
+										<div class="bar_name">밝다</div>
+									</div>
+									<div class="sc_unit">
+										<div class="bar_percent">92<span class="symbol">%</span></div>
+										<div class="bar_con"></div>
+										<div class="bar_name">화면과같다</div>
+									</div>
+									<div class="sc_unit">
+										<div class="bar_percent">8<span class="symbol">%</span></div>
+										<div class="bar_con rs"></div>
+										<div class="bar_name">어둡다</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+
+					</div>
+
+					<!--고객등록사진-->
+					<div class="detail_base_wrap prod_comment comment_all div_line_b10 div_line_t line_full_w">
+						<p class="detail_tit sub_tit">고객 등록 사진</p>
+
+						<!--썸네일 이미지-->
+						<div class="thumb_list_wrap">
+							<ul class="thumb_list">
+								<li><span class="thumb cover"><img src="http://image.lotte.com/goods/62/97/91/15/3/315919762_1_550.jpg"></span></li>
+								<li><span class="thumb cover"><img src="http://image.lotte.com/goods/62/97/91/15/3/315919762_1_550.jpg"></span></li>
+								<li class="play_btn"><span class="thumb cover"><img src="http://image.lotte.com/goods/62/97/91/15/3/315919762_1_550.jpg"></span></li>
+								<li><span class="thumb cover"><img src="http://image.lotte.com/goods/62/97/91/15/3/315919762_1_550.jpg"></span></li>
+								<li class="dim_cont dim50">
+									<span class="thumb cover"><img src="http://image.lotte.com/goods/62/97/91/15/3/315919762_1_550.jpg"></span>
+									<span class="more_cnt verti_align">+<var>35</var></span>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<!--필터결과-->
+					<div class="detail_base_wrap prod_comment comment_all">
+						<div class="filter_wrap">
+							<span>최근상품평순</span><span class="div_line_v_s">별점전체</span>
+							<span class="filter">필터 <em>(21)</em></span>
+						</div>
+						<ul class="cmt_list">
+							<li class="div_line_t div_line_b">
+								<div class="list_top">
+									<span class="starScoreWrap"><span class="starScoreCnt" style="width:80%"></span></span>
+									<span class="date">2016.11.26</span>
+									<!--<span class="recom">26</span>-->
+								</div>
+
+								<p class="option_nm"><em>옵션명</em>: 블루 x 사이즈 L</p>
+								<p class="cmt_cont ellipsis_custom">가방잘받았습니다. 일요일에결제했는데 클러치같이보내
+									주셔서 감사합니다. 라이트퍼플abcdefghijklmnopqrstu 실물은 밝은
+									주셔서 감사합니다. 라이트퍼플샀는데 실물은 밝은
+									주셔서 감사합니다. 라이트퍼플샀는데 실물은 밝은
+									핑크에 가깝습니다. 참고하시길바랍니다. 그래도 너무<!--.....더보기-->
+								</p>
+								<p class="cmt_writer"><em>Abcd3***님의 상품평</em><span class="div_line_v_s">선물 보내신 분</span></p>
+
+								<div class="cmt_btn_wrap">
+									<div class="cmt_btn">
+										<span class="recom div_line_v_s2 on">56</span><!--상태변화 클래스: on-->
+										<span class="share">공유</span>
+									</div>
+								</div>
+							</li>
+							<li class="div_line_b">
+								<div class="list_top">
+									<span class="starScoreWrap"><span class="starScoreCnt" style="width:80%"></span></span>
+									<span class="date">2016.11.26</span>
+									<!--<span class="recom">26</span>-->
+								</div>
+
+								<p class="option_nm"><em>옵션명</em>: 블루 x 사이즈 L</p>
+								<p class="cmt_cont ellipsis_custom">가방잘받았습니다. 일요일에결제했는데 클러치같이보내
+									주셔서 감사합니다. 라이트퍼플abcdefghijklmnopqrstu 실물은 밝은
+									주셔서 감사합니다. 라이트퍼플샀는데 실물은 밝은
+									주셔서 감사합니다. 라이트퍼플샀는데 실물은 밝은
+									핑크에 가깝습니다. 참고하시길바랍니다. 그래도 너무<!--.....더보기-->
+								</p>
+
+								<!--썸네일 이미지-->
+								<div class="thumb_list_wrap">
+									<ul class="thumb_list">
+										<li><span class="thumb cover"><img src="http://image.lotte.com/goods/62/97/91/15/3/315919762_1_550.jpg"></span></li>
+										<li><span class="thumb cover"><img src="http://image.lotte.com/goods/62/97/91/15/3/315919762_1_550.jpg"></span></li>
+										<li class="play_btn"><span class="thumb cover"><img src="http://image.lotte.com/goods/62/97/91/15/3/315919762_1_550.jpg"></span></li>
+										<li><span class="thumb cover"><img src="http://image.lotte.com/goods/62/97/91/15/3/315919762_1_550.jpg"></span></li>
+										<li class="dim_cont dim50">
+											<span class="thumb cover"><img src="http://image.lotte.com/goods/62/97/91/15/3/315919762_1_550.jpg"></span>
+											<span class="more_cnt verti_align">+<var>35</var></span>
+										</li>
+									</ul>
+								</div>
+
+								<p class="cmt_writer"><em>Abcd3***님의 상품평</em><span class="div_line_v_s">선물 보내신 분</span></p>
+
+								<div class="cmt_btn_wrap">
+									<div class="cmt_btn">
+										<span class="recom div_line_v_s2">26</span><!--상태변화 클래스: on-->
+										<span class="share">공유</span>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<!--필터 레이어(좌측 슬라이드 메뉴)-->
+					<div class="side_filter_wrap on1"><!--상태변화 클래스: 보이기 on-->
+						<div class="side_filter_header">
+							필터 <a ng-click="" class="filter_close">닫기</a>
+						</div>
+
+						<div class="slide_cont">
+							<ul class="menu_depth1">
+								<li class="sort">
+									<a><span class="filter_tit">정렬</span><span class="filter_val shape_triangle down">최근상품평순</span><!--상태변화 클래스: 열림닫힘 blue up -> down--></a>
+									<!--정렬 sub depth-->
+									<ul class="menu_depth2">
+										<li class="on"><!--상태변화 클래스: 선택 on--><label for="cmtSort1">최근상품평순<input type="radio" id="cmtSort1" name="cmtSort" value="" checked ng-model="" ng-change=""></label></li>
+										<li><label for="cmtSort2">사진상품평순</label><input type="radio" id="cmtSort2" name="cmtSort" value="" ng-model="" ng-change=""></li>
+										<li><label for="cmtSort3">높은평점순</label><input type="radio" id="cmtSort3" name="cmtSort" value="" ng-model="" ng-change=""></li>
+										<li><label for="cmtSort4">낮은평점순</label><input type="radio" id="cmtSort4" name="cmtSort" value="" ng-model="" ng-change=""></li>
+										<li><label for="cmtSort5">추천순</label><input type="radio" id="cmtSort5" name="cmtSort" value="" ng-model="" ng-change=""></li>
+									</ul>
+									<!---->
+								</li>
+								<li class="starScore open"><!--상태변화 클래스: 열림 open-->
+									<a><span class="filter_tit">별점순</span><span class="filter_val shape_triangle blue up">별점전체</span></a>
+									<!--별점순 서브 depth-->
+									<ul class="menu_depth2">
+										<li class="on"><!--상태변화 클래스: 선택 on--><label for="starScore0">별점전체</label> <input type="radio" id="starScore0" name="starScoreSort" value="" checked ng-model="" ng-change=""></li>
+										<li><label for="starScore1">5점<span class="starScoreWrap"><span class="starScoreCnt" style="width:100%"></span></span></label> <input type="radio" id="starScore1" name="starScoreSort" value="" ng-model="" ng-change=""></li>
+										<li><label for="starScore2">4점<span class="starScoreWrap"><span class="starScoreCnt" style="width:80%"></span></span></label> <input type="radio" id="starScore2" name="starScoreSort" value="" ng-model="" ng-change=""></li>
+										<li><label for="starScore3">3점<span class="starScoreWrap"><span class="starScoreCnt" style="width:60%"></span></span></label> <input type="radio" id="starScore3" name="starScoreSort" value="" ng-model="" ng-change=""></li>
+										<li><label for="starScore4">2점<span class="starScoreWrap"><span class="starScoreCnt" style="width:40%"></span></span></label> <input type="radio" id="starScore4" name="starScoreSort" value="" ng-model="" ng-change=""></li>
+										<li><label for="starScore5">1점<span class="starScoreWrap"><span class="starScoreCnt" style="width:20%"></span></span></label> <input type="radio" id="starScore5" name="starScoreSort" value="" ng-model="" ng-change=""></li>
+									</ul>
+									<!---->
+								</li>
+							</ul>
+						</div>
+
+					</div>
+
+				</div>
+				
+				
+				<!-- 퍼블리싱 끝-->
+			</div>
+			<!-- //container -->
+
+		</section>
+		<!-- //sub_header_wrap -->
+
+		<!-- footer -->
+		<footer id="footer">
+			<ul class="menu01">
+				<li><a class="ng-binding" href="#">마이롯데</a><i></i>	</li>
+				<li><a ng-click="pcClick()">PC버전</a><i></i></li>
+				<li><a href="#">장바구니</a><i></i></li>
+				<li><a href="#">고객센터</a><i></i></li>
+				<li><a href="#" ng-click="loginProc()" ng-bind="(loginInfo.isLogin)?'로그아웃':'로그인'" class="ng-binding">로그아웃</a></li>
+			</ul>
+			<div class="info">
+				<ul class="menu02">
+					<li><strong>(주)롯데닷컴</strong></li>
+					<li><a ng-click="ftcClick()">사업자정보확인</a></li>
+					<li><a ng-click="forwardClick()">채무지급보증안내</a></li>
+				</ul>
+				<p class="add">
+					<span class="addFirst">대표이사 : 김형준</span>
+					<span class="line">서울시 중구 을지로 158 10층(을지로4가, 삼풍빌딩)</span>
+					<span class="line">사업자등록번호 : 101-81-52964 통신판매업신고 : 중구 제00402호</span>
+					<span class="line">고객만족센터 : <a href="tel:1577-1110">1577-1110</a>  webmaster@lotte.com</span>
+					<span class="line">개인정보보호책임자 : 윤상선</span> <span class="line">청소년보호책임자 : 김찬기</span>
+					<span>호스팅 사업자 : (주)롯데닷컴</span>
+				</p>
+			</div>
+			<div class="menu03">
+				<ul>
+					<li><a href="#">이용약관</a></li>
+					<li><a href="#"><strong>개인정보처리방침</strong></a></li>
+					<li><a href="#">청소년보호정책</a></li>
+				</ul>
+			</div>
+			<div class="capyright">Copyright © LOTTE.com, Inc. All rights Reserved.</div>
+		</footer>
+		<!-- //footer -->
+
+		<!-- quick_btn -->
+		<div class="quick_btn">
+			<div ng-show="visible" class="">
+				<a class="btn_back ng-hide" ng-click="gotoPrepageSide()" ng-show="quickBackBtn">뒤로</a><a class="btn_top" ng-click="gotoTop()">위로</a>
+			</div>
+			<a class="btn_talk" ng-click="gotoTalk()">톡상담</a>
+		</div>
+		<!-- quick_btn -->
+	</div>
+
+	<!-- lotteActionbar -->
+	<section id="lotteActionbar" class="actionbar" ng-show="!appObj.isApp &amp;&amp; !actionbarHideFlag">
+		<ul class="actionbar_wrap">
+			<li class="home on" ng-class="{on:cur_pageid == 1 &amp;&amp; !isShowSideCtg}"><button ng-click="gotoMainFooter()" class="btn_main">홈</button></li>
+			<li class="ctg" ng-class="{on: isShowSideCtg}"><button ng-click="showSideCtgFooter()" class="btn_ctg">카테고리</button></li>
+			<li class="order" ng-class="{on:cur_pageid == 2}"><button ng-click="gotoOrderLstFooter()" class="btn_order">주문배송</button></li>
+			<li class="mylotte" ng-class="{on:cur_pageid == 3}"><button ng-click="gotoMyPageFooter()" class="btn_mylotte">마이롯데</button></li>
+		</ul>
+	</section>
+	<!-- //lotteActionbar -->
+</body>
+</html>

@@ -1,0 +1,42 @@
+<section ng-if="contVisible">
+	<section id="custcenter">
+		<div class="cs_lotte">
+			<section>			
+				<p>안녕하세요. <strong>{{loginInfo.name}} {{loginInfo.isStaff && '임직원님' || '님'}}</strong><br>
+				롯데닷컴 고객센터입니다.</p>
+				<p ng-if="! loginInfo.isLogin" ng-click="goLogin()">로그인을 해주세요. <u>바로가기</u></p>
+			</section>
+			<br>
+			<section ng-if="loginInfo.isLogin">
+				<p>1:1문의를 원하시는 상품을 선택해주세요<br></p>
+				<div class="button">
+					<span ng-click="orderDisable || selectFs(0)" ng-class="{on:selectCs == 0}">주문상품 선택</span>
+					<span ng-click="orderDisable || selectFs(1)" ng-class="{on:selectCs == 1}">주문상품 없음</span>
+				</div>
+				<p class="date">{{now | date:'yyyy-MM-dd HH:mm'}}</p>
+			</section>
+		</div>
+		<div class="cs_my" ng-show="order_select_end" ng-if="order_select_end">
+			<section ng-click="linkToPuchaseView()">
+				<p class="order_num">주문번호 : {{view_ord_no}}</p>
+				
+				<div ng-repeat="i in select_obj" >
+					<dl>
+						<dt><img ng-src="{{i.img_url}}" alt=""></dt>
+						<dd>
+							<p class="pname" ng-bind-html="i.goods_desc"></p>
+							<p class="presult">{{i.ord_qty}} 개 / {{i.rmit_nm}} / {{i.ord_state_nm}}</p>
+						</dd>
+					</dl>
+				</div>
+				<p class="date">{{now | date:'yyyy-MM-dd HH:mm'}}</p>
+			</section>
+		</div>
+		<div class="cs_lotte" ng-if="order_select_end || write_box || order_submit_end">
+			<section>
+				<p>문의내용을 입력해 주세요.</p>
+				<p class="date">{{now | date:'yyyy-MM-dd HH:mm'}}</p>
+			</section>
+		</div>
+	</section>
+</section>

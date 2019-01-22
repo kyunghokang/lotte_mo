@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+/* 장바구니 장보기몰 추가 */
+.prd_list:after { display: block; content: ""; clear: both; }
+.prd_list * { box-sizing: border-box; }
+.prd_list > li { margin-bottom: 10px; background: #fff; border-top: 1px solid #d0d0d0; border-bottom: 1px solid #d0d0d0; }
+@media screen and (min-width: 640px) {
+	.prd_list > li { float: left; width: 50%; border-right: 1px solid #eee; }
+}
+.prd_header p { line-height: 41px; font-size: 13px; border-bottom: 1px solid #eee; padding: 0 10px; font-weight: bold;}
+.prd_header p * { vertical-align: middle; }
+.prd_header .mall_name { color: #40ac46; }
+.prd_cont { display: table; width: 100%; padding: 11px 10px;}
+.prd_thumb, .prd_info { display: table-cell; }
+.prd_thumb { width: 87px; }
+.prd_thumb img { width: 100%; }
+.prd_info { position: relative; padding-left: 10px; }
+.prd_flag { margin-bottom: 3px; }
+.prd_name {margin-bottom: 3px; display: -webkit-box; overflow: hidden; line-height: 16px; height: 34px; font-size: 13px; color: #333;}
+.prd_bot .num {font-size: 12px;color: #ff7b62; margin-bottom: 2px;}
+.prd_bot .price {font-size: 12px; color: #3874ec; }
+.btn_view { position: absolute; right: 0; bottom: 0; }
+.btn_view a { display: inline-block;height: 25px;color: #ffffff;font-size: 12px;border: solid 1px #719cff;padding: 0 11px;line-height: 25px;text-align: center;box-sizing: border-box;-webkit-box-sizing: border-box;background-color: #719cff;border-radius: 15px; }
+
+/* 롯데슈퍼 플래그 추가 */
+.flag.super, .flag.dlv { display: inline-block; height: 17px; padding: 0 4px; line-height: 17px !important; font-size: 10px; box-sizing: border-box; }
+.flag.super { background: #40ac46; color: #fff; }
+.flag.dlv { border: 1px solid #f54c27; color: #f54c27; }
+
+/* 품절상품 목록 추가 */
+.wish_header { border-bottom: none; }
+#discontinue_list .product_list_01 li .group.soldOut {padding: 9px 10px;}
+#discontinue_list .product_list_01 li .group.soldOut + .btn_list { height: auto; padding: 0; }
+#discontinue_list .product_list_01 li .group.soldOut + .btn_list .btn_style2 { top: -34px; }
+.product_list_01 .group.soldOut span.cont01 { display: block; height: 87px; min-height: 87px; box-sizing: border-box; }
+.product_list_01 .group.soldOut .money_coupon,
+.product_list_01 .group.soldOut .money { position: absolute; left: 0; bottom: 0; }
+
+/* 장보기몰 버튼 추가 */
+.btnArea { padding: 15px 10px 21px 10px; }
+.btnArea .viewBtn { display: inline-block; width: 100%; line-height: 46px; font-size: 15px; color: #719cff; box-sizing: border-box; background:transparent; text-align: center; border: 1px solid #719cff; }
+.btnArea .viewBtn:after { display: inline-block; content: ""; width: 0; height: 0; border-style: solid; border-width: 6px; border-color: #719cff transparent transparent transparent; vertical-align: middle; position: relative; top: 3px; margin-left: 5px; }
+
+/* 상품목록 데이터 없을경우 */
+.no_data { display: table-cell; width: 100%; vertical-align: middle; height: 99px; text-align: center; font-size: 13px; color: #999; }

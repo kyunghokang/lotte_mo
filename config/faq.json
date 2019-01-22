@@ -1,0 +1,69 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplcscenterFaq" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/custcenter/faq_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/faq.template.js"
+            }
+        },
+
+        "concat" : {
+            "jscscenterFaq" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/custcenter/faq.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/faq.js"
+            }
+        },
+
+        "uglify" : {
+            "jscscenterFaq" : {
+                "src" : "lotte/resources/<%= version %>/faq.js",
+                "dest" : "lotte/resources/<%= version %>/faq.min.js"
+            },
+            "tplcscenterFaq" : {
+                "src" : "lotte/resources/<%= version %>/faq.template.js",
+                "dest" : "lotte/resources/<%= version %>/faq.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "csscscenterFaq" : {
+                "src" : [
+                    "lotte/resources_dev/custcenter/cscenter_main.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/faq.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleancscenterFaq" : [
+                "lotte/resources/<%= version %>/faq.js",
+                "lotte/resources/<%= version %>/faq.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlcscenterFaq" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "custcenter/faq.html" : "custcenter/faq_dev.html"
+                }
+            }
+        }
+    }
+}
+

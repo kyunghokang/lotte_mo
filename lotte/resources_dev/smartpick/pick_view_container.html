@@ -1,0 +1,346 @@
+<section ng-show="contVisible" class="cont_minheight">
+	<!-- 스마트픽 앱 헤더 -->
+	<ul id="smp_nav" ng-if="smp_yn">
+	    <li><a ng-click="promotionUrl()"><span>LOTTE smart pick</span></a></li>
+	    <li class="on"><a ng-click="pickListUrl()"><span>my 교환권</span></a></li>
+	    <li><a ng-click="setupUrl()"><span>설정</span></a></li>
+	</ul>
+	<!-- 스마트픽상품교환권_상세보기 -->
+	<div class="smp_coupon">
+		<section class="detail">
+			<div class="cont_wrap">
+				<div class="cont" ng-show="smartPickDetail.cpn_state_cd == '1'">
+					<img ng-src="{{smartPickDetail.ecpn_img}}" alt="">
+					<div class="day2" ng-if="!smartPickDetail.ecpn_img && smartPickDetail.crspk_yn != 'Y'">
+						<p ng-show="smartPickDetail.prod_div == 'S' && smartPickDetail.smp_install_yn == 'N'">픽업예정일</p>
+						<p ng-show="smartPickDetail.prod_div == 'S' && smartPickDetail.smp_install_yn == 'Y'">상담예정일</p>
+						<p ng-show="smartPickDetail.prod_div == 'W'">방문예정일</p>
+						<p ng-show="smartPickDetail.prod_div == 'E'">남은기간</p>
+						<p class="num" ng-show="smartPickDetail.prod_div != 'E'"><span>{{smartPickDetail.smp_vst_fcst_dtime | strToDateNoYear}}</span></p>
+						<p class="num" ng-show="smartPickDetail.prod_div == 'E'"><span>D -{{smartPickDetail.d_day_cnt}}</span></p>
+					</div>
+					<div class="day" ng-if="smartPickDetail.ecpn_img && smartPickDetail.crspk_yn != 'Y'">
+						<p ng-show="smartPickDetail.prod_div == 'S' && smartPickDetail.smp_install_yn == 'N'">픽업예정일</p>
+						<p ng-show="smartPickDetail.prod_div == 'S' && smartPickDetail.smp_install_yn == 'Y'">상담예정일</p>
+						<p ng-show="smartPickDetail.prod_div == 'W'">방문예정일</p>
+						<p ng-show="smartPickDetail.prod_div == 'E'">남은기간</p>
+						<p class="num" ng-show="smartPickDetail.prod_div != 'E'"><span>{{smartPickDetail.smp_vst_fcst_dtime | strToDateNoYear}}</span></p>
+						<p class="num" ng-show="smartPickDetail.prod_div == 'E'"><span>D -{{smartPickDetail.d_day_cnt}}</span></p>
+					</div>
+				</div>
+					
+				<!-- 기발송된 쿠폰 -->
+				<div class="cont contSent" ng-show="smartPickDetail.cpn_state_cd == '2'">
+					<img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/smp_couponSent.jpg" alt="">
+					<div class="proImg" ng-style="{'background-image':'url('+smartPickDetail.goods_img+')'}"></div>
+					<!-- <div class="proImg" style="background-image:url({{smartPickDetail.goods_img}});"></div> -->
+					<div class="day">
+						<p ng-show="smartPickDetail.prod_div == 'S' && smartPickDetail.smp_install_yn == 'N'">픽업예정일</p>
+						<p ng-show="smartPickDetail.prod_div == 'S' && smartPickDetail.smp_install_yn == 'Y'">상담예정일</p>
+						<p ng-show="smartPickDetail.prod_div == 'W'">방문예정일</p>
+						<p ng-show="smartPickDetail.prod_div == 'E'">남은기간</p>
+						<p class="num" ng-show="smartPickDetail.prod_div != 'E'"><span>{{smartPickDetail.smp_vst_fcst_dtime | strToDateNoYear}}</span></p>
+						<p class="num" ng-show="smartPickDetail.prod_div == 'E'"><span>D -{{smartPickDetail.d_day_cnt}}</span></p>
+					</div>
+					<div class="sentComment">
+						<div>To. <span class="name">{{smartPickDetail.adre_no}}</span>님께 발송된 교환권 입니다.</div>
+					</div>
+				</div>
+
+				<!-- 취소된 쿠폰 -->
+				<div class="cont contCancel" ng-show="smartPickDetail.cpn_state_cd == '3'">
+					<img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/smp_couponCancel.jpg" alt="">
+					<div class="proImg" ng-style="{'background-image':'url('+smartPickDetail.goods_img+')'}"></div>
+					<!-- <div class="proImg" style="background-image:url({{smartPickDetail.goods_img}});"></div> -->
+					<div class="day">
+						<p ng-show="smartPickDetail.prod_div == 'S' && smartPickDetail.smp_install_yn == 'N'">픽업예정일</p>
+						<p ng-show="smartPickDetail.prod_div == 'S' && smartPickDetail.smp_install_yn == 'Y'">상담예정일</p>
+						<p ng-show="smartPickDetail.prod_div == 'W'">방문예정일</p>
+						<p ng-show="smartPickDetail.prod_div == 'E'">남은기간</p>
+						<p class="num" ng-show="smartPickDetail.prod_div != 'E'"><span>{{smartPickDetail.smp_vst_fcst_dtime | strToDateNoYear}}</span></p>
+						<p class="num" ng-show="smartPickDetail.prod_div == 'E'"><span>D -{{smartPickDetail.d_day_cnt}}</span></p>
+					</div>
+					<div class="sentComment">
+						<div class="proTitle">{{smartPickDetail.goods_nm}}</div>
+						<div>주문 취소된 상품입니다.</div>
+					</div>
+					<!-- //D: tobe 추가 -->
+				</div>
+
+				<!-- 상품정보 -->		
+				<div class="box_layout_wap">			
+					<dl class="box_layout">
+						<dt>상품정보</dt>
+						<dd>
+							<p class="tit">주문 번호</p>
+							<p class="cont">{{orderNumebr}}</p>
+						</dd>
+						
+						<dd>
+							<p class="tit">판매가</p> 
+							<p class="cont">{{smartPickDetail.sale_prc | number}}<span class="tNormal">원 /</span> {{smartPickDetail.rel_qty}}<span class="tNormal">개</span></p>
+						</dd>
+						<dd>
+							<p class="tit">구매처</p>
+							<p class="cont" ng-if="smartPickDetail.site_no == '1'">롯데닷컴</p>
+							<p class="cont" ng-if="smartPickDetail.site_no == '39506'">엘롯데</p>
+						</dd>
+						<dd class="btn">
+							<a ng-click="moreProduct(smartPickDetail.goods_no)" class="btn_color">이 상품 더 구매하기</a>
+						</dd>
+					</dl>
+				</div>
+				
+				<!-- 와인상품일 경우 -->
+				<div class="box_layout_wap" ng-if="smartPickDetail.prod_div == 'W'">
+					<dl class="box_layout">
+						<dt>예약 안내</dt>
+						<dd class="dd_btn">
+							<p class="tit">방문예정일</p>
+							<p><span class="point">남은기간 <span>D -{{smartPickDetail.d_day_cnt}}</span></span>{{smartPickDetail.smp_vst_fcst_dtime | strToDate}}</p>
+						</dd>
+						<dd ng-class="{true: 'mapOn', false: ''}[mapViewFlag]">
+							<p class="tit">예약매장</p>
+							<div class="place" ng-if="smartPickDetail.use_loc_nm">
+								{{smartPickDetail.use_loc_nm}}
+								<p ng-class="{true: 'ptit on', false: 'ptit'}[mapViewFlag]" class="" ng-click="google_map_dept(smartPickDetail)">픽업 위치<span>열기/닫기</span></p>
+							</div>
+							<div ng-class="{true: 'wild wildOn ', false: 'wild'}[mapViewFlag]">
+                                <map-info></map-info>
+                        	</div>
+						</dd>
+						<dd>
+							<p class="tit">사용제한</p>
+							<p>지정된 예약매장에서만 상품 수령 가능</p>
+						</dd>
+						<dd>
+							<p class="tit">주의사항</p>
+							<p>방문예정일 + 1일까지 상품 수령 가능 (미수령 시 예약취소)</p>
+						</dd>
+						<dd class="dd_btn">
+							<p class="tit">사용여부</p> 
+							<p class="clearfix"> 
+								<span>사용가능</span>
+								<a ng-show="smartPickDetail.cpn_state_cd == '1'" ng-click="orderCancel(smartPickDetail)" class="btn_small">예약취소하기</a>
+							</p>					 
+						</dd>
+						<dd class="tel">
+							<p class="tit">전화연결</p>
+							<p><a href="tel:1577-1100">1577-1110</a></p>
+						</dd>
+					</dl>
+				</div>	
+				<!-- //와인상품일 경우 -->
+
+				
+								
+				<!-- 크로스픽 경우 -->
+				<div class="box_layout_wap" ng-if="smartPickDetail.crspk_yn == 'Y'">
+					<dl class="box_layout">
+						<dt>교환권 사용안내</dt>
+						<dd class="dd_btn">
+							<p class="tit">매장도착일</p>
+							<p class="cont">{{smartPickDetail.ord_goods_str_whsg_dtime}}</p>
+						</dd>
+						<dd class="dd_btn">
+							<p class="tit">고객픽업일</p>
+							<p class="cont">{{smartPickDetail.ord_goods_cust_rcv_dtime}}</p>
+						</dd>
+						
+						<dd ng-class="{true: 'mapOn', false: ''}[mapViewFlag]">
+							<p class="tit">픽업장소</p>
+							<div class="place" ng-if="smartPickDetail.use_loc_nm">
+							     <!--20161130-->
+								<span ng-if="smartPickDetail.crspk_brnd_nm != undefined">{{smartPickDetail.crspk_brnd_nm}}</span> {{smartPickDetail.use_loc_nm}} {{smartPickDetail.locker_inst_yn_nm}}
+								<p ng-class="{true: 'ptit on', false: 'ptit'}[mapViewFlag]" class="" ng-click="google_map(smartPickDetail)">픽업 위치<span>열기/닫기</span></p>
+							</div>
+							<div ng-class="{true: 'wild wildOn ', false: 'wild'}[mapViewFlag]">
+								<div class="map">
+									<!--구글맵 지도-->
+									<iframe id="googleMap" ng-src="{{google_map_url}}"></iframe>
+								</div>
+
+							</div>
+						</dd>
+						<dd>
+							<p class="tit">사용제한</p>
+							<p>지정된 픽업장소에서만 상품 수령 가능</p>
+						</dd>
+						<dd>
+							<p class="tit">주의사항</p>
+							<p>픽업가능일 + 5일까지 상품 수령 가능</p>
+						</dd>
+						<dd class="dd_btn">
+							<p class="tit">사용여부</p> 
+							<p class="clearfix"> 
+								<span>사용가능</span>
+							</p>					 
+						</dd>
+						<dd class="tel">
+							<p class="tit">전화연결</p>
+							<p><a href="tel:1577-1110">1577-1110</a></p>
+						</dd>
+					</dl>
+				</div>	
+      
+      								
+				<!-- 스마트픽 경우 : 비설치형-->
+				<div class="box_layout_wap" ng-if="smartPickDetail.prod_div == 'S' && smartPickDetail.smp_install_yn == 'N' && smartPickDetail.crspk_yn == 'N'">
+					<dl class="box_layout">
+						<dt>교환권 사용안내</dt>
+						<dd class="dd_btn">
+							<p class="tit">픽업예정일</p>
+							<p class="cont"><span class="point"><span class="tNormal">남은기간</span> D -{{smartPickDetail.d_day_cnt}}</span>{{smartPickDetail.smp_vst_fcst_dtime | strToDate}}</p>
+						</dd>
+						<dd ng-class="{true: 'mapOn', false: ''}[mapViewFlag]">
+							<p class="tit">픽업장소</p>
+							<div class="place" ng-if="smartPickDetail.use_loc_nm">
+								<span ng-if="smartPickDetail.crspk_brnd_nm != undefined">{{smartPickDetail.crspk_brnd_nm}}</span> {{smartPickDetail.use_loc_nm}}
+								<!--<p ng-class="{true: 'ptit on', false: 'ptit'}[mapViewFlag]" class="" ng-click="naver_store_map(smartPickDetail.goods_no, 'false', smartPickDetail.entr_no, smartPickDetail.entr_contr_no, smartPickDetail.smp_goods_type)">픽업 위치<span>열기/닫기</span></p>-->
+                                <p ng-class="{true: 'ptit on', false: 'ptit'}[mapViewFlag]" class="" ng-click="google_map_dept(smartPickDetail)">픽업 위치<span>열기/닫기</span></p>
+							</div>
+							<div ng-class="{true: 'wild wildOn ', false: 'wild'}[mapViewFlag]">
+							    <map-info></map-info>
+							</div>
+						</dd>
+						<dd>
+							<p class="tit">사용제한</p>
+							<p>지정된 픽업장소에서만 상품 수령 가능</p>
+						</dd>
+						<dd>
+							<p class="tit">주의사항</p>
+							<p>픽업예정일 + 1일까지 상품 수령 가능 (미수령 시 예약취소)</p>
+						</dd>
+						<dd class="dd_btn">
+							<p class="tit">사용여부</p> 
+							<p class="clearfix"> 
+								<span>사용가능</span>
+							</p>					 
+						</dd>
+						<dd class="tel">
+							<p class="tit">전화연결</p>
+							<p><a href="tel:1577-1110">1577-1110</a></p>
+						</dd>
+					</dl>
+				</div>	
+				<!-- //스마트픽상품일 경우 -->
+				<!-- 스마트픽 경우 : 설치형-->
+				<div class="box_layout_wap" ng-if="smartPickDetail.prod_div == 'S' && smartPickDetail.smp_install_yn == 'Y'">
+					<dl class="box_layout">
+						<dt>상담정보 안내</dt>
+						<dd class="dd_btn">
+							<p class="tit">상담예정일</p>
+							<p class="cont"><span class="point"><span class="tNormal">남은기간</span> D -{{smartPickDetail.d_day_cnt}}</span>{{smartPickDetail.smp_vst_fcst_dtime | strToDate}}</p>
+						</dd>
+						<dd ng-class="{true: 'mapOn', false: ''}[mapViewFlag]">
+							<p class="tit">상담매장</p>
+							<div class="place" ng-if="smartPickDetail.use_loc_nm">
+								{{smartPickDetail.use_loc_nm}}
+								<p ng-class="{true: 'ptit on', false: 'ptit'}[mapViewFlag]" class="" ng-click="google_map_dept(smartPickDetail)">픽업 위치<span>열기/닫기</span></p>
+							</div>
+							<div ng-class="{true: 'wild wildOn ', false: 'wild'}[mapViewFlag]">
+                                <map-info></map-info>                                
+							</div>
+						</dd>
+						<dd>
+							<p class="tit">사용제한</p>
+							<p>지정한 상담매장에서만 상담 가능</p>
+						</dd>
+						<dd>
+							<p class="tit">주의사항</p>
+							<p>상담예정일 +2일까지 방문상담 가능합니다. (방문하지 않을 시 주문취소) 설치상품의 주문완료는 상담예약만을 한 것이며, 매장 방문 후 설치예정일을 협의하셔야 설치가 가능합니다.</p>
+						</dd>
+						<dd class="dd_btn">
+							<p class="tit">사용여부</p> 
+							<p class="clearfix"> 
+								<span>사용가능</span>
+							</p>					 
+						</dd>
+						<dd class="tel">
+							<p class="tit">전화연결</p>
+							<p><a href="tel:1577-1110">1577-1110</a></p>
+						</dd>
+					</dl>
+				</div>	
+				<!-- //스마트픽상품일 경우 -->
+				
+				<!-- 상위MD상품군 구분 -->
+				<div class="box_layout_wap" ng-if="smartPickDetail.upr_md_gsgr_no == '17795' || smartPickDetail.upr_md_gsgr_no == '14198' || smartPickDetail.upr_md_gsgr_no == '14197' || smartPickDetail.upr_md_gsgr_no == '14196' || smartPickDetail.upr_md_gsgr_no == '14195'">
+					<dl class="box_layout">
+						<dt>교환권 사용안내</dt>
+						<dd class="dd_btn">
+							<p class="tit">유효기간</p>
+							<p><span class="point"><span class="tNormal">남은기간</span> D -{{smartPickDetail.d_day_cnt}}</span>{{smartPickDetail.aval_term_strt_dtime | strToDate}} ~ {{smartPickDetail.aval_term_end_dtime | strToDate}}</p>
+						</dd>
+						<dd ng-class="{true: 'mapOn', false: ''}[mapViewFlag]">
+							<p class="tit">사용매장</p>
+							<div class="place">
+								{{smartPickDetail.use_loc_nm}}
+							</div>
+						</dd>
+						<dd>
+							<p class="tit">사용제한</p>
+							<p>{{smartPickDetail.attd_mtr_cont}}</p>
+						</dd>
+						<dd>
+							<p class="tit">주의사항</p>
+							<p>포인트 적립 및 할인카드 적용 불가</p>
+						</dd>
+						<dd class="dd_btn">
+							<p class="tit">사용여부</p> 
+							<p class="clearfix"> 
+								<span>교환처문의</span>
+							</p>					 
+						</dd>
+						<dd class="tel">
+							<p class="tit">전화연결</p>
+							<p><a href="tel:1577-1100">1577-1110</a></p>
+						</dd>
+						<dd>
+							<p class="tit">환불방법</p>
+							<p>상품페이지 참조<br>롯데닷컴 고객센터 1577-1110</p>
+						</dd>
+					</dl>
+				</div>	
+				<!-- //상위MD상품군 구분 -->
+								
+				<div class="box_layout_wap">
+					<dl class="box_layout">
+						<dt ng-show="smartPickDetail.prod_div == 'W'">예약증 발송 정보</dt>
+						<dt ng-show="smartPickDetail.prod_div == 'S' && smartPickDetail.smp_install_yn == 'Y'">상담정보 발송 정보</dt>
+						<dt ng-show="smartPickDetail.prod_div == 'S' && smartPickDetail.smp_install_yn == 'N'">교환권 발송 정보</dt>
+						<dt ng-show="smartPickDetail.prod_div == 'E'">교환권 발송 정보</dt>
+						<dd>
+							<p class="tit">수신인</p>
+							<p>{{smartPickDetail.adre_nm}} / {{smartPickDetail.adre_no}}</p>
+						</dd>
+						<dd>
+							<p class="tit">메시지</p>
+							<p>{{smartPickDetail.msg_cont}}</p>
+						</dd>
+						<dd class="btn">
+							<a ng-click="sendSmartPick(smartPickDetail)" class="btn_color" ng-if="smartPickDetail.prod_div == 'W'">예약증 다시 보내기</a>
+
+							<a ng-click="sendSmartPick(smartPickDetail)" class="btn_color" ng-if="smartPickDetail.prod_div == 'S' && smartPickDetail.smp_install_yn == 'N' && smartPickDetail.ord_dtl_stat_cd != 12 && smartPickDetail.ord_dtl_stat_cd != 21">교환권 보내기</a>
+
+							<!-- 20160620 E쿠폰 교환권 보내기 -->
+							<a ng-click="sendSmartPick(smartPickDetail)" class="btn_color" ng-if="
+							smartPickDetail.prod_div == 'E' &&
+							smartPickDetail.ord_dtl_stat_cd != 12 &&
+							smartPickDetail.ord_dtl_stat_cd != 21 &&
+							smartPickDetail.cpn_state_cd == '1' &&
+							(smartPickDetail.reserv_send == 'N' ||
+							(smartPickDetail.reserv_send == 'Y' && todayDate >= smartPickDetail.reserv_date && todayDate <= smartPickDetail.aval_term_end_dtime && todayHours >= 10))
+							">교환권 보내기</a>
+							<!-- //20160620 E쿠폰 교환권 보내기 -->
+
+							<a ng-click="sendSmartPick(smartPickDetail)" class="btn_color" ng-if="smartPickDetail.prod_div == 'S' && smartPickDetail.smp_install_yn == 'Y'">상담정보 다시 보내기</a>
+						</dd>
+					</dl>
+				</div>
+				<send-pick ng-if="sendPickPopupFlag[thisPopupPickIdx] == true"></send-pick>	
+			</div>
+		</section>
+	</div>
+	<!-- //스마트픽상품교환권_상세보기 -->
+</section>

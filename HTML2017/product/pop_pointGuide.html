@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+	<meta charset="utf-8">
+	<title>롯데닷컴</title>
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+
+	<!-- 기존 css & js -->
+	<!-- <script src="/lotte/resources_dev/common/common_load_2017.js"></script> -->
+	<link rel="stylesheet" type="text/css" href="common.min.css">
+	<link rel="stylesheet" type="text/css" href="product_view.min.css">
+	<!-- //기존 css & js -->
+	<!-- 신규 css -->
+	<link rel="stylesheet" type="text/css" href="product_k.css">
+	<link rel="stylesheet" type="text/css" href="product_p.css">
+	<!-- //신규 css -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script><!-- 코딩용 angular js -->
+
+</head>
+<body ng-controller="ProductCtrl">
+
+<div id="wrapper">
+
+	<section>
+		<header class="sub_header_top_wrap" id="lotteHeader">
+			<div class="inner_wrap headerFixed">
+				<h1 class="logo"><button class="btn_main">LOTTE.COM</button></h1>
+				<button class="btn_prev">이전</button>
+				<div class="header_srh_wrap web">
+					<div class="srh_box">
+						<label for="keyword" class="btn_srh"></label>
+					</div>
+				</div>
+				<button class="btn_ctg">카테고리</button>
+				<button class="btn_cart">장바구니<i class="cnt">5</i></button>
+			</div>
+		</header>
+	</section>
+
+	<section class="cont_minheight">
+		<!-- sub_header_wrap -->
+		<div class="sub_header_wrap">
+			<header id="head_sub" style="z-index:10;position:fixed;top:48px;width:100%">
+				<div class="ng-scope">
+					<h2>
+							<span>
+								<span>상품상세</span>
+								<a class="btn_sel"></a>
+							</span>
+						<span class="titLocation">
+								<span class="headTagspan">
+									<a class="ddca ng-binding">화장품</a>
+								</span>
+								<span class="headTagspan">
+									<a>색조메이크업</a>
+								</span>
+								<span class="headTagspan">
+									<a>립스틱</a>
+								</span>
+							</span>
+					</h2>
+					<p class="header_wish share gift"><a href="#"><img id="wishIcon" src="http://image.lotte.com/lotte/mo2015/angular/detail/detail_wish_icon.png"></a></p>
+					<p class="this gift"><a href="#">공유</a></p>
+				</div>
+			</header>
+		</div>
+		<!-- //sub_header_wrap -->
+
+		<!-- container -->
+		<div id="container">
+			<!-- 퍼블리싱 시작-->
+
+			<!--상품 상세 기본 wrapper(한번만 사용할 것): prod_detail_wrap-->
+			<div class="prod_detail_wrap">
+
+				<!--MD 공지-->
+				<div class="detail_base_wrap md_noti">
+					<p class="detail_tit">MD 공지<button class="shape_triangle blue up <!--변환 class: down-->">공지 열기닫기</button></p>
+					<div class="noti">
+						<!--<p class="noti_tit">상품을 주문하기전에 확인해 주세요!</p>-->
+						<!--<p class="noti_desc"><em>본 상품은 이월상품 한정판매</em>로 주문접수 후에 판매완료되어 품절될 수 있습니다. 이 경우 고객님께 문자통보 안내 후 환불처리되오니 양해 부탁드립니다.</p>-->
+						<img src="../images/t_mdNoti_03.jpg" alt="">
+					</div>
+				</div>
+
+				<!--상품정보-->
+				<div class="detail_base_wrap prod_info div_line_t line_full_w">
+					<p class="detail_tit">상품정보</p>
+					<table class="info_table white">
+						<tr><td>브랜드</td><td><a>닥스 매장가기</a></td></tr>
+						<tr><td>사은품</td><td>마크제이콥스 파우치 증정~!</td></tr>
+						<tr class="right_limit"><td>MD팁</td><td>
+						<p class="sub_tit">롯데닷컴 단독 마크바이제이콥스 브랜드 세일</p>
+						<p>마지막 시즌 놓치지 마세요! 15%할인쿠폰과 함께
+						이번달 까지  진행되는 브랜드할인 행사!
+						롯데닷컴에서 구매하세요!</p>
+						</td></tr>
+					</table>
+					<table class="info_table inner">
+						<tr><td>선물서비스</td><td><em>무료선물포장 + 선물메시지</em>
+							<ul class="thumb_list">
+								<li><span class="thumb cover"><img src="http://image.lotte.com/goods/35/22/91/57/57912235_1_280.jpg" alt=""></span></li>
+								<li><span class="thumb cover"><img src="http://image.lotte.com/goods/35/22/91/57/57912235_1_280.jpg" alt=""></span></li>
+							</ul>
+						</td></tr>
+						<tr><td>소재</td><td>인조가죽(합성피혁)</td></tr>
+						<tr><td>원산지</td><td>한국</td></tr>
+						<tr><td>패턴여부</td><td>없음</td></tr>
+						<tr><td>주문제작여부</td><td>주문제작상품</td></tr>
+						<tr><td colspan="2"><p class="outlink"><span class="right_clamp">필수표기정보 더보기</span></p></td></tr>
+					</table>
+				</div>
+
+			</div>
+
+			<!-- 퍼블리싱 끝-->
+		</div>
+		<!-- //container -->
+
+	</section>
+	<!-- //sub_header_wrap -->
+
+	<!-- footer -->
+	<footer id="footer">
+		<ul class="menu01">
+			<li><a class="ng-binding" href="#">마이롯데</a><i></i>	</li>
+			<li><a ng-click="pcClick()">PC버전</a><i></i></li>
+			<li><a href="#">장바구니</a><i></i></li>
+			<li><a href="#">고객센터</a><i></i></li>
+			<li><a href="#" ng-click="loginProc()" ng-bind="(loginInfo.isLogin)?'로그아웃':'로그인'" class="ng-binding">로그아웃</a></li>
+		</ul>
+		<div class="info">
+			<ul class="menu02">
+				<li><strong>(주)롯데닷컴</strong></li>
+				<li><a ng-click="ftcClick()">사업자정보확인</a></li>
+				<li><a ng-click="forwardClick()">채무지급보증안내</a></li>
+			</ul>
+			<p class="add">
+				<span class="addFirst">대표이사 : 김형준</span>
+				<span class="line">서울시 중구 을지로 158 10층(을지로4가, 삼풍빌딩)</span>
+				<span class="line">사업자등록번호 : 101-81-52964 통신판매업신고 : 중구 제00402호</span>
+				<span class="line">고객만족센터 : <a href="tel:1577-1110">1577-1110</a>  webmaster@lotte.com</span>
+				<span class="line">개인정보보호책임자 : 윤상선</span> <span class="line">청소년보호책임자 : 김찬기</span>
+				<span>호스팅 사업자 : (주)롯데닷컴</span>
+			</p>
+		</div>
+		<div class="menu03">
+			<ul>
+				<li><a href="#">이용약관</a></li>
+				<li><a href="#"><strong>개인정보처리방침</strong></a></li>
+				<li><a href="#">청소년보호정책</a></li>
+			</ul>
+		</div>
+		<div class="capyright">Copyright © LOTTE.com, Inc. All rights Reserved.</div>
+	</footer>
+	<!-- //footer -->
+
+	<!-- quick_btn -->
+	<div class="quick_btn">
+		<div ng-show="visible" class="">
+			<a class="btn_back ng-hide" ng-click="gotoPrepageSide()" ng-show="quickBackBtn">뒤로</a><a class="btn_top" ng-click="gotoTop()">위로</a>
+		</div>
+		<a class="btn_talk" ng-click="gotoTalk()">톡상담</a>
+	</div>
+	<!-- quick_btn -->
+</div>
+
+<!-- lotteActionbar -->
+<section id="lotteActionbar" class="actionbar" ng-show="!appObj.isApp &amp;&amp; !actionbarHideFlag">
+	<ul class="actionbar_wrap">
+		<li class="home on" ng-class="{on:cur_pageid == 1 &amp;&amp; !isShowSideCtg}"><button ng-click="gotoMainFooter()" class="btn_main">홈</button></li>
+		<li class="ctg" ng-class="{on: isShowSideCtg}"><button ng-click="showSideCtgFooter()" class="btn_ctg">카테고리</button></li>
+		<li class="order" ng-class="{on:cur_pageid == 2}"><button ng-click="gotoOrderLstFooter()" class="btn_order">주문배송</button></li>
+		<li class="mylotte" ng-class="{on:cur_pageid == 3}"><button ng-click="gotoMyPageFooter()" class="btn_mylotte">마이롯데</button></li>
+	</ul>
+</section>
+<!-- //lotteActionbar -->
+
+<!-- pop -->
+<div class="bsPop pop_pointGuide">
+	<div class="pInnder">
+		<div class="pTxtBox">
+			<p>
+				상품적립금 00,000점<br />
+				롯데포인트플러스카드 결제시<br />
+				최대 000,000점 적립				
+			</p>
+			<div class="stit">적립 기준</div>
+			<ul>
+				<li>① 상기 표시된 적립금은 쿠폰 등 할인 금액에 따라 변동될 수 있습니다.</li>
+				<li>② 무이자할부 이용시 롯데카드 적립은 제외됩니다.</li>
+				<li>③ 적립쿠폰은 2배 적립에서 제외됩니다.</li>
+				<li>④ 카드사에서 제공되는 적립금은 롯데포인트 플러스카드 결제분에 한해 산정된 적립율로 지급됩니다. (롯데포인트플러스카드와 현금/포인트 복합 결제시 현금/포인트 결제금액 제외)</li>
+				<li>⑤ 롯데닷컴 ID기준의 멤버스 회원과 결제하신 롯데포인트플러스카드의 소유주가 다른 경우 롯데카드 적립금은 적립되지 않습니다. <br />(롯데닷컴 적립금은 정상 지급)</li>
+			</ul>
+		</div>
+	</div>
+	<a ng-click="" class="pClose">닫기</a>
+</div>
+<!-- //pop -->
+
+<lotte-dimm>
+	<section id="lotteDimm" style="position:fixed; top:0; left:0px; width:100%; height:100%; background:rgba( 0, 0, 0, 0.5 ); z-index:120;" ng-click="dimmedClose()" class=""></section>
+</lotte-dimm>
+</body>
+</html>

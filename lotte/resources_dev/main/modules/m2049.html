@@ -1,0 +1,48 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<div class="moduleCon">
+		<div class="thisWeek_event">
+			<div class="ti">{{moduleData.txt}}</div>
+			<ul>
+				<li>
+					<a ng-click="logGAEvtModuleEach('01', moduleData.items[0].prdInfo.goodsNo);link2049(moduleData.items[0], '_Clk_Prd01')">
+						<div class="thumb">
+							<img ng-src="{{moduleData.items[0].prdInfo.imgUrl}}" alt="" />
+						</div>
+						<div class="info">
+							<div class="name">{{moduleData.items[0].prdInfo.goodsNm}} </div>
+							<div class="price"><strong>{{moduleData.items[0].prdInfo.price | number}}</strong>원<em ng-if="moduleData.items[0].prdInfo.isPlanPrd">~</em></div>
+							<p class="txt_store">{{moduleData.items[0].txt}}</p>
+						</div>
+					</a>
+				</li>
+				<li class="rPrd">
+					<a ng-click="logGAEvtModuleEach('02', moduleData.items[1].prdInfo.goodsNo);link2049(moduleData.items[1], '_Clk_Prd02')">
+						<div class="thumb">
+							<img ng-src="{{moduleData.items[1].prdInfo.imgUrl}}" alt="" />
+						</div>
+						<div class="info">
+							<div class="name">{{moduleData.items[1].prdInfo.goodsNm}} </div>
+							<div class="price"><strong>{{moduleData.items[1].prdInfo.price | number}}</strong>원<em ng-if="moduleData.items[1].prdInfo.isPlanPrd">~</em></div>
+							<p class="txt_store">{{moduleData.items[1].txt}}</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a ng-click="logGAEvtModuleEach('03', moduleData.items[2].prdInfo.goodsNo);link2049(moduleData.items[2], '_Clk_Prd03')">
+						<div class="thumb"><!-- tclick 작업 필요 -->
+							<img ng-src="{{moduleData.items[2].prdInfo.imgUrl}}" alt="" />
+						</div>
+						<div class="info">
+							<div class="name">{{moduleData.items[2].prdInfo.goodsNm}} </div>
+							<div class="price"><strong>{{moduleData.items[2].prdInfo.price | number}}</strong>원<em ng-if="moduleData.items[2].prdInfo.isPlanPrd">~</em></div>
+							<p class="txt_store">{{moduleData.items[2].txt}}</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<div class="flag">
+				<p>행사기간<br />{{moduleData.endTime}}</p>
+			</div>
+		</div>
+	</div>
+</section>

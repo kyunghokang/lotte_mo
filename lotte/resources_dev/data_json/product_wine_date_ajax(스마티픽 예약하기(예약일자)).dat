@@ -1,0 +1,64 @@
+1. 업무명 : 스마트픽 예약하기(예약일자)
+2. 담당자 : 신주섭
+3. URL : 
+	http://molocal.lotte.com/json/product_wine_date_ajax.json?shopNo=132120&goodsno=99536683&mbrNo=0011786705&cutDay=7
+4. 파라미터
+	- shopNo : 스마트픽 매장 선택 번호
+  - goodsno : 상품 번호
+  - mbrNo : 회원 번호
+  - cutDay : 최대 표기 일자(7-오늘 부터 7일)
+5. JSON 파라미터
+	1) workDay : 예약 가능 일자 
+    - target_date : 가능 일자
+    - day_val : 요일
+	2) storeList : 와인 예약 매장 정보
+    - mng_strt_time" : 매장 시작 시간
+    - mng_end_time" : 매장 종료 시간
+    - pitem_nm : 매장명
+    - pitem_no : 매정번호
+
+6. JSON
+
+{
+  "WorkDay" : {
+    "items" : [ {
+      "target_date" : "20151001",
+      "day_val" : "목"
+    }, {
+      "target_date" : "20151002",
+      "day_val" : "금"
+    }, {
+      "target_date" : "20151003",
+      "day_val" : "토"
+    }, {
+      "target_date" : "20151004",
+      "day_val" : "일"
+    }, {
+      "target_date" : "20151005",
+      "day_val" : "월"
+    }, {
+      "target_date" : "20151006",
+      "day_val" : "화"
+    }, {
+      "target_date" : "20151007",
+      "day_val" : "수"
+    } ],
+    "total_count" : 7
+  },
+  "storeList" : {
+    "items" : [ {
+      "mng_end_time" : "1900",
+      "lwst_entr_no" : "0",
+      "pitem_nm" : "본점 B1 와인매장",
+      "pitem_no" : "132120",
+      "entr_contr_no" : "0",
+      "inv_qty" : "0",
+      "entr_no" : "0",
+      "goods_no" : "0",
+      "min_lmt_qty" : null,
+      "max_lmt_qty" : null,
+      "mng_strt_time" : "1030"
+    } ],
+    "total_count" : 1
+  }
+}

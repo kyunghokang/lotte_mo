@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>sns 레이어</title>
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/push/common.css"/>
+<link rel="stylesheet" type="text/css" href="./prdList.css" />
+</head>
+<body>
+	<div class="btm_layer_wrap">
+		<div id="sharePop" class="pop_sns ng-scope on" ng-show="sharePopVisible" ng-if="sharePopVisible" ng-class="{on:sharePopVisible}">
+			<section ng-show="shareBoxVisible">
+				<ul>
+					<li class="kakaotalk ng-scope" ng-if="talkFlag" id="kakaotalk"><a ng-click="shareSNS('kakaotalk')"><i></i>카카오톡</a></li>
+					<li class="twitter ng-scope" ng-if="twitFlag"><a ng-click="shareSNS('twitter')"><i></i>트위터</a></li>
+					<li class="kakaostory ng-scope" ng-if="stotyFlag"><a ng-click="shareSNS('kakaostory')"><i></i>카카오스토리</a></li>
+					<li class="sms ng-scope" ng-if="smsFlag"><a ng-click="shareSNS('sms')"><i></i>문자</a></li>
+					<li class="facebook ng-scope" ng-if="faceFlag"><a ng-click="shareSNS('facebook')"><i></i>페이스북</a></li>
+					<li class="urlcopy ng-scope" ng-if="urlFlag"><a ng-click="shareSNS('url_copy')" id="copyUrl"><i></i>URL 복사</a></li>
+				</ul>
+				<div class="btn_close" ng-show="shareBoxVisible" ng-click="hideSharePop()">
+					<a href="#none">닫기</a>
+				</div>
+			</section>
+		</div>
+		<!-- 2018-05-02 : sns dim 추가 -->
+		<div class="dim">
+				<div class="bg"></div>
+		</div>
+		<!-- //2018-05-02 : sns dim 추가 -->
+	</div>
+</body>
+</html>

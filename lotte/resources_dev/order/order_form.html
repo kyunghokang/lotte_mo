@@ -1,0 +1,853 @@
+
+
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+    <meta charset="utf-8">
+    <title>롯데닷컴</title>
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <script type="text/javascript">
+    var APP_KEY = "7fa1e44757a94fd89921";
+    var SERVER_TIME = new Date();
+    </script>
+    
+    
+<script>
+
+var MAPI_HOST_API = "http://molocal.lotte.com";
+var MAPI_HOST_SSL_API = "http://molocal.lotte.com";
+var M_HOST_MOBILE = "http://molocal.lotte.com";
+var M_HOST_SSL = "http://molocal.lotte.com";
+var PC_HOST_WEB = "http://www.lotte.com"; 
+
+var SPLIT_GUBUN_3 = ";;;;;"; 
+var ONENONE_BUY_LOGIN = "1"; 
+var IMALL_BUY_LOGIN = "4"; 
+</script>
+
+
+
+    <!-- 공통 -->
+    <link rel="stylesheet" type="text/css" href="/lotte/resources_dev/common/lotte.css"/>
+    <link rel="stylesheet" type="text/css" href="/lotte/resources_dev/layout/header.css"/>
+    <link rel="stylesheet" type="text/css" href="/lotte/resources_dev/layout/header_sub.css"/>
+    <link rel="stylesheet" type="text/css" href="/lotte/resources_dev/layout/footer.css"/>
+    <link rel="stylesheet" type="text/css" href="/lotte/resources_dev/layout/actionbar.css"/>
+    <link rel="stylesheet" type="text/css" href="/lotte/resources_dev/layout/side_ctg.css"/>
+    <link rel="stylesheet" type="text/css" href="/lotte/resources_dev/layout/side_mylotte.css"/>
+    <link rel="stylesheet" type="text/css" href="/lotte/resources_dev/search/layer_srh.css"/>
+    <script src="/lotte/lib/jquery/jquery-1.11.2.min.js"></script>
+    <script src="/lotte/lib/jquery/LottePub.js"></script>
+    <script src="/lotte/lib/jquery/EGSlider.js"></script>
+    <script src="/lotte/lib/jquery/cnt_interface.js"></script>
+    <script src="/lotte/lib/jquery/app_interface.js"></script>
+    <script src="/lotte/lib/angular/angular.min.js"></script>
+    <script src="/lotte/lib/angular/angular-sanitize.min.js"></script>
+    <script src="/lotte/resources_dev/common/lotte_comm.js"></script>
+    <script src="/lotte/resources_dev/common/lotte_util.js"></script>
+    <script src="/lotte/resources_dev/common/lotte_filter.js"></script>
+    <script src="/lotte/resources_dev/common/lotte_svc_dev.js"></script>
+    <script src="/lotte/resources_dev/common/lotte_search.js"></script>
+    <script src="/lotte/resources_dev/common/lotte_comm_footer.js"></script>
+    <script src="/lotte/resources_dev/common/lotte_log_dev.js"></script>
+    <script src="/lotte/resources_dev/layout/lotte_sidectg.js"></script>
+    <script src="/lotte/resources_dev/layout/lotte_sidemylotte.js"></script>
+
+	<!-- 주문 전용 -->
+	<link rel="stylesheet" type="text/css" href="/common4/css/order_new_20150804_v2.css">
+	<script src="/common4/js/order.js"></script>
+
+
+    <!-- html_meta_angular.jsp -->
+	<!--<script src="/common4/js/lib/crittercismClientLibraryMin.js"></script>-->
+	
+    <script src="/lotte/lib/jquery/LottePub.js"></script>
+	<script src="/lotte/resources_dev/main/app_info.js"></script>
+    <script src="/lotte/resources_dev/common/lotte_unit_new.js"></script>
+	<script src="/common3/js/function.js"></script>
+	<script src="/common3/js/storage.js"></script>
+	
+	<script src="https://flyasiana.com/CW/common/linkage/ozcd.js"></script>
+
+
+
+	
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+	
+		
+	
+	
+
+
+
+	
+		
+			
+			
+			
+				
+			
+			
+			
+			
+		
+	
+	
+
+<script>
+var split_gubun_1 = ":^:"; // 구분자1
+var split_gubun_3 = ";;;;;"; // 구분자3
+var paytype_card_002 = "002";
+var paytype_card_008 = "008";
+var paytype_card_016 = "016";
+var paytype_card_018 = "018";
+var paytype_card_020 = "020";
+var paytype_card_021 = "021";
+var paytype_card_026 = "026";
+var paytype_card_029 = "029";
+var paytype_card_031 = "031";
+var paytype_card_036 = "036";
+var paytype_card_047 = "047";
+var paytype_card_048 = "048";
+var paytype_card_054 = "054";
+var hyundaeAppCardAval = false;
+var grockle_yn = "N";
+var singleProm = '';
+var singlePromCnt = 0;
+var multiProm = '';
+var multiPromCnt = 0;
+var cardStr = "<option value ='047'>롯데카드</option><option value ='029'>신한카드</option><option value ='026'>비씨카드</option><option value ='048'>현대카드</option><option value ='031'>삼성카드</option><option value ='016'>KB국민카드</option><option value ='021'>우리카드</option><option value ='008'>외환카드</option><option value ='020'>하나SK카드</option><option value ='018'>NH카드</option><option value ='036'>씨티카드</option><option value ='002'>광주카드</option><option value ='054'>우체국체크카드</option>";
+var cp_schema = "";
+var schema_domain = "http://molocal.lotte.com";
+var exp_tel_no = "1577-1110";
+var cp_udid = "";
+var cp_v = "";
+var cp_cn = "";
+var lotte_app_yn = "N";
+var smart_pic_app_yn = "N";
+var ellotte_app_yn = "N";
+var tstore_yn = "";
+var simple_mem_yn = "N";
+var ua_lower_str = "mozilla/5.0 (ipad; cpu os 7_0 like mac os x) applewebkit/537.51.1 (khtml, like gecko) version/7.0 mobile/11a465 safari/9537.53";
+var adtn_cost_dtl_sct_cd_card = "10";
+var adtn_cost_dtl_sct_cd_coupon = "12";
+var adtn_cost_dtl_sct_cd_staff = "27";
+var adtn_cost_dtl_sct_cd_mrktng_cpn = "11";
+var varUa = "-1";
+var gubun = "GOODS";
+var imallYN = "N";
+var isDeliPlcChg = true;
+var freeShippingYn = "N";
+var dupGoodsInfo = "";
+var deli_size = "7";
+var manggo_yn = "N";
+var gucci_yn = "N";
+var username = "박상현";
+var lPoint = "21";
+var ltPoint = "19";
+var soilPoint = "24";
+var deposit = "20";
+var from_page = "";
+var paytype_code_card = "16";
+var paytype_code_bank = "03";
+var claim_sale_yn = "Y";
+var claim_sale_fvr_val = "5";
+var claim_sale_aply_lmt_amt = "50000";
+var claim_sale_card_knd_cd = "047";
+var curMonPhnSttlAmt = "0";
+var phone_no1 = "552";
+var phone_no2 = "8931";
+var phone_no3 = "4856";
+var commid = "300";
+var cartSn = "1278460735";
+var goods_smp_normal_etc = "0102ETC";
+var app_card_only_yn = "N";
+var app_card_cd = "";
+var PAYTYPE_CODE_BANK   = '03';
+var PAYTYPE_CODE_CARD   = '16';
+var PAYTYPE_CODE_SMART  = '16-1'; // 2011.06.07 스마트페이 추가
+var PAYTYPE_CODE_PHONE  = '15'; // 2011.05.27 (LotteUtil.java 참조)
+
+/*
+ * 카드 종류 선택시 일시불/무이자할부/일반할부에 대한 정보를 가져온 후
+ * UI를 구현한다.
+ */
+function getCardInsCheck() {
+	iscmcd		= $("#frm_inp select[name=iscmcd]").val();
+	payamt	 	= $("#frm_inp input[name=totsttlamt]:hidden").val();
+	goodsno 	= $("#frm_send input[name=goodsno]:hidden").val();
+	giftyn		= $("#frm_send input[name=giftyn]:hidden").val();
+
+	cpncardcd	= $("#frm_send input[name=cardkndcd]:hidden").val();	// 할인쿠폰의 카드정보
+	cpncardcd_dup = $("#frm_send input[name=cardkndcd_dup]:hidden").val();	// 중복카드할인쿠폰의 카드정보
+
+	// 카드사 전산센터 작업으로 인한 카드 결제 제어 관련 스크립트 생성
+	
+	
+	while(goodsno.indexOf(split_gubun_1) > -1){
+		goodsno = goodsno.replace(split_gubun_1, ",");
+	}
+	// 할인항목만 있고 카드가 존재하지 않을 경우
+	if (iscmcd=="null" || iscmcd==undefined || iscmcd=="undefined"){
+		iscmcd = "";
+	}
+	// 스마트페이, 앱카드 (롯데, 현대, 삼성, 신한) 영역 보이기/가리기
+	if ( iscmcd == paytype_card_047 || iscmcd == paytype_card_048 || iscmcd == paytype_card_031 || iscmcd == paytype_card_029 ){
+		$("#pay_card_confirm").show();
+
+		// 앱카드 전용 여부 체크
+		if ('N'!='Y'){
+			// 롯데카드 앱카드 선택 비활성화 (롯데카드 기능 없음)
+			if ( iscmcd == paytype_card_047 ){
+				$("#card_confirm_type_03").hide();
+				$("#card_confirm_label_03").hide();
+			}else{
+				$("#card_confirm_type_03").show();
+				$("#card_confirm_label_03").show();
+			}
+			if (iscmcd == paytype_card_047 && 'Y'=='Y'){ // 롯데카드 스마트페이 등록되어 있으면
+				$("#card_confirm_type_01").attr("checked", true);
+				$("#card_confirm_type_01").prop("checked", true);
+			}else{
+				if (hyundaeAppCardAval && iscmcd == paytype_card_048){ // 현대카드 (6월10일 ~ 6월26일) 앱카드 기본값
+					$("#card_confirm_type_03").attr("checked", true);
+					$("#card_confirm_type_03").prop("checked", true);
+				}else{
+					$("#card_confirm_type_02").attr("checked", true);
+					$("#card_confirm_type_02").prop("checked", true);
+				}
+			}
+		}else{
+			$("#card_confirm_type_01").hide();
+			$("#card_confirm_label_01").hide();
+			$("#card_confirm_type_02").hide();
+			$("#card_confirm_label_02").hide();
+			$("#card_confirm_type_03").attr("checked", true);
+			$("#card_confirm_type_03").prop("checked", true);
+		}
+	}else{
+		$("#pay_card_confirm").hide();
+		$("#card_confirm_type_02").attr("checked", true);
+		$("#card_confirm_type_02").prop("checked", true);
+		
+	}
+	if ( iscmcd != '' && ((cpncardcd != '' && cpncardcd != iscmcd) || (cpncardcd_dup != '' && cpncardcd_dup != iscmcd)) ) {
+		init_cardselect();
+
+		cardname		= $("#frm_inp select[name=iscmcd] option:selected").text();				
+		frm_alert(cardname + ' 할인을 받으시려면 ' + cardname + '로 결제하셔야 합니다.');
+		
+		$("#frm_inp input[name=rdo_cardinst]:radio:eq(0)").attr('disabled' , false);
+		$("#frm_inp input[name=rdo_cardinst]:radio:eq(0)").attr('checked' , true);		
+		$("#frm_inp input[name=rdo_cardinst]:radio:eq(0)").prop('checked' , true);
+
+		$("#frm_inp select[name=iscmcd]").change();	// 할인정보 재조회
+	} else {
+		var staff_yn = "N"; // 임직원 할인 시 무이자 기간 적용
+		if ($("#frm_inp input[name=prommdclcd]").eq($("#frm_inp select[name=coupon]").val()).val() == "27"){
+			staff_yn = "Y";
+		}	
+		if ( iscmcd != '' ) {
+			$.ajax({
+				type: 'post'
+				, async: false
+				, url: '/order/order_cardcheck.do?' + __commonParam
+				, data: 'goodsno='+goodsno+'&payamt='+payamt+'&iscmcd='+iscmcd+'&giftyn='+giftyn+'&staff_yn='+staff_yn+'&grockle_yn=' + grockle_yn
+				, success: function(response) {
+					$("#cardinscheck").html( response );
+					init_cardinstmon();
+					misp_plugIn(iscmcd);
+					}
+				, error : init_cardinstmon()
+			});
+		} else {
+			$("#frm_inp input[name=onintmonth]:hidden").val('');
+			$("#frm_inp input[name=intmonth]:hidden").val('');
+			init_cardinstmon();
+		}
+	}
+	
+	// 청구할인
+	if ('Y'=='Y'){
+		var claim_sale_fvr_val = ('5'==''?'0':'5');
+		var totsttlamt = $("#frm_inp input[name=totsttlamt]:hidden").val();
+		var claim_sale_aply_lmt_amt = ('50000'==''?'0':'50000');
+		var paytype = $("#frm_inp input[name=paytype]:hidden").val();
+		var claim_sale_card_max_amt = ('20'==''?'0':'20');   // 할인금액
+
+		if ($("#frm_inp select[name=iscmcd]").val() == '047'
+		 && parseInt(totsttlamt) >= parseInt(claim_sale_aply_lmt_amt)
+		 && paytype == PAYTYPE_CODE_CARD && parseInt(totsttlamt) > 0){ // 카드 할인 정보 표현
+			if(parseInt(claim_sale_card_max_amt)>0){
+				claim_sale_card_max_amt = claim_sale_card_max_amt*10000;
+			}
+			var claim_sale_price = parseInt(totsttlamt);
+		    claim_sale_price = claim_sale_price * claim_sale_fvr_val * 0.01;
+		    if(parseInt(claim_sale_price) > parseInt(claim_sale_card_max_amt)){
+		    	claim_sale_price = claim_sale_card_max_amt;
+		    }
+		    claim_sale_price = parseInt(totsttlamt) - claim_sale_price;
+			claim_sale_price = Math.floor(claim_sale_price * 0.1) * 10;
+			
+			$("#claim_sale_price").html("<strong>카드 청구할인 예상가: " + String(claim_sale_price).money() + "원</strong>"); // 청구 할인 금액
+			$("#claim_sale_info").show();
+			$("#claim_sale_price_noti").hide();
+		}else{ // 카드 할인 정보 가림
+			$("#claim_sale_info").hide();
+			$("#claim_sale_price_noti").show();
+		}
+	} 
+}
+
+//가상계좌 조회
+function sel_acct(){
+	 var bankCd = $("#frm_inp select[name=bankno]").val();
+	 var grockle_mbr_no = $("#frm_send input[name=grockle_mbr_no]:hidden").val(); // 비회원구매
+	 
+	 // 비회원이고 비회원번호가 존재 시
+	 if(grockle_yn == 'Y' && grockle_mbr_no != ''){
+		 return;
+	 }
+	 if(bankCd == '' || bankCd == null) {
+		 $("#acct_result").html("<div class=\"s_title\">계좌번호</div><div class=\"s_text\"><span class=\"high\">은행을 선택해 주세요</span></div>");	
+		 return;
+	 }
+	// 은행 전산센터 작업으로 인한 카드 결제 제어 관련 스크립트 생성
+	
+		
+	  $.ajax({
+		
+		type: 'post'
+		, async: false
+		, url: '/order/order_acct.do?' + __commonParam
+		//, data: $("#frm").serialize()
+		, data: 'bankCd=' + bankCd + '&grockle_mbr_no=' + grockle_mbr_no + '&grockle_yn=' + grockle_yn
+		, success: function(response) {
+			$("#acct_result").html(response);		        
+		  }
+		, error: function(request, status, err) {
+			alert('가상계좌  조회에 실패했습니다.!');
+		  }
+	});
+}
+
+//배송정보 setting (배송지별, 상품별로 setting 되는 값이 서로 다르므로 주의)
+function setDeliData(){
+	var areaNum = 1; // 배송지 수
+	var tmp_idx = 0;
+	var deliidx = 0;
+	var k = 1; // 배송지 값		
+	var cart_sn = null;
+	var deli_prod_cnt = null; // 상품 목록
+	var card_msg_chk = false; // 선물메시지 체크 여부
+	var basedlvpyn = new Array(), dlvpnm = new Array();
+	var dlvpsn = new Array(), usrsortrnk = new Array(), deli_chk = new Array(), rmitnm = new Array();
+	var dlvzip = new Array(), dlvzip1 = new Array(), dlvzip2 = new Array(), postaddr = new Array(), dtladdr = new Array();
+	var stnm_dlv_zip = new Array(), stnm_dlv_zip1 = new Array(), stnm_dlv_zip2 = new Array(), stnm_post_addr = new Array(), stnm_dtl_addr = new Array();
+	var cellsctno = new Array(), celltxnono = new Array(), cellendno = new Array();
+	var cbltelrgnno = new Array(), cblteltxnono = new Array(), cbltelendno = new Array(), cbltelexnono= new Array();
+	var rcvmessage = new Array(), ord_qty_list = new Array(), dlvp_idx = new Array(), dlvp_idx_tmp = new Array(), addrcvmessageyn = new Array();
+	var receivename = new Array(), sendmessage = new Array(), sendname = new Array(), dlvpuseyn = new Array();
+	var deli_span_nm = "#deli_1"; // "#multi_deli_1";
+	var chk_multi_dlvp = false;
+	
+	
+	
+
+	var chk_multi_dlvp = $("#chk_multi_dlvp").prop("checked");
+	var deli_span_nm = "";		
+	if (chk_multi_dlvp==undefined || !chk_multi_dlvp){ // 다중배송이 아닌 경우
+		areaNum = 0;
+	}else{
+		// 다중배송지 여부 및 수
+		if (typeof($("#frm_inp select[name=areaNum_select]").val())!=undefined && $("#frm_inp select[name=areaNum_select]").val() > 1){ 
+			$("#frm_send input[name=chk_multi_dlvp]:hidden").val("Y");
+			areaNum = $("#frm_inp select[name=areaNum_select]").val();
+		}else{
+			areaNum = 0;
+		}
+	}
+
+	for(var j=0; j<=areaNum; j++){
+		tmp_idx = rmitnm.length;
+		dlvpuseyn[tmp_idx] = "Y";
+		
+		if (j==0){ // 단일 배송지에 대한 값 셋팅
+			k = 1;
+		}else{
+			k = j;
+		}
+
+		if ( $("#multi_deli_"+k).html() != undefined ) {
+			deli_span_nm = "#multi_deli_"+k;
+		} else {
+			deli_span_nm = "#deli_"+k;
+		}
+
+		// 주문자명 수정완료 체크
+		var $nameInpt = $("[id^=orderer_name_val]:visible").find("#nameInpt");
+
+		//회원배송지 수정이 있을경우 주문자 정보 자동 복사
+		if ( k==1 && $("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val() != undefined 
+				  && $("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val() == "U" ) {
+
+			//alert("회원배송지 수정 주문자-->"+$nameInpt.val());
+			if ( $.trim($nameInpt.val()) == '') {
+				alert("주문자를 입력해 주세요.");
+				$nameInpt.focus();
+				return false;
+			}	
+			$("[id^='orderer_name_text']").find("#nameSp").text($nameInpt.val());
+			$("[id^='orderer_name_val']").find("#nameInpt").val($nameInpt.val());
+		} else if ($nameInpt.length > 0) {
+			alert("주문자를 입력해 주세요.");
+			$nameInpt.focus();
+			return false;
+		}
+
+		// 간편회원인 경우 첫번째일때는 undefined 로 들어온다.
+		var simpleMemberYnFirst = "N";
+           if ( $(deli_span_nm+" select[name=deli_select] option").index($(deli_span_nm+" select[name=deli_select] option:selected")) < 0 && mbr_sct_cd_5 == "Y"){
+		
+			
+			
+				simpleMemberYnFirst = "Y";
+				$("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val("C");
+			
+		
+		}
+
+		// 연락처 수정은 수정으로, 새배송지는 신규로 처리한다.
+		if ( $("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val() != undefined  || simpleMemberYnFirst == "Y") {  //수정 or 신규
+	
+		if( "Y" != grockle_yn ){
+			if ( $("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val() == "C" || 
+				 $("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val() == "U" || simpleMemberYnFirst == "Y" ) {
+				deli_span_nm += " #li_new";
+			} else {
+				deli_span_nm += " #li_mine";
+			}
+		}
+			rmitnm[tmp_idx]		 	= $(deli_span_nm + " input[name=inprmitnm]").val();
+			dlvzip1[tmp_idx]	 	= $(deli_span_nm + " input[name=inpzip1]:hidden").val();
+			dlvzip2[tmp_idx]	 	= $(deli_span_nm + " input[name=inpzip2]:hidden").val();
+			postaddr[tmp_idx]	 	= $(deli_span_nm + " input[name=inpaddr1]").val();
+			dtladdr[tmp_idx]	 	= $(deli_span_nm + " input[name=inpaddr2]").val();
+			stnm_dlv_zip1[tmp_idx]	= $(deli_span_nm + " input[name=stnm_inp_zip1]:hidden").val();
+			stnm_dlv_zip2[tmp_idx] 	= $(deli_span_nm + " input[name=stnm_inp_zip2]:hidden").val();
+			stnm_post_addr[tmp_idx]	= $(deli_span_nm + " input[name=stnm_inp_addr1]:hidden").val();
+			stnm_dtl_addr[tmp_idx]	= $(deli_span_nm + " input[name=stnm_inp_addr2]:hidden").val();
+			cbltelrgnno[tmp_idx] 	= $(deli_span_nm + " input[name=inptel1]").val();
+			if (cbltelrgnno[tmp_idx] == "") {
+				cbltelrgnno[tmp_idx] = "000";
+			}
+			cblteltxnono[tmp_idx]	= $(deli_span_nm + " input[name=inptel2]").val();
+			if (cblteltxnono[tmp_idx] == "") {
+				cblteltxnono[tmp_idx] = "000";
+			}
+			cbltelendno[tmp_idx] 	= $(deli_span_nm + " input[name=inptel3]").val();
+			if (cbltelendno[tmp_idx] == "") {
+				cbltelendno[tmp_idx] = "000";
+			}
+			cbltelexnono[tmp_idx]	= "";
+
+
+			if ( $("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val() == undefined  && simpleMemberYnFirst != "Y") {
+				// 배송지 수정/신규 둘 다 아닐 경우
+				var dlvpSn = $(deli_span_nm + " #deli_select_" + k).val();
+				cellsctno[tmp_idx] = $("#deli_phone_val_" + k + "_" + dlvpSn + " [name=inpcell1]:enabled").val();
+				celltxnono[tmp_idx]	= $("#deli_phone_val_" + k + "_" + dlvpSn + " input[name=inpcell2]").val();
+				cellendno[tmp_idx] = $("#deli_phone_val_" + k + "_" + dlvpSn + " input[name=inpcell3]").val();	
+				//alert('배송지 수정/신규 둘 다 아닐 경우');				
+			} else if ($("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val() == "C"  ||
+				       $("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val() == "U"  || simpleMemberYnFirst == "Y"   ) {
+				// 배송지 신규, 수정 (비회원 포함)
+				cellsctno[tmp_idx] = $("#deli_phone_val_" + k + " [name=inpcell1]:enabled").val();
+				celltxnono[tmp_idx]	= $("#deli_phone_val_" + k + " input[name=inpcell2]").val();
+				cellendno[tmp_idx] = $("#deli_phone_val_" + k + " input[name=inpcell3]").val();	
+
+				//수정일 경우 일반전화번호 셋팅
+				if ($("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val() == "U" ) {
+					cbltelrgnno[tmp_idx] =  $("#deli_phone_val_" + k + " input[name=inptel1]").val();
+					cblteltxnono[tmp_idx]= $("#deli_phone_val_" + k + " input[name=inptel2]").val();
+					cbltelendno[tmp_idx] =  $("#deli_phone_val_" + k + " input[name=inptel3]").val();
+				}
+				//alert('배송지 신규, 수정 (비회원 포함)'+cbltelrgnno[tmp_idx]);			
+			} 
+					
+		if( "Y" != grockle_yn ){
+			//deliidx = $("#frm_inp select[name=deli_select]").attr("selectedIndex");
+			deliidx = $(deli_span_nm+" select[name=deli_select] option").index($(deli_span_nm+" select[name=deli_select] option:selected"));
+
+			if($("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val() == 'U') {
+				deliidx = $("#deli_"+k + " #li_mine select[name=deli_select] option").index($("#deli_"+k + " #li_mine select[name=deli_select] option:selected"));
+			}
+			
+			basedlvpyn[tmp_idx] = $("#frm_inp input[name=basedlvpyn]").eq(deliidx).val();
+			if (basedlvpyn[tmp_idx] == "") {basedlvpyn[tmp_idx] = "N";}
+			dlvpnm[tmp_idx]     = $(deli_span_nm+" input[name=inpdlvpnm]").val();	
+		
+			if($("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val() == 'C' || simpleMemberYnFirst == "Y"  ){
+				dlvpsn[tmp_idx]    = "";
+				usrsortrnk[tmp_idx]= "0";
+				deli_chk[tmp_idx]  = "C";	//배송지 수정이면 U 신규이면 C
+
+				if (simpleMemberYnFirst == "Y" ) {
+					basedlvpyn[tmp_idx] = "N";
+				}	
+				//alert(($("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val())+" dlvpuseyn["+k+"]--->" + ($("#dlvpuseyn_"+k).prop("checked")));
+				if ($("#dlvpuseyn_"+k).length > 0 && $("#dlvpuseyn_"+k).prop("checked")==false) {
+					dlvpuseyn[tmp_idx] = "N";	
+				} 
+			}else if($("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val() == 'U'){
+				dlvpsn[tmp_idx]    = $("#frm_inp input[name=dlvpsn]").eq(deliidx).val();
+				usrsortrnk[tmp_idx]= $("#frm_inp input[name=usrsortrnk]").eq(deliidx).val();
+				deli_chk[tmp_idx]  = "U";
+			}else{
+				dlvpsn[tmp_idx]    = $("#frm_inp input[name=dlvpsn]").eq(deliidx).val();
+				usrsortrnk[tmp_idx]= $("#frm_inp input[name=usrsortrnk]").eq(deliidx).val();
+				deli_chk[tmp_idx]  = "";
+			}
+
+			if (chk_multi_dlvp!=undefined && chk_multi_dlvp){ // 다중배송이면
+				deli_chk[0]  = "";	// 첫번째 배송지는 읽기전용
+			}
+			
+			if ( $.trim($(deli_span_nm+" input[name=inpdlvpnm]").val()) == ''   ) {
+				alert("배송지명을 입력해주세요.");
+				//$(deli_span_nm+" input[name=inpdlvpnm]").focus();
+				return false;
+			} 
+		}
+	        if (    $("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val() == "C" 
+				 || $("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val() == "U" 
+		        ) {
+				if ( $.trim($(deli_span_nm+" input[name=inprmitnm]").val()) == '' ) {
+					alert('받으시는 분을 입력해주세요.');
+					$(deli_span_nm+" input[name=inprmitnm]").focus();
+					return false;
+			    } else if ( (($.trim($(deli_span_nm + " input[name=inpzip1]").val()) == '' 
+								|| $.trim($(deli_span_nm + " input[name=inpzip2]").val()) == '' 
+								|| $.trim($(deli_span_nm + " input[name=inpaddr1]").val()) == '') 
+									&& ($.trim($(deli_span_nm + " input[name=stnm_inp_zip1]").val()) == '' 
+										|| $.trim($(deli_span_nm + " input[name=stnm_inp_zip2]").val()) == '' 
+										|| $.trim($(deli_span_nm + " input[name=stnm_inp_addr1]").val()) == '')) 
+						    || ( $.trim($(deli_span_nm + " #txt_zip1_" + k).val()) == '' 
+							        || $.trim($(deli_span_nm + " #txt_zip2_" + k).val()) == '' )
+				          ) 
+					{
+					alert('주소를 검색 후 입력해주세요.');
+					//$(deli_span_nm+" input[name=inpsearch]").focus();
+					return false;
+				} else if ( $.trim($(deli_span_nm + " input[name=inpaddr2]").val()) == ''
+						&& $.trim($(deli_span_nm + " input[name=stnm_inp_addr2]").val()) == '' ) {
+					alert('나머지 주소를  입력해주세요.');
+					//$(" input[name=inpaddr2]").focus();
+					return false;
+				/* 2014.12.29 모바일주문간소화 연락처 삭제. jjkim59
+				} else if ( !$.trim($(deli_span_nm+" input[name=inptel1]").val()).isNum() || ($.trim($(deli_span_nm+" input[name=inptel1]").val()).length < 2 || $.trim($(deli_span_nm+" input[name=inptel1]").val()).length > 4) ) {
+					alert('연락처를 2~4자리 숫자로 입력해주세요.');
+					$(deli_span_nm+" input[name=inptel1]").focus();
+					return false;
+				} else if ( !$.trim($(deli_span_nm+" input[name=inptel2]").val()).isNum() || ($.trim($(deli_span_nm+" input[name=inptel2]").val()).length < 3 || $.trim($(deli_span_nm+" input[name=inptel2]").val()).length > 4) ) {
+					alert('연락처를 3~4자리 숫자로 입력해주세요.');
+					$(deli_span_nm+" input[name=inptel2]").focus();
+					return false;
+				} else if ( !$.trim($(deli_span_nm+" input[name=inptel3]").val()).isNum() || ($.trim($(deli_span_nm+" input[name=inptel3]").val()).length < 3 || $.trim($(deli_span_nm+" input[name=inptel3]").val()).length > 4) ) {
+					alert('연락처를 3~4자리 숫자로 입력해주세요.');
+					$(deli_span_nm+" input[name=inptel3]").focus();
+					return false;
+				*/
+				}
+	        } 
+	        if ( !$(deli_span_nm+" input[name=inpcell1]").prop("disabled") && (!$.trim($(deli_span_nm+" input[name=inpcell1]").val()).isNum() || ($.trim($(deli_span_nm+" input[name=inpcell1]").val()).length < 3 || $.trim($(deli_span_nm+" input[name=inpcell1]").val()).length > 4)) ) {
+				alert('연락처를 3~4자리 숫자로 입력해주세요.1');
+				$(deli_span_nm+" input[name=inpcell1]").focus();
+				return false;
+			} else if ( !$(deli_span_nm+" select[name=inpcell1]").prop("disabled") && (!$.trim($(deli_span_nm+" select[name=inpcell1]").val()).isNum() || ($.trim($(deli_span_nm+" select[name=inpcell1]").val()).length < 3 || $.trim($(deli_span_nm+" select[name=inpcell1]").val()).length > 4)) ) {
+				alert('연락처를 선택해주세요.1');
+				//$(deli_span_nm+" input[name=inpcell2]").focus();
+				return false;
+			} else if ( !$.trim($(deli_span_nm+" input[name=inpcell2]").val()).isNum() || ($.trim($(deli_span_nm+" input[name=inpcell2]").val()).length < 3 || $.trim($(deli_span_nm+" input[name=inpcell2]").val()).length > 4) ) {
+				alert('연락처를 3~4자리 숫자로 입력해주세요.');
+				$(deli_span_nm+" input[name=inpcell2]").focus();
+				return false;
+			} else if ( !$.trim($(deli_span_nm+" input[name=inpcell3]").val()).isNum() || ($.trim($(deli_span_nm+" input[name=inpcell3]").val()).length < 3 || $.trim($(deli_span_nm+" input[name=inpcell3]").val()).length > 4) ) {
+				alert('연락처를 3~4자리 숫자로 입력해주세요.');
+				$(deli_span_nm+" input[name=inpcell3]").focus();
+				return false;
+			}
+		}else {		//회원 수정없을경우
+			//var deliidx = $("#frm_inp select[name=deli_select]").attr('selectedIndex');
+			deliidx = $(deli_span_nm+" select[name=deli_select] option").index($(deli_span_nm+" select[name=deli_select] option:selected"));
+			basedlvpyn[tmp_idx]	 	= $("#frm_inp input[name=basedlvpyn]").eq(deliidx).val(); //rcvCode
+			dlvpsn[tmp_idx]		 	= $("#frm_inp input[name=dlvpsn]").eq(deliidx).val(); //rcvCode
+			dlvpnm[tmp_idx]      	= $("#frm_inp input[name=dlvpnm]").eq(deliidx).val();
+			rmitnm[tmp_idx]		 	= $("#frm_inp input[name=rmitnm]").eq(deliidx).val();
+			dlvzip1[tmp_idx]	 	= $("#frm_inp input[name=dlvzip1]").eq(deliidx).val();
+			dlvzip2[tmp_idx]	 	= $("#frm_inp input[name=dlvzip2]").eq(deliidx).val();
+			postaddr[tmp_idx]	 	= $("#frm_inp input[name=postaddr]").eq(deliidx).val();
+			dtladdr[tmp_idx]	 	= $("#frm_inp input[name=dtladdr]").eq(deliidx).val();
+			stnm_dlv_zip1[tmp_idx]	= $("#frm_inp input[name=stnm_dlv_zip1]").eq(deliidx).val();
+			stnm_dlv_zip2[tmp_idx]	= $("#frm_inp input[name=stnm_dlv_zip2]").eq(deliidx).val();
+			stnm_post_addr[tmp_idx]	= $("#frm_inp input[name=stnm_post_addr]").eq(deliidx).val();
+			stnm_dtl_addr[tmp_idx]	= $("#frm_inp input[name=stnm_dtl_addr]").eq(deliidx).val();
+			cellsctno[tmp_idx]	 	= $("#frm_inp input[name=cellsctno]").eq(deliidx).val();
+			celltxnono[tmp_idx]	 	= $("#frm_inp input[name=celltxnono]").eq(deliidx).val();
+			cellendno[tmp_idx]	 	= $("#frm_inp input[name=cellendno]").eq(deliidx).val();
+			cbltelrgnno[tmp_idx] 	= $("#frm_inp input[name=cbltelrgnno]").eq(deliidx).val();
+			cblteltxnono[tmp_idx]	= $("#frm_inp input[name=cblteltxnono]").eq(deliidx).val();
+			cbltelendno[tmp_idx] 	= $("#frm_inp input[name=cbltelendno]").eq(deliidx).val();
+			cbltelexnono[tmp_idx]	= "";
+			usrsortrnk[tmp_idx]	 	= $("#frm_inp input[name=usrsortrnk]").eq(deliidx).val();
+			deli_chk[tmp_idx]	 	= "";
+		}
+
+		// 배송지재사용 셋팅
+		$("#frm_send input[name=chk_dlvp_reuse]").val("");
+		if (k==1 && $("#chk_dlvp_reuse").length > 0) {
+			if ( deli_chk[tmp_idx]== "U" && $("#chk_dlvp_reuse_mod").prop("checked") == true) {
+				$("#frm_send input[name=chk_dlvp_reuse]").val("Y");
+			} else  if ( deli_chk[tmp_idx]== "" && $("#chk_dlvp_reuse").prop("checked") == true) {
+				$("#frm_send input[name=chk_dlvp_reuse]").val("Y");
+			}
+		}
+
+		// 배송메시지
+		rcvmessage[tmp_idx]	 = $(deli_span_nm+" select[name=deli_msg]").val();
+		addrcvmessageyn[tmp_idx] = "";
+		if (rcvmessage[tmp_idx] == "직접입력") {
+			rcvmessage[tmp_idx]	 = $(deli_span_nm+" input[name=rcvmessage]").val();
+			if( k==1 ){
+				addrcvmessageyn[tmp_idx] = "Y";
+			}
+		}
+
+		// 우편번호
+		if (dlvzip1[tmp_idx]=="" || dlvzip2[tmp_idx]==""){
+			dlvzip[tmp_idx] = "";
+		}else{
+			dlvzip[tmp_idx] = dlvzip1[tmp_idx] + dlvzip2[tmp_idx];
+		}
+
+		if (stnm_dlv_zip1[tmp_idx]=="" || stnm_dlv_zip2[tmp_idx]==""){
+			stnm_dlv_zip[tmp_idx] = "";
+		}else{
+			stnm_dlv_zip[tmp_idx] = stnm_dlv_zip1[tmp_idx] + stnm_dlv_zip2[tmp_idx];
+		}
+
+		// 선물 메시지
+		if ( $(deli_span_nm + " input[name=gift_yn_"+k+"]:radio:checked").val() == '1' ) {
+			receivename[tmp_idx]	= $(deli_span_nm + " input[name=receivename_"+k+"]:enabled").val();
+			sendmessage[tmp_idx]	= $(deli_span_nm + " textarea[name=sendmessage_"+k+"]:enabled").val();
+			sendname[tmp_idx]	= $(deli_span_nm + " input[name=sendname_"+k+"]:enabled").val();
+
+			if ( $.trim(receivename[tmp_idx]) == '' && $.trim(sendmessage[tmp_idx]) == '' 
+				&& $.trim(sendname[tmp_idx]) == '' ) {
+				card_msg_chk = true;					
+			}
+		} else {
+			receivename[tmp_idx] = "";
+			sendmessage[tmp_idx] = "";
+			sendname[tmp_idx] = "";
+		}
+	}
+
+	// 배송지 중복 체크
+	if (dlvpsn.length > 1 && chk_multi_dlvp!=undefined && chk_multi_dlvp){
+		for(var i=1; i<dlvpsn.length; i++){
+			if (dlvpsn[i]=="" && deli_chk[i]=="C"){ // 신규 배송지일 경우
+				continue;
+			}
+			
+			for(var j=1; j<dlvpsn.length; j++){
+				if (i!=j && dlvpsn[i] == dlvpsn[j]){
+					alert('중복된 배송지가 존재합니다.');
+					return false;
+				}
+			}
+		}
+	}
+
+	// 선물 메시지 작성 체크
+	if (card_msg_chk && !confirm('선물메시지를 작성하지 않고 주문을 진행하시겠습니까?')) { 
+		return false;
+	}
+
+	if (chk_multi_dlvp!=undefined && chk_multi_dlvp){ // 다중배송인 경우
+		// 주문 상품 종류 수
+		cart_sn = $("#frm_send input[name=cartsn]:hidden").val().split(split_gubun_1);
+
+		var tmp_prod_cnt = 0; // 배송지별 상품수
+		// 주문 상품 종류 수 만큼 반복
+		for(var i=0; i<cart_sn.length;i++){	
+			deli_prod_cnt = new Array(); // 배송지별 수량
+			dlvp_idx_tmp = new Array(); // 상품별 배송지 idx
+				
+			for(var j=1; j<=areaNum; j++){
+				tmp_prod_cnt = $("input[name=multi_prod_"+cart_sn[i]+"_"+j+"]").val();
+
+				if (parseInt(tmp_prod_cnt) < 1){
+					continue;
+				}
+				
+				deli_prod_cnt[deli_prod_cnt.length] = tmp_prod_cnt;
+				dlvp_idx_tmp[dlvp_idx_tmp.length] = j;
+			}
+
+			ord_qty_list[i] = deli_prod_cnt.join(split_gubun_1);// 상품별 배송지별 수량
+			dlvp_idx[i] = dlvp_idx_tmp.join(split_gubun_1);// 상품별 배송지별 수량
+		}
+
+		$("#frm_send input[name=ord_qty_list]").val( ord_qty_list.join(split_gubun_3) );
+		$("#frm_send input[name=dlvp_idx]").val( dlvp_idx.join(split_gubun_3) );
+	}else{
+		$("#frm_send input[name=dlvp_idx]").val("0");
+	}
+
+	$("#frm_send input[name=basedlvpyn]:hidden").val( basedlvpyn.join(split_gubun_3) );
+	$("#frm_send input[name=dlvpsn]:hidden").val( dlvpsn.join(split_gubun_3) );
+	$("#frm_send input[name=dlvpnm]:hidden").val( dlvpnm.join(split_gubun_3) );
+	$("#frm_send input[name=rmitnm]:hidden").val( rmitnm.join(split_gubun_3) );
+	$("#frm_send input[name=dlvzip]:hidden").val( dlvzip.join(split_gubun_3) );
+	$("#frm_send input[name=postaddr]:hidden").val( postaddr.join(split_gubun_3) );
+	$("#frm_send input[name=dtladdr]:hidden").val( dtladdr.join(split_gubun_3) );
+	$("#frm_send input[name=stnm_dlv_zip]:hidden").val( stnm_dlv_zip.join(split_gubun_3) );
+	$("#frm_send input[name=stnm_post_addr]:hidden").val( stnm_post_addr.join(split_gubun_3) );
+	$("#frm_send input[name=stnm_dtl_addr]:hidden").val( stnm_dtl_addr.join(split_gubun_3) );
+	$("#frm_send input[name=cellsctno]:hidden").val( cellsctno.join(split_gubun_3) );
+	$("#frm_send input[name=celltxnono]:hidden").val( celltxnono.join(split_gubun_3) );
+	$("#frm_send input[name=cellendno]:hidden").val( cellendno.join(split_gubun_3) );
+	$("#frm_send input[name=cbltelrgnno]:hidden").val( cbltelrgnno.join(split_gubun_3) );
+	$("#frm_send input[name=cblteltxnono]:hidden").val( cblteltxnono.join(split_gubun_3) );
+	$("#frm_send input[name=cbltelendno]:hidden").val( cbltelendno.join(split_gubun_3) );
+	$("#frm_send input[name=cbltelexnono]:hidden").val( cbltelexnono.join(split_gubun_3) );
+	$("#frm_send input[name=usrsortrnk]:hidden").val( usrsortrnk.join(split_gubun_3) );
+	$("#frm_send input[name=delichk]:hidden").val( deli_chk.join(split_gubun_3) );
+	$("#frm_send input[name=rcvmessage]").val( rcvmessage.join(split_gubun_3) );		
+	$("#frm_send input[name=addrcvmessageyn]").val( addrcvmessageyn.join(split_gubun_3) );
+	$("#frm_send input[name=receivename]:hidden").val( receivename.join(split_gubun_3) );
+	$("#frm_send input[name=sendmessage]:hidden").val( sendmessage.join(split_gubun_3) );
+	$("#frm_send input[name=sendname]:hidden").val( sendname.join(split_gubun_3) );
+	$("#frm_send input[name=dlvpuseyn]:hidden").val( dlvpuseyn.join(split_gubun_3) );
+	
+	var prodArr = '1278460735'.split(split_gubun_1);
+	var tmp_val = "";
+	var tmp_arr = new Array(prodArr);
+	
+	// 매장전달메시지
+	for(var i=0; i<prodArr.length; i++){
+		if (typeof($("#frm_inp input[name=shop_memo_"+prodArr[i]+"]"))==undefined){
+			tmp_val = "";
+		}else{
+			tmp_val = $("#frm_inp input[name=shop_memo_"+prodArr[i]+"]").val();
+		}
+				
+		tmp_arr[i] = tmp_val;
+	}
+	
+	$("#frm_send input[name=shop_memo_cont]:hidden").val( tmp_arr.join(split_gubun_1) );
+	
+	// 선물포장여부
+	for(var i=0; i<prodArr.length; i++){
+		if (typeof($("#frm_inp input[name=gift_pkg_"+prodArr[i]+"]:radio:checked"))==undefined){
+			tmp_val = "N";
+		}else{
+			tmp_val = $("#frm_inp input[name=gift_pkg_"+prodArr[i]+"]:radio:checked").val();
+		}
+				
+		tmp_arr[i] = tmp_val;
+	}
+	$("#frm_send input[name=gift_pkg_yn]:hidden").val( tmp_arr.join(split_gubun_1) );
+
+	return true;
+}
+</script>
+
+</head>
+<body ng-controller="OrderCtrl" ondragstart="return false">
+	<script>
+	var resCode = "0000";
+	var orderSubTitle = "주문서 작성";
+	</script>
+    <div id="wrapper" ng-show="showWrap">
+        <lotte-header></lotte-header>
+        <sub-header></sub-header>
+        <not-found ng-if="noData"></not-found>
+		
+
+
+	
+
+		<lotte-footer></lotte-footer>
+	</div>
+	
+	<lotte-search></lotte-search>
+	<lotte-side-category></lotte-side-category>
+	<lotte-side-mylotte></lotte-side-mylotte>
+    <lotte-footer-actionbar></lotte-footer-actionbar>
+    
+	<lotte-comm-footer></lotte-comm-footer>
+	
+	<!--  2015.02.17 추가-->
+	<script type="text/javascript" src="http://static.criteo.net/js/ld/ld.js" async="true"></script>
+	<script type="text/javascript">
+	window.criteo_q = window.criteo_q || [];
+	window.criteo_q.push(
+	        { event: "setAccount", account: "2975" },
+	        { event: "setSiteType", type: "m" },
+	        { event: "viewHome" }
+	);
+	</script>
+	<!-- 이걸 팝업으로 함수들이 height: 100%를 주고 있어 div wrapper 안에 있으면 높이보다 넘어가는건 잘리는 현상이 있다 -->
+	<div id="CONFIRM_LAYER" style="display:none;position:absolute;z-index:5000;top:85px;left:0;">
+		<iframe id="CONFIRM_FRAME" name="CONFIRM_FRAME" src="/dacom/xansim/iframe.jsp" style="width:100%;height:100%;display:none;border:none;" ></iframe>
+	</div>
+	
+	<div id="ajax_info" style="display:none"></div>
+</body>
+</html>

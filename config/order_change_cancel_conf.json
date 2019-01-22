@@ -1,0 +1,68 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplOrderChangeCancelConf" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                ],
+                "dest" : "lotte/resources/<%= version %>/order_change_cancel_conf.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsOrderChangeCancelConf" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mylotte/orderclaim/order_change_cancel.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/order_change_cancel_conf.js"
+            }
+        },
+
+        "uglify" : {
+            "jsOrderChangeCancelConf" : {
+                "src" : "lotte/resources/<%= version %>/order_change_cancel_conf.js",
+                "dest" : "lotte/resources/<%= version %>/order_change_cancel_conf.min.js"
+            },
+            "tplOrderChangeCancelConf" : {
+                "src" : "lotte/resources/<%= version %>/order_change_cancel_conf.template.js",
+                "dest" : "lotte/resources/<%= version %>/order_change_cancel_conf.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssOrderChangeCancelConf" : {
+                "src" : [
+                    "lotte/resources_dev/mylotte/purchase/m/order_return_reg.css",
+                    "lotte/resources_dev/mylotte/purchase/m/purchase.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/order_change_cancel_conf.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanOrderChangeCancelConf" : [
+                "lotte/resources/<%= version %>/order_change_cancel_conf.js",
+                "lotte/resources/<%= version %>/order_change_cancel_conf.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlOrderChangeCancelConf" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                }
+            }
+        }
+    }
+}
+

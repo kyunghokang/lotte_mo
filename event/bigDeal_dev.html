@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+	<meta charset="utf-8">
+	<title>롯데닷컴-bigDeal</title>
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+
+	<script>
+	var APP_KEY = "7fa1e44757a94fd89921";
+	var SERVER_TIME = new Date();
+	</script>
+	<!-- JSP 영역 -->
+	<!-- 
+	<%@ page language="java" contentType="text/html;charset=utf-8"  %>
+	
+	<%@include file="/common3/angular_common_include.jsp"%>
+	<% if (LOTTE_DEVEL_MODE) { %>
+	<%@include file="/angular_common/lotte_common_css.jsp"%>
+	<%@include file="/angular_common/lotte_common_js.jsp"%>
+	
+	<!-- 이 화면에서 쓰이는 CSS -->
+	
+	<!-- 이 화면에서 쓰이는 JS -->
+	
+	<!-- 
+	<% } else {  %>
+		<%@include file="/common3/html_meta_angular.jsp"%>
+		<link rel="stylesheet" type="text/css" href="/lotte/resources/<%= pubVersion %>/bigDeal.min.css"/>
+		<script src="/lotte/resources/<%= pubVersion %>/bigDeal.min.js"></script>
+		<script src="/lotte/resources/<%= pubVersion %>/bigDeal.tpl.js"></script>
+	<% } %>
+	 -->
+	<!-- // JSP 영역 -->
+	 
+	<!-- build:template
+	<link rel="stylesheet" type="text/css" href="/lotte/resources/<%= version %>/common.min.css"/>
+	/build -->
+	<!-- build:remove -->
+	<script src="/lotte/resources_dev/common/common_load.js"></script>
+	<!-- /build -->
+
+	<!-- build:template
+	<link rel="stylesheet" type="text/css" href="/lotte/resources/<%= version %>/bigDeal.min.css"/>
+	/build -->
+	<!-- build:remove -->
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/sns/sns.css"/>
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/event/bigDeal.css"/>
+	<!-- /build -->
+
+	<!-- build:template
+	<script src="/lotte/resources/<%= version %>/common.min.js"></script>
+	/build -->
+	<!-- build:remove -->
+	<!-- /build -->
+
+	<!-- build:template
+	<script src="/lotte/resources/<%= version %>/bigDeal.min.js"></script>
+	/build -->
+	<!-- build:remove -->
+	<script src="/lotte/resources_dev/sns/lotte_sns.js"></script>
+	<script src="/lotte/lib/kakao/kakao.js"></script>
+	<script src="/lotte/resources_dev/event/bigDeal.js"></script>
+	<script src="/common3/js/tablets.js"></script>
+	<!-- /build -->
+	
+	<!-- build:template
+	<script src="/lotte/resources/<%= version %>/bigDeal.tpl.js"></script>
+	/build -->
+
+	<script>
+	var orderSubTitle = "주문완료";
+	</script>
+</head>
+<body ng-controller="bigDealCtrl">
+	<div id="wrapper" ng-show="showWrap">
+		<lotte-header></lotte-header>
+		<lotte-search></lotte-search>
+		<sub-header></sub-header>
+		<share-pop></share-pop>
+
+
+<!-- JSP Include 영역 /-->
+<%@ include file="/WEB-INF/view/event/bigDeal_for_angular.jsp"%>
+
+<script>
+/* Get 파라메타 */
+var getParam = function(key){
+	var _parammap = {};
+	var param_value = "";
+	document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
+	    function decode(s) {
+		return decodeURIComponent(s.split("+").join(" "));
+	    }
+	    _parammap[decode(arguments[1])] = decode(arguments[2]);
+	});
+	param_value = _parammap[key];
+	if(_parammap[key] == undefined) param_value = "";
+	return param_value;
+};
+
+/* Get Cookie */
+function getCookieValue(cName) {
+    cName = cName + '=';
+    var cookieData = document.cookie;
+    var start = cookieData.indexOf(cName);
+    var cValue = '';
+    if(start != -1){
+         start += cName.length;
+         var end = cookieData.indexOf(';', start);
+         if(end == -1)end = cookieData.length;
+         cValue = cookieData.substring(start, end);
+    }
+    return unescape(cValue);
+}
+
+/* 페이지 이동 (Default Parameter 유지) */
+function goUrl(url){
+	var goUrl = "";
+	if(url.indexOf("?") > -1){
+		goUrl = url + "&c="+getParam('c')+"&udid="+getParam('udid')+"&schema="+getParam('schema')+"&v="+getParam('v')+"&cn="+getParam('cn')+"&cdn="+getParam('cdn');
+	}else{
+		goUrl = url + "?c="+getParam('c')+"&udid="+getParam('udid')+"&schema="+getParam('schema')+"&v="+getParam('v')+"&cn="+getParam('cn')+"&cdn="+getParam('cdn');
+	}
+
+	document.location.href = goUrl;
+}
+
+/* 상품상세 이동 */
+function goProductView(goods_no){
+	/* 간편회원 확인*/
+	if(getCookieValue('MBRSCTCD') == "pnhZkYs9a5U="){
+		alert("간편계정 회원의 경우 구매불가합니다.\nL.POINT 통합회원 가입 후 구매해주세요.");
+		return;
+	}
+
+	if(getParam('udid') == "" || getParam('schema') == ""){
+		alert("본 이벤트 상품은 모바일 앱에서만 구매하실 수 있습니다.\n앱에서 '기특한 빅딜'을 검색하세요!");
+		goAppDown('lotte200066lotte');
+	}else{
+		if(loginChk()){
+			location.href = "http://m.lotte.com/product/m/product_view.do?goods_no="+goods_no+"&c="+getParam('c')+"&udid="+getParam('udid')+"&schema="+getParam('schema')+"&v="+getParam('v')+"&cn="+getParam('cn')+"&cdn="+getParam('cdn');
+		}else{
+			if(confirm('로그인 후 구매하실 수 있습니다.')){
+				goLogin();
+			}
+		}
+	}
+}
+
+/* 쿠폰 등록 */
+function regCoupon(cpnNo){
+	if(loginChk()){
+		var url = "/event/regCoupon.do?";
+		var params = "cpn_issu_no="+cpnNo;
+		$.post(url, params, function(data){
+			$('#msg').html(data).show();
+		});
+	}else{ 
+		if(confirm('로그인 후 다운로드 받을 수 있습니다.')){
+			goLogin();
+		}
+	}
+}
+
+/* 앱 다운로드 */
+function goAppDown(referrer){
+	if (getParam('udid') == "" || getParam('schema') == "") {
+		AppExecReferrer(referrer).appExecute();
+	}
+}
+
+/* 앱 실행 */
+var AppExecReferrer = function (referrer) {
+	var isIPHONE = navigator.userAgent.match('iPhone') != null || navigator.userAgent.match('iPod') != null,
+		isIPAD = navigator.userAgent.match('iPad') != null,
+		isANDROID = navigator.userAgent.match('Android') != null,
+		isCHROME = navigator.userAgent.match('Chrome') != null,
+		iPhone = {Scheme: "mlotte001://", MarketURL: "http://itunes.apple.com/app/id376622474?mt=8"},
+		iPad = {Scheme: "mlotte003://", MarketURL: "http://itunes.apple.com/app/id447799601?mt=8"},
+		Android = {Scheme: "mlotte001://", MarketURL: "market://details?id=com.lotte&referrer=" + referrer},
+		runUrl = location.href.split("&")[0].replace("c=mlotte", ""),
+		APPEXEC = {
+			MarketURL : "",
+			goMarketFunc : function () {},
+			ExecuteFunc : function () {}
+		};
+
+	/* URL Parsing */
+	if (runUrl.indexOf("?") > -1) {
+		runUrl += "&cn=23";
+	} else {
+		runUrl += "?cn=23";
+	}
+
+	var appRunUrl = runUrl.replace(/(http:\/\/|https:\/\/)/g, "").replace(".do?&",".do?"),
+		chromeRunUrl = runUrl.replace(".do?&",".do?").replace(/\&/g, "@");
+
+	/* 연결 URL 설정 */
+	if (isANDROID) { /* Android */
+		if (isCHROME) {
+			runUrl = chromeRunUrl;
+			APPEXEC.MarketURL = Android.MarketURL + "&url=" + Android.Scheme + "m.lotte.com/app_landing.do?url=" + runUrl;
+		} else {
+			runUrl = appRunUrl.replace(/\&/g, "@");
+			APPEXEC.MarketURL = Android.MarketURL + "&returnUrl=" + Android.Scheme + "m.lotte.com/app_landing.do?url=" + runUrl;
+		}
+
+		APPEXEC.ExecuteFunc = function () {
+			var iframe = document.createElement('iframe');
+			iframe.style.visibility = 'hidden';
+			iframe.style.display = "none";
+	
+			if (!isCHROME)
+				iframe.src = Android.Scheme + appRunUrl;
+			
+			iframe.onload = function () {
+				window.location = APPEXEC.MarketURL;
+			};
+
+			document.body.appendChild(iframe);
+		};
+	} else { /* iOS */
+		if (isIPHONE) {
+			APPEXEC.MarketURL = iPhone.MarketURL;
+		} else if (isIPAD) {
+			APPEXEC.MarketURL = iPad.MarketURL;
+		}
+
+		APPEXEC.ExecuteFunc = function () {
+			var scheme = "",
+				setTimeVal = 350,
+				timeout = null;
+
+			if (isIPHONE) {
+				scheme = iPhone.Scheme;
+			} else if (isIPAD) {
+				scheme = iPad.Scheme;
+			}
+
+			if (navigator.userAgent.match("iPhone OS 9_2") != null) { /* iOS 9.2 예외처리 (마켓이동시간 2초 후로 변경) */
+				setTimeVal = 2000;
+			}
+
+			window.location = scheme + appRunUrl;
+
+			timeout = setTimeout(function () {
+				window.location = APPEXEC.MarketURL;
+			}, setTimeVal);
+
+			$(window).on("pagehide", function () {
+				clearTimeout(timeout);
+				timeout = null;
+
+				$(window).off("pagehide");
+			});
+		};
+	}
+
+	APPEXEC.goMarketFunc = function () {
+		window.location = APPEXEC.MarketURL;
+	};
+	
+	return {
+		goMarket: APPEXEC.goMarketFunc, /* 마켓 이동 */
+		appExecute: APPEXEC.ExecuteFunc /* 앱 실행 */
+	};
+};
+</script>
+<div id="eventPage">
+<div id="good_event_box1"><img alt="APP에서 만나는 포인트백 기특한 빅딜 2016.05.12~05.18 1차:05.12~05.16 오후14시, 2차:05.16~05.18" src="http://image.lotte.com/lotte/mobile/mobile_new/event/good_event_box_05_1.jpg" /></div>
+<!-- 20160513 기특딜 2차 상품 -->
+<div id="good_event_box2"><a href="javascript:goProductView('256399690');"><img alt="미리보는 기특한 빅딜! 맥심 아이스" src="http://image.lotte.com/lotte/mobile/mobile_new/event/good_event_box_v2_02.jpg" /></a></div>
+<div id="good_event_box3"><a href="javascript:goProductView('256396237')"><img alt="미리보는 기특한 빅딜! 헤라" src="http://image.lotte.com/lotte/mobile/mobile_new/event/good_event_box_v2_04.jpg" /></a></div>
+<div id="good_event_box4"><a href="javascript:goProductView('256568909')"><img alt="미리보는 기특한 빅딜! 지오다노" src="http://image.lotte.com/lotte/mobile/mobile_new/event/good_event_box_v2_05.jpg" /></a></div>
+<div id="good_event_box5"><a href="javascript:goProductView('256398120')"><img alt="미리보는 기특한 빅딜! 아디다스" src="http://image.lotte.com/lotte/mobile/mobile_new/event/good_event_box_v2_06.jpg" /></a></div>
+<!-- //20160513 기특딜 2차 상품 -->
+<!-- <div id="good_event_box5"><img alt="미리보는 기특한 빅딜!" src="http://image.lotte.com/lotte/mobile/mobile_new/event/good_event_box_5_1.jpg" /></div> -->
+<!-- <div id="good_event_box6"><img alt="당신의 쇼핑 스폰서, 기특한 쿠폰" src="http://image.lotte.com/lotte/mobile/mobile_new/event/good_event_box_6.jpg" /> <a href="javascript:regCoupon('87528');"><img alt="구매하기" src="http://image.lotte.com/lotte/mobile/mobile_new/event/good_event_btn_2.jpg" /> </a><img alt="-발급수량: 1ID당 1개 가능 -최대 할인금액: 20,000원 -일부 저마진 상품 적용 불가" src="http://image.lotte.com/lotte/mobile/mobile_new/event/good_event_box_6_1.jpg" /></div> -->
+<div id="good_event_box7"><a href="javascript:eventSharePos();"><img alt="좋은 건 공유하는 기특한 친구" src="http://image.lotte.com/lotte/mobile/mobile_new/event/good_event_share_btn.jpg" /> </a><img alt="롯데닷컴 APP에서는 쿠폰잔치!" src="http://image.lotte.com/lotte/mobile/mobile_new/event/good_event_box_7.jpg" /> <a href="javascript:goAppDown('lotte200066lotte');"><img alt="할인 쿠폰을 모아논 절친쿠폰북 롯데닷컴 APP에서 절친쿠폰을 검색하세요!" src="http://image.lotte.com/lotte/mobile/mobile_new/event/good_event_coupon_btn_1.jpg" /> </a><a href="javascript:goAppDown('lotte200067lotte');"><img alt="T롯데닷컴 APP에서는 데이터프리 8%추가할인 쿠폰은 뽀너스! (SKT고객 / 안드로이드 전용)" src="http://image.lotte.com/lotte/mobile/mobile_new/event/good_event_coupon_btn_2.jpg" /> </a></div>
+<div id="good_event_box8"><img alt="꼭! 확인해주세요. -행사기간동안 대상 상품을 중복으로 구매하셔도 한 ID당 한 번만 가장 높은 포인트백 금액으로 적립됩니다. - 같은 상품을 두 개이상 구매하셔도 한 번만 적립됩니다. - 포인트 적립은 별도 신청없이 자동신청/일괄지급 됩니다. - APP전용 상품 구매기간 : 2016년 5월 12일~18일 - L.POINT적립일 : 2016년 6월 13일(월) 18시 이후(발송완료 주문금액 기준 포인트 지급) - 롯데닷컴 APP으로 구매한 고객님에 한해서만 지급이 가능합니다. - L.POINT는 L.POINT회원으로 등록되신분께만 지급되므로 회원등록 여부를 꼭 확인해주세요!(간편계정가입 회원 지급 불가) - 비정상적인 방법으로 구매하신 부정주문 건은 포인트 지급불가합니다.- 본 행사는 한정수량으로 진행되며, 재고소진 시 조기종료될 수 있습니다. 또한 당사의 사정에 따라 사전 고지없이 임의 변경 및 종료 될 수 있습니다. - 상품클릭 시 행사대상상품 안내 이미지가 없는 상품은 적립대상 상품이 아닙니다. " src="http://image.lotte.com/lotte/mobile/mobile_new/event/good_event_box_05_8.jpg" /></div>
+</div>
+<!--/ JSP Include 영역 -->
+
+
+		<lotte-footer></lotte-footer>
+		<lotte-btntop></lotte-btntop>
+	</div>
+
+	<lotte-side-category></lotte-side-category>
+	<lotte-side-mylotte></lotte-side-mylotte>
+	<lotte-footer-actionbar></lotte-footer-actionbar>
+
+	<lotte-comm-footer></lotte-comm-footer>
+</body>
+</html>

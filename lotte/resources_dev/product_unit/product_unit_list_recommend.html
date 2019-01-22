@@ -1,0 +1,31 @@
+<ol class="prod_list_recommend">
+	<li ng-repeat="item in products track by $index">
+		<div class="unit_list_recommend">
+			<a href="#" ng-click="productInfoClick(item)">
+				<div class="soldout" ng-show="item.sold_out">SOLD OUT</div>
+				<div class="thumb">
+					<img ng-src="{{getProductImage2(item)}}" alt="{{item.goods_nm}}" err-src />
+				</div>
+				<div class="info">
+					<p class="flag_wrap">
+						<span class="flag depart" ng-if="item.is_dept">롯데백화점</span>
+						<span class="flag etv" ng-if="item.is_tvhome && !item.is_dept">롯데홈쇼핑</span>
+						<span class="flag tag" ng-if="item.flag" ng-repeat="flag in item.flag">{{flag}}</span>
+						<span class="flag smart" ng-show="item.smartpick_yn=='Y'||item.issmart_pick">스마트픽</span>
+					</p>
+					<span class="tit" ng-bind-html="item.goods_nm|titleToHtml"></span>
+					<p class="pr_box">
+						<span class="price"><em>{{item.price2|number}}</em>원<span ng-show="item.is_sale_promotion">~</span></span>
+						<span class="price2" ng-show="item.price1 && !item.is_sale_promotion"><em>{{item.price1|number}}</em>원</span>
+					</p>
+					<p class="coupon" ng-show="!item.is_sale_promotion"><em class="no" ng-if="item.saleRate" ng-show="item.price1 && item.saleRate!=0 && item.price1 != item.price2">{{item.saleRate}}</em><em class="po" ng-if="item.saleRate" ng-show="item.price1 && item.saleRate!=0 && item.price1 != item.price2">%</em><span ng-if="item.coupon" ng-show="item.coupon">쿠폰포함</span>
+					</p>
+				</div>
+			</a>
+			<div class="info2">
+				<span class="review" ng-click="productReviewClick(item)">상품평 <em>({{item.pmg_gdas_cnt|number}})</em></span>
+				<span class="wish_icon" ng-class="{on:item.has_wish}" ng-click="addWishClick($index,item)">위시리스트</span>
+			</div>
+		</div>
+	</li>
+</ol>

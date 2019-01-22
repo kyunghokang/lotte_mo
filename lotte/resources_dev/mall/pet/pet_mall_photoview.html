@@ -1,0 +1,77 @@
+<div class="photo_review_wrap">
+	<!--h3 class="title">{{screenData.disp_name}}</h3-->
+	<section class="dear_wrap social photo_area photo_review">
+		<ul class="list_wrap" ng-if="screenData.dispGallery">
+			<li ng-repeat="item in screenData.gallery_list" ng-init="pidx=$index">
+				<div class="txt_area">
+					<div class="txt_wrap">
+						<span class="userphoto">
+							<em
+								class='pet_img'
+								ng-if="item.user_img"
+								ng-class='{
+								   horizontal:item.rotate_code==2,
+								   rotate180:item.rotate_code==3,
+								   rotate90:item.rotate_code==6,
+								   rotateM90:item.rotate_code==8,
+								   vertical:item.rotate_code==4,
+								   horizontalRotate90:item.rotate_code==5,
+								   horizontalRotateM90:item.rotate_code==7
+								}'
+								style='background:url({{item.user_img}}) center center no-repeat'>
+							</em>
+							<img
+								ng-if="!item.user_img"
+								ng-src="http://image.lotte.com/lotte/mo2015/angular/mall/v_dearpet_photoview_photo.gif" />
+						</span>
+						<p>
+							<span ng-if="!item.user_img">{{(item.user_name?item.user_name.substr(0,6):item.user_name) | hidestr}}</span>
+							<span ng-if="item.user_img">{{item.user_name}}</span>
+						</p>
+						<div class="btn_wrap">
+							<span class="sns"><a ng-click="showSharePop({prdComment:item.goods_nm,shareImg:item.img_list.items[0].img_url, bbsNo :item.bbs_no})">공유</a></span>
+						</div>
+					</div>
+					<div class="cont" ng-class={on:item.open}>
+						<a class='detail_txt small_text'>
+							<div class="contentsText" ng-bind-html="item.text" id="swaglist_cont{{$index}}"></div>
+						</a>
+					</div>
+					<span ng-class={on:item.more} class="btn_more" ng-if="item.big&&screenType<2"><a ng-click="contMoreClick(item)" class="more">더보기</a>
+				</div>
+
+				<div class="slide" ng-controller="lotteNgSwipeCtrl" ng-click="contMoreClick($index)">
+					<button class="btn prev" ng-show="swipeIdx > 0" ng-click="beforeSlide()">Preview</button>
+					<div class="mask">
+						<ul class="list" lotte-ng-list-swipe swipe-responsive="true" swipe-responsive640="1" swipe-responsive900="1" swipe-slide-item="true" swipe-list-model="img_list" swipe-id="img_list{{$index+1}}" swipe-max-ratio="0.2"swipe-min-distance="40">
+							<!-- 이미지가 하나인경우 -->
+							<li class="one" ng-repeat="items in item.img_list.items" ng-if="item.img_list.items.length==1">
+								<span style="background-image:url({{items.img_url}})" ng-click="popOption.zoomPopup({{$index}},{{pidx}})"></span>
+							</li>
+							<!-- 이미지가 여러개인 경우 -->
+							<li
+								ng-repeat="items in item.img_list.items"
+								ng-if="item.img_list.items.length>1 && !(img_list.length%2==1 && $index==item.img_list.length-1 && screenType > 1)"
+								ng-click="popOption.zoomPopup({{$index}},{{pidx}})">
+									<img ng-src="{{items.img_url}}">
+							</li>
+						</ul>
+					</div>
+					<button class="btn next" ng-show="swipeIdx<=(item.img_list.items.length-2)" ng-click="nextSlide()">Next</button>
+					<ol class="bullet" ng-if="item.img_list.items && item.img_list.items.length > 1">
+						<li ng-repeat="item in item.img_list.items" ng-class="{active:$index==swipeIdx}">{{$index}}</li>
+					</ol>
+				</div>
+				<div class="prod">
+					<a href="#" ng-click="mallProductClick(item, 'm_DC_SpeDisp_Dearpet_Clk_Prd_I{{$index + 1}}')">
+						<div class="imgArea"><span class="img_wrap"><img ng-src="{{item.goods_img}}" alt="{{item.goods_nm}}"></span></div>
+						<div class="txt_wrap">
+							<span class="title"><var><span ng-if="item.brnd_nm">[{{item.brnd_nm}}]</span> {{item.goods_nm}}</var></span>
+							<span class="price"><span>{{item.price | number}}</span>원<var ng-if="item.is_plan_prod == true">~</var></span>
+						</div>
+					</a>
+				</div>
+			</li>
+		</ul>
+	</section>
+</div>

@@ -1,0 +1,71 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplchangePw" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/login/find_ellotte_head.html",
+                    "lotte/resources_dev/login/change_pw_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberPWChange.template.js"
+            }
+        },
+
+        "concat" : {
+            "jschangePw" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [                    
+                    "lotte/resources_dev/login/change_pw.js",
+                    "lotte/resources_dev/login/find_ellotte.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberPWChange.js"
+            }
+        },
+
+        "uglify" : {
+            "jschangePw" : {
+                "src" : "lotte/resources/<%= version %>/simpleSignMemberPWChange.js",
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberPWChange.min.js"
+            },
+            "tplchangePw" : {
+                "src" : "lotte/resources/<%= version %>/simpleSignMemberPWChange.template.js",
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberPWChange.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "csschangePw" : {
+                "src" : [
+                    "lotte/resources_dev/login/find_ellotte.css",
+                    "lotte/resources_dev/login/login.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberPWChange.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanchangePw" : [
+                "lotte/resources/<%= version %>/simpleSignMemberPWChange.js",
+                "lotte/resources/<%= version %>/simpleSignMemberPWChange.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlchangePw" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "login/simpleSignMemberPWChange.html" : "login/simpleSignMemberPWChange_dev.html"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="application/json; charset=utf-8" %>
+{
+  "url":"http://image.lotte.com/goods/34/39/37/08/3/308373934_1_550.jpg",
+  "list":{
+    "2":[
+      {
+        "rx2":0.768,
+        "y1":3,
+        "score":0.957705,
+        "x1":112,
+        "x2":384,
+        "id":"db20bbb114ceb00f808399474eb4eae832cfdc691761f2cf9c95e1dc_112,3,384,496",
+        "ry2":0.992,
+        "rx1":0.224,
+        "ry1":0.006,
+        "y2":496
+      }
+    ]
+  },
+  "status":true,
+  "genCd":"F"
+}

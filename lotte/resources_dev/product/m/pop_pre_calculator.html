@@ -1,0 +1,131 @@
+<div class="layerPop calcLayerWrap" id="layerPopup" ng-if="isPreCalculatorData && layerPopup_st_disp">
+<!--s: 미리계산-->
+	<div id="head_sub">
+		<h2>미리계산</h2>
+		<p class="close"><a ng-click="closePopPreCalculator()">닫기</a></p>
+	</div>
+	<div class="calcLayer">
+		<div class="choiceArea">
+			<table>
+				<tbody>
+					<tr>
+						<th>배송비</th>
+						<td ng-switch on="deliveryTitleCd">
+							<div class="selWrap" ng-switch-when="01">
+								배송비무료(플래티넘+ 회원)
+							</div>
+							<div class="selWrap" ng-switch-when="02">
+								배송비무료
+							</div>
+							<div class="selWrap" ng-switch-when="03">
+								<select ng-model="usePriceInfo.dlv_fvr_val" ng-change="calculator_init('dlv_fvr_val)')">
+									<option value="">사용안함</option>
+									<option value="{{PreCalculatorData.dlv_fvr_val}}" ng-selected="fvrSelect">무료배송권사용</option>
+								</select>
+							</div>
+							<div class="selWrap" ng-switch-default>
+								{{Fnproductview.getNumberFormat(PreCalculatorData.tot_deli_amt)}}원
+							</div>
+						</td>
+					</tr>
+					<tr ng-if="PreCalculatorData.dis_list.total_count > 0" >
+						<th>할인</th>
+						<td>
+							<div class="selWrap">
+								<select id="cbDiscOption" name="cbDiscOption"  ng-model="usePriceInfo.cbDiscOption" ng-change="calculator_init('discount_one')">
+									<option value="">사용안함</option>
+									<option ng-repeat="item in PreCalculatorData.dis_list.items" ng-desabled="item.opt_desabled" value="{{item.tot_dc_amt }}|{{item.prom_mdcl_cd }}|{{item.cpn_prom_no }}|{{item.include_save_inst_cpn }}|{{item.card_knd_cd }}">{{item.adtn_cost_dtl_sct_nm }} ({{Fnproductview.getNumberFormat(item.tot_dc_amt) }} {{getDisTpTitle(item.include_save_inst_cpn)}})</option>
+								</select>
+							</div>
+						</td>
+					</tr>
+					<tr ng-if="PreCalculatorData.dup_lis_list != null && PreCalculatorData.dup_lis_list.total_count > 0" >
+						<th>추가할인</th>
+						<td>
+							<div class="selWrap">
+								<select id="cbDupDiscOption" name="cbDupDiscOption"  ng-model="usePriceInfo.cbDupDiscOption" ng-desabled="cbDupDiscOption_desabled" ng-change="calculator_init('discount_two')">
+									<option value="">사용안함</option>
+									<option ng-repeat="item in PreCalculatorData.dup_lis_list.items" ng-if="item.tot_dc_amt > 0" ng-desabled="item.opt_desabled" value="{{item.tot_dc_amt }}|{{item.prom_mdcl_cd }}|{{item.cpn_prom_no }}|{{item.include_save_inst_cpn }}|{{item.card_knd_cd }}">{{item.adtn_cost_dtl_sct_nm }} ({{Fnproductview.getNumberFormat(item.tot_dc_amt) }} 원 할인)</option>
+									<option ng-repeat="item in PreCalculatorData.dup_lis_list.items" ng-if="item.tot_dc_amt == 0" ng-desabled="item.opt_desabled" value="{{item.tot_dc_amt }}|{{item.prom_mdcl_cd }}|{{item.cpn_prom_no }}|{{item.include_save_inst_cpn }}|{{item.card_knd_cd }}">{{item.adtn_cost_dtl_sct_nm }}</option>
+								</select>
+							</div>
+						</td>
+					</tr>
+					<tr ng-if="PreCalculatorData.third_dis_list != null && PreCalculatorData.third_dis_list.total_count > 0" >
+						<th>추가할인</th>
+						<td>
+							<div class="selWrap">
+								<select id="cbThirdDiscOption" name="cbThirdDiscOption" ng-model="usePriceInfo.cbThirdDiscOption" ng-change="calculator_init('discount_three')">
+									<option value="">사용안함</option>
+									<option ng-repeat="item in PreCalculatorData.third_dis_list.items" ng-desabled="item.opt_desabled" value="{{item.tot_dc_amt }}|{{item.prom_mdcl_cd }}|{{item.cpn_prom_no }}|{{item.include_save_inst_cpn }}|{{item.card_knd_cd }}">{{item.adtn_cost_dtl_sct_nm }} ({{Fnproductview.getNumberFormat(item.tot_dc_amt) }} 원 할인)</option>
+								</select>
+							</div>
+						</td>
+					</tr>										
+					<tr ng-if="PreCalculatorData.smp_dc_amt > 0">
+						<th>스마트픽 할인혜택 </th>
+						<td>
+							<div class="selWrap">
+								<select id="cbSmpDcAmt" name="cbSmpDcAmt" ng-model="usePriceInfo.smpDcAmt" ng-change="calculator_init('smp_dc_amt')">
+									<option value="0">사용안함</option>
+									<option value="{{PreCalculatorData.smp_dc_amt }}">스마트픽으로 찾기({{Fnproductview.getNumberFormat(PreCalculatorData.smp_dc_amt) }} 원 할인) </option>
+								</select>
+							</div>
+						</td>
+					</tr>
+					<tr ng-if="PreCalculatorData.point_list != null && PreCalculatorData.point_list.total_count > 0">
+						<th>사용가능 포인트</th>
+						<td>
+							<span class="checkWrap"  ng-repeat="item in PreCalculatorData.point_list.items">
+								<span ng-if="item.point_div == L_POINT">
+									<input type="checkbox" id="l_point" name="l_point" ng-model="usePriceInfo.usel_point_yn" ng-desabled="item.opt_desabled" ng-click="chgUse_point(item.point_div,item.useable_point)" value="{{item.useable_point}}" />
+									<label for="l_point" >L-money <em><strong>{{Fnproductview.getNumberFormat2(item.useable_point) }}</strong>점</em></label>
+								</span>
+								<span  ng-if="item.point_div == LOTTE_POINT">
+									<input type="checkbox" id="lt_point" name="lt_point" ng-model="usePriceInfo.uselt_point_yn" ng-desabled="item.opt_desabled" ng-click="chgUse_point(item.point_div,item.useable_point)" value="{{item.useable_point}}"/>
+									<label for="lt_point" >L.POINT <em><strong>{{Fnproductview.getNumberFormat2(item.useable_point) }}</strong>점</em></label>
+								</span>
+								<span  ng-if="item.point_div == DEPOSIT">
+									<input type="checkbox" id="deposit"  name="deposit" ng-model="usePriceInfo.usedeposit_yn" ng-desabled="item.opt_desabled" ng-click="chgUse_point(item.point_div,item.useable_point)" value="{{item.useable_point}}"/>
+									<label for="deposit" >보관금 <em><strong>{{Fnproductview.getNumberFormat2(item.useable_point) }}</strong>원</em></label>
+								</span>
+							</span>
+						</td>
+					</tr>
+					<tr ng-if="usePriceInfo.showProm" >
+						<th>신용카드 청구할인</th>
+						<td>
+							<div class="selWrap">
+								<select id="cbPromOption" name="cbPromOption" ng-model="usePriceInfo.cbPromOption" ng-init="usePriceInfo.cbPromOption=''" ng-change="changeProm()">
+									<option value="">선택안함</option>
+									<option ng-repeat="(key, value) in calcPromInfo" value="{{value.fvr_val}}|{{key}}|{{value.card_knd_nm}}">{{value.card_knd_nm}}</option>
+								</select>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="discountArea" ng-class="{prom:usePriceInfo.cbPromOption}">
+			<ul>
+				<li class="defaultPrice">
+					<span class="priceTit">판매금액</span>
+					<span class="priceValue"><em>{{Fnproductview.getNumberFormat2(PreCalculatorData.ord_amt) }}</em>원</span>
+				</li>
+				<li class="delyPrice"  ng-repeat="item in usePriceInfo.useList"  >
+					<span class="priceTit">{{item.title}}</span>
+					<span class="priceValue"><span class="addPrice">({{item.addTp}})</span><em>{{Fnproductview.getNumberFormat2(item.addAmt)}}</em>{{item.amtTitle}}</span>
+				</li>
+			</ul>
+		</div>
+		<div class="totalPrice">
+			<span class="priceTit">총 결제 금액</span>
+			<span class="priceValue"><em>{{Fnproductview.getNumberFormat2(usePriceInfo.ordAmt) }}</em>원</span>
+			<div ng-if="usePriceInfo.cbPromOption" class="promPrice">
+				<span class="priceTit">{{usePriceInfo.card_knd_nm}} 청구할인 예상금액</span>
+				<span class="priceValue"><em>{{Fnproductview.getNumberFormat2(usePriceInfo.promAmt) }}</em>원</span>
+			</div>
+		</div>
+	</div>
+<!--e: 미리계산-->
+</div>

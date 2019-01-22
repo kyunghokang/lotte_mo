@@ -1,0 +1,40 @@
+{
+    "tasks" : {
+        "concat" : {
+            "jsOrderChangeReturnCancelError" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mylotte/orderclaim/order_change_return_cancel_error.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/order_change_return_cancel_error.js"
+            }
+        },
+
+        "uglify" : {
+            "jsOrderChangeReturnCancelError" : {
+                "src" : "lotte/resources/<%= version %>/order_change_return_cancel_error.js",
+                "dest" : "lotte/resources/<%= version %>/order_change_return_cancel_error.min.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssOrderChangeReturnCancelError" : {
+                "src" : [
+                    "lotte/resources_dev/mylotte/purchase/m/order_return_reg.css",
+                    "lotte/resources_dev/mylotte/purchase/m/purchase_view.css",
+                    "lotte/resources_dev/mylotte/purchase/m/purchase.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/order_change_return_cancel_error.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanOrderChangeReturnCancelError" : [
+                "lotte/resources/<%= version %>/order_change_return_cancel_error.js",
+                "lotte/resources/<%= version %>/order_change_return_cancel_error.template.js"
+            ]
+        }
+    }
+}

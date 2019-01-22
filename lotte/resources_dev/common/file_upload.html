@@ -1,0 +1,13 @@
+<section class="fu_container">
+	<ul class="fu_list">
+		<li ng-repeat="item in [0, 1, 2]"><span><span>
+			<a class="add" ng-if="!filepath[item]" ng-click="selectFile({{item}})"></a>
+			<span ng-if="filepath[item]" class="img" style="background-image:url({{filepath[item]}});">
+				<a class="del" ng-click="delectFile({{item}})"></a>
+			</span>
+		</span></span></li>
+	</ul>
+	<form class="fu_form" method="post" enctype="multipart/form-data">
+		<input type="file" class="fu_file" name="fu_file" accept="image/*" />
+	</form>
+</section>

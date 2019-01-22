@@ -1,0 +1,656 @@
+@charset "utf-8";
+
+/* reset */
+* {margin:0;padding:0} 
+html, body {width:100%;height:100%;left:0;font-size:13px;font-family:'나눔고딕',NanumGothic,'맑은고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,Helvetica,sans-serif;color:#333;background:#eee;-webkit-text-size-adjust:none;box-sizing:border-box;-webkit-box-sizing:border-box}
+fieldset,img {border:0 none;box-sizing:border-box;-webkit-box-sizing:border-box}
+ol,ul {list-style:none}
+table {width:100%;border-collapse:collapse;border-spacing:0;border:0 none}
+hr {display:none}
+a {text-decoration:none;color:#333}
+img {width:100%;vertical-align:top}
+em {font-style:normal}
+caption {text-indent:-9999em;color:transparent;height:0}
+a:focus,input:focus,button:focus,textarea:focus{outline:0 none} /* 20151208 추가 */
+::-webkit-input-placeholder {color:#999}
+
+/* content */
+input[type="text"]#getTalkId {display:none;height:0;position:absolute;left:-99999px;top:-99999px;z-index:-1}
+#wrapper {min-height:100%}
+#head {position:fixed;left:0;top:0;width:100%;border-top:solid 1px #f0f0f0;box-sizing:border-box;-webkit-box-sizing:border-box;z-index:20}
+#head h1 {text-align:center;font-size:16px;line-height:43px;height:43px;background:#fff;border-bottom:solid 1px #d0d0d0;padding:0 35px;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden}
+#head h1 a {position:relative;display:inline-block;padding-right:19px}
+#head h1 a:before {position:absolute;right:0;top:50%;display:block;width:12px;height:7px;content:"";background-image:url(http://image.lotte.com/lotte/mobile/chat_service/arrow_head_info_open.png);background-repeat:no-repeat;background-position:0 0;background-size:12px 7px;margin-top:-3px}
+#head h1 a.on:before {background-image:url(http://image.lotte.com/lotte/mobile/chat_service/arrow_head_info_close.png);background-size:12px 7px}
+#head > ul li {position:absolute}
+#head > ul li.back {position:absolute;left:0;top:0}
+#head > ul li.out{position:absolute;right:14px;top:11px}
+#head > ul li.alarm{position:absolute;right:47px;top:11px}
+#head > ul li a {display:block;text-indent:-9999em;overflow:hidden}
+#head > ul li.back > a {width:44px;height:44px;background:url(http://image.lotte.com/lotte/mobile/chat_service/btn_head_back.png) no-repeat center center;background-size:18px 13px}
+#head > ul li.out > a {width:22px;height:23px;background-image:url(http://image.lotte.com/lotte/mobile/chat_service/btn_head_out.png);background-repeat:no-repeat;background-position:0 50%;background-size:48px 23px}
+#head > ul li.out .decorations {display:none;position:absolute;top:32px;right:0;width:160px;padding:11px;background:rgba(0,0,0,0.6);color:#fff;line-height:18px;font-size:13px;box-sizing:border-box;-webkit-box-sizing:border-box;border-radius:3px;z-index:120}
+#head > ul li.out .decorations:before {position:absolute;display:block;content:"";right:6px;top:-7px;width:9px;height:7px;background:url(http://image.lotte.com/lotte/mobile/chat_service/arrow_head_decorations.png) no-repeat 0 0;background-size:9px 7px;opacity:0.6}
+#head > ul li.out .decorations strong {color:#719cff}
+#head > ul li.out .decorations a.close {position:absolute;right:4px;top:4px;display:block;text-indent:-9999em;overflow:hidden;width:22px;height:22px;background:url(http://image.lotte.com/lotte/mobile/chat_service/btn_layer_close.png) no-repeat 50% 50%;background-size:12px 12px}
+#head > ul li.out.on01 > a,
+#head > ul li.out.on02 > a {background-position:-26px 50%;background-size:48px 23px}
+#head > ul li.out.on01 .decorations {display:block}
+#head > ul li.alarm a {width:21px;height:22px;background:url(http://image.lotte.com/lotte/mobile/chat_service/btn_head_alarm.png) no-repeat 0 0;background-size:21px 22px}
+#head .layer_info {display:none;position:absolute;left:0;top:44px;width:100%;text-align:left;padding:15px 15px 35px;background:#fff;line-height:17px;font-size:14px;z-index:110;box-sizing:border-box;-webkit-box-sizing:border-box;box-shadow:0 3px 4px rgba(0, 0, 0, 0.1)}
+#head .layer_info > p {line-height:19px;padding-bottom:4px}
+#head .layer_info span.red {color:#ff7b62}
+#head .layer_info span.blue {color:#285ace}
+/*
+#head .layer_info dl {padding-top:10px}
+#head .layer_info dl dt {font-size:12px;padding-bottom:2px}
+#head .layer_info dl dd li {padding-left:7px;background:url(http://image.lotte.com/lotte/mobile/chat_service/icon_head_info_list.gif) no-repeat 0 50%;background-size:2px 2px}
+#head .layer_info dl dd li span {display:inline-block;width:62px}
+*/
+#head .layer_info .counsel_time {padding-top:10px}
+#head .layer_info .counsel_time h2 {font-size:12px;padding-bottom:2px;font-weight:normal}
+#head .layer_info .counsel_time table {border-left:solid 1px #efefef;border-top:solid 1px #efefef;text-align:center;font-size:13px}
+#head .layer_info .counsel_time table th,
+#head .layer_info .counsel_time table td {padding:5px 0;width:33%;border-right:solid 1px #efefef;border-bottom:solid 1px #efefef;box-sizing:border-box;-webkit-box-sizing:border-box;}
+
+#head .layer_info .btn {margin:15px 0 0;overflow:hidden}
+#head .layer_info .btn > a {display:block;float:left;width:100%;text-align:center;background:#efefef;height:42px;line-height:42px}
+#head .layer_info a.close {position:absolute;right:10px;bottom:5px;display:block;overflow:hidden;width:25px;height:25px;text-indent:-99999px;background:url(http://image.lotte.com/lotte/mobile/chat_service/btn_head_info_close.png ) no-repeat 50% 50%;background-size:15px 15px}
+
+#chat {position:relative;padding:50px 10px;font-size:11px;background:#c3def3;overflow:hidden}
+
+#chat .history_before {text-align:center;color:#4c4c4e}
+#chat .date {position:relative;text-align:center;line-height:33px}
+#chat .date p {position:relative;display:inline-block;padding:0 5px;background:#c3def3}
+#chat .date:before {position:absolute;display:block;content:"";left:0;top:50%;width:100%;height:1px;background:url(http://image.lotte.com/lotte/mobile/chat_service/line_chat_date.gif) repeat-x 0 center;background-size:1px 1px}
+#chat .message:after {content:"";display:block;clear:both}
+#chat .message .text {margin-bottom:10px;clear:both;font-size:14px;}
+#chat .message .text {position:relative;max-width:84%;padding:15px;border-radius:10px;box-sizing:border-box;-webkit-box-sizing:border-box;word-break:break-all}
+#chat .message .text p {line-height:17px;font-size:14px; }
+#chat .message .text p .selected_key { font-size:13px; color:#719cff; }
+#chat .message .text p .selected_key + .selected_key { margin-left:2px; }
+#chat .message .text a {color:#053ec4}
+#chat .message .text .title {height:23px;border-bottom:solid 1px #eee185}
+#chat .message .text .prd_cont {margin-top:10px;overflow:hidden}
+#chat .message .text .prd_cont .thumbnail {float:left;width:54px;border:solid 1px #ddd}
+#chat .message .text .prd_cont .thumbnail img {width:54px;height:54px}
+#chat .message .text .prd_cont .thumbnail span {display:block;line-height:16px;font-size:11px;text-align:center}
+#chat .message .text .prd_cont .thumbnail span.receipt {color:#fff;background:#719cff}
+#chat .message .text .prd_cont .thumbnail span.end {background:#ddd;color:#a1a1a1}
+#chat .message .text .prd_cont .detail {margin-left:64px;box-sizing:border-box;-webkit-box-sizing:border-box}
+#chat .message .text .prd_cont .detail p {line-height:17px;margin-bottom:4px;color:#333}
+#chat .message .text .prd_cont .detail p.name {overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+#chat .message .text .prd_cont .detail p.option {text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden}
+#chat .message .thumbnail { clear:both; margin-bottom:10px; }
+#chat .message .check {clear:both;margin-bottom:10px;color:#999}
+#chat .message > .movie {clear:both;margin-bottom:10px;}
+#chat .message > .thumbnail img,
+#chat .message > .movie img {width:130px}
+
+#chat .message.opp {padding-left:12px}
+#chat .message.opp .writer {margin-left:-12px;padding-bottom:8px;margin-bottom:0;line-height:11px;font-size:11px;color:#333;}
+#chat .message.opp .writer img {width:29px;height:24px;padding-right:5px;vertical-align:middle}
+#chat .message.opp .text {float:left;bacKground:#fff}
+
+#chat .message.me {padding-right:12px}
+#chat .message.me .text {float:right;bacKground:#fff190}
+#chat .message.me .check {font-size:11px;line-height:11px;text-align:right}
+#chat .message.me > .thumbnail,
+#chat .message.me > .movie {text-align:right}
+#chat .message.opp > .text:nth-child(2) {border-radius:0 10px 10px 10px}
+#chat .message.opp > .text:nth-child(2):after {position:absolute;left:-12px;top:0;display:block;width:12px;height:10px;content:"";background:url(http://image.lotte.com/lotte/mobile/chat_service/bg_chat_opp_shape.png) no-repeat 0 0;background-size:12px 10px}
+#chat .message.me > .text:first-child {border-radius:10px 0 10px 10px}
+#chat .message.me > .text:first-child:after {position:absolute;right:-12px;top:0;display:block;width:12px;height:10px;content:"";background:url(http://image.lotte.com/lotte/mobile/chat_service/bg_chat_me_shape.png) no-repeat 0 0;background-size:12px 10px}
+#chat .message .no_tail.text {border-radius:10px !important}
+#chat .message .no_tail.text:after {display:none !important}
+#chat .flow_command { margin-top:8px; }
+
+/* flow 옵션 리스트 레이아웃 */
+#chat .list_layout_wide {min-width:210px;}
+#chat .list_layout_wide li {margin-top:3px;}
+#chat .list_layout_half { overflow:hidden;}
+#chat .list_layout_half li {float:left;display:inline-block;width:49%;margin-top:4px;}
+#chat .list_layout_half li:nth-child(even) { margin-left:2%; }
+
+/* 버튼 */
+#chat .message .text a.voice_btn img {width:100px}
+#chat .message.opp .text a.opp_btn {position:relative;display:block;border-top:solid 1px #eee;margin:11px -15px -15px;height:42px;line-height:42px;text-indent:52px;padding-right:30px;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden;color:#333;box-sizing:border-box;-webkit-box-sizing:border-box}
+#chat .message.opp .text a.opp_btn:before {position:absolute;left:15px;top:50%;display:block;width:30px;height:30px;content:"";background-repeat:no-repeat;background-position:0 0;background-size:30px 30px;margin-top:-15px}
+#chat .message.opp .text a.back_btn:before {background-image:url(http://image.lotte.com/lotte/mobile/chat_service/icon_chat_back.gif)}
+#chat .message.opp .text a.satisfaction_btn:before {background-image:url(http://image.lotte.com/lotte/mobile/chat_service/icon_chat_satisfaction.gif)}
+#chat .message.opp .text a.recommand_btn:before {background-image:url(http://image.lotte.com/lotte/mobile/chat_service/icon_chat_satisfaction.gif)}
+#chat .message.opp .text a.faq_btn:before {background-image:url(http://image.lotte.com/lotte/mobile/chat_service/icon_chat_faq.gif)}
+#chat .message.opp .text a.allview_btn:before {background-image:url(http://image.lotte.com/lotte/mobile/chat_service/icon_chat_allview.gif)}
+#chat .message.opp .text a.opp_btn:after {position:absolute;right:16px;top:50%;display:block;width:7px;height:12px;content:"";margin-top:-6px;background:url(http://image.lotte.com/lotte/mobile/chat_service/arrow_chat_btn.png) no-repeat 0 0;background-size:7px 12px}
+
+#chat .message.opp a.btn_box {display:table;width:100%;}
+#chat .message.opp a.btn_box span {display:table-cell;height:40px;vertical-align:middle;border:solid 1px #eee; padding:0 4px; color:#333;text-align:center;font-size:13px;}
+
+#chat .message.opp .btn_start { position:relative;display:block;margin-top:4px;background:#f1f1f1;color:#605f5f;font-size:12px;line-height:40px;text-align:center; }
+#chat .message.opp .btn_start:after {position:relative;top:2px;display:inline-block;margin-left:8px;width:7px;height:12px;content:"";background:url(http://image.lotte.com/lotte/mobile/chat_service/arrow_chat_btn2.png) no-repeat center center;background-size:7px 12px}
+
+/* 추천상품 */
+#chat .recommand_product { max-width:480px; margin-bottom:13px; padding:90px 10px 0; background:url(http://image.lotte.com/lotte/mobile/chat_service/icon_recommand.png) #fff no-repeat center 20px;background-size:140px 40px;  }
+#chat .recommand_product .product_link { display:block; height:120px; }
+#chat .recommand_product ul { overflow:hidden; }
+#chat .recommand_product ul li { clear:both; position:relative; min-height:120px; margin-bottom:35px; }
+#chat .recommand_product .product_thumb { float:left; position:relative; z-index:1; width:118px; height:118px; border:1px solid #dddddd; background:#fff; }
+#chat .recommand_product .product_thumb img { width:118px; height:118px; }
+#chat .recommand_product .product_info { overflow:hidden; }
+#chat .recommand_product .product_info .product_title { max-height:34px; overflow:hidden; margin-left:8px; font-size:13px; line-height:1.35em; }
+#chat .recommand_product .product_info .product_price { margin-left:8px; margin-top:2px; font-size:11px; color:#3874ec; }
+#chat .recommand_product .product_info .product_price span { font-size:16px; font-weight:bold; }
+#chat .recommand_product .product_info .product_review { margin-left:8px; font-size:14px; line-height:12px; }
+#chat .recommand_product .product_info .product_review .score_wrap { display:inline-block; vertical-align:top; width:60px; height:12px; background:url(http://image.lotte.com/lotte/mobile/chat_service/icon_review_v2.png) no-repeat 0 0; background-size:60px 12px; }
+#chat .recommand_product .product_info .product_review .score_wrap .score_count { display:block; vertical-align:top; height:12px; background:url(http://image.lotte.com/lotte/mobile/chat_service/icon_review_on_v2.png) no-repeat 0 0; background-size:60px 12px; }
+#chat .recommand_product .product_info .product_review .review_user { display:inline-block; vertical-align:middle; margin-top:-1px; color:#fa7257; font-size:11px; }
+#chat .recommand_product .product_info .product_extra { position:absolute; bottom:0; right:0; width:100%; background:#f1f1f1; color:#666666; }
+#chat .recommand_product .product_info .product_extra span { max-height:27px; overflow:hidden; margin:6px 8px 6px 128px; display:inline-block;}
+
+#chatInput {position:fixed;left:0;bottom:0;right:0;width:100%;z-index:10}
+#chatInput p.no_info {background:#aeaeae;font-size:14px;line-height:45px;color:#fff;text-align:center}
+#chatInput .now_message {position:absolute;left:0;right:0;top:-46px;height:46px;background:rgba(51,51,51,0.8)}
+#chatInput .now_message:after {position:absolute;right:14px;top:50%;display:block;width:13px;height:17px;margin-top:-7px;content:"";background:url(http://image.lotte.com/lotte/mobile/chat_service/arrow_now_message.png) no-repeat 0 0;background-size:13px 17px}
+#chatInput .now_message p {line-height:46px;color:#fff;font-size:14px;padding:0 40px 0 14px;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden}
+#chatInput .emoticon_message {position:relative;height:93px;line-height:93px;background:rgba(51,51,51,0.8);text-align:right;display:none}
+#chatInput .emoticon_message > a.view img {width:75px;margin:9px 45px 0 0}
+#chatInput .emoticon_message > a.close {position:absolute;right:10px;top:10px;display:block;text-indent:-9999em;overflow:hidden;width:22px;height:22px;background:url(http://image.lotte.com/lotte/mobile/chat_service/btn_layer_close.png) no-repeat 50% 50%;background-size:12px 12px}
+
+#chatInput .keypad_input {background:#fff;display:table;width:100%;height:100%;border-top:solid 1px #ddd;border-bottom:solid 1px #ddd;box-sizing:border-box;-webkit-box-sizing:border-box}
+#chatInput .keypad_input a.attach_btn {display:table-cell;width:43px;border-right:solid 1px #ddd;overflow:hidden;text-indent:-99999px;background:url(http://image.lotte.com/lotte/mobile/chat_service/btn_keypad_attach.png) no-repeat 50% 50%;background-size:16px 16px}
+#chatInput .keypad_input a.attach_btn.on {background:#f3f3f3 url(http://image.lotte.com/lotte/mobile/chat_service/btn_keypad_attach_close.png) no-repeat 50% 50%;background-size:16px 16px}
+#chatInput .keypad_input .keypad {display:table-cell;padding:13px 8px;box-sizing:border-box;-webkit-box-sizing:border-box}
+#chatInput .keypad_input .keypad  textarea {border:none;width:100%;font-size:14px;line-height:19px;height:19px;vertical-align:top;resize:none}
+#chatInput .keypad_input a.emoticon_btn {display:table-cell;width:43px;overflow:hidden;text-indent:-99999px;background:url(http://image.lotte.com/lotte/mobile/chat_service/btn_keypad_emoticon.png) no-repeat 50% 50%;background-size:25px 25px}
+#chatInput .keypad_input a.emoticon_btn.on {background:url(http://image.lotte.com/lotte/mobile/chat_service/btn_keypad_emoticon_close.png) no-repeat 50% 50%;background-size:25px 25px}
+#chatInput .keypad_input .send {display:table-cell;width:43px;border:none}
+#chatInput .keypad_input .send button {width:100%;height:100%;color:#fff;font-size:13px;border:none;background:#719cff;vertical-align:bottom;line-height:15px}
+#chatInput .keypad_input .send button:disabled {background:#aeaeae}
+
+#chatInput .layer_input {background:#f3f3f3;position:relative}
+#chatInput .layer_input > div {width:100%;overflow:hidden;padding-top:25px;display:none}
+#chatInput .layer_input ul li {float:left;height:76px;text-align:center}
+#chatInput .layer_input .attach ul li {width:33.33%}
+#chatInput .layer_input .attach ul li a,
+#chatInput .layer_input .attach ul li span {font-size:12px;color:#666;display:inline-block}
+#chatInput .layer_input .attach ul li a:before,
+#chatInput .layer_input .attach ul li span:before{display:block;width:41px;height:41px;margin:0 auto 4px;content:"";background-image:url(http://image.lotte.com/lotte/mobile/chat_service/icon_attach_btn.png);background-repeat:no-repeat;background-size:150px 100px}
+#chatInput .layer_input .attach ul li.photo span:before {background-position:0 0}
+#chatInput .layer_input .attach ul li.movie span:before {background-position:-50px 0}
+#chatInput .layer_input .attach ul li.camera span:before {background-position:-100px 0}
+#chatInput .layer_input .attach ul li.cart a:before {background-position:0 -50px}
+#chatInput .layer_input .attach ul li.order a:before {background-position:-50px -50px}
+#chatInput .layer_input .attach ul li.voice span:before {background-position:-100px -50px}
+#chatInput .layer_input .attach ul li span {position:relative}
+#chatInput .layer_input .attach ul li span input[type="file"] {position:absolute;left:0;top:0;right:0;bottom:0;display:inline-block;width:100%;height:100%;text-indent: -9999px}
+
+#chatInput .layer_input .emoticon #emoticonSlider {height:152px}
+#chatInput .layer_input .emoticon ul {float:left}
+#chatInput .layer_input .emoticon ul li {width:25%}
+#chatInput .layer_input .emoticon ul li a {display:block;width:54px;height:54px;margin:0 auto}
+#chatInput .layer_input .emoticon .page {position:absolute;left:0;top:7px;width:100%;text-align:center;height:7px;line-height:7px}
+#chatInput .layer_input .emoticon .page span {width:7px;height:7px;display:inline-block;overflow:hidden;text-indent:-999999px;background:#ddd;border-radius:3px;margin:0 1px}
+#chatInput .layer_input .emoticon .page span.on {background:#719cff}
+
+#cover {display:none;left:0;position:fixed;top:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:100}
+
+/* 팝업 */
+.layer_pop {display:none;position:fixed;top:50%;z-index:110;box-sizing:border-box;-webkit-box-sizing:border-box}
+
+/* 팝업:공통 별점 */
+.layer_pop .satisfaction_score {position:relative;margin:0 15px 15px}
+.layer_pop .satisfaction_score .score {display:block;text-align:center;height:46px;line-height:46px;background:#fff}
+.layer_pop .satisfaction_score .score a {display:inline-block;width:18px;height:18px;padding:0 13px;vertical-align:middle;text-indent:-9999em;overflow:hidden;background:url(http://image.lotte.com/lotte/mobile/chat_service/icon_satisfaction_score.png) no-repeat 50% 0;background-size:18px 36px}
+.layer_pop .satisfaction_score .score a.on {background-position:50% -18px}
+.layer_pop .satisfaction_score .textarea { margin-top:1px; }
+.layer_pop .satisfaction_score .textarea textarea {width:100%;height:86px;font-size:13px;border:none;padding:15px;line-height:16px;box-sizing:border-box;-webkit-box-sizing:border-box;resize:none;border-radius:2px;-webkit-border-radius:2px;text-overflow:ellipsis}
+
+/* 팝업:이미지 */
+.layer_pop.img_pop {top:0;left:0;right:0;bottom:0;margin-top:0 !important; background:#fff;text-align:center}
+.layer_pop.img_pop .img_pop_wrap {display:inline-block}
+.layer_pop.img_pop .img_pop_wrap .thumbnail {max-width:640px;overflow-y:auto}
+.layer_pop.img_pop a.close {position:absolute;display:block;overflow:hidden;width:30px;height:30px;right:8px;top:8px;text-indent:-99999px;background:url(http://image.lotte.com/lotte/mobile/chat_service/btn_layer_close02.png) no-repeat 0 0;background-size:30px 30px}
+
+/* 팝업:상담만족도평가 */
+.layer_pop.satisfaction_pop {right:17px;left:17px;margin-top:-124px;background:#f3f3f3;border-radius:13px;max-height:244px;}  /* max-height 안드로이드 레이아웃 깨짐 대응 */
+.layer_pop.satisfaction_pop .title {text-align:center;padding-top:26px;height:33px;font-size:17px}
+.layer_pop.satisfaction_pop > .btn {border-top:solid 1px #e6e6e6;background:#fff;border-radius:0 0 13px 13px;}
+.layer_pop.satisfaction_pop > .btn:after {content:"";display:block;clear:both}
+.layer_pop.satisfaction_pop > .btn a {display:block;float:left;width:50%;height:36px;line-height:36px;text-align:center;box-sizing:border-box;-webkit-box-sizing:border-box;}
+.layer_pop.satisfaction_pop > .btn a:first-child {border-right:solid 1px #e6e6e6}
+
+/* 팝업:추천상품 만족도 */
+.layer_pop.recommand_pop {right:17px;left:17px;margin-top:-80px;background:#f3f3f3;border-radius:13px;max-height:157px;} /* max-height 안드로이드 레이아웃 깨짐 대응 */
+.layer_pop.recommand_pop .title {text-align:center;padding-top:26px;height:33px;font-size:17px}
+.layer_pop.recommand_pop > .btn {border-top:solid 1px #e6e6e6;background:#fff;border-radius:0 0 13px 13px;}
+.layer_pop.recommand_pop > .btn:after {content:"";display:block;clear:both}
+.layer_pop.recommand_pop > .btn a {display:block;float:left;width:50%;height:36px;line-height:36px;text-align:center;box-sizing:border-box;-webkit-box-sizing:border-box;}
+.layer_pop.recommand_pop > .btn a:first-child {border-right:solid 1px #e6e6e6}
+
+#wrapper.alarm_wrapper {min-height:100%;background:#eee}
+#wrapper.coupon_wrapper{min-height:100%;background:#fff}
+#wrapper.prdList_wrapper {min-height:100%;background:#eee;padding:0}
+#wrapper.alarm_wrapper.white {background:#fff}
+#alarm,
+#coupon {padding:44px 0 0}
+#coupon {overflow:hidden}
+#oder,
+#cart {padding:44px 0 50px}
+#alarm .download {text-align:center;padding:30px 14px 26px;border-bottom:solid 1px #e9e9e9;background:#fff}
+#alarm .download h2 {font-size:13px;font-weight:normal;margin-bottom:40px}
+#alarm .download h2:before {display:block;width:59px;height:59px;content:"";margin:0 auto 14px;background:url(http://image.lotte.com/lotte/mobile/chat_service/icon_alarm.png) no-repeat 0 0;background-size:59px 59px}
+#alarm .download a.btn {display:block;border:solid 1px #ddd;margin:0 auto;height:47px;line-height:47px;padding:0 2px;border-radius:3px;box-sizing:border-box;-webkit-box-sizing:border-box}
+#alarm .download a.btn span {position:relative;display:inline-block;padding-right:18px}
+#alarm .download a.btn span:after {position:absolute;right:0;top:50%;margin-top:-7px;display:block;width:8px;height:14px;content:"";background:url(http://image.lotte.com/lotte/mobile/chat_service/arrow_alarm_download.png) no-repeat 0 0;background-size:8px 14px}
+#alarm .option {text-align:center;padding:25px 16px 0;background:#fff}
+#alarm .option > .btn {overflow:hidden;padding:22px 0 27px}
+#alarm .option > .btn > a {display:block;width:49%;height:47px;line-height:47px;font-size:16px;border-radius:3px;box-sizing:border-box;-webkit-box-sizing:border-box}
+#alarm .option > .btn > a.change_btn {float:left;border:solid 1px #719cff}
+#alarm .option > .btn > a.alarm_btn {float:right;background:#719cff;color:#fff}
+#alarm .option_check {padding:21px 16px;color:#666;font-size:12px}
+#alarm .option_check a.check_btn {position:relative;display:inline-block;padding-right:10px}
+#alarm .option_check a.check_btn:after {position:absolute;right:0;top:50%;margin-top:-3px;display:block;width:6px;height:11px;content:"";background:url(http://image.lotte.com/lotte/mobile/chat_service/arrow_alarm_download.png) no-repeat 0 0;background-size:6px 11px} 
+
+#coupon .text_info {padding:15px;word-break:break-all}
+#coupon .text_info p {line-height:18px}
+#coupon .text_info p strong {color:#245ad0;font-weight:normal}
+#coupon .text_info ol {padding-top:20px;line-height:19px}
+#coupon .file_info > div,
+#coupon .img_info > div {text-align:center;padding-top:10px}
+#coupon .text_info img,
+#coupon .file_info img,
+#coupon .img_info img {max-width:640px;width:100% !important;display:block;margin:0 auto}
+
+.prd_list_info {padding:13px;line-height:18px;color:#888}
+.prd_list_info p {padding-left:20px}
+.prd_list_info p:first-child {background:url(http://image.lotte.com/lotte/mobile/chat_service/icon_cart_info.png) no-repeat 0 50%;background-size:13px 12px}
+.prd_list_info strong {color:#333;font-weight:normal}
+.prd_list p.date {height:35px;line-height:35px;margin:0 6px;padding:0 6px;font-size:14px;border-bottom:solid 1px #eee}
+.prd_list li {position:relative;background:#fff;padding:12px 13px;box-sizing:border-box;-webkit-box-sizing:border-box;overflow:hidden}
+.prd_list li .thumbnail {float:left;width:54px;border:solid 1px #ddd}
+.prd_list li .thumbnail img {width:54px;height:54px}
+.prd_list li .thumbnail span {display:block;line-height:16px;font-size:11px;text-align:center}
+.prd_list li .thumbnail span.receipt {background:#719cff;color:#fff}
+.prd_list li .thumbnail span.end {background:#ddd;color:#999}
+.prd_list li .detail {margin-left:64px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.prd_list li .detail p {line-height:16px;color:#333}
+.prd_list li .detail p.name {margin-bottom:8px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.prd_list li .detail p.option {text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden}
+.prd_list li .detail p.total {color:#5386fa}
+.prd_list li.on .blind {position:absolute;left:0;right:0;top:0;bottom:0;background:rgba(0,0,0,0.4) url(http://image.lotte.com/lotte/mobile/chat_service/icon_cart_on.png) 50% 50% no-repeat;background-size:35px 35px}
+.prd_list_btn {position:fixed;left:0;right:0;bottom:0;height:50px;line-height:50px;text-align:center;font-size:17px;color:#fff}
+.prd_list_btn span {display:block;background:#ccc}
+.prd_list_btn a {display:block;background:#749eff;color:#fff}
+.prd_more_btn {margin:12px;text-align:center;background:#fff;height:34px;line-height:34px;border:solid 1px #ddd;font-size:12px;border-radius:2px;}
+.prd_more_btn a {position:relative;color:#333;padding-left:15px}
+.prd_more_btn a:before {display:block;position:absolute;left:0;top:50%;width:8px;height:8px;margin-top:-4px;content:"";background:url(http://image.lotte.com/lotte/mobile/chat_service/icon_prd_more_btn.png) no-repeat 0 0;background-size:8px 8px}
+.prd_list_empty {position:absolute;left:0;right:0;top:58px;bottom:0;background:#fff url(http://image.lotte.com/lotte/mobile/chat_service/ico_empty.png) 50% 92px no-repeat;background-size:80px 80px;text-align:center;border-top:solid 1px #dcdcdc;box-sizing:border-box;-webkit-box-sizing:border-box}
+.prd_list_empty p {padding-top:196px;font-size:15px}
+#cart .prd_list li {border-top:solid 1px #dcdcdc;border-bottom:solid 1px #dcdcdc;;margin-bottom:8px}
+#oder .prd_list {margin-bottom:8px;background:#fff;border-top:solid 1px #dcdcdc;border-bottom:solid 1px #dcdcdc}
+#oder .prd_list li {border-top:solid 1px #eee}
+#oder .prd_list li:first-child {border-top:none}
+
+#chat .loading,
+#chat .attach_loading,
+.list_loading {background:url(http://image.lotte.com/lotte/mo2015/angular/common/loading.png) 0 0 no-repeat;width:40px;height:40px;margin:15px auto;background-size:40px 40px;-moz-animation:spin .5s infinite linear;-webkit-animation:spin .5s infinite linear;}
+#chat .attach_loading,
+.list_loading{position:fixed;left:50%;top:50%;margin:-20px 0 0 -20px;z-index:1}
+#chat .loading.none,
+#chat .attach_loading.none,
+.list_loading_wrapper.none .list_loading {visibility:hidden;display:none;-moz-animation:spin .0s infinite linear;	-webkit-animation:spin .0s infinite linear}
+
+.list_loading_wrapper {position:fixed;left:0;top:0;right:0;bottom:0;z-index:10}
+.list_loading_wrapper.none  {display:none}
+
+@-moz-keyframes spin {
+	0% { -moz-transform:rotate(0deg); }
+	100% { -moz-transform:rotate(360deg); }
+}
+@-webkit-keyframes spin {
+	0% { -webkit-transform:rotate(0deg); }
+	100% { -webkit-transform:rotate(360deg); }
+}
+
+@media (orientation:landscape){
+	#chatInput .layer_input .attach ul li {width:16.66%}
+	#chatInput .layer_input .emoticon ul li {width:12.5%}
+	#chatInput .layer_input .emoticon #emoticonSlider {height:76px}
+}
+
+
+.layer_popup{position:fixed;top:31%;left:18%;right:18%;z-index:100;box-sizing:border-box;-webkit-box-sizing:border-box}
+@media all and (orientation:landscape){
+    .layer_popup{top:8%;left:28%;right:28%}
+}
+.layer_popup.bg{background:#000;opacity:0.6;top:0;left:0;width:100%;height:100%}
+.layer_popup .check .close a{position:absolute;top:2%;left:auto;right:2%;width:9%;margin-top:0;text-align:center;font-size:14px;color:#fff}
+.layer_popup .check .close a:after{background:url(http://image.lotte.com/lotte/mobile/mobile_new/event/btn_close_appdown.png) no-repeat 5px 0;background-size:12px 12px;content:"";display:inline-block;vertical-align:top;width:12px;height:12px;position:relative;top:2px;padding-left:5px}
+@charset "utf-8";
+
+/* reset */
+* {margin:0;padding:0} 
+html, body {width:100%;height:100%;left:0;font-size:13px;font-family:'나눔고딕',NanumGothic,'맑은고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,Helvetica,sans-serif;color:#333;background:#eee;-webkit-text-size-adjust:none;box-sizing:border-box;-webkit-box-sizing:border-box}
+fieldset,img {border:0 none;box-sizing:border-box;-webkit-box-sizing:border-box}
+ol,ul {list-style:none}
+table {width:100%;border-collapse:collapse;border-spacing:0;border:0 none}
+hr {display:none}
+a {text-decoration:none;color:#333}
+img {width:100%;vertical-align:top}
+em {font-style:normal}
+caption {text-indent:-9999em;color:transparent;height:0}
+a:focus,input:focus,button:focus,textarea:focus{outline:0 none} /* 20151208 추가 */
+::-webkit-input-placeholder {color:#999}
+
+/* content */
+input[type="text"]#getTalkId {display:none;height:0;position:absolute;left:-99999px;top:-99999px;z-index:-1}
+#wrapper {min-height:100%}
+#head {position:fixed;left:0;top:0;width:100%;border-top:solid 1px #f0f0f0;box-sizing:border-box;-webkit-box-sizing:border-box;z-index:20}
+#head h1 {text-align:center;font-size:16px;line-height:43px;height:43px;background:#fff;border-bottom:solid 1px #d0d0d0;padding:0 35px;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden}
+#head h1 a {position:relative;display:inline-block;padding-right:19px}
+#head h1 a:before {position:absolute;right:0;top:50%;display:block;width:12px;height:7px;content:"";background-image:url(http://image.lotte.com/lotte/mobile/chat_service/arrow_head_info_open.png);background-repeat:no-repeat;background-position:0 0;background-size:12px 7px;margin-top:-3px}
+#head h1 a.on:before {background-image:url(http://image.lotte.com/lotte/mobile/chat_service/arrow_head_info_close.png);background-size:12px 7px}
+#head > ul li {position:absolute}
+#head > ul li.back {position:absolute;left:0;top:0}
+#head > ul li.out{position:absolute;right:14px;top:11px}
+#head > ul li.alarm{position:absolute;right:47px;top:11px}
+#head > ul li a {display:block;text-indent:-9999em;overflow:hidden}
+#head > ul li.back > a {width:44px;height:44px;background:url(http://image.lotte.com/lotte/mobile/chat_service/btn_head_back.png) no-repeat center center;background-size:18px 13px}
+#head > ul li.out > a {width:22px;height:23px;background-image:url(http://image.lotte.com/lotte/mobile/chat_service/btn_head_out.png);background-repeat:no-repeat;background-position:0 50%;background-size:48px 23px}
+#head > ul li.out .decorations {display:none;position:absolute;top:32px;right:0;width:160px;padding:11px;background:rgba(0,0,0,0.6);color:#fff;line-height:18px;font-size:13px;box-sizing:border-box;-webkit-box-sizing:border-box;border-radius:3px;z-index:120}
+#head > ul li.out .decorations:before {position:absolute;display:block;content:"";right:6px;top:-7px;width:9px;height:7px;background:url(http://image.lotte.com/lotte/mobile/chat_service/arrow_head_decorations.png) no-repeat 0 0;background-size:9px 7px;opacity:0.6}
+#head > ul li.out .decorations strong {color:#719cff}
+#head > ul li.out .decorations a.close {position:absolute;right:4px;top:4px;display:block;text-indent:-9999em;overflow:hidden;width:22px;height:22px;background:url(http://image.lotte.com/lotte/mobile/chat_service/btn_layer_close.png) no-repeat 50% 50%;background-size:12px 12px}
+#head > ul li.out.on01 > a,
+#head > ul li.out.on02 > a {background-position:-26px 50%;background-size:48px 23px}
+#head > ul li.out.on01 .decorations {display:block}
+#head > ul li.alarm a {width:21px;height:22px;background:url(http://image.lotte.com/lotte/mobile/chat_service/btn_head_alarm.png) no-repeat 0 0;background-size:21px 22px}
+#head .layer_info {display:none;position:absolute;left:0;top:44px;width:100%;text-align:left;padding:15px 15px 35px;background:#fff;line-height:17px;font-size:14px;z-index:110;box-sizing:border-box;-webkit-box-sizing:border-box;box-shadow:0 3px 4px rgba(0, 0, 0, 0.1)}
+#head .layer_info > p {line-height:19px;padding-bottom:4px}
+#head .layer_info span.red {color:#ff7b62}
+#head .layer_info span.blue {color:#285ace}
+/*
+#head .layer_info dl {padding-top:10px}
+#head .layer_info dl dt {font-size:12px;padding-bottom:2px}
+#head .layer_info dl dd li {padding-left:7px;background:url(http://image.lotte.com/lotte/mobile/chat_service/icon_head_info_list.gif) no-repeat 0 50%;background-size:2px 2px}
+#head .layer_info dl dd li span {display:inline-block;width:62px}
+*/
+#head .layer_info .counsel_time {padding-top:10px}
+#head .layer_info .counsel_time h2 {font-size:12px;padding-bottom:2px;font-weight:normal}
+#head .layer_info .counsel_time table {border-left:solid 1px #efefef;border-top:solid 1px #efefef;text-align:center;font-size:13px}
+#head .layer_info .counsel_time table th,
+#head .layer_info .counsel_time table td {padding:5px 0;width:33%;border-right:solid 1px #efefef;border-bottom:solid 1px #efefef;box-sizing:border-box;-webkit-box-sizing:border-box;}
+
+#head .layer_info .btn {margin:15px 0 0;overflow:hidden}
+#head .layer_info .btn > a {display:block;float:left;width:100%;text-align:center;background:#efefef;height:42px;line-height:42px}
+#head .layer_info a.close {position:absolute;right:10px;bottom:5px;display:block;overflow:hidden;width:25px;height:25px;text-indent:-99999px;background:url(http://image.lotte.com/lotte/mobile/chat_service/btn_head_info_close.png ) no-repeat 50% 50%;background-size:15px 15px}
+
+#chat {position:relative;padding:50px 10px;font-size:11px;background:#c3def3;overflow:hidden}
+
+#chat .history_before {text-align:center;color:#4c4c4e}
+#chat .date {position:relative;text-align:center;line-height:33px}
+#chat .date p {position:relative;display:inline-block;padding:0 5px;background:#c3def3}
+#chat .date:before {position:absolute;display:block;content:"";left:0;top:50%;width:100%;height:1px;background:url(http://image.lotte.com/lotte/mobile/chat_service/line_chat_date.gif) repeat-x 0 center;background-size:1px 1px}
+#chat .message:after {content:"";display:block;clear:both}
+#chat .message .text {margin-bottom:10px;clear:both;font-size:14px;}
+#chat .message .text {position:relative;max-width:84%;padding:15px;border-radius:10px;box-sizing:border-box;-webkit-box-sizing:border-box;word-break:break-all}
+#chat .message .text p {line-height:17px;font-size:14px; }
+#chat .message .text p .selected_key { font-size:13px; color:#719cff; }
+#chat .message .text p .selected_key + .selected_key { margin-left:2px; }
+#chat .message .text a {color:#053ec4}
+#chat .message .text .title {height:23px;border-bottom:solid 1px #eee185}
+#chat .message .text .prd_cont {margin-top:10px;overflow:hidden}
+#chat .message .text .prd_cont .thumbnail {float:left;width:54px;border:solid 1px #ddd}
+#chat .message .text .prd_cont .thumbnail img {width:54px;height:54px}
+#chat .message .text .prd_cont .thumbnail span {display:block;line-height:16px;font-size:11px;text-align:center}
+#chat .message .text .prd_cont .thumbnail span.receipt {color:#fff;background:#719cff}
+#chat .message .text .prd_cont .thumbnail span.end {background:#ddd;color:#a1a1a1}
+#chat .message .text .prd_cont .detail {margin-left:64px;box-sizing:border-box;-webkit-box-sizing:border-box}
+#chat .message .text .prd_cont .detail p {line-height:17px;margin-bottom:4px;color:#333}
+#chat .message .text .prd_cont .detail p.name {overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+#chat .message .text .prd_cont .detail p.option {text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden}
+#chat .message .thumbnail { clear:both; margin-bottom:10px; }
+#chat .message .check {clear:both;margin-bottom:10px;color:#999}
+#chat .message > .movie {clear:both;margin-bottom:10px;}
+#chat .message > .thumbnail img,
+#chat .message > .movie img {width:130px}
+
+#chat .message.opp {padding-left:12px}
+#chat .message.opp .writer {margin-left:-12px;padding-bottom:8px;margin-bottom:0;line-height:11px;font-size:11px;color:#333;}
+#chat .message.opp .writer img {width:29px;height:24px;padding-right:5px;vertical-align:middle}
+#chat .message.opp .text {float:left;bacKground:#fff}
+
+#chat .message.me {padding-right:12px}
+#chat .message.me .text {float:right;bacKground:#fff190}
+#chat .message.me .check {font-size:11px;line-height:11px;text-align:right}
+#chat .message.me > .thumbnail,
+#chat .message.me > .movie {text-align:right}
+#chat .message.opp > .text:nth-child(2) {border-radius:0 10px 10px 10px}
+#chat .message.opp > .text:nth-child(2):after {position:absolute;left:-12px;top:0;display:block;width:12px;height:10px;content:"";background:url(http://image.lotte.com/lotte/mobile/chat_service/bg_chat_opp_shape.png) no-repeat 0 0;background-size:12px 10px}
+#chat .message.me > .text:first-child {border-radius:10px 0 10px 10px}
+#chat .message.me > .text:first-child:after {position:absolute;right:-12px;top:0;display:block;width:12px;height:10px;content:"";background:url(http://image.lotte.com/lotte/mobile/chat_service/bg_chat_me_shape.png) no-repeat 0 0;background-size:12px 10px}
+#chat .message .no_tail.text {border-radius:10px !important}
+#chat .message .no_tail.text:after {display:none !important}
+#chat .flow_command { margin-top:8px; }
+
+/* flow 옵션 리스트 레이아웃 */
+#chat .list_layout_wide {min-width:210px;}
+#chat .list_layout_wide li {margin-top:3px;}
+#chat .list_layout_half { overflow:hidden;}
+#chat .list_layout_half li {float:left;display:inline-block;width:49%;margin-top:4px;}
+#chat .list_layout_half li:nth-child(even) { margin-left:2%; }
+
+/* 버튼 */
+#chat .message .text a.voice_btn img {width:100px}
+#chat .message.opp .text a.opp_btn {position:relative;display:block;border-top:solid 1px #eee;margin:11px -15px -15px;height:42px;line-height:42px;text-indent:52px;padding-right:30px;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden;color:#333;box-sizing:border-box;-webkit-box-sizing:border-box}
+#chat .message.opp .text a.opp_btn:before {position:absolute;left:15px;top:50%;display:block;width:30px;height:30px;content:"";background-repeat:no-repeat;background-position:0 0;background-size:30px 30px;margin-top:-15px}
+#chat .message.opp .text a.back_btn:before {background-image:url(http://image.lotte.com/lotte/mobile/chat_service/icon_chat_back.gif)}
+#chat .message.opp .text a.satisfaction_btn:before {background-image:url(http://image.lotte.com/lotte/mobile/chat_service/icon_chat_satisfaction.gif)}
+#chat .message.opp .text a.recommand_btn:before {background-image:url(http://image.lotte.com/lotte/mobile/chat_service/icon_chat_satisfaction.gif)}
+#chat .message.opp .text a.faq_btn:before {background-image:url(http://image.lotte.com/lotte/mobile/chat_service/icon_chat_faq.gif)}
+#chat .message.opp .text a.allview_btn:before {background-image:url(http://image.lotte.com/lotte/mobile/chat_service/icon_chat_allview.gif)}
+#chat .message.opp .text a.opp_btn:after {position:absolute;right:16px;top:50%;display:block;width:7px;height:12px;content:"";margin-top:-6px;background:url(http://image.lotte.com/lotte/mobile/chat_service/arrow_chat_btn.png) no-repeat 0 0;background-size:7px 12px}
+
+#chat .message.opp a.btn_box {display:table;width:100%;}
+#chat .message.opp a.btn_box span {display:table-cell;height:40px;vertical-align:middle;border:solid 1px #eee; padding:0 4px; color:#333;text-align:center;font-size:13px;}
+
+#chat .message.opp .btn_start { position:relative;display:block;margin-top:4px;background:#f1f1f1;color:#605f5f;font-size:12px;line-height:40px;text-align:center; }
+#chat .message.opp .btn_start:after {position:relative;top:2px;display:inline-block;margin-left:8px;width:7px;height:12px;content:"";background:url(http://image.lotte.com/lotte/mobile/chat_service/arrow_chat_btn2.png) no-repeat center center;background-size:7px 12px}
+
+/* 추천상품 */
+#chat .recommand_product { max-width:480px; margin-bottom:13px; padding:90px 10px 0; background:url(http://image.lotte.com/lotte/mobile/chat_service/icon_recommand.png) #fff no-repeat center 20px;background-size:140px 40px;  }
+#chat .recommand_product .product_link { display:block; height:120px; }
+#chat .recommand_product ul { overflow:hidden; }
+#chat .recommand_product ul li { clear:both; position:relative; min-height:120px; margin-bottom:35px; }
+#chat .recommand_product .product_thumb { float:left; position:relative; z-index:1; width:118px; height:118px; border:1px solid #dddddd; background:#fff; }
+#chat .recommand_product .product_thumb img { width:118px; height:118px; }
+#chat .recommand_product .product_info { overflow:hidden; }
+#chat .recommand_product .product_info .product_title { max-height:34px; overflow:hidden; margin-left:8px; font-size:13px; line-height:1.35em; }
+#chat .recommand_product .product_info .product_price { margin-left:8px; margin-top:2px; font-size:11px; color:#3874ec; }
+#chat .recommand_product .product_info .product_price span { font-size:16px; font-weight:bold; }
+#chat .recommand_product .product_info .product_review { margin-left:8px; font-size:14px; line-height:12px; }
+#chat .recommand_product .product_info .product_review .score_wrap { display:inline-block; vertical-align:top; width:60px; height:12px; background:url(http://image.lotte.com/lotte/mobile/chat_service/icon_review_v2.png) no-repeat 0 0; background-size:60px 12px; }
+#chat .recommand_product .product_info .product_review .score_wrap .score_count { display:block; vertical-align:top; height:12px; background:url(http://image.lotte.com/lotte/mobile/chat_service/icon_review_on_v2.png) no-repeat 0 0; background-size:60px 12px; }
+#chat .recommand_product .product_info .product_review .review_user { display:inline-block; vertical-align:middle; margin-top:-1px; color:#fa7257; font-size:11px; }
+#chat .recommand_product .product_info .product_extra { position:absolute; bottom:0; right:0; width:100%; background:#f1f1f1; color:#666666; }
+#chat .recommand_product .product_info .product_extra span { max-height:27px; overflow:hidden; margin:6px 8px 6px 128px; display:inline-block;}
+
+#chatInput {position:fixed;left:0;bottom:0;right:0;width:100%;z-index:10}
+#chatInput p.no_info {background:#aeaeae;font-size:14px;line-height:45px;color:#fff;text-align:center}
+#chatInput .now_message {position:absolute;left:0;right:0;top:-46px;height:46px;background:rgba(51,51,51,0.8)}
+#chatInput .now_message:after {position:absolute;right:14px;top:50%;display:block;width:13px;height:17px;margin-top:-7px;content:"";background:url(http://image.lotte.com/lotte/mobile/chat_service/arrow_now_message.png) no-repeat 0 0;background-size:13px 17px}
+#chatInput .now_message p {line-height:46px;color:#fff;font-size:14px;padding:0 40px 0 14px;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden}
+#chatInput .emoticon_message {position:relative;height:93px;line-height:93px;background:rgba(51,51,51,0.8);text-align:right;display:none}
+#chatInput .emoticon_message > a.view img {width:75px;margin:9px 45px 0 0}
+#chatInput .emoticon_message > a.close {position:absolute;right:10px;top:10px;display:block;text-indent:-9999em;overflow:hidden;width:22px;height:22px;background:url(http://image.lotte.com/lotte/mobile/chat_service/btn_layer_close.png) no-repeat 50% 50%;background-size:12px 12px}
+
+#chatInput .keypad_input {background:#fff;display:table;width:100%;height:100%;border-top:solid 1px #ddd;border-bottom:solid 1px #ddd;box-sizing:border-box;-webkit-box-sizing:border-box}
+#chatInput .keypad_input a.attach_btn {display:table-cell;width:43px;border-right:solid 1px #ddd;overflow:hidden;text-indent:-99999px;background:url(http://image.lotte.com/lotte/mobile/chat_service/btn_keypad_attach.png) no-repeat 50% 50%;background-size:16px 16px}
+#chatInput .keypad_input a.attach_btn.on {background:#f3f3f3 url(http://image.lotte.com/lotte/mobile/chat_service/btn_keypad_attach_close.png) no-repeat 50% 50%;background-size:16px 16px}
+#chatInput .keypad_input .keypad {display:table-cell;padding:13px 8px;box-sizing:border-box;-webkit-box-sizing:border-box}
+#chatInput .keypad_input .keypad  textarea {border:none;width:100%;font-size:14px;line-height:19px;height:19px;vertical-align:top;resize:none}
+#chatInput .keypad_input a.emoticon_btn {display:table-cell;width:43px;overflow:hidden;text-indent:-99999px;background:url(http://image.lotte.com/lotte/mobile/chat_service/btn_keypad_emoticon.png) no-repeat 50% 50%;background-size:25px 25px}
+#chatInput .keypad_input a.emoticon_btn.on {background:url(http://image.lotte.com/lotte/mobile/chat_service/btn_keypad_emoticon_close.png) no-repeat 50% 50%;background-size:25px 25px}
+#chatInput .keypad_input .send {display:table-cell;width:43px;height:45px;border:none}
+#chatInput .keypad_input .send button {width:100%;height:100%;color:#fff;font-size:13px;border:none;background:#719cff;vertical-align:bottom;line-height:15px}
+#chatInput .keypad_input .send button:disabled {background:#aeaeae}
+
+#chatInput .layer_input {background:#f3f3f3;position:relative}
+#chatInput .layer_input > div {width:100%;overflow:hidden;padding-top:25px;display:none}
+#chatInput .layer_input ul li {float:left;height:76px;text-align:center}
+#chatInput .layer_input .attach ul li {width:33.33%}
+#chatInput .layer_input .attach ul li a,
+#chatInput .layer_input .attach ul li span {font-size:12px;color:#666;display:inline-block}
+#chatInput .layer_input .attach ul li a:before,
+#chatInput .layer_input .attach ul li span:before{display:block;width:41px;height:41px;margin:0 auto 4px;content:"";background-image:url(http://image.lotte.com/lotte/mobile/chat_service/icon_attach_btn.png);background-repeat:no-repeat;background-size:150px 100px}
+#chatInput .layer_input .attach ul li.photo span:before {background-position:0 0}
+#chatInput .layer_input .attach ul li.movie span:before {background-position:-50px 0}
+#chatInput .layer_input .attach ul li.camera span:before {background-position:-100px 0}
+#chatInput .layer_input .attach ul li.cart a:before {background-position:0 -50px}
+#chatInput .layer_input .attach ul li.order a:before {background-position:-50px -50px}
+#chatInput .layer_input .attach ul li.voice span:before {background-position:-100px -50px}
+#chatInput .layer_input .attach ul li span {position:relative}
+#chatInput .layer_input .attach ul li span input[type="file"] {position:absolute;left:0;top:0;right:0;bottom:0;display:inline-block;width:100%;height:100%;text-indent: -9999px}
+
+#chatInput .layer_input .emoticon #emoticonSlider {height:152px}
+#chatInput .layer_input .emoticon ul {float:left}
+#chatInput .layer_input .emoticon ul li {width:25%}
+#chatInput .layer_input .emoticon ul li a {display:block;width:54px;height:54px;margin:0 auto}
+#chatInput .layer_input .emoticon .page {position:absolute;left:0;top:7px;width:100%;text-align:center;height:7px;line-height:7px}
+#chatInput .layer_input .emoticon .page span {width:7px;height:7px;display:inline-block;overflow:hidden;text-indent:-999999px;background:#ddd;border-radius:3px;margin:0 1px}
+#chatInput .layer_input .emoticon .page span.on {background:#719cff}
+
+#cover {display:none;left:0;position:fixed;top:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:100}
+
+/* 팝업 */
+.layer_pop {display:none;position:fixed;top:50%;z-index:110;box-sizing:border-box;-webkit-box-sizing:border-box}
+
+/* 팝업:공통 별점 */
+.layer_pop .satisfaction_score {position:relative;margin:0 15px 15px}
+.layer_pop .satisfaction_score .score {display:block;text-align:center;height:46px;line-height:46px;background:#fff}
+.layer_pop .satisfaction_score .score a {display:inline-block;width:18px;height:18px;padding:0 13px;vertical-align:middle;text-indent:-9999em;overflow:hidden;background:url(http://image.lotte.com/lotte/mobile/chat_service/icon_satisfaction_score.png) no-repeat 50% 0;background-size:18px 36px}
+.layer_pop .satisfaction_score .score a.on {background-position:50% -18px}
+.layer_pop .satisfaction_score .textarea { margin-top:1px; }
+.layer_pop .satisfaction_score .textarea textarea {width:100%;height:86px;font-size:13px;border:none;padding:15px;line-height:16px;box-sizing:border-box;-webkit-box-sizing:border-box;resize:none;border-radius:2px;-webkit-border-radius:2px;text-overflow:ellipsis}
+
+/* 팝업:이미지 */
+.layer_pop.img_pop {top:0;left:0;right:0;bottom:0;margin-top:0 !important; background:#fff;text-align:center}
+.layer_pop.img_pop .img_pop_wrap {display:inline-block}
+.layer_pop.img_pop .img_pop_wrap .thumbnail {max-width:640px;overflow-y:auto}
+.layer_pop.img_pop a.close {position:absolute;display:block;overflow:hidden;width:30px;height:30px;right:8px;top:8px;text-indent:-99999px;background:url(http://image.lotte.com/lotte/mobile/chat_service/btn_layer_close02.png) no-repeat 0 0;background-size:30px 30px}
+
+/* 팝업:상담만족도평가 */
+.layer_pop.satisfaction_pop {right:17px;left:17px;margin-top:-124px;background:#f3f3f3;border-radius:13px;max-height:244px;}  /* max-height 안드로이드 레이아웃 깨짐 대응 */
+.layer_pop.satisfaction_pop .title {text-align:center;padding-top:26px;height:33px;font-size:17px}
+.layer_pop.satisfaction_pop > .btn {border-top:solid 1px #e6e6e6;background:#fff;border-radius:0 0 13px 13px;}
+.layer_pop.satisfaction_pop > .btn:after {content:"";display:block;clear:both}
+.layer_pop.satisfaction_pop > .btn a {display:block;float:left;width:50%;height:36px;line-height:36px;text-align:center;box-sizing:border-box;-webkit-box-sizing:border-box;}
+.layer_pop.satisfaction_pop > .btn a:first-child {border-right:solid 1px #e6e6e6}
+
+/* 팝업:추천상품 만족도 */
+.layer_pop.recommand_pop {right:17px;left:17px;margin-top:-80px;background:#f3f3f3;border-radius:13px;max-height:157px;} /* max-height 안드로이드 레이아웃 깨짐 대응 */
+.layer_pop.recommand_pop .title {text-align:center;padding-top:26px;height:33px;font-size:17px}
+.layer_pop.recommand_pop > .btn {border-top:solid 1px #e6e6e6;background:#fff;border-radius:0 0 13px 13px;}
+.layer_pop.recommand_pop > .btn:after {content:"";display:block;clear:both}
+.layer_pop.recommand_pop > .btn a {display:block;float:left;width:50%;height:36px;line-height:36px;text-align:center;box-sizing:border-box;-webkit-box-sizing:border-box;}
+.layer_pop.recommand_pop > .btn a:first-child {border-right:solid 1px #e6e6e6}
+
+#wrapper.alarm_wrapper {min-height:100%;background:#eee}
+#wrapper.coupon_wrapper{min-height:100%;background:#fff}
+#wrapper.prdList_wrapper {min-height:100%;background:#eee;padding:0}
+#wrapper.alarm_wrapper.white {background:#fff}
+#alarm,
+#coupon {padding:44px 0 0}
+#coupon {overflow:hidden}
+#oder,
+#cart {padding:44px 0 50px}
+#alarm .download {text-align:center;padding:30px 14px 26px;border-bottom:solid 1px #e9e9e9;background:#fff}
+#alarm .download h2 {font-size:13px;font-weight:normal;margin-bottom:40px}
+#alarm .download h2:before {display:block;width:59px;height:59px;content:"";margin:0 auto 14px;background:url(http://image.lotte.com/lotte/mobile/chat_service/icon_alarm.png) no-repeat 0 0;background-size:59px 59px}
+#alarm .download a.btn {display:block;border:solid 1px #ddd;margin:0 auto;height:47px;line-height:47px;padding:0 2px;border-radius:3px;box-sizing:border-box;-webkit-box-sizing:border-box}
+#alarm .download a.btn span {position:relative;display:inline-block;padding-right:18px}
+#alarm .download a.btn span:after {position:absolute;right:0;top:50%;margin-top:-7px;display:block;width:8px;height:14px;content:"";background:url(http://image.lotte.com/lotte/mobile/chat_service/arrow_alarm_download.png) no-repeat 0 0;background-size:8px 14px}
+#alarm .option {text-align:center;padding:25px 16px 0;background:#fff}
+#alarm .option > .btn {overflow:hidden;padding:22px 0 27px}
+#alarm .option > .btn > a {display:block;width:49%;height:47px;line-height:47px;font-size:16px;border-radius:3px;box-sizing:border-box;-webkit-box-sizing:border-box}
+#alarm .option > .btn > a.change_btn {float:left;border:solid 1px #719cff}
+#alarm .option > .btn > a.alarm_btn {float:right;background:#719cff;color:#fff}
+#alarm .option_check {padding:21px 16px;color:#666;font-size:12px}
+#alarm .option_check a.check_btn {position:relative;display:inline-block;padding-right:10px}
+#alarm .option_check a.check_btn:after {position:absolute;right:0;top:50%;margin-top:-3px;display:block;width:6px;height:11px;content:"";background:url(http://image.lotte.com/lotte/mobile/chat_service/arrow_alarm_download.png) no-repeat 0 0;background-size:6px 11px} 
+
+#coupon .text_info {padding:15px;word-break:break-all}
+#coupon .text_info p {line-height:18px}
+#coupon .text_info p strong {color:#245ad0;font-weight:normal}
+#coupon .text_info ol {padding-top:20px;line-height:19px}
+#coupon .file_info > div,
+#coupon .img_info > div {text-align:center;padding-top:10px}
+#coupon .text_info img,
+#coupon .file_info img,
+#coupon .img_info img {max-width:640px;width:100% !important;display:block;margin:0 auto}
+
+.prd_list_info {padding:13px;line-height:18px;color:#888}
+.prd_list_info p {padding-left:20px}
+.prd_list_info p:first-child {background:url(http://image.lotte.com/lotte/mobile/chat_service/icon_cart_info.png) no-repeat 0 50%;background-size:13px 12px}
+.prd_list_info strong {color:#333;font-weight:normal}
+.prd_list p.date {height:35px;line-height:35px;margin:0 6px;padding:0 6px;font-size:14px;border-bottom:solid 1px #eee}
+.prd_list li {position:relative;background:#fff;padding:12px 13px;box-sizing:border-box;-webkit-box-sizing:border-box;overflow:hidden}
+.prd_list li .thumbnail {float:left;width:54px;border:solid 1px #ddd}
+.prd_list li .thumbnail img {width:54px;height:54px}
+.prd_list li .thumbnail span {display:block;line-height:16px;font-size:11px;text-align:center}
+.prd_list li .thumbnail span.receipt {background:#719cff;color:#fff}
+.prd_list li .thumbnail span.end {background:#ddd;color:#999}
+.prd_list li .detail {margin-left:64px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.prd_list li .detail p {line-height:16px;color:#333}
+.prd_list li .detail p.name {margin-bottom:8px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.prd_list li .detail p.option {text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden}
+.prd_list li .detail p.total {color:#5386fa}
+.prd_list li.on .blind {position:absolute;left:0;right:0;top:0;bottom:0;background:rgba(0,0,0,0.4) url(http://image.lotte.com/lotte/mobile/chat_service/icon_cart_on.png) 50% 50% no-repeat;background-size:35px 35px}
+.prd_list_btn {position:fixed;left:0;right:0;bottom:0;height:50px;line-height:50px;text-align:center;font-size:17px;color:#fff}
+.prd_list_btn span {display:block;background:#ccc}
+.prd_list_btn a {display:block;background:#749eff;color:#fff}
+.prd_more_btn {margin:12px;text-align:center;background:#fff;height:34px;line-height:34px;border:solid 1px #ddd;font-size:12px;border-radius:2px;}
+.prd_more_btn a {position:relative;color:#333;padding-left:15px}
+.prd_more_btn a:before {display:block;position:absolute;left:0;top:50%;width:8px;height:8px;margin-top:-4px;content:"";background:url(http://image.lotte.com/lotte/mobile/chat_service/icon_prd_more_btn.png) no-repeat 0 0;background-size:8px 8px}
+.prd_list_empty {position:absolute;left:0;right:0;top:58px;bottom:0;background:#fff url(http://image.lotte.com/lotte/mobile/chat_service/ico_empty.png) 50% 92px no-repeat;background-size:80px 80px;text-align:center;border-top:solid 1px #dcdcdc;box-sizing:border-box;-webkit-box-sizing:border-box}
+.prd_list_empty p {padding-top:196px;font-size:15px}
+#cart .prd_list li {border-top:solid 1px #dcdcdc;border-bottom:solid 1px #dcdcdc;;margin-bottom:8px}
+#oder .prd_list {margin-bottom:8px;background:#fff;border-top:solid 1px #dcdcdc;border-bottom:solid 1px #dcdcdc}
+#oder .prd_list li {border-top:solid 1px #eee}
+#oder .prd_list li:first-child {border-top:none}
+
+#chat .loading,
+#chat .attach_loading,
+.list_loading {background:url(http://image.lotte.com/lotte/mo2015/angular/common/loading.png) 0 0 no-repeat;width:40px;height:40px;margin:15px auto;background-size:40px 40px;-moz-animation:spin .5s infinite linear;-webkit-animation:spin .5s infinite linear;}
+#chat .attach_loading,
+.list_loading{position:fixed;left:50%;top:50%;margin:-20px 0 0 -20px;z-index:1}
+#chat .loading.none,
+#chat .attach_loading.none,
+.list_loading_wrapper.none .list_loading {visibility:hidden;display:none;-moz-animation:spin .0s infinite linear;	-webkit-animation:spin .0s infinite linear}
+
+.list_loading_wrapper {position:fixed;left:0;top:0;right:0;bottom:0;z-index:10}
+.list_loading_wrapper.none  {display:none}
+
+@-moz-keyframes spin {
+	0% { -moz-transform:rotate(0deg); }
+	100% { -moz-transform:rotate(360deg); }
+}
+@-webkit-keyframes spin {
+	0% { -webkit-transform:rotate(0deg); }
+	100% { -webkit-transform:rotate(360deg); }
+}
+
+@media (orientation:landscape){
+	#chatInput .layer_input .attach ul li {width:16.66%}
+	#chatInput .layer_input .emoticon ul li {width:12.5%}
+	#chatInput .layer_input .emoticon #emoticonSlider {height:76px}
+}
+
+
+.layer_popup{position:fixed;top:31%;left:18%;right:18%;z-index:100;box-sizing:border-box;-webkit-box-sizing:border-box}
+@media all and (orientation:landscape){
+    .layer_popup{top:8%;left:28%;right:28%}
+}
+.layer_popup.bg{background:#000;opacity:0.6;top:0;left:0;width:100%;height:100%}
+.layer_popup .check .close a{position:absolute;top:2%;left:auto;right:2%;width:9%;margin-top:0;text-align:center;font-size:14px;color:#fff}
+.layer_popup .check .close a:after{background:url(http://image.lotte.com/lotte/mobile/mobile_new/event/btn_close_appdown.png) no-repeat 5px 0;background-size:12px 12px;content:"";display:inline-block;vertical-align:top;width:12px;height:12px;position:relative;top:2px;padding-left:5px}

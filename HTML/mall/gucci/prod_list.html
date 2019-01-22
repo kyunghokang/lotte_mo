@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+
+<!-- test common css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">
+<!-- //공통 css -->
+<!----------------- current css ----------------->
+<link rel="stylesheet" href="/lotte/resources_dev/mall/gucci/gucci_main.css">
+
+<!----------------- current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+<script src="tenbyten.js"></script>
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<!--
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+-->
+<header id="gucciSubHead" class="scrollFixHead"><!-- 하위메뉴 활성화시 마진으로 높이값추가 -->
+	<h2><span>GUCCI</span></h2>
+	<p class="prev"><a href="#">이전</a></p>
+	<!-- category menu -->
+	<nav>
+		<ul class="ctg_list_big">
+			<li><!-- D:20150925 활성화시 클래스 big_on 추가 -->
+				<a class="btn_ctg_big" href="#none">여성</a>
+				<ul class="ctg_list_mid"><!-- D:20150925 활성화시 display:block -->
+					<li><!-- D:20150925 활성화시 클래스 mid_on 추가 -->
+						<a class="btn_ctg_mid" href="#none">여성가방</a>
+						<ul class="ctg_list_sml"><!-- D:20150925 활성화시 display:block -->
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5522723&amp;tclick=G_CATEGORY_1">전체보기</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523737&amp;tclick=G_CATEGORY_1_01">숄더백/호보백</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523746&amp;tclick=G_CATEGORY_1_02">토트백/탑핸들백/보스턴백</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523749&amp;tclick=G_CATEGORY_1_03">클러치/이브닝백</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="btn_ctg_mid" href="#none">여행가방</a>
+						<ul class="ctg_list_sml">
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5522724&amp;tclick=G_CATEGORY_2">전체보기</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523755&amp;tclick=G_CATEGORY_2_01">메신져백/벨트백</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523759&amp;tclick=G_CATEGORY_2_02">백팩/클러치</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523769&amp;tclick=G_CATEGORY_2_03">더플백/트롤리</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="btn_ctg_mid" href="#none">여성지갑/가죽소품</a>
+						<ul class="ctg_list_sml">
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5522725&amp;tclick=G_CATEGORY_3">전체보기</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523773&amp;tclick=G_CATEGORY_3_01">장지갑/중지갑</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523775&amp;tclick=G_CATEGORY_3_02">반지갑/미니지갑</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523779&amp;tclick=G_CATEGORY_3_03">카드지갑/키케이스/참</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523781&amp;tclick=G_CATEGORY_3_04">기타 가죽소품</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="btn_ctg_mid" href="#none">여성의류</a>
+						<ul class="ctg_list_sml">
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5522726&amp;tclick=G_CATEGORY_4">전체보기</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523783&amp;tclick=G_CATEGORY_4_01">상의</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523785&amp;tclick=G_CATEGORY_4_02">하의</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523787&amp;tclick=G_CATEGORY_4_03">원피스</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523789&amp;tclick=G_CATEGORY_4_04">아우터/자켓</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="btn_ctg_mid" href="#none">여성슈즈</a>
+						<ul class="ctg_list_sml">
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5522727&amp;tclick=G_CATEGORY_5">전체보기</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523791&amp;tclick=G_CATEGORY_5_01">펌프스/오픈토</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523794&amp;tclick=G_CATEGORY_5_02">샌들/웻지</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523797&amp;tclick=G_CATEGORY_5_03">플랫/로퍼</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523799&amp;tclick=G_CATEGORY_5_04">스니커즈</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523801&amp;tclick=G_CATEGORY_5_05">부티/부츠</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="btn_ctg_mid" href="#none">패션소품</a>
+						<ul class="ctg_list_sml">
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5522728&amp;tclick=G_CATEGORY_6">전체보기</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523804&amp;tclick=G_CATEGORY_6_01">벨트</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523805&amp;tclick=G_CATEGORY_6_02">시계</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523807&amp;tclick=G_CATEGORY_6_03">쥬얼리</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523810&amp;tclick=G_CATEGORY_6_04">향수</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="btn_ctg_mid" href="#none">시즌소품</a>
+						<ul class="ctg_list_sml">
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5522729&amp;tclick=G_CATEGORY_7">전체보기</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523806&amp;tclick=G_CATEGORY_7_01">선글라스</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523808&amp;tclick=G_CATEGORY_7_02">스카프</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523809&amp;tclick=G_CATEGORY_7_03">모자 &amp; 장갑</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a class="btn_ctg_big" href="#none">남성</a>
+				<ul class="ctg_list_mid">
+					<li>
+						<a class="btn_ctg_mid" href="#none">남성가방</a>
+						<ul class="ctg_list_sml">
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5522730&amp;tclick=G_CATEGORY_8">전체보기</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523742&amp;tclick=G_CATEGORY_8_01">토트백/브리프케이스</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523743&amp;tclick=G_CATEGORY_8_02">메신져백/벨트백</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523744&amp;tclick=G_CATEGORY_8_03">백팩/클러치</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="btn_ctg_mid" href="#none">여행가방</a>
+						<ul class="ctg_list_sml">
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5522731&amp;tclick=G_CATEGORY_9">전체보기</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523745&amp;tclick=G_CATEGORY_9_01">더플백/트롤리</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="btn_ctg_mid" href="#none">남성지갑/가죽 소품</a>
+						<ul class="ctg_list_sml">
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5522732&amp;tclick=G_CATEGORY_10">전체보기</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523747&amp;tclick=G_CATEGORY_10_01">장지갑</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523748&amp;tclick=G_CATEGORY_10_02">반지갑/머니클립</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523751&amp;tclick=G_CATEGORY_10_03">카드지갑/키케이스/참</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523757&amp;tclick=G_CATEGORY_10_04">기타 가죽소품</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="btn_ctg_mid" href="#none">남성의류</a>
+						<ul class="ctg_list_sml">
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5522733&amp;tclick=G_CATEGORY_11">전체보기</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523752&amp;tclick=G_CATEGORY_11_01">상의</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523753&amp;tclick=G_CATEGORY_11_02">하의</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523754&amp;tclick=G_CATEGORY_11_03">아우터/자켓</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="btn_ctg_mid" href="#none">남성슈즈</a>
+						<ul class="ctg_list_sml">
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5522734&amp;tclick=G_CATEGORY_12">전체보기</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523756&amp;tclick=G_CATEGORY_12_01">정장화/부츠</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523758&amp;tclick=G_CATEGORY_12_02">스니커즈</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523760&amp;tclick=G_CATEGORY_12_03">모카신/로퍼/샌들</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="btn_ctg_mid" href="#none">패션소품</a>
+						<ul class="ctg_list_sml">
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5522735&amp;tclick=G_CATEGORY_13">전체보기</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523762&amp;tclick=G_CATEGORY_13_01">시계</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523763&amp;tclick=G_CATEGORY_13_02">벨트</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523766&amp;tclick=G_CATEGORY_13_03">쥬얼리</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523767&amp;tclick=G_CATEGORY_13_04">향수</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="btn_ctg_mid" href="#none">시즌소품</a>
+						<ul class="ctg_list_sml">
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5522736&amp;tclick=G_CATEGORY_14">전체보기</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523771&amp;tclick=G_CATEGORY_14_01">선글라스</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523772&amp;tclick=G_CATEGORY_14_02">스카프/넥타이</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523774&amp;tclick=G_CATEGORY_14_03">모자 &amp; 장갑</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a class="btn_ctg_big" href="#none">유아동</a>
+				<ul class="ctg_list_mid">
+					<li>
+						<a class="btn_ctg_mid" href="#none">유아동 의류</a>
+						<ul class="ctg_list_sml">
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5522737&amp;tclick=G_CATEGORY_15">전체보기</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523776&amp;tclick=G_CATEGORY_15_01">상의</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523777&amp;tclick=G_CATEGORY_15_02">하의</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523778&amp;tclick=G_CATEGORY_15_03">드레스</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="btn_ctg_mid" href="#none">유아동 액세서리</a>
+						<ul class="ctg_list_sml">
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5522738&amp;tclick=G_CATEGORY_16">전체보기</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523780&amp;tclick=G_CATEGORY_16_01">유아동 액세서리</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="btn_ctg_mid" href="#none">유아동 슈즈</a>
+						<ul class="ctg_list_sml">
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5522739&amp;tclick=G_CATEGORY_17">전체보기</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523782&amp;tclick=G_CATEGORY_17_01">유아동 슈즈</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a class="btn_ctg_big" href="#none">신상품</a>
+				<ul class="ctg_list_mid">
+					<li>
+						<a class="btn_ctg_mid" href="#none">여성</a>
+						<ul class="ctg_list_sml">
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5522740&amp;tclick=G_CATEGORY_18">전체보기</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523464&amp;tclick=G_CATEGORY_18_01">여성가방</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523465&amp;tclick=G_CATEGORY_18_02">여행가방</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523466&amp;tclick=G_CATEGORY_18_03">여행지갑/가죽 소품</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523467&amp;tclick=G_CATEGORY_18_04">여성의류</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523468&amp;tclick=G_CATEGORY_18_05">여성슈즈</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523470&amp;tclick=G_CATEGORY_18_06">패션소품</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523471&amp;tclick=G_CATEGORY_18_07">시즌소품</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="btn_ctg_mid" href="#none">남성</a>
+						<ul class="ctg_list_sml">
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5522741&amp;tclick=G_CATEGORY_19">전체보기</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523784&amp;tclick=G_CATEGORY_19_01">남성가방</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523786&amp;tclick=G_CATEGORY_19_02">여행가방</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523788&amp;tclick=G_CATEGORY_19_03">남성지갑/가죽 소품</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523790&amp;tclick=G_CATEGORY_19_04">남성의류</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523793&amp;tclick=G_CATEGORY_19_05">남성슈즈</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523796&amp;tclick=G_CATEGORY_19_06">패션소품</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523798&amp;tclick=G_CATEGORY_19_07">시즌소품</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="btn_ctg_mid" href="#none">유아동</a>
+						<ul class="ctg_list_sml">
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5522742&amp;tclick=G_CATEGORY_20">전체보기</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523800&amp;tclick=G_CATEGORY_20_01">유아동 의류</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523802&amp;tclick=G_CATEGORY_20_02">유아동 액세서리</a></li>
+							<li><a class="btn_ctg_sml" href="/category/m/prod_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;curDispNo=5523803&amp;tclick=G_CATEGORY_20_03">유아동 슈즈</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+	<!-- //category menu -->
+</header>
+
+<!-- container -->
+<section id="container">
+	<section class="gucci_location_area">
+		<p><span>여성</span><span>여행가방</span><span class="last_location">메신져백/벨트백</span></p>
+		<!-- D:20150925 html 추가 -->
+		<div class="gucciSelect clear">
+			<div class="gucciAlign">
+				<select name="">
+					<option value="">신상품순</option>
+					<option value="">낮은가격순</option>
+					<option value="">높은가격순</option>
+				</select>
+			</div>
+			<div class="gucciPrice">
+				<select name="">
+					<option value="">가격선택</option>
+					<option value="">전체보기</option>
+					<option value="">0~50만원 이하</option>
+					<option value="">50~100만원 이하</option>
+				</select>
+			</div>
+		</div>
+		<!-- //D:20150925 html 추가 -->
+		<section class="gucci_category_list">
+	        <ul>
+	            <li>
+	                <article class="prd_item">
+	                    <a href="javascript:productView('5523737','179115057')">
+	                        <div class="prd_img">
+	                        	<img src="http://image.lotte.com/goods/57/50/11/79/1/179115057_1_280.jpg" alt="" onerror="chImg(this,150)"></div>
+	                        <dl class="prd_info">
+	                            <dt class="name">상품명 :</dt>
+	                            <dd class="name"><span>[구찌] [GG classic] 스몰 버킷백 </span></dd>
+	                            <dt class="price">현재가 :</dt>
+	                            <dd class="price"><span>1,525,000</span></dd>
+	                        </dl>
+	                    </a>
+	                </article>
+	            </li>
+	            <li>
+	                <article class="prd_item">
+	                    <a href="javascript:productView('5523737','172601303')">
+	                        <div class="prd_img">
+	                        	<img src="http://image.lotte.com/goods/03/13/60/72/1/172601303_1_280.jpg" alt="" onerror="chImg(this,150)"></div>
+	                        <dl class="prd_info">
+	                            <dt class="name">상품명 :</dt>
+	                            <dd class="name"><span>[구찌] [dionysus] GG 슈프림 캔버스 숄더백 </span></dd>
+	                            <dt class="price">현재가 :</dt>
+	                            <dd class="price"><span>2,950,000</span></dd>
+	                        </dl>
+	                    </a>
+	                </article>
+	            </li>
+	            <li>
+	                <article class="prd_item">
+	                    <a href="javascript:productView('5523737','169622549')">
+	                        <div class="prd_img">
+	                        	<img src="http://image.lotte.com/goods/49/25/62/69/1/169622549_1_280.jpg" alt="" onerror="chImg(this,150)"></div>
+	                        <dl class="prd_info">
+	                            <dt class="name">상품명 :</dt>
+	                            <dd class="name"><span>[구찌] [GG Marmont] 가죽 숄더백 </span></dd>
+	                            <dt class="price">현재가 :</dt>
+	                            <dd class="price"><span>2,950,000</span></dd>
+	                        </dl>
+	                    </a>
+	                </article>
+	            </li>
+			</ul>
+	    </section>
+
+	</section>
+
+</section>
+<!-- //container -->
+
+<section ng-include src="'/HTML/include/footer.html'"></section>
+
+</body>
+</html>

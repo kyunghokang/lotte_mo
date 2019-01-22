@@ -1,0 +1,74 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplsslive" : {
+                "options": {
+	            	"prefix":"/",
+                    "module":"app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mall/sslive_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/sslive.template.js"
+            }
+        },
+
+        "concat" : {
+            "jssslive" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mall/sslive.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/sslive.js"
+            }
+        },
+
+        "uglify" : {
+            "jssslive" : {
+                "options" : {
+                    "sourceMap" : true,
+                    "sourceMapIncludeSources" : true,
+                    "sourceMapRoot" : "<%= sourceMapRootURL %>/"
+                },
+                "src" : "lotte/resources/<%= version %>/sslive.js",
+                "dest" : "lotte/resources/<%= version %>/sslive.min.js"
+            },
+            "tplsslive" : {
+                "src" : "lotte/resources/<%= version %>/sslive.template.js",
+                "dest" : "lotte/resources/<%= version %>/sslive.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "csssslive" : {
+                "src" : [
+                    "lotte/resources_dev/mall/sslive.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/sslive.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleansslive" : [
+                "lotte/resources/<%= version %>/sslive.js",
+                "lotte/resources/<%= version %>/sslive.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlsslive" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mall/sslive.html" : "mall/sslive_dev.html"
+                }
+            }
+        }
+    }
+}
+

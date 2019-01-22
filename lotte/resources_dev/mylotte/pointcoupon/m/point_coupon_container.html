@@ -1,0 +1,110 @@
+<section ng-show="contVisible" class="cont_minheight">
+	<section class="mylotte_point" ng-show="!isShowLoadingImage">
+
+		<div class="event_small_banner">
+			<ul>
+				<li ng-click="cpLinks('1'); cpGA(!couponZoneTab?'2':'1', '혜택아이콘', '01')">
+					<div class="img_wrap"></div><p>출석체크</p>
+				</li>
+				<li ng-click="cpLinks('2'); cpGA(!couponZoneTab?'2':'1', '혜택아이콘', '02')">
+					<div class="img_wrap"></div><p>쿠폰존</p>
+				</li>
+				<li ng-click="cpLinks('3'); cpGA(!couponZoneTab?'2':'1', '혜택아이콘', '03')">
+					<div class="img_wrap"></div><p>구매사은</p>
+				</li>
+				<li ng-click="cpLinks('4'); cpGA(!couponZoneTab?'2':'1', '혜택아이콘', '04')">
+					<div class="img_wrap"></div><p>응모/당첨</p>
+				</li>
+			</ul>
+		</div>
+
+		<div class="login_head" ng-if="!loginInfo.isLogin">
+		    <p class="txt16">로그인 후 나의 혜택을 확인하세요!</p>		    
+	        <a href="#" ng-click="goLogin()" class="login_btn"><span class="lib loginicon"></span>로그인</a>
+		</div>
+
+		<nav class="cmt_nav" ng-if="loginInfo.isLogin">
+	        <ul>
+	            <li id="noWriteTab" ng-click="changeTab('first'); cpGA('2', '받을 수 있는 쿠폰')">
+	            	<a href="#">받을 수 있는 쿠폰 ({{couponYnCnt}})</a>
+	            	<span class="indicator"></span>
+	            </li>
+	            <li class="indi verti"><span></span></li>
+	            <li id="writeTab" class="on" ng-click="changeTab('second'); cpGA('1', '내가 받은 쿠폰')">
+	            	<a href="#">내가 받은 쿠폰 ({{maxData.couponList_tot_cnt}})</a>
+	            	<span class="indicator"></span>
+	            </li>
+	        </ul>
+	    </nav>
+			
+		<div class="bg_white" >
+
+			<!-- 쿠폰내역 header -->
+			<section class="coupon_header">
+				<div class="btn_list">
+					<a ng-click="paperCouponRegi()" class="btn_style2s">쿠폰등록</a>
+				</div>
+				<span>페이퍼 쿠폰을 등록하세요.</span>
+			</section>
+			
+			<!--// 쿠폰내역 header -->
+			<section class="point_list"  ng-if="couponListData.length == 0">
+				<p class="cont_no">사용가능한 쿠폰 내역이 없습니다.</p>
+			</section>
+				
+	
+			<section class="coupon_list">
+				<ul>
+					<li ng-repeat="items in couponListData" ng-class="{plusSale : 'blue', sale: 'sky', save : 'sky', support : 'sky', freeDlv : 'sky'}[items.couponKind]" >
+						<h3>{{items.promNm}}</h3>
+						<a href="#">
+							<div class="coupon_datail">
+								<!-- 최대할인 -->
+								<div class="cpnnum" ng-if="items.couponKind == 'plusSale'">
+									<span><strong>{{items.fvrValStr}}</strong>{{items.unitName}}</span>
+									<p>추가할인</p>
+								</div>
+								<!-- 할인 -->
+								<div class="cpnnum" ng-if="items.couponKind == 'sale'">
+									<span><strong>{{items.fvrValStr}}</strong>{{items.unitName}}</span>
+									<p>할인</p>
+								</div>
+								<!-- 적립 -->
+								<div class="cpnnum" ng-if="items.couponKind == 'save'">
+									<span><strong>{{items.fvrValStr}}</strong>{{items.unitName}}</span>
+									<p>적립</p>
+								</div>
+								<!-- 쇼핑지원권 -->
+								<div class="cpnnum" ng-if="items.couponKind == 'support'">
+									<span><strong>{{items.fvrVal}}</strong>{{items.unitName}}</span>
+									<p>쇼핑지원권</p>
+								</div>
+								<!-- 무료배송권 -->
+								<div class="cpnnum" ng-if="items.couponKind == 'freeDlv'">
+									<span class="free_delivery"></span>
+									<p>무료배송권</p>
+								</div>
+								<div class="cpninfo">
+									<p><span>사용조건</span>{{items.useCondition}}</p>
+									<p><span>사용기간</span> ~{{items.avalEndDtime | limitTo:10}}</p>
+									<p><span>최대할인</span>{{items.maxFvrVal}}</p>
+									<p class="d-day"><em>{{items.remainDay}}</em>일 남았습니다.</p>
+								</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</section>
+	
+			<!-- 더보기 버튼 -->
+			<section class="more_view" ng-if="thisPage < page_end">
+				<div><a href="#" ng-click="moreListClick()"><span><strong>더보기</strong> (<label id="currentCnt">{{couponListData.length}}</label>/<label id="totalCnt">{{couponList_tot_cnt}}</label>)</a></span></div>
+			</section>
+			<!--// 더보기 버튼 -->
+			
+		</div>
+	</section>
+    <div class="listLoading" ng-show="isShowLoadingImage" style="height:300px">
+    	<p class="noData"><p class="loading half"></p></p>
+    </div>
+</section>

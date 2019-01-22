@@ -1,0 +1,69 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplOrderGift" : {
+                "options": {
+                "prefix":"/",
+                "module" : "app"
+                },
+                "src" : [
+                ],
+                "dest" : "lotte/resources/<%= version %>/order_gift.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsOrderGift" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/order/order_gift_form.js",
+                    "common3/js/function.js",
+                    "common3/js/storage.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/order_gift.js"
+            }
+        },
+
+        "uglify" : {
+            "jsOrderGift" : {
+                "src" : "lotte/resources/<%= version %>/order_gift.js",
+                "dest" : "lotte/resources/<%= version %>/order_gift.min.js"
+            },
+            "tplOrderGift" : {
+                "src" : "lotte/resources/<%= version %>/order_gift.template.js",
+                "dest" : "lotte/resources/<%= version %>/order_gift.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssOrderGift" : {
+                "src" : [
+                    "lotte/resources_dev/order/order_form.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/order_gift.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanOrderGift" : [
+                "lotte/resources/<%= version %>/order_gift.js",
+                "lotte/resources/<%= version %>/order_gift.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlOrderGift" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "order/order_gift.html" : "order/order_gift_dev.html"
+                }
+            }
+        }
+    }
+}

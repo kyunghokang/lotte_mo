@@ -1,0 +1,37 @@
+{
+	"tasks" : {
+		"concat" : {
+			"jsTalkShopOrder" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/talk/order_talk_form.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/orderTalkForm.js"
+			}
+		},
+
+		"uglify" : {
+			"jsTalkShopOrder" : {
+				"src" : "lotte/resources/<%= version %>/orderTalkForm.js",
+				"dest" : "lotte/resources/<%= version %>/orderTalkForm.min.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssTalkShopOrder" : {
+				"src" : [
+					"lotte/resources_dev/talk/talkShopping.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/orderTalkForm.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanTalkShopOrder" : [
+				"lotte/resources/<%= version %>/orderTalkForm.js"
+			]
+		}
+	}
+}

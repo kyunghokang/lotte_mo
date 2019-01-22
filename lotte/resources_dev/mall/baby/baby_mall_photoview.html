@@ -1,0 +1,69 @@
+<div class="infant_tip_wrap" >
+
+	<div class="keyword_area" ng-class="{on:keyword_more}" ng-if="screenData.KeyWordListTab">
+		<ul id="baby_keyword">
+			<li ng-repeat="item in screenData.KeyWordListTab">
+				<a ng-click="loadPhotoReview({{item.subTitle}});" ng-if="item.subTitle != inFantUi.cur_key">{{item.title}}</a>
+				<a ng-click="loadPhotoReview('');" class="on" ng-if="item.subTitle == inFantUi.cur_key">{{item.title}}</a>
+			</li>
+		</ul>
+	</div>
+	<!-- keyword_area에서 more버튼 이동 -->
+	<a ng-click="moreKeyword()" class="more" ng-show="keyword_btn_show"><span>펼쳐보기</span></a>
+	
+	<section class="useful_tip_wrap photo_area">
+		<ul class="list_wrap">
+			<li ng-repeat="item in screenData.gallery_list">
+				<div class="write_info">
+					<span>{{item.reg_dtime}}</span>
+					<span>{{item.user_name | hidestr}}</span>
+					<div class="btn_wrap">
+						{{snsSubtitleChange(item.text)}}
+						<span class="sns"><a ng-click="sendTclick('m_DC_SpeDisp_Mombaby_Clk_Shr5571268');showSharePop({prdComment:item.text.substr(0,100),shareImg:item.img_list.items[0].img_url, bbsNo :item.bbs_no})">공유</a></span>
+						<span class="modify" ng-if="item.login_id == item.user_name"><a ng-click="modifyClick(item,$index)">수정/삭제</a></span>
+					</div>
+				</div>
+				<div class="txt_area">
+					<div class="cont" ng-class={on:item.open}>
+						<a ng-click="contMoreClick(item)" >
+							<div class="contentsText" ng-bind-html="item.text" id="swaglist_cont{{$index}}"></div>
+						</a>
+					</div>
+                    <span ng-class={on:item.more} class="btn_more" ng-if="item.big"><a ng-click="contMoreClick(item)" class="more">더보기</a></span>
+				</div>					
+				
+				<div class="slide" ng-controller="lotteNgSwipeCtrl" ng-click="popOption.zoomPopup('mom', $index)">		
+					<button class="btn prev" ng-show="swipeIdx > 0" ng-click="beforeSlide()">Preview</button>
+					<div class="mask">			
+						<ul class="list" lotte-ng-list-swipe swipe-responsive="true" swipe-responsive640="1" swipe-responsive900="1" swipe-slide-item="true" swipe-list-model="img_list" swipe-id="img_list{{$index+1}}" swipe-max-ratio="0.2"swipe-min-distance="40">
+							<!-- 이미지가 하나인경우 -->							
+							<li class="one" ng-repeat="items in item.img_list.items" ng-if="item.img_list.items.length==1">
+								<span style="background-image:url({{items.img_url}})"></span>
+							</li>							
+							<!-- 이미지가 여러개인 경우 -->
+							<li ng-repeat="items in item.img_list.items" ng-if="item.img_list.items.length>1 && !(img_list.length%2==1 && $index==item.img_list.length-1 && screenType > 1)">
+								<span style="background-image:url({{items.img_url}})"></span>
+							</li>							
+						</ul>					
+					</div>
+					<button class="btn next" ng-show="swipeIdx<=(item.img_list.items.length-2)" ng-click="nextSlide()">Next</button>
+					
+					<ol id="ii_{{$parent.$index}}" class="bullet" ng-if="item.img_list.items && item.img_list.items.length > 1" ng-class="{blind:screenType>1 && item.img_list.items.length ==3}">
+						<li v="{{swipeIdx}}"  ng-repeat="item in item.img_list.items" ng-class="{active:$index==swipeIdx}">{{$index}}</li>
+
+					</ol>
+					
+				</div>
+				<div class="prod">
+					<a href="#" ng-click="mallProductClick(item, 'm_DC_SpeDisp_Mombaby_Clk_Prd_I{{addZero($index + 1)}}')">	
+						<div class="imgArea"><span class="img_wrap"><img ng-src="{{item.goods_img}}" alt="{{item.goods_nm}}"></span></div>
+						<div class="txt_wrap">
+							<span class="title"><var><span ng-if="item.brnd_nm">[{{item.brnd_nm}}]</span> {{item.goods_nm}}</var></span>
+							<span class="price"><strong>{{item.price | number}}</strong>원<var ng-if="item.is_plan_prod == true">~</var></span>
+						</div>
+					</a>	
+				</div>
+			</li>
+		</ul>
+	</section>
+</div>

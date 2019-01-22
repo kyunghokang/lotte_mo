@@ -1,0 +1,68 @@
+<section ng-show="contVisible" class="cont_minheight" ng-class="{pad:screenType > 1}">
+	<section class="pageLoading" ng-show="pageLoading"><p class="loading half"></p></section>
+	<section ng-show="!pageLoading">
+		<div class="navi_area">
+			<header id="Headtop" sub-header-each>
+				<h2><a ng-href="/mall/chanel/chanel_main.do?{{baseParam}}&tclick=m_DC_specialshop_Chanel_LOGO"><span>chanel</span></a></h2>
+				<nav class="nav">	
+					<ul class="ctg_list_big">
+						<li ng-repeat="citem in screenData.cate_list" ng-class="{big_on:screenData.selectCate1==citem.disp_no}" style="width:{{100/screenData.cate_list.length}}%">
+							<a href="#" class="btn_ctg_big" ng-click="menuCategory1Click(citem, $index)">{{citem.disp_nm}}</a>
+						</li>
+					</ul>
+					<ul class="ctg_list_mid" ng-show="screenData.showAllCategory"><!-- <button class="open_btn" ng-click="showAllCategoryClick()">더보기</button> -->
+						<li ng-repeat="citem in screenData.cate_list"><a href="#" ng-click="menuCategoryClick(citem, $index)">{{citem.disp_nm}}</a></li>
+					</ul>
+					<div class="ctg_list_sml" ng-repeat="citem in screenData.cate_list" ng-show="screenData.selectCate1==citem.disp_no">
+						<ul>
+							<li ng-repeat="citem2 in citem.sub_cate_list" ng-class="{on:screenData.selectCate2==citem2.disp_no}">
+								<a href="#" ng-click="menuCategory2Click(citem2, citem, $index)" ng-class="{off:citem2.sub_cate_list ==null}">{{citem2.disp_nm}}</a>
+								<div class="cca" ng-show="screenData.selectCate2==citem2.disp_no" ng-class="{scroll:citem2.sub_cate_list.length > 4}">
+				                    <a href="#" ng-repeat="citem3 in citem2.sub_cate_list" ng-click="menuCategory3Click(citem3, citem2, $index)" class="ng-binding ng-scope"><span>{{citem3.disp_nm}}</span></a>
+				                </div>	                
+							</li>
+						</ul>
+						<div class="mall_cateLayerbar">
+				        	<a ng-click="hideCate()" class="close">닫기</a>
+				        </div>
+				    </div>   
+						     
+				</nav>
+			</header>
+			<div class="dim" ng-click="hideCate()"></div>
+		</div>
+		<!-- container -->
+		<section class="ctg_depth_wrap">
+			<!-- <p>
+				<span ng-if="!screenData.isComm">{{screenData.cateNodeName[0]}}</span>
+				<span ng-class="{last_location:screenData.cateNodeName[2]==''}" ng-if="!screenData.isComm">{{screenData.cateNodeName[1]}}</span>
+				<span ng-class="{last_location:screenData.cateNodeName[2]!=''}" ng-if="screenData.cateNodeName[2] != ''" && !screenData.isComm>{{screenData.cateNodeName[2]}}</span>
+			</p> -->
+			<p>
+				<span ng-if="!screenData.isComm">{{screenData.cateNodeName[0]}}</span>
+				<span ng-class="{last_location:screenData.cateNodeName[2]==''}" ng-if="!screenData.isComm">{{screenData.cateNodeName[1]}}</span>
+				<span ng-class="{last_location:screenData.cateNodeName[2]!=''}" ng-if="screenData.cateNodeName[2] != ''" && !screenData.isComm>{{screenData.cateNodeName[2]}}</span>
+			</p>
+		</section>
+		<section class="prod_list category_list">
+			<ul>
+				<li ng-repeat="item in screenData.dispGoodsList">
+					<article class="prd_item">
+						<a href="#" ng-click="productClick(item)">
+							<div><img ng-src="{{item.img_url}}" alt="{{item.goods_nm_kr}}"></div>
+							<span class="logoarea">
+								<var class="logo">chanel</var>
+								<span class="flag smart" ng-show="item.is_smartpick==true">스마트픽</span>
+							</span>
+							<span class="name_en" ng-bind-html="item.goods_nm_en"></span>
+							<span class="name_kr" ng-bind-html="item.goods_nm_kr"></span>
+							<span class="price"><strong>{{item.price | number}}</strong><em>원</em><var ng-if="item.is_plan_prod" class="plan_prod_limit">~</var></span>
+						</a>
+					</article>
+				</li>
+			</ul>
+			<div class="noData" ng-if="!screenData.dispGoodsList.length && !productListLoading">해당하는 상품이 없습니다.</div>
+		</section>
+		<!-- //container -->
+	</section>	
+</section>

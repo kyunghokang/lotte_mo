@@ -1,0 +1,282 @@
+<section id="container" class="present_detail_container">
+	
+	<div ng-if="UIData.detail_data">
+		<section class="present_detail">
+			<div class="list_wrap">
+				<ul>
+					<li>
+						<div class="order_no">{{convertOrderNumber(UIData.detail_data.gift_info.order_no)}}</div>
+						<div class="list_item">
+							<div class="item_head" ng-if="UIData.detail_data.gift_info.type=='01'">
+							    <!--20161206-->
+								<div ng-if="UIData.detail_data.gift_info.commentable"><span class="deli_stat">{{checkStatus(UIData.detail_data)}}</span>{{UIData.detail_data.delivery_info.deliver}}<span class="deli_no">{{UIData.detail_data.delivery_info.invoice}}</span></div>
+								<div ng-if="!UIData.detail_data.gift_info.commentable"><span class="deli_stat">{{checkStatus(UIData.detail_data)}}</span>{{LV.DELIVER_MSG[UIData.detail_data.gift_info.status]}}</div>
+							</div>
+							<div class="item_body">
+								<div class="img"><img ng-src="{{UIData.detail_data.gift_prd_info.img_url}}" /></div>
+								<div class="txt">
+									<div class="sender">{{UIData.detail_data.gift_info.from_nm}}</div>
+									<div class="flags">
+										<span class="flag depart" ng-if="UIData.detail_data.gift_prd_info.mall_flag.is_dept">롯데백화점</span>
+										<span class="flag etv" ng-if="UIData.detail_data.gift_prd_info.mall_flag.is_tvhome">롯데홈쇼핑</span>
+										<span class="flag smart" ng-if="UIData.detail_data.gift_prd_info.mall_flag.is_smartpick">스마트픽</span>
+									</div>
+									<div class="prd_name"><span ng-if="UIData.detail_data.gift_prd_info.brand_nm && UIData.detail_data.gift_prd_info.brand_nm!=''">{{UIData.detail_data.gift_prd_info.brand_nm}}</span>{{UIData.detail_data.gift_prd_info.goods_nm}}</div>
+									<div class="prd_opt" ng-if="UIData.detail_data.gift_prd_info.selected_opt && UIData.detail_data.gift_prd_info.selected_opt.length > 0">
+										<span ng-repeat="opt in UIData.detail_data.gift_prd_info.selected_opt track by $index">{{opt.opt_name}}:{{opt.opt_value}}</span>
+									</div>
+								</div>
+							</div>
+    						<!--20161206-->
+							<div class="item_foot" ng-if="UIData.detail_data.gift_info.commentable || UIData.detail_data.gift_info.optionable || UIData.detail_data.gift_info.rtgs_psb_yn == 'Y' || UIData.detail_data.gift_info.exch_psb_yn == 'Y'">
+                                <a class="gray" ng-click="open_er_psb(UIData.detail_data, 1)" ng-class="{on:er_psb_case <= 2 && er_psb_case > 0}" ng-if="UIData.detail_data.gift_info.rtgs_psb_yn == 'Y'">반품신청</a>
+                                <a class="gray" ng-click="open_er_psb(UIData.detail_data, 3)" ng-class="{on:er_psb_case > 2}" ng-if="UIData.detail_data.gift_info.exch_psb_yn == 'Y'">교환신청</a>							
+								<a class="comment" ng-click="goCommentWrite()" ng-if="UIData.detail_data.gift_info.commentable">선물 후기 작성</a>
+								<a class="option"
+									ng-if="UIData.detail_data.gift_info.optionable"
+									xxx-ng-if="(UIData.detail_data.gift_prd_info.opt_list) && (UIData.detail_data.gift_info.type=='01') && (UIData.detail_data.gift_info.status_no==10 || UIData.detail_data.gift_info.status_no==11 || UIData.detail_data.gift_info.status_no==13)"
+									ng-class="{on:UIStatus.isOptionChanging}" ng-click="showOptionChange()">옵션 변경</a>
+							</div>
+						</div>
+                        <!--반품신청 전-->
+                        <div class="change_order_box" ng-if="er_psb_case == 1">
+                            <div class="mtable mg6">
+                                <div class="mcell left">반품사유</div>
+                                <div class="mcell sarow">
+                                    <select id="rfg_select">
+                                        <option value="0">반품 사유를 선택해 주세요.</option>
+                                        <option ng-repeat="opt in UIData.detail_data.rtgs_rsn_list" value="{{opt.ob_rsn_cd}}">{{opt.ob_rsn_nm}}</option>                                    
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="info_title"><img ng-src="http://image.lotte.com/lotte/mo2015/angular/mylotte/icon_20161115.png"> 반품 진행 안내</div>
+                            <ul class="info_list">
+                                <li>{{co_msg[0]}}</li>
+                                <li>{{co_msg[1]}}</li>
+                            </ul>
+                            <div class="btn_group">
+                                <a ng-click="close_er_psb()">닫기</a>
+                                <a ng-click="send_er_psb('114')" class="ok_btn">반품신청</a>
+                            </div>						    
+                        </div>
+                        <!--반품신청 후-->
+                        <div class="change_order_box" ng-if="er_psb_case == 2">
+                            <div class="info_msg">{{co_msg[4]}}</div>
+                            <div class="info_title"><img ng-src="http://image.lotte.com/lotte/mo2015/angular/mylotte/icon_20161115.png"> 반품 진행 안내</div>
+                            <ul class="info_list">
+                                <li>{{co_msg[0]}}</li>
+                                <li>{{co_msg[1]}}</li>
+                            </ul>
+                            <div class="btn_group">
+                                <a ng-click="close_er_psb()">닫기</a>
+                            </div>						    
+                        </div>	                   
+                        <!--교환신청 전-->
+                        <div class="change_order_box" ng-if="er_psb_case == 3">
+                            <div class="mtable">
+                                <div class="mcell left">상품옵션</div>
+                                <div class="mcell sarow">
+                                    <select id="opt_select">
+                                        <option value="0">옵션변경시 선택해 주세요.</option>
+                                        <option ng-repeat="opt in UIData.detail_data.gift_prd_info.opt_item_lst" value="{{opt.item_no}}" ng-show="opt.inv_qty > 0">{{opt.opt_tval}}</option>                                    
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mtable mg6">
+                                <div class="mcell left">교환사유</div>
+                                <div class="mcell sarow">
+                                    <select id="exch_select">
+                                        <option value="0">교환 사유를 선택해 주세요.</option>
+                                        <option ng-repeat="opt in UIData.detail_data.exch_rsn_list" value="{{opt.ob_rsn_cd}}">{{opt.ob_rsn_nm}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="info_title"><img ng-src="http://image.lotte.com/lotte/mo2015/angular/mylotte/icon_20161115.png"> 교환 진행 안내</div>
+                            <ul class="info_list">
+                                <li>{{co_msg[2]}}</li>
+                                <li>{{co_msg[3]}}</li>
+                            </ul>
+                            <div class="btn_group">
+                                <a ng-click="close_er_psb()">닫기</a>
+                                <a ng-click="send_er_psb('115')" class="ok_btn">교환신청</a>
+                            </div>						    
+                        </div>
+                        <!--교환신청 후-->
+                        <div class="change_order_box" ng-if="er_psb_case == 4">
+                            <div class="info_msg">{{co_msg[5]}}</div>
+                            <div class="info_title"><img ng-src="http://image.lotte.com/lotte/mo2015/angular/mylotte/icon_20161115.png"> 교환 진행 안내</div>
+                            <ul class="info_list">
+                                <li>{{co_msg[2]}}</li>
+                                <li>{{co_msg[3]}}</li>                        
+                            </ul>
+                            <div class="btn_group">
+                                <a ng-click="close_er_psb()">닫기</a>
+                            </div>						    
+                        </div>
+						
+						<div class="list_option" ng-if="UIStatus.isOptionChanging">
+							<dl class="opt_txt">
+								<dt>주문한 옵션</dt>
+								<dd><span ng-repeat="opt in UIData.detail_data.gift_prd_info.selected_opt track by $index">{{opt.opt_name}}:{{opt.opt_value}}</span></dd>
+								<!-- 상품명:{{UIData.detail_data.gift_prd_info.brand_nm}}{{UIData.detail_data.gift_prd_info.goods_nm}},  -->
+							</dl>
+							<dl ng-repeat="opt in UIData.detail_data.gift_prd_info.opt_list track by $index" class="opt_select">
+								<dt>{{opt.opt_name}}</dt>
+								<dd>
+									<div class="formwrap select">
+										<select id="prod_option_{{$index}}" onchange="optionChangeListener(event)">
+											<option ng-repeat="ov in opt.opt_value_lst track by $index" value="{{ov}}">{{ov}}</option>
+										</select>
+									</div>
+								</dd>
+							</dl>
+							<div class="opt_btn">
+								<a class="close" ng-click="hideOptionChange()">닫기</a>
+								<a class="change" ng-click="changeOption()">옵션변경</a>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</section>
+		
+		<section class="message_detail">
+			<div class="sect_title">메시지카드</div>
+			<div class="message_wrap" style="background-color:{{UIData.detail_data.gift_msg_info.bg_color}};">
+				<div class="message_card">
+					<div class="msg_img">
+						<img ng-src="{{UIData.detail_data.gift_msg_info.img_url}}" />
+					</div>
+					<div class="msg_txt">
+						<div class="msg" ng-bind-html="UIData.detail_data.gift_msg_info.msg"></div>
+						<div class="sender">{{UIData.detail_data.gift_info.from_nm}}</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<!-- 배송지 정보: 발송이전 -->
+		<section class="delivery_detail" ng-if="UIData.detail_data.gift_info.type=='01' && (UIData.detail_data.gift_info.status_no < 17)">
+			<div class="sect_title">배송지 정보<a ng-click="showAddressChange()" ng-if="(UIData.detail_data.gift_info.status_no <= 11)">배송지 변경</a></div>
+			<div class="delivery_table" ng-show="!UIStatus.isAddressChanging">
+				<table>
+					<tr>
+						<th scope="row">받는분</th>
+						<td>{{UIData.detail_data.addr_info.r_name}}<span ng-if="!(UIData.detail_data.addr_info.addr_name==undefined || UIData.detail_data.addr_info.addr_name=='')"> ({{UIData.detail_data.addr_info.addr_name}})</span></td>
+					</tr>
+					<tr>
+						<th scope="row">주소</th>
+						<td>{{UIData.detail_data.addr_info.addr_detail}}</td>
+					</tr>
+					<tr>
+						<th scope="row">연락처</th>
+						<td class="addr_phone">
+							<span ng-if="!(UIData.detail_data.addr_info.addr_tel==undefined || UIData.detail_data.addr_info.addr_tel=='')">{{UIData.detail_data.addr_info.addr_tel}}</span>
+							<span ng-if="!(UIData.detail_data.addr_info.addr_phone==undefined || UIData.detail_data.addr_info.addr_phone=='')">{{UIData.detail_data.addr_info.addr_phone}}</span>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">배송메시지</th>
+						<td>{{UIData.detail_data.addr_info.addr_msg}}</td>
+					</tr>
+				</table>
+			</div>
+			<div class="delivery_edit" ng-show="UIStatus.isAddressChanging">
+				<!--배송정보입력-->
+            	<address-info></address-info>
+				<div class="delivery_btn">
+					<a class="close" ng-click="hideAddressChange()">닫기</a>
+					<a class="change" ng-click="saveAddressChange()">배송지변경</a>
+				</div>
+			</div>
+			<ul class="notice_list">
+				<li>개인정보 보호를 위해, 발송완료 후에는 입력하신 배송지 정보의 일부만 조회됩니다.</li>
+				<li>선물 받으신 기록은 최대 90일까지만 저장됩니다.</li>
+			</ul>
+		</section>
+		
+		<!-- 발송정보: 발송이후 -->
+		<section class="delivery_detail" ng-if="UIData.detail_data.gift_info.type=='01' && (UIData.detail_data.gift_info.status_no == 17 || UIData.detail_data.gift_info.status_no == 18)">
+			<div class="sect_title">발송정보</div>
+			<div class="delivery_table">
+				<table>
+					<tr>
+						<th scope="row">택배정보</th>
+						<td>{{UIData.detail_data.delivery_info.deliver}} {{UIData.detail_data.delivery_info.invoice}}<a ng-click="checkDeliveryState()">배송조회</a></td>
+					</tr>
+					<tr>
+						<th scope="row">택배사<br/>전달일자</th>
+						<td>{{UIData.detail_data.delivery_info.date}}</td>
+					</tr>
+				</table>
+			</div>
+			<ul class="notice_list">
+				<li>개인정보 보호를 위해, 발송완료 후에는 입력하신 배송지 정보가 노출되지 않습니다.</li>
+				<li>선물 받으신 기록은 최대 90일까지만 저장됩니다.</li>
+			</ul>
+		</section>
+		
+		<!-- 교환권 사용 안내: 쿠폰 -->
+		<section class="delivery_detail" ng-if="UIData.detail_data.gift_info.type=='02'">
+			<div class="sect_title ecoupon">교환권 사용 안내<a ng-click="showSendCouponLayer()">교환권 다시 보내기</a></div>
+			<div class="delivery_table">
+				<table>
+					<tr ng-repeat="cpn in UIData.detail_data.ecoupon_info track by $index">
+						<th scope="row">{{cpn.name}}</th>
+						<td>{{cpn.description}}</td>
+					</tr>
+				</table>
+			</div>
+			<ul class="notice_list">
+				<li>선물 받으신 기록은 최대 90일까지만 조회됩니다.</li>
+			</ul>
+		</section>
+		
+		<section class="show_thank">
+			<div class="thank_head">
+				<div class="txt1">선물을 보내주신 {{UIData.detail_data.gift_info.from_nm}}님에게</div>
+				<div class="txt2">감사를 표현해보세요</div>
+				<div class="more"><a ng-href="{{URLs.MAIN_URL+'?'+baseParam+'&dispNo=5556743'}}">더보기</a></div>
+			</div>
+			<ul class="thank_list">
+				<li ng-repeat="item in UIData.detail_data.recom_prd_lst track by $index" ng-class="{col1:$index%3==0, col2:$index%3==1, col3:$index%3==2, row2:$index>2}">
+					<a class="item" ng-click="thankProductClick(item)">
+						<div class="img"><img ng-src="{{item.img_url}}" /></div>
+						<div class="title">{{item.brand_nm}}{{item.goods_nm}}</div>
+						<div class="price"><em>{{item.price|number}}</em>원</div>
+					</a>
+				</li>
+			</ul>
+		</section>
+	</div>
+	
+	<div class="sendCouponLayer" ng-if="UIStatus.isCouponSending" ontouchmove="event.preventDefault();">
+		<div class="sendcpn_wrap">
+			<div class="sendcpn_head">교환권 전송</div>
+			<div class="sendcpn_body">
+				<div class="sendcpn_btn">
+					<a ng-click="sendCouponMsg()"><span>문자 보내기</span></a>
+				</div>
+				<ul>
+					<li>원래 주문자가 받으셨던 번호로만 재전송 됩니다.</li>
+					<li>최대 3회까지 전송 가능합니다.</li>
+				</ul>
+			</div>
+			<div class="sendcpn_foot">
+				<a ng-click="showSendCouponLayer()">닫기</a>
+			</div>
+		</div>
+	</div>
+
+	<!-- LOADING -->
+	<div class="ajax_loading" ng-if="UIStatus.isDataLoading">
+		<p class="loading half"></p>
+	</div>
+	<!--// LOADING -->
+	
+	<!-- 담긴 상품이 없을 경우 -->
+	<!-- <section class="mylotte">
+		<p class="noData" ng-show="true">선물함에 담긴 상품이 없습니다.</p>
+	</section> -->
+	<!-- // 담긴 상품이 없을 경우 -->
+</section>

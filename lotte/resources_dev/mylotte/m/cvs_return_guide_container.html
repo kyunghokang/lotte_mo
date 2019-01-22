@@ -1,0 +1,21 @@
+<section ng-show="contVisible" class="cont_minheight">
+
+	<div ng-if="guideSwipeVisible==false">
+		<img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/cvs_return_guide_0_1.jpg" alt="반품서비스 접수방법" />
+		<a href="#" ng-click="showGuideSwipe()"><img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/cvs_return_guide_0_2.jpg"  alt="접수방법 보기" /></a>
+	</div>
+	
+	<div ng-if="guideSwipeVisible">
+		<h1><img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/cvs_return_guide_logo.jpg" alt="logo" /></h1>
+		<ul class="swipe_wrap" swipe-list-model="guideSwiImgs" lotte-ng-list-swipe swipe-id="dept2MainBanner" swipe-slide-item="true"
+			swipe-max-ratio="0.2" swipe-min-distance="40" swipe-responsive="true" swipe-responsive320="1" swipe-responsive640="1" swipe-responsive900="1">
+			<li ng-repeat="item in guideSwiImgs track by $index">
+				<img ng-src="{{item}}" />
+			</li>
+		</ul>
+		<div class="swipe_num" ng-if="guideSwiImgs.length > 1">
+			<span>{{swipeIdx+1}}</span>/<span>{{guideSwiImgs.length}}</span>
+		</div>
+	</div>
+	
+</section>

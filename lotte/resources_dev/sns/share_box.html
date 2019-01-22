@@ -1,0 +1,39 @@
+<section>
+	<h5 ><!-- <i></i> -->{{snsTitle}}</h5>
+    <ul>
+       <li class="kakaotalk" ng-if="talkFlag" id="kakaotalk">
+           <a ng-click="shareSNS('kakaotalk')"><i></i>카카오톡</a>
+       </li>  
+       <li class="twitter" ng-if="twitFlag">
+           <a ng-click="shareSNS('twitter')"><i></i>트위터</a>
+       </li>
+       <li class="kakaostory" ng-if="stotyFlag">
+           <a ng-click="shareSNS('kakaostory')"><i></i>카카오스토리</a>
+       </li>            
+       <li class="sms" ng-if="smsFlag">
+           <a ng-click="shareSNS('sms')"><i></i>문자</a>
+       </li>
+       <li class="facebook" ng-if="faceFlag">
+           <a ng-click="shareSNS('facebook')"><i></i>페이스북</a>
+       </li>     
+       <li ng-if="appObj.isApp && mailFlag" class="mail">
+           <a ng-click="shareSNS('mail')"><i></i>메일</a>
+       </li>
+       <li class="urlcopy" ng-if="urlFlag" >
+           <a ng-click="shareSNS('url_copy')" id="copyUrl"><i></i>URL 복사</a>
+       </li>       
+     
+    </ul>
+    <div ng-if="appFlag" class="share_app">
+    	<a ng-click="shareSNS('moreapp')"><!-- <i></i> -->다른 앱으로 공유</a>
+    </div>
+    <div class="url_copy" ng-if="!appObj.isApp && urlCopyFlag">
+    	<span>URL</span>
+    	<!-- <input type="text" id="cnShareUrl" ng-value="cnShareUrl"> -->
+    	<a href="{{cnShareUrl}}" onclick="return false;" class="clipUrl">{{cnShareUrl}}</a>
+    </div>
+   	<div class="btn_close" ng-show="shareBoxVisible" ng-click="hideSharePop()">
+       <a href="">닫기</a>
+	</div>
+	
+</section>

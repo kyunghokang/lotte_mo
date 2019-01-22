@@ -1,0 +1,73 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplcart" : {
+                 "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/common/templates/naver_map_info.html",
+                    "lotte/resources_dev/mylotte/cart/m/cart_container.html",
+                    "lotte/resources_dev/mylotte/cart/m/cart_group_container.html",
+                    "lotte/resources_dev/mylotte/cart/m/cart_list_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/cart_list.template.js"
+            }
+        },
+
+        "concat" : {
+            "jscart" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mylotte/cart/m/cart.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/cart_list.js"
+            }
+        },
+
+        "uglify" : {
+            "jscart" : {
+                "src" : "lotte/resources/<%= version %>/cart_list.js",
+                "dest" : "lotte/resources/<%= version %>/cart_list.min.js"
+            },
+            "tplcart" : {
+                "src" : "lotte/resources/<%= version %>/cart_list.template.js",
+                "dest" : "lotte/resources/<%= version %>/cart_list.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "csscart" : {
+                "src" : [
+                    "lotte/resources_dev/mylotte/cart/m/cart.css",
+                    "lotte/resources_dev/mylotte/cart/m/detail_datepicker.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/cart_list.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleancart" : [
+                "lotte/resources/<%= version %>/cart_list.js",
+                "lotte/resources/<%= version %>/cart_list.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlcart" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mylotte/cart/m/cart_list.html" : "mylotte/cart/m/cart_list_dev.html"
+                }
+            }
+        }
+    }
+}
+

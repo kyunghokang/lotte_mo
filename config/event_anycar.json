@@ -1,0 +1,38 @@
+{
+    "tasks" : {
+        "concat" : {
+            "jseventanycar" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/event/anycar.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/anycar.js"
+            }
+        },
+
+        "uglify" : {
+            "jseventanycar" : {
+                "src" : "lotte/resources/<%= version %>/anycar.js",
+                "dest" : "lotte/resources/<%= version %>/anycar.min.js"
+            }
+        },
+
+        "cssmin" : {
+            "csseventanycar" : {
+                "src" : [
+                    "lotte/resources_dev/event/anycar.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/anycar.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleaneventanycar" : [
+                "lotte/resources/<%= version %>/anycar.js"
+            ]
+        }
+    }
+}
+

@@ -1,0 +1,19 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!--M14 상품+브랜드형..-->
+	<div class="moduleCon">
+		<div class="unit unit_prod_logo">
+			<ul>
+				<li ng-repeat="item in moduleData.items | limitTo:((moduleData.items.length % 2 == 0)? moduleData.items.length: moduleData.items.length - 1)">
+					<a ng-click="logGAEvtModuleEach($index + 1, item.txt);mainProductClick(item.prdInfo.goodsNo, moduleData.tclick + '_Clk_Prd'+numberFill(($index+1),2))">
+						<!--상품이미지-->
+						<p class="imgwrap"><img ng-src="{{item.prdInfo.imgUrl}}"></p>
+						<!--브랜드명-->
+						<p class="brandlogo"><img ng-src="{{item.brdImgUrl}}"></p>
+						<!--상품명-->
+						<p class="prodname" ng-bind-html="item.txt | nl2br"></p>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>

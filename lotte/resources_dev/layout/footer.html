@@ -1,0 +1,84 @@
+<footer id="footer">
+	<div class="footerNoti" ng-if="mainNotice.total_count > 0">
+        <a ng-click="noticeListUrl(item.bbc_no)" ng-repeat="item in mainNotice.items">{{item.bbc_tit_nm}}</a>
+    </div>
+	<div class="directOn no"  ng-click="logGAEvtComm('commFooter','바로방문ON/OFF');fnDirectBoxOpen()"><i>바로방문ON</i></div>
+	<div class="directOff" ng-class="{no:mainNotice.total_count == 0}" ng-if="cookieVisitchk == 'N'" ng-click="logGAEvtComm('commFooter','바로방문ON/OFF');fnDirectBoxOpen()"><i>바로방문OFF</i></div>
+	<div class="directPop" ng-class="{on:vDirectBoxDispYn}">
+		<div class="directPopInner">
+			<div class="dTitle">바로방문</div>
+			<div class="dCont">
+				<div class="chkOn">롯데닷컴에 오시면<br>언제나 바로방문ON을 확인하세요!</div>
+				<ul class="dInfo1">
+					<li>바로방문 OFF일 경우 바로방문ON혜택(쿠폰사용, 구매사은 신청등) 제공에 제한이 있을 수 있습니다.</li>
+					<li>APP에서 바로방문ON이 표시되지 않으면 <span>APP을 종료한 후</span> 재 실행해 주시면 정상적으로 표시 됩니다. </li>
+				</ul>
+				<div class="dTitle2">APP 종료 방법</div>
+				<dl>
+					<dt>IOS</dt>
+					<dd>홈버튼을 2번 누르고 실행중인 앱을 위로 끌어올려 주시면 종료됩니다.</dd>
+				</dl>
+				<dl class="android">
+					<dt>Android</dt>
+					<dd>BACK키를 2회이상 연속으로 터치해 주시면 종료됩니다.</dd>
+				</dl>
+			</div>
+			<a ng-click="fnDirectBoxClose()" class="dClose">닫기</a>
+		</div>
+	</div>
+    <ul class="menu01">
+		<li><a ng-click="logGAEvtComm('commFooter','마이롯데');" ng-href="{{footLink_mylotte}}">{{footTxt_mylotte}}</a><i></i></li>
+        <li><a ng-click="logGAEvtComm('commFooter','PC버전');pcClick()">PC버전</a><i></i></li>
+        <li><a ng-click="logGAEvtComm('commFooter','장바구니');" ng-href="{{footTxtUrl3}}">장바구니</a><i></i></li>
+        <li><a ng-click="logGAEvtComm('commFooter','고객센터');" ng-href="{{footTxtUrl4}}">고객센터</a><i></i></li>
+        <li>
+            <a href="#" ng-click="logGAEvtComm('commFooter','로그인/로그아웃');loginProc()" ng-bind="(loginInfo.isLogin)?'로그아웃':'로그인'"></a>
+        </li>
+    </ul>
+    <div class="info">
+        <ul class="menu02">
+            <li><strong>롯데쇼핑(주) e커머스 사업본부</strong></li>
+            <li><a ng-click="logGAEvtComm('commFooter','회사소개');companyClick()">회사소개</a></li>
+            <li><a ng-click="logGAEvtComm('commFooter','사업자정보확인');ftcClick()">사업자정보확인</a></li>
+            <!-- <li><a ng-click="logGAEvtComm('commFooter','채무지급보증안내');forwardClick()">채무지급보증안내</a></li> -->
+        </ul>
+        <p class="add">
+            <span class="addFirst">대표이사 : 강희태 </span>
+            <span class="line">서울시 중구 을지로 158 8층(을지로4가, 삼풍빌딩)</span>
+            <span class="line">사업자등록번호 : 529-85-00774 통신판매업신고 : 서울중구 제1226호</span>
+            <span class="line">고객만족센터 : <a href="tel:1577-1110">1577-1110</a>  webmaster@lotte.com</span><br/>
+			<span class="line">개인정보보호책임자 : 임성묵</span> <span class="line">청소년보호책임자 : 김찬기</span><br/>
+            <span class="line">호스팅 사업자 : 롯데쇼핑(주) e커머스 사업본부</span><br/>
+			<span>소비자피해보상보험 : 서울보증보험</span>
+        </p>
+    </div>
+    <div class="menu03">
+        <ul>
+            <li><a ng-click="logGAEvtComm('commFooter','이용약관');" ng-href="{{agreeUrl}}">이용약관</a></li>
+            <li><a ng-click="logGAEvtComm('commFooter','개인정보처리방침');" ng-href="{{privacyUrl}}"><strong>개인정보처리방침</strong></a></li>
+            <li><a ng-click="logGAEvtComm('commFooter','청소년보호정책');" ng-href="{{protectYouthUrl}}">청소년보호정책</a></li>
+            <li ng-if="appObj.isApp"><a ng-click="logGAEvtComm('commFooter','앱알림 설정안내');infoAppAlarm()">앱알림 설정안내</a></li>
+        </ul>
+    </div>
+    <div class="capyright">Copyright © LOTTESHOPPING Co., LTD. All rights Reserved.</div>
+    <div class="footerLogo">
+    	<ul>
+    		<!--<li class="f_logo"><img src="http://image.lotte.com/lotte/mo2017/common/f_logo.png" alt="LOTTE.com" /></li> -->
+    		<li class="f_txt"><img src="http://image.lotte.com/lotte/mo2017/common/f_txt_renewer2018.png" alt="롯데쇼핑e커머스는 같이의 가치를 추구합니다." /></li>
+    	</ul>
+    </div>
+
+    <div ng-if="stgServerChk && stgServerMonitor" class="web_toast">
+        테스트용입니다. (결함아님)<br />
+        URL : {{testLocation}}<br />
+        curDispNo : {{testCurDispNo}}<br />
+        curDispStcCD : {{testCurDispStcCD}}<br />
+        tclick : {{testTclick}}<br />
+        cn (채널값) : {{testCn}}<br />
+        cdn (채널상세값) : {{testCdn}}
+        <button ng-click="closeStgServerMonitor()">닫기</button>
+    </div>
+    <keep-popup></keep-popup>
+    <!--ADPNUT SCRIPT-->
+    <iframe src="//tag.adpnut.com/prd/view?shopid=lotte17" width="0" height="0" frameborder="0"></iframe>
+</footer>

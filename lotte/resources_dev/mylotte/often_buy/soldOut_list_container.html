@@ -1,0 +1,29 @@
+<section class="soldOut_list">
+    <div class="soldOut_list_head" >
+         <a href="javascript:void(0);" ng-click ="showSoldOutList();"  ng-class="{btn_close : soldOutshow}" >품절/판매종료 상품(<span class="oftenBuy_cnt" ng-bind-html="soldOutProductTotalCount | number:0"></span>)<span class="btnArrow">{{soldOutshow ? '닫기' : '열기'}}</span></a>
+    </div>
+    <ul ng-if="soldOutshow && oftenBuyProductList.length > 0">
+        <li ng-repeat="sold_item in oftenSoldoutProductList">
+            <div class="soldout_item">
+                <div class="soldout_thumb">
+                    <a href="#" ng-click="goSoldOutDetail(sold_item)">
+                        <img ng-src="{{sold_item.imgUrl}}">
+                        <em></em>
+                        <span>{{sold_item.saleStatCd == '20' ? '품절' : '판매종료'}}</span>
+                    </a>
+                </div>
+                <div class="soldout_detail">
+                    <p class="item_flags" ng-if="sold_item.mall_flags.length > 0">
+                        <span class="flag {{flag.class}}" ng-repeat="flag in sold_item.mall_flags">{{flag.name}}</span>
+                    </p>
+                    <p class="item_title">
+                        <a href="#" ng-click="goSoldOutDetail(sold_item)">{{getFormattedGoodsNm(sold_item)}}</a>
+                    </p>
+                    <p class="item_btm">
+                        <span class="soldout_price"><strong>{{sold_item.basic_price | number:0}}</strong>원</span><a class="resell_btn" ng-click="registRestockAlram(sold_item)" ng-if="sold_item.saleStatCd != '30'">재입고알림</a>
+                    </p>
+                </div>
+            </div>
+        </li>
+    </ul>
+</section>

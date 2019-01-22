@@ -1,0 +1,41 @@
+<div template-ctgdeal class="cont_wrap template_ctgdeal">
+	<!-- Sortting / 백화점 Flag -->
+	<section class="sorting_wrap">
+		<ul>
+			<li ng-class="{on: screenData.ctg_deal_ui.opt == 0}"><a ng-click="changeSort(0)">추천순</a></li>
+			<li ng-class="{on: screenData.ctg_deal_ui.opt == 1}"><a ng-click="changeSort(1)">인기순</a></li>
+			<li ng-class="{on: screenData.ctg_deal_ui.opt == 2}"><a ng-click="changeSort(2)">최신순</a></li>
+		</ul>
+		<div class="sort_dept_wrap">
+			<input type="checkbox" id="deptCheck" name="deptCheck" ng-model="screenData.ctg_deal_ui.dept" ng-change="changeDeptFilter()" />
+			<label for="deptCheck">백화점상품</label>
+		</div>
+	</section>
+
+	<!-- 최상단 띠배너 -->
+	<section ng-if="winWidth >= 640 && screenData.reward_banner && screenData.reward_banner.banner_nm == 'rewardevent'" class="top_banner_list">
+		<ul>
+			<li><a ng-click="linkUrl(screenData.reward_banner.img_link, screenData.reward_banner.mov_frme_cd, 'm_menu_{{mainTemplateType}}_rewardevent')"><img ng-src="{{screenData.reward_banner.img_url}}" alt="{{screenData.reward_banner.banner_nm}}" /></a></li>
+			<!-- 640 이상일때만 나오는 출석 도장 이벤트 -->
+			<li ng-if="winWidth >= 640"><a ng-click="linkUrl(eventLinkObj.eventAttendUrl, false, 'm_menu_{{mainTemplateType}}_tabletbanner')"><img src="http://image.lotte.com/lotte/mo2015/angular/banner_201507_attend.png" alt="출석도짱" /></a></li>
+		</ul>
+	</section>
+
+	<div product-container 
+		template-type="mixdeal" 
+		templatetype="templateType" 
+		products="screenData.bannerMixContents" 
+		banners="screenData.deal_banners" 
+		win-width="winWidth" 
+		more-product-continer="getProductData()" 
+		main-template-type="mainTemplateType"
+		tclick-prod="m_menu_{{mainTemplateType}}_unit" 
+		tclick-banner="m_menu_{{mainTemplateType}}_banner" 
+		tclick-banner-idx-key="bannerIdx" 
+		class="prd_lst_wrap"></div>
+
+	<!-- Product Load Loading -->
+	<div class="listLoading" ng-if="productListLoading && !pageLoading">
+		<p class="loading half"></p>
+	</div>
+</div>

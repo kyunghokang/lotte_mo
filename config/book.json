@@ -1,0 +1,70 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplbook" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mall/book/book_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/book.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsbook" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mall/book/book.js",
+                    "lotte/resources_dev/common/lotte_ngswipe.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/book.js"
+            }
+        },
+
+        "uglify" : {
+            "jsbook" : {
+                "src" : "lotte/resources/<%= version %>/book.js",
+                "dest" : "lotte/resources/<%= version %>/book.min.js"
+            },
+            "tplbook" : {
+                "src" : "lotte/resources/<%= version %>/book.template.js",
+                "dest" : "lotte/resources/<%= version %>/book.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssbook" : {
+                "src" : [
+                    "lotte/resources_dev/mall/book/book.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/book.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanbook" : [
+                "lotte/resources/<%= version %>/book.js",
+                "lotte/resources/<%= version %>/book.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlbook" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mall/book/book.html" : "mall/book/book_dev.html"
+                }
+            }
+        }
+    }
+}
+

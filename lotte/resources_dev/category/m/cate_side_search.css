@@ -1,0 +1,372 @@
+#container .ajax_loading{overflow:hidden;position:fixed;top:0;left:0;width:100%;height:100%;text-indent:100%;white-space:nowrap;background-color:rgba(255,255,255,0.01);z-index:1000;
+	-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0);}
+
+/* 레이어팝업 */
+.layerPop{display:none;position:absolute;right:0;top:0;border:1px solid #719cff;background:#fff;width:100%;padding:10px;z-index:100;}
+.layerBtn.on ~ .layerPop{display:block;}
+.layerPop .btn_close{position:absolute;right:5px;top:5px;background:url(http://image.lotte.com/lotte/mo2015/angular/common/btn_close_layer.png) 4px 4px no-repeat;background-size:12px 12px;width:20px;height:20px;text-indent:-9999em;font-size:0;}
+
+
+/* 상세검색 사이드바 */
+.side_search_wrap{position:fixed;top:0;right:0;width:292px;height:100%;background-color:#fff;z-index:150;
+	-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;backface-visibility:hidden;
+	-webkit-transition:-webkit-transform .2s;transition:transform .2s;
+	-webkit-transform: translate(292px, 0);transform: translate(292px, 0);
+}
+.side_search_wrap.on{-webkit-transform: translate(0, 0);transform: translate(0, 0);}
+
+.side_search_wrap .ssw_header{position:relative;background-color:#719cff;z-index:1;box-shadow:0 0 2px 0 rgba(0,0,0,0.3);}
+.side_search_wrap .ssw_header .ssw_header1{height:46px;border-bottom:1px solid #5f8cee;}
+.side_search_wrap .ssw_header .ssw_header1 .cropview{position:relative;height:100%;margin-right:40px;overflow:hidden;}
+.side_search_wrap .ssw_header .ssw_title{display:block;position:absolute;top:10px;left:75px;width:142px;height:26px;line-height:26px;text-align:center;color:#fff;font-size:18px;letter-spacing:-1px;}
+.side_search_wrap .ssw_header .ssw_title.main{-webkit-transition:left .2s, width .2s, font-size .2s, line-height .2s;transition:left .2s, width .2s, font-size .2s, line-height .2s;}
+.side_search_wrap.sub .ssw_header .ssw_title.main{left:12px;width:65px;font-size:13px;line-height:30px;}
+.side_search_wrap.sub .ssw_header .ssw_title.main:before{content:"";display:inline-block;width:10px;height:13px;vertical-align:middle;
+	background:url(http://image.lotte.com/lotte/mo2015/angular/search/search_2016_07.png) no-repeat -40px -40px;background-size:100px auto;}
+.side_search_wrap .ssw_header .ssw_title.sub{opacity:0;-webkit-transform:translate(200px, 0);transform:translate(200px, 0);-webkit-transition:opacity 0.2s, -webkit-transform .2s;opacity 0.2s, transition:transform .2s;}
+.side_search_wrap.sub .ssw_header .ssw_title.sub{opacity:1;-webkit-transform:translate(0, 0);transform:translate(0, 0);}
+.side_search_wrap .ssw_header .ssw_close{display:block;width:20px;height:20px;position:absolute;top:13px;right:12px;background-position:4px 4px;text-indent:-999px;overflow:hidden;}
+.side_search_wrap .ssw_header .ssw_header2{height:38px;border-bottom:1px solid #a6a6a6;position:relative;}
+.side_search_wrap .ssw_header .ssw_header2 span{display:block;margin-left:14px;line-height:38px;font-size:13px;color:#fff;}
+.side_search_wrap .ssw_header .ssw_header2 .reset_all{display:block;position:absolute;height:26px;top:6px;right:10px;padding:0 8px;line-height:25px;
+	text-align:center;background-color:#5b87ea;border-radius:13px;color:#fff;font-size:12px;letter-spacing:-1px;}
+.side_search_wrap .ssw_header .ssw_header2 .reset_all.disabled{opacity:0.5;pointer-events:none;}
+.side_search_wrap .ssw_header .ssw_header2 .reset_all:after{content:"";display:inline-block;width:11px;height:13px;vertical-align:middle;margin-left:4px;-webkit-transform:translate(0, -1px);transform:translate(0, -1px);
+	background:url(http://image.lotte.com/lotte/mo2015/angular/search/search_2016_07.png) no-repeat -20px 0;background-size:100px auto;}
+
+.side_search_wrap .ssw_content{position:absolute;overflow:hidden;top:86px;bottom:50px;left:0;right:0;}
+.side_search_wrap .ssw_content .ssw_slide{position:absolute;overflow:auto;-webkit-overflow-scrolling:touch;top:0;left:0;bottom:0;width:100%;-webkit-transition:left .2s;transition:left .2s;}
+.side_search_wrap .ssw_content .ssw_slide.sub{left:100%;}
+.side_search_wrap.sub .ssw_content .ssw_slide.main{left:-100%;}
+.side_search_wrap.sub .ssw_content .ssw_slide.sub{left:0;}
+.side_search_wrap .ssw_content .ssw_slide.main > ul > li{height:40px;border-bottom:1px solid #ddd;position:relative;font-size:13px;}
+.side_search_wrap .ssw_content .ssw_slide.main li a{display:block;}
+.side_search_wrap .ssw_content .ssw_slide.main li label{display:block;cursor:pointer;}
+.side_search_wrap .ssw_content .ssw_slide.main li:after{content:"";display:block;position:absolute;width:13px;height:13px;top:14px;right:12px;pointer-events:none;
+	background:url(http://image.lotte.com/lotte/mo2015/angular/search/search_2016_07.png) no-repeat -35px 0;background-size:100px auto;}
+.side_search_wrap .ssw_content .ssw_slide.main li .title{display:block;margin-left:14px;line-height:40px;color:#333;}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail{display:block;position:absolute;left:120px;right:30px;top:0;height:40px;line-height:40px;text-align:right;color:#719cff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail em{display:inline;}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.benefit em + em:before,
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.brand em + em:before,
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.research em + em:before,
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.store em + em:before{content:", ";}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.price em:after{content:"원";}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.price em.min:after{content:"원~";}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.price em.max:before{content:"~";}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.price em.min + em.max:before{content:"";}
+
+@media screen and (max-width:360px){
+	.side_search_wrap{width:270px;}
+}
+
+.ssws_wrap li{min-height:40px;line-height:40px;border-bottom:1px solid #ddd;position:relative;font-size:13px;}
+.ssws_wrap li a{display:block;padding:0 15px;}
+.ssws_wrap li a.selected{color:#71a1ff;}
+.ssws_wrap .instruct{display:block;padding:0 15px;color:#999;font-size:13px;}
+.ssws_wrap li label{display:block;position:relative;padding:0 15px;color:#333;white-space:nowrap;}
+.ssws_wrap li label input[type='radio']{border:none;width:21px;height:21px;position:absolute;top:50%;left:0;width:20px;height:20px;margin:-10px 0;
+	-moz-box-apperance:none;-webkit-appearance:none;appearance:none;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;
+	background:url(http://image.lotte.com/lotte/mo2015/angular/common/spr_search_result_20160226.png) -10px -100px no-repeat;background-size:200px 150px}
+.ssws_wrap li label input[type='radio']:checked{background-position:-35px -100px;}
+.ssws_wrap li label input[type='radio']:focus{outline:none;}
+.ssws_wrap li .sortopt{position:absolute;top:0;right:0;padding-right:15px;}
+.ssws_wrap li .sortopt label{display:inline-block;padding-left:25px;padding-right:0;margin-left:5px;}
+
+.ssws_wrap li label input[type='checkbox']{
+	-moz-box-apperance:none;-webkit-appearance:none;appearance:none;
+	-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;
+	/* Galaxy S4 Android 4.2 오류 방지 */
+	border-top-left-radius:0;border-top-right-radius:0;border-bottom-left-radius:0;border-bottom-right-radius:0;
+	border:1px solid #dfdfdf;width:20px;height:20px;vertical-align:middle;background-color:#fff;
+	position:absolute;top:11px;right:15px;
+}
+.ssws_wrap li label.disabled{opacity:.5}
+.ssws_wrap li label.selected{color:#71a1ff;}
+.ssws_wrap li label input[type='checkbox']:checked{background:#fff url(http://image.lotte.com/lotte/mo2015/angular/common/spr_search_result_20160226.png) -120px -38px no-repeat;background-size:200px 150px}
+
+.dept_check label{display:block;position:relative;padding:0 15px;padding-left:40px;font-size:13px;color:#333;white-space:nowrap;height:40px;line-height:40px;}
+.dept_check label input[type='checkbox']{
+	-moz-box-apperance:none;-webkit-appearance:none;appearance:none;
+	-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;
+	/* Galaxy S4 Android 4.2 오류 방지 */
+	border-top-left-radius:0;border-top-right-radius:0;border-bottom-left-radius:0;border-bottom-right-radius:0;
+	border:1px solid #dfdfdf;width:20px;height:20px;vertical-align:middle;background-color:#fff;
+	position:absolute;top:11px;left:15px;
+}
+.dept_check label.disabled{opacity:.5}
+.dept_check label.selected{color:#71a1ff;}
+.dept_check label input[type='checkbox']:checked{background:#fff url(http://image.lotte.com/lotte/mo2015/angular/common/spr_search_result_20160226.png) -120px -38px no-repeat;background-size:200px 150px}
+
+.ssws_research .radios{height:30px;}
+.ssws_research label{display:inline-block;position:relative;padding:0 15px;padding-left:25px;font-size:13px;color:#333;white-space:nowrap;}
+.ssws_research label input[type='radio']{border:none;width:21px;height:21px;position:absolute;top:50%;left:0;width:20px;height:20px;margin:-10px 0;
+	-moz-box-apperance:none;-webkit-appearance:none;appearance:none;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;
+	background:url(http://image.lotte.com/lotte/mo2015/angular/common/spr_search_result_20160226.png) -10px -100px no-repeat;background-size:200px 150px}
+.ssws_research label input[type='radio']:checked{background-position:-35px -100px;}
+.ssws_research label input[type='radio']:focus{outline:none;}
+
+.ssws_wrap .openable li{border-bottom:none;}
+.ssws_wrap .openable li a{border-bottom:1px solid #ddd;height:40px;}
+/* .ssws_wrap .openable li a:after{content:"";display:block;position:absolute;width:13px;height:13px;top:14px;right:12px;
+	background:url(http://image.lotte.com/lotte/mo2015/angular/search/search_2016_07.png) no-repeat -35px 0;background-size:100px auto;
+	-webkit-transform:rotate(90deg);transform:rotate(90deg);}
+.ssws_wrap .openable li.open > a:after{-webkit-transform:rotate(-90deg);transform:rotate(-90deg);} */
+/* .ssws_wrap .openable li.nochild a:after{display:none;} */
+.ssws_wrap .openable li.selected > a{color:#5884f3;}
+.ssws_wrap .openable li.checked > a:after{content:"";display:inline-block;width:13px;height:13px;vertical-align:middle;margin-left:9px;
+	background:url(http://image.lotte.com/lotte/mo2015/angular/search/search_2016_07.png) no-repeat -50px 0;background-size:100px auto;}
+.ssws_wrap .openable li.allcate a span{color:#999;margin-left:5px;}
+.ssws_wrap .openable li.indicator a{color:#999;height:40px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.ssws_wrap .openable li.indicator span ~ span:before{content:">";margin:0 4px;}
+.ssws_wrap .openable li > ul{height:0;overflow:hidden;/* transition:height 0.2s; */}
+.ssws_wrap li .count{font-size:12px;color:#999;margin-left:4px;}
+.ssws_wrap li.fixtop > div{position:fixed;top:86px;right:0;height:41px;width:100%;background-color:#fff;z-index:1;overflow:hidden;}
+.ssws_wrap.ssws_brand li.fixtop > div{height:40px;border-bottom:1px solid #ddd;}
+.ssws_wrap li.fixtop.selected_brand > div{top:127px;}
+
+.ssws_wrap.ssws_category .openable li a{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding-right:30px;}
+.ssws_wrap.ssws_category .openable li a .flag{display:none;width:50px;height:20px;vertical-align:middle;margin-right:10px;
+	background:url(http://image.lotte.com/lotte/mo2015/angular/cate/cate_side_search_flag.jpg) no-repeat 0 0;background-size:50px auto;}
+.ssws_wrap.ssws_category .openable li.department a .flag{display:inline-block;background-position:0 0;}
+.ssws_wrap.ssws_category .openable li.youngplaza a .flag{display:inline-block;background-position:0 -20px;}
+
+/* .ssws_wrap .cate_d2 li{background-color:#eaeaf1;} */
+.ssws_wrap .cate_d2 li{background-color:#eaeaf1;}
+.ssws_wrap .cate_d2 li a{padding-left:30px;}
+.ssws_wrap .cate_d3 li a{padding-left:55px;}
+.ssws_wrap .cate_d4 li a{padding-left:70px;}
+.ssws_wrap .cate_d5 li a{padding-left:85px;}
+/* .ssws_wrap .cate_d3 li a:after{display:none;} */
+/* .ssws_wrap .cate_d3 li.selected a{color:#5884f3;} */
+/* .ssws_wrap .cate_d3 li.selected > a:after{display:inline-block;position:relative;top:auto;left:auto;right:auto;vertical-align:middle;margin-left:5px;background-position:-50px 0;-webkit-transform:rotate(0deg);transform:rotate(0deg);}
+.ssws_wrap .cate_d3 li.nocheck > a:after{display:none;} */
+.ssws_wrap .cate_d3 li a:not(.handle):before{content:"";position:absolute;top:17px;left:15px;display:block;width:5px;height:5px;border-left:1px solid #b7b7b7;border-bottom:1px solid #b7b7b7;box-sizing:border-box;}
+.ssws_wrap .cate_d3 li a:not(.handle):before{left:40px;}
+.ssws_wrap .cate_d4 li a:not(.handle):before{left:55px;}
+.ssws_wrap .cate_d5 li a:not(.handle):before{left:70px;}
+
+.ssws_wrap .openable li a.handle{display:block;position:absolute;top:0;right:0;padding:0;width:40px;height:41px;text-indent:999px;overflow:hidden;border:none;pointer-events:none;}
+.ssws_wrap .openable li a.handle:after{content:"";display:block;position:absolute;width:13px;height:13px;top:14px;right:12px;
+	-webkit-transform:rotate(90deg);transform:rotate(90deg);
+	background:url(http://image.lotte.com/lotte/mo2015/angular/search/search_2016_07.png) no-repeat -35px 0;background-size:100px auto;}
+.ssws_wrap .openable li.open > a.handle:after{-webkit-transform:rotate(-90deg);transform:rotate(-90deg);}
+.ssws_wrap .openable li.nochild a.handle{display:none;}
+.ssws_wrap .cate_d3 li a.handle,
+.ssws_wrap .cate_d4 li a.handle,
+.ssws_wrap .cate_d5 li a.handle{display:none;}
+
+
+.ssws_wrap li.selected_brand a{height:40px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#5b87ea;}
+.ssws_wrap li.selected_brand em ~ em:before{content:",";margin-right:3px;}
+
+.ssws_wrap.ssws_sort label input[type='radio']{position:absolute;left:auto;right:15px;}
+.ssws_wrap.ssws_sort .sort_guide{height:20px;line-height:20px;text-align:right;margin:5px 15px 0;position:relative;}
+.ssws_wrap.ssws_sort .sort_guide > a{color:#666;font-size:12px;}
+.ssws_wrap.ssws_sort .sort_guide > a:after{content:"";display:inline-block;overflow:hidden;width:13px;height:13px;margin:0 0 2px 5px;vertical-align:middle;
+	background:url(http://image.lotte.com/lotte/mo2015/angular/common/ic_qMark.png) 0px 0px no-repeat;background-size:13px;}
+.sortGuidePop{position:fixed;top:0;left:0;right:0;bottom:0;z-index:1000;}
+.sortGuidePop .layerPop_dim{position:relative;width:100%;height:100%;background-color:rgba(0,0,0,0);}
+.sortGuidePop .layerPop{right:13px;top:25px;width:213px;padding:10px;display:block;}
+.sortGuidePop .layerPop p{text-align:left;font-size:14px;line-height:17px;letter-spacing:-.7px;}
+.sortGuidePop .layerPop .tlt{color:#333;font-weight:bold;padding-top:15px;padding-bottom:5px;}
+.sortGuidePop .layerPop p:first-child{padding-top:0;}
+.sortGuidePop .layerPop .desc{color:#666;font-size:12px;}
+
+.ssws_color .instruct{height:40px;line-height:40px;border-bottom:1px solid #ddd;}
+.color_list ul{margin:15px;padding:0;}
+.color_list ul li{display:block;position:relative;float:left;width:35px;height:45px;overflow:hidden;border-bottom:none;}
+.color_list ul li a{display:block;position:relative;width:35px;height:35px;box-sizing:border-box;}
+.color_list ul li.on a:after{content:"";display:block;position:absolute;left:4px;top:4px;width:28px;height:28px;background:url(http://image.lotte.com/lotte/mo2015/angular/common/spr_search_result_20160226.png) no-repeat -140px -96px;background-size:200px auto;}
+.color_list ul li.c010 a{background-color:#ffd700;}
+.color_list ul li.c020 a{background-color:#f60;}
+.color_list ul li.c030 a{background-color:#f00;}
+.color_list ul li.c040 a{background-color:#ff0;}
+.color_list ul li.c050 a{background-color:#90ee90;}
+.color_list ul li.c060 a{background-color:#093;}
+.color_list ul li.c070 a{background-color:#87cdfa;}
+.color_list ul li.c080 a{background-color:#191970;}
+.color_list ul li.c090 a{background-color:#00f;}
+.color_list ul li.c100 a{background-color:#706c3d;}
+.color_list ul li.c110 a{background-color:#783c24;}
+.color_list ul li.c120 a{background-color:#9932cc;}
+.color_list ul li.c130 a{background-color:#ff80ff;}
+.color_list ul li.c140 a{background-color:#ff88ae;}
+.color_list ul li.c150 a{background-color:#fff;border:1px solid #e7e7e7;}
+.color_list ul li.c150.on a:after{background-position:-168px -96px;}
+.color_list ul li.c160 a{background-color:#d3d3d3;}
+.color_list ul li.c170 a{background-color:#666;}
+.color_list ul li.c180 a{background-color:#000;}
+.color_list ul:after{content:"";display:block;height:0;clear:both;}
+
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.color_list{display:block;box-sizing:border-box;padding-top:8px;margin:0;pointer-events:none;}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.color_list ul{margin:0;height:23px;overflow:hidden;}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.color_list ul li{display:inline-block;width:23px;height:23px;box-sizing:border-box;float:none;vertical-align:top;}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.color_list ul li.i1{margin-left:4px;}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.color_list ul li:after{content:none;}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.color_list ul li a{width:23px;height:23px;}
+.side_search_wrap .ssw_content .ssw_slide.main li .detail.color_list ul li.ellipsis{width:auto;line-height:20px;color:#719cff;line-height:12px;font-size:16px;margin-left:4px;}
+.andr_chrm .side_search_wrap .ssw_content .ssw_slide.main li .detail.color_list ul li.ellipsis{line-height:14px;}
+
+.ssws_wrap.ssws_research input[type='search'],
+.ssws_wrap.ssws_price input[type='number']{
+	width:100%;height:34px;line-height:12px;border:1px solid #ddd;padding:6px 5px;color:#333;font-size:12px;
+	-moz-box-apperance:none;-webkit-appearance:none;appearance:none;-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;box-sizing: border-box;
+	/* Galaxy S4 Android 4.2 오류 방지 */
+	border-top-left-radius:3px;border-top-right-radius:3px;border-bottom-left-radius:3px;border-bottom-right-radius:3px;
+	}
+.ssws_wrap.ssws_price .price{margin:22px 17px;}
+.ssws_wrap.ssws_price .price .subtitle{font-size:14px;color:#999;height:25px;}
+.ssws_wrap.ssws_price .price:after{content:"";display:block;clear:both}
+.ssws_wrap.ssws_price .price span{display:block;float:left;width:4%;text-align:center}
+.ssws_wrap.ssws_price .price span.ipt{position:relative;width:50%;height:34px;box-sizing:border-box;}
+.ssws_wrap.ssws_price .price span.ipt.ipt_min{padding-right:6px;}
+.ssws_wrap.ssws_price .price span.ipt.ipt_max{padding-left:6px;}
+.ssws_wrap.ssws_price .price span.ipt.ipt_max:before{content:"~";display:block;position:absolute;left:-5px;top:8px;}
+.ssws_wrap.ssws_price .price span.number_format{overflow:hidden;position:absolute;top:2px;left:2px;bottom:2px;right:2px;
+	width:auto;height:auto;line-height:18px;border:none;padding:6px 5px;color:#333;font-size:12px;text-align:left;background-color:#fff;text-align:left;
+	-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;
+	/* Galaxy S4 Android 4.2 오류 방지 */
+	border-top-left-radius:3px;border-top-right-radius:3px;border-bottom-left-radius:3px;border-bottom-right-radius:3px;
+}
+.ssws_wrap.ssws_price .price span.ipt.ipt_min span.number_format{right:7px;}
+.ssws_wrap.ssws_price .price span.ipt.ipt_max span.number_format{left:7px;}
+.ssws_wrap.ssws_price .button{text-align:center;margin:0 17px;}
+.ssws_wrap.ssws_price .button .btn_search{
+	-moz-box-apperance:none;-webkit-appearance:none;appearance:none;
+	-moz-box-sizing: border-box;-webkit-box-sizing:border-box;box-sizing:border-box;
+	/* Galaxy S4 Android 4.2 오류 방지 */
+	border-top-left-radius:3px;border-top-right-radius:3px;border-bottom-left-radius:3px;border-bottom-right-radius:3px;
+	width:100%;height:36px;line-height:36px;color:#fff;font-size:17px;border:none;background-color:#5b87ea;
+	}
+.ssws_wrap.ssws_price .instruct{letter-spacing:-1px;}
+@media screen and (max-width:340px){
+	.ssws_wrap.ssws_price .instruct{font-size:12px;;}
+}
+.ssws_wrap.ssws_price li a{padding-left:35px;position:relative;}
+.ssws_wrap.ssws_price li em ~ em:before{content:"~";margin:0 4px;}
+.ssws_wrap.ssws_price li a:before{content:"";display:block;width:2px;height:2px;position:absolute;left:25px;top:50%;background-color:#888;}
+.ssws_wrap.ssws_price li a.selected:after{content:"";display:inline-block;width:13px;height:13px;vertical-align:middle;margin-left:6px;
+	background:url(http://image.lotte.com/lotte/mo2015/angular/search/search_2016_07.png) no-repeat -50px 0;background-size:100px auto;}
+
+.ssws_wrap.ssws_research .re-search{margin:22px 17px;position:relative;}
+.ssws_wrap.ssws_research .re-search .keyword{margin-top:6px;}
+.ssws_wrap.ssws_research .re-search .button{margin-top:22px;}
+.ssws_wrap.ssws_research .re-search .button .btn_search{
+	-moz-box-apperance:none;-webkit-appearance:none;appearance:none;
+	-moz-box-sizing: border-box;-webkit-box-sizing:border-box;box-sizing:border-box;
+	/* Galaxy S4 Android 4.2 오류 방지 */
+	border-top-left-radius:3px;border-top-right-radius:3px;border-bottom-left-radius:3px;border-bottom-right-radius:3px;
+	width:100%;height:36px;line-height:36px;color:#fff;font-size:17px;border:none;background-color:#5b87ea;}
+.ssws_wrap.ssws_research .re-search .button .btn_search:disabled{opacity:0.5;}
+.ssws_wrap.ssws_research .btn_storeSel{position:relative;width:100px;height:34px;border:1px solid #ddd;color:#888;font-size:12px;text-align:left;line-height:25px;background:#fff;padding:0 5px;}
+.ssws_wrap.ssws_research .btn_storeSel:disabled{opacity:0.5;}
+.ssws_wrap.ssws_research .btn_storeSel:after{content:"";display:block;overflow:hidden;width:14px;height:6px;position:absolute;top:14px;right:10px;
+	background:url(http://image.lotte.com/lotte/mo2015/angular/common/spr_search_result_20160226.png) -117px -109px no-repeat;background-size:200px 150px}
+.ssws_wrap.ssws_research .btn_storeSel.on:after{-webkit-transform:rotate(180deg);transform:rotate(180deg);}
+.ssws_wrap.ssws_research .btn_storeSel.on{border-color:#719cff;color:#fff;background:#719cff;}
+.ssws_wrap.ssws_research .btn_storeSel.on:after{background:url(http://image.lotte.com/lotte/mo2015/angular/common/spr_search_result_20160226.png) -97px -108px no-repeat;background-size:200px 150px;-ms-transform: rotate(180deg);-webkit-transform: rotate(180deg);transform: rotate(180deg);}
+
+.ssws_wrap.ssws_research .keywords{padding:20px;border-top:1px solid #e2e2e2;}
+.ssws_wrap.ssws_research .keywords .guide{color:#999;padding-left:8px;position:relative;letter-spacing:-1px;}
+.ssws_wrap.ssws_research .keywords .guide:before{content:"*";display:inline-block;position:absolute;top:2px;left:0;}
+.ssws_wrap.ssws_research .keywords .keyword_list{margin-top:15px;min-height:28px;position:relative;padding-left:75px;}
+.ssws_wrap.ssws_research .keywords .keyword_list ~ .keyword_list{margin-top:8px;}
+.ssws_wrap.ssws_research .keywords .keyword_list:before{content:"";display:block;position:absolute;left:8px;top:0;font-size:13px;color:#719cff;letter-spacing:-1px;}
+.ssws_wrap.ssws_research .keywords .keyword_list.include:before{content:"포함단어";}
+.ssws_wrap.ssws_research .keywords .keyword_list.exclude:before{content:"제외단어";}
+.ssws_wrap.ssws_research .keywords .keyword_list li{display:inline-block;height:23px;background-color:#4270dc;border-radius:3px;min-height:23px;line-height:23px;margin-right:4px;margin-bottom:4px;}
+.ssws_wrap.ssws_research .keywords .keyword_list li:last-child{margin-right:0;}
+.ssws_wrap.ssws_research .keywords .keyword_list li a{display:block;height:23px;position:relative;padding:0 5px;padding-right:25px;color:#fff;font-size:12px;}
+.ssws_wrap.ssws_research .keywords .keyword_list li a:before,
+.ssws_wrap.ssws_research .keywords .keyword_list li a:after{content:"";display:block;width:13px;height:1px;background-color:#fff;position:absolute;top:11px;right:5px;pointer-events:none;}
+.ssws_wrap.ssws_research .keywords .keyword_list li a:before{transform:rotate(45deg);-webkit-transform:rotate(45deg);}
+.ssws_wrap.ssws_research .keywords .keyword_list li a:after{transform:rotate(-45deg);-webkit-transform:rotate(-45deg);}
+
+.search2016_bg{background:url(http://image.lotte.com/lotte/mo2015/angular/search/search_2016_07.png) no-repeat 0 0;background-size:100px auto;}
+
+.result_wrap.categoryWrap .listWrap{padding-top:8px}
+
+.srh_terms_wrap_area{height:43px;}
+.srh_terms_wrap{display:none;position:relative;background-color:#fff;border-bottom:1px solid #ddd;z-index:49;height:42px;
+	transform:translateZ(0);-webkit-transform:translateZ(0);}
+.srh_terms_wrap.show{display:block;}
+.srh_terms_wrap .result_cnt{font-size:13px;color:#333;letter-spacing:-.7px;line-height:28px;white-space:nowrap;color:#999;position:absolute;left:8px;top:7px;font-size:14px;color:#999;}
+.srh_terms_wrap .result_cnt em{font-size:15px;color:#333;margin-left:4px;}
+.srh_terms_wrap a{display:inline-block;height:28px;line-height:28px;letter-spacing:-1px;color:#333;font-size:13px;vertical-align:middle;}
+.srh_terms_wrap .right{position:absolute;top:7px;right:6px;text-align:right;}
+.srh_terms_wrap .right a{box-sizing:border-box;padding:0 10px;position:relative;}
+.srh_terms_wrap .right a.disabled{opacity:0.5;pointer-events:none;}
+.srh_terms_wrap .right a.sort{padding-right:20px;}
+.srh_terms_wrap .right a.sort:after{content:"";display:block;width:13px;height:13px;position:absolute;top:8px;right:5px;
+	background:url(http://image.lotte.com/lotte/mo2015/angular/search/search_2016_07.png) no-repeat -65px 0;background-size:100px auto;}
+.srh_terms_wrap .right a.sort.on:after{-webkit-transform:rotate(180deg);transform:rotate(180deg);}
+.srh_terms_wrap .right a:before{content:"";display:block;width:1px;height:14px;background-color:#c8c8c8;position:absolute;top:7px;left:-2px;pointer-events:none;}
+
+.srh_terms_wrap .right ul{display:inline-block;width:28px;height:28px;vertical-align:middle;margin-right:2px;}
+.srh_terms_wrap .right ul li.pr10{padding-right:10px;}
+.srh_terms_wrap .right ul li.pr10 label{display:inline-block; padding-top:2px;}
+.srh_terms_wrap .right ul li.pr10 label input{margin-top:-3px;}
+.srh_terms_wrap .right ul li.no{opacity:0.5};
+.srh_terms_wrap .right label{display:block;padding:0 5px;font-size:12px;color:#333;letter-spacing:-.7px;}
+.srh_terms_wrap .right label.disabled{opacity:0.3;}
+.srh_terms_wrap .right label input[type='checkbox']{-moz-box-apperance:none;-webkit-appearance:none;appearance:none;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;
+	box-sizing: border-box;border-top-left-radius:0;border-top-right-radius:0;border-bottom-left-radius:0;border-bottom-right-radius:0;
+	border:1px solid #dfdfdf;width:20px;height:20px;vertical-align:text-top;margin-right:5px;background-color:#fff;}
+.srh_terms_wrap .right label input[type='checkbox']:checked{background:#fff url(http://image.lotte.com/lotte/mo2015/angular/common/spr_search_result_20160226.png) -120px -38px no-repeat;background-size:200px 150px}
+.srh_terms_wrap .right .layerPop ul li{width:50%;}
+.srh_terms_wrap .right .unit_listType{display:inline-block;width:28px;height:28px;background:url(http://image.lotte.com/lotte/mo2015/angular/common/spr_search_result_20160226.png) -5px -125px no-repeat #f8f8f8;background-size:200px 150px;}
+.srh_terms_wrap .right .unit_listType.type2{background-position:-30px -125px}
+.srh_terms_wrap .right .unit_listType.type3{background-position:-55px -125px}
+.srh_terms_wrap .right .unit_listType{background-color:#fff;}
+
+/* 스마트픽 지점 레이어 */
+.ly_smpick{position:fixed;top:0;width:100%;height:100%;z-index:1000}
+.ly_smpick .cover{width:100%;height:100%;background-color:rgba(0,0,0,0);}
+.ly_smpick .smpick_lst{overflow:hidden;position:absolute;top:50%;left:50%;width:280px;height:296px;margin:-155px -140px;background-color:#fff;
+	/* Galaxy S4 Android 4.2 오류 방지 */
+	border-top-left-radius:10px;border-top-right-radius:10px;border-bottom-left-radius:10px;border-bottom-right-radius:10px;
+	box-shadow:2px 2px 4px 0 rgba(0,0,0,0.3);}
+.ly_smpick .smpick_lst header{padding:15px 10px 10px 10px;background-color:#f6f6f6;
+	-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}
+.ly_smpick .smpick_lst header span{display:block;overflow:hidden;width:229px;height:44px;margin:0 auto;background:url(http://image.lotte.com/lotte/mo2015/angular/common/ly_smpick_branch_tit.png) 0 0 no-repeat;background-size:229px 44px;text-indent:100%;white-space:nowrap;}
+.ly_smpick .smpick_lst .branch_wrap{overflow-y:scroll;height:190px;border-bottom:1px solid #e6e6e6;-webkit-overflow-scrolling:touch;}
+.ly_smpick .smpick_lst .branch_wrap ul li{border-bottom:1px solid #f2f2f2;}
+.ly_smpick .smpick_lst .branch_wrap ul li label{display:block;position:relative;padding:0 20px;font-size:15px;color:#333;line-height:43px;}
+.ly_smpick .smpick_lst .branch_wrap ul li input[type='radio']{
+	-moz-box-apperance:none;-webkit-appearance:none;appearance:none;
+	-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;
+	position:absolute;top:50%;right:20px;width:22px;height:22px;border:none !important;margin:-11px 0;
+	background:url(http://image.lotte.com/lotte/mo2015/angular/common/spr_search_result_20160226.png) -10px -100px no-repeat;background-size:200px 150px;}
+.ly_smpick .smpick_lst .branch_wrap ul li input[type='radio']:checked{background-position:-35px -100px;border:none !important;
+	-moz-box-apperance:none;-webkit-appearance:none;appearance:none;
+	-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}
+.ly_smpick .smpick_lst .btn_wrap{}
+.ly_smpick .smpick_lst .btn_wrap .btn_close{display:block;width:100%;padding:9px;text-align:center;color:#333;font-size:13px;
+font-family:'나눔고딕',NanumGothic,'맑은고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,Helvetica,sans-serif;border:none;background-color:#fff;
+-moz-box-apperance:none;-webkit-appearance:none;appearance:none;}
+.prod_list_deal .unit_deal_01 .thumb:after{content:"BIG딜";display:block;overflow:hidden;position:absolute;top:5px;right:5px;width:35px;height:17px;text-indent:100%;
+	background:transparent url(http://image.lotte.com/lotte/mobile/unit/icon_bigdeal.png) 0 0 no-repeat;background-size:35px 17px;white-space:nowrap;}
+	
+/* 배송 css 추가 20170403 */
+.ssws_wrap.ssws_delivery li{border-top:1px solid #ddd;border-bottom:none;}
+.ssws_wrap.ssws_delivery > ul > li:first-child{border-top:none;}
+.ssws_wrap.ssws_delivery > ul{border-bottom:1px solid #ddd;}
+.ssws_wrap.ssws_delivery li a{position:relative;}
+.ssws_wrap.ssws_delivery li li a{padding-left:32px;}
+.ssws_wrap.ssws_delivery li li label{padding-left:32px;}
+.ssws_wrap.ssws_delivery li a:after{content:"";display:block;width:15px;height:10px;box-sizing:border-box;position:absolute;top:16px;right:18px;
+	background:url(http://image.lotte.com/lotte/mo2015/angular/search/search_2017_03.png) no-repeat -50px -20px;background-size:100px auto;}
+.ssws_wrap.ssws_delivery li.opened > a:after{-webkit-transform:rotate(180deg);transform:rotate(180deg);}
+.ssws_wrap.ssws_delivery li.selected > a:after{background-position:-35px -20px;}
+.ssws_wrap.ssws_delivery li.selected > a{color:#71a1ff;}/*#5884f3;*/
+.ssws_wrap.ssws_delivery li.disabled > a{opacity:0.5;pointer-events:none;}
+.ssws_wrap.ssws_delivery .branches li a{padding-left:50px;}
+.ssws_wrap.ssws_delivery .branches li a:before{content:"";display:block;width:4px;height:5px;border-bottom:1px solid #b7b7b7;border-left:1px solid #b7b7b7;position:absolute;top:17px;left:40px;box-sizing:border-box;}
+.ssws_wrap.ssws_delivery .branches li a:after{width:22px;height:22px;top:11px;right:15px;-webkit-transform:none;transform:none;
+	background:url(http://image.lotte.com/lotte/mo2015/angular/common/spr_search_result_20160226.png) -10px -100px no-repeat;background-size:200px 150px;}
+.ssws_wrap.ssws_delivery .branches li.selected a:after{background-position:-35px -100px;}
+/* .ssws_wrap.ssws_delivery .branches li label{padding-left:50px;}
+.ssws_wrap.ssws_delivery .branches li label:before{content:"";display:block;width:4px;height:5px;border-bottom:1px solid #b7b7b7;border-left:1px solid #b7b7b7;position:absolute;top:17px;left:40px;box-sizing:border-box;}
+.ssws_wrap.ssws_delivery .branches li label input[type='radio']{right:15px;left:auto;} */

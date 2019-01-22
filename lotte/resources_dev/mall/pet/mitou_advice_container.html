@@ -1,0 +1,37 @@
+<section ng-show="contVisible" class="cont_minheight dearpet_v4">
+    <section class="pageLoading" ng-show="pageLoading"><p class="loading half"></p></section>
+	<section ng-show="!pageLoading">
+	    <div class="sub_header_wrap">
+            <header id="head_sub" sub-header-each ng-show="subTitle" class="fixedSubHeader " ng-class="{fixedHeader: fixedHeader && subHeaderFixed && !appObj.isNativeHeader}">
+                <div class='head_sub_inner'>
+                    <h2><a ng-click="mallMainClick('m_DC_SpeDisp_Dearpet_Clk_logo')"><span>L.Dear Pet</span></a></h2>
+                    <a class='share' href='#' ng-click="petShare({shareImg:screenData.event_list[0].img_url})"><span>공유</span></a>
+                </div>
+            </header>
+        </div>
+        <section id="container">   
+	        <!-- 카테고리 -->
+            <div class="">
+                <pet-mall-sub-ctg></pet-mall-ctg>
+            </div>
+            <!-- //카테고리 -->
+            <!-- <div class="attention">
+                <img ng-src="http://image.lotte.com/lotte/mobile/mobile_new/brandshop/kshop/mitou_advice_attention.png"></img>
+            </div> -->
+            <div class="specialTopGuide">
+                <div class="guideWrapper">
+                    <p class="iconAtt"><img src="http://image.lotte.com/lotte/mobile/mobile_new/brandshop/kshop/icon_att2.png"></p><p class="guideTitle">상담 요청 전 꼭 읽어주세요!</p>
+                </div>
+                <ul>
+                    <li>정해진 상담 일정에 따라 운영되고 있습니다.<br>답변이 조금 늦어져도 양해 부탁드립니다.</li>
+                   <!--  <li>비밀글로 등록하실 때, 설정한 비밀번호를 꼭 기억해주세요!<br>답변을 확인하실 때 필요합니다.</li> -->
+                </ul>
+            </div>
+	        <div class="plan_bannerWrap" ng-style=getHeight()>
+	        	<iframe id="frameMitou" src='http://m.notepet.co.kr/ifm/lotte_iframe/counsel_list/' width="100%" height="100%" frameborder=0>
+	        
+	             </iframe>
+	        </div>
+	      </section>     	  
+	</section>
+</section>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+
+<!-- test common css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">
+<!-- //공통 css -->
+<!----------------- current css ----------------->
+
+<link rel="stylesheet" href="/lotte/resources_dev/unit/unit_list.css">
+<link rel="stylesheet" href="/lotte/resources_dev/unit/unit_list_01.css">
+<link rel="stylesheet" href="/lotte/resources_dev/brandshop/brand_common.css">
+<link rel="stylesheet" href="/lotte/resources_dev/brandshop/brandshop.css">
+
+<!----------------- current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+<script>
+$(function(){
+	var sub_cate_li = $(".sub_cate .menu > li");
+	sub_cate_li.click(function(){
+		$(".cotn_cate").show();
+		sub_cate_li.removeClass("on");
+		$(this).addClass("on");		
+		var idx = $(this).index();
+		$(".cotn_cate > div").removeClass("on");
+		$(".cotn_cate > div").eq(idx).addClass("on");
+	});
+	$(".box_btn .close").click(function(){
+		sub_cate_li.removeClass("on");
+		$(".cotn_cate").hide();
+		
+	});
+});
+</script>
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<!-- container -->
+<section id="container" class="brand_wrap">
+	<!-- sub_category -->
+	<nav class="sub_cate">
+		<ul class="menu">
+			<!-- class on 추가시 활성화, 선택되어있을때 클래스 selected -->
+			<li ><a href="#">카테고리</a></li>
+			<li class="on"><a href="#">상세검색</a></li>
+			<!-- 낮은가격순 클래스 down, 높은순 클래스 up -->
+			<li ><a href="#">인기순</a></li>
+		</ul>
+		<div class="cotn_cate">
+			<!-- 각 카테고리 별 class on 추가시 활성화 -->
+			<!-- 카테고리 -->
+			<div class="category " >
+				<div class="sort_cate">
+					<p><label for="cate_all"><input id="cate_all" type="radio" name="favor_radio"> 전체</label></p>
+					<p><label for="cate_com"><input id="cate_com" type="radio" name="favor_radio"> 롯데닷컴</label></p>
+					<p><label for="cate_depart"><input id="cate_depart" type="radio" name="favor_radio"> 롯데백화점</label></p>
+					<p><label for="cate_young"><input id="cate_young" type="radio" name="favor_radio"> 영플라자</label></p>
+				</div>
+				<ul>
+					<!-- class on 추가시 활성화 -->	
+					<li class="on"><a href="#"><strong>롯데닷컴 > 여성의류</strong>	<span class="num">1,234</span></a></li>
+					<li ><a href="#" >셔츠/블라우스 <span class="num">1,234</span></a></li>
+					<li ><a href="#" >셔츠/블라우스 <span class="num">1,234</span></a></li>
+					<li><a href="#">니트/스웨터	<span class="num">1,234</span></a></li>
+					<li><a href="#">베스트/조끼	<span class="num">1,234</span></a></li>
+					<li><a href="#">가디건/볼레로	<span class="num">1,234</span></a></li>
+					<li><a href="#">원피스 <span class="num">1,234</span></a></li>
+					<li><a href="#">팬츠	<span class="num">1,234</span></a></li>
+					<li><a href="#">스커트 <span class="num">1,234</span></a></li>
+				</ul>
+			</div>
+			<!-- //카테고리 -->
+			<!-- 상세검색 -->
+			<div class="detail_srch on" >
+				<table>
+					<caption>삼세검색 표</caption>
+				<colgroup>
+					<col style="width:75px">
+					<col style="*">
+					<col style="width:73px">
+				</colgroup>
+					<tbody>
+						<tr >
+							<th class="type_top type_bor">신발 종류</th> 
+							<td colspan="2" class="type_bor">
+								<ul class="list_radio_input">
+									<li><label for="type_sort01_1" ><input name="type_sort01" id="type_sort01_1" type="radio"> 전체</label></li>
+									<li><label for="type_sort01_2" ><input name="type_sort01" id="type_sort01_2" type="radio"> 샌들</label></li>
+									<li><label for="type_sort01_3" ><input name="type_sort01" id="type_sort01_3" type="radio"> 플랫/단화</label></li>
+									<li><label for="type_sort01_4" ><input name="type_sort01" id="type_sort01_4" type="radio"> 부츠/앵글부츠</label></li>
+								</ul>
+							</td>
+						</tr>
+						<tr >
+							<th class="type_top type_bor">굽 종류</th> 
+							<td colspan="2" class="type_bor">
+								<ul class="list_radio_input">
+									<li><label for="type_sort02_1" ><input name="type_sort02" id="type_sort02_1" type="radio"> 전체</label></li>
+									<li><label for="type_sort02_2" ><input name="type_sort02" id="type_sort02_2" type="radio"> 샌들</label></li>
+									<li><label for="type_sort02_3" ><input name="type_sort02" id="type_sort02_3" type="radio"> 플랫/단화</label></li>
+									<li><label for="type_sort02_4" ><input name="type_sort02" id="type_sort02_4" type="radio"> 부츠/앵글부츠</label></li>
+								</ul>
+							</td>
+						</tr>
+						<tr >
+							<th class="type_top type_bor">굽 높이</th> 
+							<td colspan="2" class="type_bor">
+								<ul class="list_radio_input">
+									<li><label for="type_sort03_1" ><input name="type_sort03" id="type_sort03_1" type="radio"> 전체</label></li>
+									<li><label for="type_sort03_2" ><input name="type_sort03" id="type_sort03_2" type="radio"> 샌들</label></li>
+									<li><label for="type_sort03_3" ><input name="type_sort03" id="type_sort03_3" type="radio"> 플랫/단화</label></li>
+									<li><label for="type_sort03_4" ><input name="type_sort03" id="type_sort03_4" type="radio"> 부츠/앵글부츠</label></li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="benefit">
+							<th class="type_top type_bor"rowspan="2">혜택</th> 
+							<td colspan="2">
+								<label for="free_delivery"><input id="free_delivery" type="checkbox"> 무료배송</label>
+								<label for="free_interest"><input id="free_interest" type="checkbox"> 무이자</label>
+								<label for="point"><input id="point" type="checkbox"> 포인트</label>
+							</td>
+						</tr>
+						<tr class="benefit type_pb">
+							<td colspan="2" class="type_bor">
+								<div class="box_col">
+									<label for="smart_pic"><input id="smart_pic" type="checkbox"> 스마트픽</label>
+									<div class="box_select">
+										<select>
+											<option>전체</option>
+											<option>전체</option>
+											<option>전체</option>
+											<option>전체</option>
+											<option>전체</option>
+										</select>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr class="tr_search type_pt" >
+							<th >키워드</th> 
+							<td class="td_in_search">
+								<label for="in_search"><input id="in_search" type="search" placeholder="검색어를 입력해주세요"> </label>
+							</td>
+							<td class="btn_in_serh" rowspan="2">
+								<button >검색</button>
+							</td>
+						</tr>
+						<tr  class="tr_search type_pb">
+							<th >가격대</th> 
+							<td >
+								<div class="val_saerch">
+									<label class="min" for="min_num"><input id="min_num" type="number" placeholder="최저가"> </label>
+									<span>~</span>
+									<label class="max" for="max_num"><input id="min_num" type="number" placeholder="최고가"> </label>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- //상세검색 -->
+			<!-- 인기순 -->
+			<div class="favor_num " >
+				<ul>
+					<li><label for="favor1"><input id="favor1" type="radio" name="favor_radio"> 인기 BEST</label></li>
+					<li><label for="favor2"><input id="favor2" type="radio" name="favor_radio"> 판매 BEST</label></li>
+					<li><label for="favor3"><input id="favor3" type="radio" name="favor_radio"> 낮은가격순</label></li>
+					<li><label for="favor4"><input id="favor4" type="radio" name="favor_radio"> 높은가격순</label></li>
+					<li><label for="favor5"><input id="favor5" type="radio" name="favor_radio"> 상품평 많은순</label></li>
+				</ul>
+				<p class="area_guide">기준 안내 영역</p>
+			</div>
+			<!-- //인기순 -->
+			<!-- 데이터 없음 -->
+			<div class="no_data" >
+				<p class="type_cate">해당하는 카테고리가 없습니다.</p>
+				<p class="type_brand">해당하는 브랜드가 없습니다.</p>
+			</div>
+			<!-- //데이터 없음 -->
+			<div class="box_btn">
+				<p class="reset"><button>초기화</button></p>
+				<p class="close"><button>닫기</button></p>
+			</div>
+		</div>	
+	</nav>
+	<!-- 상품리스트 유형 선택 -->
+	<div class="unit_type">
+		<ul>
+			<li class="r1"><a href="#" class="on">리스트형</a></li>
+			<li class="r2"><a href="#">이미지형</a></li>
+			<li class="r3"><a href="#">스와이프형</a></li>
+		</ul>
+	</div>
+	<!-- //상품리스트 유형 선택 -->
+	<!-- 상품리스트 : 리스트형 -->
+	<ol class="prod_list_01">
+		<li>
+			<!-- 일반상품 : 리스트형 -->
+			<div class="unit_list_01">
+				<a href="#">
+					<div class="thumb">
+						<img src="http://image.lotte.com/goods/80/55/00/7/7005580_1_150.jpg" alt="데체텍스트 넣어주세요." />
+						<span class="unit_zoom">크게보기</span>
+					</div>
+					<div class="info">
+						<p class="flag">
+							<span class="flag depart">롯데백화점</span>
+							<!-- <span class="flag etv">롯데홈쇼핑</span> -->
+							<span class="flag tag">무료배송</span>
+							<span class="flag smart">스마트픽</span>
+						</p>
+						<span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+						<p class="pr_box">
+							<span class="price"><em>1,000,000</em>원</span>
+							<span class="price2"><em>1,500,000</em>원</span>
+						</p>
+						<p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+					</div>
+					<div class="info2">
+						<span class="review">상품평 <em>(100)</em></span>
+						<span class="wish_icon">위시리스트</span>
+					</div>
+				</a>
+			</div>
+			<!-- //일반상품 : 리스트형 -->
+		</li>
+		<li>
+			<!-- 일반상품 : 리스트형 -->
+			<div class="unit_list_01">
+				<a href="#">
+					<div class="thumb">
+						<img src="http://image.lotte.com/goods/58/80/52/5/5528058_1_150.jpg" alt="데체텍스트 넣어주세요." />
+						<span class="unit_zoom">크게보기</span>
+					</div>
+					<div class="info">
+						<p class="flag">
+							<span class="flag etv">롯데홈쇼핑</span>
+							<span class="flag tag">무료배송</span>
+						</p>
+						<span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+						<p class="pr_box">
+							<span class="price"><em>85,000</em>원</span>
+						</p>
+						<p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+					</div>
+					<div class="info2">
+						<span class="review">상품평 <em>(100)</em></span>
+						<span class="wish_icon">위시리스트</span>
+					</div>
+				</a>
+			</div>
+			<!-- //일반상품 : 리스트형 -->
+		</li>
+		<li>
+			<!-- 일반상품 : 리스트형 -->
+			<div class="unit_list_01">
+				<a href="#">
+					<div class="thumb">
+						<img src="http://image.lotte.com/goods/18/08/34/6/6340818_1_150.jpg" alt="데체텍스트 넣어주세요." />
+						<span class="unit_zoom">크게보기</span>
+					</div>
+					<div class="info">
+						<p class="flag">
+							<span class="flag tag">무료배송</span>
+						</p>
+						<span class="tit">[나니니] ESPRIT 그린테-그린 디그레딩 실버미러 렌즈</span>
+						<p class="pr_box">
+							<span class="price"><em>85,000</em>원</span>
+						</p>
+						<p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+					</div>
+					<div class="info2">
+						<span class="review">상품평 <em>(100)</em></span>
+						<span class="wish_icon">위시리스트</span>
+					</div>
+				</a>
+			</div>
+			<!-- //일반상품 : 리스트형 -->
+		</li>
+		<li>
+			<!-- 일반상품 : 리스트형 -->
+			<div class="unit_list_01">
+				<a href="#">
+					<div class="thumb">
+						<img src="http://image.lotte.com/goods/08/83/39/9/9398308_1_150.jpg" alt="데체텍스트 넣어주세요." />
+						<span class="unit_zoom">크게보기</span>
+					</div>
+					<div class="info">
+						<p class="flag">
+							<span class="flag tag">무료배송</span>
+						</p>
+						<span class="tit">[루디 프로젝트] [루디프로젝트] 라이돈 골프 카본 임펙트 엑스 (SN798514G) 선글라스</span>
+						<p class="pr_box">
+							<span class="price"><em>383,100</em>원</span>
+							<span class="price2"><em>385,000</em>원</span>
+						</p>
+						<p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+					</div>
+					<div class="info2">
+						<span class="review">상품평 <em>(100)</em></span>
+						<span class="wish_icon">위시리스트</span>
+					</div>
+				</a>
+			</div>
+			<!-- //일반상품 : 리스트형 -->
+		</li>
+		<li>
+			<!-- 일반상품 : 리스트형 -->
+			<div class="unit_list_01">
+				<a href="#">
+					<div class="thumb">
+						<img src="http://image.lotte.com/goods/58/14/20/6/6201458_1_150.jpg" alt="데체텍스트 넣어주세요." />
+						<span class="unit_zoom">크게보기</span>
+					</div>
+					<div class="info">
+						<p class="flag">
+							<span class="flag tag">무료배송</span>
+						</p>
+						<span class="tit">[루디 프로젝트] [루디프로젝트] 라이돈 골프 카본 임펙트 엑스 (SN798514G) 선글라스</span>
+						<p class="pr_box">
+							<span class="price"><em>383,100</em>원</span>
+							<span class="price2"><em>385,000</em>원</span>
+						</p>
+						<p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+					</div>
+					<div class="info2">
+						<span class="review">상품평 <em>(100)</em></span>
+						<span class="wish_icon">위시리스트</span>
+					</div>
+				</a>
+			</div>
+			<!-- //일반상품 : 리스트형 -->
+		</li>
+	</ol>
+	<!-- 상품리스트 : 리스트형 -->
+	<!-- //sub_category -->
+</section>
+<!-- //container -->
+
+<section ng-include src="'/HTML/include/footer.html'"></section>
+
+</body>
+</html>

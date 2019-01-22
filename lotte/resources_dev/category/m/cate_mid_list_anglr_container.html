@@ -1,0 +1,209 @@
+<section id="container" ng-show="contVisible" class="cont_minheight new201704">
+	<section class="pageLoading" ng-show="pageLoading">
+		<p class="loading half"></p>
+	</section>
+	<section ng-show="!pageLoading">
+		<div class="menu_smallcate">
+			<ul class="cateList">
+				<li ng-repeat="item in screenData.smallCate">
+				    <a ng-click="subCateClick(item)">
+                        <img ng-src="{{item.img_url}}">
+                        <p>{{item.disp_nm}}</p>
+				    </a>
+				</li>
+			</ul>
+			<!-- 추천 기획전 201604-->
+			<!-- 20181227 설 배너 추가-->
+			<div ng-if="chusBanner">
+				<div ng-if="curDispNo == '5537323'" style="margin-bottom:10px">
+					<a ng-href="http://m.lotte.com/product/m/product_list.do?{{baseParam}}&curDispNo=5339672&tClick=m_DC_CateTpl_Clk_Ban_holiday">
+						<img ng-src="http://image.lotte.com/lotte/mo2017/category/banner_20181227_1.jpg" alt="신선명절배너">
+					</a>
+				</div>
+				<div ng-if="curDispNo == '5537324'" style="margin-bottom:10px">
+					<a ng-href="http://m.lotte.com/product/m/product_list.do?{{baseParam}}&curDispNo=5338691&tClick=m_DC_CateTpl_Clk_Ban_holiday">
+						<img ng-src="http://image.lotte.com/lotte/mo2017/category/banner_20181227_2.jpg" alt="가공명절배너">
+					</a>
+				</div>
+				<div ng-if="curDispNo == '5537325'" style="margin-bottom:10px">
+					<a ng-href="http://m.lotte.com/product/m/product_list.do?{{baseParam}}&curDispNo=5371396&tClick=m_DC_CateTpl_Clk_Ban_holiday">
+						<img ng-src="http://image.lotte.com/lotte/mo2017/category/banner_20181227_3.jpg" alt="건강명절배너">
+					</a>
+				</div>
+				<div ng-if="curDispNo == '5537986'" style="margin-bottom:10px">
+					<a ng-href="http://m.lotte.com/product/m/product_list.do?{{baseParam}}&curDispNo=5429371&tClick=m_DC_CateTpl_Clk_Ban_holiday">
+						<img ng-src="http://image.lotte.com/lotte/mo2017/category/banner_20181227_4.jpg" alt="백화점명절배너">
+					</a>
+				</div>			    
+			</div> 
+			<!-- // 20181227 설 배너 추가-->
+
+			<!-- 2017.05.17 롯데슈퍼 당일장보기 서비스 연동 1차 -->
+			<div ng-if="(curDispNo == '5537323'|| curDispNo == '5537324') && superDayShoppingBnr">
+				<a ng-repeat="item in superDayShoppingBnr" ng-click="lotteSuperTodayView(item,$index+1)">
+					<img ng-src="{{item.img_url}}" alt="당일장보기">
+				</a>
+			</div>
+			<!-- //2017.05.17 롯데슈퍼 당일장보기 서비스 연동 1차 -->
+			<div class="bestList prdPlan card" ng-if="screenData.prdPlanList.length">
+				<h5>추천 기획전</h5>
+                <div class="midCate">
+                    <span><b>{{sb_index}}</b>/{{screenData.prdPlanList.length}}</span>
+                </div>
+				
+				<div class="prod_list_swipe ne" id="mid_cate"  roll-swipe-banner endfnc="setInfo" info="screenData.prdPlanList" getcontrol="getControl1" rolling="true" width320="1" width640="1" width900="1">				
+					<ul class="mask swipeBox">
+                        <li ng-repeat="item in screenData.prdPlanList">
+                            <a href="#" ng-click="gotoLinkP(item.spdp_no,'m_DC_CateTpl_Swp_Ban_idx', $index + 1)">
+                                <div class="ptitle">
+                                    <p class="t1">{{item.title}}</p>
+                                    <p class="t2">{{item.sub_title}}</p>                             
+                                </div>
+                                <div class="imageCon">
+                                    <img ng-src="{{item.img_url}}">
+                                    <span class="flagWrap" ng-if="item.flag == 'Y'">
+                                        <span class="flag depart">롯데백화점</span>    
+                                    </span>                                    
+                                </div>                                
+                            </a>        
+                        </li>
+					</ul>
+				</div>
+			</div>			
+			
+			<!-- 20170421 박해원 :: 맘&베이비 -->
+			<div class='bnnBlock clear' >	
+				<!-- 1개 이상 -->	
+				<div ng-if="screenData.babyBnnerList.length" class="bnnBlockclear" ng-class="{singleBnn:screenData.babyBnnerList.length==1}">
+					<div  id="mom_baby"
+						  endfnc="setInfoMom"
+						  class="bestList main_slide mom prod_list_swipe"
+						  roll-swipe-banner rolling="true"
+						  width320="1"
+						  width640="1"
+						  width900="1"
+						  one-no-swipe="true"
+						  info="screenData.babyBnnerList">
+						<h5>맘&베이비</h5>
+				        <ul class="swipeBox clear">
+				            <li
+				            	ng-repeat="item in screenData.babyBnnerList" 
+				            	ng-init="tcIndx=(($index+1)<10?'0'+($index+1):($index+1))">
+				                <a href="#" ng-click="gotoBabyBnnLink(item.link_url,'m_DC_CateTpl_Swp_Kids_Ban_idx{{tcIndx}}')">
+				                    <div class="imageCon">
+				                        <div class="dim"></div>
+				                        <img ng-src="{{item.img_url}}"> 
+				                    </div>
+				                </a>
+				            </li>
+				        </ul>
+						<div class="midCate" ng-if="screenData.babyBnnerList.length>1">
+							<span><b>{{mom_index}}</b>/{{screenData.babyBnnerList.length}}</span>
+						</div>
+			    	</div>
+		    	</div>
+				<!--// 20170421 likearts :: 맘&베이비 -->
+				
+				<!-- 유아동 체험단 201701 -->
+				<div class="bestList kids_tester" ng-if="screenData.kids_yn && screenData.kidsBannerList.length > 0">
+					<h5>유아동관 체험단</h5>	
+					<div class="prod_list_swipe" ng-controller="lotteNgSwipeCtrl">
+						<ul class="mask" lotte-ng-list-swipe swipe-responsive="true" swipe-responsive640="1" swipe-responsive900="1" swipe-slide-item="true" 
+						    swipe-list-model="screenData.kidsBannerList" swipe-id="kidsBannerList" swipe-max-ratio="0.2" swipe-min-distance="10">
+	                        <li ng-repeat="item in screenData.kidsBannerList">
+	                            <a href="#" ng-click="gotoKidsLink('m_DC_CateTpl_Clk_Kids_Ban_idx', $index + 1)">
+	                            <img ng-src="http://image.lotte.com/lotte/mo2015/angular/cate/r_kids_cate_banner.png" alt="" />
+								<div class="kids_banner_box"><img ng-src="http://image.lotte.com/lotte/mo2015/angular/cate/r_kids_cate_banner_t.png" alt="아동상품 무료체험 기회" /></div>	
+		                        <div class="area">
+	                                <div class="imageCon">
+	                                    <img ng-src="{{item.img_url}}" alt="{{item.title}}">         
+	                                </div>  
+	                                <div class="ptitle" ng-bind-html="item.title"></div>  
+		                        </div>  
+		                        </a>      
+	                        </li>
+						</ul>
+					</div>
+					<div class="bottom_txt"><a ng-click="gotoKidsMoreLink('m_DC_CateTpl_Clk_Kids_Btn01')">무료체험 더보기</a></div>
+				</div>
+
+			</div>			
+			
+			<!-- 추천상품 -->
+			<div class="bestList reco" ng-if="screenData.productBestList.length > 0">
+				<h5>추천상품</h5>
+                <div class="midCate">
+                    <span><b>{{sb_index2}}</b>/{{screenData.productBestList.length}}</span>
+                </div>                      
+               
+                <div class="qr_box second prod_list_swipe">                    
+                    <div class="q_list" id="qlist2" roll-swipe-banner rolling="true" width320="1" width640="1" width900="1" info="screenData.productBestList" endfnc="setInfo2">
+                       <ul class="swipeBox">
+                           <li ng-repeat="qitem in screenData.productBestList">
+    			               <div class="unit_mixdeal_03">
+                                    <a ng-click="gotoProduct(qitem, $index + 1)">
+                                        <!-- 품절 -->
+                                        <div class="soldout" ng-show="qitem.sold_out">SOLD OUT</div>	
+                                        <div class="thumb" ng-class="{normal:!qitem.plan_prod_yn}" style="background:url({{getProductImage2(qitem)}}) center center no-repeat; background-size:auto 100%">
+                                            <!--<img ng-src="{{getProductImage2(qitem)}}" alt="{{qitem.goods_nm}}"/>		-->
+                                        </div>	
+                                        <!-- 상품 정보 -->
+                                        <div class="info">
+                                            <div class="prod">
+                                                <p ng-if="!qitem.plan_prod_yn && qitem.sale_rate && qitem.sale_rate != 0" class="sale_rate_wrap lp">
+                                                    <span class="sale_rate">{{qitem.sale_rate}}</span>
+                                                    <span class="sale_limit">%</span>
+                                                    <em class="sale_desc">쿠폰포함</em>
+                                                </p>                                               
+                                                <p class="sale_rate_wrap">
+                                                    {{qitem.copy_nm}}
+                                                </p>
+                                                <!-- 상품명 -->
+                                                <span class="tit" ng-bind-html="qitem.goods_nm"></span>
+                                                <!-- 상품가격 -->
+                                                <p class="price"><span>{{qitem.price2|number}}</span>원<em ng-if="qitem.plan_prod_yn" class="plan_prod_limit">~</em></p>
+                                            </div>	
+                                            <!-- 구매 개수 및 입력형 Flag -->
+                                            <div class="sale_wrap">
+                                                <span class="no" ng-show="qitem.sale_cnt > 0"><em><b>{{qitem.sale_cnt|number}}</b></em>개 구매 중</span>
+                                            </div>
+                                        </div>
+                                    </a>			        
+                                </div>                               
+                           </li>
+                       </ul>                        
+                        
+                    </div>                              
+			    </div>
+			</div>
+            <!--인기브랜드-->
+			<div class="bestList prdPlan brand_con" ng-if="screenData.brand != null">
+				<h5>인기브랜드</h5>
+                <ul>
+                    <li ng-repeat="item in screenData.brand" class="brand_li">
+                        <a ng-click="gotoBrand(item, $index+1)">
+<!--                                <img ng-src="{{item.img_url}}">-->
+                            <div class="brand_logo" ng-style="{'background-image':'url({{item.img_url}})'}" style="background-position:center;background-repeat:no-repeat;background-size:100% auto"></div>
+                            <p class="brand">{{item.brand_nm}}</p>  
+                        </a>        
+                    </li>
+                </ul>
+                <p class="b_more" ng-click="showBrandCate()">브랜드 전체보기 </p>
+			</div>	            
+            
+            
+			<div ng-show="screenData.rankingBestBuy.length">
+				<!-- 남들은 뭘 샀지? -->
+				<div class="peopleBuy" ng-controller="productCtrl">
+					<h5>남들은 뭘 샀지?</h5>
+					<!-- 리스트형 유닛 -->
+					<product-container template-type="list2" products="screenData.rankingBestBuy" more-product-continer="loadScreenData()"></product-container>
+				</div>
+				<div class="listLoading" ng-if="productListLoading&&templateType!='swipe'">
+					<p class="loading half"></p>
+				</div>
+			</div>
+		</div>
+		
+	</section>
+</section>

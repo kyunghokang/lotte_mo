@@ -1,0 +1,21 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!--M2082 프로모션배너 B형..-->
+	<div class="moduleCon n201811 btcolor" ng-if="moduleData.items.length > 2">
+		<div class="unit unit_bn_promo typeB"
+			 id="{{'slideM2082_01' | radnomid}}" roll-swipe-banner rolling="true" width320="1" width640="1" width900="1" info="randomItems" endfnc="swipeEnd">
+			<ul class="swipeBox fclear swipe_wrap">
+				<li class="shop1" ng-repeat="item in randomItems" ng-click="logGAEvtModuleEach(item, $index + 1);mainBannerClick(item.linkUrl, item.isOutLink, '', item.ad_url)">
+					<p class="imgwrap cover_img">                       
+					    <img ng-src="{{item.imgUrl}}">
+                        <!--201804 광고솔루션-->
+                        <span ng-if="item.ad_url" ng-init="calllmp(moduleData.tclick + '_Clk_Ban'+ numberFill(($index+1),2))"></span>	
+					</p>					
+				</li>
+			</ul>
+		</div>
+		<div class="bn_pagewrap dim30">
+			<span class="paging"><span class="curpage">{{sb_index}}</span> / <span>{{moduleData.items.length}}</span></span>
+		</div>
+
+	</div>
+</section>

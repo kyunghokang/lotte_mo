@@ -1,0 +1,39 @@
+<ul class="product_list_01">
+	<li ng-repeat="product in loadedSoldoutProductList track by $index">
+		<!-- UI 디버깅용 -->
+		<div ng-if="isWishDebug">
+			<p>goodsNo : {{product.goodsNo}}</p>
+			<p>dispNo : {{product.dispNo}}</p>
+			<p>resultCd : {{product.resultCd}}</p>
+			<p>saleStatCd : {{product.saleStatCd}}</p>
+		</div>
+	
+		<div class="group">
+			<span class="thumb">
+				<a href="javascript:void(0);" ng-click="goGoodsDetail(product, true, 'goods')">
+					<img ng-src="{{product.imgUrl}}" alt="{{product.dispGoodsNm}}" err-src />
+					<em></em><span>{{product.saleStatCd == '20' ? '품절' : '판매종료'}}</span>
+				</a>
+			</span>
+			<span class="cont01">
+				<p class="status_list">
+					<span class="brand" ng-if="isShowEllotteBrandNm(product)">{{product.brand}}</span>
+					<span class="flag {{flag.class}}" ng-repeat="flag in product.mall_flags">{{flag.name}}</span>
+				</p>
+				<a href="javascript:void(0);" ng-click="goGoodsDetail(product, true, 'goods')">
+					<p class="tl">{{getFormattedGoodsNm(product)}}</p>
+				</a>
+				
+				<div class="money_coupon">
+					<p class="money">
+						<span class="price"><strong>{{product.speSaleAmt | number:0}}</strong>원</span>
+					</p>
+				</div>
+			</span>
+		</div>
+		<div class="btn_list">
+			<a href="javascript:void(0);" ng-click="deleteOneSoldoutProduct($index, product.seq)" class="wish_del" style="color:#999;">삭제</a>
+			<a href="javascript:void(0);" ng-click="registRestockAlram(product)" ng-if="product.saleStatCd != '30'" class="btn_style2 bi-nt">재입고알림</a>
+		</div>
+	</li>
+</ul>

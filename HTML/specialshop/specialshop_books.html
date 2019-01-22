@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+
+<!-- 공통 css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">
+<!-- //공통 css -->
+<!-- 퍼블리싱 : 공통 js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+<!-- specialshop js -->
+<script type="text/javascript" src="specialshop.js"></script>
+<!-- specialshop js -->
+
+<!-- specialshop css -->
+<link rel="stylesheet" href="/lotte/resources_dev/brandshop/brand_common.css">
+<link rel="stylesheet" href="/lotte/resources_dev/specialshop/specialshop.css">
+<!--// specialshop css -->
+
+</head>
+<body class="book_wrap">
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<!-- container -->
+<section id="container">
+	<!-- category -->
+	<nav class="box_cate">
+		<div class="big_cate">
+			<!-- class on 으로 활성화 -->
+			<ul >
+				<li class="on"><a href="#">국내도서</a></li>
+				<li ><a href="#">외국도서</a></li>
+				<li ><a href="#">음반</a></li>
+				<li ><a href="#">DVD   </a></li>
+			</ul>
+		</div>
+		<!-- class on 으로 활성화 -->
+		<div class="mid_cate ">
+			<ul class="on" >
+				<!-- class on 으로 활성화 -->
+				<li class="on"><a href="#">자기계발</a></li>
+				<li><a href="#">문학</a></li>
+				<li><a href="#">유아동/청소년</a></li>
+				<li><a href="#">학습/참고서</a></li>
+			</ul>
+			<ul >
+				<li><a href="#">자기계발</a></li>
+				<li><a href="#">문학</a></li>
+				<li><a href="#">유아동/청소년</a></li>
+				<li><a href="#">학습/참고서</a></li>
+			</ul>
+			<ul >
+				<li><a href="#">자기계발</a></li>
+				<li><a href="#">문학</a></li>
+				<li><a href="#">유아동/청소년</a></li>
+				<li><a href="#">학습/참고서</a></li>
+			</ul>
+			<ul >
+				<li><a href="#">자기계발</a></li>
+				<li><a href="#">문학</a></li>
+				<li><a href="#">유아동/청소년</a></li>
+				<li><a href="#">학습/참고서</a></li>
+			</ul>
+		</div>
+	</nav>
+	<!-- //category -->
+	<!-- book_slide -->
+	<div class="book_slide" >
+		<div class="slide">
+			<ul>
+				<li>
+					<a href="#">
+						<p class="flag new">
+							<span class="n_new">NEW</span>
+							<span class="n_best">BEST</span>
+						</p>
+						<p class="img"><img src="../../../images/lotte2015/temp/img_slide_book.png"></p>
+						<p class="name">엄마를 위한 미움 <br> 받을 용기</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<p class="flag best">
+							<span class="n_new">NEW</span>
+							<span class="n_best">BEST</span>
+						</p>
+						<p class="img"><img src="../../../images/lotte2015/temp/img_slide_book.png"></p>
+						<p class="name">엄마를 위한 미움 <br> 받을 용기</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<p class="flag new">
+							<span class="n_new">NEW</span>
+							<span class="n_new">BEST</span>
+						</p>
+						<p class="img"><img src="../../../images/lotte2015/temp/img_slide_book.png"></p>
+						<p class="name">엄마를 위한 미움 <br> 받을 용기</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<p class="flag new">
+							<span class="n_new">NEW</span>
+							<span class="n_new">BEST</span>
+						</p>
+						<p class="img"><img src="../../../images/lotte2015/temp/img_slide_book.png"></p>
+						<p class="name">엄마를 위한 미움 <br> 받을 용기</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<!-- class active 추가시 활성화 -->
+		<ol class="bullet">
+			<li class="active">01</li>
+			<li>02</li>
+			<li>03</li>
+			<li>04</li>
+		</ol>
+		<p class="btn prev"><button>prev</button></p>
+		<p class="btn next"><button>next</button></p>
+	</div>
+	<!-- //book_slide -->
+	<!-- 힐링 포엠 &amp; 에세이 -->
+	<div class="book_list" >
+		<p class="title">힐링 포엠 &amp; 에세이</p>
+		<ul>
+			<li>
+				<a href="#">
+					<p class="img"><img src="../../../images/lotte2015/temp/img_thum_book.png"></p>
+					<p class="tit"><span>[적립포인트]</span>오베라는 남</p>
+					<p class="price">	12,420<span>원</span>	</p>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<p class="img"><img src="../../../images/lotte2015/temp/img_thum_book.png"></p>
+					<p class="tit">사랑할 때 알아 야 할 </p>
+					<p class="price">	12,420<span>원</span>	</p>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<p class="img"><img src="../../../images/lotte2015/temp/img_thum_book.png"></p>
+					<p class="tit"><span>[적립포인트]</span>오베라는 남</p>
+					<p class="price">	12,420<span>원</span>	</p>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<p class="img"><img src="../../../images/lotte2015/temp/img_thum_book.png"></p>
+					<p class="tit">사랑할 때 알아 야 할 </p>		
+					<p class="price">	12,420<span>원</span>	</p>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<!-- //힐링 포엠 &amp; 에세이 -->
+	<!-- 기말고사 뭐 풀지? -->
+	<div class="book_list" >
+		<p class="title">기말고사 뭐 풀지?</p>
+		<ul>
+			<li>
+				<a href="#">
+					<p class="img"><img src="../../../images/lotte2015/temp/img_thum_book.png"></p>
+					<p class="tit"><span>[적립포인트]</span>오베라는 남</p>
+					<p class="price">	12,420<span>원</span>	</p>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<p class="img"><img src="../../../images/lotte2015/temp/img_thum_book.png"></p>
+					<p class="tit">사랑할 때 알아 야 할 </p>
+					<p class="price">	12,420<span>원</span>	</p>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<p class="img"><img src="../../../images/lotte2015/temp/img_thum_book.png"></p>
+					<p class="tit"><span>[적립포인트]</span>오베라는 남</p>
+					<p class="price">	12,420<span>원</span>	</p>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<p class="img"><img src="../../../images/lotte2015/temp/img_thum_book.png"></p>
+					<p class="tit">사랑할 때 알아 야 할 </p>		
+					<p class="price">	12,420<span>원</span>	</p>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<!-- //기말고사 뭐 풀지? -->
+	<!-- best_seller -->
+	<div class="best_seller">
+		<p class="title">베스트셀러</p>
+		<ol>
+			<li class="rank01">
+				<a href="#">
+					<p class="img">
+						<img src="../../../images/lotte2015/temp/img_rank_book.png">
+						<span class="flag"></span>
+					</p>
+					<dl>
+						<dt>1위</dt>
+						<dd>미움받을 용기</dd>
+					</dl>
+				</a>
+			</li>
+			<li>
+				<a href="#"> 
+					<dl>
+						<dt>2위</dt>
+						<dd>오베라는 남</dd>
+					</dl>
+				</a>
+			</li>
+			<li>
+				<a href="#"> 
+					<dl>
+						<dt>3위</dt>
+						<dd>오베라는 남</dd>
+					</dl>
+				</a>
+			</li>
+			<li>
+				<a href="#"> 
+					<dl>
+						<dt>4위</dt>
+						<dd>오베라는 남</dd>
+					</dl>
+				</a>
+			</li>
+			<li>
+				<a href="#"> 
+					<dl>
+						<dt>5위</dt>
+						<dd>오베라는 남</dd>
+					</dl>
+				</a>
+			</li>
+			<li>
+				<a href="#"> 
+					<dl>
+						<dt>6위</dt>
+						<dd>오베라는 남</dd>
+					</dl>
+				</a>
+			</li>
+			<li>
+				<a href="#"> 
+					<dl>
+						<dt>7위</dt>
+						<dd>오베라는 남</dd>
+					</dl>
+				</a>
+			</li>
+			<li>
+				<a href="#"> 
+					<dl>
+						<dt>8위</dt>
+						<dd>오베라는 남</dd>
+					</dl>
+				</a>
+			</li>
+			<li>
+				<a href="#"> 
+					<dl>
+						<dt>9위</dt>
+						<dd>오베라는 남</dd>
+					</dl>
+				</a>
+			</li>
+			<li>
+				<a href="#"> 
+					<dl>
+						<dt>10위</dt>
+						<dd>오베라는 남</dd>
+					</dl>
+				</a>
+			</li>
+		</ol>
+	</div>
+	<!-- //best_seller -->
+	<!-- 스테디셀러 -->
+	<div class="book_list">
+		<p class="title">스테디셀러</p>
+		<ul>
+			<li>
+				<a href="#">
+					<p class="img"><img src="../../../images/lotte2015/temp/img_thum_book.png"></p>
+					<p class="tit"><span>[적립포인트]</span>오베라는 남</p>
+					<p class="price">	12,420<span>원</span>	</p>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<p class="img"><img src="../../../images/lotte2015/temp/img_thum_book.png"></p>
+					<p class="tit">사랑할 때 알아 야 할 </p>
+					<p class="price">	12,420<span>원</span>	</p>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<p class="img"><img src="../../../images/lotte2015/temp/img_thum_book.png"></p>
+					<p class="tit"><span>[적립포인트]</span>오베라는 남</p>
+					<p class="price">	12,420<span>원</span>	</p>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<p class="img"><img src="../../../images/lotte2015/temp/img_thum_book.png"></p>
+					<p class="tit">사랑할 때 알아 야 할 </p>		
+					<p class="price">	12,420<span>원</span>	</p>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<!-- 스테디셀러 -->
+	
+</section>
+<!-- //container -->
+
+<section ng-include src="'/HTML/include/footer.html'"></section>
+
+</body>
+</html>

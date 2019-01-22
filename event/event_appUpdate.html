@@ -1,0 +1,134 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="../common4/css/common_20150709_v2.css">
+	<script type="text/javascript" src="../common4/js/lib/jquery.min.1.11.0.js"></script>
+	<!-- 레이어 팝 추가 -->
+	<style type="text/css">		
+		#eventPage{background:#fff;height:100%;}
+		.event_info_layer{position:fixed;top:10%;left:0;border:solid 2px #3463c0;display:none;margin:0 10px;box-sizing:border-box;-webkit-box-sizing:border-box;z-index:1000002}
+		.event_info_layer.info_complete_layer{top:10%}
+		.event_info_layer .cont{background-color:#ffffff;padding:20px}
+		.event_info_layer .cont .title_layer{border-bottom:1px solid #d4d4d4;margin-bottom:18px}
+		.event_info_layer .cont .event_info_txt{font-size:12px;font-weight:bold;letter-spacing:-0.5px;padding:0 0 18px 14px;text-align:left}
+		.event_info_layer .cont .event_info_list{padding:0 0 10px 14px}
+		.event_info_layer .cont .event_info_list li{background:url(http://image.lotte.com/lotte/mobile/popup/popup_event_info_dot.png) no-repeat left 4px;background-size:2px 2px;font-size:12px;letter-spacing:-0.5px;padding:0 0 3px 5px}
+		.event_info_layer .cont .event_info_query{font-size:12px;letter-spacing:-0.5px;padding:0 0 19px 19px}
+		.event_info_layer .cont .event_complete_list{padding:0 0 25px 14px}
+		.event_info_layer .cont .event_complete_list li{background:url(http://image.lotte.com/lotte/mobile/popup/popup_event_info_dot.png) no-repeat left 4px;background-size:2px 2px;font-size:11px;letter-spacing:-0.5px;padding:0 0 10px 5px;font-weight:bold}
+		.event_info_layer .cont .event_info_btn{overflow:hidden;width:253px;margin:0 auto}
+		.event_info_layer .cont .event_info_btn li{float:left}
+		.event_info_layer .cont .event_info_btn li:first-child{margin-right:5px}
+		.event_info_layer .cont .event_info_btn li img{width:124px;height:34px}
+		.event_info_layer .check {height:32px;overflow:hidden;background:#3463c0;box-sizing:border-box;-webkit-box-sizing:border-box}
+		.event_info_layer .check .close {float:right;box-sizing:border-box;-webkit-box-sizing:border-box}
+		.event_info_layer .check .close a {color:#fff;display:inline-block;padding:8px 15px;height:34px;font-size:14px;box-sizing:border-box;-webkit-box-sizing:border-box}
+		.info_agree_layer.bg {position:fixed;top:0px; display:block;width: 100%;height:100%;opacity:0.6;margin:0px;border:0px;background: #000;box-sizing:border-box;-webkit-box-sizing:border-box;z-index:1000002}
+		.info_complete_layer.bg {position:fixed;top:0px; display:block;width: 100%;height:100%;opacity:0.6;margin:0px;border:0px;background: #000;box-sizing:border-box;-webkit-box-sizing:border-box;z-index:1000002}
+	</style>
+	<!-- // 레이어 팝 추가 -->	
+	</head>
+	<body>
+		<div id="wrapper" >
+			<!-- [레이어] 이벤트 동의 안내 -->
+			<div class="info_agree_layer bg"  style="display:none"></div>
+			<div class="event_info_layer info_agree_layer" style="display:none">
+				<div class="cont">
+					<h3 class="title_layer"><img src="http://image.lotte.com/lotte/mobile/popup/popup_event_info_title.png" alt="응모하시기전 회원님의 소중한 정보보호를 위해  아래사항을 확인해주세요"></h3>
+					<p class="event_info_txt">본 이벤트에 당첨될 경우,<br />아래의 사항들에 대하여 동의합니다.</p>
+					<ul class="event_info_list">
+						<li><strong>1. 개인정보를 제공받는자</strong> :롯데닷컴, 스마트콘, 엠트웰브 </li>
+						<li><strong>2. 개인정보를 제공받는 자의 개인정보 이용 목적</strong> : 경품 지급용</li>
+						<li><strong>3. 제공하는 개인정보의 항목</strong> : 당첨자 ID, 이름, 전화번호, 주소</li>
+						<li><strong>개인정보를 제공받는 자의 개인정보 보유 및 이용 기간</strong> : <br/>경품 지급 확인 후 즉시 파기</li>
+					</ul>
+					<p class="event_info_query">위 내용에 동의 하십니까?</p>
+					<ul class="event_info_btn">
+						<li><a href="#none"><img src="http://image.lotte.com/lotte/mobile/popup/popup_event_info_btn01.png" alt="동의 합니다"></a></li>
+						<li><a href="#none"><img src="http://image.lotte.com/lotte/mobile/popup/popup_event_info_btn02.png" alt="동의하지 않습니다"></a></li>
+					</ul>
+				</div>
+				<div class="check">
+					<span class="close"><a href="javascript:$('.info_agree_layer').hide();">닫기</a></span>
+				</div>
+			</div>
+			<!-- [레이어] 이벤트 동의 안내-->		
+			<section>    
+				<style>
+					#eventPage .comment_wrap{background:#f0f0f0;color:#666}
+					#eventPage .comment_wrap .comment_in{position:relative;width:100%;height:0;overflow:hidden;padding-bottom:21%} 
+					#eventPage .comment_wrap .comment_in textarea{width:77%;height:100%;border:1px solid #d2d2d2;padding:5px;position:absolute;top:0;left:2%;color:#666;-webkit-appearance:none}
+					#eventPage .comment_wrap .comment_in a{width:18%;position:absolute;top:0;right:2%}     
+					#eventPage .comment_wrap .comment_text{clear:both;width:96%;margin:0 auto;font-size:0;padding:5.5% 0;background:url(http://image.lotte.com/lotte/mobile/event/twenty_txt3.png) no-repeat center center;background-size:45%;border-bottom:2px solid #bababa}		
+					#eventPage .comment_wrap ul{width:96%;margin:0 auto}
+					#eventPage .comment_wrap ul li{padding:15px 7px;border-bottom:1px solid #bababa} 
+					#eventPage .comment_wrap ul li p{line-height:18px;padding-bottom:10px} 
+					#eventPage .comment_wrap ul li span{line-height:18px;font-weight:bold}
+					#eventPage .comment_wrap ul li span:nth-child(3){color:#919191;display:inline-block;margin-left:10px} 
+					#eventPage .comment_wrap .comment_paging{text-align:center;height:38px;padding:23px 0}
+					#eventPage .comment_wrap .comment_paging a{display:inline-block;width:10%;height:38px;vertical-align:top;text-align:center;color:#666} 
+					#eventPage .comment_wrap .comment_paging a img{width:22px;padding-top:8px}
+					#eventPage .comment_wrap .comment_paging a:nth-child(1){text-align:right}
+					#eventPage .comment_wrap .comment_paging a:nth-child(2), #eventPage .comment_wrap .comment_paging a:nth-child(3), #eventPage .comment_wrap .comment_paging a:nth-child(4), #eventPage .comment_wrap .comment_paging a:nth-child(5), #eventPage .comment_wrap .comment_paging a:nth-child(6){display:inline-block;width:13%;height:38px;line-height:38px;background:url(http://image.lotte.com/lotte/mobile/event/ri_bar.gif) no-repeat right center;background-size:1px 9px}
+					#eventPage .comment_wrap .comment_paging a:nth-child(6){background:none}   
+					#eventPage .comment_wrap .comment_paging a:nth-child(7){text-align:left}
+					#eventPage .comment_wrap .comment_paging a.selected{font-weight:bold}
+					.event_appUpdate_pop_wrap{position:fixed;display: none; top:0%;width:100%;height:100%;background-color: rgba(0,0,0,.5);z-index: 9}
+					.transformer_pop {position:relative;top:50%;padding:0 6%;transform: translateY(-50%);-webkit-transform: translateY(-50%);}					
+					.transformer_pop .close_btn{position:absolute;top:0%;right:6%;display:block;width:13%;height:15%;font-size:0;text-indent:-9999px}					
+					
+					.event_appUpdate_card {padding:0 30px; background-color:#116dec;}
+					.event_appUpdate_card:after {clear:both; content:''; display:block;}
+					.event_appUpdate_card li {width:33.333%; margin-bottom:18px; padding:0 9px; box-sizing:border-box; float:left;}
+				</style>
+				<!-- content --> 
+				<div id="eventPage">
+					<div><img src="http://image.lotte.com/lotte/mobile/event/event_appUpdate01.jpg" alt="롯데닷컴 모바일 리뉴얼 오픈 내 폰 속에 업뎃 모바일앱 업데이트하면 100% 경품 찬스 갤럭시 S8 / 치킨 세트 / 커피 쿠폰 / L-money"></div>
+					<div>
+						<span><img src="http://image.lotte.com/lotte/mobile/event/event_appUpdate02_1.jpg" alt="행운의 카드 뽑고 경품 받자 행운의 카드 뽑을 사람 나야 나"></span>
+						<ul class="event_appUpdate_card">
+							<li><a href="#none" onClick="$('.event_appUpdate_pop_wrap').show();return false;"><img src="http://image.lotte.com/lotte/mobile/event/event_appUpdate_btn01.png" alt="행운의 카드 뽑기"></a></li>
+							<li><a href="#none" onClick="$('.event_appUpdate_pop_wrap').show();return false;"><img src="http://image.lotte.com/lotte/mobile/event/event_appUpdate_btn02.png" alt="행운의 카드 뽑기"></a></li>
+							<li><a href="#none" onClick="$('.event_appUpdate_pop_wrap').show();return false;"><img src="http://image.lotte.com/lotte/mobile/event/event_appUpdate_btn03.png" alt="행운의 카드 뽑기"></a></li>
+							<li><a href="#none" onClick="$('.event_appUpdate_pop_wrap').show();return false;"><img src="http://image.lotte.com/lotte/mobile/event/event_appUpdate_btn04.png" alt="행운의 카드 뽑기"></a></li>
+							<li><a href="#none" onClick="$('.event_appUpdate_pop_wrap').show();return false;"><img src="http://image.lotte.com/lotte/mobile/event/event_appUpdate_btn05.png" alt="행운의 카드 뽑기"></a></li>
+							<li><a href="#none" onClick="$('.event_appUpdate_pop_wrap').show();return false;"><img src="http://image.lotte.com/lotte/mobile/event/event_appUpdate_btn06.png" alt="행운의 카드 뽑기"></a></li>
+						</ul>
+						<span><img src="http://image.lotte.com/lotte/mobile/event/event_appUpdate02_2.jpg" alt="-경품은 참여할 때마다 랜덤으로 진열됩니다. -이벤트 기간 7월3일 ~ 7월9일(기간 중 최대 2번 참여 가능) -당첨 발표 및 경품 발송 예정일 2017년7월14일"></span>
+					</div>
+					<div>
+						<span><img src="http://image.lotte.com/lotte/mobile/event/event_appUpdate03.jpg" alt="내 폰 속에 업뎃하고 더 편한 쇼핑 즐겨요!"></span>
+						<a href="#none"><img src="http://image.lotte.com/lotte/mobile/event/event_appUpdate03_btn.jpg" alt="앱 업데이트 하러가기"></a>
+						<span><img src="http://image.lotte.com/lotte/mobile/event/event_appUpdate03_2.jpg" alt=""></span>
+					</div>
+					<div>
+						<span><img src="http://image.lotte.com/lotte/mobile/event/event_appUpdate04.jpg" alt="더 편해진 롯데닷컴을 지인에게 소문내면? 뽑기의 기회가 한번 더!"></span>
+						<a href="#none"><img src="http://image.lotte.com/lotte/mobile/event/event_appUpdate04_btn.jpg" alt="카카오톡으로 소문내기"></a>
+						<span><img src="http://image.lotte.com/lotte/mobile/event/event_appUpdate04_2.jpg" alt="내 폰 속에 업뎃하고 더 편한 쇼핑 즐겨요!"></span>
+					</div>
+					<div><img src="http://image.lotte.com/lotte/mobile/event/event_appUpdate05.jpg" alt="행운의 경품은? 1등 갤럭시 S8 64GB 블랙(2명) 2등 교촌 허니콤보웨지콜라세트(50명) 3등 엔제리너스 아메리카노(S)(150명) 4등 L-money 1.000점(300명) 5등 L-money 300점(10,000명) 참가상 L-money 50점"></div>
+					<div><img src="http://image.lotte.com/lotte/mobile/event/event_appUpdate06.jpg" alt="잭팟 같은 쇼핑 위크 - 7% 청구할인 + 7% 추가 할인"></div>
+					<div><img src="http://image.lotte.com/lotte/mobile/event/event_appUpdate07.jpg" alt="꼭 알아두세요 -이벤트 기간:7월3일(월) ~ 7월9일(일) -본 이벤트는 롯데닷컴에 가입하신 회원분에(간편 회원 제외) 한해 진행됩니다. -당첨자 발표는 행사 종료 후 7월14일 금요일에 당첨자 발표 페이지를 통해 발표되며, 당첨자에게 개별 고지 예정입니다. 기본 연락처를 확인해주세요. -경품에 발생하는 제세공과금은 당첨자 본인 부담이며, 입금 기한/방법에 대해서는 당첨자 개별 고지 예정입니다. -본 이벤트에 대한 세부 사항은 당사의 사정에 따라 임의로 변경 혹은 조기 종료될 수 있습니다."></div>
+					
+					<!-- 팝업 -->
+					<div class="event_appUpdate_pop_wrap">
+						<div class="transformer_pop">
+							<!-- event_appUpdate_pop01.jpg~06.jpg 팝업이미지 -->	
+							<img src="http://image.lotte.com/lotte/mobile/event/event_appUpdate_pop01.jpg" alt="팝업">
+							<a class="close_btn" href="javascript:$('.event_appUpdate_pop_wrap').hide();">닫기</a>
+						</div>
+					</div>
+					<!-- //팝업 -->					 
+				</div>	
+				<!-- // content -->
+			</section> 
+		</div>
+	</body>
+</html>
+

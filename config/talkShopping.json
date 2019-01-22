@@ -1,0 +1,69 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplTalkShopping" : {
+				"options": {
+					"prefix":"/",
+					"module" : "app"
+				},
+				"src" : [
+					"lotte/resources_dev/talk/talkShopping_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/talkShopping.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsTalkShopping" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/talk/talkShopping.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/talkShopping.js"
+			}
+		},
+
+		"uglify" : {
+			"jsTalkShopping" : {
+				"src" : "lotte/resources/<%= version %>/talkShopping.js",
+				"dest" : "lotte/resources/<%= version %>/talkShopping.min.js"
+			},
+			"tplTalkShopping" : {
+				"src" : "lotte/resources/<%= version %>/talkShopping.template.js",
+				"dest" : "lotte/resources/<%= version %>/talkShopping.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssTalkShopping" : {
+				"src" : [
+					"lotte/resources_dev/talk/talkShopping.css",
+					"lotte/resources_dev/misc/clause.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/talkShopping.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanTalkShopping" : [
+				"lotte/resources/<%= version %>/talkShopping.js",
+				"lotte/resources/<%= version %>/talkShopping.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlTalkShopping" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"talk/talkShopping.html" : "talk/talkShopping_dev.html"
+				}
+			}
+		}
+	}
+}

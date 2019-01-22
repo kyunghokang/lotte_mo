@@ -1,0 +1,18 @@
+<section ng-show="contVisible" class="cont_minheight">
+
+<spec-mall-cate type="sub"></spec-mall-cate>
+
+
+<div ng-if="subData.topHtml" ng-bind-html="subData.topHtml | toTrustedHtml" class="sub_cont"></div>
+
+<div class="listWrap" ng-controller="productCtrl" ng-if="!emptyData">
+	<div class="unitWrap">
+		<div product-container template-type="list" total-count="srhResultData.tCnt" products="subData.prodList"></div>
+	</div>
+</div>
+
+<div ng-if="emptyData" class="emptyData">
+등록된 상품이 없습니다.
+</div>
+
+</section>

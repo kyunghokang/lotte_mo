@@ -1,0 +1,71 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplProductCollectBenefits" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/product/m/sub/product_sub_header.html",
+					"lotte/resources_dev/product/m/sub/product_collect_benefits_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/product_collect_benefits.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsProductCollectBenefits" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/product/m/sub/product_sub_header.js",
+					"lotte/resources_dev/product/m/sub/product_collect_benefits.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/product_collect_benefits.js"
+			}
+		},
+
+		"uglify" : {
+			"jsProductCollectBenefits" : {
+				"src" : "lotte/resources/<%= version %>/product_collect_benefits.js",
+				"dest" : "lotte/resources/<%= version %>/product_collect_benefits.min.js"
+			},
+			"tplProductCollectBenefits" : {
+				"src" : "lotte/resources/<%= version %>/product_collect_benefits.template.js",
+				"dest" : "lotte/resources/<%= version %>/product_collect_benefits.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssProductCollectBenefits" : {
+				"src" : [
+					"lotte/resources_dev/product/m/sub/product_collect_benefits.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/product_collect_benefits.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanProductCollectBenefits" : [
+				"lotte/resources/<%= version %>/product_collect_benefits.js",
+				"lotte/resources/<%= version %>/product_collect_benefits.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlProductCollectBenefits" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"product/m/sub/product_collect_benefits.html" : "product/m/sub/product_collect_benefits_dev.html"
+				}
+			}
+		}
+	}
+}
+

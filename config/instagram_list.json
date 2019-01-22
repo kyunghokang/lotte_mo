@@ -1,0 +1,73 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplinstagramList" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/instagram/instagram_list_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/instagram_list.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsinstagramList" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/instagram/instagram_list.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/instagram_list.js"
+			}
+		},
+
+		"uglify" : {
+			"jsinstagramList" : {
+				"options" : {
+					"sourceMap" : true,
+					"sourceMapIncludeSources" : true,
+					"sourceMapRoot" : "<%= sourceMapRootURL %>/"
+				},
+				"src" : "lotte/resources/<%= version %>/instagram_list.js",
+				"dest" : "lotte/resources/<%= version %>/instagram_list.min.js"
+			},
+			"tplinstagramList" : {
+				"src" : "lotte/resources/<%= version %>/instagram_list.template.js",
+				"dest" : "lotte/resources/<%= version %>/instagram_list.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssinstagramList" : {
+				"src" : [
+					"lotte/resources_dev/instagram/instagram_list.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/instagram_list.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleaninstagramList" : [
+				"lotte/resources/<%= version %>/instagram_list.js",
+				"lotte/resources/<%= version %>/instagram_list.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlinstagramList" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"instagram/instagram_list.html" : "instagram/instagram_list_dev.html"
+				}
+			}
+		}
+	}
+}

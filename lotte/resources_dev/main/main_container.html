@@ -1,0 +1,35 @@
+<div class="container_wrap">
+	<section id="container" lotte-ng-list-swipe  
+		swipe-id="MainContent" 
+		ignore-destory="true"
+		swipe-max-ratio="0.2" 
+		swipe-min-distance="40" 
+		swipe-responsive="true"
+		swipe-loading-el="#swipePageLoading"
+		swipe-loading-el-zindex="30" 
+		swipe-end-exec="loadMenuContent($event)">
+		<div content-container ng-show="!pageLoading"></div>
+	</section>
+	<div class="pageLoading" ng-show="pageLoading && !productListLoading"><p class="loading half"></p></div>
+	<div class="loadWrap none" id="swipePageLoading" ng-show="!pageLoading && !productListLoading" style="top:0px;"><p class="loading half"></p></div>
+
+	<!-- 카테고리 더보기 (translate 영역 안에 있을 경우 fixed 오류가 있어 컨테이너 쪽으로 이동) -->
+	<section ctg-deal-more-ctg id="ctgDealMoreCategory" ng-if="screenData.more_category && screenData.more_category.length > 0 && ctgDealMoreLayerHeight != 0" ng-class="{small: ctgDealMoreCtgMinFlag != 'large', min: ctgDealMoreCtgMinFlag == 'min'}" class="more_ctg" class="more_ctg">
+		<div class="pop_cont_wrap">
+			<div class="tit_wrap">
+				<h3 class="tit" ng-click="openCtgDealMoreCtg()"><strong ng-if="ctgDealMoreCtgMinFlag == 'large'">{{getNowMenu().disp_nm}}</strong>
+				<span ng-if="ctgDealMoreCtgMinFlag == 'small'" class="desc">다른상품 더보기</span></h3>
+			</div>
+			<ul style="max-height:{{maxHeight}}px">
+				<li ng-repeat="item in screenData.more_category"><a ng-click="linkUrl(item.link_url, false, 'm_category_under_{{mainTemplateType}}_{{$index + 1}}')">{{item.category_name}}</a></li>
+			</ul>
+			<button ng-click="closeCtgDealMoreCtg()" class="btn_close">다른상품 더보기 레이어 닫기</button>
+		</div>
+	</section>
+
+	<!--
+	<section id="Note2Debug" ng-if="userAgent.indexOf('SHV-E250K') > -1" style="overflow:scroll;-webkit-overflow-scrolling:touch;position:fixed;bottom:60px;left:0;width:100%;height:200px;color:#fff;font-size:12px;background-color:#000;z-index:1000;box-sizing:border-box;padding:5px;">
+		Galaxy Note II Debug<br>
+	</section>
+	-->
+</div>

@@ -1,0 +1,38 @@
+{
+    "tasks" : {
+        "concat" : {
+            "jseventsamsungFire" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/event/samsungFire.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/samsungFire.js"
+            }
+        },
+
+        "uglify" : {
+            "jseventsamsungFire" : {
+                "src" : "lotte/resources/<%= version %>/samsungFire.js",
+                "dest" : "lotte/resources/<%= version %>/samsungFire.min.js"
+            }
+        },
+
+        "cssmin" : {
+            "csseventsamsungFire" : {
+                "src" : [
+                    "lotte/resources_dev/event/samsungFire.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/samsungFire.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleaneventsamsungFire" : [
+                "lotte/resources/<%= version %>/samsungFire.js"
+            ]
+        }
+    }
+}
+

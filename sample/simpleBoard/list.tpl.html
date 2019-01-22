@@ -1,0 +1,28 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th> </th>
+    <th>No</th> 
+    <th>제목</th>
+    <th>이름</th>
+    <th>생성일</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="item in simpleBoard.items">
+    <td><input type="checkbox" name="checked_no" ng-model="item.checked"></td> 
+    <td><span ng-bind="item.no"></span></td> 
+    <td><span class="hover_link" ng-bind="item.subject" ng-click="openGetView(item)"></span></td>
+    <td><span ng-bind="item.name"></span></td>
+    <td><span ng-bind="item.createdDate"></span></td>
+  </tr>
+</tbody>
+</table>
+<!--
+pagination.js의 scope.totalPages, scope.startPage, scope.endPage, scope.currentPage, scope.onSelectPage() binding
+-->
+<pagination total-pages="simpleBoard.totalPages" start-page="simpleBoard.startPage" end-page="simpleBoard.endPage" current-page="simpleBoard.currentPage" on-select-page="selectPageHandler(page)"></pagination>
+<button ng-click="openWriteView()">등록</button>
+<button ng-click="remove()">삭제</button>
+<button ng-click="error()">오류발생</button>
+<button ng-click="createSampleData()">샘플데이터 생성</button>

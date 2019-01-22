@@ -1,0 +1,270 @@
+@charset "utf-8";
+.clear:after {content:" "; display:block;clear:both;overflow:hidden;}
+
+/*유닛*/
+select {height:30px;border-color:#ddd;font-size:13px;color:none;}
+.stipul {margin: 0 10px;background:#f7f7f7;}
+.stipul ul.bullet li { color:#999;}
+.stipul ul.bullet li span {color:#333;}
+
+/*하단 둥근 버튼*/
+.c_btn.col05 {background: #fff;border: 1px solid #719cff;}
+.c_btn.col01 {background: #719cff;border: 1px solid #719cff;}
+.c_btn.col05 span {color: #719cff;text-shadow: none;}
+.c_btn.col01 span {color: #fff;text-shadow: none;}
+
+
+/* Tips */
+#order .tips {position:relative;margin-bottom:0px;padding:10px 9px;border-bottom:1px solid #dcdcdc;background-color:#eee;display:none;}
+#order .tips.border_none{border:none}
+#order .tips p {font-size:13px;color: #999;}
+#order .tips ul li {position:relative;padding:0 0 0 8px;font-weight:normal;color:#888;font-size:11px;}
+#order .tips ul li:before {content:"";position:absolute;top:7px;left:0;width:2px;height:2px;background:url(http://image.lotte.com/lotte/mo2015/angular/mylotte/bg_common.png) -125px -50px no-repeat;background-size:300px;font-size:11px;}
+#order .tips strong{color:#0a5ad5}
+#order .tips .a_btn{position:absolute;top:16px;right:8px;width:70px;height:28px}
+
+/* 모바일 CS 상품 CSS 공통 정의 */
+#order .order_goods{overflow:hidden;position:relative;padding:15px 10px}
+#order .order_goods>a {display:block;}
+#order .order_goods span.cont01{display:block;margin:0 0 0 30%;padding:0 0 0 8px;font-size:13px;line-height:150%}
+#order .order_goods .tl{display:-webkit-box;overflow:hidden;text-overflow:ellipsis;-webkit-line-clamp:2;word-wrap:break-word;-webkit-box-orient:vertical}
+#order .order_goods .option{font-size: 11px;color: #ff7b62;}
+#order .order_goods .money .price {color:#333;}
+#order .order_goods .b_btn span{padding-left:12px !important;padding-right:24px !important}
+#order .order_goods .g_btn{padding-left:12px !important;padding-right:12px !important}
+#order .order_goods .cont01 .b_btn,
+#order .order_goods .cont01 .g_btn{margin-top:5px}
+#order .order_goods .cont01 .btn_list{margin-top:28px}/* order css added */
+#order .order_goods .cont01 .btn_list.half_btn{margin:28px -2px 0 -2px}
+#order .order_goods .cont01 .btn_list.half_btn:after{content:"";display:block;clear:both}
+#order .order_goods .cont01 .btn_list.half_btn > span{display:block;float:left;width:50%;margin-bottom:5px;padding:0 2px}
+#order .order_goods .cont01 .btn_list.half_btn > span > a.x_btn,
+#order .order_goods .cont01 .btn_list.half_btn > span > a.y_btn{display:block}
+#order .order_goods .cont01 .btn_list.half_btn > span > a.a_btn{display:block}
+#order .order_goods .cont01 .btn_list.half_btn > span > a.a_btn span{padding:0 5px}
+#order .order_goods .cont01 .btn_list.half_btn > span > a.y_btn{padding:0 15px 0 0}
+#order .order_cancel .seller_info {margin: 10px 10px;background-color: #F7F7F7;font-size:13px;color: #888;padding: 10px 10px;}
+
+    /* 모바일 CS 상품 리스트 CSS 공통 정의 */
+#order .order_unit{position:relative;/*border-top:1px solid #bdbdbd*/}
+#order .order_unit:after{clear:both;display:block;content:""}
+#order .order_unit h3{height:37px;padding: 0 10px;line-height:37px;border-bottom: 1px solid #eee;font-size: 13px;background:#fff;}
+#order .order_unit h3.two_line{height:47px;padding:6px 0 6px 8px;font-size:13px;font-weight:normal;line-height:150%;box-sizing:border-box;-webkit-box-sizing:border-box}
+#order .order_unit h3.two_line span{font-weight:bold}
+#order .order_unit h3.two_line .order_no{display:block;color:#0a5ad5;font-size:13px;text-decoration:underline}
+#order .order_unit .order_step1,
+#order .order_unit .order_step2,
+#order .order_unit .order_step3,
+#order .order_unit .order_step4{display:block;height:19px;margin-top:2px;text-align:center;font-weight:bold;line-height:19px;color:#fff;background:#003fd0;font-size:11px}
+#order .order_unit .order_step1{background-color:#003fd0}/* 완료 */
+#order .order_unit .order_step2{background-color:#3fa6fd}/* 진행 */
+#order .order_unit .order_step3{background-color:#8895a6}/* 취소 */
+#order .order_unit .order_step4{height:32px;padding:3px 2px;line-height:14px;background:#3fa6fd}/* 고객약속일 */
+#order .order_unit .order_step4 span{display:block}
+#order .order_unit .order_goods{min-height:88px;overflow:hidden}
+#order .order_unit .order_detail{position:absolute;top:4px;right:8px}
+#order .order_unit .order_detail.two_line{top:9px}
+#order .order_unit h4 {padding:0 16px;font-size:14px;color:#333;line-height:34px;font-weight:bold;box-sizing:border-box;-webkit-box-sizing:border-box;background:#fff;border-bottom:1px solid #eee;}
+
+/* 주문취소 */
+.order_unit {background:#eee;}
+#order .order_unit .order_cancel > li {overflow:hidden;position:relative;padding:0;border-bottom:none;line-height:normal;background:#fff;}
+#order .order_unit .order_cancel > li .chk{position:relative;z-index:2;float:left;margin:10px 0 10px 10px;}
+#order .order_unit .order_cancel > li .order_goods{padding:10px;background:#fff;}
+#order .order_unit .order_cancel > li .order_goods span.thumb{float:left;/*width:auto;max-width:150px;margin:0 10px -3px 0*/}
+#order .order_unit .order_cancel > li .order_goods span.thumb img{width:85px;height:85px}
+#order .order_unit .order_cancel > li .order_goods span.cont01{display:block;min-height:70px;margin:0 0 0 72px;padding:0 8px;font-size:13px;line-height:130%}
+#order .order_unit .order_cancel > li .order_goods span.cont01 {margin-left: 85px;}
+#order .order_unit .order_cancel > li .order_goods span.cont01 .tl{/*margin-top:5px;*/margin-top:0;margin-bottom:7px;padding:0;font-size:14px}
+#order .order_unit .order_cancel > li .order_goods span.cont01 .tl strong {font-weight:normal;}
+/*#order .order_unit .order_cancel > li .order_goods span.cont01 .option {font-size: 11px;color: #ff7b62;}*/
+#order .order_unit .order_cancel > li .order_goods span.cont01 .money{position:inherit;bottom:inherit;left:inherit;margin-top: 4px;}
+#order .order_unit .order_cancel > li .order_goods span.cont01 .money span.price{display:inline;padding:0}
+#order .order_unit .order_cancel > li .cancel_payment  {padding:0 10px 15px 10px;font-size:13px;color:#3874ec;text-align:right;}
+#order .order_unit .cancel_rec {padding:10px;border-bottom:1px solid #dcdcdc;margin-bottom:6px;line-height:22px;background:#fff;}
+#order .order_unit .cancel_rec:after {content:" "; display:block;clear:both;overflow:hidden;}
+#order .order_unit .cancel_rec p {float:left;}
+#order .order_unit .cancel_rec .c_btn.col01 {float:right;display:block;height:24px;width:auto;border:0;background:#fff;margin:0;border-radius:0;}
+#order .order_unit .cancel_rec .c_btn.col01 span {display:block;height:24px;border:1px solid #ddd;padding:0 10px;background:#fff;font-size:13px;color:#888;line-height:20px;box-sizing:border-box;-webkit-box-sizing:border-box;}
+#order .order_unit .confirm_chk {margin:10px 10px;border-bottom:1px solid #eee;padding-bottom: 10px;}
+#order .order_unit .confirm_chk label {font-size:13px;}
+.order_cancel+h4 {border-top:1px solid #eee;}
+
+/* 주문취소옵션 */
+#order .cancel_option {border-top:1px solid #dcdcdc;background:#f7f7f7;}
+#order .cancel_option dl{/*margin:0 8px 0 33px;*/padding:10px 10px;background:#f7f7f7;/*border:1px solid #eef0f1;*/line-height:22px;color:#888;padding-bottom: 0px;}
+#order .cancel_option dl:after{clear:both;display:block;content:"";line-height:32px}
+#order .cancel_option dl p{padding:5px 0;line-height:16px}
+#order .cancel_option dt{clear:both;float:left;width:20%;padding:3px 0 0 0;font-size: 13px;color:#333;}
+#order .cancel_option dd{float:right;width:80%;padding-bottom:15px;text-align:right;}
+#order .cancel_option dd.last {padding-bottom: 0px;}
+#order .cancel_option dd:nth-child(2) > div{position:relative;padding-left:96px}
+#order .cancel_option dd:nth-child(2) > div.quantity{position:relative;padding-left:28px;}/*수정*/
+#order .cancel_option dd:nth-child(2) > div .num123{position:absolute;top:0;left:0}
+#order .cancel_option dd .rBox {width:100%;display:table;border-top:1px solid #dcdcdc;padding:0 0 10px 0;}
+#order .cancel_option dd .rBox:after{content:"";display:block;clear:both}
+#order .cancel_option dd .rBox li {position:relative;float:left;width:50%;min-height:34px;text-align:left;padding-top:13px;line-height:20px;}
+#order .cancel_option dd .rBox li input[type=radio] {position:absolute;top:13px;left:0;}
+#order .cancel_option dd .rBox li label {display:block;padding-left:25px;letter-spacing:-1px;line-height:17px;font-size:13px;color:#333;}
+#order .cancel_option dd .rBox li.line2 label {line-height:22px;}
+#order .cancel_option dd textarea {width:100%;height:58px;border:1px solid #dcdcdc;padding:6px;box-sizing:border-box;-webkit-box-sizing:border-box;resize:none;
+-top-left-radius:2px;
+-top-right-radius:2px;
+-bottom-right-radius:2px;
+-bottom-left-radius:2px;}
+
+/* 주문취소_할인결제내역상세보기 */
+#order .cancel_option .d_btn{width:28px;height:28px;padding:0;line-height:28px}
+#order .cancel_option .s_box04{width:100%}
+#order .cancel_option .s_box04 select{width:100%;padding-right:24px}
+#order .cancel_option .info{margin:0 21px 0 33px;padding:8px 12px;text-align:center;background:#eff0f2;border:1px solid #eef0f1}
+#order .cancel_option .info p{line-height:16px;margin-bottom:10px;color:#666}
+#order .cancel_option .info .btn{width:140px}
+#order .cancel_option textarea.area01 {font-size:13px;height:70px;margin-top:5px;}
+#order .cancel_option .stipul ul.bullet li {color:#888;}
+#order .dc_detail {background:#fafafa;box-sizing:border-box;-webkit-box-sizing:border-box}
+#order .dc_detail .btn_dcdetail {position:relative;display:block;padding:12px;border-top:1px solid #dcdcdc;border-bottom:1px solid #dcdcdc;background:#fff;box-sizing:border-box;-webkit-box-sizing:border-box}
+#order .dc_detail .btn_dcdetail .btn_dcdetail span {font-size:14px;}
+#order .dc_detail .btn_dcdetail:after {content:"";position:absolute;top:16px;right:12px;background:url(http://image.lotte.com/lotte/mo2015/angular/mylotte/bg_common.png) no-repeat -75px -25px;background-size:300px;width:16px;height:9px;display:inline-block;}
+#order .dc_detail .btn_dcdetail.on:after {background-position:-75px 0}
+#order .dc_detail .freebie {padding:12px;box-sizing:border-box;-webkit-box-sizing:border-box}
+#order .dc_detail .freebie strong {color:#333;}
+#order .dc_detail .freebie em {color:#285ace;}
+#order .dc_detail .freebie ul {margin-top:7px;}
+#order .dc_detail .freebie ul li {padding:3px 0 0 12px;background:url(http://image.lotte.com/lotte/mobile/mobile_new/order/ico_oder_bar.png) no-repeat 0 6px;background-size:7px 7px;box-sizing:border-box;-webkit-box-sizing:border-box}
+#order .dc_detail .dc_tbl {border:1px solid #ddd;margin:10px;margin-bottom:0;}
+#order .dc_detail .dc_tbl thead th {padding:9px;background:#fff url(http://image.lotte.com/lotte/mo2015/angular/mylotte/ico_oder_bar.png) no-repeat 0 center;background-size:1px 10px;font-size:13px;color:#333;text-align:center;font-weight:normal;box-sizing:border-box;-webkit-box-sizing:border-box}
+#order .dc_detail .dc_tbl thead th:first-child {background:#fff;}
+#order .dc_detail .dc_tbl tbody th {padding:9px 13px 9px 22px;border-top:1px solid #ededed;color:#999;text-align:left;font-size:13px;background:#fff url(http://image.lotte.com/lotte/mo2015/angular/mylotte/ico_oder_bar2.png) no-repeat 11px center;background-size:7px 6px;font-weight:normal;box-sizing:border-box;-webkit-box-sizing:border-box}
+#order .dc_detail .dc_tbl tbody th.th {padding:9px 13px;color:#333;background:#fcfcfc;box-sizing:border-box;-webkit-box-sizing:border-box}
+#order .dc_detail .dc_tbl tbody th.th+td,
+#order .dc_detail .dc_tbl tbody th.th+td+td {background:#fcfcfc;}
+#order .dc_detail .dc_tbl tbody td {border-top:1px solid #ededed;padding:9px 0;color:#000;background:#fff;font-size:13px;text-align:center;box-sizing:border-box;-webkit-box-sizing:border-box}
+#order .dc_detail .dc_tbl tbody td:last-child {color:#719cff;}
+.order_section {}
+.check_layer02 {padding:11px 16px;border-top:1px solid #ddd;border-bottom:1px solid #ddd;background-color:#fff;box-sizing:border-box;-webkit-box-sizing:border-box}
+.check_layer02 .check {line-height:19px;font-size:14px;color:#333;position:relative}
+.check_layer02 label {vertical-align: middle;}
+.check_layer02 .check:after {content:"";position:absolute;top:7px;right:0;background:url(http://image.lotte.com/lotte/mo2015/angular/mylotte/bg_common.png) no-repeat -75px -25px;background-size:300px;width:16px;height:9px;display:inline-block;}
+.check_layer02 .check.on {box-sizing:border-box;-webkit-box-sizing:border-box}
+.check_layer02 .check.on:after {background-position:-75px 0}
+.check_layer02 .agree_c {padding-top:11px;font-size:11px;color:#888;line-height:18px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.check_layer02 a {text-indent:-9999px;display:block;position:absolute;top:-10px;right:-10px;height:50px;width:50px;z-index:10;}
+
+#order .dc_detail .dc_tbl .credit th,
+#order .dc_detail .dc_tbl .credit td { vertical-align:top;}
+#order .btn_wrap {padding:15px 10px;box-sizing:border-box;-webkit-box-sizing:border-box;text-align:center;background:#fff;}
+#order .btn_wrap>span {display:inline-block;width:123px;box-sizing:border-box;-webkit-box-sizing:border-box}
+#order .btn_wrap>span a {display:block;width:100%;}
+#order .readme {clear:both;border-top:1px solid #ddd;padding:20px 10px;font-size:13px;color:#555;background:#eee;box-sizing:border-box;-webkit-box-sizing:border-box}
+#order .readme h3 {height:auto;line-height:1.4em;padding:0;padding-bottom:15px;border:0;font-size:13px;color:#333;font-weight:bold;background:none;box-sizing:border-box;-webkit-box-sizing:border-box}
+#order .readme h4 {padding:10px 0 5px 0;font-size:13px;color:#888;font-weight:bold;box-sizing:border-box;-webkit-box-sizing:border-box;background:none;}
+#order .readme p,
+#order .readme li {position:relative;padding:0 0 3px 7px;font-weight:normal;line-height:1.4em;font-size:12px;color:#888;box-sizing:border-box;-webkit-box-sizing:border-box}
+#order .readme li:before,
+#order .readme p:before {content:"";width:2px;height:2px;position:absolute;top:7px;left:0;background:url(http://image.lotte.com/lotte/mo2015/angular/mylotte/bg_common.png) -25px -50px no-repeat;background-size:300px;}
+#order .read_important {clear:both;position:relative;padding:0 10px 20px 17px;background:#eee;font-weight:normal;font-size:13px;color:#888;border-top:0;box-sizing:border-box;-webkit-box-sizing:border-box}
+#order .read_important p {line-height:1.4;box-sizing:border-box;-webkit-box-sizing:border-box}
+#order .read_important p em {color:#888;}
+#order .read_important a.mtom {font-weight: normal;width:auto;margin:5px 0 0 0;background:#fff;height:23px;font-size:13px;border:solid 1px #ddd;box-sizing:border-box;-webkit-box-sizing:border-box;border-radius:0;}
+#order .read_important a.mtom span {display:block;padding:0 10px;height:21px;font-size:13px;line-height:20px;color:#888;box-sizing:border-box;-webkit-box-sizing:border-box}
+
+/* 결제금액 */
+#order .order_sum {padding:10px;background:#fafafa;}
+#order .order_sum ul{padding:0 8px;border:1px solid #ddd;background:#fff;}
+#order .order_sum li{overflow:hidden;min-height:27px;padding:0 11px 0 24px;}
+#order .order_sum li:first-child{margin-top:15px;padding-left:12px;background:none}
+#order .order_sum li:first-child .price{color:#333}
+#order .order_sum li.first{padding-left:12px;background:none}
+#order .order_sum li.first .price{}
+#order .order_sum .title{float:left;color:#888;}
+#order .order_sum .num{font-size:14px;color:#333;font-weight:bold;}
+#order .order_sum .price{float:right}
+#order .order_sum strong {/*font-weight:normal!important;*/}
+#order .order_sum li.sum{padding:0;height:36px;border-top:1px solid #ddd;color:#e75900;background:none}
+#order .order_sum li.sum p{overflow:hidden;padding:0 12px;color:#e75900;border-top:1px solid #f3f9ff;line-height:36px}
+#order .order_sum li.sum .price{font-size:15px;line-height:200%}
+#order .order_sum li.sum .price strong{font-size:20px}
+#order .order_sum li.sum1{padding:0;color:#e75900;background:none}
+#order .order_sum li.sum1 p{overflow:hidden;padding:0 12px}
+#order .order_sum li.sum1 p .price{text-align:right}
+#order .order_sum li.sum1 p:nth-child(1) .price strong{font-size:14px}
+#order .order_sum li.sum2{padding:0;border-top:1px solid #d6e6f7;background:none}
+#order .order_sum li.sum2 p{overflow:hidden;padding:12px}
+#order .order_sum li.sum2 p:first-child{border-top:1px solid #f3f9ff}
+#order .order_sum li.sum2 p .price{text-align:right}
+#order .order_sum li.sum2 p:nth-child(1) .price{color:#000}
+#order .order_sum li.sum2 p:nth-child(1) .price strong{font-size:14px}
+#order .order_sum li.sum2 p:nth-child(1) .price em{display:block;margin-top:5px}
+#order .order_sum li.sum2 p:nth-child(2){padding-top:0;line-height:16px;}
+#order .order_sum li.sum2 p:nth-child(2) .price{font-size:15px}
+#order .order_sum li.sum2 p:nth-child(2) .price strong{font-size:20px}
+#order .order_sum li.sum3{padding:0;border-top:1px solid #ddd;background:none}
+#order .order_sum li.sum3 p{overflow:hidden;padding:12px}
+#order .order_sum li.sum3 p:first-child{}
+#order .order_sum li.sum3 p .price{text-align:right}
+#order .order_sum li.sum3 p:nth-child(2){padding-top:0;line-height:16px;}
+#order .order_sum li.sum4{padding:0;border-top:1px solid #ddd;background:none}
+#order .order_sum li.sum4 p{overflow:hidden;padding:0 12px 12px}
+#order .order_sum li.sum4 p:first-child{padding-top:12px;border-top:1px solid #f3f9ff}
+#order .order_sum li.sum4 p .price{text-align:right}
+#order .order_sum li.sum4 p .price strong{font-size:14px}
+#order .order_sum li.sum4 p:last-child{padding-top:0;line-height:16px;color:#e75900}
+#order .order_sum li.sum4 p:last-child .price{font-size:15px}
+#order .order_sum li.sum4 p:last-child .price strong{font-size:20px}
+
+#order .refund_sum li:first-child{margin-top:0;padding-left:12px;background:none}
+#order .refund_sum li.sum5{padding:0;line-height:150%;color:#e75900;background:none}
+#order .refund_sum li.sum5 p{padding:12px}
+#order .refund_sum li.sum5 p .price{color:#e75900}
+#order .refund_sum li.sum5 p:last-child{padding-top:0}
+#order .refund_sum li.sum5 p:last-child .price{font-size:15px}
+#order .refund_sum li.refund1 > div:last-child{line-height:28px}
+#order .refund_sum li.refund1 > p{line-height:150%;padding:0 12px 6px 12px}
+
+#order .order_sum li.tip{padding:0;background:none;border-top:1px solid #d6e6f7}
+#order .order_sum li.tip p{padding:8px 12px 15px;border-top:1px solid #f3f9ff}
+#order .order_sum li.refund1{padding:0;border-top:1px solid #ddd;background:none}
+#order .order_sum li.refund1>div{padding:5px;line-height:28px;}
+#order .order_sum li.refund1>div:after{clear:both;display:block;content:""}
+#order .order_sum li.refund1 .title{float:left;width:30%}
+#order .order_sum li.refund1 .s_box04{float:right;width:70%;text-align:right;}
+#order .order_sum li.refund1 .s_box04 select{width:50%;color:#333;}
+#order .order_sum li.refund2{padding:0 0 10px;border-top:1px solid #ddd;background:none}
+#order .order_sum li.refund2>div{padding:5px 12px;line-height:28px;}
+#order .order_sum li.refund2>div:after{clear:both;display:block;content:""}
+#order .order_sum li.refund2>div>div{position:relative;clear:both;display:block;padding:0 50px 0 0}
+#order .order_sum li.refund2>div>div input{width:100%}
+#order .order_sum li.refund2>div>div a{position:absolute;top:0;right:0;width:45px;border:1px solid #ccc !important;border-radius:2px;box-sizing:border-box;-webkit-box-sizing:border-box;}
+#order .order_sum li.refund2>div>div a span{padding:0 !important;height:32px;background:#f3f3f3;background-image:none;color:#666;height:26px !important;line-height:28px !important;}
+.txt_noti {padding:10px 10px 0 10px;background:#fafafa;}
+#order .order_sum li.refund2>div>div .img_box {display:none;}
+#order .order_sum li.refund2>div>div.refund_account_change {}
+#order .order_sum li.refund2>div>div.refund_account_change .txt01 {background:#fff;border:1px solid #ddd !important;}
+#order .order_sum li.refund2>div>div.refund_account_info2 p {padding:5px 0;line-height:1.4em;}
+#order .order_sum li.refund2>div>div.refund_account_info2 .reunf_account_btn {padding:0;border:0;}
+#order .order_sum li.refund2>div>div.refund_account_info2 .reunf_account_btn li {padding:0;margin:0;min-height:0;}
+#order .order_sum li.refund2>div>div.refund_account_info2 .reunf_account_btn li a.a_btn {top:-28px;height:28px;border:1px solid #ccc !important;border-radius:2px;box-sizing:border-box;-webkit-box-sizing:border-box;}
+#order .order_sum li.refund2>div>div.refund_account_info2 .reunf_account_btn li a.a_btn span {background:#f3f3f3;background-image:none;color:#666;height:26px !important;line-height:28px !important;}
+
+/* 20160530 선물하기 추가 */
+p.recipient{height:13px;margin-bottom:7px;font-size:13px;line-height:13px;color:#2c2c2c}
+p.recipient:before{content:'To.';display:inline-block;margin-right:3px;padding-left:17px;background:url(http://image.lotte.com/lotte/mobile/mobile_new/cscenter/ic_gift.png) no-repeat 0 0;background-size:13px}
+
+/*20171110 약관동의 수정*/
+.assent_all_wrap .nth1{padding:0 10px; margin-bottom:7px !important;color:#333;}
+.assent_all_wrap .nth_wrap.nth_wrap_top{margin-bottom:14px;font-size:13px;}
+.assent_all_wrap .nth_wrap.nth_wrap_btm p{margin-bottom: 13px;font-size:13px;}
+.assent_all_wrap .nth2{padding:0px 5px 0px 35px;color:#888;letter-spacing: -0.145em;}
+.assent_all_wrap .nth_wrap.nth_wrap_btm p.last_list{margin-bottom:0px;}
+.assent_all_wrap .nth2 a{display:inline-block; font-size:12px; height:auto;text-indent: 0; width:auto;position: unset; line-height:17px;color:#ccc; padding:0px 4px 0px 1px; border:1px solid #ccc;letter-spacing: -0.145em;margin-left:8px;}
+.check_layer02 .check {letter-spacing:-1px}
+
+/* 주문취소 취소사유 UI개선 */
+#order .cancel_option dd .rBox {padding:13px 0 10px;}
+#order .cancel_option dd textarea {padding:8px;}
+#order .cancel_option .s_box04 select{color:#333;padding-left:8px;}
+#order .cancel_option textarea.area01 {font-size:12px;margin-top:10px;color:#aaa;}
+
+/* 20180504 네이버페이 추가*/
+#order .readme li ul li:before{content:"";width:4px; height:1px; background:none; background-color:#888;}

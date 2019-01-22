@@ -1,0 +1,72 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplwishlist2018" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mylotte/wish/m/wish_container_2018.html",
+                    "lotte/resources_dev/mylotte/wish/m/wish_normal_list_container_2018.html",
+                    "lotte/resources_dev/mylotte/wish/m/wish_soldout_list_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/wish_list_2018.template.js"
+            }
+        },
+
+        "concat" : {
+            "jswishlist2018" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+					"lotte/resources_dev/common/lotte_ngswipe.js",
+                    "lotte/resources_dev/mylotte/wish/m/wish_2018.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/wish_list_2018.js"
+            }
+        },
+
+        "uglify" : {
+            "jswishlist2018" : {
+                "src" : "lotte/resources/<%= version %>/wish_list_2018.js",
+                "dest" : "lotte/resources/<%= version %>/wish_list.min.js"
+            },
+            "tplwishlist2018" : {
+                "src" : "lotte/resources/<%= version %>/wish_list_2018.template.js",
+                "dest" : "lotte/resources/<%= version %>/wish_list.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "csswishlist2018" : {
+                "src" : [
+                    "lotte/resources_dev/mylotte/wish/m/wish_2018.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/wish_list.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanwishlist2018" : [
+                "lotte/resources/<%= version %>/wish_list_2018.js",
+                "lotte/resources/<%= version %>/wish_list_2018.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlwishlist2018" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mylotte/wish/m/wish_list_2018.html" : "mylotte/wish/m/wish_list_2018_dev.html"
+                }
+            }
+        }
+    }
+}
+

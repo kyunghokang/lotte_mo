@@ -1,0 +1,71 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplcommentWrite" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/product/m/comment_write_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/comment_write.template.js"
+            }
+        },
+
+        "concat" : {
+            "jscommentWrite" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+					"lotte/resources_dev/product/m/comment_write.js",
+					"lotte/lib/jquery/load-image.all.min.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/comment_write.js"
+            }
+        },
+
+        "uglify" : {
+            "jscommentWrite" : {
+                "src" : "lotte/resources/<%= version %>/comment_write.js",
+                "dest" : "lotte/resources/<%= version %>/comment_write.min.js"
+            },
+            "tplcommentWrite" : {
+                "src" : "lotte/resources/<%= version %>/comment_write.template.js",
+                "dest" : "lotte/resources/<%= version %>/comment_write.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "csscommentWrite" : {
+                "src" : [
+					"lotte/resources_dev/mylotte/mylotte.css",
+					"lotte/resources_dev/product/m/comment_write.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/comment_write.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleancommentWrite" : [
+                "lotte/resources/<%= version %>/comment_write.js",
+                "lotte/resources/<%= version %>/comment_write.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlcommentWrite" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "product/m/comment_write.html" : "product/m/comment_write_dev.html"
+                }
+            }
+        }
+    }
+}
+

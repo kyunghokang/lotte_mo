@@ -1,0 +1,15 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!--M11 핫키워드형..-->
+	<div class="moduleCon">
+		<div class="unit unit_hotkeyword">
+			<ul class="fclear">
+				<li ng-repeat="item in moduleData.items | limitTo:((moduleData.items.length % 2 == 0)? moduleData.items.length: moduleData.items.length - 1)">
+					<a ng-click="logGAEvtModuleEach($index + 1, item.txt);keywordClick(item.linkUrl, moduleData.tclick + '_Clk_Ban'+ numberFill(($index+1),2))">
+						<p class="imgwrap cover_img dim30_cont"><img ng-src="{{item.imgUrl}}"></p>
+						<p class="tag">{{item.txt}}</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>

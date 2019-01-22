@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl"><!-- 20180509 angular 추가 -->
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴-간편결제</title>
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+
+<!-- 퍼블리싱 : 공통 js -->
+
+<script src="../../lotte/resources_dev/common/common_load_2018.js"></script>
+<script src="../../lotte/resources_dev/product/m/order_simple/order_simple.js"></script>
+
+<!-- 퍼블리싱 : 공통 css -->
+<link rel="stylesheet" href="../../lotte/resources_dev/common/lotte.css">
+<!-- 퍼블리싱 : 신규생성 css -->
+<link rel="stylesheet" href="../../lotte/resources_dev/product/m/order_simple/order_simple.css">
+<script>
+var APP_KEY = "7fa1e44757a94fd89921";
+var SERVER_TIME = new Date();
+</script>
+
+</head>
+<body ng-controller="orderSimpleCtrl" ><!-- 20180509 angular 추가 -->
+    <section class="orderSimple_wrap">
+      <div class="orderSimple_top">
+					<!-- 20180829 엘페이 로드 블럭 -->
+					<div class="loading_block">
+						<p class="block_title">L.pay 간편결제 서비스를 호출합니다.<br>잠시만 기다려주세요.</p>
+					</div>
+					<!-- // 20180829 엘페이 로드 블럭-->
+				 <span class="beni_card">신한카드 결제시 : 12,000원</span><a href="#" class="callBack" onClick="try{parent.goMain()}catch(e){}" >일반 주문서</a>
+				 <a href="#" class="orderSimple_close" onClick="try{parent.orderOffCallback()}catch(e){}">닫기</a><!-- 20180509 닫기버튼 추가 -->
+      </div>
+      <div class="orderSimple_mid">
+				<!-- 결제수단 slide 영역 -->
+        <div class="slide_wrap">
+	        <div class="slide">
+						<ul class="slide_ul"><!-- 청구할인 행사 문구 노출시 slide_notice 클래스 추가 -->
+							<!-- 20180509 lpay 결제수단 추가 수정-->
+			  			<li class="lpay l_easy_pay" >
+	              <div class="l_pay_logo">
+	                <img src="http://image.lotte.com/lotte/mo2017/product/add_lpay_icon.png" alt="">
+	              </div>
+								<p class="add_easypay">L.pay 결제수단 등록하기</p>
+							</li>
+							<!-- // 20180509 lpay 결제수단 추가 수정-->
+	            <li class="lpay">
+	              <div class="l_pay_logo">
+	                <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_lpay_2.png" alt="">
+	              </div>
+	              <div class="card_name">
+	                <p class="title1">신한주식회사카드(주)</p>
+	                <p class="title2">신한카드신한카드신한카드(607*)</p>
+	              </div>
+	              <div class="s_text">
+	                 <span class="s_box02">
+	                   <select name="deli_msg" class="del_msg" data-idx="1" style="width:100%">
+	                     <option value="" selected="일시불">일시불</option>
+	                     <option value="할부">할부</option>
+	                     <option value="할부2">할부2</option>
+	                   </select>
+	                   <span class="img_box">
+	                     <i></i>
+	                   </span>
+	                 </span>
+	               </div>
+	            </li>
+	            <!-- 20170704수정 -->
+	            <li class="on lpay">
+	              <div class="l_pay_logo">
+	                <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_lpay_on_2.png" alt="" class="on_img">
+	              </div>
+	              <div class="card_name">
+	                <p class="title1">신한카드(주)</p>
+	                <p class="title2">신한카드(607*)</p>
+	              </div>
+	              <div class="s_text">
+	                 <span class="s_box02">
+	                   <select name="deli_msg" class="del_msg" data-idx="1" style="width:100%">
+	                     <option value="" selected="일시불">일시불</option>
+	                     <option value="할부">할부</option>
+	                     <option value="할부2">할부2</option>
+	                   </select>
+	                   <span class="img_box">
+	                     <i></i>
+	                   </span>
+	                 </span>
+	               </div>
+	            </li>
+	            <li class="on lpay">
+	              <div class="l_pay_logo">
+	                <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_lpay_on_2.png" alt="" class="on_img">
+	              </div>
+	              <div class="card_name">
+	                <p class="title1">신한카드(주)</p>
+	                <p class="title2">신한카드(607*)</p>
+	              </div>
+	              <div class="s_text">
+	                 <span class="s_box02">
+	                   <select name="deli_msg" class="del_msg" data-idx="1" style="width:100%">
+	                     <option value="" selected="일시불">일시불</option>
+	                     <option value="할부">할부</option>
+	                     <option value="할부2">할부2</option>
+	                   </select>
+	                   <span class="img_box">
+	                     <i></i>
+	                   </span>
+	                 </span>
+	               </div>
+	            </li>
+	          </ul>
+					</div>
+					<p class="beni_notice">청구할인 행사 카드 : 롯데카드/삼성카드</p>
+				</div>
+				<!-- // 결제수단 slide 영역-->
+				<!-- 할인 및 금액정보 영역 -->
+				<div class="total_price_wrap">
+					<p class="DC_title"><span class="DC_price">1,100</span>원 할인을 받아</p>
+					<p class="total_price"><span class="price_color"><strong>999,999,999</strong>원</span>이 L.pay로 결제됩니다.<a class="pay_notice_btn" href="#" ng-click="popCtl('detail')" >?</a></p>
+					<p class="DC_expected_price">청구할인 예상가 12,000원</p>
+				</div>
+				<!-- // 할인 및 금액정보 영역 -->
+				<!-- 배송지 정보 영역 -->
+				<div class="info_box delivery_info_wrap">
+					<div onClick="parent.normalOrder()">
+							<span class="delivery_title">배송지</span>
+							<p class="delivery_info">
+								<span class="delivery_info_name">곽차오(류태)</span><span class="delivery_info_addr"> 경상북도 구미시 부곡1길 8 경상북도 구미시 부곡1길 8 경상북도 구미시 부곡1길 8</span>
+							</p>	
+							<span class="change_deli">변경</span>
+					</div>
+				</div>
+				<!-- // 배송지 정보 영역-->
+				<!-- 이용약관 동의 영역 -->
+				<div class="info_box agree_info_wrap">
+						<p><input type="checkbox" id="agree_all" class="agree_chk"><label for="agree_all">주문동의 및 결제 서비스 이용약관 동의</label><a href="#" ng-click="popCtl('agree')" >내용보기</a></p>
+				</div>
+				<!-- // 이용약관 동의 영역-->
+			</div>
+			<!-- 주문버튼 영역 -->
+			<div class="pay_btn_wrap">
+				<a href="./order_simple_complete.html" >L.pay 간편결제</a>
+			</div>
+			<!-- //주문버튼 영역 -->
+			<!-- 20180509 레이어팝업 영역 -->
+			<!-- 할인상세 팝업  -->
+			<div class="popup pay_detail_pop" ng-show="showDetailLayer">
+				<div class="pay_detail_in">
+					<ul class="DC_list">
+						<li>임직원할인<span>50,000점 적립</span></li>
+						<li>네이버가격비교 중복할인<span>(-) 15,000원</span></li>
+						<li>일시불 할인<span>(-) 3,000원</span></li>
+					</ul>
+					<ul class="use_point_list">
+						<li>L.POINT 사용<span>(-) 30,000원</span></li>
+						<li>L-money 사용<span>(-) 2,000원</span></li>
+					</ul>
+					<ul class="add_point_list">
+						<li>적립 L.POINT<span>15,045점 예정</span></li>
+						<li>롯데포인트플러스카드 시<span>2,500점 예정</span></li>
+					</ul>
+				</div>	
+				<a href="#" class="pop_close_btn" ng-click="popCtl()">닫기</a>
+			</div>
+			<!-- // 할인상세 팝업  -->
+			<!-- 이용약관 동의 팝업 -->
+			<div class="popup assent_wrap_pop normalProd"><!-- 주문제작 상품 이 아닐경우 : 일반상품 normalProd 클래스 추가 -->
+				<div class="agree_pop_in">
+					<p class="agree_pop_tit">주문 내역 확인동의</p>
+					<div class="agree_pop_cont">
+						<p>주문할 내용을 확인해주세요.</br>
+							 주문할 상품의 상품명, 상품가격, 배송정보를 확인하였으며 동의합니다.(전자상거래법 제 8조 제2항)
+						</p>
+						<!-- 주문제작 상품 동의 문구 -->
+						<p style="display:none;">주문제작 상품인 경우, 반품으로 사업자가 큰 피해가 예상되는 경우에는 반품이 제한 될 수 잇습니다.(전자상거래법 시행령 제21조)</p>
+						<!-- // 주문제작 상품 동의 문구 -->
+						<b>결제 서비스 이용약관에 동의</b>
+						<ul>
+							<li>전자금융거래 이용약관 동의 <span class="inpop_btn" ng-click="assentPop(0)">약관보기</span></li>
+							<li>개인정보 수집 및 이용동의 <span class="inpop_btn" ng-click="assentPop(1)">약관보기</span></li>
+							<li>개인정보 제3자 제공/위탁동의 <span class="inpop_btn" ng-click="assentPop(2)">약관보기</span></li>
+						</ul>
+					</div>
+				</div>
+				<div class="assent_wrap assent_wrap2018">
+					<h3>결제 서비스 이용약관</h3>
+					<a href="#" class="assent_close" ng-click="assentClose()">닫기</a>
+					<ul class="first_tabs_top">
+						<li ng-class="{on:assentTabsR}"><span class="tabs tab_first" ng-click="assentTabsResult(1)">KG이니시스</li>
+						<li ng-class="{on:!assentTabsR}"><span class="tabs" ng-click="assentTabsResult(2)">KSNET</li>
+					</ul>
+					<ul ng-if="assentTabsR">
+						<li ng-class="{on:index == 0}"><span class="tabs tab_first" ng-click="assentPop(0)">전자금융거래<br/>이용약관</span></li>
+						<li ng-class="{on:index == 1}"><span class="tabs" ng-click="assentPop(1)">개인정보 수집<br/>및 이용안내</span></li>
+						<li ng-class="{on:index == 2}"><span class="tabs" ng-click="assentPop(2)">개인정보 제 3자<br/>제공/위탁 안내</span></li>
+					</ul>
+					<ul ng-if="!assentTabsR">
+						<li ng-class="{on:index == 3}"><span class="tabs tab_first" ng-click="assentPop(3)">전자금융거래2<br/>이용약관</span></li>
+						<li ng-class="{on:index == 4}"><span class="tabs" ng-click="assentPop(4)">개인정보 수집<br/>및 이용안내</span></li>
+						<li ng-class="{on:index == 5}"><span class="tabs" ng-click="assentPop(5)">개인정보 제 3자<br/>제공/위탁 안내</span></li>
+					</ul>
+					<section id="clauseHolder"></section>
+				</div>
+				<a href="#" class="pop_close_btn" ng-click="popCtl()">닫기</a>
+			</div>
+			<!-- // 이용약관 동의 팝업 -->
+			<div class="dimmIn" ng-click="popCtl()" ng-show=" showAgreeLayer || showDetailLayer"></div>
+			<!-- // 20180509 레이어팝업 영역 -->
+    </section>
+    <script>
+				/*슬라이드 영역 넓이 계산 -- 20180508 넓이 계산 수정*/
+				$(document).on('ready',function(){
+					try{
+						var winwd = parent.frameWid();
+						$(".slide_wrap").width(winwd);		
+					}catch(e){
+						$(".slide_wrap").width(window.innerWidth);		
+					}
+
+					var li_num1 = $('.slide_ul li').size(),
+            li_num2 = $('.slide_ul li[style="display:none"]').size(),
+            li_num1_width = (li_num1 * 266),
+            li_num2_width = (li_num2 * 266),
+            li_num_total = (li_num1_width - li_num2_width) + 35;
+			$('.slide_ul').width(li_num_total); 
+			});
+	</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!--M2135 프로모션배너 A형..-->
+	<div class="moduleCon n201811 btcolor" ng-if="moduleData.items.length > 2">
+
+		<!--<div class="unit unit_bn_promo typeB">
+			<ul class="fclear swipeBox" lotte-ng-list-swipe swipe-id="swipeM35" swipe-list-model="moduleData.items" swipe-slide-item="true" swipe-max-ratio="0.2" swipe-min-distance="40" swipe-responsive="true" swipe-responsive320="1" swipe-responsive640="2" swipe-responsive900="2">-->
+		<div class="unit unit_bn_promo typeB" id="{{'slideM35_01'| radnomid}}" roll-swipe-banner rolling="true" width320="1" width640="1" width900="1" info="randomItems" endfnc="swipeEnd">
+			<ul class="fclear swipeBox">
+				<li class="shop1" ng-repeat="item in randomItems" ng-click="logGAEvtModuleEach(item, $index + 1);mainBannerClick(item.linkUrl, item.isOutLink, '')">
+					<p class="imgwrap cover_img"><img ng-src="{{item.imgUrl}}"></p>
+<!--					<div class="titwrap">
+						<span class="subtit" ng-if="item.topTxt">{{item.topTxt}}</span>
+						<div class="maintitwrap">
+							<span class="maintit txt1">{{item.btmTxt.split('\n')[0]}}</span><br/>
+							<span class="maintit txt2">{{item.btmTxt.split('\n')[1]}}</span>
+						</div>
+					</div>
+-->				</li>
+			</ul>
+		</div>
+		<div class="bn_pagewrap dim30" ng-click="logGAEvtModuleEach(item, '전체보기', '전체보기');showAll()" ng-class="{all:moduleData.items.length > 1}">
+			<span class="paging"><span class="curpage">{{sb_index}}</span> / <span>{{moduleData.items.length}}</span></span>
+			<span class="plus">+</span>
+		</div>
+
+		<!--전체보기-->
+		<div class="unit unit_bn_promo typeB all fixed" ng-show="isShowAll">
+			<p class="tit" ng-click="showAllClose()">
+			    <img ng-src="http://image.lotte.com/lotte/mo2018/main/ic-close_20181030.png">
+			</p>
+			<ul>
+				<li class="shop1" ng-repeat="item in randomItems" ng-click="logGAEvtModuleEach(item, $index + 1, null, true);mainBannerClick(item.linkUrl, item.isOutLink, '')">
+					<p class="imgwrap2"><img ng-src="{{item.imgUrl}}"></p>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>

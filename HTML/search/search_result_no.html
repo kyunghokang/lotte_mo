@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">
+<!----------------- current css ----------------->
+    
+<link rel="stylesheet" href="/lotte/resources_dev/search/search_list.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+</head>
+<body>
+
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<!-- container -->
+<section id="container">
+    <!-- s: 검색 결과 없음 -->
+    <div class="empty_result_wrap">
+        <!-- 검색 결과 없음 /-->
+        <div class="empty_result">
+            <p class="result">'<span class="error_keyword">나이키</span>'(으)로 <strong>검색된 상품이 없습니다.</strong></p>
+            <p class="desc">검색어가 정확한지 확인해주세요.</p>
+        </div>
+        <!--/ 검색 결과 없음 -->
+
+        <!-- 오탈자 /-->
+        <div class="miss_keyword">
+            <a href="#">
+                <h3>혹시 이 단어를 찾으셨나요?</h3>
+                <div class="result">원피스<span class="desc">(검색결과 <em>41,861</em>개)</span><span class="btn_result">결과보기</span></div>
+            </a>
+        </div>
+        <!--/ 오탈자 -->
+
+        <!-- 급상승 검색어 /-->
+        <div class="favlst">
+            <h3>급상승검색어</h3>
+            <p class="date">(2015. 08. 26 현재)</p>
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="no">1</span>크록스
+                        <span class="change none">-</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="no">2</span>한글과컴퓨터
+                        <span class="change up">929</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="no">3</span>원피스
+                        <span class="change down">12</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="no">4</span>스커트
+                        <span class="change new">NEW</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="no">5</span>가디건
+                        <span class="change none">12</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="no">6</span>아디다스
+                        <span class="change none">NEW</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="no">7</span>트윈키즈
+                        <span class="change none">12</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="no">8</span>mcm
+                        <span class="change none">NEW</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="no">9</span>보니알렉스
+                        <span class="change none">12</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="no">10</span>크로크다일레이디
+                        <span class="change new">NEW</span>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+        <!--/ 급상승 검색어 -->
+    </section>
+    <!--e: 검색 결과 없음 -->
+</section>
+<!-- //container -->
+
+<!-- footer -->
+<section ng-include src="'/HTML/include/footer.html'"></section>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplSpecMallDetailProduct" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/unit/comm_unit.html",
+                    "lotte/resources_dev/mall/spec_mall_detail_product_container.html",
+                    "lotte/resources_dev/mall/spec_mall_cate.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/spec_mall_detail_product.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsSpecMallDetailProduct" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mall/spec_mall_detail_product.js",
+                    "lotte/resources_dev/mall/spec_mall_cate.js",
+                    "lotte/resources_dev/common/lotte_ngswipe.js",
+                    "lotte/resources_dev/common/lotte_unit.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/spec_mall_detail_product.js"
+            }
+        },
+
+        "uglify" : {
+            "jsSpecMallDetailProduct" : {
+                "src" : "lotte/resources/<%= version %>/spec_mall_detail_product.js",
+                "dest" : "lotte/resources/<%= version %>/spec_mall_detail_product.min.js"
+            },
+            "tplSpecMallDetailProduct" : {
+                "src" : "lotte/resources/<%= version %>/spec_mall_detail_product.template.js",
+                "dest" : "lotte/resources/<%= version %>/spec_mall_detail_product.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssSpecMallDetailProduct" : {
+                "src" : [
+                    "lotte/resources_dev/mall/spec_mall_detail_product.css",
+                    "lotte/resources_dev/list/prd_lst.css",
+                    "lotte/resources_dev/unit/comm_unit.css",
+                    "lotte/resources_dev/icon/unit_ico.css",
+                    "lotte/resources_dev/mall/spec_mall_cate.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/spec_mall_detail_product.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanSpecMallDetailProduct" : [
+                "lotte/resources/<%= version %>/spec_mall_detail_product.js",
+                "lotte/resources/<%= version %>/spec_mall_detail_product.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlSpecMallDetailProduct" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mall/spec_mall_detail_product.html" : "mall/spec_mall_detail_product_dev.html"
+                }
+            }
+        }
+    }
+}

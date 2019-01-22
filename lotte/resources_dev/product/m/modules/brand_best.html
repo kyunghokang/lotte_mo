@@ -1,0 +1,23 @@
+<div  ng-if="pageUI.loadData.product_brandBest.brndNm && pageUI.data.commonInfo.goodsCmpsCd != '30'"> <!--* [상품상세] 브랜드 베스트 상품 	* product module: brand-best-->
+	<div class="prd_title mt10">
+		<p>{{pageUI.loadData.product_brandBest.brndNm | txt7Length}} <span ng-if="pageUI.loadData.product_brandBest.brndNm.length > 7">...</span> 베스트상품</p>
+		<div class="btn_bs" ng-class="{on:pageUI.loadData.product_brandBest.saveBrndYn || pageUI.isMyBrand}" ng-click="addBrandFavoriteClick(pageUI.loadData.product_brandBest.brndNo, pageUI.loadData.product_brandBest.brndNm); sendTclick('m_RDC_ProdDetail_Clk_BrdBtn01');logGAEvtPrdView('브랜드베스트상품','즐겨찾기');"><span>즐겨찾기</span></div>
+	</div>
+	<div class="unit_prod_4">
+		<ul>
+			<li ng-repeat="item in pageUI.loadData.product_brandBest.prdList.items">
+				<a ng-click="gotoProductPage(item.goodsNo, item.curDispNo, item.curDispNoSctCd, 'm_RDC_ProdDetail_Clk_RelBrd_Prd'+ idxSetDigit($index+1));logGAEvtPrdView('브랜드베스트상품', idxSetDigit($index+1),item.goodsNo);">
+					<div class="imgwrap">
+						<img ng-src="{{item.imgUrl}}" alt="" />
+					</div>
+					<p class="prodname">{{item.goodsNm}}</p>
+					<p class="price">{{item.price | currency:'':0}}<em>원<span ng-if="item.isPlanPrd">~</span></em></p>
+				</a>
+			</li>
+		</ul>
+	</div>
+	
+	<div class="btnMore">
+		<span class="btnArea"><a ng-click="linkClick(pageUI.loadData.product_brandBest.brndShopUrl, 'm_RDC_ProdDetail_Clk_BrdLnk02');logGAEvtPrdView('브랜드베스트상품','바로가기');"><span>브랜드샵 바로가기</span></a></span>
+	</div>
+</div>

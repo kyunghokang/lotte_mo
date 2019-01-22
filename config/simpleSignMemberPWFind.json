@@ -1,0 +1,71 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplfindPw" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/login/find_ellotte_head.html",
+                    "lotte/resources_dev/login/find_pw_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberPWFind.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsfindPw" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [                    
+                    "lotte/resources_dev/login/find_pw.js",
+                    "lotte/resources_dev/login/find_ellotte.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberPWFind.js"
+            }
+        },
+
+        "uglify" : {
+            "jsfindPw" : {
+                "src" : "lotte/resources/<%= version %>/simpleSignMemberPWFind.js",
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberPWFind.min.js"
+            },
+            "tplfindPw" : {
+                "src" : "lotte/resources/<%= version %>/simpleSignMemberPWFind.template.js",
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberPWFind.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssfindPw" : {
+                "src" : [
+                    "lotte/resources_dev/login/find_ellotte.css",
+                    "lotte/resources_dev/login/login.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberPWFind.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanfindPw" : [
+                "lotte/resources/<%= version %>/simpleSignMemberPWFind.js",
+                "lotte/resources/<%= version %>/simpleSignMemberPWFind.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlfindPw" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "login/simpleSignMemberPWFind.html" : "login/simpleSignMemberPWFind_dev.html"
+                }
+            }
+        }
+    }
+}

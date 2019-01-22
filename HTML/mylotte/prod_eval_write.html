@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+    <meta charset="utf-8">
+    <title>롯데닷컴 - 상품평 작성</title>
+    <meta content="no_cache" http-equiv="cache_control">
+    <meta content="0" http-equiv="expires">
+    <meta content="no_cache" http-equiv="pragma">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+    <meta content="telephone=no" name="format-detection">
+    <!-- test css -->
+    <link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+    <link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+    <link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+    <link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+    <link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+    <link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+    <link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+    <link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">
+
+    <!----------------- current css ----------------->
+
+    <link rel="stylesheet" href="/lotte/resources_dev/unit/unit_list.css">
+    <link rel="stylesheet" href="/lotte/resources_dev/mylotte/mylotte.css">
+    <link rel="stylesheet" href="/lotte/resources_dev/product/m/comment_write.css">
+
+    <!---------------// current css ----------------->
+
+    <!-- test js -->
+    <script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+    <script src="/lib/angular/angular.min.js"></script>
+    <script src="/lib/angular/angular-route.min.js"></script>
+    <script src="/HTML/js/testPub.js"></script>
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<section id="container">
+    <!-- contents -->
+
+    <section class="prod_eval">
+        <section class="list write">
+            <div class="group">
+                <span class="thumb">
+                    <a href="#"><img src="http://image.lotte.com/goods/10/70/74/9/9747010_1_280.jpg" alt=""></a>
+                </span>
+                <span class="cont01">
+                    <a href="#">
+                        <p class="tl">[쿠기] 여기서만 골라도 여신~ 블라우스/원피스/스커트</p>
+                    </a>
+
+                    <p class="spec e-coupon">
+                        <span>투썸 플레이스 전국 매장(롯데월드점 이용 불가)</span>
+                    </p>
+                    <p class="price">
+                        <span><strong>35,460원</strong></span>
+                    </p>
+
+                    <!--스마트픽-- >
+                    <p class="spec">
+                        <span>색상:화이트(WH)</span>
+                        <span>|</span>
+                        <span>사이즈:45(55)</span>
+                    </p>
+                    <p class="spec smart"><span class="flag smart">스마트픽</span>롯데백화점 영등포점 르샵</p>
+                    <p class="price">
+                        <span><strong>35,460원</strong></span>
+                    </p>
+                    <!---->
+                </span>
+            </div>
+
+            <div class="cont">
+                <!--<div class="selWrap">
+                    <select>
+                        <option value="">상품평 간편 작성 내용 선택</option>
+                        <option value="">상품평 간편 작성 내용 선택2</option>
+                        <option value="">상품평 간편 작성 내용 선택3</option>
+                    </select>
+                </div>
+
+                <textarea placeholder="" id="" name="">상품평테스트</textarea>-->
+                <p class="food_cmt">식품·건강용품 등 일부 상품은 상품 기능 및 효과에 대한 오해의 소지가 있어 부득이 상품평을 게시하지 못하므로 만족도만 등록하실 수 있습니다.<br>(상품평에 대한 클로버는 동일하게 지급됩니다.)</p>
+            </div>
+
+            <span class="seper_area"></span>
+
+            <div class="cont score">
+                <h3>고객만족도 선택</h3>
+                <ul class="scoreList">
+                    <li>
+                        <span class="txt">가격</span>
+                        <span class="score">
+                            <span class="txt_radio"><input type="radio" name="radio1" class="radio01" id="choice01" checked="checked" value="5"> <label for="choice01">5</label></span>
+                            <span class="txt_radio"><input type="radio" name="radio1" class="radio01" id="choice02" checked="" value="4"> <label for="choice02">4</label></span>
+                            <span class="txt_radio"><input type="radio" name="radio1" class="radio01" id="choice03" checked="" value="3"> <label for="choice03">3</label></span>
+                            <span class="txt_radio"><input type="radio" name="radio1" class="radio01" id="choice04" checked="" value="2"> <label for="choice04">2</label></span>
+                            <span class="txt_radio"><input type="radio" name="radio1" class="radio01" id="choice05" checked="" value="1"> <label for="choice05">1</label></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="txt">품질</span>
+                        <span class="score">
+                            <span class="txt_radio"><input type="radio" name="radio2" class="radio01" id="choice21" checked="checked" value="5"> <label for="choice21">5</label></span>
+                            <span class="txt_radio"><input type="radio" name="radio2" class="radio01" id="choice22" checked="" value="4"> <label for="choice22">4</label></span>
+                            <span class="txt_radio"><input type="radio" name="radio2" class="radio01" id="choice23" checked="" value="3"> <label for="choice23">3</label></span>
+                            <span class="txt_radio"><input type="radio" name="radio2" class="radio01" id="choice24" checked="" value="2"> <label for="choice24">2</label></span>
+                            <span class="txt_radio"><input type="radio" name="radio2" class="radio01" id="choice25" checked="" value="1"> <label for="choice25">1</label></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="txt">디자인</span>
+                       <span class="score">
+                            <span class="txt_radio"><input type="radio" name="radio3" class="radio01" id="choice31" checked="checked" value="5"> <label for="choice31">5</label></span>
+                            <span class="txt_radio"><input type="radio" name="radio3" class="radio01" id="choice32" checked="" value="4"> <label for="choice32">4</label></span>
+                            <span class="txt_radio"><input type="radio" name="radio3" class="radio01" id="choice33" checked="" value="3"> <label for="choice33">3</label></span>
+                            <span class="txt_radio"><input type="radio" name="radio3" class="radio01" id="choice34" checked="" value="2"> <label for="choice34">2</label></span>
+                            <span class="txt_radio"><input type="radio" name="radio3" class="radio01" id="choice35" checked="" value="1"> <label for="choice35">1</label></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="txt">배송</span>
+                        <span class="score">
+                            <span class="txt_radio"><input type="radio" name="radio4" class="radio01" id="choice41" checked="checked" value="5"> <label for="choice41">5</label></span>
+                            <span class="txt_radio"><input type="radio" name="radio4" class="radio01" id="choice42" checked="" value="4"> <label for="choice42">4</label></span>
+                            <span class="txt_radio"><input type="radio" name="radio4" class="radio01" id="choice43" checked="" value="3"> <label for="choice43">3</label></span>
+                            <span class="txt_radio"><input type="radio" name="radio4" class="radio01" id="choice44" checked="" value="2"> <label for="choice44">2</label></span>
+                            <span class="txt_radio"><input type="radio" name="radio4" class="radio01" id="choice45" checked="" value="1"> <label for="choice45">1</label></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="txt">사이즈</span>
+                        <a href="#" class="btn s">딱 맞다</a>
+                        <a href="#" class="btn s on">작다</a>
+                        <a href="#" class="btn s">크다</a>
+                    </li>
+                    <li>
+                        <span class="txt">색상</span>
+                        <a href="#" class="btn s on">같다</a>
+                        <a href="#" class="btn s">어둡다</a>
+                        <a href="#" class="btn s">밝다</a>
+                    </li>
+                </ul>
+            </div>
+
+            <span class="seper_area"></span>
+
+            <div class="btn_list cont photo">
+                <span class="l_area">사진등록<span class="gray">(사진첨부 1개 가능)</span></span>
+                <span class="r_area">
+                    <a href="#" class="btn_style4"><img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/ic_btn_photo_add.png"> 사진첨부</a>
+                    <!--<a href="#" class="btn_style2">이용후기 작성</a>-->
+                </span>
+            </div>
+
+            <!-- 포토 -- >
+            <div class="photo_del">
+                <ul class="photo">
+                    <li>
+                        <p class="img"><img src="http://image.lotte.com/upload/crit/shinss_201508051439011.jpg" alt="상품평이미지1"></p>
+                        <a href="javascript:deleteIMG('1');"><span class="del">삭제</span></a>
+                    </li>
+                    <li>
+                        <p class="img"><img src="http://image.lotte.com/upload/crit/shinss_201508051439011.jpg" alt="상품평이미지1"></p>
+                        <a href="javascript:deleteIMG('1');"><span class="del">삭제</span></a>
+                    </li>
+                    <li><p class="img"><img src="http://image.lotte.com/lotte/mobile/mobile_new/mylotte/blank.png" alt="빈이미지"></p></li>
+                </ul>
+            </div>
+            <!--//포토-->
+
+            <!--SNS-->
+            <div class="confirm sns_btns1 open"><!--open시 사용 'open' 클래스 추가, close 시 삭제-->
+                <a href="#" class="btn b normal"><span class="ic_sns"></span><span>내상품평, 친구에게도 공유하기</span><span class="ic_arrow_light"></span></a>
+                <!--sns아이콘-->
+                <ul class="sns_icons">
+                    <li class="kakaotalk"><i></i>카카오톡</li>
+                    <li class="facebook"><i></i>페이스북</li>
+                    <li class="sms"><i></i>문자</li>
+                    <li class="kakaostory"><i></i>카카오스토리</li>
+                    <li class="twitter"><i></i>트위터</li>
+                </ul>
+                <!--sns 선택-->
+                <div class="sns_selected"><span class="kakaotalk"></span><span class="explain"><b>카카오톡</b>에 내가 작성한 상품평을 공유합니다.</span><div class="close"><a href="javascript:;">닫기</a></div></div>
+            </div>
+            <!--//SNS-->
+
+            <!-- 버튼 2개 -->
+            <div class="confirm">
+                <a href="#" class="btn b">취소</a>
+                <a href="#" class="btn b on">등록하기</a>
+            </div>
+            <!---->
+            <!-- 버튼 3개 -- >
+            <div class="confirm btns3">
+                <a href="#" class="btn b">취소</a>
+                <a href="#" class="btn b normal">삭제하기</a>
+                <a href="#" class="btn b on">수정하기</a>
+            </div>
+            <!---->
+
+            <section class="stipul">
+                <ul class="bullet">
+                    <li>매월 우수 상품평 작성자 50분께 클로버 3,000개 적립됩니다.</li>
+                    <li>구매하신 상품을 직접 촬영하여 올리시면 클로버 300개가 적립
+                        됩니다.<br>(사진 상품평, 이용후기는 담당부서 확인 후 1~2일 내 적립, 주말
+                        /공휴일 제외)
+                    </li>
+                    <li>상품평의 저작권은 롯데닷컴에 있으며, 등록 즉시 바로 사이트에
+                        게재, 모두 공개를 원칙으로 합니다.</li>
+                    <li>상품평에 적합하지 않은 내용, 미풍양속을 해치는 내용 등은 통보
+                        없이 삭제될 수 있으며 클로버가 지급되지 않습니다.</li>
+                    <li>상품문의, 교환/반품 요청, 제품이상 등 불편사항은 ‘상품문의’
+                        또는 ‘고객센터 > 1:1 문의하기’를 이용하세요.</li>
+                    <li>고객님이 상품평을 작성해주신 상품과 동일한 모델번호를 가진
+                        다른 상품이 있을 시 상품평은 공통으로 노출됩니다.</li>
+                </ul>
+            </section>
+
+        </section>
+
+    </section>
+
+    <!-- //contents -->
+</section>
+
+<section ng-include src="'/HTML/include/footer.html'"></section>
+
+</body>
+</html>

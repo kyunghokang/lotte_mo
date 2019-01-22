@@ -1,0 +1,180 @@
+1. 업무명 : 엘롯데 메인 > 이벤트
+2. 담당자 : 강영웅
+3. URL : http://molocal.ellotte.com/json/main/main_contents.json?dispNo=5538664
+4. 파라미터
+	- dispNo : 카테고리 번호(전시매장번호)
+5. JSON 파라미터
+	1) mix_banner : 배너 mix 여부
+	2) receipt_event_banner_list : 영수증 이벤트 배너
+		- img : 이미지 배너 정보
+			{
+				- banner_nm : 배너명
+				- img_url : 이미지 URL
+				- link_url : Link URL
+				- mov_frme_cd : 이동 프레임 여부
+				- conts_desc_cont : 설명 내용
+				- alt_cont : ALT 내용
+			}
+	3) marketing_banner_list : 마케팅 배너
+		- img : 이미지 배너 정보
+			{
+				- banner_nm : 배너명
+				- img_url : 이미지 URL
+				- link_url : Link URL
+				- mov_frme_cd : 이동 프레임 여부
+				- conts_desc_cont : 설명 내용
+				- alt_cont : ALT 내용
+			}
+	4) saun_event_list : 이벤트 배너
+		- evt_no : 이벤트 번호
+		- evt_nm : 이벤트명
+		- evt_status : 이벤트 진행 상태
+			(001:준비중, 002:마감임박, 003:진행중, 004:결과준비중, 005:지급준비중, 006:당첨자결과보기, 007:지급완료, 008:마감)
+		- sbsc_strt_dtime : 응모 신청 시작일
+		- sbsc_end_dtime : 응모 신청 종료일
+		- pur_strt_dtime : 구매 시작일
+		- pur_end_dtime : 구매 종료일
+		- img_url : 이미지 URL
+		- link_url : Link URL
+		- mov_frme_cd : 이동 프레임 여부
+6. JSON
+{
+    "main_contents": {
+        "mix_banner": false,
+        "receipt_event_banner_list": {
+            "items": [{
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5538664_45959_0_30_13008421_1.png",
+                    "link_url": "/event/m/viewDepartmentReceiptEventMain.do",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "",
+                    "alt_cont": "1"
+                },
+                "text": null,
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": null,
+                "conr_set_disp_prio_rnk": 1,
+                "conts_disp_prio_rnk": 999
+            }],
+            "total_count": 1
+        },
+        "marketing_banner_list": {
+            "items": [{
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5538664_45960_0_30_13008423_1.png",
+                    "link_url": "#",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "",
+                    "alt_cont": "1"
+                },
+                "text": null,
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": null,
+                "conr_set_disp_prio_rnk": 1,
+                "conts_disp_prio_rnk": 999
+            }, {
+                "img": {
+                    "banner_nm": "",
+                    "img_url": "http://image.lotte.com/upload/display/corner/5538664_45960_0_30_13008423_2.png",
+                    "link_url": "#",
+                    "mov_frme_cd": false,
+                    "conts_desc_cont": "",
+                    "alt_cont": "2"
+                },
+                "text": null,
+                "html": null,
+                "goods": null,
+                "planshop": null,
+                "brand": null,
+                "img_list": null,
+                "text_list": null,
+                "goods_list": null,
+                "conr_set_disp_prio_rnk": 1,
+                "conts_disp_prio_rnk": 999
+            }],
+            "total_count": 2
+        },
+        "saun_event_list": {
+            "items": [{
+                "evt_no": 303856,
+                "evt_nm": "[11/9]사이버_먼데이 기념! 모바일앱 5천점 추가적립",
+                "evt_status": "005",
+                "sbsc_strt_dtime": "2015.11.09",
+                "sbsc_end_dtime": "2015.11.15",
+                "pur_strt_dtime": "2015.11.09",
+                "pur_end_dtime": "2015.11.09",
+                "img_url": "http://image.lotte.com/upload/event/detail/303856_1.jpg",
+                "link_url": "http://molocal.ellotte.com/event/eventSaunMain.do?evt_no=303856",
+                "mov_frme_cd": false
+            }, {
+                "evt_no": 303254,
+                "evt_nm": "엘롯데_11월 1차 롯데카드 롯데 스마트픽 구매사은 (가전가구 포함, 기간별 누적)",
+                "evt_status": "005",
+                "sbsc_strt_dtime": "2015.11.01",
+                "sbsc_end_dtime": "2015.11.15",
+                "pur_strt_dtime": "2015.11.01",
+                "pur_end_dtime": "2015.11.08",
+                "img_url": "http://image.lotte.com/upload/event/detail/303254_1.jpg",
+                "link_url": "http://molocal.ellotte.com/event/eventSaunMain.do?evt_no=303254",
+                "mov_frme_cd": false
+            }, {
+                "evt_no": 303857,
+                "evt_nm": "엘롯데_11월 2차 롯데카드 롯데 스마트픽 구매사은 (가전가구 포함, 기간별 누적)",
+                "evt_status": "003",
+                "sbsc_strt_dtime": "2015.11.09",
+                "sbsc_end_dtime": "2015.11.22",
+                "pur_strt_dtime": "2015.11.09",
+                "pur_end_dtime": "2015.11.15",
+                "img_url": "http://image.lotte.com/upload/event/detail/303857_1.jpg",
+                "link_url": "http://molocal.ellotte.com/event/eventSaunMain.do?evt_no=303857",
+                "mov_frme_cd": false
+            }, {
+                "evt_no": 301857,
+                "evt_nm": "엘롯데_10월 3차 롯데카드 롯데 스마트픽 구매사은 (가전가구 포함, 기간별 누적)",
+                "evt_status": "005",
+                "sbsc_strt_dtime": "2015.10.19",
+                "sbsc_end_dtime": "2015.11.01",
+                "pur_strt_dtime": "2015.10.19",
+                "pur_end_dtime": "2015.10.25",
+                "img_url": "http://image.lotte.com/upload/event/detail/301857_1.jpg",
+                "link_url": "http://molocal.ellotte.com/event/eventSaunMain.do?evt_no=301857",
+                "mov_frme_cd": false
+            }, {
+                "evt_no": 301860,
+                "evt_nm": "[10/19]사이버_먼데이 기념! 모바일앱 5천점 추가적립",
+                "evt_status": "007",
+                "sbsc_strt_dtime": "2015.10.19",
+                "sbsc_end_dtime": "2015.10.25",
+                "pur_strt_dtime": "2015.10.19",
+                "pur_end_dtime": "2015.10.19",
+                "img_url": "http://image.lotte.com/upload/event/detail/301860_1.jpg",
+                "link_url": "http://molocal.ellotte.com/event/eventSaunMain.do?evt_no=301860",
+                "mov_frme_cd": false
+            }, {
+                "evt_no": 301553,
+                "evt_nm": "엘롯데_10월 2차 롯데카드 롯데 스마트픽 구매사은 (가전가구 포함, 기간별 누적)",
+                "evt_status": "007",
+                "sbsc_strt_dtime": "2015.10.12",
+                "sbsc_end_dtime": "2015.10.25",
+                "pur_strt_dtime": "2015.10.12",
+                "pur_end_dtime": "2015.10.18",
+                "img_url": "http://image.lotte.com/upload/event/detail/301553_1.jpg",
+                "link_url": "http://molocal.ellotte.com/event/eventSaunMain.do?evt_no=301553",
+                "mov_frme_cd": false
+            }],
+            "total_count": 6
+        }
+    }
+}

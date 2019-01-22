@@ -1,0 +1,25 @@
+@charset "UTF-8";
+.cont_wrap{padding-top:5px;}
+
+/* 최상단 띠배너 */
+.cont_wrap .top_banner_list{min-height:45px;margin-bottom:7px}
+
+/* Template - Common - Responsive */
+@media screen and (min-width:640px) {
+	/* 최상단 띠배너 */
+	.cont_wrap .top_banner_list >ul:after{content:"";display:block;clear:both;}
+	.cont_wrap .top_banner_list >ul >li{float:left;width:50%;padding:0 3px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	}
+
+	/* 스와이프 */
+	.cont_wrap .top_swipe_wrap .swipe_wrap >ul >li{width:50%;padding:0 3px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	}
+	.cont_wrap .top_swipe_wrap .swipe_wrap >ul >li >a{border:1px solid #dcdcdc;}
+	.cont_wrap .top_swipe_wrap .indicator >li:nth-child(even){display:none;}
+}

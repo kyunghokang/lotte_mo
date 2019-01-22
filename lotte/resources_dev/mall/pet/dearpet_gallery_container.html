@@ -1,0 +1,85 @@
+<section ng-show="contVisible" class="cont_minheight dearpet_v4">
+	<section class="pageLoading" ng-show="pageLoading"><p class="loading half"></p></section>
+	<section ng-show="!pageLoading">
+		<div class="sub_header_wrap">
+			<header id="head_sub" sub-header-each ng-show="subTitle" class="fixedSubHeader " ng-class="{fixedHeader: fixedHeader && subHeaderFixed && !appObj.isNativeHeader}">
+				<div class='head_sub_inner'>
+					<h2><a ng-click="mallMainClick('m_DC_SpeDisp_Dearpet_Clk_logo')"><span>Dear Pet</span></a></h2>
+					<a class='share' ng-click='petShare()'><span>공유</span></a>
+				</div>
+				<div class="fix_olny " ng-class='{sgWirteFix:sheadHide}'>
+					<div class="swag_go mg5">
+						<a href="#" onclick="angular.element('.swag_go.isReal>a').trigger('click')">뽐내기 작성하기</a>
+					</div>
+				</div>
+			</header>
+		</div>
+		<section id="container">
+			<!-- 카테고리 -->
+			<div class="">
+				<pet-mall-sub-ctg></pet-mall-sub-ctg>
+			</div>
+			<!-- //카테고리 -->
+
+			<!-- 디어펫그램 -->
+			<div ng-if="screenData.curDispNo == '5566436' && !likeitPost">
+				<pet-mall-petgram></pet-mall-petgram>
+			</div>
+
+			<!-- 포토후기 -->
+			<div ng-if="screenData.curDispNo == '5566437' && !likeitPost">
+				<pet-mall-photoview></pet-mall-photoview>
+			</div>
+
+			<!-- 뽐내기 -->
+			<div ng-if="screenData.curDispNo == '5566438' && !likeitPost"  ng-class='{topSpace:sheadHide}'>
+				<pet-mall-swag></pet-mall-swag>
+			</div>
+
+			<!-- 좋아요 5566439 는 임시코드 개발에서 추가되면 변경하야함 -->
+			<div ng-if="!screenData.curDispNo&&likeitPost">
+				<pet-mall-like></pet-mall-like>
+			</div>
+
+			<div ng-if='!screenData.gallery_list.length' class='no_list_data'>
+				<p>등록된 게시물이 없습니다.</p>
+			</div>
+
+		</section>
+	</section>
+
+	<!-- imagePopUp -->
+	<ImagePopUp
+		ng-if="popOption.open && popOption.data.length"
+		class='gellery-zoomPopup'>
+		<figure>
+			<img
+				ng-pinch-zoom
+				max-scale="4"
+				ng-src='{{popOption.data[popOption.cnt].img_url}}'
+				orientable
+				width='{{imageSize.width}}'
+				height='{{imageSize.height}}'
+				alt=''/>
+			</figure>
+		<span
+			class='close'
+			ng-click='popOption.popState()'>
+		</span>
+		<div class='indicator'>
+			<span class='page'>
+				{{popOption.cnt +1}}/{{popOption.data.length}}
+			</span>
+		</div>
+		<span
+			ng-if='popOption.cnt>0'
+			class='arrow prev'
+			ng-click='popOption.prev()'>
+		</span>
+		<span
+			ng-if='popOption.data.length>1&&popOption.cnt<popOption.data.length-1'
+			class='arrow next'
+			ng-click='popOption.next()'>
+		</span>
+	</ImagePopUp>
+</section>

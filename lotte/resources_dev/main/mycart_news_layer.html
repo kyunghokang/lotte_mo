@@ -1,0 +1,14 @@
+<div class="mycart_news_layer" ng-class="{app:appObj.isApp}">
+<!-- 20141218 : 모바일 앱푸시 -->
+    <div class="section">
+    <a ng-click="cornerBanView('/planshop/m/smartAlarmList.do?curDispNoSctCd=21', 'm_customizing_pop0108');setCookieToday();">
+      <p class="info" ng-repeat="menu in alarmInfo">
+        <span ng-if="menu.sum_tgt_sct_cd == 'CART'">장바구니에 담으신</span>
+        <span ng-if="menu.sum_tgt_sct_cd == 'WISH'">위시리스트에 담으신</span> 
+        <strong>{{menu.goods_nm}}</strong>의 가격이 <span>할인</span>되었습니다.
+        
+      </p>
+    </a>
+    </div>
+  <a ng-click="setCookieToday();" class="btn">닫기</a>
+</div>

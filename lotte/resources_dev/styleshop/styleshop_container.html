@@ -1,0 +1,121 @@
+<section ng-show="contVisible" class="cont_minheight">
+	
+	<!-- 카테고리 선택 영역 -->
+	<section class="category_ctg_wrap">
+		<!-- 셀렉트 박스 -->
+		<ul ng-class="{
+			depth1: screenData.ctg_depth_idx == 0,
+			depth2: screenData.ctg_depth_idx == 1,
+			depth3: screenData.ctg_depth_idx == 2,
+			open: ctgOpenFlag
+			}">
+			<li ng-class="{on: ctgOpenFlag && screenData.ui.selectbox_select_idx == 0}">
+				<a class="ctg_tit" ng-click="ctgSelectBoxClick(0)"><span class="depth_tit"><em>{{screenData.ui.midCtg.selected_hash_nm}}</em></span></a>
+			</li>
+			<li ng-if="screenData.ctg_depth_idx > 0"
+				ng-class="{on: ctgOpenFlag && screenData.ui.selectbox_select_idx == 1}">
+				<a class="ctg_tit" ng-click="ctgSelectBoxClick(1)"><span class="depth_tit"><em>{{screenData.ui.smlCtg.selected_hash_nm}}</em></span></a>
+			</li>
+			<li ng-if="screenData.ctg_depth_idx > 1"
+				ng-class="{on: ctgOpenFlag && screenData.ui.selectbox_select_idx == 2}">
+				<a class="ctg_tit" ng-click="ctgSelectBoxClick(2)"><span class="depth_tit"><em>{{screenData.ui.detailCtg.selected_hash_nm}}</em></span></a>
+			</li>
+		</ul>
+
+		<!-- 카테고리 스와이프 영역 -->
+		<div ng-show="ctgOpenFlag" class="ctg_lst_wrap">
+			<ul>
+				<li ng-if="screenData.ui.selectbox_select_idx == 0" ng-class="{on: screenData.ui.selectbox_select_idx == 0}">
+					<div id="swipeCtg1" ng-controller="lotteNgSwipeCtrl" class="swipe_wrap">
+						<ul lotte-ng-list-swipe
+							swipe-id="CtgDepth1"
+							swipe-list-model="screenData.ui.midCtg.slideItems"
+							swipe-slide-item="true"
+							swipe-max-ratio="0.2"
+							swipe-min-distance="40"
+							class="swipe_cont">
+							<li ng-repeat="page in screenData.ui.midCtg.slideItems">
+								<p class="ctg_item" ng-repeat="item in page">
+									<a ng-if="item.ctg_no" ng-click="ctgChange(item)"
+										ng-class="{on: screenData.ui.midCtg.selected_ctg_no == item.ctg_no}">{{item.hash_nm}}</a>
+									<span ng-if="!item.ctg_no"></span>
+								</p>
+							</li>
+						</ul>
+						<div class="btn_close_wrap"><span class="page_info"><strong>{{swipeIdx + 1}}</strong> / {{screenData.ui.midCtg.slideItems.length}}</span><button ng-click="toggleCtg()" class="btn_close">닫기</button></div>
+					</div>
+				</li>
+				<li ng-if="screenData.ui.selectbox_select_idx == 1" ng-class="{on: screenData.ui.selectbox_select_idx == 1}">
+					<div id="swipeCtg2" ng-controller="lotteNgSwipeCtrl" class="swipe_wrap">
+						<ul lotte-ng-list-swipe
+							swipe-id="CtgDepth2"
+							swipe-list-model="screenData.ui.smlCtg.slideItems"
+							swipe-slide-item="true"
+							swipe-max-ratio="0.2"
+							swipe-min-distance="40"
+							class="swipe_cont">
+							<li ng-repeat="page in screenData.ui.smlCtg.slideItems">
+								<p class="ctg_item" ng-repeat="item in page">
+									<a ng-if="item.ctg_no" ng-click="ctgChange(item)"
+										ng-class="{on: screenData.ui.smlCtg.selected_ctg_no == item.ctg_no}">{{item.hash_nm}}</a>
+									<span ng-if="!item.ctg_no"></span>
+								</p>
+							</li>
+						</ul>
+						<div class="btn_close_wrap"><span class="page_info"><strong>{{swipeIdx + 1}}</strong> / {{screenData.ui.smlCtg.slideItems.length}}</span><button ng-click="toggleCtg()" class="btn_close">닫기</button></div>
+					</div>
+				</li>
+				<li ng-if="screenData.ui.selectbox_select_idx == 2" ng-class="{on: screenData.ui.selectbox_select_idx == 2}">
+					<div id="swipeCtg3" ng-controller="lotteNgSwipeCtrl" class="swipe_wrap">
+						<ul lotte-ng-list-swipe
+							swipe-id="CtgDepth3"
+							swipe-list-model="screenData.ui.detailCtg.slideItems"
+							swipe-slide-item="true"
+							swipe-max-ratio="0.2"
+							swipe-min-distance="40"
+							class="swipe_cont">
+							<li ng-repeat="page in screenData.ui.detailCtg.slideItems">
+								<p class="ctg_item" ng-repeat="item in page">
+									<a ng-if="item.ctg_no" ng-click="ctgChange(item)"
+										ng-class="{on: screenData.ui.detailCtg.selected_ctg_no == item.ctg_no}">{{item.hash_nm}}</a>
+									<span ng-if="!item.ctg_no"></span>
+								</p>
+							</li>
+						</ul>
+						<div class="btn_close_wrap"><span class="page_info"><strong>{{swipeIdx + 1}}</strong> / {{screenData.ui.detailCtg.slideItems.length}}</span><button ng-click="toggleCtg()" class="btn_close">닫기</button></div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</section>
+
+	<!-- 상단 배너 영역 (중카 리스트 상단 코너 상품) -->
+	<section ng-if="screenData.ui.detailCtg.selected_ctg_no == '0' && screenData.first_banner_list.items && screenData.first_banner_list.items.length > 0" class="top_wrap">
+		<ul>
+			<li ng-repeat="item in screenData.first_banner_list.items">
+				<a ng-click="goProduct(item.goods_no, 'm_DC_SpeDisp5_Sub_Cat2_TopCornerItem{{$index + 1}}');">
+					<div class="img_wrap" data-bg-url="{{item.img_url}}" style="background:#ddd center center no-repeat;background-size:auto 100%;"></div>
+					<div class="desc">
+						<div ng-if="$index == 0" class="bg_wrap" style="background-color:{{chkHtmlColorCode(item.bg_color)}}"></div>
+						<span ng-if="$index == 0" class="txt" ng-bind-html="item.banner_nm | toTrustedHtml"></span>
+						<span ng-if="$index != 0" class="price">{{item.price|number}}</span>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</section>
+
+	<!-- 상품 리스트 영역 -->
+	<section ng-if="screenData.prod_list.items && screenData.prod_list.items.length > 0" class="prod_list_wrap">
+		<ul>
+			<li ng-repeat="item in screenData.prod_list.items track by $index">
+				<a ng-click="goProduct(item.goods_no, 'm_DC_SpeDisp5_Sub_Item{{$index + 1}}');">
+					<div class="img_wrap" data-bg-url="{{item.img_url}}" style="background:#ddd center center no-repeat;background-size:100% auto;"></div>
+					<div class="price">{{item.price|number}}</div>
+				</a>
+			</li>
+		</ul>
+	</section>
+
+	<lotte-btntop></lotte-btntop>
+</section>

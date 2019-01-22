@@ -1,0 +1,1 @@
+angular.module("app").run(["$templateCache",function(a){"use strict";a.put("/lotte/resources_dev/talk/voiceCommerce_container.html",'<section ng-show="contVisible" class="cont_minheight" ng-class="{dev_mode:DEV_MODE}">\r\n    \r\n</section>')}]);

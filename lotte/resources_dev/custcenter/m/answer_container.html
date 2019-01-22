@@ -1,0 +1,34 @@
+<section class="cscenter_main">
+	<div class="cnt_info" ng-if="answerListCount">총 문의 <span>{{totalRows}}</span> 답변완료 <span>{{endRows}}</span> 답변대기 <span>{{receiveRows}}</span> </div>
+    <div class="list" ng-class="{empty: !answerListCount}">
+        <ol class="qna" ng-if="answerListCount">
+			<li ng-repeat="item in answerList track by $index">
+                <a ng-click="goQnaDetail(item.ccn_no)" >
+                <p class="thumb" ng-if="item.img_url"><img ng-src="{{item.img_url}}" alt="" /></p>
+                <p class="title" ng-class="{no:!item.img_url}">
+                    <span class="name elli" ng-bind-html="item.goods_nm"></span>
+					<span class="txt elli" ng-bind="item.inq_ans_cont"></span>
+                    <span class="date elli" ng-bind="item.inq_mk_dtime"></span>
+                </p>
+                <p class="state">
+                    <span ng-show="item.ccn_prgs_stat_cd == '01'" class="a01">답변대기</span>
+                    <span ng-show="item.ccn_prgs_stat_cd == '02'" class="a02">답변보기</span>
+                    <span ng-show="item.ccn_prgs_stat_cd == '11'" class="a01">답변준비중</span>
+                </p>
+                </a>
+            </li>
+        </ol>
+        <p class="noti_txt01" ng-if="!answerListCount"></p>
+    </div>
+    
+	<div class="one_to_one list_no" ng-if="completeGetAnswerList && !answerListCount">
+		<div><i></i>문의하신 내역이 없습니다.</div>
+	</div>
+    
+    <div class="list">
+        <div class="list_more" ng-if="answerListCount < totalRows">
+        	<a href="#" ng-click="getAnswerList()"><strong>더보기</strong> (<span>{{answerListCount}}/{{totalRows}}</span>)</a>
+        </div>
+        <p class="noti_txt01">답변이 등록되면 회원정보에 등록된 <span>이메일과 휴대폰</span>으로 안내됩니다.</p>
+    </div>
+</section>

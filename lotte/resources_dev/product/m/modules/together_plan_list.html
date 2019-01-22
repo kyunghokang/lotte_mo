@@ -1,0 +1,25 @@
+<div>
+	<div class="prod_detail_wrap" ng-if="pageUI.loadData.product_togePlan != null && pageUI.loadData.product_togePlan.items.length >= 3">
+		<!--함께 볼만한 기획전-->
+		<div class="detail_base_wrap toge_plan div_line_b10 full_width">
+			<p class="detail_tit">함께 볼만한 기획전<span></p>
+		
+			<div lotte-slider id="prodTogePlanRollBann"
+				 class="swipe_wrap bg_white">
+				<ul class="swipeBox">
+					<li ng-repeat="item in pageUI.loadData.product_togePlan.items | limitTo:6" ng-if="item.goodsImgUrl" >
+						<a ng-click="togePlanGoPlanshop(item,$index)" class="item_wrap">
+							<div class="imageCon">
+								<img ng-src="{{item.goodsImgUrl}}" alt="" />
+							</div>
+							<div class="titleCon">
+								<div class="name">{{item.btmTxt}}</div>
+							</div>
+						</a>
+						<!--<a class="item_wrap color_2 blank" ng-if="(pageUI.loadData.product_togePlan.items|paging:$index:2).length == 1"></a> js 파일에서 짝수개로 데이터를 맞추어 이부분 주석처리함-->
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

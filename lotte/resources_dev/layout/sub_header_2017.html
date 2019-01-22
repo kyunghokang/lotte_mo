@@ -1,0 +1,70 @@
+<section>
+	<div class="sub_header_wrap">
+		<header id="head_sub" ng-show="subTitle" class="fixedSubHeader" ng-class="{wine: screenData.isWine && !screenData.isComm, fixedHeader: fixedHeader && subHeaderFixed && !appObj.isNativeHeader}">
+			<h2 ng-class="{search:searchCntTxt}" class="{{addCls}}">
+				<!--<span ng-if="kShopUI.dispNo != '5558814'">
+					<span class="title" ng-bind="subTitle" ></span>
+					<em ng-if="searchCntTxt" class="fixed_txt" ng-bind="searchCntTxt"></em>
+				</span>
+				<span ng-if="kShopUI.dispNo == '5558814'">
+					<style>#head_sub h2 a.noAfter:after{display:none}</style>
+					<a ng-href="/mall/spec_mall.do?{{baseParam}}&dispNo=5558814#/" class="noAfter">
+					<span class="title" ng-bind="subTitle" ></span>
+					<em ng-if="searchCntTxt" class="fixed_txt" ng-bind="searchCntTxt"></em>
+					</a>
+				</span>-->
+
+				<!-- 전문관 로고 클릭 시, 홈이동 -->
+				<span ng-if="specHeadLogoLink(subTitle)!='' && !isBrandProdList">
+					<style>#head_sub h2 a.noAfter:after{display:none}</style>
+					<a ng-href="{{specHeadLogoLink(subTitle)}}" class="noAfter">
+						<span class="title" ng-bind="subTitle" ></span>
+						<em ng-if="searchCntTxt" class="fixed_txt" ng-bind="searchCntTxt"></em>
+					</a>
+				</span>
+				<span ng-if="specHeadLogoLink(subTitle)=='' && !isBrandProdList">
+					<span class="title" ng-bind="subTitle" ></span>
+					<em ng-if="searchCntTxt" class="fixed_txt" ng-bind="searchCntTxt"></em>
+				</span>
+				<span ng-if="specHeadLogoLink(subTitle)=='' && isBrandProdList">
+					<a ng-click="brandSelectAll()">
+						<span class="title" ng-bind="subTitle" ></span>
+						<em ng-if="searchCntTxt" class="fixed_txt" ng-bind="searchCntTxt"></em>
+					</a>
+				</span>
+				<span ng-if="specHeadLogoLink(subTitle)!='' && isBrandProdList">
+					<a ng-click="brandSelectAll()">
+						<span class="title" ng-bind="subTitle" ></span>
+						<em ng-if="searchCntTxt" class="fixed_txt" ng-bind="searchCntTxt"></em>
+					</a>
+				</span>
+
+			</h2>
+			<p class="prev {{addCls}}" ng-if="isShowBack">
+				<a ng-click="gotoPrepage()">이전</a>
+			</p>
+			<p class="this" ng-if="isShowThisSns">
+				<!-- 2017.02.17 공유하기 수정 -->
+				<a ng-if="planShopSns == undefined" ng-click="showSharePop({shareImg:share_img})">공유</a>
+				<a ng-if="planShopSns == true && !hasSharePreFunc" ng-click="showSharePop({shareImg:share_img})">공유</a>
+				<a ng-if="planShopSns == true && hasSharePreFunc" ng-click="showSharePopPre()">공유</a><!-- 2017.09.21 공유하기 전처리 함수가 있는 경우 -->
+			</p>
+			<p class="this type2" ng-if="orderSgl">
+		      <a href="#" onclick="normalOrd();" class="lpoint_btn3">일반 주문결제</a>
+		  	</p>
+			<div class="introduce_comment_wrap" id="disappear" ng-if="orderSgl">
+				<p class="introduce_comment">고객님의 쇼핑패턴에 최적화된 빠른 결제용 주문서입니다</p>
+			</div>
+			<div class="this camera" ng-if="showHeaderCamera">
+				<span class="btn"></span>
+				<input 
+				 id="file_input"
+		         type='file'
+		         ng-click="ga('사진촬영업로드', '');sendTclick('m_DC_' + screenID + '_clk_camera')"
+		         onchange="angular.element(this).scope().detectFile(this)" 
+		         accept="image/*"/>
+			</div>
+		</header>
+		<!--<section id="subHeaderSpace" style="padding-top:47px;"></section>-->
+	</div>
+</section>

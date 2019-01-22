@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>롯데닷컴-main</title>
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<script type="text/javascript" src="../../common4/js/lib/jquery.min.1.11.0.js"></script>
+
+	<script src="EGSlider_20170117_v1.js"></script>
+
+<script>
+    $(document.body).ready(function(){
+        var $bannerSlide = setEGSlide("#deptBann", function(index){
+            $("#now").text(index);
+            console.log(index);
+        }, true);
+    });
+</script>
+<style>
+/* common */
+* {margin:0;padding:0;}
+body {background:#eee;}
+html, body {width:100%;height:100%;left:0;font-size:13px;font-family:'나눔고딕',NanumGothic,'맑은고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,Helvetica,sans-serif;color: #333;-webkit-text-size-adjust: none;box-sizing: border-box;-webkit-box-sizing: border-box}
+input,button,select{font-family:'나눔고딕',NanumGothic,'맑은고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,Helvetica,sans-serif;}
+fieldset,img {border:0 none;box-sizing:border-box;-webkit-box-sizing:border-box}
+ol, ul {list-style:none;margin:0;padding:0}
+table {width:100%;border-collapse:collapse;border-spacing:0;border:0 none}
+hr {display:none}
+a {text-decoration:none;color:#333}
+img{width: 100%;height:auto;vertical-align: top}
+em{font-style: normal}
+caption {text-indent:-9999em;color:transparent;height:0}
+i{display:inline-block}
+
+
+    .uibox{width:300px;height:50px;border:1px solid red;overflow-y:scroll}
+    .uibox .ub_cell{width:100%;height:1px}
+
+    .EG{width:100%;height:100px;overflow:hidden;border:1px solid #000;box-sizing: border-box}
+    .EG .eg_box{height:100%}
+    .EG .eg_box li{float:left;text-align:center;line-height:100px;background:#ff0000;box-sizing:border-box;}
+</style>
+</head>
+<body>
+
+    <div class="EG" >
+        <ul class="eg_box" id="deptBann">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+    </div>
+    <div><span id="now">1</span>/5</div>
+</body>
+</html>

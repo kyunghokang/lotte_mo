@@ -1,0 +1,96 @@
+<!-- 일반상품 : 랭킹 리스트형 --> 
+<div class="rank_wrap">
+	<div ng-if="rankKeyword && winWidth >= 640" class="rank_keyword on">
+		<!-- 급상승 키워드 -->
+		<a ng-click="openRankKeyword()" class="default" ng-class="{hide: rankKeywordOpenFlag}">
+			<p class="txt_box"><span class="title">급상승 검색어</span> <em class="no">1</em> {{rankKeyword[0].kwd_nm}}</p>
+			<p class="rank">
+				<span class="count" ng-if="rankKeyword[0].change == 'u'"><img src="http://image.lotte.com/lotte/mobile/mobile_new/main/lank_keyword_up_2015.png" class="up">{{rankKeyword[0].count}}</span>
+				<span class="count"ng-if="rankKeyword[0].change == 'n'">new</span>
+				<img src="http://image.lotte.com/lotte/mobile/mobile_new/main/lank_select_2015.png" class="k_arr">
+			</p>
+		</a>
+
+		<div class="keyword_list" ng-class="{open: rankKeywordOpenFlag}">
+			<a ng-click="openRankKeyword()" class="listhead"><span class="title">급상승 검색어</span>{{v}}<img src="http://image.lotte.com/lotte/mobile/mobile_new/main/lank_keyword_2015.png" class="k_arr"></a>
+
+			<ul class="klist">
+				<li ng-repeat="key in rankKeyword track by $index">
+					<a ng-click="rankKeywordClick(key);">
+						<span class="no">{{$index+1}}</span> {{key.kwd_nm}}
+						<span class="count" ng-if="key.change == 'u'"><img src="http://image.lotte.com/lotte/mobile/mobile_new/main/lank_keyword_up_2015.png" class="up">{{key.count}}</span>
+						<span class="count"ng-if="key.change == 'n'">new</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<ol class="prod_list_01">
+		<li ng-repeat="item in products track by $index" ng-if="$index < 100">
+			<div class="unit_list_01">
+				<span class="unit_zoom" ng-click="zoomImageClick(item.img_url)">크게보기</span>
+				<a href="#" ng-click="productInfoClick(item)">
+					<div class="soldout" ng-show="item.sold_out">SOLD OUT</div>
+					<div class="thumb">
+						<img ng-src="{{getProductImage2(item)}}" alt="{{item.goods_nm}}" err-src />
+						<span class="bestNum">{{$index+1}}</span>
+					</div>
+					<div class="info">
+						<p class="flag">
+							<span class="flag depart" ng-if="item.is_dept">롯데백화점</span>
+							<span class="flag etv" ng-if="item.is_tvhome && !item.is_dept">롯데홈쇼핑</span>
+							<span class="flag tag" ng-show="item.dlv_fee_tp=='Y'||item.isdlex_free">무료배송</span>
+							<span class="flag smart" ng-show="item.smartpick_yn=='Y'||item.issmart_pick">스마트픽</span>
+						</p>
+						<span class="tit" ng-bind-html="item.goods_nm|titleToHtml"></span>
+						<p class="pr_box">
+							<span class="price"><em>{{item.price2|number}}</em>원<span ng-show="item.plan_prod_yn">~</span></span>
+							<span class="price2" ng-show="item.price1 && !item.plan_prod_yn"><em>{{item.price1|number}}</em>원</span>
+						</p>
+						<p class="coupon" ng-show="!item.plan_prod_yn"><em class="no" ng-show="item.price1&&item.sale_rate!=0&&item.price1!=item.price2">{{item.sale_rate}}</em><em class="po" ng-show="item.price1&&item.sale_rate!=0&&item.price1!=item.price2">%</em><span ng-show="item.coupon">쿠폰포함</span></p>
+					</div>
+				</a>
+				<div class="info2">
+					<!-- 별점/상품평 -->
+					<div class="user_feedback">
+						<span class="review" ng-if="item.pmg_gdas_cnt > 0 && item.avg_gdas_stfd_val <= 0" ng-click="productReviewClick(item)">상품평 <em>({{item.pmg_gdas_cnt|number}})</em></span>
+						<span class="score" ng-if="item.pmg_gdas_cnt > 0 && item.avg_gdas_stfd_val > 0" ng-click="productReviewClick(item)">
+							<span class="starScoreWrap"><span class="starScoreCnt" style="width:{{ ((item.avg_gdas_stfd_val*2)|ceil)*10 }}%"></span></span>
+							<span class="review"><em>({{item.pmg_gdas_cnt|number}})</em></span>
+						</span>
+					</div>
+					<!-- //별점/상품평 -->
+					<span class="wish_icon" ng-class="{on:item.has_wish}" ng-click="addWishClick($index,item)">위시리스트</span>
+				</div>
+			</div>
+
+			<!-- 급상승 키워드 -->
+			<div ng-if="$index == 0 && rankKeyword && winWidth < 640" class="rank_keyword on">
+				<a ng-click="openRankKeyword()" class="default" ng-class="{hide: rankKeywordOpenFlag}">
+					<p class="txt_box"><span class="title">급상승 검색어</span> <em class="no">1</em> {{rankKeyword[0].kwd_nm}}</p>
+					<p class="rank">
+						<span class="count" ng-if="rankKeyword[0].change == 'u'"><img src="http://image.lotte.com/lotte/mobile/mobile_new/main/lank_keyword_up_2015.png" class="up">{{rankKeyword[0].count}}</span>
+						<span class="count"ng-if="rankKeyword[0].change == 'n'">new</span>
+						<img src="http://image.lotte.com/lotte/mobile/mobile_new/main/lank_select_2015.png" class="k_arr">
+					</p>
+				</a>
+
+				<div class="keyword_list" ng-class="{open: rankKeywordOpenFlag}">
+					<a ng-click="openRankKeyword()" class="listhead"><span class="title">급상승 검색어</span>{{v}}<img src="http://image.lotte.com/lotte/mobile/mobile_new/main/lank_keyword_2015.png" class="k_arr"></a>
+
+					<ul class="klist">
+						<li ng-repeat="key in rankKeyword track by $index">
+							<a ng-click="rankKeywordClick(key);">
+								<span class="no">{{$index+1}}</span> {{key.kwd_nm}}
+								<span class="count" ng-if="key.change == 'u'"><img src="http://image.lotte.com/lotte/mobile/mobile_new/main/lank_keyword_up_2015.png" class="up">{{key.count}}</span>
+								<span class="count"ng-if="key.change == 'n'">new</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</li>
+	</ol>
+	
+</div>

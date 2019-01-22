@@ -1,0 +1,329 @@
+<div template-styleshop class="cont_wrap template_styleshop padding">
+
+	<!-- 여성/남성 탭 -->
+	<section class="styleshop_tab">
+		<ul>
+			<li ng-class="{on: pageOptions.styleShopGender == 'F'}"><button ng-click="tabChange('F');" class="btn_tab tab_women">WOMEN</button></li>
+			<li ng-class="{on: pageOptions.styleShopGender == 'M'}"><button ng-click="tabChange('M');" class="btn_tab tab_men">MEN</button></li>
+		</ul>
+	</section>
+
+	<!-- 여성탭 -->
+	<section ng-if="pageOptions.styleShopGender == 'F'" class="tab_cont tab_women">
+		<!-- 상품형 스와이프 배너 Type 01 (메인 상품 배너) -->
+		<section ng-if="screenData.first_banner_list.banner_list.items && screenData.first_banner_list.banner_list.items.length > 0" class="style_swipe_type01" ng-controller="lotteNgSwipeCtrl">
+			<ul lotte-ng-list-swipe 
+				swipe-id="StyleShopType01_01" 
+				swipe-list-model="screenData.first_banner_list.banner_list.items" 
+				swipe-slide-item="true" 
+				swipe-max-ratio="0.2"  
+				swipe-min-distance="40"
+				swipe-responsive="true"  
+				swipe-responsive320="1"  
+				swipe-responsive640="2"  
+				swipe-responsive900="2">
+				<li ng-repeat="item in screenData.first_banner_list.banner_list.items">
+					<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_W_TopBanner_{{$index + 1}}')">
+						<div class="img_wrap">
+							<img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}">
+						</div>
+						<div class="desc" ng-class="{'valign_middle': screenData.first_banner_list.banner_list.items.length == 1}">
+							<div class="bg_wrap" style="background-color:{{chkHtmlColorCode(item.bg_color)}}"></div>
+							<span ng-bind-html="item.banner_nm"></span>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<ul ng-if="screenData.first_banner_list.banner_list.items && screenData.first_banner_list.banner_list.items.length > 1" class="indicator">
+				<li ng-repeat="item in screenData.first_banner_list.banner_list.items" ng-class="{on: swipeIdx == $index}"><span>{{$index + 1}}</span></li>
+			</ul>
+		</section>
+			
+		<!-- 상품형스와이프 배너 Type 02 (동그라미) (인기 키워드) -->
+		<section ng-if="screenData.keyword_list.banner_list.items && screenData.keyword_list.banner_list.items.length > 0" class="style_swipe_type02">
+			<h3 ng-if="screenData.keyword_list.title" class="style_tit">{{screenData.keyword_list.title}}</h3>
+			<div ng-if="screenData.keyword_list.sub_title" class="style_desc" ng-bind-html="screenData.keyword_list.sub_title"></div>
+			<div lotte-slider class="swipe_wrap">
+				<ul>
+					<li ng-repeat="item in screenData.keyword_list.banner_list.items">
+						<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_W_HotKeyword_{{$index + 1}}')">
+							<div class="img_wrap"><img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}"></div>
+							<div class="desc"><span>#{{item.banner_nm}}</span></div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<!-- Category 여성탭 전용 (아이템 카테고리) -->
+		<section ng-if="screenData.cate_list.items && screenData.cate_list.items.length > 0" class="style_category_women">
+			<ul>
+				<li ng-repeat="item in screenData.cate_list.items" ng-if="$index < 8">
+					<a ng-click="goStyleShopCategory(item.disp_no, 'm_DC_SpeDisp5_W_ItemCat_{{item.disp_no}}')">{{item.disp_nm}}</a>
+				</li>
+			</ul>
+		</section>
+
+		<!-- 상품 리스트형 (베스트 상품) -->
+		<section ng-if="screenData.best_list.banner_list.items && screenData.best_list.banner_list.items.length > 0" class="style_prd_list" ng-class="{'list02': screenData.best_list.banner_list.items.length > 4}">
+			<h3 ng-if="screenData.best_list.title" class="style_tit">{{screenData.best_list.title}}</h3>
+			<div ng-if="screenData.best_list.sub_title" class="style_desc" ng-bind-html="screenData.best_list.sub_title"></div>
+			<div class="prd_list_wrap">
+				<ul>
+					<li ng-repeat="item in screenData.best_list.banner_list.items" ng-if="$index < 8">
+						<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_W_BestItem_{{$index + 1}}')">
+							<div class="img_wrap" style="background:transparent url({{item.img_url}}) no-repeat  center center;background-size:auto 100%;"><span>{{item.brnd_nm}}</span></div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<ul ng-if="screenData.best_list.hash_list && screenData.best_list.hash_list.length > 0" class="hash_list_wrap">
+				<li ng-repeat="item in screenData.best_list.hash_list"><a ng-click="goStyleShopCategory(item.ctg_no, 'm_DC_SpeDisp5_W_BestCat_{{$index + 1}}')">#{{item.hash_nm}}</a></li>
+			</ul>
+		</section>
+
+		<!-- 타임 세일 배너 -->
+		<section ng-if="screenData.timesale_banner.banner_list.items && screenData.timesale_banner.banner_list.items.length > 0" class="style_timesale" ng-class="{'sold_out': screenData.timesale_banner.banner_list.items[0].sold_out}">
+			<a ng-click="goStyleShopLink(screenData.timesale_banner.banner_list.items[0], 'm_DC_SepDisp5_W_TimeSaleBan')">
+				<h3 class="tit">TIME SALE! AM 10:00</h3>
+				<div class="desc" ng-bind-html="screenData.timesale_banner.banner_list.items[0].banner_nm"></div>
+				<div class="img_wrap"><img ng-src="{{screenData.timesale_banner.banner_list.items[0].img_url}}" alt="screenData.timesale_banner.banner_list.items[0].banner_nm"></div>
+			</a>
+		</section>
+
+		<!-- 상품형스와이프 배너 Type 03 (사각형) (테마형 상품 전시1) -->
+		<section ng-if="screenData.theme_list_1.banner_list.items && screenData.theme_list_1.banner_list.items.length > 0" class="style_swipe_type03">
+			<h3 ng-if="screenData.theme_list_1.title" class="style_tit">{{screenData.theme_list_1.title}}</h3>
+			<div ng-if="screenData.theme_list_1.sub_title" class="style_desc" ng-bind-html="screenData.theme_list_1.sub_title"></div>
+			<div lotte-slider class="swipe_wrap">
+				<ul>
+					<li ng-repeat="item in screenData.theme_list_1.banner_list.items">
+						<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_W_Theme1Item_{{$index + 1}}')">
+							<div class="img_wrap"><img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}"></div>
+							<div class="desc"><span>{{item.banner_nm}}</span></div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<ul ng-if="screenData.theme_list_1.hash_list && screenData.theme_list_1.hash_list.length > 0" class="hash_list_wrap">
+				<li ng-repeat="item in screenData.theme_list_1.hash_list"><a ng-click="goStyleShopCategory(item.ctg_no, 'm_DC_SpeDisp5_W_Theme1Cat_{{$index + 1}}')">#{{item.hash_nm}}</a></li>
+			</ul>
+		</section>
+
+		<!-- 상품형스와이프 배너 Type 03 (사각형) (테마형 상품 전시 2) -->
+		<section ng-if="screenData.theme_list_2.banner_list.items && screenData.theme_list_2.banner_list.items.length > 0" class="style_swipe_type03 dark">
+			<h3 ng-if="screenData.theme_list_2.title" class="style_tit">{{screenData.theme_list_2.title}}</h3>
+			<div ng-if="screenData.theme_list_2.sub_title" class="style_desc" ng-bind-html="screenData.theme_list_2.sub_title"></div>
+			<div lotte-slider class="swipe_wrap">
+				<ul>
+					<li ng-repeat="item in screenData.theme_list_2.banner_list.items">
+						<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_W_Theme2Item_{{$index + 1}}')">
+							<div class="img_wrap"><img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}"></div>
+							<div class="desc"><span>{{item.banner_nm}}</span></div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<ul ng-if="screenData.theme_list_2.hash_list && screenData.theme_list_2.hash_list.length > 0" class="hash_list_wrap">
+				<li ng-repeat="item in screenData.theme_list_2.hash_list"><a ng-click="goStyleShopCategory(item.ctg_no, 'm_DC_SpeDisp5_W_Theme2Cat_{{$index + 1}}')">#{{item.hash_nm}}</a></li>
+			</ul>
+		</section>
+
+		<!-- 상품 리스트형 (신상품) -->
+		<section ng-if="screenData.new_prd_list.banner_list.items && screenData.new_prd_list.banner_list.items.length > 0" class="style_prd_list" ng-class="{'list02': screenData.new_prd_list.banner_list.items.length > 4}">
+			<h3 ng-if="screenData.new_prd_list.title" class="style_tit">{{screenData.new_prd_list.title}}</h3>
+			<div ng-if="screenData.new_prd_list.sub_title" class="style_desc" ng-bind-html="screenData.new_prd_list.sub_title"></div>
+			<div class="prd_list_wrap">
+				<ul>
+					<li ng-repeat="item in screenData.new_prd_list.banner_list.items" ng-if="$index < 8">
+						<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_W_NewItem_{{$index + 1}}')">
+							<div class="img_wrap" style="background:transparent url({{item.img_url}}) no-repeat  center center;background-size:auto 100%;"><span>{{item.brnd_nm}}</span></div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<ul ng-if="screenData.new_prd_list.hash_list && screenData.new_prd_list.hash_list.length > 0" class="hash_list_wrap">
+				<li ng-repeat="item in screenData.new_prd_list.hash_list"><a ng-click="goStyleShopCategory(item.ctg_no, 'm_DC_SpeDisp5_W_NewCat_{{$index + 1}}')">#{{item.hash_nm}}</a></li>
+			</ul>
+		</section>
+
+		<!-- 상품 단일 배너형 Type 01 (테마 배너) -->
+		<section ng-if="screenData.last_banner_list.banner_list.items && screenData.last_banner_list.banner_list.items.length > 0" class="style_bnr_type01">
+			<ul>
+				<li ng-repeat="item in screenData.last_banner_list.banner_list.items">
+					<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_W_ThemeBan')">
+						<div class="img_wrap">
+							<img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}">
+						</div>
+						<div class="desc">
+							<div class="bg_wrap" style="background-color:{{chkHtmlColorCode(item.bg_color)}}"></div>
+							<span ng-bind-html="item.banner_nm"></span>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</section>
+
+		<!-- 상품형스와이프 배너 Type 03 (사각형) (테마형 상품 전시 3) -->
+		<section ng-if="screenData.theme_list_3.banner_list.items && screenData.theme_list_3.banner_list.items.length > 0" class="style_swipe_type03">
+			<h3 ng-if="screenData.theme_list_3.title" class="style_tit">{{screenData.theme_list_3.title}}</h3>
+			<div ng-if="screenData.theme_list_3.sub_title" class="style_desc" ng-bind-html="screenData.theme_list_3.sub_title"></div>
+			<div lotte-slider class="swipe_wrap">
+				<ul>
+					<li ng-repeat="item in screenData.theme_list_3.banner_list.items">
+						<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_W_Theme3Item_{{$index + 1}}')">
+							<div class="img_wrap"><img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}"></div>
+							<div class="desc"><span>{{item.banner_nm}}</span></div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<ul ng-if="screenData.theme_list_3.hash_list && screenData.theme_list_3.hash_list.length > 0" class="hash_list_wrap">
+				<li ng-repeat="item in screenData.theme_list_3.hash_list"><a ng-click="goStyleShopCategory(item.ctg_no, 'm_DC_SpeDisp5_W_Theme3Cat_{{$index + 1}}')">#{{item.hash_nm}}</a></li>
+			</ul>
+		</section>
+
+		<!-- 브랜드 나열형 -->
+		<section ng-if="screenData.brand_shop_list.banner_list.items && screenData.brand_shop_list.banner_list.items.length > 0" class="style_brand">
+			<h3 ng-if="screenData.brand_shop_list.title" class="style_tit">{{screenData.brand_shop_list.title}}</h3>
+			<div ng-if="screenData.brand_shop_list.sub_title" class="style_desc" ng-bind-html="screenData.brand_shop_list.sub_title"></div>
+			<div class="brand_list_wrap">
+				<ul>
+					<li ng-repeat="item in screenData.brand_shop_list.banner_list.items">
+						<a ng-click="goStyleBrand(item.img_link, 'm_DC_SpeDisp5_W_BrandShop_{{$index + 1}}');">
+							<div class="brand_wrap">
+								<div class="img_wrap">
+									<span><img ng-src="{{item.img_url}}" alt="{{item.img_link}}"></span>
+								</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</section>
+	</section>
+
+	<!-- 남성탭 --> 
+	<section ng-if="pageOptions.styleShopGender == 'M'" class="tab_cont tab_men">
+		<!-- Category 남성탭 전용 (아이템 카테고리) -->
+		<section ng-if="screenData.cate_list.items && screenData.cate_list.items.length > 0" class="style_category_men">
+			<ul>
+				<li ng-repeat="item in screenData.cate_list.items" ng-if="$index < 8">
+					<a ng-click="goStyleShopCategory(item.disp_no, 'm_DC_SpeDisp5_M_ItemCat_{{item.disp_no}}');">
+						<div class="img_wrap"><img ng-if="item.img_url" ng-src="{{item.img_url}}" alt="{{item.disp_nm}}"></div>
+						<div class="desc">
+							<span>{{item.disp_nm}}</span>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</section>
+
+		<!-- 상품 리스트형 (베스트 상품) -->
+		<section ng-if="screenData.best_list.banner_list.items && screenData.best_list.banner_list.items.length > 0" class="style_prd_list">
+			<h3 ng-if="screenData.best_list.title" class="style_tit">{{screenData.best_list.title}}</h3>
+			<div ng-if="screenData.best_list.sub_title" class="style_desc" ng-bind-html="screenData.best_list.sub_title"></div>
+			<div class="prd_list_wrap">
+				<ul>
+					<li ng-repeat="item in screenData.best_list.banner_list.items" ng-if="$index < 4">
+						<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_M_BestItem_{{$index + 1}}');">
+							<div class="img_wrap" style="background:transparent url({{item.img_url}}) no-repeat  center center;background-size:auto 100%;"><span>{{item.brnd_nm}}</span></div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<ul ng-if="screenData.best_list.hash_list && screenData.best_list.hash_list.length > 0" class="hash_list_wrap">
+				<li ng-repeat="item in screenData.best_list.hash_list"><a ng-click="goStyleShopCategory(item.ctg_no, 'm_DC_SpeDisp5_M_BestCat_{{$index + 1}}');">#{{item.hash_nm}}</a></li>
+			</ul>
+		</section>
+
+		<!-- 상품 단일 배너형 Type 01 (테마 배너1) -->
+		<section ng-if="screenData.first_banner_list.banner_list.items && screenData.first_banner_list.banner_list.items.length > 0" class="style_bnr_type01">
+			<ul>
+				<li ng-repeat="item in screenData.first_banner_list.banner_list.items">
+					<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_M_ThemeBan_1')">
+						<div class="img_wrap">
+							<img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}">
+						</div>
+						<div class="desc">
+							<div class="bg_wrap" style="background-color:{{chkHtmlColorCode(item.bg_color)}}"></div>
+							<span ng-bind-html="item.banner_nm"></span>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</section>
+
+		<!-- 상품 단일 배너형 Type 01 (테마 배너 2) -->
+		<section ng-if="screenData.last_banner_list.banner_list.items && screenData.last_banner_list.banner_list.items.length > 0 && winWidth >= 640" class="style_bnr_type01">
+			<ul>
+				<li ng-repeat="item in screenData.last_banner_list.banner_list.items">
+					<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_M_ThemeBan_2')">
+						<div class="img_wrap">
+							<img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}">
+						</div>
+						<div class="desc">
+							<div class="bg_wrap" style="background-color:{{chkHtmlColorCode(item.bg_color)}}"></div>
+							<span ng-bind-html="item.banner_nm"></span>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</section>
+
+		<!-- 상품 리스트형 (신상품) -->
+		<section ng-if="screenData.new_prd_list.banner_list.items && screenData.new_prd_list.banner_list.items.length > 0" class="style_prd_list">
+			<h3 ng-if="screenData.new_prd_list.title" class="style_tit">{{screenData.new_prd_list.title}}</h3>
+			<div ng-if="screenData.new_prd_list.sub_title" class="style_desc" ng-bind-html="screenData.new_prd_list.sub_title"></div>
+			<div class="prd_list_wrap">
+				<ul>
+					<li ng-repeat="item in screenData.new_prd_list.banner_list.items" ng-if="$index < 4">
+						<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_M_NewItem_{{$index + 1}}')">
+							<div class="img_wrap" style="background:transparent url({{item.img_url}}) no-repeat  center center;background-size:auto 100%;"><span>{{item.brnd_nm}}</span></div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<ul ng-if="screenData.new_prd_list.hash_list && screenData.new_prd_list.hash_list.length > 0" class="hash_list_wrap">
+				<li ng-repeat="item in screenData.new_prd_list.hash_list"><a ng-click="goStyleShopCategory(item.ctg_no, 'm_DC_SpeDisp5_M_NewCat_{{$index + 1}}');">#{{item.hash_nm}}</a></li>
+			</ul>
+		</section>
+		
+		<!-- 상품 단일 배너형 Type 01 (테마 배너 2) -->
+		<section ng-if="screenData.last_banner_list.banner_list.items && screenData.last_banner_list.banner_list.items.length > 0 && winWidth < 640" class="style_bnr_type01">
+			<ul>
+				<li ng-repeat="item in screenData.last_banner_list.banner_list.items">
+					<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_M_ThemeBan_2')">
+						<div class="img_wrap">
+							<img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}">
+						</div>
+						<div class="desc">
+							<div class="bg_wrap" style="background-color:{{chkHtmlColorCode(item.bg_color)}}"></div>
+							<span ng-bind-html="item.banner_nm"></span>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</section>
+
+		<!-- 상품형스와이프 배너 Type 03 (사각형) (테마형 상품 전시) -->
+		<section ng-if="screenData.theme_list_1.banner_list.items && screenData.theme_list_1.banner_list.items.length > 0" class="style_swipe_type03">
+			<h3 ng-if="screenData.theme_list_1.title" class="style_tit">{{screenData.theme_list_1.title}}</h3>
+			<div ng-if="screenData.theme_list_1.sub_title" class="style_desc" ng-bind-html="screenData.theme_list_1.sub_title"></div>
+			<div lotte-slider class="swipe_wrap">
+				<ul>
+					<li ng-repeat="item in screenData.theme_list_1.banner_list.items">
+						<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_M_ThemeItem_{{$index + 1}}')">
+							<div class="img_wrap"><img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}"></div>
+							<div class="desc"><span>{{item.banner_nm}}</span></div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<ul ng-if="screenData.theme_list_1.hash_list && screenData.theme_list_1.hash_list.length > 0" class="hash_list_wrap">
+				<li ng-repeat="item in screenData.theme_list_1.hash_list"><a ng-click="goStyleShopCategory(item.ctg_no, 'm_DC_SpeDisp5_M_ThemeCat_{{$index + 1}}');">#{{item.hash_nm}}</a></li>
+			</ul>
+		</section>
+	</section>
+
+</div>

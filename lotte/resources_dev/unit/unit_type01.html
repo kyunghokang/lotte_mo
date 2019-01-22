@@ -1,0 +1,21 @@
+<div class="unit_type01" dom-load-directive2>
+    <a ng-click="clickUnit()">
+        <div class="thumb"><img ng-src="{{item.img_url}}" alt="{{item.goods_nm}}" /></div>
+        <div class="info">
+            <p class="flag" ng-if="item.is_dept || item.is_tvhome || item.flag">
+                <span class="flag_01" ng-if="item.is_dept">롯데백화점</span>
+                <span class="flag_02" ng-if="item.is_tvhome && !item.is_dept">롯데홈쇼핑</span>
+                <span class="flag_00" ng-repeat="flag in item.flag" ng-if="item.flag && flag !== '롯데백화점'">{{flag}}</span></span>
+            </p>
+            <p class="tit" ng-bind="item.goods_nm"></p>
+            <p class="price">
+                <span class="price01" ng-if="item.price1">{{item.price1}}원</span>
+                <span class="price02"><strong ng-bind="item.price2"></strong>원</span>
+            </p>
+            <p class="coupon" ng-if="item.saleRate && item.saleRate != 0">{{item.saleRate}}%</p>
+        </div>
+    </a>
+    <div class="review"><a ng-click="clickComment()">상품평(<span ng-bind="item.pmg_gdas_cnt"></span>)</a></div>
+    <div class="wish"><a ng-click="addWish($index);sendTclick(tclickMainType01WishStr)">위시리스트</a></div>
+</div>
+

@@ -1,0 +1,70 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplLatelyProduct2018" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+	                "lotte/resources_dev/product/m/lately_product_container_2018.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/late_view_product_list_2018.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsLatelyProduct2018" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+	                "lotte/resources_dev/common/lotte_salebest.js",
+					"lotte/resources_dev/product/m/lately_product_2018.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/late_view_product_list_2018.js"
+            }
+        },
+
+        "uglify" : {
+            "jsLatelyProduct2018" : {
+                "src" : "lotte/resources/<%= version %>/late_view_product_list_2018.js",
+                "dest" : "lotte/resources/<%= version %>/late_view_product_list.min.js"
+            },
+            "tplLatelyProduct2018" : {
+                "src" : "lotte/resources/<%= version %>/late_view_product_list_2018.template.js",
+                "dest" : "lotte/resources/<%= version %>/late_view_product_list.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssLatelyProduct2018" : {
+                "src" : [
+					"lotte/resources_dev/product/m/lately_product.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/late_view_product_list.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanLatelyProduct2018" : [
+                "lotte/resources/<%= version %>/late_view_product_list_2018.js",
+                "lotte/resources/<%= version %>/late_view_product_list_2018.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlLatelyProduct2018" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "product/m/late_view_product_list_2018.html" : "product/m/late_view_product_list_2018_dev.html"
+                }
+            }
+        }
+    }
+}
+

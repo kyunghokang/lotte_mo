@@ -1,0 +1,229 @@
+<section>
+    <!-- MD팁, 클릭시 클래스 on해주세요 -->
+    <div class="detailMDtip on pad" ng-if="BasicData.product.md_mbl_goods_pr_tit_nm.length >0 " >
+        <p class="tipTit"><em>MD팁</em>{{BasicData.product.md_mbl_goods_pr_tit_nm}}</p>
+        <p class="tipCnt" ng-bind-html="BasicData.product.md_mbl_goods_pr_cont"></p>
+    </div>
+
+<!-- 상세 플래그, 브랜드샵, 스마트픽 -->
+    <div class="titTop">
+        <!-- 단품일 때 -->
+        <span ng-if="(BasicData.product.smp_psb_yn == 'Y' && BasicData.product.smp_dept_yn == 'Y' || BasicData.product.crspk_psb_yn == 'Y')&& (BasicData.product.select_goods_list.items == null ||BasicData.product.select_goods_list.items.length == 0)">
+            <span class="flag depart" ng-if="BasicData.elotte_yn == 'N' && BasicData.product.smp_dept_yn == 'Y'">롯데백화점</span>
+            <span class="flag smart" ng-class="{restyle:styleFlag}">스마트픽</span>
+        </span>
+        <!-- 기획전 일때  -->
+        <span ng-if="isAnySmp && BasicData.product.select_goods_list.items.length > 0">
+            <span class="flag depart" ng-if="BasicData.elotte_yn == 'N' && isDept">롯데백화점</span>
+            <span class="flag smart" ng-class="{restyle:styleFlag}">스마트픽</span>
+        </span>
+
+        <span ng-if="BasicData.product.smp_psb_yn == 'N' && BasicData.product.logo_img != null && (BasicData.product.select_goods_list.items == null ||BasicData.product.select_goods_list.items.length == 0)">
+            <span ng-if="BasicData.product.logo_img == 'depart' && BasicData.elotte_yn == 'N'" class="flag depart">롯데백화점</span>
+            <span ng-if="BasicData.product.logo_img == 'etv'" class="flag etv">롯데홈쇼핑</span>
+        </span>
+        <!-- 
+        <a ng-if="BasicData.product.brnd_disp_shop_no != '0' && (reqParam.smp_yn == 'Y' || BasicData.elotte_yn=='Y')" ng-click="goBrandShjop('/category/m/cate_brand_main.do')" class="titBrandShop">{{BasicData.product.main_brnd_nm}}</a>
+        <a ng-if="BasicData.product.brnd_disp_shop_no != '0' && (!(reqParam.smp_yn == 'Y' || BasicData.elotte_yn=='Y'))" ng-click="goBrandShjop('/category/m/cate_brand_main.do','10')" class="titBrandShop">{{BasicData.product.main_brnd_nm}}</a>
+         -->
+        <!--20161213 브랜드아이콘 개선 -->
+        <a ng-if="BasicData.product.main_brnd_nm != '' && BasicData.product.brnd_disp_shop_no != '0' && (reqParam.smp_yn == 'Y' || BasicData.elotte_yn=='Y')" ng-click="goBrandShjop('/category/m/brand_prod_list.do')" class="titBrandShop newtype">{{BasicData.product.main_brnd_nm}}</a>
+        <a ng-if="BasicData.product.main_brnd_nm != '' && BasicData.product.brnd_disp_shop_no != '0' && (!(reqParam.smp_yn == 'Y' || BasicData.elotte_yn=='Y'))" ng-click="goBrandShjop('/category/m/brand_prod_list.do','10')" class="titBrandShop newtype">{{BasicData.product.main_brnd_nm}}</a>
+        
+        <!--스타일추천 20170223 start-->
+        <div ng-if="styleFlag" ng-show="showStyleFlag" class="recomm_style2">
+            <span class="re_style_msg" ng-click="close_stylemsg()" ng-if="rs_msg"><img ng-src="http://image.lotte.com/lotte/mo2015/angular/detail/style_0223_1.png"></span>
+            <span class="re_style_btn" ng-click="data_styleRecomm()"><span></span></span>    
+        </div>
+        <div class="recommgroup recomm_bg"></div>
+        <div class="recommgroup recomm_style">        
+            <div class="rs_head">
+                <span class="icon"></span>스타일 추천
+                <span class="close" ng-click="close_stylepop()"></span>
+            </div>
+            <div class="rs_cont">
+                <p>유사한 스타일을 알아서 추천해 드려요!</p>
+                <ul class="rs_list">
+                   <li ng-repeat="item in style_list" >
+                        <a ng-click="style_gotoProduct({{item.goodsNo}}, {{$index + 1}})"><img ng-src="{{item.imgUrl}}">
+                            <span class="price">{{item.price2 | number}}</span>
+                        </a>   
+                   </li>
+                </ul>
+                <!--스타일추천상품이 있는 경우-->
+                <div class="rs_btn" ng-click="style_go('m_DC_ProdDetail_Clk_Lnk_3')" ng-hide="nostyle">더 많은 상품보기</div>
+            </div>
+        </div>        
+        <!--스타일추천 20170223 end -->
+
+    </div>
+    <!-- 상세 상품명 -->
+    <h4 class="titText" ng-bind-html="BasicData.product.mgoods_nm"></h4>
+    <!--eung 제거 <p class="titText html" ng-bind-html="BasicData.product.event_string"></p>-->
+    
+    <!--20160919 원산지표기 단품일때 (20170511 likearts 제거 ) -->
+    <!--div ng-if="(BasicData.product.select_goods_list.items == null || BasicData.product.select_goods_list.items.length == 0)">
+        <div class="titPriceWrap" ng-if="BasicData.product.ec_goods_artc_cd != null &&  (BasicData.product.ec_goods_artc_cd == '20' || BasicData.product.ec_goods_artc_cd == '21' || BasicData.product.ec_goods_artc_cd == '22')">
+            <!-- 긴급대응 : 식품상품 원산지 표기 이슈로 인한 일괄 처리
+            작업자 : 김낙운 20170329 14:34 -->
+            <!--원산지 : {{BasicData.product.orpl_nm}}--
+            원산지 : 상세정보참조
+        </div>        
+    </div-->  
+    
+    <!--20160919 원산지표기 기획전형일때 (20170511  likearts 제거 )-->
+    <!--div ng-if="!(BasicData.product.select_goods_list.items == null || BasicData.product.select_goods_list.items.length == 0)">
+        <div class="titPriceWrap" ng-repeat="item in BasicData.product.select_goods_list.items" ng-if="item.ec_goods_artc_cd != undefined && item.mast_goods_yn == 'Y' && (item.ec_goods_artc_cd == '20' || item.ec_goods_artc_cd == '21' || item.ec_goods_artc_cd == '22')">
+            원산지 : 상세정보참조
+        </div>    
+    </div-->  
+    
+    <!-- 20170511 원산지표시 수정 // likearts {{ 다수-> 원산지:상세정보참조, 1개->데이타출력 }} -->
+    <div ng-if="BasicData.product.material.items.length>0">
+        <div class="titPriceWrap" ng-init="max=BasicData.product.material.items.length||0">
+            <!--// 다수출력으로 변경될경우 주석 삭제 후 사용 div>
+				원산지 : <span ng-repeat="item in BasicData.product.material.items">{{item.material_nm}} ({{item.material_rate}} {{item.material_org}})<em ng-if="$index<max-1">, </em></span>
+        	</div -->
+        	<div ng-if="max<2" ng-init="item=BasicData.product.material.items[0]">
+				원산지 : <span>{{item.material_org}}</span>
+        	</div>
+        	<div ng-if="max>1">
+        		원산지 : 상세페이지참조
+        	</div>
+        </div>        
+    </div>  
+    
+    <!-- 상세 타이틀 가격 -->
+    <div class="titPriceWrap">
+        <!-- 최적가 -->
+        <p class="titPrice">
+            <strong>{{Fnproductview.getNumberFormat(priceInfo.lowPrice)}}</strong>원<span ng-if="BasicData.goods_cmps_cd=='30'">~</span>
+            <!--20161004 판매가 표시 20161031 조건 추가 -->
+            <span class="oPrice" ng-if="BasicData.product.prc_dif_view_yn == 'Y' && !(BasicData.product.org_sale_prc <= priceInfo.lowPrice)">
+                {{Fnproductview.getNumberFormat(BasicData.product.org_sale_prc)}}
+            <span>원</span></span>
+            <span class="oPrice" ng-if="BasicData.product.prc_dif_view_yn != 'Y' && !(BasicData.product.dscnt_sale_prc <= priceInfo.lowPrice)">
+                {{Fnproductview.getNumberFormat(BasicData.product.dscnt_sale_prc)}}
+            <span>원</span></span>
+        </p>
+        <!-- 렌탈 --> 
+        <p class="tit-rental-down" ng-if="rentalOnlyYn">
+            L-money <span class="price">10원</span>
+            <a href="" id="rentalOnlyDown" class="btn-down" ng-click="fn_RentalOnly(Fnproductview.getNumberFormat(10))">다운로드</a>
+        </p>
+        
+        <!-- 할인률 -->
+        <span ng-if="BasicData.product.select_goods_list.total_count == 0 && (BasicData.product.inst_fvr_polc_tp_cd == '03' || BasicData.product.inst_fvr_polc_tp_cd == '04' || priceInfo.disc_rt != '0')" class="titDiscountWrap">
+            <span class="disDesc" ng-if="BasicData.product.inst_cpn_aply_val != ''">쿠폰포함</span>
+            <span class="titDis"><em>{{priceInfo.disc_rt}}</em>%</span>
+        </span>
+    </div>
+    
+    <!-- 카드 혜택 -->
+    <div class="titBenefit">
+        <span ng-if="BasicData.brch_prom_info != null" class="benefitTit">점별쿠폰적용가&nbsp;</span>        
+        <span ng-if="BasicData.brch_prom_info != null" class="benefitPrice">{{Fnproductview.getNumberFormat(BasicData.min_brch_sale_prc)}}원&nbsp;&nbsp;</span>        
+        <!-- <span ng-if="BasicData.product.lotte_card_sale != ''" class="benefitTit">{{BasicData.product.lotte_card_sale_card_nm}} {{BasicData.product.lotte_card_sale_per}}% 즉시&nbsp;</span> -->      
+        <!-- <span ng-if="BasicData.product.lotte_card_sale != ''" class="benefitPrice">{{Fnproductview.getNumberFormat(BasicData.product.lotte_card_sale)}}원&nbsp;&nbsp;</span> -->
+        <!-- BasicData.product.prom_aply_lmt_amt 청구할인 미만이거나 이상이어도 노출 <span ng-if="(priceInfo.finalPromCardPrice !='0') || (BasicData.product.prom_fvr_val != null && BasicData.product.prom_aply_lmt_amt != null && BasicData.product.prom_aply_lmt_amt <= priceInfo.lowPrice || BasicData.product.prom_aply_lmt_amt > priceInfo.lowPrice)" class="benefitTit">{{BasicData.product.prom_card_nm}} {{Fnproductview.getNumberFormat(BasicData.product.prom_aply_lmt_amt)}}원 이상 {{BasicData.product.prom_fvr_val}}% 청구&nbsp;</span> -->
+        <!-- BasicData.product.prom_aply_lmt_amt 청구할인 미만시 비노출 <span ng-if="priceInfo.finalPromCardPrice !='0' && BasicData.product.prom_aply_lmt_amt >= priceInfo.lowPrice" class="benefitPrice">{{Fnproductview.getNumberFormat(priceInfo.finalPromCardPrice)}}원</span> -->
+    	<div class="prom_card_info">
+    		<dl ng-if="BasicData.product.lotte_card_sale">
+				<dt>카드즉시할인</dt>
+				<dd>
+					<strong class="prom_prc">{{Fnproductview.getNumberFormat(BasicData.product.lotte_card_sale)}}원</strong>&nbsp;
+					<span class="prom_sale_info">{{BasicData.product.lotte_card_sale_card_nm.replace('카드', '')}} {{BasicData.product.lotte_card_sale_per}}%</span>
+				</dd>
+			</dl>
+			<dl ng-if="dispPromInfo && dispPromInfo.length > 0">
+				<dt>카드청구할인</dt>
+				<dd>
+					<ul>
+						<li ng-repeat="item in dispPromInfo | orderBy:sort">
+							<div ng-if="item.prom_dscnt_prc == 0 || item.prom_dscnt_prc == '0'">
+								<span class="prom_sale_info">{{item.info}}</span>
+								<a ng-if="$index==0" href="javascript:$('#prom_msg_layer').show();$('#prom_pop').addClass('on')" class="icQst" id="prom_pop">?</a>
+							</div>
+							<div ng-if="item.prom_dscnt_prc != 0 && item.prom_dscnt_prc != '0'">
+								<strong class="prom_prc">{{Fnproductview.getNumberFormat(item.prom_dscnt_prc)}}원</strong>&nbsp;
+								<span class="prom_sale_info">{{item.info}}</span>
+								<a ng-if="$index==0" href="javascript:$('#prom_msg_layer').show();$('#prom_pop').addClass('on')" class="icQst" id="prom_pop">?</a>
+							</div>
+						</li>
+					</ul>
+				</dd>
+			</dl>
+		</div>
+    </div>
+
+    <!-- eung 예약기간 -->
+    <div class="e_buyTerm" ng-if="BasicData.product.buy_term">
+       <b>예약상품</b><span ng-bind-html="BasicData.product.buy_term" class="buyterm"></span>
+    </div>
+    <!--오늘도착상품 20160627 ,2016.10.10 퀵배송추가-->
+    <!--기획전일 때에는 보여지지 않도록 추가 처리 0705-->
+    <div class="quick_today" ng-if="((BasicData.product.tdar_type != undefined && BasicData.product.tdar_type != '0') || (BasicData.product.quick_msg != undefined && BasicData.product.quick_msg != '')) && BasicData.product.select_goods_list.total_count == 0">
+       <div ng-if="BasicData.product.tdar_type == '1'">
+			<div class="q_icon_v2">오늘도착</div>
+			<div class="q_info">
+				<p><span ng-bind-html="BasicData.product.tdar_msg"></span>
+				   <a href="javascript:$('#tt_layer').show();$('#qt_pop').addClass('on');$('#qt_pop_v2').removeClass('on')" class="icQst" id="qt_pop"></a>
+				</p>
+				<p>(서울, 경기, 인천 일부지역)</p>
+			</div>
+        </div>
+       <div ng-if="BasicData.product.tdar_type == '2'">
+			<div class="q_icon_v2">빠른배송</div>
+			<div class="q_info">
+				<p><span ng-bind-html="BasicData.product.tdar_msg"></span>
+				   <a href="javascript:$('#tt_layer').show();$('#qt_pop').addClass('on')" class="icQst" id="qt_pop"></a>
+				</p>
+				<p>(서울, 경기, 인천 일부지역)</p>
+			</div>
+       </div>
+       <div ng-if="BasicData.product.quick_msg != undefined && BasicData.product.quick_msg != '' " >
+			<div class="q_icon_v2">퀵배송</div>
+			<div class="q_info">
+				<p>
+					<span ng-bind-html="BasicData.product.quick_msg"></span>
+					<a href="javascript:$('#qmsg_layer').show();$('#qt_pop_v2').addClass('on')" class="icQst" id="qt_pop_v2"></a>
+				</p>
+				<p>(서울 지역) </p>
+			</div>
+       </div>
+    </div>
+
+    <!-- 남들은 뭘 샀지, 미리계산 버튼 -->
+    <div class="titBtn" ng-class="{nomg:(BasicData.product.buy_term != null)}">
+        <div class="btnWrap">
+            <span class="btnArea">
+                <a ng-click="goPeopleBuy()" class="btnRelation"><span class="btnIcon"></span>남들은 뭘 샀지?</a>
+            </span>
+            <span class="btnArea" ng-if="BasicData.goods_cmps_cd != '30'">
+                <a ng-click="openPopPreCalculator()" class="btnCalc"><span class="btnIcon"></span>미리계산</a>
+            </span>
+        </div>
+    </div>
+    <pop-pre-calculator ng-show="isBasicData"></pop-pre-calculator>
+    
+    <!--20161018 AB테스트용 인입배너 주석처리
+    <div ng-if="enableDate('20161019','20161108') && AB_TRACK_NO < 5 " class="abstyle" ng-class="{nb:buygift != null}">
+          <a href="javascript:callDownCpn();">
+            <img src="http://image.lotte.com/lotte/mo2015/angular/detail/ab_banner_1017.jpg">
+          </a>
+    </div>      
+    -->
+    <!--20161206 AB테스트용 인입배너 8월까지만 오픈-->
+    <div ng-if="AB_TRACK_NO < 5" class="abstyle" ng-class="{nb:buygift != null}">
+          <!--<a href="javascript:callDownCpn();">-->           
+           <a ng-href="/event/luckychance.do?tclick=m_abtest_naverbanner_01&{{baseParam}}">
+            <img ng-src="http://image.lotte.com/lotte/mo2015/angular/detail/detail_event_banner_20170824.jpg">
+          </a>
+    </div>      
+    <!--20160303 구매사은 -->
+    <div class="buyGift" ng-if="buygift != null"  ng-class="{nb:AB_TRACK_NO < 5}">
+	    <a ng-click="buyGift();"><div class="bgift_box" ng-bind-html="buygift.txt"></div></a>  
+    </div>
+     
+    
+</section>

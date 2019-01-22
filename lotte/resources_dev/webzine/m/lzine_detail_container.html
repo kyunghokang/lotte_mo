@@ -1,0 +1,32 @@
+<section ng-show="contVisible" class="cont_minheight vine_wrap">
+	<!-- category -->
+	<div class="sort_header_wrap">
+		<nav class="box_cate" sort-header>
+			<div class="big_cate">
+				<ul lotte-ng-list-swipe swipe-slide-menu="true" swipe-list-model="mainMenu" swipe-id="mainMenu" swipe-max-ratio="0.2" swipe-min-distance="40" swipe-right-margin="50">
+					<li ng-repeat="citem in screenData.cate_list" ng-class="{on:screenData.selectCate1==citem.disp_no}"><a href="#" ng-click="menuCategory1Click(citem)">{{citem.disp_nm}}</a></li>
+				</ul>
+			</div>
+			<!-- class on 으로 활성화 -->
+			<div ng-repeat="citem in screenData.cate_list" ng-show="screenData.selectCate1==citem.disp_no">
+				<div class="mid_cate">
+					<ul>
+						<li ng-repeat="citem2 in citem.sub_cate_list" ng-class="{on:screenData.selectCate2==citem2.disp_no}">
+							<a href="#" ng-click="menuCategory2Click(citem2, citem)">{{citem2.disp_nm}}</a>
+							<div class="cca" ng-show="screenData.selectCate2==citem2.disp_no">
+								<a href="#" ng-repeat="citem3 in citem2.sub_cate_list" ng-click="menuCategory3Click(citem3, citem2)" class="ng-binding ng-scope">{{citem3.disp_nm}}</a>
+							</div>
+						</li>
+					</ul>
+					<div class="mall_cateLayerbar">
+						<a ng-click="hideSubCate()" class="close">닫기</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<!-- //category -->
+	<div ng-bind-html="screenData.html_data"></div>
+			
+	
+</section>

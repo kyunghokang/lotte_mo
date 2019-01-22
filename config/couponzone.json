@@ -1,0 +1,68 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplcouponzone" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev//mylotte/sub/couponzone_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/couponzone.template.js"
+			}
+		},
+
+		"concat" : {
+			"jscouponzone" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev//mylotte/sub/couponzone.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/couponzone.js"
+			}
+		},
+
+		"uglify" : {
+			"jscouponzone" : {
+				"src" : "lotte/resources/<%= version %>/couponzone.js",
+				"dest" : "lotte/resources/<%= version %>/couponzone.min.js"
+			},
+			"tplcouponzone" : {
+				"src" : "lotte/resources/<%= version %>/couponzone.template.js",
+				"dest" : "lotte/resources/<%= version %>/couponzone.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"csscouponzone" : {
+				"src" : [
+					"lotte/resources_dev//mylotte/sub/couponzone.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/couponzone.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleancouponzone" : [
+				"lotte/resources/<%= version %>/couponzone.js",
+				"lotte/resources/<%= version %>/couponzone.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlcouponzone" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"mylotte/sub/couponzone.html" : "mylotte/sub/couponzone_dev.html"
+				}
+			}
+		}
+	}
+}

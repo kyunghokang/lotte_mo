@@ -1,0 +1,47 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!--M2160 타임특가상품-->
+	<div class="moduleCon n201811 todayl time">
+
+		<div class="unit unit_bigdeal">
+			<ul>
+                <!--A,B,C타입-->
+			    <li>
+                   <!-- 타임특가영역 A, B-->
+                   <div class="timezone" style="background:{{copyBgColor}}">
+                       <div class="centercon"><p>남은시간</p></div>
+                       <div class="centercon timer"></div>
+                   </div>
+                   <!--상품영역 A -->
+                   <div class="goodszone"  style="background:{{copyBgColor}}">
+                        <!--좌측상단 플래그-->
+                        <div class="s_flag">
+                            <img ng-src="http://image.lotte.com/lotte/mo2018/main/timetoday_symbol.png">
+                        </div>
+                       
+                        <a ng-click="logGAEvtModuleEach(1, item.goodsNo, '','타임특가');mainProductClick(item.goodsNo, moduleData.tclick+ '_'+ moduleData.uiData.tabDispNo + '_Clk_unit'+numberFill(($index+1),2))">
+                            <div class="thumb2">                                
+                                <div class="thumb_sub" ng-if="item.imgUrl" style="background:url({{item.imgUrl}}) no-repeat;background-size:auto 190px;background-position-x:center"></div>                                   
+                                <div class="soldout" ng-if="item.isSoldOut">SOLD OUT</div>
+                            </div>
+                            <!-- 상품정보 -->
+                            <div class="prod">
+                                <!--메시지-->
+                                <p class="msg" style="color:{{copyBgColor}}">{{item.mdTip}}</p>
+                                <!-- 상품명 -->
+                                <p class="prodname">{{item.goodsNm}}</p>
+                                <!-- 상품가격 -->
+                                <p class="price"><span class="discount" style="color:{{copyBgColor}}" ng-if="!item.isPlanPrd && item.saleRate > 0"><span class="dis_rate">{{item.saleRate}}%</span><em ng-if="item.isCoupon">쿠폰<br/>포함</em></span><b>{{item.price | currency: '':0}}</b>원<em class="plan_prod_limit" ng-if="item.isPlanPrd">~</em></p>
+                            </div>
+                        </a>    
+                        
+                        <div class="btnMore">
+                            <span class="btnArea"><a ng-click="logGAEvtModuleEach('더보기', moduleData.txt);moreClick(moduleData.linkUrl, moduleData.tclick + '_Clk_more')"><span>{{moduleData.txt}}</span></a></span>
+                        </div>                                                                  
+                   </div>
+                   
+               
+			    </li>			
+			</ul>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,69 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplsubSmartpick" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/mall/smartpick_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/smartpick.template.js"
+			}
+		},
+
+		"concat" : {
+			"jssubSmartpick" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/mall/smartpick.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/smartpick.js"
+			}
+		},
+
+		"uglify" : {
+			"jssubSmartpick" : {
+				"src" : "lotte/resources/<%= version %>/smartpick.js",
+				"dest" : "lotte/resources/<%= version %>/smartpick.min.js"
+			},
+			"tplsubSmartpick" : {
+				"src" : "lotte/resources/<%= version %>/smartpick.template.js",
+				"dest" : "lotte/resources/<%= version %>/smartpick.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"csssubSmartpick" : {
+				"src" : [
+					"lotte/resources_dev/mall/smartpick.css",
+					"lotte/resources_dev/product_unit/product_unit.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/smartpick.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleansubSmartpick" : [
+				"lotte/resources/<%= version %>/smartpick.js",
+				"lotte/resources/<%= version %>/smartpick.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlsubSmartpick" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"mall/smartpick.html" : "mall/smartpick_dev.html"
+				}
+			}
+		}
+	}
+}

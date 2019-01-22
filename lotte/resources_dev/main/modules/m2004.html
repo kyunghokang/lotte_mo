@@ -1,0 +1,23 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!--M04 서비스배너..-->
+	<div class="moduleCon">
+		<div class="unit unit_bn_svcA">
+			<ul>
+				<li ng-repeat="item in moduleData.items | limitTo:4">
+					<a ng-click="logGAEvtModuleEach(item, $index + 1);mainBannerClick_check(item, $index)">
+						<p class="imgwrap"><img ng-src="{{item.imgUrl}}"></p>
+						<p class="ttl">{{item.txt}}</p>
+					</a>
+				</li>
+			</ul>
+			<ul ng-if="moduleData.items.length > 4">
+				<li ng-repeat="item in moduleData.items | myLimitTo:4:4">
+					<a ng-click="logGAEvtModuleEach(item, $index + 5);mainBannerClick(item.linkUrl, item.isOutLink, moduleData.tclick+'_Clk_Btn0'+($index+1))">
+						<p class="imgwrap"><img ng-src="{{item.imgUrl}}"></p>
+						<p class="ttl">{{item.txt}}</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,21 @@
+<section ng-show="contVisible" class="cont_minheight write_bg v5">
+    <div class='container'>
+        <div class="head_banner" ng-if="pageData.reg_benefit">
+            <p class="p1">{{pageData.reg_benefit.title}}</p>
+            <p class="p2">{{pageData.reg_benefit.sub_title}}</p>
+        </div>
+       
+        <!-- 등록 폼 -->
+        <div
+            class='mgt24'
+            ng-if="formList.length">
+            <div
+                class='side_add_button'
+                onclick="angular.element( angular.element('.btn_add')).trigger('click')">
+            </div>
+            <dearpet-pet-write></dearpet-pet-write>
+        </div>
+        <!--// 등록 폼 -->
+    </div>
+    <touhch-blocking-loading></touhch-blocking-loading>
+</section>

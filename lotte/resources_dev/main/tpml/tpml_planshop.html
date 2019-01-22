@@ -1,0 +1,85 @@
+<div tpml-planshop ng-if="pageUI.curMenuDispNo == '5547174'" class="cont_wrap tpml_planshop padding">
+	<!-- 상단 배너 : first_banner_list -->
+	<section ng-if="tpmlData.contData.first_banner_list.items && tpmlData.contData.first_banner_list.items.length > 0" class="first_banner_wrap">
+		<ul>
+			<li ng-repeat="item in tpmlData.contData.first_banner_list.items track by $index">
+				<a ng-click="processTclick(item.img_link, {prefix:'Clk_Ban_A'+corner.tclick, useIndex:true, index:$index+1})">
+					<div class="img_wrap">
+						<img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}" />
+						<span ng-if="item.is_dept" class="flag dept">롯데백화점</span>
+						<span ng-if="!item.is_dept &&item.is_tvhome" class="flag tvhome">롯데홈쇼핑</span>
+					</div>
+					<div class="desc_wrap">
+						<p class="bnr_nm">{{item.banner_nm}}</p>
+						<p class="bnr_note">{{item.note_cont}}</p>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<section ng-if="tpmlData.contData.surprise_banner != null" class="first_banner_wrap surprise_banner_wrap">
+		<ul>
+			<li>
+				<a href="#" ng-click="goBannerLink('{{tpmlData.contData.surprise_banner.img_link}}&tclick=m_DC_menu_5547174_Clk_Ban_D')">
+					<div class="img_wrap">
+						<img ng-src="{{tpmlData.contData.surprise_banner.img_url}}" alt="{{tpmlData.contData.surprise_banner.banner_nm}}" />
+					</div>
+					<div class="desc_wrap">
+						<p class="bnr_nm">{{tpmlData.contData.surprise_banner.banner_nm}}</p>
+						<p class="bnr_note">{{tpmlData.contData.surprise_banner.note_cont}}</p>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</section>
+    <!-- 카드 청구할인 안내 : card_reward -->
+    <div class="card_reward_wrap" ng-if="tpmlData.contData.card_reward.items != null">
+        <ul class="prd_type4 float_ul">
+            <li ng-repeat="item in tpmlData.contData.card_reward.items" ng-hide="screenType > 1 && $index > 1">         
+                <a href="#" ng-click="gotoLinkM(item.link_url,'Clk_Ban_B', $index, 0, null)">
+                    <b>{{item.benefit}}</b>{{item.title}}
+                </a>                
+            </li>
+        </ul>
+    </div>
+
+	<!-- 이미지 배너 : img_banner_list -->
+	<section ng-if="tpmlData.contData.img_banner_list.items && tpmlData.contData.img_banner_list.items.length > 0" class="img_banner_wrap">
+		<ul>
+			<li ng-repeat="item in tpmlData.contData.img_banner_list.items track by $index">
+				<a ng-click="processTclick(item.img_link, {prefix:'Clk_Ban_C'+corner.tclick, useIndex:true, index:$index+1})">
+					<img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}" />
+				</a>
+			</li>
+		</ul>
+	</section>
+
+	<!-- 카테고리별 탭 -->
+	<section class="ctg_plan_wrap" ng-class="{fixed_on : scrollEnabledFlag}">
+		<ul class="ctg_tab_list" ng-class="{scroll_down: pageUI.winScrollHeaderDownFlag}">
+			<li ng-class="{on:tpmlData.uiOpt.slcCtgTabNo==item.ctgNo}" ng-repeat="item in tpmlData.uiOpt.ctgTabList track by $index"><a ng-click="ctgTabClick(item.ctgNo, $index + 1)">{{item.ctgName}}</a></li>
+		</ul>
+
+		<ul ng-if="tpmlData.contData.ctg_plan_list.items && tpmlData.contData.ctg_plan_list.items.length > 0" class="ctg_plan_list min260">
+			<li ng-repeat="item in tpmlData.contData.ctg_plan_list.items track by $index">
+				<a ng-click="ctgTclick('/product/m/product_list.do?curDispNo=' + item.plan_no, {prefix1:'Clk_0', prefix2:'_Ban'+corner.tclick, useIndex:true, index:$index+1})">
+                    <div class="mTop_title">
+                        <p class="m3F20B">{{item.banner_nm}}</p>
+                        <p class="m6F14 mgm3">{{item.note_cont}}</p>                             
+                    </div>
+					<div class="img_wrap">
+						<img ng-src="{{item.img_url}}" alt="{{item.banner_nm + item.note_cont}}" />
+						<span ng-if="item.is_dept" class="flag dept">롯데백화점</span>
+					</div>
+				</a>
+				<ul class="prd_thumb_lst">
+					<li ng-repeat="items in item.goods_list track by $index"><a ng-click="ctgTclick('/product/m/product_list.do?curDispNo=' + item.plan_no, {prefix1:'Clk_0', prefix2:'_Prd'+corner.tclick, useIndex:true, index: ($parent.$index * 4 + ($index + 1))}, {recent_goods_no: {{items.goods_no}}})"><img ng-src="{{items.goods_img}}" alt="" /></a></li>
+				</ul>
+			</li>
+		</ul>
+		<!-- Product Load Loading -->
+		<div class="listLoading" ng-if="productListLoading">
+			<p class="loading half"></p>
+		</div>
+	</section>
+</div>

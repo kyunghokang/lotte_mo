@@ -1,0 +1,57 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tpldormancyInfo" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                ],
+                "dest" : "lotte/resources/<%= version %>/dormancyInfo.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsdormancyInfo" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+					"lotte/resources_dev/mylotte/sub/dormancyInfo.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/dormancyInfo.js"
+            }
+        },
+        
+        "uglify" : {
+            "jsdormancyInfo" : {
+                "src" : "lotte/resources/<%= version %>/dormancyInfo.js",
+                "dest" : "lotte/resources/<%= version %>/dormancyInfo.min.js"
+            },
+            "tpldormancyInfo" : {
+                "src" : "lotte/resources/<%= version %>/dormancyInfo.template.js",
+                "dest" : "lotte/resources/<%= version %>/dormancyInfo.tpl.js"
+            }
+        },
+
+        "clean" : {
+            "cleandormancyInfo" : [
+                "lotte/resources/<%= version %>/dormancyInfo.js",
+                "lotte/resources/<%= version %>/dormancyInfo.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmldormancyInfo" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                }
+            }
+        }
+    }
+}

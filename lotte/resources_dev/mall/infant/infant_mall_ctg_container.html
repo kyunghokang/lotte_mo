@@ -1,0 +1,40 @@
+<section ng-if="isMain">
+	<div class="ctg_list_wrap">
+		<div id="infantCtg" class="ctg_list">
+			<div class="ctg_list_big">
+				<ul>
+					<li ng-class="{on : inFantUi.uiDispNo=={{item.disp_no}}}" ng-repeat="item in screenData.cate_list">
+						<a ng-click="headerMenuClick({{item.disp_no}})">{{item.disp_nm}}</a>
+					</li>
+				</ul>		
+			</div>
+			
+			<sub-cate-select></sub-cate-select>
+		</div>
+	</div>
+</section>
+<section ng-if="!isMain">
+	<div class="ctg_list">		
+		<div class="ctg_list_big" ng-if="isLagecate">
+			<ul>
+				<li ng-repeat="citem in screenData.cate_list" ng-class="{big_on:screenData.selectCate1==citem.disp_no}" style="width:{{100/screenData.cate_list.length}}%">			
+					<a href="#" class="btn_ctg_big" ng-click="menuCategory1Click(citem,$index)">{{citem.disp_nm}}</a>				
+				</li>
+			</ul>		
+		</div>
+		<ul class="ctg_list_mid" ng-show="screenData.showAllCategory">
+			<li ng-repeat="citem in screenData.cate_list"><a href="#" ng-click="menuCategoryClick(citem, $index)">{{citem.disp_nm}}</a></li>
+		</ul> 
+		<div class="ctg_list_sml" ng-repeat="citem in screenData.cate_list" ng-show="screenData.selectCate1==citem.disp_no && citem.subopen">
+			<ul> 
+				<li ng-repeat="citem2 in citem.sub_cate_list" ng-class="{on:screenData.selectCate2==citem2.disp_no}">
+					<span ng-click="menuCategory2Click(citem2, citem)" ng-class="{off:citem2.sub_cate_list ==null}"><var>{{citem2.disp_nm}}</var></span>
+					<div class="cca" ng-show="screenData.selectCate2==citem2.disp_no">
+						<a href="#" ng-repeat="citem3 in citem2.sub_cate_list" ng-click="menuCategory3Click(citem3, citem2, $index)" class="ng-binding ng-scope"><span>{{citem3.disp_nm}}</span></a>
+					</div>	                
+				</li>
+			</ul>
+		</div>  
+	</div>	
+</section>	
+	

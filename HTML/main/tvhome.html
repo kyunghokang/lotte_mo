@@ -1,0 +1,556 @@
+
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">	
+<!----------------- current css ----------------->
+<link rel="stylesheet" href="/lotte/resources_dev/unit/unit_list.css">
+<link rel="stylesheet" href="/lotte/resources_dev/unit/unit_list_01.css">
+<link rel="stylesheet" href="/lotte/resources_dev/unit/unit_list_02.css">
+<link rel="stylesheet" href="/lotte/resources_dev/main/main_old.css">
+<link rel="stylesheet" href="/lotte/resources_dev/main/tvhome.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+
+<!--------------- current js ----------------->
+<script>
+	$(function(){
+		$(".btnLoc").click(function(){
+			if($(this).hasClass("on")){
+				$(this).removeClass("on");
+				$(".pickWrapOn").removeClass("pickWrapOn");
+			}else{
+				$(this).addClass("on");
+				$(".pickWrap").addClass("pickWrapOn");
+			}
+		});
+		$(".safe_num").click(function(){// D:20150915 연락처제공안내 팝업
+			if($(this).hasClass("on")){
+				$(this).removeClass("on");
+				$(this).next(".tooltip").hide();
+			}else{
+				$(this).addClass("on");
+				$(this).next(".tooltip").show();
+			}
+		});
+		$(".btnClose").click(function(){
+			$(this).parent(".tooltip").hide();
+			$(".safe_num").removeClass("on");
+		});
+	});
+</script>
+<!---------------// current js ----------------->
+
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<!-- container -->
+<section id="container">	
+	<!-- TV쇼핑 -->
+	<section id="main_shopping">
+		<div>
+			<!-- slide Banner -->
+			<div class="wrapBox">
+				<div class="main_slide">
+					<button class="btn prev hide">Preview</button>
+					<div class="mask">
+						<ul class="list">
+							<li><a href="#"><img src="/images/lotte2015/temp/tvBanner1.jpg" alt="golden week" /></a></li>
+						</ul>
+					</div>
+					<button class="btn next">Next</button>
+					<ol class="bullet"><li><span>0</span></li><li class="active"><span>1</span></li></ol>
+				</div>
+			</div>
+			<!-- //slide Banner -->
+			
+			<div class="home_shopping_wrap">
+				<ul class="ul_homeshop">
+					<!-- 편성표 -->
+					<li class="on"><!-- D;20151001현재탭 클래스on -->
+						<a href="#"><div>편성표</div></a>
+						<div class="area_homeshop_2" >
+							<div class="box_homeshop_1">
+								<div class="tvDate">
+									<ul class="clearfix">
+										<li>
+											<a href="#none">
+												<span>16</span>
+												<span>일요일</span>
+											</a>
+										</li>
+										<li>
+											<a href="#none">
+												<span>17</span>
+												<span>월요일</span>
+											</a>
+										</li>
+										<li class="today">
+											<a href="#none">
+												<span>18</span>
+												<span>오늘</span>
+											</a>
+										</li>
+										<li>
+											<a href="#none">
+												<span>19</span>
+												<span>수요일</span>
+											</a>
+										</li>
+										<li>
+											<a href="#none">
+												<span>20</span>
+												<span>목요일</span>
+											</a>
+										</li>
+									</ul>
+									<a href="#none" class="tvPrev">이전</a>
+									<a href="#none" class="tvNext">다음</a>
+								</div>
+								<div class="selectArea">
+									<select title="상품">
+										<option value="">전체</option>
+										<option value="">화장품/잡화</option>
+										<option value="">의류/스포츠</option>
+										<option value="">유아/생활/식품</option>
+										<option value="">가전/디지털</option>
+										<option value="">보험/금융</option>
+									</select>
+									<div class="img_box"></div>
+								</div>
+							</div>
+							<!-- 상품 리스트 -->
+							<div class="box_homeshop_2" id="tv_list">
+								<dl class="lastBroad">
+									<dt class="opened"><a href="#none">이전 방송상품 보기</a></dt><!-- D:20151001 dd 열렸을때 클래스opened 추가 -->
+									<dd>
+										<!-- 지난방송 -->
+										<div class="box_homeshop_3">
+											<div class="box_homeshop_3_1 clearfix">
+												<p class="txt_homeshop_2">06:00~07:20 <span>수입명품</span></p><!-- D:20151001 span 수정 -->
+											</div>
+											<ol class="prod_list_01">
+												<li>
+													<!-- 일반상품 : 리스트형 -->
+													<div class="unit_list_01">
+														<a href="#">
+															<div class="thumb">
+																<img src="http://image.lotte.com/goods/80/55/00/7/7005580_1_150.jpg" alt="대체텍스트 넣어주세요.">
+															</div>
+															<div class="info">
+																<span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+																<p class="pr_box">
+																	<span class="price"><em>1,000,000</em>원</span>
+																	<span class="price2"><em>1,500,000</em>원</span>
+																</p>
+																<p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+															</div>
+														</a>
+													</div>
+													<!-- //일반상품 : 리스트형 -->
+												</li>
+												<li>
+													<!-- 일반상품 : 리스트형 -->
+													<div class="unit_list_01">
+														<a href="#">
+															<div class="thumb">
+																<img src="http://image.lotte.com/goods/58/80/52/5/5528058_1_150.jpg" alt="데체텍스트 넣어주세요.">
+															</div>
+															<div class="info">
+																<span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+																<p class="pr_box">
+																	<span class="price"><em>85,000</em>원</span>
+																</p>
+																<p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+															</div>
+														</a>
+													</div>
+													<!-- //일반상품 : 리스트형 -->
+												</li>
+												<li>
+													<!-- 일반상품 : 리스트형 -->
+													<div class="unit_list_01">
+														<a href="#">
+															<div class="thumb">
+																<img src="http://image.lotte.com/goods/18/08/34/6/6340818_1_150.jpg" alt="데체텍스트 넣어주세요.">
+															</div>
+															<div class="info">
+																<span class="tit">[나니니] ESPRIT 그린테-그린 디그레딩 실버미러 렌즈</span>
+																<p class="pr_box">
+																	<span class="price"><em>85,000</em>원</span>
+																</p>
+																<p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+															</div>
+														</a>
+													</div>
+													<!-- //일반상품 : 리스트형 -->
+												</li>
+											</ol>
+										</div>
+													
+										<!-- 지난방송 -->
+										<div class="box_homeshop_3">
+											<div class="box_homeshop_3_1 clearfix">
+												<p class="txt_homeshop_2">06:00~07:20 <span>패션잡화</span></p>
+											</div>
+											<ol class="prod_list_01">
+												<li>
+													<!-- 일반상품 : 리스트형 -->
+													<div class="unit_list_01">
+														<a href="#">
+															<div class="thumb">
+																<img src="http://image.lotte.com/goods/80/55/00/7/7005580_1_150.jpg" alt="대체텍스트 넣어주세요.">
+															</div>
+															<div class="info">
+																<span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+																<p class="pr_box">
+																	<span class="price"><em>1,000,000</em>원</span>
+																	<span class="price2"><em>1,500,000</em>원</span>
+																</p>
+																<p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+															</div>
+														</a>
+													</div>
+													<!-- //일반상품 : 리스트형 -->
+												</li>
+											</ol>
+										</div>
+									</dd>
+								</dl>
+								<!-- 생방송 -->
+								<p class="txt_homeshop_12"><strong>AIR</strong>방송종료까지 <span id="counter_imall">01:07:11</span> 남았습니다.<span class="broadCate">건강식품</span></p>
+								<div id="rest_time_imall" style="display:none">4030000</div>			
+								<div class="box_homeshop_3 on">
+									<ol class="prod_list_01">
+										<li>
+											<!-- 일반상품 : 리스트형 -->
+											<div class="unit_list_01">
+												<!--<span class="unit_zoom">크게보기</span>-->
+												<a href="#">
+													<div class="thumb">
+														<img src="http://image.lotte.com/goods/80/55/00/7/7005580_1_150.jpg" alt="대체텍스트 넣어주세요.">
+													</div>
+													<div class="info">
+														<span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+														<p class="pr_box">
+															<span class="price"><em>1,000,000</em>원</span>
+															<span class="price2"><em>1,500,000</em>원</span>
+														</p>
+														<p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+													</div>
+												</a>
+											</div>
+											<!-- //일반상품 : 리스트형 -->
+										</li>
+										<li>
+											<!-- 일반상품 : 리스트형 -->
+											<div class="unit_list_01">
+												<a href="#">
+													<div class="thumb">
+														<img src="http://image.lotte.com/goods/58/80/52/5/5528058_1_150.jpg" alt="데체텍스트 넣어주세요.">
+													</div>
+													<div class="info">
+														<span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+														<p class="pr_box">
+															<span class="price"><em>85,000</em>원</span>
+														</p>
+														<p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+													</div>
+												</a>
+											</div>
+											<!-- //일반상품 : 리스트형 -->
+										</li>
+										<li>
+											<!-- 일반상품 : 리스트형 -->
+											<div class="unit_list_01">
+												<a href="#">
+													<div class="thumb">
+														<img src="http://image.lotte.com/goods/18/08/34/6/6340818_1_150.jpg" alt="데체텍스트 넣어주세요.">
+													</div>
+													<div class="info">
+														<span class="tit">[나니니] ESPRIT 그린테-그린 디그레딩 실버미러 렌즈</span>
+														<p class="pr_box">
+															<span class="price"><em>85,000</em>원</span>
+														</p>
+														<p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+													</div>
+												</a>
+											</div>
+											<!-- //일반상품 : 리스트형 -->
+										</li>
+									</ol>
+								</div>
+								<!-- //생방송 -->
+
+								<!-- 예정된방송 -->
+								<div class="box_homeshop_3">
+									<div class="box_homeshop_3_1 clearfix">
+										<p class="txt_homeshop_2">06:00~07:20 <span>수입명품</span></p><!-- D:20151001 span 수정 -->
+									</div>
+									<ol class="prod_list_01">
+										<li>
+											<!-- 일반상품 : 리스트형 -->
+											<div class="unit_list_01">
+												<a href="#">
+													<div class="thumb">
+														<img src="http://image.lotte.com/goods/80/55/00/7/7005580_1_150.jpg" alt="대체텍스트 넣어주세요.">
+													</div>
+													<div class="info">
+														<span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+														<p class="pr_box">
+															<span class="price"><em>1,000,000</em>원</span>
+															<span class="price2"><em>1,500,000</em>원</span>
+														</p>
+														<p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+													</div>
+												</a>
+											</div>
+											<!-- //일반상품 : 리스트형 -->
+										</li>
+										<li>
+											<!-- 일반상품 : 리스트형 -->
+											<div class="unit_list_01">
+												<a href="#">
+													<div class="thumb">
+														<img src="http://image.lotte.com/goods/58/80/52/5/5528058_1_150.jpg" alt="데체텍스트 넣어주세요.">
+													</div>
+													<div class="info">
+														<span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+														<p class="pr_box">
+															<span class="price"><em>85,000</em>원</span>
+														</p>
+														<p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+													</div>
+												</a>
+											</div>
+											<!-- //일반상품 : 리스트형 -->
+										</li>
+									</ol>
+								</div>
+								
+								<!-- 예정된방송 -->
+								<div class="box_homeshop_3">
+									<div class="box_homeshop_3_1 clearfix">
+										<p class="txt_homeshop_2">06:00~07:20 <span>수입명품</span></p><!-- D:20151001 span 수정 -->
+									</div>
+									<ol class="prod_list_01">
+										<li>
+											<!-- 일반상품 : 리스트형 -->
+											<div class="unit_list_01">
+												<a href="#">
+													<div class="thumb">
+														<img src="http://image.lotte.com/goods/80/55/00/7/7005580_1_150.jpg" alt="대체텍스트 넣어주세요.">
+													</div>
+													<div class="info">
+														<span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+														<p class="pr_box">
+															<span class="price"><em>1,000,000</em>원</span>
+															<span class="price2"><em>1,500,000</em>원</span>
+														</p>
+														<p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+													</div>
+												</a>
+											</div>
+											<!-- //일반상품 : 리스트형 -->
+										</li>
+									</ol>
+								</div>
+
+								<!-- 생방송 -->
+								<p class="txt_homeshop_13"><strong>HIT 상품</strong></p>
+								<div class="box_homeshop_3 hit">
+									<ol class="prod_list_01">
+										<li>
+											<!-- 일반상품 : 리스트형 -->
+											<div class="unit_list_01">
+												<!--<span class="unit_zoom">크게보기</span>-->
+												<a href="#">
+													<div class="thumb">
+														<img src="http://image.lotte.com/goods/80/55/00/7/7005580_1_150.jpg" alt="대체텍스트 넣어주세요.">
+													</div>
+													<div class="info">
+														<span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+														<p class="pr_box">
+															<span class="price"><em>1,000,000</em>원</span>
+															<span class="price2"><em>1,500,000</em>원</span>
+														</p>
+														<p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+													</div>
+												</a>
+											</div>
+											<!-- //일반상품 : 리스트형 -->
+										</li>
+										<li>
+											<!-- 일반상품 : 리스트형 -->
+											<div class="unit_list_01">
+												<a href="#">
+													<div class="thumb">
+														<img src="http://image.lotte.com/goods/58/80/52/5/5528058_1_150.jpg" alt="데체텍스트 넣어주세요.">
+													</div>
+													<div class="info">
+														<span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+														<p class="pr_box">
+															<span class="price"><em>85,000</em>원</span>
+														</p>
+														<p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+													</div>
+												</a>
+											</div>
+											<!-- //일반상품 : 리스트형 -->
+										</li>
+										<li>
+											<!-- 일반상품 : 리스트형 -->
+											<div class="unit_list_01">
+												<a href="#">
+													<div class="thumb">
+														<img src="http://image.lotte.com/goods/18/08/34/6/6340818_1_150.jpg" alt="데체텍스트 넣어주세요.">
+													</div>
+													<div class="info">
+														<span class="tit">[나니니] ESPRIT 그린테-그린 디그레딩 실버미러 렌즈</span>
+														<p class="pr_box">
+															<span class="price"><em>85,000</em>원</span>
+														</p>
+														<p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+													</div>
+												</a>
+											</div>
+											<!-- //일반상품 : 리스트형 -->
+										</li>
+									</ol>
+								</div>
+							</div>		          
+							<!-- 상품 리스트 끝-->
+						</div>
+						<!-- 상품리스트 -->
+					</li>
+					<!-- //편성표 -->
+					<!-- 방송인기상품 -->
+					<li>
+						<a href="#" onclick="getBestProduct();"><div>방송인기상품</div></a>
+						<div class="area_homeshop_2 area_homeshop_2_1">
+							<!-- 상품리스트 -->
+							<div class="box_homeshop_2" id="iMallBestProduct">
+								<div class="box_homeshop_3">
+									<ol class="prod_list_02">
+										<li>
+											<!-- 일반상품 : 이미지형 -->
+											<div class="unit_list_02">
+												<a href="#">
+													<div class="thumb">
+														<span class="icon_ranking">1</span>
+														<img src="http://image.lotte.com/goods/76/89/43/10/1/110438976_1_280.jpg" alt="데체텍스트 넣어주세요." />
+													</div>
+													<div class="info">
+														<span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+														<p class="pr_box">
+															<span class="price"><em>980,000</em>원</span>
+														</p>
+														<p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+													</div>
+												</a>
+											</div>
+											<!-- //일반상품 : 이미지형 -->
+										</li>
+										<li>
+											<!-- 일반상품 : 이미지형 -->
+											<div class="unit_list_02">
+												<a href="#">
+													<div class="thumb">
+													<span class="icon_ranking">2</span>
+														<img src="http://image.lotte.com/goods/80/55/00/7/7005580_1_150.jpg" alt="데체텍스트 넣어주세요." />
+													</div>
+													<div class="info">
+														<span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+														<p class="pr_box">
+															<span class="price"><em>800,000</em>원</span>
+															<span class="price2"><em>950,000</em>원</span>
+														</p>
+														<p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+													</div>
+												</a>
+											</div>
+											<!-- //일반상품 : 이미지형 -->
+										</li>
+										<li>
+											<!-- 일반상품 : 이미지형 -->
+											<div class="unit_list_02">
+												<a href="#">
+													<div class="thumb">
+													<span class="icon_ranking">3</span>
+														<img src="http://image.lotte.com/goods/86/16/67/15/1/115671686_1_150.jpg" alt="데체텍스트 넣어주세요." />
+													</div>
+													<div class="info">
+														<span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+														<p class="pr_box">
+															<span class="price"><em>800,000</em>원</span>
+															<span class="price2"><em>950,000</em>원</span>
+														</p>
+														<p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+													</div>
+												</a>
+											</div>
+											<!-- //일반상품 : 이미지형 -->
+										</li>
+										<li>
+											<!-- 일반상품 : 이미지형 -->
+											<div class="unit_list_02">
+												<a href="#">
+													<div class="thumb">
+														<span class="icon_ranking">4</span>
+														<img src="http://image.lotte.com/goods/20/50/59/595020_1_150.jpg" alt="데체텍스트 넣어주세요." />
+													</div>
+													<div class="info">
+														<span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+														<p class="pr_box">
+															<span class="price"><em>800,000</em>원</span>
+															<span class="price2"><em>950,000</em>원</span>
+														</p>
+														<p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+													</div>
+												</a>
+											</div>
+											<!-- //일반상품 : 이미지형 -->
+										</li>
+									</ol>
+								</div>
+								<!-- //베스트 상품 -->
+								</div>
+							</div>
+						<!-- 상품리스트 -->
+					</li>
+					<!-- //방송인기상품 -->
+				</ul>
+			</div>
+		</div>	
+	</section>
+	<!-- //TV쇼핑 -->
+</section>
+<section ng-include src="'/HTML/include/footer.html'"></section>
+</body>
+</html>

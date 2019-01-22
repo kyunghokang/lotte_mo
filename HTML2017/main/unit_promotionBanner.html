@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+	<meta charset="utf-8">
+	<title>롯데닷컴</title>
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+
+	<!-- 기존 css -->
+	<link rel="stylesheet" type="text/css" href="common.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/layer/main_popup.css"/>
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/layer/coupon_layer.css"/>
+	<!-- 기존 css -->
+
+	<!--<link rel="stylesheet" type="text/css" href="unit_list_01.css"/>-->
+	<!--<link rel="stylesheet" type="text/css" href="unit_2017.css">-->
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/main/main_2017.css"><!-- 신규 main css-->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script><!-- 코딩용 angular js -->
+
+</head>
+<body ng-controller="MainCtrl">
+	<!-- -->
+	<div id="wrapper">
+		<!-- main_header -->
+		<!--<section id="main_header" class="main_header app_bnr">
+			<div class="header_wrap fixed">
+				<div class="app_bnr_wrap" style="background-color: #405c9e" app-down-bnr="" ng-if="appDownBnrFlag">
+					<a ng-click="appDown();" class="btn_appdown"><img alt="롯데닷컴 앱 다운로드" ng-src="http://image.lotte.com/upload/display/corner/0_55155_47683_30_13010122_5.jpg" src="http://image.lotte.com/upload/display/corner/0_55155_47683_30_13010122_5.jpg"></a>
+					<button ng-click="appDownBnrClose();" class="btn_close">앱다운로드 배너 그만보기</button>
+				</div>
+				<div class="inner_wrap">
+					<div class="header_top_wrap">
+						<h1 class="logo"><button ng-click="gotoMainHeader()" class="btn_main">LOTTE.COM</button></h1>
+						<button ng-click="showSideCtgHeader()" class="btn_ctg">카테고리</button>
+						<button ng-click="gotoCart()" class="btn_cart">장바구니&lt;!&ndash; ngIf: cartCount && cartCount > 0 &ndash;&gt;</button>
+					</div>
+					<div class="header_srh_wrap web">
+						<div class="srh_box">
+							<label ng-click="showSrhLayerHeader()" for="keyword" class="btn_srh ng-binding"></label>
+							&lt;!&ndash; ngIf: appObj.isApp &ndash;&gt;
+						</div>
+					</div>
+					<div id="gnb" class="nav_swipe_wrap">
+						<nav class="main_nav">
+							<ul>
+								<li class="on"><a href="#">이거어때</a></li>
+								<li><a href="#">BIG딜</a></li>
+								<li>
+									<span class="cate_flag ng-binding ng-scope">HOT</span>
+									<a href="#">선물포장</a>
+								</li>
+								<li>
+									<span class="cate_flag ng-binding ng-scope">HOT</span>
+									<a href="#">10%적립</a>
+								</li>
+								<li><a href="#">백화점</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</section>-->
+		<!-- main_header -->
+
+		<!-- container_wrap -->
+		<div class="container_wrap">
+			<section id="container">
+				<div class="cont_wrap tpml_normal">
+
+					<!-- 퍼블리싱 시작, 작업자: 김기용-->
+					<div class="moduleCon tpml_pk">
+
+
+						<div class="gTop_title">
+							<p>M35 프로모션 배너 A형</p>
+						</div>
+						<div class="unit unit_bn_promo typeB">
+							<ul class="fclear" style="white-space: nowrap;overflow-x: scroll;">
+								<li class="shop1">
+									<p class="imgwrap"><img src="http://image.lotte.com/upload/display/corner/5553631_55055_47658_30_13010106_746.jpg"></p>
+									<div class="titwrap">
+										<span class="subtit">추가할인 쿠폰혜택까지!</span>
+										<div class="maintitwrap">
+											<span class="maintit txt1">CYBER MONDAY CYBER MONDAY CYBER MONDAY CYBER MONDAY </span><br>
+											<span class="maintit txt2">월요일, 단 하루!</span>
+										</div>
+									</div>
+								</li>
+								<li class="shop2">
+									<p class="imgwrap"><img src="http://image.lotte.com/upload/display/corner/5553631_55055_47658_30_13010106_750.jpg"></p>
+									<div class="titwrap">
+										<span class="subtit">추가할인 쿠폰혜택까지!</span>
+										<div class="maintitwrap">
+											<span class="maintit txt1">CYBER MONDAY</span><br>
+											<span class="maintit txt2">월요일, 단 하루!</span>
+										</div>
+									</div>
+								</li>
+								<li class="shop3">
+									<p class="imgwrap"><img src="http://image.lotte.com/upload/display/corner/5553631_55055_47658_30_13010106_750.jpg"></p>
+									<div class="titwrap">
+										<span class="subtit">추가할인 쿠폰혜택까지!</span>
+										<div class="maintitwrap">
+											<span class="maintit txt1">CYBER MONDAY</span><br>
+											<span class="maintit txt2">월요일, 단 하루!</span>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<div class="bn_pagewrap dim30">
+								<span class="paging"><span class="curpage">3</span> / <span>5</span></span>
+								<span class="all">+</span>
+							</div>
+						</div>
+						<!--전체보기-->
+						<h3>전체보기</h3>
+						<div class="unit unit_bn_promo typeB all" style="display: none;">
+							<p class="tit">모두보기<a href="#none">닫기</a></p>
+							<ul>
+								<li class="shop1">
+									<p class="imgwrap"><img src="http://image.lotte.com/upload/display/corner/5553631_55055_47658_30_13010106_746.jpg"></p>
+									<div class="titwrap">
+										<span class="subtit">추가할인 쿠폰혜택까지!</span>
+										<div class="maintitwrap">
+											<span class="maintit txt1">CYBER MONDAY</span><br>
+											<span class="maintit txt2">월요일, 단 하루!</span>
+										</div>
+									</div>
+								</li>
+								<li class="shop2">
+									<p class="imgwrap"><img src="http://image.lotte.com/upload/display/corner/5553631_55055_47658_30_13010106_750.jpg"></p>
+									<div class="titwrap">
+										<span class="subtit">추가할인 쿠폰혜택까지!</span>
+										<div class="maintitwrap">
+											<span class="maintit txt1">CYBER MONDAY</span><br>
+											<span class="maintit txt2">월요일, 단 하루!</span>
+										</div>
+									</div>
+								</li>
+								<li class="shop3">
+									<p class="imgwrap"><img src="http://image.lotte.com/upload/display/corner/5553631_55055_47658_30_13010106_750.jpg"></p>
+									<div class="titwrap">
+										<span class="subtit">추가할인 쿠폰혜택까지!</span>
+										<div class="maintitwrap">
+											<span class="maintit txt1">CYBER MONDAY</span><br>
+											<span class="maintit txt2">월요일, 단 하루!</span>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+
+
+
+						<div class="gTop_title">
+							<p>M07 프로모션 배너 B형</p>
+						</div>
+						<div class="unit unit_bn_promo typeB">
+							<ul class="fclear" style="white-space: nowrap;overflow-x: scroll;">
+								<li class="shop1">
+									<p class="imgwrap"><img src="http://image.lotte.com/upload/display/corner/5553631_55055_47658_30_13010106_746.jpg"></p>
+									<div class="titwrap">
+										<!--<span class="subtit">추가할인 쿠폰혜택까지!</span>-->
+										<div class="maintitwrap">
+											<span class="maintit txt1">CYBER MONDAY</span><br>
+											<span class="maintit txt2">월요일, 단 하루!</span>
+										</div>
+									</div>
+								</li>
+								<li class="shop2">
+									<p class="imgwrap"><img src="http://image.lotte.com/upload/display/corner/5553631_55055_47658_30_13010106_750.jpg"></p>
+									<div class="titwrap">
+										<!--<span class="subtit">추가할인 쿠폰혜택까지!</span>-->
+										<div class="maintitwrap">
+											<span class="maintit txt1">CYBER MONDAY</span><br>
+											<span class="maintit txt2">월요일, 단 하루!</span>
+										</div>
+									</div>
+								</li>
+								<li class="shop3">
+									<p class="imgwrap"><img src="http://image.lotte.com/upload/display/corner/5553631_55055_47658_30_13010106_750.jpg"></p>
+									<div class="titwrap">
+										<!--<span class="subtit">추가할인 쿠폰혜택까지!</span>-->
+										<div class="maintitwrap">
+											<span class="maintit txt1">CYBER MONDAY</span><br>
+											<span class="maintit txt2">월요일, 단 하루!</span>
+										</div>
+									</div>
+								</li>
+							</ul>
+
+							<div class="bn_pagewrap dim30">
+								<span class="paging"><span class="curpage">3</span> / <span>5</span></span>
+							</div>
+						</div>
+
+
+						<div class="gTop_title">
+							<p>M08 프로모션 배너 C형</p>
+						</div>
+						<div class="unit unit_bn_promo typeC store1">
+							<ul class="fclear" style="overflow-x: scroll">
+								<li class="shop2">
+									<p class="imgwrap"><img src="http://image.lotte.com/upload/display/corner/5553631_55055_47658_30_13010106_746.jpg"></p>
+									<div class="titwrap">
+										<div class="maintitwrap">
+											<span class="maintit txt1">상상력이 자라는 인테리어</span><br>
+											<span class="maintit txt2">한샘 키즈가구</span>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+
+
+						<div class="gTop_title">
+							<p>M09 프로모션 배너 D형</p>
+						</div>
+						<div class="unit unit_bn_promo typeD">
+							<ul class="fclear" style="white-space: nowrap;overflow-x: scroll;">
+								<li class="shop3">
+									<p class="imgwrap"><img src="http://image.lotte.com/goods/12/73/44/70/3/370447312_1_550.jpg"></p>
+									<div class="titwrap">
+										<span class="subtit">빈폴 레이디스</span>
+										<div class="maintitwrap">
+											<span class="maintit txt1">S/S NEW Arrivals</span><br>
+											<span class="maintit txt2">최대 15%쿠폰</span>
+										</div>
+									</div>
+								</li>
+								<li class="shop2">
+									<p class="imgwrap"><img src="http://image.lotte.com/goods/22/78/24/55/3/355247822_1_550.jpg"></p>
+									<div class="titwrap">
+										<span class="subtit">추가할인 쿠폰혜택까지!</span>
+										<div class="maintitwrap">
+											<span class="maintit txt1">CYBER MONDAY</span><br>
+											<span class="maintit txt2">월요일, 단 하루!</span>
+										</div>
+									</div>
+								</li>
+								<li class="shop1">
+									<p class="imgwrap"><img src="http://image.lotte.com/goods/33/52/75/68/3/368755233_1_550.jpg"></p>
+									<div class="titwrap">
+										<span class="subtit">추가할인 쿠폰혜택까지!</span>
+										<div class="maintitwrap">
+											<span class="maintit txt1">CYBER MONDAY</span><br>
+											<span class="maintit txt2">월요일, 단 하루!</span>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<div class="bn_pagewrap dim30">
+								<span class="paging"><strong>3</strong> / <span>5</span></span>
+							</div>
+						</div>
+
+
+
+						<div class="gTop_title">
+							<p>N+배너형</p>
+						</div>
+
+						<div class="unit unit_cate bigdeal">
+							<div class="cate" style="overflow-x: scroll">
+								<ul>
+									<li>
+										<a href="#">
+											<span class="img_wrap"><img src="../images/main/t_cate_03.png" alt=""></span>
+											<span class="tit">뷰티/헬스</span>
+										</a>
+									</li>
+									<li class="on">
+										<a href="#">
+											<span class="img_wrap"><img src="../images/main/t_cate_05.png" alt=""></span>
+											<span class="tit">가방/슈즈/ACC</span>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<span class="img_wrap"><img src="../images/main/t_cate_05.png" alt=""></span>
+											<span class="tit">패션의류</span>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<span class="img_wrap"><img src="../images/main/t_cate_05.png" alt=""></span>
+											<span class="tit">스포츠/취미</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="unit unit_bn_promo typeC_all store1">
+							<ul class="fclear">
+								<li class="shop2">
+									<p class="imgwrap"><img src="http://image.lotte.com/upload/display/corner/5553631_55055_47658_30_13010106_746.jpg"></p>
+									<div class="titwrap">
+										<div class="maintitwrap">
+											<span class="maintit txt1">상상력이 자라는 인테리어</span><br>
+											<span class="maintit txt2">한샘 키즈가구</span>
+										</div>
+									</div>
+								</li>
+								<li class="shop3">
+									<p class="imgwrap"><img src="http://image.lotte.com/upload/display/corner/5553631_55055_47658_30_13010106_750.jpg"></p>
+									<div class="titwrap">
+										<div class="maintitwrap">
+											<span class="maintit txt1">CYBER MONDAY</span><br>
+											<span class="maintit txt2">월요일, 단 하루!</span>
+										</div>
+									</div>
+								</li>
+								<li class="shop1">
+									<p class="imgwrap"><img src="http://image.lotte.com/upload/display/corner/5553631_55055_47658_30_13010106_750.jpg"></p>
+									<div class="titwrap">
+										<div class="maintitwrap">
+											<span class="maintit txt1">CYBER MONDAY</span><br>
+											<span class="maintit txt2">월요일, 단 하루!</span>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+
+
+
+					</div>
+					<!-- 퍼블리싱 끝-->
+
+				</div>
+			</section>
+		</div>
+		<!-- //container_wrap -->
+
+		<!-- footer -->
+		<footer id="footer">
+			<ul class="menu01">
+				<li><a class="ng-binding" href="#">마이롯데</a><i></i></li>
+				<li><a ng-click="pcClick()">PC버전</a><i></i></li>
+				<li><a href="#">장바구니</a><i></i></li>
+				<li><a href="#">고객센터</a><i></i></li>
+				<li><a href="#" ng-click="loginProc()" ng-bind="(loginInfo.isLogin)?'로그아웃':'로그인'" class="ng-binding">로그아웃</a></li>
+			</ul>
+			<div class="info">
+				<ul class="menu02">
+					<li><strong>(주)롯데닷컴</strong></li>
+					<li><a ng-click="ftcClick()">사업자정보확인</a></li>
+					<li><a ng-click="forwardClick()">채무지급보증안내</a></li>
+				</ul>
+				<p class="add">
+					<span class="addFirst">대표이사 : 김형준</span>
+					<span class="line">서울시 중구 을지로 158 10층(을지로4가, 삼풍빌딩)</span>
+					<span class="line">사업자등록번호 : 101-81-52964 통신판매업신고 : 중구 제00402호</span>
+					<span class="line">고객만족센터 : <a href="tel:1577-1110">1577-1110</a>  webmaster@lotte.com</span>
+					<span class="line">개인정보보호책임자 : 윤상선</span> <span class="line">청소년보호책임자 : 김찬기</span>
+					<span>호스팅 사업자 : (주)롯데닷컴</span>
+				</p>
+			</div>
+			<div class="menu03">
+				<ul>
+					<li><a href="#">이용약관</a></li>
+					<li><a href="#"><strong>개인정보처리방침</strong></a></li>
+					<li><a href="#">청소년보호정책</a></li>
+				</ul>
+			</div>
+			<div class="capyright">Copyright © LOTTE.com, Inc. All rights Reserved.</div>
+		</footer>
+		<!-- //footer -->
+
+		<!-- quick_btn -->
+		<div class="quick_btn">
+			<div ng-show="visible" class="">
+				<a class="btn_back ng-hide" ng-click="gotoPrepageSide()" ng-show="quickBackBtn">뒤로</a><a class="btn_top" ng-click="gotoTop()">위로</a>
+			</div>
+			<a class="btn_talk" ng-click="gotoTalk()">톡상담</a>
+		</div>
+		<!-- quick_btn -->
+	</div>
+
+	<!-- lotteActionbar -->
+	<section id="lotteActionbar" class="actionbar" ng-show="!appObj.isApp &amp;&amp; !actionbarHideFlag">
+		<ul class="actionbar_wrap">
+			<li class="home on" ng-class="{on:cur_pageid == 1 &amp;&amp; !isShowSideCtg}"><button ng-click="gotoMainFooter()" class="btn_main">홈</button></li>
+			<li class="ctg" ng-class="{on: isShowSideCtg}"><button ng-click="showSideCtgFooter()" class="btn_ctg">카테고리</button></li>
+			<li class="order" ng-class="{on:cur_pageid == 2}"><button ng-click="gotoOrderLstFooter()" class="btn_order">주문배송</button></li>
+			<li class="mylotte" ng-class="{on:cur_pageid == 3}"><button ng-click="gotoMyPageFooter()" class="btn_mylotte">마이롯데</button></li>
+		</ul>
+	</section>
+	<!-- //lotteActionbar -->
+</body>
+</html>

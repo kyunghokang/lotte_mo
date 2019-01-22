@@ -1,0 +1,24 @@
+1. 업무명 : 상품상세 > imall상품 재고수량 조회
+2. 담당자 : 신홍균
+3. URL : http://mrenewdev.lotte.com/json/product/imall_stock_check.json?goods_no=100581302
+4. 파라미터
+	업음
+5. JSON 파라미터(필수:*)
+	- *goods_no : 상품번호
+	- *item_no : 단품번호
+	- *ord_qty : 주문수량
+6. JSON
+{
+  "type" : "object",
+  "id" : "urn:jsonschema:com:lotte:mobile2:common:bean:CommonResponseEntity",
+  "properties" : {
+    "response_msg" : {
+      "type" : "string",
+      "description" : "결과메시지"
+    },
+    "response_code" : {
+      "type" : "string",
+      "description" : "결과코드"
+    }
+  }
+}

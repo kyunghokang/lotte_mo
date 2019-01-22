@@ -1,0 +1,69 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplsubTvShopping" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/mall/tvShopping_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/tvShopping.template.js"
+			}
+		},
+
+		"concat" : {
+			"jssubTvShopping" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/mall/tvShopping.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/tvShopping.js"
+			}
+		},
+
+		"uglify" : {
+			"jssubTvShopping" : {
+				"src" : "lotte/resources/<%= version %>/tvShopping.js",
+				"dest" : "lotte/resources/<%= version %>/tvShopping.min.js"
+			},
+			"tplsubTvShopping" : {
+				"src" : "lotte/resources/<%= version %>/tvShopping.template.js",
+				"dest" : "lotte/resources/<%= version %>/tvShopping.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"csssubTvShopping" : {
+				"src" : [
+					"lotte/resources_dev/mall/tvShopping.css",
+					"lotte/resources_dev/product_unit/product_unit.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/tvShopping.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleansubTvShopping" : [
+				"lotte/resources/<%= version %>/tvShopping.js",
+				"lotte/resources/<%= version %>/tvShopping.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlsubTvShopping" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"mall/tvShopping.html" : "mall/tvShopping_dev.html"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,47 @@
+작업하신 페이지에서 상품 또는 베너 클릭시 해당 패이지로 이동 후 뒤로가기 클릭시의 구현을 위한 방법
+
+준비사항 : 작업 하신 페이지의 옵션 스코프 변수들 취합 및 데이터 스코프 취합 
+
+방법 :
+	1. 저장 방법 
+
+        angular.element($window).on("unload", function(e) {
+            var sess = {};
+            sess.??? = $scope.???;
+            .
+            .
+            .
+            저장할 스코프 변수들에 대헤서 담기
+            /*
+            * $scope.leavePageStroage : 항상 true값으로 common에 정의 되어 있음 false 로 변경시 페이지 벗어날경우 저장 안하게 처리
+            * CommInitData.query.localtest : 테스트를 위해서 ....&localtest=1 로 주었을경우 스토리지에 저장 안함
+            */
+            if (!commInitData.query.localtest && $scope.leavePageStroage) {
+	            LotteStorage.setSessionStorage($scope.screenID+'Loc', $location.absUrl());
+	            LotteStorage.setSessionStorage($scope.screenID+'Data', sess, 'json');
+	            LotteStorage.setSessionStorage($scope.screenID+'ScrollY', angular.element($window).scrollTop());
+            }
+        });
+
+    2. 로드 방법 
+        var StoredLoc = LotteStorage.getSessionStorage($scope.screenID+'Loc');
+        var StoredDataStr = LotteStorage.getSessionStorage($scope.screenID+'Data');
+        var StoredScrollY = LotteStorage.getSessionStorage($scope.screenID+'ScrollY');
+
+        if(StoredLoc == window.location.href) {  // 주소가 같을 경우
+        	var StoredData = JSON.parse(StoredDataStr);  // 스트링 데이터를 Json 구조로 변경
+			$scope.??? = StoredData.???;
+			.
+			.
+			.
+			스코프 변수에 저장 해두었던 값들을 세팅 옵션 포함 
+
+			$timeout(function() {
+				.
+				.
+				화면 로드 된후에 처리할 내용들 기술 
+        		angular.element($window).scrollTop(elMainScrollY);
+        	},800);
+        } else {
+        	페이지 초기 json 통신 해야 하는 부분 처리
+        }

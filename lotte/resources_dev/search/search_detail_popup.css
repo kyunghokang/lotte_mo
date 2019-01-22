@@ -1,0 +1,58 @@
+/* 검색팝업 추가 */
+.unit-pop{position:fixed;width:300px;top:50%;left:50%;margin-left:-150px;margin-top:-50%;background-color:#fff;z-index:130;border-radius:2px;/*border-radius:3px;*/}
+.popWrap{overflow:hidden;}
+.unit-pop .pInnder{overflow:hidden;min-height:256px;position:relative;
+    z-index:112;border-top-left-radius:3px;border-top-right-radius:3px;}
+.unit-pop .pClose{display:block;width:100%;text-align:center;line-height:42px;font-size:14px;border-top:1px solid #e9e9e9;position:relative;
+    z-index:112;background:#fff;border-bottom-left-radius:3px;border-bottom-right-radius:3px;}
+
+.thumb-wrap{position:relative;}
+.thumb-wrap .thumb-list ul{overflow:hidden;}
+.thumb-wrap .thumb-list li{}
+.thumb-wrap .thumb-list li a{position:relative;display:block;padding-top:100%;}
+.thumb-wrap .thumb-list li a img{position:absolute;left:0;top:0;height:100%;}
+.thumb-wrap .thumb-list li a:after{display:block;content:"";position:absolute;left:0;top:0;right:0;bottom:0;background:url(http://image.lotte.com/lotte/mo2017/search/bg_grad.png) repeat-x center bottom;background-size:auto 50%;}
+.thumb-wrap .paging-nav a{position:absolute;top:50%;margin-top:-17.5px;display:block;width:15px;height:35px;text-indent:-999em;}
+.thumb-wrap .paging-nav .prev{left:10px;background:url(http://image.lotte.com/lotte/mo2017/search/btn_arrow_lt.png) no-repeat center center;background-size:auto 25px;}
+.thumb-wrap .paging-nav .next{right:10px;background:url(http://image.lotte.com/lotte/mo2017/search/btn_arrow_rt.png) no-repeat center center;background-size:auto 25px;}
+.thumb-wrap .paging-num{position:absolute;right:8px;bottom:8px;}
+.thumb-wrap .paging-num .numWrap{display:block;padding:0 10px;line-height:18px;color:#fff;letter-spacing:2px;border-radius:10px;background:rgba(4, 4, 4, 0.3);}
+.thumb-wrap .paging-num .numWrap span{color:#fff;}
+.thumb-wrap .prod-info{position:absolute;left:0;bottom:0;padding:13px;width:100%;box-sizing:border-box;}
+.thumb-wrap .prod-info .prd-flag.depart{display:inline-block;margin-bottom:6px;color:#fff;background:#8c7169;line-height:18px;padding:0px 4px 2px 4px;font-size:12px;}
+.thumb-wrap .prod-info .prd-flag.etv{background:#e68c85;}
+.thumb-wrap .prod-info .prd-flag.depart.super{background:#559b57;}
+.thumb-wrap .prod-info .prd-flag.depart.himart{background:#e67800;}
+.thumb-wrap .prod-info .tit-text{margin-bottom:5px;}
+.thumb-wrap .prod-info .tit-text p{overflow:hidden;max-height:37px;color:#fff;line-height:18px}
+.thumb-wrap .prod-info .tit-price{color:#fff;}
+.thumb-wrap .prod-info .tit-price p{display:inline-block;}
+.thumb-wrap .prod-info .tit-price p em{color:#fff;font-size:16px;font-weight:bold;}
+.thumb-wrap .prod-info .tit-price p *{vertical-align:middle;}
+.thumb-wrap .prod-info .tit-price p span{font-size:13px;color:#fff;}
+
+.thumb-wrap .btn-wish{position:absolute;right:8px;top:8px;z-index:3;}
+.thumb-wrap .btn-wish a{display:block;width:35px;height:35px;text-indent:-999em;background:url(http://image.lotte.com/lotte/mo2017/search/btn_wish.png) no-repeat center top;background-size:100% auto;}
+.thumb-wrap .btn-wish a.on{background-position:center bottom;}
+
+.add-msg{position:absolute;left:50%;top:50%;background:rgba(4, 4, 4, 0.5);color:#fff;font-size:14px;min-width:180px;text-align:center;padding:6px 0 10px 0;margin:-17px 0 0 -90px;letter-spacing:-1px;}
+.origin-prc{font-size:12px;position:relative;top:3px;text-decoration:line-through;}
+
+.video_wrap{width:100%;height:100%;position:relative;}
+.video_wrap video{width:100%;height:100%;}
+/* 동영상 */
+/* .video_wrap{position:relative;width:100%;padding-bottom:56.3%;font-size:0;z-index:1;} */
+.video_wrap video{width:100%;height:100%;position:absolute;top:0;left:0;right:0;box-sizing:border-box;}
+.video_wrap .play_cover, .mov_wrap .stop_cover{position:absolute;top:0;left:0;width:100%;height:100%;display:none;background:rgba(0,0,0,.3);z-index:1;}
+.video_wrap .play_cover{display:block;z-index:2;}
+.video_wrap .click_cover{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;display:none;}
+.video_wrap .play_cover .move_title, .mov_wrap .stop_cover .move_title{position:absolute;top:12px;left:13px;color:#fff;font-size:13px;}
+.video_wrap a{position:absolute;top:50%;left:50%;width:54px;height:54px;display:none;z-index:3;
+	background:url(http://image.lotte.com/lotte/mo2017/main/movie_btn.png) no-repeat 0 0;background-size:350px 53px;
+	-webkit-transform:translate(-27px, -27px);transform:translate(-27px, -27px);}
+.video_wrap .btn_move_start{display:block;}
+.video_wrap .btn_move_stop {background-position:-70px 0;}
+.mov_wrap .mov_txt{margin-top:18px;padding:0 15px;text-align:center;font-size:14px;color:#aaa;line-height:18px;letter-spacing:-1px;}
+.mov_wrap .mov_txt a{color:#aaa;}
+.video_wrap:after{content:"";position:absolute;left:0;right:0;top:0;bottom:0;pointer-events:none;
+	background: url(http://image.lotte.com/lotte/mo2017/search/bg_grad.png) center bottom repeat-x;background-size:auto 50%;}

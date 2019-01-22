@@ -1,0 +1,36 @@
+<section class="scrollFixHead" tenbyten-ctg ng-show="contVisible" id="tenbytenSubHead" ng-if="ctgData.items && ctgData.items.length > 0">
+    <header id="head_sub" class="ps_head scrollFixHead" style="">
+		<h2>
+			<span>{{subTitle}}</span>
+		</h2>
+		<p class="prev">
+			<a href="#" ng-click="goSshopHome($event);">이전</a>
+		</p>
+		<p class="btn" style="top: 9px;"></p>
+	</header>
+	
+    <!-- Main Category -->
+    <div class="ksCA">
+        <div class="ksMenuBox" id="ksAmenu">
+            <button ng-repeat="item in ctgData.items" ng-class="{on:sshopUI.curCtgIdx == $index}">{{item.disp_nm}}</button>
+        </div>
+        <div class="sideBar">
+            <img src="http://image.lotte.com/lotte/mobile/mobile_new/brandshop/kshop/kshop_menuSide2.png" class="left">
+            <img src="http://image.lotte.com/lotte/mobile/mobile_new/brandshop/kshop/kshop_menuSide.png" class="right">
+        </div>    
+    </div>
+    <!-- // Main Category -->
+    
+    <!-- Sub Category-->
+    <div class="ksCB">
+        <ul ng-repeat="item in ctgData.items" ng-class="{on:sshopUI.curCtgIdx == $index && sshopUI.sCtgLayerOpen}">
+            <li ng-repeat="sctg in item.sub_cate_list" ng-class="{sub:sctg.sub_cate_list.length > 0, open:sctg.open}">
+                <div class="bca"><a href="#" ng-click="sctgClick($event, sctg, $index)">{{sctg.disp_nm}}</a></div>
+                <div class="cca">
+                    <a href="#" ng-repeat="ssctg in sctg.sub_cate_list" ng-click="ssctgClick($event, ssctg, $index)">{{ssctg.disp_nm}}</a>                    
+                </div>                    
+            </li>       
+        </ul>
+    </div>
+    <!-- //Sub Category -->
+</section>

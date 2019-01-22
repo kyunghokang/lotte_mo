@@ -1,0 +1,143 @@
+<div  id="visitEvent" class="fullImage">
+    <!--2018 추석 한시적으로 적용 2018.09.27 전까지 -->
+    <div ng-if="bannerShow(2018,09,18,2018,09,27)">
+        <a ng-href="/product/m/product_list.do?curDispNo=5449071&tclick=m_attendance_event_1809&{{baseParam}}">
+        <img ng-src="http://image.lotte.com/lotte/mo2018/event/event_180917.jpg"></a>
+    </div> 
+               
+	<div class="sevt type2">
+        <!--탭 20161103-->
+        <!-- 20180420 삭제 
+        <div class="ebox" ng-show="luckyboxNo">
+            <img ng-src="http://image.lotte.com/lotte/mobile/event/2016/da_event_201610_tab.png">    
+            <a href="#" ng-click="goLinkTwo()" class="tabButton">럭키박스</a>
+        </div>  
+        // 20180420 삭제 -->     
+        <!--상단 월 표시-->
+        <div class="ebox">
+            <img ng-src="http://image.lotte.com/lotte/mobile/event/2016/da_event_201610_1.png" alt="출석체크">    
+            <div class="cur_month"><span class="f14">{{thisMonth}}월</span></div>
+        </div>
+        <!--출석하기 버튼-->
+        <div class="ebox attend" ng-click="regAttend()" ng-if="!todayCheckFlag">
+            <img ng-src="http://image.lotte.com/lotte/mobile/event/2016/da_event_201610_2.png" alt="출석체크하기">
+        </div>
+        <!--출석하기 버튼 : 출석완료-->
+        <div class="ebox attend" ng-if="todayCheckFlag">
+            <img ng-src="http://image.lotte.com/lotte/mobile/event/2016/da_event_201610_2_1.png" alt="출석완료">
+        </div>
+        <!--도장찍은 달력-->
+        <div class="ebox stamp">
+            <img ng-src="http://image.lotte.com/lotte/mobile/event/2016/da_event_201610_3_1.png">
+            <div class="calendar" style="line-height:{{winWidth*0.1}}px">
+                <ul>
+                    <li><span>1</span></li><li><span>1</span></li><li><span>1</span></li><li><span>1</span></li><li><span>1</span></li><li><span>1</span></li><li><span>1</span></li>
+                </ul>
+                <ul>
+                    <li><span>1</span></li><li><span>1</span></li><li><span>1</span></li><li><span>1</span></li><li><span>1</span></li><li><span>1</span></li><li><span>1</span></li>
+                </ul>
+                <ul>
+                    <li><span>1</span></li><li><span>1</span></li><li><span>1</span></li><li><span>1</span></li><li><span>1</span></li><li><span>1</span></li><li><span>1</span></li>
+                </ul>
+                <ul ng-show="lastWeek >= 4">
+                    <li><span>1</span></li><li><span>1</span></li><li><span>1</span></li><li><span>1</span></li><li><span>1</span></li><li><span>1</span></li><li><span>1</span></li>
+                </ul>
+                <ul ng-show="lastWeek >= 5">
+                    <li><span>1</span></li><li><span>1</span></li><li><span>1</span></li><li><span>1</span></li><li><span>1</span></li><li><span>1</span></li><li><span>1</span></li>
+                </ul>
+                <ul ng-show="lastWeek == 6">
+                    <li><span>1</span></li><li><span>1</span></li><li><span>1</span></li><li><span>1</span></li><li><span>1</span></li><li><span>1</span></li><li><span>1</span></li>
+                </ul>                
+            </div>
+            <div class="ebox stampfoot">
+                <img ng-src="http://image.lotte.com/lotte/mobile/event/2016/da_event_201610_3_3.png">	    
+                <div class="myPoint" style="bottom:{{winWidth*0.11}}px">
+                    <b class="txt f16">나의 출석 클로버</b>
+                    <b class="point f15"><span class="f25">{{totalClover|number}}</span>개</b>
+                </div>                
+            </div>
+            
+        </div>
+        <img ng-src="http://image.lotte.com/lotte/mobile/event/2016/da_event_201610_4.png" alt="매일 오전 10시에 교환하세요!">    
+        <!--무료배송교환하기-->
+        <div class="ebox">            
+            <!--교환하기-->
+            <img ng-if="freeDelivCnt < 1 && freeDelivTotalCnt < 200" ng-src="http://image.lotte.com/lotte/mobile/event/2016/da_event_201610_5.png">            
+            <!--교환완료-->
+            <img ng-if="freeDelivCnt >= 1" ng-src="http://image.lotte.com/lotte/mobile/event/2016/da_event_201610_5_1.png">
+            <!--선착순마감-->
+            <img ng-if="freeDelivCnt < 1 && freeDelivTotalCnt >= 200" ng-src="http://image.lotte.com/lotte/mobile/event/2016/da_event_201610_5_2.png">
+            <div class="changeBtn" ng-click="goExchangeClover('freeDeliv')">교환하기</div>    
+        </div>
+        <!--10%추가할인 교환하기-->
+        <div class="ebox">
+           <!--교환하기-->
+            <img ng-if="sibECouponCnt < 1 && sibETotalCouponCnt < 100" ng-src="http://image.lotte.com/lotte/mobile/event/2016/da_event_201610_6.png">                
+           <!--교환완료-->
+            <img ng-if="sibECouponCnt >= 1" ng-src="http://image.lotte.com/lotte/mobile/event/2016/da_event_201610_6_1.png">    
+           <!--선착순마감 -->
+            <img ng-if="sibECouponCnt < 1 && sibETotalCouponCnt >= 100" ng-src="http://image.lotte.com/lotte/mobile/event/2016/da_event_201610_6_2.png">                
+            <div class="changeBtn" ng-click="goExchangeClover('cloverLayer1000')">교환하기</div>                
+        </div>
+        <!--1천원쇼핑지원-->
+        <div class="ebox">
+            <img ng-if="lpEntryWinCnt < 1 && lpEntryDailCnt < 1" ng-src="http://image.lotte.com/lotte/mobile/event/2016/da_event_201802_7.png" alt="1천원 쇼핑지원 교환하기">
+            <img ng-if="lpEntryWinCnt >= 1 && lpEntryAstCnt == -1" ng-src="http://image.lotte.com/lotte/mobile/event/2016/da_event_201802_7_2.png" alt="1천원 쇼핑지원 교환완료">
+            <!--20180306 지급 준비중 추가 -->
+            <img ng-if="lpEntryWinCnt >= 1 && lpEntryAstCnt == 0" ng-src="http://image.lotte.com/lotte/mobile/event/2016/da_event_201802_7_2_1.png" alt="1천원 쇼핑지원 지급준비중">
+            <img ng-if="lpEntryWinCnt >= 1 && lpEntryAstCnt >= 1" ng-src="http://image.lotte.com/lotte/mobile/event/2016/da_event_201802_7_2_2.png" alt="1천원 쇼핑지원 지급완료">            
+            <img ng-if="lpEntryWinCnt < 1 && lpEntryDailCnt >= 1" ng-src="http://image.lotte.com/lotte/mobile/event/2016/da_event_201802_7_3.png" alt="1천원 쇼핑지원 다음기회에">
+            <div class="changeBtn" ng-click="goExchangeClover('LPoint')">교환하기</div>                          
+        </div>
+          <!--럭키박스-->
+		<!-- 20161006 럭키박스 10월 2차 배너추가 ng-if="bannerShow(2016,10,08,2016,10,15)"-->
+		
+        <!-- 20180420 삭제 -->
+        <div class="ebox" ng-show="luckyboxNo">
+			<a ng-click="goLinkTwo()">
+				<img src="http://image.lotte.com/lotte/mobile/event/2016/da_event_201610_luckybox.png" alt="지금 APP으로 응모하면 100%당첨" />
+			</a>
+		</div>
+        <!-- // 20180420 삭제 -->
+        <!--footer  -->
+        <img ng-src="http://image.lotte.com/lotte/mobile/event/2016/da_event_201610_8.png">    
+        
+        <!-- 스탬프 교환 완료 레이어 -->
+        <div class="stamp_layer">
+            <a href="#" ng-click="closePop()"><img src="http://image.lotte.com/lotte/mobile/event/stamp5_layer_bg_01.png" alt="닫기"></a>
+            <img src="http://image.lotte.com/lotte/mobile/event/stamp5_layer_bg_02.png">
+            <a href="#" ng-click="goPointCoupon()"><img src="http://image.lotte.com/lotte/mobile/event/stamp5_layer_bg_03.png"></a>
+            <!--
+            cont : 2천원 할인쿠폰
+            cont typea : 10%할인쿠폰
+            cont typeb : 무료배송
+            cont typec : 1만점 적립쿠폰
+            -->            
+            <div class="cont"></div>
+        </div>	    
+        <!--바로방문 안내 레이어-->
+        <div class="attend_info_layer" ng-show="attend_layer_flag">    
+            <div class="bg"></div>   
+            <img ng-src="http://image.lotte.com/lotte/mobile/event/2016/da_event_2016_pop.png" ng-click="hide_attend_layer()">                            
+        </div>		
+    </div>
+
+	<div id="visitPop" style="display:none;">
+		<div class="bg">
+			<a href="#" ng-click="closeInfoPop()"><div class="closeBtn"></div></a>
+			<!--내용 
+			detail : 7% 쿠폰
+			detail btype: 10% 쿠폰
+			detail ctype: 무료배송
+			detail dtype: 2천원 할인 2014.02.26
+			-->
+			<div id="cpType" class="detail" style="background-image:url('http://image.lotte.com/lotte/mobile/event/event_visit_pop_02_{{chgImgCpn}}.png');background-size:1037px 156px;"></div>
+			<!--쿠폰/포인트확인-->
+			<a href="#" ng-click="goPointCoupon()"><div class="okBtn"></div></a>
+		</div> 
+	</div>
+	<!--테스트용-->
+<!--	<div ng-if="loginInfo.name == '김응'">
+	    {{loginInfo.isSimple}}
+	</div>-->
+</div>

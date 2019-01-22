@@ -1,0 +1,465 @@
+1. 업무명 : 브랜드 서브
+2. 담당자 : 신주섭
+3. URL : 
+	http://mapi.lotte.com/json/brand_sub.json?upBrdNo=30357&mGrpNo=7066
+4. 파라미터
+	- upBrdNo : 상위브랜드번호
+	- mGrpNo : 브랜드샵 메인에서 선택한 구분코드(ex 화장품)
+	- startCount : 시작페이지 번호(기본 0) 
+	- dispCount : 상품노출개수(기본20)
+	- cateNo : 카테고리 번호(기본 null)
+	- cateDepth : 카테고리Depth(기본 null)
+	- sort : 정렬(기본 DATE,1)	    
+		정렬파라메터 종류 : RANK,1 : 추천수 /TOT_ORD_CNT,1 : 판매인기순 /DISP_PRICE,0 : 낮은가격순 /DISP_PRICE,1 : 높은가격순 /TOT_PREVIEW_CNT,1 : 상품평순 /DATE,1 : 신상품순
+	- freeDeliYN : 무료배송 유무(기본NULL, Y OR N)
+	- freeInstYN : 무이자 유무(기본NULL, Y OR N)
+	- pointYN : 포인트 유무(기본NULL, Y OR N)
+	- smpickYN : 스마트픽 유무(기본NULL , Y OR N)
+	- smpBranchNo : 스마트픽 지점NO(기본 NULL, smpickYN이 Y일 경우 지점No가 있어야 함)
+	- query : 키워드(기본null)
+	- priceMinU : 가격최소값(기본Null)
+	- priceMaxU : 가격최대값(기본null)
+5. JSON 파라미터
+	1) ERROR : 에러 정보
+	    - ERROR_CODE : 에러코드(0000 OR 0 아니면 모두 에러)
+		- ERROR_MSG : 에러메시지		
+	2) GoodsList.items : 상품정보 배열
+		- img_url" : 상품이미지경로(http://image.lotte.com/goods/81/98/57/00/1/100579881_1_60.jpg)
+		- brnd_nm" : 브랜드명(게스(진))
+		- benefit_flags" : 상품css Tag 배열([ "sort_icon01", "sort_icon05" ])
+		- flag" : 상품 형식(D), 백화점 영플라자등
+		- ctg_no" : 카테고리번호(대카)
+		- goods_no" : 상품코드(100579881)
+		- goods_nm" : 상품명(2)
+		- original_price" : 할인전가격(15000)
+		- discounted_price" : 할인후가격(15000)
+		- sale_rate" : 할인율(0.0)
+		- has_coupon" : 쿠폰존재여부(false)
+		- bought_sum" : 누적구매개수(0)
+		- sold_out_cd_yn : 품절임박(Y OR N)
+		- tot_review_cnt : 리뷰개수(100)
+		- smartpick_yn : 스마트픽 유무(Y OR N)
+		- dlv_fee_tp : 무료배송(Y OR N)		
+		- GoodsList.rs_total_cnt : 상품검색 전체 개수
+	4) cateList.StoreInfo : 몰정보
+        - disp_nm" : 몰명(롯데백화점)
+	5) cateList.D_CATE : 롯데백화점 카테고리
+		- disp_no : 카테고리번호
+        - disp_nm" : 카테고리명(여성화),
+        - lnk_url_addr" : 링크주소(현재없음)
+        - cate_cnt" : 카테고리에 브랜드 상품개수(1649)
+        - mall_nm" : 몰정보(롯데백화점)
+        - lcate_nm" : 상위대카정보(슈즈)
+        - cate_depth" : 카테고리Depth(2)
+	6) cateList.C_CATE : 유아동관
+	7) cateList.Y_CATE : 영플라자
+	8) cateList.L_CATE : 롯데닷컴
+	9) cateList.E_CATE : 기타
+	10) cateList.M_CATE : 롯데맨즈
+	11) BrandInfo : 브랜드 정보
+		- brnd_no : 브랜드번호
+		- brnd_nm : 브랜드명
+		- img_path_file_big : 브랜드 이미지
+		- img_path_file_mid : 브랜드 이미지
+		- img_path_file_small : 브랜드 이미지				
+6. JSON
+{
+  "goodsList" : [ {
+    "img_url" : "http://image.lotte.com/goods/70/68/73/98/98736870_1_60.jpg",
+    "brnd_nm" : "게스(구두)",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "5845",
+    "goods_no" : "98736870",
+    "goods_nm" : "게스 퍼부츠 8종 택일",
+    "original_price" : 159000,
+    "discounted_price" : 159000,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  }, {
+    "img_url" : "http://image.lotte.com/goods/98/36/73/98/98733698_1_60.jpg",
+    "brnd_nm" : "게스(구두)",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "5845",
+    "goods_no" : "98733698",
+    "goods_nm" : "게스부츠10종택1",
+    "original_price" : 119000,
+    "discounted_price" : 119000,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  }, {
+    "img_url" : "http://image.lotte.com/goods/81/51/35/98/98355181_1_60.jpg",
+    "brnd_nm" : "게스(구두)",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "5845",
+    "goods_no" : "98355181",
+    "goods_nm" : "2013 F/W 신상펌프스 SD3A5A05 (BLK)",
+    "original_price" : 89000,
+    "discounted_price" : 89000,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  }, {
+    "img_url" : "http://image.lotte.com/goods/31/94/33/98/98339431_1_60.jpg",
+    "brnd_nm" : "게스(구두)",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "5845",
+    "goods_no" : "98339431",
+    "goods_nm" : "2014 F/W 패딩부츠 SE4A5A15 (BLK)",
+    "original_price" : 215100,
+    "discounted_price" : 215100,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  }, {
+    "img_url" : "http://image.lotte.com/goods/10/94/33/98/98339410_1_60.jpg",
+    "brnd_nm" : "게스(구두)",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "5845",
+    "goods_no" : "98339410",
+    "goods_nm" : "2014 F/W 패딩부츠 SE4A5A15 (WHT)",
+    "original_price" : 215100,
+    "discounted_price" : 215100,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  }, {
+    "img_url" : "http://image.lotte.com/goods/11/94/33/98/98339411_1_60.jpg",
+    "brnd_nm" : "게스(구두)",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "5845",
+    "goods_no" : "98339411",
+    "goods_nm" : "2014 F/W 하프부츠 SE4A5A15 (BEG)",
+    "original_price" : 215100,
+    "discounted_price" : 215100,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  }, {
+    "img_url" : "http://image.lotte.com/goods/98/02/24/98/98240298_1_60.jpg",
+    "brnd_nm" : "게스(구두)",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "5845",
+    "goods_no" : "98240298",
+    "goods_nm" : "게스 퍼부츠 8종 택일",
+    "original_price" : 109000,
+    "discounted_price" : 109000,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  }, {
+    "img_url" : "http://image.lotte.com/goods/57/94/23/98/98239457_1_60.jpg",
+    "brnd_nm" : "게스(구두)",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "5845",
+    "goods_no" : "98239457",
+    "goods_nm" : "게스 펌프스 5종 택일",
+    "original_price" : 53000,
+    "discounted_price" : 53000,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  }, {
+    "img_url" : "http://image.lotte.com/goods/64/77/23/98/98237764_1_60.jpg",
+    "brnd_nm" : "게스(구두)",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "5845",
+    "goods_no" : "98237764",
+    "goods_nm" : "게스 부티 5종 택일",
+    "original_price" : 99000,
+    "discounted_price" : 99000,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  }, {
+    "img_url" : "http://image.lotte.com/goods/71/69/23/98/98236971_1_60.jpg",
+    "brnd_nm" : "게스(구두)",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "5845",
+    "goods_no" : "98236971",
+    "goods_nm" : "게스슈즈 앵클부츠 8종 택1",
+    "original_price" : 99000,
+    "discounted_price" : 99000,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  }, {
+    "img_url" : "http://image.lotte.com/goods/38/21/22/98/98222138_1_60.jpg",
+    "brnd_nm" : "게스(구두)",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "5845",
+    "goods_no" : "98222138",
+    "goods_nm" : "2014 GUESS shoes 펌프스 3종1택 (블랙,베이지,화이트)",
+    "original_price" : 89000,
+    "discounted_price" : 89000,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  }, {
+    "img_url" : "http://image.lotte.com/goods/64/14/17/98/98171464_1_60.jpg",
+    "brnd_nm" : "게스(구두)",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "5845",
+    "goods_no" : "98171464",
+    "goods_nm" : "2014 F/W 롱부츠 SE4A5A13 (BRN)",
+    "original_price" : 395100,
+    "discounted_price" : 395100,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  }, {
+    "img_url" : "http://image.lotte.com/goods/98/28/88/97/97882898_1_60.jpg",
+    "brnd_nm" : "게스(구두)",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "5845",
+    "goods_no" : "97882898",
+    "goods_nm" : "2013 F/W 신상펌프스 SD3A5B10 (BLU)",
+    "original_price" : 89000,
+    "discounted_price" : 89000,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  }, {
+    "img_url" : "http://image.lotte.com/goods/04/28/88/97/97882804_1_60.jpg",
+    "brnd_nm" : "게스(구두)",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "5845",
+    "goods_no" : "97882804",
+    "goods_nm" : "SD3A5B10 RED",
+    "original_price" : 89000,
+    "discounted_price" : 89000,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  }, {
+    "img_url" : "http://image.lotte.com/goods/96/26/88/97/97882696_1_60.jpg",
+    "brnd_nm" : "게스(구두)",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "5845",
+    "goods_no" : "97882696",
+    "goods_nm" : "2013 F/W 신상펌프스 SD3A5B10 (RED)",
+    "original_price" : 89000,
+    "discounted_price" : 89000,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  }, {
+    "img_url" : "http://image.lotte.com/goods/67/03/62/97/97620367_1_60.jpg",
+    "brnd_nm" : "게스(구두)",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "5845",
+    "goods_no" : "97620367",
+    "goods_nm" : "2014 F/W 롱부츠 SE4A5A11 (BRN)",
+    "original_price" : 323100,
+    "discounted_price" : 323100,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  }, {
+    "img_url" : "http://image.lotte.com/goods/66/03/62/97/97620366_1_60.jpg",
+    "brnd_nm" : "게스(구두)",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "5845",
+    "goods_no" : "97620366",
+    "goods_nm" : "2014 F/W 롱부츠 SE4A5A12 (BLK)",
+    "original_price" : 323100,
+    "discounted_price" : 323100,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  }, {
+    "img_url" : "http://image.lotte.com/goods/37/31/30/97/97303137_1_60.jpg",
+    "brnd_nm" : "게스(구두)",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "5845",
+    "goods_no" : "97303137",
+    "goods_nm" : "게스슈즈 BEST 앵클 5종 택1",
+    "original_price" : 99000,
+    "discounted_price" : 99000,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  }, {
+    "img_url" : "http://image.lotte.com/goods/71/19/30/97/97301971_1_60.jpg",
+    "brnd_nm" : "게스(구두)",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "5845",
+    "goods_no" : "97301971",
+    "goods_nm" : "2013 S/S 토오픈 SD3A5A55 (DBL)",
+    "original_price" : 69000,
+    "discounted_price" : 69000,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  }, {
+    "img_url" : "http://image.lotte.com/goods/47/17/30/97/97301747_1_60.jpg",
+    "brnd_nm" : "게스(구두)",
+    "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+    "flag" : "D",
+    "ctg_no" : "5845",
+    "goods_no" : "97301747",
+    "goods_nm" : "2013 S/S 토오픈 SD3A5A55 (MUL)",
+    "original_price" : 69000,
+    "discounted_price" : 69000,
+    "sale_rate" : 0.0,
+    "has_coupon" : false,
+    "bought_sum" : 0,
+    "promotion_text" : ""
+  } ],
+  "cateList" : {
+    "StoreInfo" : {
+      "items" : [ {
+        "disp_no" : null,
+        "disp_nm" : "롯데닷컴",
+        "lnk_url_addr" : null,
+        "cate_cnt" : "1",
+        "mall_nm" : null,
+        "lcate_nm" : null,
+        "cate_depth" : null
+      }, {
+        "disp_no" : null,
+        "disp_nm" : "롯데백화점",
+        "lnk_url_addr" : null,
+        "cate_cnt" : "1",
+        "mall_nm" : null,
+        "lcate_nm" : null,
+        "cate_depth" : null
+      }, {
+        "disp_no" : null,
+        "disp_nm" : "롯데홈쇼핑",
+        "lnk_url_addr" : null,
+        "cate_cnt" : "0",
+        "mall_nm" : null,
+        "lcate_nm" : null,
+        "cate_depth" : null
+      } ],
+      "total_count" : 3
+    },
+    "D_CATE" : {
+      "items" : [ {
+        "disp_no" : "5516388",
+        "disp_nm" : "여성화",
+        "lnk_url_addr" : null,
+        "cate_cnt" : "1649",
+        "mall_nm" : "롯데백화점",
+        "lcate_nm" : "슈즈",
+        "cate_depth" : "2"
+      } ],
+      "total_count" : 1
+    },
+    "C_CATE" : {
+      "items" : [ ],
+      "total_count" : 0
+    },
+    "Y_CATE" : {
+      "items" : [ ],
+      "total_count" : 0
+    },
+    "L_CATE" : {
+      "items" : [ {
+        "disp_no" : "5407941",
+        "disp_nm" : "여성구두",
+        "lnk_url_addr" : null,
+        "cate_cnt" : "2",
+        "mall_nm" : "롯데닷컴",
+        "lcate_nm" : "패션슈즈",
+        "cate_depth" : "2"
+      } ],
+      "total_count" : 1
+    },
+    "E_CATE" : {
+      "items" : [ ],
+      "total_count" : 0
+    },
+    "M_CATE" : {
+      "items" : [ ],
+      "total_count" : 0
+    }
+  },
+  "ERROR" : {
+    "ERROR_CODE" : "0",
+    "ERROR_MSG" : ""
+  },
+  "brandInfo" : {
+    "totalcnt" : 0,
+    "pageIdx" : 1,
+    "rowsPerPage" : 10,
+    "pageRange" : 10,
+    "pageCalc" : 101,
+    "brnd_no" : 30357,
+    "obj_brnd_no" : 30357,
+    "brnd_nm" : "게스",
+    "upr_brnd_no" : 0,
+    "obj_upr_brnd_no" : null,
+    "dpth_val" : 0,
+    "obj_dpth_val" : null,
+    "brnd_kor_nm" : null,
+    "brnd_eng_nm" : null,
+    "kor_eng_sct_cd" : null,
+    "kor_sch_nm" : null,
+    "eng_sch_nm" : null,
+    "brnd_desc_cont" : null,
+    "brnd_conf_stat_cd" : null,
+    "brnd_req_dtime" : null,
+    "brnd_rqsr_id" : null,
+    "brnd_req_caus_desc" : null,
+    "brnd_rtrn_caus_cont" : null,
+    "sys_reg_dtime" : null,
+    "sys_regr_id" : null,
+    "sys_mod_dtime" : null,
+    "sys_modr_id" : null,
+    "size_lktb_path_nm" : null,
+    "size_lktb_file_nm" : null,
+    "disp_no" : 0,
+    "size_lktb_path_file" : "",
+    "img_path_file_big" : "",
+    "img_path_file_mid" : "",
+    "img_path_file_small" : "/goods/brand/30357.gif",
+    "additionalBeanInfo" : null,
+    "beanDescriptor" : null,
+    "defaultEventIndex" : -1,
+    "defaultPropertyIndex" : -1,
+    "eventSetDescriptors" : null,
+    "methodDescriptors" : null,
+    "propertyDescriptors" : null
+  }
+}

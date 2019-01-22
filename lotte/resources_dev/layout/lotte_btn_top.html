@@ -1,0 +1,27 @@
+<div class="quick_btn" ng-class="{top_on: quickBtnTop, open: quickBtnVCOpen, aos44: aos44chk}" ontouchmove="event.preventDefault();">
+    <div ng-show="quickBtnTop">
+        <a class="btn_back" ng-show="quickBtnBack">뒤로</a>
+        <a class="btn_top" >위로</a>
+    </div>
+    
+    <!-- DIM -->
+    <div class="qbt_dim" ng-click="toggleVCLayer('dim')"></div>
+
+    <!-- 버튼 레이어 -->
+    <div class="quick_voice_box">
+        <a ng-click="toggleVCLayer()" class="btn"></a>
+
+        <div class="quick_box shopping" ng-click="goVoiceCommerce()">
+            <dl>
+                <dt>말로 하는 쇼핑</dt>
+                <dd>상품추천에서 결제까지 쉽고 빠르게</dd>
+            </dl>
+        </div>
+        <div class="quick_box chat" ng-click="goTalkChat()">
+            <dl>
+                <dt>실시간 채팅상담</dt>
+                <dd>배송/교환/반품/이벤트 등 상담</dd>
+            </dl>
+        </div>
+    </div>
+</div>

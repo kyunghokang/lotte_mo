@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+	<meta charset="utf-8">
+	<title>롯데닷컴-loginForm</title>
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<script src="/lotte/lib/naver/naverLogin.js"></script>
+	<script src="/lotte/lib/facebook/ko_KR/all.js"></script>
+	<style>
+	body{height:100%;background-color:#fff;}
+	</style>
+
+	<script>
+
+	function callFBLogin(redirect_uri) {
+		// 닷컴
+		FB.init({
+			appId: "959491840761275",
+			status: true,
+			cookie: true,
+			xfbml: true
+		});
+
+		var uri = encodeURI(redirect_uri);
+
+		FB.getLoginStatus(function (response) {
+			if (response.status === "connected") {
+				window.location.href = uri;
+			} else {
+				window.location.href = encodeURI("https://www.facebook.com/dialog/oauth?client_id=959491840761275&redirect_uri=" + uri + "&response_type=token");
+			}
+		});
+	}
+	</script>
+
+</head>
+<body>
+1234s
+</body>
+</html>

@@ -1,0 +1,55 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!--M32 베스트일반형 -->
+	<div class="moduleCon"><!-- json : linkUrl 없음  -->
+		<div class="gTop_title">
+			<span>베스트</span>
+			<b><p>{{moduleData.items[0].txt}}</p></b>
+		</div>
+		<div  lotte-slider class="swipe_wrap">
+			<ul class="prd_unit_type01_line bd_middleLine">
+				<li ng-repeat="item1 in moduleData.items[0].prdList.items">
+					<a ng-click="logGAEvtModuleEach($index + 1, item1.goodsNo);mainProductClick(item1.goodsNo, moduleData.tclick + '_1_Swp_Prd'+numberFill(($index+1),2))">
+						<div class="imageCon">
+							<img ng-src="{{item1.imgUrl}}" alt="" />
+							<span class="rkNum">{{$index + 1}}</span>
+						</div>
+						<div class="titleCon">
+							<div class="name">{{item1.goodsNm}}</div>
+							<div class="ti"><strong>{{item1.price | number}}</strong>원<em ng-if="item1.isPlanPrd">~</em></div>
+						</div>
+					</a>
+				</li>
+				<li class="bestMore">
+					<a class="txt_store" ng-click="logGAEvtModuleEach('베스트더보기', '더보기');dispNoClick(moduleData.items[0].moreLinkInfo.dispNo, '1')">
+						<p>베스트<br />더보기</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="gTop_title top_line">
+			<p>{{moduleData.items[1].txt}}</p>
+		</div>
+		<div  lotte-slider class="swipe_wrap">
+			<ul class="prd_unit_type01_line">
+				<li ng-repeat="item2 in moduleData.items[1].prdList.items">
+					<a ng-click="logGAEvtModuleEach($index + 11, item2.goodsNo);mainProductClick(item2.goodsNo, moduleData.tclick + '_2_Swp_Prd'+numberFill(($index+1),2))">
+						<div class="imageCon">
+							<img ng-src="{{item2.imgUrl}}" alt="" />
+							<span class="rkNum">{{$index + 1}}</span>
+						</div>
+						<div class="titleCon">
+							<div class="name">{{item2.goodsNm}}</div>
+							<div class="ti"><strong>{{item2.price | number}}</strong>원<em ng-if="item2.isPlanPrd">~</em></div>
+						</div>
+					</a>
+				</li>
+				<li class="bestMore">
+					<a class="txt_store" ng-click="logGAEvtModuleEach('베스트더보기', '더보기');dispNoClick(moduleData.items[1].moreLinkInfo.dispNo, '2')">
+						<p>베스트<br />더보기</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>

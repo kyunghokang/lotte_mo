@@ -1,0 +1,324 @@
+<section ng-show="contVisible" class="cont_minheight renew" style="min-height:100px;" ng-class="{sinfo:frame < 3}">
+<!--   <div style="border:1px solid red;margin:5px;padding:5px">
+       <p>test code</p>
+       <p>{{test_str}}</p>
+   </div>-->
+
+    <!--롯데백화점 및 세븐일레븐 선택화면	-->
+	<div ng-if="frame == 0" class="select_picktype">
+        <div class="intro_tit loc_lib">LOTTE SMART PICK</div>
+	    <div class="sebtn">
+           <input type="radio" name="pick_loc" value="1" class="radio01" id="pl1" ng-model="picktype.type">
+           <label for="pl1">백화점 픽업</label>
+           <span class="pickint lotte loc_lib">&nbsp;</span> <!-- 20181022 마크업변경-->
+
+        </div>
+        <div class="sebtn mb10">
+            <input type="radio" name="pick_loc" value="2" class="radio01" id="pl2"  ng-model="picktype.type">
+            <label for="pl2">내 주변 픽업</label>
+            <span class="pickint seven loc_lib">&nbsp;</span> <!-- 20181022 마크업변경-->
+        </div>
+	    <div class="foot_btn">
+	        <a class="no" ng-click="go_back()">취소</a>
+	        <a class="yes" ng-click="nextframe()">확인</a>
+	    </div>
+	</div>
+
+
+    <!--롯데백화점 -->
+	<div ng-if="frame == 1">
+        <ul class="sprd_list2">
+            <li ng-repeat="item in smpb.goods_list.items track by $index">
+                <div class="prdInfo2">
+                    <div class="thumb">
+                        <img ng-src="{{item.goods_img}}" alt="{{item.goods_nm}}" />
+                    </div>
+                    <div class="info">
+                        <p class="tit">{{item.goods_nm}}</p>
+                        <p class="opt">{{item.item_nm}}</p>
+                        <div class="xbtn loc_lib" ng-if="onemore" ng-click="deleteItem({{$index}})">delete</div>
+                    </div>
+                </div>
+                <div class="pick_box">
+                    <p class="tit">1. 롯데백화점 지점 선택</p>
+                    <div class="p_boxtype" ng-show="($index < 8 && !item.morepick) || item.morepick" ng-class="{on:item.select_brch.shop_no == dept.shop_no}" ng-repeat="dept in item.smp_brch_list.items">
+                        <!--8개만 보기-->
+                        <div class="tbox" ng-show="($index < 7 && !item.morepick) || ($index == 7 && item.smp_brch_list.items.length == 8)" ng-click="select_brch({{$parent.$index}}, dept)">
+                            <div class="mtable">
+                                <div class="mcell">{{dept.brch_nm}}</div>
+                            </div>
+                        </div>
+                        <div class="tbox more" ng-show="$index == 7 && !item.morepick && item.smp_brch_list.items.length > 8" ng-click="item.morepick=true">
+                            <div class="mtable">
+                                <div class="mcell">더보기+</div>
+                            </div>
+                        </div>
+
+                        <!--전체보기-->
+                        <div class="tbox" ng-show="item.morepick" ng-click="select_brch({{$parent.$index}}, dept)">
+                            <div class="mtable">
+                                <div class="mcell">{{dept.brch_nm}}</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="pick_box">
+                    <p class="tit" ng-if="item.smp_install_yn == 'Y'">2. 상담 매장을 확인해 주세요.</p>
+                    <p class="tit" ng-if="item.smp_install_yn != 'Y'">2. 픽업 장소 선택</p>
+                    <p class="substr" ng-if="item.select_brch == undefined">롯데백화점 지점 선택 후
+                        <span ng-if="item.smp_install_yn != 'Y'"> 픽업장소를 </span>
+                        <span ng-if="item.smp_install_yn == 'Y'"> 상담매장을 </span>선택해주세요.</p>
+                    <ul ng-if="item.select_brch != undefined">
+                         <li ng-repeat="loc in item.select_brch.dsk_lck_list.items" class="pick_loc" ng-class="{on:item.select_loc == loc}">
+                             <div class="addr" ng-click="select_pickloc(item, loc)"><div class="addr_oneline">{{loc.shop_nm}} {{loc.mng_strt_time}}~{{loc.mng_end_time}}</div></div>
+                             <div class="loc" ng-click="showLocationClick(loc,item)"><span class="pickicon loc_lib"></span>픽업위치</div>
+                         </li>
+                    </ul>
+                </div>
+                <div class="pick_box nomb">
+                    <p class="tit" ng-if="item.smp_install_yn == 'Y'">3. 상담 예정일 선택</p>
+                    <p class="tit" ng-if="item.smp_install_yn != 'Y'">3. 방문 예정일 선택</p>
+                    <p class="substr" ng-if="item.select_brch == undefined">롯데백화점 지점과
+                        <span ng-if="item.smp_install_yn != 'Y'"> 픽업장소 </span>
+                        <span ng-if="item.smp_install_yn == 'Y'"> 상담매장 </span>선택 후 방문예정일을 선택해주세요.</p>
+                    <div ng-if="item.select_brch != undefined">
+                         <div class="p_boxtype" ng-repeat="dtime in item.select_brch.pickup_date_list.items" ng-class="{on:item.select_time != undefined && item.select_time == dtime}">
+                             <div class="tbox" ng-if="dtime.target_date == today" ng-click="select_picktime(item, dtime)">
+                                <div class="mtable">
+                                    <div class="mcell">오늘</div>
+                                </div>
+                            </div>
+                            <div class="tbox" ng-if="dtime.target_date != today" ng-click="select_picktime(item, dtime)">
+                                <div class="mtable">
+                                    <div class="mcell">{{dtime.target_date | datetype1}}({{dtime.day_val}})</div>
+                                </div>
+                            </div>
+                         </div>
+                    </div>
+
+                </div>
+
+            </li>
+        </ul>
+        <p class="foot_msg">오후 4시 이전 주문은 당일 픽업도 가능합니다.</p>
+	    <div class="foot_btn">
+	        <a class="no" ng-click="go_back()">취소</a>
+	        <a class="yes" ng-click="ok_btn()">확인</a>
+	    </div>
+	</div>
+
+
+
+    <!--세븐일레븐/하이마트	-->
+	<div ng-if="frame == 2" id="mart">
+        <div class="getOther" ng-show="onemore">
+           <input type="checkbox" class="check01" ng-model="scr_a" id="scr_a"><label for="scr_a" class="label_sptop">여러곳으로 보내기 </label>
+        </div>
+        <!--한곳으로 보내기-->
+        <div ng-if="!scr_a">
+            <!--상품정보-->
+            <ul class="sprd_list">
+                <li ng-repeat="item in smpb.goods_list.items track by $index">
+					<div class="prdInfo2">
+						<div class="thumb">
+							<img ng-src="{{item.goods_img}}" alt="{{item.goods_nm}}" />
+						</div>
+						<div class="info">
+							<p class="tit">{{item.goods_nm}}</p>
+							<p class="opt">{{item.item_nm}}</p>
+							<div class="xbtn loc_lib" ng-if="onemore" ng-click="deleteItem({{$index}})">delete</div>
+						</div>
+					</div>
+                    <div class="hideDiv">
+                        <input type="text" name="crspk_name_{{$index}}" id="crspk_name_{{$index}}" ng-model="sevenStore[$index].crspk_str_str_nm"/>
+                        <input type="text" name="crspk_corp_cd_{{$index}}" id="crspk_corp_cd_{{$index}}" ng-model="sevenStore[$index].crspk_corp_cd"/>
+                        <input type="text" name="crspk_corp_str_sct_cd_{{$index}}" id="crspk_corp_str_sct_cd_{{$index}}"  ng-model="sevenStore[$index].crspk_corp_str_sct_cd"/>
+                        <input type="text" name="crspk_str_no_{{$index}}" id="crspk_str_no_{{$index}}"  ng-model="sevenStore[$index].crspk_str_no"/>
+                        <input type="text" name="crspk_addr_{{$index}}" id="crspk_addr_{{$index}}"  ng-model="sevenStore[$index].crspk_str_addr"/>
+                        <input type="text" name="crspk_phone_{{$index}}" id="crspk_phone_{{$index}}"  ng-model="sevenStore[$index].crspk_str_phon"/>
+                    </div>
+
+                </li>
+            </ul>
+
+            <!--최근픽업지점-->
+            <div class="s_pickup" ng-if="last_pick.length > 0">
+                <p class="pickup_tit">최근 픽업 지점</p>
+                <p class="pickup_titsub">내 주변 가까운 매장에서 상품을 픽업하는 서비스입니다.</p>
+                <ul class="mtable pick_list">
+                    <li class="mcell" ng-repeat="lpk in last_pick">
+                        <div class="btn"  ng-click="setSeven(lpk)" ng-if="lpk.crspk_corp_cd != '0'" ng-class="{on : lpk.crspk_str_str_nm == sevenStore[0].crspk_str_str_nm}">
+                            <div class="mtable tclip">
+                                <div class="mcell">{{lpk.crspk_str_str_nm}}</div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!--선택정보	-->
+            <div class="store_info" ng-show="sevenStore[0] != undefined">
+                <div class="mtable mb"><div class="mcell tit">매장명</div><div class="mcell">{{sevenStore[0].crspk_str_str_nm | nullcheck}} {{sevenStore[0].locker_inst_yn_nm | nullcheck}}</div></div>
+                <div class="mtable mb"><div class="mcell tit">매장주소</div><div class="mcell">{{sevenStore[0].crspk_str_addr | nullcheck}}</div></div>
+                <div class="mtable"><div class="mcell tit">연락처</div><div class="mcell">{{sevenStore[0].crspk_str_phon | nullcheck}}</div></div>
+            </div>
+
+            <div class="mtable other_pick">
+                <div class="mcell">다른지점을 선택하시려면 [지점검색] <br>버튼을 클릭해주세요.</div>
+                <div class="mcell btn"><a ng-click="showLocationGoogle(0, 'search')">지점검색 </a></div>
+            </div>
+
+        </div>
+
+        <!--여러 곳으로 보내기-->
+        <div  ng-if="scr_a">
+            <ul class="sprd_list2">
+                <li ng-repeat="item in smpb.goods_list.items">
+					<div class="prdInfo2">
+						<div class="thumb">
+							<img ng-src="{{item.goods_img}}" alt="{{item.goods_nm}}" />
+						</div>
+						<div class="info">
+							<p class="tit">{{item.goods_nm}}</p>
+							<p class="opt">{{item.item_nm}}</p>
+							<div class="xbtn loc_lib" ng-if="onemore" ng-click="deleteItem({{$index}})">delete</div>
+						</div>
+					</div>
+                    <div class="hideDiv">
+                        <input type="text" name="crspk_name_{{$index}}" id="crspk_name_{{$index}}" ng-model="sevenStore[$index].crspk_str_str_nm"/>
+                        <input type="text" name="crspk_corp_cd_{{$index}}" id="crspk_corp_cd_{{$index}}" ng-model="sevenStore[$index].crspk_corp_cd"/>
+                        <input type="text" name="crspk_corp_str_sct_cd_{{$index}}" id="crspk_corp_str_sct_cd_{{$index}}"  ng-model="sevenStore[$index].crspk_corp_str_sct_cd"/>
+                        <input type="text" name="crspk_str_no_{{$index}}" id="crspk_str_no_{{$index}}"  ng-model="sevenStore[$index].crspk_str_no"/>
+                        <input type="text" name="crspk_addr_{{$index}}" id="crspk_addr_{{$index}}"  ng-model="sevenStore[$index].crspk_str_addr"/>
+                        <input type="text" name="crspk_phone_{{$index}}" id="crspk_phone_{{$index}}"  ng-model="sevenStore[$index].crspk_str_phon"/>
+                    </div>
+
+                    <!--선택정보	-->
+                    <div class="store_info" ng-show="sevenStore[$index] != undefined">
+                        <div class="mtable mb"><div class="mcell tit">매장명</div><div class="mcell">{{sevenStore[$index].crspk_str_str_nm | nullcheck}} {{sevenStore[$index].locker_inst_yn_nm | nullcheck}}</div></div>
+                        <div class="mtable mb"><div class="mcell tit">매장주소</div><div class="mcell">{{sevenStore[$index].crspk_str_addr | nullcheck}}</div></div>
+                        <div class="mtable"><div class="mcell tit">연락처</div><div class="mcell">{{sevenStore[$index].crspk_str_phon | nullcheck}}</div></div>
+                    </div>
+
+                    <div class="mtable other_pick">
+                        <div class="mcell">픽업 지점을 검색하시려면 [지점검색] <br>버튼을 클릭해주세요.</div>
+                        <div class="mcell btn"><a ng-click="showLocationGoogle({{$index}}, 'search')">지점검색 </a></div>
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+	    <div class="foot_btn">
+	        <a class="no" ng-click="go_back()">취소</a>
+	        <a class="yes"  ng-click="ok_btn()">확인</a>
+	    </div>
+
+	</div>
+
+
+    <!--픽업장소 확인 : 복수 상품 주문시-->
+	<div ng-if="frame > 2">
+			<ul class="smartPrdList">
+				<li ng-repeat="gitem in resultData.list" >
+					<div class="prdInfo" style="border:0px">
+						<div class="thumb">
+							<img ng-src="{{gitem.goods_img}}" alt="{{gitem.goods_nm}}" />
+						</div>
+						<div class="info">
+							<p class="tit">{{gitem.goods_nm}}</p>
+							<p class="titp">{{gitem.item_nm}} {{pageOptions.orderCount[$index]}}개</p>
+							<div class="pr_box">
+								<span class="price"><em>{{gitem.goods_dscnt_sale_prc|number}}</em>원</span>
+							</div>
+						</div>
+					</div>
+					<div ng-if="frame == 3">
+                        <div style="border-top:1px solid #ddd;margin:0 10px"></div>
+                        <dl class="new">
+                            <dt ng-if="gitem.smp_install_yn == 'Y'">상담매장</dt>
+                            <dt ng-if="gitem.smp_install_yn != 'Y'">픽업장소</dt>
+                            <dd>
+                                <a href="#none" class="mapInfo" ng-click="showLocationClick(gitem.select_loc,gitem)">픽업위치</a>
+                                <p class="pickupStore">{{gitem.select_loc.shop_nm}} <span>{{gitem.select_loc.mng_strt_time}} ~ {{gitem.select_loc.mng_end_time}}</span></p>
+                            </dd>
+
+                            <dt ng-if="gitem.smp_install_yn == 'Y'">상담 예정일</dt>
+                            <dt ng-if="gitem.smp_install_yn != 'Y'">방문 예정일</dt>
+                            <dd>
+                                    {{gitem.select_time.target_date}} {{gitem.select_time.day_val}}요일
+                            </dd>
+                        </dl>
+
+					</div>
+                    <!--크로스픽이면-->
+                    <div ng-if="frame == 4">
+                        <div style="border-top:1px solid #ddd;margin:0 10px"></div>
+                        <dl>
+                            <dt>픽업장소</dt>
+                            <dd>
+                                <a href="#none" class="mapInfo" ng-click="showLocationGoogleView($index)">픽업위치</a>
+                                <p class="pickupStore" style="padding-top:10px">
+                                    <span ng-if="resultData.seven[$index].crspk_brnd_nm != undefined">{{resultData.seven[$index].crspk_brnd_nm}}</span> {{resultData.seven[$index].crspk_str_str_nm}}
+                                </p>
+                            </dd>
+                        </dl>
+                    </div>
+
+				</li>
+			</ul>
+	    <div class="foot_btn last">
+	        <a class="no" ng-click="go_back()">취소</a>
+	        <a class="yes" ng-click="ok_last_btn()">확인</a>
+	    </div>
+
+	</div>
+
+	<!-- 삭제 접수 팝업 -->
+	<div class="delete_dim" ng-show="deletePop" ng-click="deletePop = false"></div>
+	<div class="smpick_lst reverve" ng-show="deletePop" style="z-index:1000;border:1px solid #ccc">
+	    <div class="loc_lib close_del" ng-click="deletePop = false">close</div>
+		<header><span class="tit">{{del_item_nm}}</span></header>
+		<div class="branch_wrap">
+			<p ng-if="!deletePop2">선택한 상품을 장바구니에 담아 다음에 다시 구매하시거나 삭제하시겠습니까?</p>
+			<p ng-if="deletePop2">상품이 장바구니에 담겼습니다.</p>
+		</div>
+		<div class="btn_wrap" ng-if="!deletePop2">
+           <button class="btn_close half rb" ng-click="add_cart()">장바구니 담기</button>
+           <button class="btn_close half" ng-click="close_delete_item()">삭제</button>
+        </div>
+		<div class="btn_wrap" ng-if="deletePop2">
+           <button class="btn_close" ng-click="adddel_ok()">확인</button>
+        </div>
+	</div>
+	<!--pickup map-->
+	<div class="smpick_lst location" ng-show="pageOptions.showLocation" style="z-index:1000;">
+		<header><span class="tit">스마트픽 픽업 데스크 위치</span></header>
+		<div class="branch_wrap">
+			<div class="storePic">
+				<img ng-src="http://image.lotte.com/lotte/mobile/mobile_new/common/new_{{smpLocation.smp_deli_loc_sn}}_deli_loc_map.jpg" alt="" />
+			</div>
+			<ul class="storeInfo">
+				<li>
+					<span class="infoTit">픽업 위치 안내 : {{smpLocation.shop_nm}}</span>
+					<p>{{smpLocation.smp_deli_loc_desc}}</p>
+				</li>
+				<li>
+					<span class="infoTit">픽업 가능 시간 : {{smpLocation.mng_strt_time}} ~ {{smpLocation.mng_end_time}}</span>
+					<p>(상품준비 완료 알람 후)</p>
+				</li>
+			</ul>
+		</div>
+		<div class="btn_wrap"><button class="btn_close" ng-click="smpLocationClose()">닫기</button></div>
+	</div>
+
+	<map-info></map-info>
+	<!--크로스픽 구글맵-->
+    <style>
+    .martPopup{position:fixed;top:0;width:100%;height:100%;z-index:1000;background:#fff;display:none}
+    .martPopup iframe{width:100%;height:100%;border:0}
+    </style>
+    <div id="searchMartPop" class="martPopup">
+       <iframe ng-src="{{google_map_url}}"></iframe>
+    </div>
+</section>

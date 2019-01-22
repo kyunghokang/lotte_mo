@@ -1,0 +1,124 @@
+1. 업무명 : 상품상세 > 품목정보 조회
+2. 담당자 : 신홍균
+3. URL : http://mrenewdev.lotte.com/json/product/product_item_info.json?goods_no=100581302
+4. 파라미터
+	업음
+5. JSON 파라미터(필수:*)
+	- *goods_no : 상품번호
+6. JSON
+{
+  "type" : "object",
+  "id" : "urn:jsonschema:com:lotte:mobile2:product:bean:ProductItemInfoViewEntity",
+  "properties" : {
+    "img_url" : {
+      "type" : "string",
+      "description" : "이미지경로"
+    },
+    "orpl_nm" : {
+      "type" : "string",
+      "description" : "원산지"
+    },
+    "dlv_goods_sct_cd" : {
+      "type" : "string",
+      "description" : "배송구분"
+    },
+    "material_yn" : {
+      "type" : "string",
+      "description" : "물질적여부"
+    },
+    "delivery_info" : {
+      "type" : "string",
+      "description" : "배송정보"
+    },
+    "mfcp_nm" : {
+      "type" : "string",
+      "description" : "제조사명"
+    },
+    "item_info" : {
+      "type" : "object",
+      "id" : "urn:jsonschema:com:lotte:mobile2:common:bean:ItemEntity<java:util:List<com:lotte:mobile2:product:bean:ProductItemInfoEntity>>",
+      "description" : "항목정보",
+      "properties" : {
+        "items" : {
+          "type" : "any",
+          "description" : "items"
+        },
+        "item" : {
+          "type" : "object",
+          "id" : "urn:jsonschema:com:lotte:mobile2:product:bean:ProductItemInfoEntity",
+          "properties" : {
+            "mpss_yn" : {
+              "type" : "string",
+              "description" : "강조여부"
+            },
+            "goods_item_nm" : {
+              "type" : "string",
+              "description" : "상품필수정보 제목 "
+            },
+            "item_cont" : {
+              "type" : "string",
+              "description" : "상품필수정보 내용"
+            }
+          }
+        },
+        "total_count" : {
+          "type" : "integer",
+          "description" : "총 갯수: 총 갯수를 리턴하지 않는 경우 -1"
+        }
+      }
+    },
+    "item_cert_info" : {
+      "type" : "object",
+      "id" : "urn:jsonschema:com:lotte:mobile2:common:bean:ItemEntity<java:util:List<com:lotte:mobile2:product:bean:ProductItemCertInfoEntity>>",
+      "description" : "안전인증정보",
+      "properties" : {
+        "items" : {
+          "type" : "any",
+          "description" : "items"
+        },
+        "item" : {
+          "type" : "object",
+          "id" : "urn:jsonschema:com:lotte:mobile2:product:bean:ProductItemCertInfoEntity",
+          "properties" : {
+            "kps_knd_cd" : {
+              "type" : "string",
+              "description" : "안전인증 구분코드"
+            },
+            "mark_img_yn" : {
+              "type" : "string",
+              "description" : "안전인증 이미지"
+            },
+            "kps_no" : {
+              "type" : "string",
+              "description" : "안전인증번호"
+            }
+          }
+        },
+        "total_count" : {
+          "type" : "integer",
+          "description" : "총 갯수: 총 갯수를 리턴하지 않는 경우 -1"
+        }
+      }
+    },
+    "md_gsgr_no" : {
+      "type" : "string",
+      "description" : "MD상품군"
+    },
+    "delivery_fee" : {
+      "type" : "string",
+      "description" : "배송비"
+    },
+    "cmp_mrk_yn" : {
+      "type" : "string",
+      "description" : "MD상품군 성분표시여부"
+    },
+    "entr_no" : {
+      "type" : "string",
+      "description" : "업체코드"
+    },
+    "rsv_sale_yn" : {
+      "type" : "string",
+      "description" : "예약상품여부"
+    }
+  }
+}

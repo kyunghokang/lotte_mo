@@ -1,0 +1,68 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplcartPush" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mylotte/cart/m/cart_push_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/cart_push.template.js"
+            }
+        },
+
+        "concat" : {
+            "jscartPush" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mylotte/cart/m/cart_push.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/cart_push.js"
+            }
+        },
+
+        "uglify" : {
+            "jscartPush" : {
+                "src" : "lotte/resources/<%= version %>/cart_push.js",
+                "dest" : "lotte/resources/<%= version %>/cart_push.min.js"
+            },
+            "tplcartPush" : {
+                "src" : "lotte/resources/<%= version %>/cart_push.template.js",
+                "dest" : "lotte/resources/<%= version %>/cart_push.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "csscartPush" : {
+                "src" : [
+                    "lotte/resources_dev/mylotte/cart/m/cart_push.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/cart_push.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleancartPush" : [
+                "lotte/resources/<%= version %>/cart_push.js",
+                "lotte/resources/<%= version %>/cart_push.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlcartPush" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mylotte/cart/m/cart_push.html" : "mylotte/cart/m/cart_push_dev.html"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+/* 무료배송 플래그 */
+.flag.tag{
+    display:inline-block;
+    padding:0 5px;
+    border:1px solid #3874ec;border-radius:10px;
+    color:#3874ec;font-size:11px;line-height:19px;
+}
+.flag.tag{border:1px solid #ff7b62;color:#ff7b62;}
+
+.prod_list_deal {width:100%; box-sizing:border-box; -webkit-box-sizing:border-box;}
+.prod_list_deal > li {padding-bottom:5px; float:left; width:100%; box-sizing:border-box; -webkit-box-sizing:border-box;}
+
+/* 공통 유닛 표준 : 딜 상품 */
+.unit_deal_01{border:1px solid #dcdcdc;position:relative;background-color:#ffffff; box-sizing:border-box; -webkit-box-sizing:border-box;}
+.unit_deal_01 > a{display:block;padding:5px 0 0 0;}
+.unit_deal_01 .md_talk{
+    margin:0 5px 5px 5px;
+    padding:0 10px;
+    height:27px;
+    border-radius:14px;
+    background-color:#eef3ff;
+    color:#333;font-size:14px;line-height:27px;text-align:center;
+    overflow:hidden;word-break:break-all;white-space:nowrap;/*text-overflow:ellipsis;*/
+}
+.unit_deal_01 .md_talk span {display:block;width:100%;overflow:hidden;}
+.unit_deal_01 .thumb{
+    position:relative;
+    overflow:hidden;
+    border-bottom:1px solid #dddddd;
+}
+.unit_deal_01 .thumb .flag{position:absolute;top:0;left:5px;}
+.unit_deal_01 .thumb .flag_wrap{position:absolute;top:0;left:5px;}
+.unit_deal_01 .thumb .flag_wrap .flag.tag {border-radius:0;}
+.unit_deal_01 .thumb .flag_wrap .flag {position:relative !important;}
+
+/* 이미지 반응형 */
+.unit_deal_01 .thumb.normal img{min-width:150px;min-height:150px;max-width:150px;max-height:150px;margin:0 auto;display:block}
+.unit_deal_01 .info{position:relative;height:50px;padding:5px 5px;}
+.unit_deal_01 .info.true{padding-left:60px}
+.unit_deal_01 .info .coupon{
+	text-align:center;
+    position:absolute;top:7px;left:7px;
+    width:50px;
+    color:#333;font-size:12px;
+}
+.unit_deal_01  b {font-weight:normal;}
+.unit_deal_01 .info .coupon em.no{font-size:30px;vertical-align:top; height:33px; line-height:33px;}
+.unit_deal_01 .info .coupon em.po{margin-left:-3px;margin-top:5px;display:inline-block; font-size:10px;}
+.unit_deal_01 .info .coupon span{display:block;color:#bbb;font-size:10px;}
+.unit_deal_01 .info .prod span{display:block;}
+.unit_deal_01 .info .prod .tit{
+    margin:3px 0 3px 0;
+    color:#333;font-size:14px;line-height:20px;
+    overflow:hidden;/*word-break:break-all;text-overflow:ellipsis;*/height:20px;white-space:normal;
+}
+.unit_deal_01 .info .prod .price{color:#3874ec;letter-spacing:-0.5px;}
+.unit_deal_01 .info .prod .price em{font-size:19px;font-weight:bold;vertical-align:-1px;margin-right:2px;}
+.unit_deal_01 .info .prod .sale{
+    color:#888;font-size:12px;
+    position:absolute;bottom:6px;right:7px;
+}
+.unit_deal_01 .info .prod .sale .no{font-weight:bold}
+
+@media screen and (min-width:640px){
+    .prod_list_deal li {width:50%; padding:0 2.5px 5px 2.5px;}
+    .unit_deal_01 .thumb {height:150px;}
+    .unit_deal_01 .thumb img {display:block; margin:0 auto;width:auto;height:100%;}
+    .unit_deal_01 .thumb.normal img {max-width:150px;max-height:150px;margin:0 auto;}
+}
+@media screen and (min-width:900px){
+    .prod_list_deal li {width:33.3%;}
+    .unit_deal_01 .thumb img{height:170px;width:auto;max-width:100%;}
+    .unit_deal_01 .thumb.normal img{max-width:170px;max-height:170px;}
+}

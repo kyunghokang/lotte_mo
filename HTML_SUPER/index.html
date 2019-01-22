@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>DC HTML List</title>
+<style>
+html,body {height:100%;font-family:'Malgun Gothic','맑은고딕';}
+body {padding:10px 0}
+form,h1,h2,h3,h4,h5,h6,ul,ol,dl,li,dt,dd,p {margin:0;padding:0;border: 0}
+ol,ul,li {list-style:none}
+h1 {padding:10px 0; font-size:18px; font-family:arial;}
+h2 {padding:30px 0 10px 0; font-size:16px; font-family:arial;}
+h1 span,h2 span {font-size:14px; color:#999; font-weight:normal;}
+a {color:#000;text-decoration:none;display:block}
+a:hover{color:#000} a.on{color:#000} a:focus{color:#E11837}
+table {border-collapse:collapse;border-spacing:0}
+caption {visibility:hidden;overflow:hidden;width:0;height:0;font-size:0;line-height:0}
+.rowT {width:100%; border-top:2px solid #333}
+.rowT th,
+.rowT td {padding:5px 3px 5px 10px;border:1px solid #ddd;font-size:12px;font-family:'Malgun Gothic','맑은고딕';text-align:left}
+.rowT thead th {background:#f0f0f0;padding:7px 3px 7px 5px;border-bottom:1px solid #ddd;font-size:13px;text-align:center}
+.rowT tr td{background-color:#fff;}/*ffe5e5*/
+.rowT tr td.work {color:#004eff;}
+.rowT tr.on td{background-color:#f4ffe5;}
+.rowT tr.del td{text-decoration:line-through;background-color:#ededed;}
+.rowT tr.done {display:none;}
+.rowT tr:hover td{background-color:#feffc9;}
+.rowT td:first-child {text-align:center; padding:7px 0;}
+
+ul.tab{height:40px;background:#f2f2f2;}
+ul.tab li {float:left;width:200px;text-align:center;line-height:40px;font-size:11px;}
+ul.tab li.ui-state-active{background:#ddd;border:1px solid #333;border-bottom:0;font-size:14px;color:#E11837;font-weight:bold}
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script>
+$(function() {
+	$( "#tabs" ).tabs();
+});
+</script>
+</head>
+<body>
+<h1>LOTTE</h1>
+<div id="tabs">
+	<ul class="tab">
+		<li class="ui-state-active"><a href="#html">롯데 HTML 가이드</a></li>
+		<li><a href="#angularJS">angularJS List</a></li>
+	</ul>
+	
+	<div id="html" class="tab_con">
+		<table class="rowT Guide">
+			<colgroup>
+				<col width="50"><col width="200"><col width="250"><col width="150"><col width="100"><col width="400"><col width="*">
+			</colgroup>
+			<thead>
+			<tr>
+				<th>순번</th>
+				<th>Depth 1</th>
+				<th>Depth 2</th>
+				<th>작업자</th>
+				<th>작업여부</th>
+				<th>링크</th>
+				<th>비고</th>
+			</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		<script>
+		$(function(){
+			var str,
+			data = [
+				{confirm:"on",dep1:"액션바",	dep2:"",work:"박병선",end:"완료",link:"main/index.html",fyi:""}
+				,{confirm:"off",dep1:"메인 헤더",	dep2:"",work:"박병선",end:"완료",link:"main/index.html",fyi:""}
+				,{confirm:"off",dep1:"서브 헤더",	dep2:"",work:"박병선",end:"완료",link:"main/sub.html",fyi:""}
+				,{confirm:"off",dep1:"마이롯데",	dep2:"",work:"박병선",end:"완료",link:"mylotte/mylotte_main.html",fyi:""}
+				,{confirm:"off",dep1:"위시리스트",	dep2:"",work:"조광희",end:"완료",link:"wish/wish_list.html",fyi:""}
+				,{confirm:"off",dep1:"장바구니",	dep2:"",work:"조광희",end:"완료",link:"cart/cart_list.html",fyi:""}
+				,{confirm:"off",dep1:"검색",	dep2:"",work:"조광희",end:"완료",link:"search/search_list.html",fyi:"추가"}
+				,{confirm:"off",dep1:"",	dep2:"",work:"",end:"",link:"",fyi:""}
+			];
+			for(var i in data){
+				str += "<tr class='" + data[i].confirm + "'>"
+					 + "<td>" + (parseInt(i) + 1) + "</td>"
+					 + "<td>" + data[i].dep1 + "</td>"
+					 + "<td>" + data[i].dep2 + "</td>"
+					 + "<td class='work'>" + data[i].work + "</td>"
+					 + "<td>" + data[i].end + "</td>"
+					 + "<td><a href=" + data[i].link + " target='_blank'>" + data[i].link + "</a></td>"
+					 + "<td>" + data[i].fyi + "</td>"
+				 + "</tr>";
+			}
+			$("table.rowT.Guide tbody").html(str);
+		});
+		</script>
+	</div>
+	
+	<!--angularJS List-->
+	<div id="angularJS" class="tab_con">
+		<table class="rowT angularjs">
+			<colgroup>
+				<col width="50"><col width="200"><col width="250"><col width="150"><col width="100"><col width="400"><col width="*">
+			</colgroup>
+			<thead>
+			<tr>
+				<th>순번</th>
+				<th>Depth 1</th>
+				<th>Depth 2</th>
+				<th>작업자</th>
+				<th>작업여부</th>
+				<th>링크</th>
+				<th>비고</th>
+			</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		<script>
+		$(function(){
+			var str,
+			data = [
+				{confirm:"off",dep1:"액션바",	dep2:"",work:"박병선",end:"1차 완료",link:"/main/main_dev.html",fyi:""}
+				,{confirm:"on",dep1:"메인 헤더",	dep2:"",work:"박병선",end:"1차 완료",link:"/main/main_dev.html",fyi:""}
+				,{confirm:"off",dep1:"서브 헤더",	dep2:"",work:"박병선",end:"1차 완료",link:"/mylotte/m/mylotte_2018_dev.html",fyi:""}
+				,{confirm:"off",dep1:"마이롯데",	dep2:"",work:"박병선",end:"작업중",link:"/mylotte/m/mylotte_2018_dev.html",fyi:""}
+				,{confirm:"off",dep1:"위시리스트",	dep2:"",work:"조광희",end:"작업중",link:"/mylotte/wish/m/wish_list_2018_dev.html",fyi:""}
+				,{confirm:"off",dep1:"장바구니",	dep2:"",work:"조광희",end:"작업중",link:"/mylotte/cart/m/cart_list_2018_dev.html",fyi:""}	
+				,{confirm:"off",dep1:"검색",	dep2:"",work:"조광희",end:"작업중",link:"/search/search_list_2018_dev.html",fyi:"추가"}			
+				,{confirm:"off",dep1:"",	dep2:"",work:"",end:"",link:"",fyi:""}
+			];
+			for(var i in data){
+				str += "<tr class='" + data[i].confirm + "'>"
+					 + "<td>" + (parseInt(i) + 1) + "</td>"
+					 + "<td>" + data[i].dep1 + "</td>"
+					 + "<td>" + data[i].dep2 + "</td>"
+					 + "<td class='work'>" + data[i].work + "</td>"
+					 + "<td>" + data[i].end + "</td>"
+					 + "<td><a href=" + data[i].link + " target='_blank'>" + data[i].link + "</a></td>"
+					 + "<td>" + data[i].fyi + "</td>"
+				 + "</tr>";
+			}
+			$("table.rowT.angularjs tbody").html(str);
+		});
+		</script>
+	</div>
+	<!--//angularJS List-->
+</div>
+</body>
+</html>

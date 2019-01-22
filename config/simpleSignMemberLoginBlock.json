@@ -1,0 +1,68 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplloginBlock" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/login/login_block_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberLoginBlock.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsloginBlock" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/login/login_block.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberLoginBlock.js"
+            }
+        },
+
+        "uglify" : {
+            "jsloginBlock" : {
+                "src" : "lotte/resources/<%= version %>/simpleSignMemberLoginBlock.js",
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberLoginBlock.min.js"
+            },
+            "tplloginBlock" : {
+                "src" : "lotte/resources/<%= version %>/simpleSignMemberLoginBlock.template.js",
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberLoginBlock.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssloginBlock" : {
+                "src" : [
+                    "lotte/resources_dev/login/login.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberLoginBlock.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanloginBlock" : [
+                "lotte/resources/<%= version %>/simpleSignMemberLoginBlock.js",
+                "lotte/resources/<%= version %>/simpleSignMemberLoginBlock.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlloginBlock" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "login/simpleSignMemberLoginBlock.html" : "login/simpleSignMemberLoginBlock_dev.html"
+                }
+            }
+        }
+    }
+}

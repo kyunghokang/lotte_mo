@@ -1,0 +1,199 @@
+@charset "UTF-8";
+
+
+.dev_sidebar{display:block;position:fixed;top:75px;right:5px;width:80px;padding:5px;box-sizing:border-box;background-color:rgba(255,255,255,0.6);border-radius:6px;z-index:10000;}
+.dev_sidebar a{display:block;height:24px;line-height:24px;text-align:center;background-color:#fff;border:1px solid #ccc;border-radius:6px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;opacity:0.6;}
+.dev_sidebar a + a{margin-top:5px;}
+.dev_sidebar span{display:block;height:15px;}
+
+
+/* .dev_mode .tr_group{box-shadow:0 0 0 1px #f96;}
+.dev_mode .tr_group:before{content:"Group";display:block;position:absolute;top:0;left:0;z-index:10;background-color:#f96;color:#fff;padding:3px 5px;font-size:10px;}
+ */
+.dev_option{display:block;position:fixed;left:60%;bottom:0;right:0;height:220px;background-color:rgba(255,255,255,0.6);z-index:10000;padding:0 10px;}
+.dev_option > div{opacity:0.6;}
+.dev_option .title{height:20px;line-height:20px;}
+.dev_option .list{height:200px;overflow:auto;}
+.dev_option .list a{display:block;height:30px;line-height:30px;text-align:center;border:1px solid #666;border-radius:6px;background-color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.dev_option .list a + a{margin-top:4px;}
+.dev_option .list a.disable{opacity:0.3;pointer-events:none;}
+.dev_option .list a span + span{margin-left:10px;}
+
+
+
+.modalPop2016 .mp16_wrap .mp16_msg{word-break:break-all;}
+
+body{background-color:#fae3f1;}
+.sub_header_wrap{height:0;}
+#head_sub{position:fixed !important;top:0;}
+.talkRecomCtrl:before{content:"";display:block;height:47px;}
+/* .talkRecomCtrl:after{content:"";display:block;height:46px;} */
+
+.tr_twoweek{color:#888;text-align:center;padding-bottom:10px;}
+
+.tr_conversation{padding:12px 15px 4px 10px;}
+
+.tr_group{position:relative;}
+.tr_group + .tr_group{margin-top:20px;}
+.tr_group .tr_date{position:relative;text-align:center;color:#888;font-size:11px;height:12px;line-height:12px;}
+.tr_group .tr_date span{display:block;width:62px;position:absolute;top:0;left:50%;-webkit-transform:translate(-31px, 0);transform:translate(-31px, 0);background-color:#fae3f1;}
+.tr_group .tr_date:before{content:"";display:block;height:1px;width:100%;position:absolute;left:0;top:50%;background-color:#aaa;}
+.tr_group .tr_date + .tr_section{margin-top:20px;}
+.tr_section{position:relative;padding-left:44px;}
+.tr_section:after{content:"";display:block;height:0;clear:both;}
+.tr_section + .tr_section{margin-top:12px;}
+.tr_section .tr_talk{position:relative;display:inline-block;padding:12px;box-sizing:border-box;border-radius:6px;font-size:14px;line-height:19px;max-width:80%;}
+.tr_section .tr_talk .tr_text{word-break:break-all;}
+.tr_section .tr_talk + .tr_talk{margin-top:4px;}
+.tr_section .tr_talk .tr_time{position:absolute;bottom:0;color:#888;font-size:10px;width:50px;}
+
+
+.tr_section .tr_talk.first{margin-top:12px;}
+.tr_section .tr_talk.first:first-child{margin-top:0;}
+
+.tr_section .tr_talk.ai{float:left;clear:both;color:#333;background-color:#fff;}
+.tr_section .tr_talk.ai .tr_time{right:-56px;text-align:left;}
+
+.tr_section .tr_talk.user{float:right;clear:both;color:#fff;background-color:#BA9AC3;max-width:90%;}
+.tr_section .tr_talk.user .tr_time{left:-56px;text-align:right;}
+
+.tr_section .tr_talk.ai .profile{display:block;position:absolute;top:0;left:-44px;}
+.tr_section .tr_talk.ai .profile a{display:block;width:36px;height:36px;text-indent:-999px;overflow:hidden;
+	background:url(http://image.lotte.com/lotte/mo2017/talk/talkrecom_sprite.png) no-repeat -250px -190px;background-size:300px auto;}
+
+.tr_section .tr_talk.photo{background-color:transparent;padding:0;border-radius:6px;}
+.tr_section .tr_talk.ai.photo{pointer-events:none;}
+.tr_section .tr_talk.ai.photo img{width:180px;pointer-events:none;}
+.tr_section .tr_talk.user.photo img.vertical{width:auto;max-height:320px;}
+
+
+.tr_section .tr_talk:before{content:none;display:block;width:10px;height:13px;position:absolute;top:0;
+	background:url(http://image.lotte.com/lotte/mo2017/talk/talkrecom_sprite.png) no-repeat 0 0;background-size:300px auto;}
+.tr_section .tr_talk.user:before{right:-10px;background-position:-270px 0;}
+.tr_section .tr_talk.ai:before{left:-10px;background-position:-290px 0;}
+
+.tr_section .tr_talk.user.first{border-radius:6px 0 6px 6px;}
+.tr_section .tr_talk.ai.first{border-radius:0 6px 6px 6px;}
+.tr_section .tr_talk.first:before{content:"";}
+
+.tr_section .tr_talk.first.photo{border-radius:6px;}
+.tr_section .tr_talk.first.photo:before{content:none;}
+.tr_section .tr_talk.ai.first.photo + .tr_talk.ai{border-radius:0 6px 6px 6px;}
+.tr_section .tr_talk.ai.first.photo + .tr_talk.ai:before{content:"";}
+.tr_section .tr_talk.user.photo img{border-radius:6px;}
+.tr_section .tr_talk.user.photo img.vertical{width:auto;max-height:320px;}
+.tr_section .tr_talk.ai.photo + .tr_talk.ai{margin-top:0;}
+
+.tr_section .tr_talk.first.tr_prod:before{content:none;}
+.tr_section .tr_talk.first.tr_prod + .tr_talk.ai{border-radius:0 6px 6px 6px;}
+.tr_section .tr_talk.first.tr_prod + .tr_talk.ai:before{content:"";}
+
+.tr_section .tr_talk.tr_prod{padding:0;width:100%;max-width:100%;background-color:transparent;}
+.tr_section .tr_talk.tr_prod .tr_slide{height:290px;overflow:visible;}
+.tr_section .tr_talk.tr_prod .tr_slide + .tr_slide{margin-top:4px;}
+.tr_section .tr_talk.tr_prod li{position:relative;display:block;width:264px;height:290px;border-radius:6px;background-color:#fff;float:left;}
+.tr_section .tr_talk.tr_prod li + li{margin-left:6px;}
+.tr_section .tr_talk.tr_prod li.more{width:96px;opacity:1;-webkit-transition:opacity 0.3s;transition:opacity 0.3s;}
+.tr_section .tr_talk.tr_prod li.more a{display:block;height:100%;}
+.tr_section .tr_talk.tr_prod li.more span.text{display:block;color:#CF83AF;font-size:16px;font-weight:bold;line-height:22px;text-align:center;position:absolute;top:152px;left:0;right:0;}
+.tr_section .tr_talk.tr_prod li.more span.icon{display:block;width:38px;height:38px;border-radius:100%;background-color:#E6A3CA;position:absolute;top:102px;left:29px;}
+.tr_section .tr_talk.tr_prod li.more span.icon:before,
+.tr_section .tr_talk.tr_prod li.more span.icon:after{content:"";display:block;width:18px;height:2px;background-color:#fff;position:absolute;}
+.tr_section .tr_talk.tr_prod li.more span.icon:before{left:10px;top:18px;-webkit-transform:rotate(90deg);transform:rotate(90deg);}
+.tr_section .tr_talk.tr_prod li.more span.icon:after{left:10px;top:18px;}
+.tr_section .tr_talk.tr_prod li.more.disable{opacity:0.3;pointer-events:none;}
+.tr_section .tr_talk.tr_prod .tr_time{position:relative;bottom:auto;right:auto;}
+
+.tr_section .tr_talk.tr_prod .tr_slide_wrap{height:290px;background:url(http://image.lotte.com/lotte/mo2017/talk/talkrecom_unit.png) repeat-x 0 0;}
+.tr_section .tr_talk.tr_prod.prod_loaded .tr_slide_wrap{background:transparent;}
+
+.tr_section .prod_wrap{padding:10px 12px 0;position:relative;height:100%;box-sizing:border-box;}
+.tr_section .prod_wrap .photo{width:130px;height:130px;overflow:hidden;margin:0 auto;}
+.tr_section .prod_wrap .photo img{width:100%;}
+.tr_section .prod_wrap .title{margin-top:12px;color:#333;font-size:14px;line-height:19px;height:38px;overflow:hidden;}
+.tr_section .prod_wrap .info{margin-top:10px;height:48px;position:relative;}
+.tr_section .prod_wrap .info .link{margin-right:70px;}
+.tr_section .prod_wrap .info .price{color:#333;font-size:16px;font-weight:bold;}
+.tr_section .prod_wrap .info .price span{font-size:12px;vertical-align:bottom;font-weight:normal;margin-left:2px;}
+.tr_section .prod_wrap .info a.reason{display:block;width:65px;height:34px;position:absolute;top:0;right:0;line-height:34px;border:1px solid #BF739F;border-radius:4px;text-align:center;color:#BF739F;font-size:13px;}
+.tr_section .prod_wrap .starScoreWrap{display:inline-block;width:60px;height:12px;line-height:12px;vertical-align:middle;
+	background:url(http://image.lotte.com/lotte/mo2017/talk/talkrecom_sprite.png) no-repeat 0 -60px;background-size:300px auto;}
+.tr_section .prod_wrap .starScoreWrap .starScoreCnt{display:inline-block;width:60px;height:12px;
+	background:url(http://image.lotte.com/lotte/mo2017/talk/talkrecom_sprite.png) no-repeat 0 -75px;background-size:300px auto;}
+.tr_section .prod_wrap .review{color:#aaa;font-size:13px;}
+.tr_section .prod_wrap .review:before{content:"(";}
+.tr_section .prod_wrap .review:after{content:")";}
+.tr_section .prod_wrap .btns{position:absolute;left:0;bottom:0;right:0;height:42px;border-top:1px solid #E0E0E0;}
+.tr_section .prod_wrap .btns a{display:block;width:50%;float:left;height:42px;line-height:42px;text-align:center;box-sizing:border-box;color:#BF739F;font-size:14px;background-color:#F7F7F7;}
+.tr_section .prod_wrap .btns a:first-child{border-radius:0 0 0 6px;}
+.tr_section .prod_wrap .btns a:last-child{border-radius:0 0 6px 0;border-left:1px solid #e0e0e0;}
+.tr_section .prod_wrap .wish{position:absolute;right:5px;top:5px;}
+.tr_section .prod_wrap .wish a{display:block;width:32px;height:29px;position:relative;text-indent:-999px;overflow:hidden;}
+.tr_section .prod_wrap .wish a:before{content:"";display:block;width:22px;height:19px;position:absolute;top:5px;right:5px;
+	background:url(http://image.lotte.com/lotte/mo2017/talk/talkrecom_sprite.png) no-repeat -60px 0;background-size:300px auto;}
+.tr_section .prod_wrap .wish.on a:before{background-position:-90px 0;}
+
+.tr_notice{position:fixed;top:0;left:0;right:0;z-index:120;}
+.tr_notice a{position:absolute;top:0;display:block;width:47px;height:47px;text-indent:-999px;overflow:hidden;}
+.tr_notice a:before{content:"";position:absolute;display:block;}
+.tr_notice a.tr_notice_btn{right:0;}
+.tr_notice a.tr_notice_btn:before{top:12px;right:12px;display:block;width:23px;height:23px;
+	background:url(http://image.lotte.com/lotte/mo2017/talk/talkrecom_sprite.png) no-repeat -30px 0;background-size:300px auto;}
+.tr_notice a.tr_back_btn{left:0;}
+.tr_notice a.tr_back_btn:before{top:0;left:0;width:47px;height:47px;
+	background:url(http://image.lotte.com/lotte/mo2017/talk/talkrecom_sprite.png) no-repeat 0 -100px;background-size:300px auto;}
+
+.tr_popup{position:fixed;top:0;right:0;bottom:0;left:0;z-index:1000;opacity:0;-webkit-transition:opacity 0.2s;transition:opacity 0.2s;}
+.tr_popup .tr_pop_dim{width:100%;height:100%;background-color:rgba(0,0,0,0.65);}
+/* .tr_popup .tr_pop_wrap{position:absolute;top:50px;left:28px;right:28px;background-color:#fff;border-radius:6px;} */
+.tr_popup .tr_pop_wrap{position:absolute;top:50px;background-color:#fff;border-radius:6px;width:320px;left:50%;right:auto;-webkit-transform:translate(-160px, 0);transform:translate(-160px, 0);}
+.tr_popup .tr_pop_head{background-color:#E6A3CA;height:42px;line-height:42px;text-align:center;color:#fff;font-size:16px;border-radius:6px 6px 0 0;}
+.tr_popup .tr_pop_body{position:relative;padding:20px;box-sizing:border-box;color:#000;font-size:14px;line-height:19px;}
+.tr_popup .tr_pop_foot{border-top:1px solid #e0e0e0;}
+.tr_popup .tr_pop_foot a{display:block;height:40px;line-height:40px;text-align:center;color:#000;font-size:14px;}
+.tr_popup .tr_pop_head .profile a{color:#fff;font-size:16px;font-weight:bold;}
+
+/* @media screen and (min-width:420px){
+	.tr_popup.tr_popup_reason .tr_pop_wrap{width:320px;left:50%;right:auto;-webkit-transform:translate(-160px, 0);transform:translate(-160px, 0);}
+} */
+.tr_popup.tr_popup_reason .tr_pop_head{font-weight:bold;}
+.tr_popup.tr_popup_reason .tr_pop_body .photo{width:130px;height:130px;margin:0 auto;position:relative;overflow:hidden;}
+.tr_popup.tr_popup_reason .tr_pop_body .title{margin-top:9px;color:#000;font-size:14px;line-height:19px;text-align:center;max-height:38px;overflow:hidden;}
+.tr_popup.tr_popup_reason .tr_pop_body .mdtip{margin-top:14px;padding-top:14px;color:#333;font-size:14px;line-height:19px;border-top:1px solid #CF83AF;}
+.tr_popup.tr_popup_reason .tr_pop_body .mdtip .cont.titl{font-weight:bold;}
+.tr_popup.tr_popup_reason .tr_pop_body .mdtip .agegen{color:#CF83AF;}
+.tr_popup.tr_popup_reason .tr_pop_body .mdtip .cont + .agegen{margin-top:10px;}
+.tr_popup.tr_popup_reason .tr_pop_body .mdtip .agegen.male{color:#7291CF;}
+
+/* .tr_popup.tr_popup_inform .tr_pop_wrap{width:320px;left:50%;right:auto;-webkit-transform:translate(-160px, 0);transform:translate(-160px, 0);} */
+.tr_popup.tr_popup_inform .tr_pop_body{padding:0;padding-top:117.5%;overflow:hidden;}
+.tr_popup.tr_popup_inform .tr_pop_body .swipe{position:absolute;top:0;left:0;width:100%;}
+.tr_popup.tr_popup_inform .tr_pop_body .swipe img{border-radius:6px 6px 0 0;}
+
+.tr_popup.tr_popup_profile .tr_pop_head{position:relative;height:140px;}
+.tr_popup.tr_popup_profile .tr_pop_head .balloon{position:absolute;top:62px;left:50%;color:#333;width:140px;padding:12px;font-size:13px;line-height:17px;text-align:left;
+	background-color:#fff;border-radius:0 6px 6px 6px;box-sizing:border-box;}
+.tr_popup.tr_popup_profile .tr_pop_head .balloon:before{content:"";display:block;width:10px;height:13px;position:absolute;left:-10px;top:0;
+	background:url(http://image.lotte.com/lotte/mo2017/talk/talkrecom_sprite.png) no-repeat -287px 0;background-size:300px auto;}
+.tr_popup.tr_popup_profile .tr_pop_head .profile{position:absolute;top:37px;left:50%;line-height:18px;}
+.tr_popup.tr_popup_profile .tr_pop_head .profile:before{content:"";display:block;width:216px;height:142px;position:absolute;top:-39px;left:-170px;
+	background:url(http://image.lotte.com/lotte/mo2017/talk/talkrecom_sprite.png) no-repeat 0 -150px;background-size:300px auto;}
+
+.waiting_ani{display:block;margin-left:43px;margin-top:4px;padding:0;width:48px;height:38px;background-color:#fff;border-radius:6px;position:fixed;top:-1000px;left:-1000px;
+	-webkit-transform:translate(0, 100px);transform:translate(0, 100px); -webkit-transition-delay:0.1s;transition-delay:0.1s;
+	-webkit-transition:-webkit-transform 0.4s ease-out;transition:transform 0.4s ease-out;}
+.waiting_ani span{display:block;width:6px;height:6px;border-radius:100%;background-color:#CF83AF;position:absolute;top:16px;opacity:0;}
+.waiting_ani span.a1{left:12px;-webkit-animation:waiting 1.2s infinite ease-in-out;     animation:waiting 1.2s infinite ease-in-out;}
+.waiting_ani span.a2{left:21px;-webkit-animation:waiting 1.2s 0.4s infinite ease-in-out;animation:waiting 1.2s 0.4s infinite ease-in-out;}
+.waiting_ani span.a3{left:30px;-webkit-animation:waiting 1.2s 0.8s infinite ease-in-out;animation:waiting 1.2s 0.8s infinite ease-in-out;}
+.tr_conversation.waiting .waiting_ani{display:block;-webkit-transform:translate(0, 0);transform:translate(0, 0);position:relative;top:auto;left:auto;}
+@keyframes waiting{
+	0% {opacity:0.6;}
+	50% {opacity:1;}
+	100% {opacity:0.6;}
+}
+@-webkit-keyframes waiting{
+	0% {opacity:0.6;}
+	50% {opacity:1;}
+	100% {opacity:0.6;}
+}

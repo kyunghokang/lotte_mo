@@ -1,0 +1,410 @@
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>DC 2017_1 HTML List</title>
+<style>
+html,body {height:100%;font-family:'Malgun Gothic','맑은고딕';}
+body {padding:10px 0}
+form,h1,h2,h3,h4,h5,h6,ul,ol,dl,li,dt,dd,p {margin:0;padding:0;border: 0}
+ol,ul,li {list-style:none}
+h1 {padding:10px 0; font-size:18px; font-family:arial;}
+h2 {padding:30px 0 10px 0; font-size:16px; font-family:arial;}
+h1 span,h2 span {font-size:14px; color:#999; font-weight:normal;}
+a {color:#000;text-decoration:none;display:block}
+a:hover{color:#000} a.on{color:#000} a:focus{color:#E11837}
+table {border-collapse:collapse;border-spacing:0}
+caption {visibility:hidden;overflow:hidden;width:0;height:0;font-size:0;line-height:0}
+.rowT {width:100%; border-top:2px solid #333}
+.rowT th,
+.rowT td {padding:5px 3px 5px 10px;border:1px solid #ddd;font-size:12px;font-family:'Malgun Gothic','맑은고딕';text-align:left}
+.rowT thead th {background:#f0f0f0;padding:7px 3px 7px 5px;border-bottom:1px solid #ddd;font-size:13px;text-align:center}
+.rowT tr td{background-color:#fff;}/*ffe5e5*/
+.rowT tr td.work {color:#004eff;}
+.rowT tr.on td{background-color:#f4ffe5;}
+.rowT tr.done {display:none;}
+.rowT tr:hover td{background-color:#feffc9;}
+.rowT td:first-child, .rowT td.center, .rowT td.work{text-align:center; padding:7px 0;}
+
+ul.tab{height:40px;background:#f2f2f2;}
+ul.tab li {float:left;width:200px;text-align:center;line-height:40px;font-size:11px;}
+ul.tab li.ui-state-active{background:#ddd;border:1px solid #333;border-bottom:0;font-size:14px;color:#E11837;font-weight:bold}
+</style>
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script> -->
+<script src="../lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script>
+$(function() {
+	$( "#tabs" ).tabs({active: "1"});
+});
+</script>
+</head>
+<body>
+<h1>LOTTE <b style="color:#607fbf;">2017_1</b></h1>
+<div id="tabs">
+	<ul class="tab">
+		<li><a href="#unit">1차 메인</a></li>
+		<li><a href="#html">2차 상품상세</a></li>
+		<li><a href="#search_list">2차 검색</a></li>
+		<li><a href="#angularJS">angularJS List</a></li>
+	</ul>
+
+	<!--유닛 List-->
+	<div id="unit" class="tab_con">
+		<table class="rowT html">
+			<colgroup>
+				<col width="50"><col width="80"><col width="200"><col width="150"><col width="150"><col width="100"><col width="100"><col width="300"><col width="*">
+			</colgroup>
+			<thead>
+			<tr>
+				<th>순번</th>
+				<th>코너명</th>
+				<th>Depth 1</th>
+				<th>Depth 2</th>
+				<th>Depth 3</th>
+				<th>작업자</th>
+				<th>작업완료일</th>
+				<th>링크</th>
+				<th>비고</th>
+			</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		<script>
+			$(function(){
+				var str,
+					data = [
+						{confirm:"off",code:"M01",dep1:"타이틀",dep2:"",dep3:"",	work:"박병선1",end:"2017-05",link:"main/unit_title.html",fyi:""},
+						{confirm:"off",code:"M02",dep1:"서플라이즈 타이틀",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"main/unit_title.html",fyi:""},
+						{confirm:"off",code:"M03",dep1:"더보기",dep2:"",dep3:"",work:"박병선",end:"2017-05",link:"main/unit_btnMore.html",fyi:""},
+						{confirm:"off",code:"M04",dep1:"서비스배너",dep2:"",dep3:"",	work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/unit_seviceBanner.html",fyi:""},
+						{confirm:"off",code:"M05",dep1:"광고배너",dep2:"",dep3:"",	work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/unit_adBanner.html",fyi:"<span style='color:blue'>이미지 구분 : 직사각형</span>, <span style='color:red'>D : 디자인 요청중</span>"},
+						{confirm:"off",code:"M06",dep1:"카드행사 배너",dep2:"",dep3:"",	work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/unit_adBanner.html",fyi:"<span style='color:blue'>이미지 구분 : 직사각형</span>"},
+						{confirm:"off",code:"M07",dep1:"프로모션배너 B형",dep2:"",dep3:"",	work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/unit_promotionBanner.html",fyi:"<span style='color:blue'>이미지 구분 : 직사각형</span>"},
+						{confirm:"off",code:"M08",dep1:"프로모션배너 C형",dep2:"",dep3:"",	work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/unit_promotionBanner.html",fyi:"<span style='color:blue'>이미지 구분 : 직사각형</span>"},
+						{confirm:"off",code:"M09",dep1:"프로모션배너 D형",dep2:"",dep3:"",	work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/unit_promotionBanner.html",fyi:"<span style='color:blue'>이미지 구분 : 직사각형</span>"},
+						{confirm:"off",code:"M10",dep1:"인기 카테고리",dep2:"",dep3:"",	work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/unit_category.html",fyi:"<span style='color:#00b2f9'>이미지 구분 : 정사각형</span>, <span style='color:red'>D : 카테고리 사이즈</span>"},
+						{confirm:"off",code:"M11",dep1:"핫키워드",dep2:"",dep3:"",	work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/unit_hotKeyword.html",fyi:"<span style='color:#00b2f9'>이미지 구분 : 정사각형</span>"},
+						{confirm:"off",code:"M12",dep1:"크로스컨텐츠",dep2:"",dep3:"",	work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/unit_crossContents.html",fyi:"<span style='color:blue'>이미지 구분 : 직사각형</span>"},
+						{confirm:"off",code:"M13",dep1:"상품 4개형",dep2:"",dep3:"",	work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/unit_prodList.html",fyi:"<span style='color:#00b2f9'>이미지 구분 : 정사각형</span>"},
+						{confirm:"off",code:"M14",dep1:"상품+브랜드형",dep2:"",dep3:"",	work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/unit_prodList.html",fyi:"<span style='color:#00b2f9'>이미지 구분 : 정사각형</span>"},
+						{confirm:"off",code:"M15",dep1:"동영상 광고",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"main/unit_playShop.html",fyi:"<span style='color:blue'>이미지 구분 : 직사각형</span>"},
+						{confirm:"off",code:"M16",dep1:"기획전 일반형",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"main/unit_specialExhibition.html",fyi:"<span style='color:blue'>이미지 구분 : 직사각형</span>, <span style='color:red'>D : 상품 정사각형 유무확인</span>"},
+						{confirm:"off",code:"M17",dep1:"기획전 상품형",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"main/unit_specialExhibition.html",fyi:"<span style='color:blue'>이미지 구분 : 직사각형</span>"},
+						{confirm:"off",code:"M18",dep1:"기획전 C형",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"main/unit_specialExhibition.html",fyi:"<span style='color:blue'>이미지 구분 : 직사각형</span>"},
+						{confirm:"off",code:"M61",dep1:"기획전 서프라이즈형",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"main/unit_specialExhibition.html",fyi:""},
+						{confirm:"off",code:"M19",dep1:"갤러리 상품형",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"main/unit_gallery.html",fyi:"<span style='color:#00b2f9'>이미지 구분 : 정사각형</span>, <span style='color:red'>D : 딤 10% 및 그라데이션 확인</span>"},
+						{confirm:"off",code:"M20",dep1:"갤러리 기획전형",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"main/unit_gallery.html",fyi:"<span style='color:#00b2f9'>이미지 구분 : 정사각형</span>"},
+						{confirm:"off",code:"M21",dep1:"갤러리 혼합형",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"",fyi:"<strong>2017.04.27 삭제</strong>"},
+						{confirm:"off",code:"M22",dep1:"갤러리 서비스게이트형",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"main/unit_gallery.html",fyi:"<span style='color:#d500f9'>이미지 구분 : 버튼3개만 직사각형</span>, <span style='color:red'>D : 아이콘 등록여부 및 통이미지 등록(변경여부)</span>"},
+						{confirm:"off",code:"M23",dep1:"핀터레스트 상품형",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"main/unit_pinterest.html",fyi:"<span style='color:#00b2f9'>이미지 구분 : 정사각형</span>"},
+						{confirm:"off",code:"M24",dep1:"핀터레스트 기획전형",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"main/unit_pinterest.html",fyi:"<span style='color:#00b2f9'>이미지 구분 : 정사각형</span>"},
+						{confirm:"off",code:"M25",dep1:"핀터레스트 전문몰형",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"main/unit_pinterest.html",fyi:"<span style='color:#d500f9'>이미지 구분 : 정사각형, 중간버튼 직사각형</span>"},
+						{confirm:"off",code:"M26",dep1:"3+4형",dep2:"",dep3:"",	work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/unit_prodList.html",fyi:"<span style='color:#00b2f9'>이미지 구분 : 탭포함 정사각형</span"},
+						{confirm:"off",code:"M27",dep1:"동영상 상품혼합형",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"main/unit_playShop.html",fyi:"<span style='color:#d500f9'>이미지 구분 : 직사각형, 상품-정사각형</span>"},
+						{confirm:"off",code:"M28",dep1:"빅딜 3개형",dep2:"",dep3:"",	work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/unit_bigDeal.html",fyi:"<span style='color:blue'>이미지 구분 : 직사각형</span>"},
+						{confirm:"off",code:"M29",dep1:"최근 본 상품 일반형",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"main/unit_recentlyViewPrd.html",fyi:"<span style='color:#00b2f9'>이미지 구분 : 정사각형?</span>"},
+						{confirm:"off",code:"M30",dep1:"추천 상품 일반형",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"main/unit_recommendPrd.html",fyi:"<span style='color:#00b2f9'>이미지 구분 : 정사각형?</span>"},
+						{confirm:"off",code:"M31",dep1:"개인화 기획전 배너",dep2:"",dep3:"",	work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/unit_personalExhibition.html",fyi:"<span style='color:#00b2f9'>이미지 구분 : 정사각형?</span>"},
+						{confirm:"off",code:"M32",dep1:"베스트 일반형",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"main/unit_recommendPrd.html",fyi:"<span style='color:#00b2f9'>이미지 구분 : 정사각형?</span>"},
+						{confirm:"off",code:"M33",dep1:"TV쇼핑",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"main/unit_tvShopping.html",fyi:"<span style='color:blue'>이미지 구분 : 직사각형?</span>"},
+						{confirm:"off",code:"M34",dep1:"카테고리 딜형",dep2:"",dep3:"",	work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/unit_category.html",fyi:"<span style='color:blue'>이미지 구분 : 탭 직사각형</span>"},
+						{confirm:"off",code:"M35",dep1:"프로모션배너 A형",dep2:"",dep3:"",	work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/unit_promotionBanner.html",fyi:"<span style='color:blue'>이미지 구분 :직사각형</span>"},
+						{confirm:"off",code:"M36",dep1:"인기검색어",dep2:"",dep3:"",	work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/unit_searchWord.html",fyi:"<span style='color:#00b2f9'>이미지 구분 : 정사각형</span>"},
+						{confirm:"off",code:"M37",dep1:"프로모션배너 서프라이즈형",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"main/unit_promotionSurprise.html",fyi:"<span style='color:blue'>이미지 구분 :직사각형</span>"},
+						{confirm:"off",code:"M38",dep1:"빅딜 전체",dep2:"",dep3:"",	work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/unit_bigDealAll.html",fyi:""},
+						{confirm:"off",code:"M39",dep1:"판매베스트(베스트)",dep2:"",dep3:"",work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/unit_best_01.html",fyi:"<span style='color:blue'>이미지 구분 :직사각형</span>"},
+						{confirm:"off",code:"M40",dep1:"브랜드 즐겨찾기",dep2:"",dep3:"",	work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/unit_brand.html",fyi:""},
+						{confirm:"off",code:"<span style='color:limegreen'>메뉴</span>",dep1:"브랜드 찾기",dep2:"",dep3:"",work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/menu_brand_01.html",fyi:""},
+						{confirm:"off",code:"M41",dep1:"N+배너형",dep2:"",dep3:"",	work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/unit_promotionBanner.html",fyi:""},
+						{confirm:"off",code:"M42",dep1:"베스트 갤러리형",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"main/unit_gallery2.html",fyi:"<span style='color:#00b2f9'>이미지 구분 : 정사각형</span>"},
+						{confirm:"off",code:"M43",dep1:"최근 본 상품 갤러리형",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"main/unit_gallery2.html",fyi:"<span style='color:#00b2f9'>이미지 구분 : 정사각형</span>"},
+						{confirm:"off",code:"M44",dep1:"추천 상품 갤러리형",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"main/unit_gallery2.html",fyi:"<span style='color:#00b2f9'>이미지 구분 : 정사각형</span>"},
+						{confirm:"off",code:"M45",dep1:"텐어클락/핀터레스트 뷰티형",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"main/unit_10oclock.html",fyi:"<span style='color:#d500f9'>이미지 구분 : 텐어클락-정사각형, 나머지-직사각형</span>"},
+						{confirm:"off",code:"M46",dep1:"뷰티 넘버원",dep2:"",dep3:"",	work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"",fyi:"<strong>2017.05 삭제</strong>"},
+						{confirm:"off",code:"M47",dep1:"뷰티 테스터",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"main/unit_beautyTester.html",fyi:"<span style='color:#00b2f9'>이미지 구분 : 정사각형</span>"},
+						{confirm:"off",code:"M48",dep1:"장바구니 바로담기형",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"main/unit_cart.html",fyi:"<span style='color:#00b2f9'>이미지 구분 : 정사각형</span>, <span style='color:red'>D : 수량정보 없어짐</span>"},
+						{confirm:"off",code:"M49",dep1:"장바구니 전용행사",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"main/unit_cart.html",fyi:"<span style='color:#00b2f9'>이미지 구분 : 정사각형</span>"},
+						{confirm:"off",code:"M50",dep1:"베스트 장보기형",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"",fyi:"<strong>2017.04.24 삭제</strong>"},
+						{confirm:"off",code:"M51",dep1:"연령별 추천",dep2:"",dep3:"",	work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/unit_prodList.html",fyi:""},
+						{confirm:"off",code:"M52",dep1:"유아동체험단",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"main/unit_tvShopping.html",fyi:""},
+						{confirm:"off",code:"M53",dep1:"선물함",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"main/unit_present.html",fyi:""},
+						{confirm:"off",code:"M54",dep1:"5+6개형",dep2:"",dep3:"",	work:"<span style='color:LimeGreen'>김기용</font>+박병선",end:"2017-05",link:"main/unit_prodList.html",fyi:"<span style='color:green'>카테고리+30번 참고</span>"},
+						{confirm:"off",code:"M55",dep1:"N+4개형",dep2:"",dep3:"",	work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/unit_prodList.html",fyi:"<span style='color:green'>카테고리+13번 조합</span>"},
+						{confirm:"off",code:"M56",dep1:"스마트픽 타이틀",dep2:"",dep3:"",	work:"박병선",end:"2017-05",link:"main/unit_smartpick.html",fyi:""},
+						{confirm:"off",code:"M57",dep1:"백화점 딜",dep2:"",dep3:"",	work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/unit_category.html",fyi:"<span style='color:green'>카테고리딜과 동일</span>"},
+						{confirm:"off",code:"M58",dep1:"이벤트 - 마이혜택 영역",dep2:"메인",dep3:"",	work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/menu_event_01.html",fyi:""},
+						{confirm:"off",code:"M59",dep1:"이벤트 - 이벤트배너 일반형",dep2:"소배너",dep3:"",	work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/unit_eventBanner.html",fyi:""},
+						{confirm:"off",code:"M60",dep1:"실시간베스트(베스트)",dep2:"",dep3:"",	work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/unit_best_02.html",fyi:""},
+						{confirm:"off",code:"",dep1:"모바일웹헤더",dep2:"",dep3:"",work:"박병선",end:"2017-05",link:"main/unit_header.html",fyi:""},
+						{confirm:"off",code:"",dep1:"탭메뉴",dep2:"",dep3:"",work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/tab_menu.html",fyi:""},
+						{confirm:"off",code:"",dep1:"전면팝업(아이패드용)",dep2:"",dep3:"",work:"<span style='color:LimeGreen'>김기용</font>",end:"2017-05",link:"main/fullPopup.html",fyi:""}
+
+
+					];
+				for(var i in data){
+					str += "<tr class='" + data[i].confirm + "'>"
+						+ "<td>" + (parseInt(i) + 1) + "</td>"
+						+ "<td class='center'>" + data[i].code + "</td>"
+						+ "<td>" + data[i].dep1 + "</td>"
+						+ "<td>" + data[i].dep2 + "</td>"
+						+ "<td>" + data[i].dep3 + "</td>"
+						+ "<td class='work'>" + data[i].work + "</td>"
+						+ "<td class='center'>" + data[i].end + "</td>"
+						+ "<td><a href=" + data[i].link + " target='_blank'>" + data[i].link + "</a></td>"
+						+ "<td>" + data[i].fyi + "</td>"
+						+ "</tr>";
+				}
+				$("table.rowT.html tbody").html(str);
+			});
+		</script>
+	</div>
+	<!--//유닛 List-->
+
+	<!--html List-->
+	<div id="html" class="tab_con">
+		<table class="rowT Guide">
+			<colgroup>
+				<col width="50"><col width="60"><col width="80"><col width="270"><col width="200"><col width="100"><col width="160"><col width="300"><col width="*">
+			</colgroup>
+			<thead>
+			<tr>
+				<th>순번</th>
+				<th>Page</th>
+				<th>Depth 1</th>
+				<th>Depth 2</th>
+				<th>Depth 3</th>
+				<th>작업자</th>
+				<th>작업완료일</th>
+				<th>링크</th>
+				<th>비고</th>
+			</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		<script>
+		$(function(){
+			var str,
+			data = [
+				{confirm:"off", page:"", dep1:"일반상세", dep2:"상품상세 공통 & 배송정보", dep3:"상품 기본정보", work:"<span style='color:LimeGreen'>김기용</font>", end:"2017-07-20 (완)", link:"product/prod_detail_u_default.html",fyi:""},
+				{confirm:"off", page:"P", dep1:"일반상세", dep2:"상품상세 공통 & 배송정보", dep3:"상품이미지 확대보기", work:"<span style='color:LimeGreen'>김기용</font>", end:"2017-07-23 (완)", link:"product/prod_detail_p_imgExpand.html",fyi:""},
+				{confirm:"off", page:"P", dep1:"일반상세", dep2:"동일상품 혜택 비교하기", dep3:"", work:"<span style='color:LimeGreen'>김기용</font>", end:"2017-07-23 (완)", link:"product/prod_detail_p_benefitCompare.html",fyi:"<strong style='color:#00b2f9'>기획전 없음</strong>"},
+				{confirm:"off", page:"", dep1:"일반상세", dep2:"함께 구매하면 좋은 상품", dep3:"", work:"<span style='color:LimeGreen'>김기용</font>", end:"2017-07-23 (완)", link:"product/prod_detail_u_togetherProd.html",fyi:"<strong style='color:#00b2f9'>기획전 없음</strong>"},
+				{confirm:"off", page:"", dep1:"일반상세", dep2:"MD 공지 & 상품정보", dep3:"", work:"<span style='color:LimeGreen'>김기용</font>", end:"2017-07-24 (완)", link:"product/prod_detail_u_mdNotiProdInfo.html",fyi:""},
+				{confirm:"off", page:"P", dep1:"일반상세", dep2:"상품 필수표기정보 안내", dep3:"", work:"<span style='color:LimeGreen'>김기용</font>", end:"2017-07-23 (완)", link:"product/prod_detail_p_essenInfo.html",fyi:""},
+				{confirm:"off", page:"", dep1:"일반상세", dep2:"상품정보", dep3:"", work:"박병선", end:"2017-07-17 (완)", link:"product/unit_prod_more.html",fyi:"더보기 max-height:4000px"},
+				{confirm:"off", page:"", dep1:"기획전상세", dep2:"상품 모아보기", dep3:"", work:"<span style='color:LimeGreen'>김기용</font>", end:"2017-08-04 (완)", link:"product/prod_detail_u_planProdList.html",fyi:"<strong style='color:blue'>기획전만 있음</strong>"},
+				{confirm:"off", page:"", dep1:"일반상세", dep2:"다른 고객들이 함께 본 상품", dep3:"", work:"박병선", end:"2017-07-14 (완)", link:"product/unit_recommendPrd.html",fyi:""},
+				{confirm:"off", page:"", dep1:"일반상세", dep2:"비슷한 스타일 추천", dep3:"", work:"박병선", end:"2017-07-13 (완)", link:"product/unit_gallery.html",fyi:""},
+				{confirm:"off", page:"", dep1:"일반상세", dep2:"상품평", dep3:"상품평", work:"<span style='color:LimeGreen'>김기용</font>", end:"2017-07-25 (완)", link:"product/prod_detail_u_prodComment.html",fyi:"<strong style='color:#00b2f9'>기획전 없음</strong>"},
+				{confirm:"off", page:"P", dep1:"일반상세", dep2:"상품평", dep3:"전체 상품평 보기", work:"<span style='color:LimeGreen'>김기용</font>", end:"2017-07-27 (완)", link:"product/prod_detail_p_commentAll.html",fyi:""},
+				{confirm:"off", page:"P", dep1:"일반상세", dep2:"상품평", dep3:"상품평 상세보기", work:"<span style='color:LimeGreen'>김기용</font>", end:"2017-07-26 (완)", link:"product/prod_detail_p_commentDetail.html",fyi:""},
+				{confirm:"off", page:"P", dep1:"일반상세", dep2:"상품평", dep3:"필터", work:"<span style='color:LimeGreen'>김기용</font>", end:"2017-07-28 (완)", link:"product/prod_detail_p_commentAll.html",fyi:""},
+				{confirm:"off", page:"", dep1:"일반상세", dep2:"Q&A", dep3:"Q&A", work:"박병선", end:"2017-07-18 (완)", link:"product/unit_qna.html",fyi:"<strong style='color:#00b2f9'>기획전 없음</strong>"},
+				{confirm:"off", page:"P", dep1:"일반상세", dep2:"Q&A", dep3:"Q&A 전체보기", work:"박병선", end:"2017-07-18 (완)", link:"product/unit_qna.html",fyi:""},
+				{confirm:"off", page:"P", dep1:"일반상세", dep2:"Q&A", dep3:"배송/교환/반품/결제정보 안내", work:"박병선", end:"2017-07-28 (완)", link:"product/unit_purchase.html",fyi:""},
+				{confirm:"off", page:"", dep1:"일반상세", dep2:"베스트 상품 (즐겨찾기)", dep3:"", work:"박병선", end:"2017-07-13 (완)", link:"product/unit_prodList.html",fyi:"<strong style='color:#00b2f9'>기획전 없음</strong>"},
+				{confirm:"off", page:"", dep1:"일반상세", dep2:"다른 고객들이 가장 많이 산 카테고리명 상품", dep3:"", work:"박병선", end:"2017-07-14 (완)", link:"product/unit_recommendPrd.html",fyi:""},
+				{confirm:"off", page:"", dep1:"일반상세", dep2:"다른 고객들이 함께 찾은 상품", dep3:"", work:"박병선", end:"2017-07-14 (완)", link:"product/unit_recommendPrd.html",fyi:"<strong style='color:#00b2f9'>기획전 없음</strong>, MD가 추천하는 상품"},
+				{confirm:"off", page:"", dep1:"일반상세", dep2:"함께 볼만한 기획전", dep3:"", work:"<span style='color:LimeGreen'>김기용</font>", end:"2017-07-24 (완)", link:"product/prod_detail_u_togetherPlan.html",fyi:""},
+				{confirm:"off", page:"P", dep1:"일반상세", dep2:"혜택모아보기", dep3:"", work:"박병선", end:"2017-07-19 (완)", link:"product/unit_collectBenefits.html",fyi:""},
+				{confirm:"off", page:"P", dep1:"기획전상세", dep2:"상품 자세히보기(원앤원)", dep3:"", work:"<span style='color:LimeGreen'>김기용</font>", end:"2017-08-03 (완)", link:"product/plan_p_product_detail.html",fyi:"<strong style='color:blue'>기획전만 있음</strong>"},
+				{confirm:"off", page:"", dep1:"바로주문", dep2:"바로 구매바", dep3:"", work:"박병선", end:"2017-07-20 (완)", link:"product/unit_orderBar.html",fyi:"L.pay 포함"},
+				{confirm:"off", page:"", dep1:"바로주문", dep2:"일반상품_스마트픽퀵옵션O_컬러선택", dep3:"", work:"박병선", end:"2017-07-21 (완)", link:"product/unit_optionLayer.html",fyi:""},
+				{confirm:"off", page:"", dep1:"바로주문", dep2:"일반상품_스마트픽퀵옵션O_사이즈선택", dep3:"", work:"박병선", end:"2017-07-21 (완)", link:"product/unit_optionLayer2.html",fyi:""},
+				{confirm:"off", page:"", dep1:"바로주문", dep2:"일반상품_스마트픽퀵옵션O_상품담기", dep3:"", work:"박병선", end:"2017-07-21 (완)", link:"product/unit_optionLayer_prdIn.html",fyi:""},
+				{confirm:"off", page:"", dep1:"바로주문", dep2:"일반상품_스마트픽퀵옵션O_상품없음", dep3:"", work:"박병선", end:"2017-07-21 (완)", link:"product/unit_optionLayer_prdIn2.html",fyi:""},
+				{confirm:"off", page:"", dep1:"바로주문", dep2:"일반상품_스마트픽퀵옵션X", dep3:"", work:"박병선", end:"2017-07-21 (완)", link:"product/unit_optionLayer_optionNone.html",fyi:""},
+				{confirm:"off", page:"", dep1:"바로주문", dep2:"기회전형상품_스마트픽퀵옵션O", dep3:"", work:"박병선", end:"2017-07-21 (완)", link:"product/unit_optionLayer3.html",fyi:""},
+				{confirm:"off", page:"", dep1:"바로주문", dep2:"일반상품_날짜선택옵션", dep3:"", work:"박병선", end:"2017-07-21 (완)", link:"product/unit_optionLayer_calendar.html",fyi:""},
+				{confirm:"off", page:"", dep1:"바로주문", dep2:"일반상품_달력", dep3:"", work:"박병선", end:"2017-07-21 (완)", link:"product/unit_optionLayer_calendar_open.html",fyi:"<a href='http://10.149.132.249/product/m/product_view_dev.html?c=&udid=&v=&cn=&cdn=&schema=&goods_no=6691261' target='_blank'>기존 달력</a>"},
+				{confirm:"off", page:"", dep1:"팝업", dep2:"무료포장_선물카드", dep3:"", work:"박병선", end:"2017-07-31 (완)", link:"product/pop_gift.html",fyi:""},
+				{confirm:"off", page:"", dep1:"팝업", dep2:"오늘도착안내", dep3:"", work:"박병선", end:"2017-07-31 (완)", link:"product/pop_todayArrive.html",fyi:""},
+				{confirm:"off", page:"", dep1:"팝업", dep2:"퀵배송안내", dep3:"", work:"박병선", end:"2017-07-31 (완)", link:"product/pop_quickDelivery.html",fyi:""},
+				{confirm:"off", page:"", dep1:"팝업", dep2:"주문가능시간", dep3:"", work:"박병선", end:"2017-07-31 (완)", link:"product/pop_availableTime.html",fyi:""},
+				{confirm:"off", page:"", dep1:"팝업", dep2:"포인트공지", dep3:"", work:"박병선", end:"2017-07-31 (완)", link:"product/pop_pointGuide.html",fyi:""},
+				{confirm:"off", page:"", dep1:"팝업", dep2:"코치마크", dep3:"", work:"박병선", end:"2017-08-30 (완)", link:"product/pop_coachMark.html",fyi:""},
+				{confirm:"off", page:"", dep1:"샤넬", dep2:"상품상세", dep3:"", work:"김기용", end:"2017-08-11 (완)", link:"product/prod_detail_u_chanel.html",fyi:""},
+				//{confirm:"off", page:"", dep1:"팝업", dep2:"상세_카드형알럿_버튼1개", dep3:"", work:"<span style='color:LimeGreen'>김기용</font>", end:"2017-07", link:"product/Tmp.html",fyi:""},
+				//{confirm:"off", page:"", dep1:"팝업", dep2:"상세_카드형알럿_버튼3개", dep3:"", work:"<span style='color:LimeGreen'>김기용</font>", end:"2017-07", link:"product/Tmp.html",fyi:""},
+				//{confirm:"off", page:"", dep1:"팝업", dep2:"상품상세_스타일추천팝업", dep3:"", work:"<span style='color:LimeGreen'>김기용</font>", end:"2017-07", link:"product/Tmp.html",fyi:""},
+				//{confirm:"off", page:"", dep1:"팝업", dep2:"상품상세_카드형알럿창_버튼1개", dep3:"", work:"<span style='color:LimeGreen'>김기용</font>", end:"2017-07", link:"product/Tmp.html",fyi:""},
+				//{confirm:"off", page:"", dep1:"팝업", dep2:"상품상세_카드형알럿창_버튼3개", dep3:"", work:"<span style='color:LimeGreen'>김기용</font>", end:"2017-07", link:"product/Tmp.html",fyi:""},
+				{confirm:"off", page:"", dep1:"", dep2:"", dep3:"", work:"", end:"", link:"", fyi:""}
+
+			];
+			for(var i in data){
+				str += "<tr class='" + data[i].confirm + "'>"
+					 + "<td>" + (parseInt(i) + 1) + "</td>"
+					 + "<td class='center'>" + data[i].page + "</td>"
+					 + "<td class='center'>" + data[i].dep1 + "</td>"
+					 + "<td>" + data[i].dep2 + "</td>"
+					 + "<td>" + data[i].dep3 + "</td>"
+					 + "<td class='work'>" + data[i].work + "</td>"
+					 + "<td class='center'>" + data[i].end + "</td>"
+					 + "<td><a href=" + data[i].link + " target='_blank'>" + data[i].link + "</a></td>"
+					 + "<td>" + data[i].fyi + "</td>"
+				 + "</tr>";
+			}
+			$("table.rowT.Guide tbody").html(str);
+		});
+		</script>
+	</div>
+	<!--//html List-->
+
+	<!--2차 검색 List-->
+	<div id="search_list" class="tab_con">
+		<table class="rowT search_list">
+			<colgroup>
+				<col width="50"><col width="150"><col width="150"><col width="150"><col width="150"><col width="100"><col width="400"><col width="*">
+			</colgroup>
+			<thead>
+			<tr>
+				<th>순번</th>
+				<th>Depth 1</th>
+				<th>Depth 2</th>
+				<th>Depth 3</th>
+				<th>작업자</th>
+				<th>작업완료일</th>
+				<th>링크</th>
+				<th>비고</th>
+			</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		<script>
+		$(function(){
+			var str,
+			data = [
+				{confirm:"off", dep1:"제품상세", dep2:"", dep3:"", work:"", end:"", link:"/search/search_list_2017_dev.html",fyi:""},
+				{confirm:"off", dep1:"", dep2:"", dep3:"", work:"", end:"", link:"", fyi:""}
+
+			];
+			for(var i in data){
+				str += "<tr class='" + data[i].confirm + "'>"
+					 + "<td>" + (parseInt(i) + 1) + "</td>"
+					 + "<td class='center'>" + data[i].dep1 + "</td>"
+					 + "<td>" + data[i].dep2 + "</td>"
+					 + "<td>" + data[i].dep3 + "</td>"
+					 + "<td class='work'>" + data[i].work + "</td>"
+					 + "<td class='center'>" + data[i].end + "</td>"
+					 + "<td><a href=" + data[i].link + " target='_blank'>" + data[i].link + "</a></td>"
+					 + "<td>" + data[i].fyi + "</td>"
+				 + "</tr>";
+			}
+			$("table.rowT.search_list tbody").html(str);
+		});
+		
+		
+				
+		$(function(){
+			var str,
+			data = [				
+				
+			];
+			for(var i in data){
+				str += "<tr class='" + data[i].confirm + "'>"
+					 + "<td>" + (parseInt(i) + 1) + "</td>"
+					 + "<td>" + data[i].dep1 + "</td>"
+					 + "<td>" + data[i].dep2 + "</td>"
+					 + "<td>" + data[i].dep3 + "</td>"
+					 + "<td class='work'>" + data[i].work + "</td>"
+					 + "<td>" + data[i].end + "</td>"
+					 + "<td><a href=" + data[i].link + " target='_blank'>" + data[i].link + "</a></td>"
+					 + "<td>" + data[i].fyi + "</td>"
+				 + "</tr>";
+			}
+			$("table.rowT.angularjs tbody").html(str);
+		});
+		</script>
+	</div>
+	<!--//2차 검색 List-->
+
+	<!--angularJS List-->
+	<div id="angularJS" class="tab_con">
+		<table class="rowT angularjs">
+			<colgroup>
+				<col width="50"><col width="150"><col width="150"><col width="150"><col width="150"><col width="100"><col width="400"><col width="*">
+			</colgroup>
+			<thead>
+			<tr>
+				<th>순번</th>
+				<th>Depth 1</th>
+				<th>Depth 2</th>
+				<th>Depth 3</th>
+				<th>작업자</th>
+				<th>작업완료일</th>
+				<th>링크</th>
+				<th>비고</th>
+			</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		<script>
+		$(function(){
+			var str,
+			data = [
+				{confirm:"on",dep1:"메인",dep2:"",dep3:"",work:"TFT",end:"",link:"/main/main_2017_dev.html",fyi:""}
+			];
+			for(var i in data){
+				str += "<tr class='" + data[i].confirm + "'>"
+					 + "<td>" + (parseInt(i) + 1) + "</td>"
+					 + "<td>" + data[i].dep1 + "</td>"
+					 + "<td>" + data[i].dep2 + "</td>"
+					 + "<td>" + data[i].dep3 + "</td>"
+					 + "<td class='work'>" + data[i].work + "</td>"
+					 + "<td>" + data[i].end + "</td>"
+					 + "<td><a href=" + data[i].link + " target='_blank'>" + data[i].link + "</a></td>"
+					 + "<td>" + data[i].fyi + "</td>"
+				 + "</tr>";
+			}
+			$("table.rowT.angularjs tbody").html(str);
+		});
+		/*$(function(){
+			var str,
+			data = [
+				 {confirm:"on",dep1:"메인",dep2:"",dep3:"",work:"TFT",end:"",link:"/main/main_dev.html?udid=&v=&indexA=0&indexB=2",fyi:""}
+				,{confirm:"off",dep1:"중카테고리 list",dep2:"",dep3:"",work:"",end:"",link:"/category/cate_mid_list_dev.html",fyi:""}
+				,{confirm:"off",dep1:"검색결과페이지",dep2:"",dep3:"",work:"운영",end:"",link:"/search/search_list_dev.html",fyi:""}
+				,{confirm:"off",dep1:"기획전",dep2:"",dep3:"",work:"운영",end:"",link:"/product/product_list_dev.html",fyi:""}
+				,{confirm:"off",dep1:"KSHOP",dep2:"",dep3:"",work:"운영",end:"",link:"/mall/kshop_dev.html",fyi:""}
+				,{confirm:"off",dep1:"고객센터",dep2:"",dep3:"",work:"",end:"",link:"/custcenter/cscenter_main_dev.html",fyi:""}
+				,{confirm:"off",dep1:"고객센터",dep2:"상품문의",dep3:"",work:"",end:"",link:"/custcenter/product_question_dev.html",fyi:""}
+				,{confirm:"off",dep1:"고객센터",dep2:"FAQ",dep3:"",work:"",end:"",link:"/custcenter/faq_dev.html",fyi:""}
+				,{confirm:"off",dep1:"고객센터",dep2:"공지사항",dep3:"",work:"",end:"",link:"/custcenter/notice_dev.html",fyi:""}
+				,{confirm:"off",dep1:"로그인",dep2:"로그인 메인",dep3:"",work:"TFT",end:"",link:"/login/login_form_dev.html",fyi:""}
+				,{confirm:"off",dep1:"로그인",dep2:"로그인 실패",dep3:"",work:"TFT",end:"",link:"/login/login_block_dev.html",fyi:""}
+				,{confirm:"off",dep1:"로그인",dep2:"아이디 찾기",dep3:"",work:"TFT",end:"",link:"/login/find_id_dev.html",fyi:""}
+				,{confirm:"off",dep1:"로그인",dep2:"아이디 찾기 결과",dep3:"",work:"TFT",end:"",link:"/login/find_id_after_dev.html",fyi:""}
+				,{confirm:"off",dep1:"로그인",dep2:"비밀번호 찾기",dep3:"",work:"TFT",end:"",link:"/login/find_pw_dev.html",fyi:""}
+				,{confirm:"off",dep1:"로그인",dep2:"비밀번호 찾기 결과",dep3:"",work:"TFT",end:"",link:"/login/find_pw_after_dev.html",fyi:""}
+				,{confirm:"off",dep1:"로그인",dep2:"비밀번호 변경",dep3:"",work:"TFT",end:"",link:"/login/change_pw_dev.html",fyi:""}
+				,{confirm:"off",dep1:"로그인",dep2:"본인인증",dep3:"",work:"TFT",end:"",link:"/login/check_person_dev.html",fyi:""}
+				,{confirm:"off",dep1:"풋터",dep2:"회사소개",dep3:"",work:"TFT",end:"",link:"/agreement/company_dev.html",fyi:""}
+			];
+			for(var i in data){
+				str += "<tr class='" + data[i].confirm + "'>"
+					 + "<td>" + (parseInt(i) + 1) + "</td>"
+					 + "<td>" + data[i].dep1 + "</td>"
+					 + "<td>" + data[i].dep2 + "</td>"
+					 + "<td>" + data[i].dep3 + "</td>"
+					 + "<td class='work'>" + data[i].work + "</td>"
+					 + "<td>" + data[i].end + "</td>"
+					 + "<td><a href=" + data[i].link + " target='_blank'>" + data[i].link + "</a></td>"
+					 + "<td>" + data[i].fyi + "</td>"
+				 + "</tr>";
+			}
+			$("table.rowT.angularjs tbody").html(str);
+		});*/
+		</script>
+	</div>
+	<!--//angularJS List-->
+
+</div>
+</body>
+</html>

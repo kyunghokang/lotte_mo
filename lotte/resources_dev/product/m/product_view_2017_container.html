@@ -1,0 +1,780 @@
+<section ng-show="contVisible" class="cont_minheight" ng-class="{native_app: appObj.isApp}">
+	<input type="hidden" id="reloadValue" name="reloadValue" />
+	<div class="loadingFail" ng-if="pageUI.loadingFail">
+		<div>
+			<p>판매종료된 상품입니다.</p>
+		</div>
+	</div>
+
+	<div class="coachMarkPop" ng-if="coachMarkPop" ng-class="{appBnr:appDownBnrFlag}" ng-click="coachMarkPopClose()">
+		<div class="bg"></div>
+		<button class="cmClose">닫기</button>
+		<p class="guide01"><img src="http://image.lotte.com/lotte/mo2017/product/coachMark_img_01_new.png" alt="" /></p>
+		<p class="guide02"><img src="http://image.lotte.com/lotte/mo2017/product/coachMark_img_02_new_v2.png" alt="" /></p>
+		<p class="guide03"><img src="http://image.lotte.com/lotte/mo2017/product/coachMark_img_03_new_v2.png" alt="" /></p>
+	</div>
+
+	<div ng-if="!pageUI.loadingFail">
+		<div class="header_alert_pop" id="productViewAlert">
+			<div class="msg_brand_add_after">
+				<div class="msg_wrap" id="alertTemplateContent">
+				</div>
+				<div class="btn_wrap" ng-if="alertTemplate.button != ''">
+					<div class="btn_cont" id="alertTemplateButton">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="header_alert_pop" ng-if="pageUI.showBrandAdd" style="display:block;">
+			<!--브랜드 추가-->
+			<div class="msg_brand_add">
+				<div class="msg_wrap">
+					<div class="msg"><p>{{pageUI.data.basicInfo.brndShopNm}}</p>즐겨찾는 브랜드로 등록하세요!</div>
+				</div>
+				<div class="btn_wrap">
+					<div class="btn_cont">
+						<p class="btn blue" ng-click="brandBookMark(pageUI.data.commonInfo.uprBrndNo,'add', 'popup')"><a>즐겨찾는 브랜드 추가</a></p>
+					</div>
+					<div class="btn_cont two">
+						<p class="btn" ng-click="closeBrandAddToday()"><a>오늘 그만보기</a></p><!--취소만 나올 시 ng-hide 시킬것-->
+						<p class="btn" ng-click="closeBrandAdd()"><a>취소</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="header_alert_pop" ng-if="pageUI.showBrandAddResult">
+			<!--브랜드 추가 후-->
+			<div class="msg_brand_add_after">
+				<div class="msg_wrap">
+					<div class="msg"><span>{{pageUI.data.basicInfo.brndShopNm}}</span> 브랜드가 즐겨찾기에 추가되었습니다.</div>
+				</div>
+				<div class="btn_wrap">
+					<div class="btn_cont">
+						<p class="btn"><a><span class="right_clamp">마이 브랜드매장으로 이동</span></a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--레이어 팝업 -->
+		<!-- 무료포장 선물카드 -->
+		<div ng-if="pageUI.giftServiceInfo.showPopup">
+			<div class="bsPop pop_gift">
+				<div class="pInnder">
+					<div ng-if="pageUI.giftServiceInfo.giftPkgImgUrl">
+						<div class="mtit"><strong ng-if="pageUI.data.basicInfo.brndShopNm">{{pageUI.data.basicInfo.brndShopNm | txtCut5}}<span ng-if="pageUI.data.basicInfo.brndShopNm.length > 5">...</span></strong> 무료포장</div>
+						<div class="pTxtBox tp0">
+							<ul class="dot_list">
+								<li>· 주문서에서 무료포장 선택 시 제공됩니다.<br>브랜드사 사정에 따라 포장이 다르거나 제공되지 않을 수 있습니다.<br>(대형 사이즈 상품 포장 불가)</li>
+							</ul>
+							<div class="thumb">
+								<!-- <span ng-style="{'background-image':'url({{pageUI.giftServiceInfo.giftPkgImgUrl}})' }"></span> -->
+								<img ng-src="{{pageUI.giftServiceInfo.giftPkgImgUrl}}" alt="">
+							</div>
+						</div>
+					</div>
+					<div ng-if="pageUI.giftServiceInfo.futMsgImgUrl">
+						<div class="mtit" ng-class="{tLine:pageUI.giftServiceInfo.giftPkgImgUrl}">선물 메시지카드</div>
+						<div class="pTxtBox tp0">
+							<ul class="dot_list">
+								<li>· 선물과 함께 받아보실 수 있는 실물 카드입니다.</li>
+							</ul>
+							<div class="thumb">
+								<!-- <span ng-style="{'background-image':'url({{pageUI.giftServiceInfo.futMsgImgUrl}})' }"></span> -->
+								<img ng-src="{{pageUI.giftServiceInfo.futMsgImgUrl}}" alt="">
+							</div>
+						</div>
+					</div>
+				</div>
+				<a ng-click="giftServiceInfoClose()" class="pClose">닫기</a>
+			</div>
+		</div>
+
+		<!--오늘도착 안내 -->
+		<div ng-if="pageUI.todayArriveShipInfo">
+			<div class="bsPop pop_todayArrive">
+				<div class="ptit">오늘도착 안내</div>
+				<div class="pInnder">
+					<div class="pTxtBox">
+						<div class="stit">배송가능 지역</div>
+						<ul class="dot_list">
+							<li>· 서울,경기 및 인천 일부 기준입니다</li>
+							<li>· 오늘도착이 제외되는 일부지역을 확인하세요</li>
+						</ul>
+						<div class="ul_btn"><a ng-click="todayArriveShipInfoClose(); linkClick('http://m.lotte.com/product/m/product_list.do?curDispNo=5387795&adr=0','')" class="btn_sty4">배송제외지역 확인하기</a></div>
+						<div class="stit">오늘도착 기준</div>
+						<ul class="dot_list">
+							<li>· 00시~10시 결제 시 오늘도착</li>
+							<li>· 영업일 기준으로 배송되며, 주말, 공휴일 제외됩니다.</li>
+						</ul>
+						<div class="stit">빠른배송 기준</div>
+						<ul class="dot_list">
+							<li>· 10시~24시 결제 시 다음날도착</li>
+							<li>· 영업일 기준으로 배송되며, 주말, 공휴일은 다음 첫 영업일로 부터 순차 배송됩니다.</li>
+						</ul>
+					</div>
+				</div>
+				<a  ng-click="todayArriveShipInfoClose()" class="pClose">닫기</a>
+			</div>
+		</div>
+
+		<!-- 상품상세개선 무이자혜택 카드혜택 팝업-->
+		<div class="bsPop pop_nintCard" ng-if="pageUI.nintCardOpen">
+			<h2 class="ptit">무이자 할부 혜택</h2>
+			<div class="pInnder">
+				<div class="pTxtBox">
+					<img ng-if="pageUI.data.commonInfo.goodsCmpsCd != '30' || !pageUI.planProduct.show" ng-src="{{pageUI.data.prdPriceInfo.nintCardImgUrl}}">
+					<img ng-if="pageUI.data.commonInfo.goodsCmpsCd == '30' && pageUI.planProduct.show" ng-src="{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].prdPriceInfo.nintCardImgUrl}}">
+				</div>
+			</div>
+			<div class="pClose" ng-click="nintCardClose()">
+				닫기
+			</div>
+		</div>
+
+		<!-- 상품상세개선 스마트픽 팝업-->
+		<div class="bsPop pop_smp" ng-if="pageUI.smpOpen">
+			<h2 class="ptit">스마트픽 가능 지점 안내</h2>
+			<div class="pInnder">
+				<!-- 일반상품 -->
+				<div class="pTxtBox" ng-if="pageUI.data.commonInfo.goodsCmpsCd != '30'">
+					<ul class="smpList">
+						<li ng-if="pageUI.data.dlvInfo.smpDlvInfo.deptPickDesc">
+							<p class="tit">롯데백화점 픽업 : </p>
+							<p class="txt">{{pageUI.data.dlvInfo.smpDlvInfo.deptPickDesc}}</p>
+						</li>
+						<li ng-if="pageUI.data.dlvInfo.smpDlvInfo.crsPickDesc">
+							<p class="tit">내 주변 픽업 : </p>
+							<p class="txt type2">{{pageUI.data.dlvInfo.smpDlvInfo.crsPickDesc}}</p>
+						</li>
+					</ul>
+					<p class="info" ng-if="pageUI.data.dlvInfo.smpDlvInfo.deptPickYn == 'Y'">{{pageUI.data.dlvInfo.smpDlvInfo.smpDlvEtc}}</p>
+				</div>
+				<!-- //일반상품 -->
+
+				<!-- 기획전상품 -->
+				<div class="pTxtBox" ng-if="pageUI.data.commonInfo.goodsCmpsCd == '30'">
+					<ul class="smpList">
+						<li ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.smpDlvInfo.deptPickDesc">
+							<p class="tit">롯데백화점 픽업 : </p>
+							<p class="txt">{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.smpDlvInfo.deptPickDesc}}</p>
+						</li>
+						<li ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.smpDlvInfo.crsPickDesc">
+							<p class="tit">내 주변 픽업 : </p>
+							<p class="txt type2">{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.smpDlvInfo.crsPickDesc}}</p>
+						</li>
+					</ul>
+					<p class="info" ng-if="pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.smpDlvInfo.deptPickYn == 'Y'">{{pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfo.smpDlvInfo.smpDlvEtc}}</p>
+				</div>
+				<!-- //기획전상품 -->
+			</div>
+			<div class="pClose" ng-click="smpClose()">
+				닫기
+			</div>
+		</div>
+
+		<!--퀵배송 안내-->
+		<!-- <div class="bsPop pop_quick" ng-if="pageUI.popupQuickInfo">
+			<div class="ptit">퀵 배송 안내</div>
+			<div class="pInnder">
+				<div class="pTxtBox">
+					<ul class="dot_list space">
+						<li>· 이용 시간 : 09~16:30<br>(롯데백화점 본점 휴무, 공휴일 제외)</li>
+						<li>· 가능 지역 : 서울지역</li>
+						<li>· 퀵 배송비 : 10만원 미만 주문 시 <span class="blue">10,000원</span><br>10만원 이상 주문 시 <span class="blue">5,000원</span></li>
+						<li>· 배송 소요 시간 : 결제 완료 후 4시간 이내<br>(서대문구/용산구/중구/종로구 : 결제 완료 후 2시간 이내)</li>
+						<li>· 교환/반품 : 교환 불가/ 택배로 반품만 가능</li>
+					</ul>
+				</div>
+			</div>
+			<a ng-click="popupQuickInfoClose()" class="pClose">닫기</a>
+		</div>  -->
+		<!--퀵배송 주문 가능시간-->
+		<!-- <div class="bsPop pop_availableTime" ng-if="pageUI.popupQuickInfo">
+			<div class="ptit">퀵배송 주문 가능시간</div>
+			<div class="pInnder">
+				<div class="pTxtBox">
+					<p class="txtCt">
+						<strong>오전 9시부터</strong><br>
+						<strong>오후 4시 30분</strong>에만 가능합니다.<br>
+						단, 공휴일 및 롯데백화점 본점 휴무일, 배송마감일에는 퀵 배송 주문이 불가하오니 양해부탁드립니다.
+					</p>
+				</div>
+			</div>
+			<a ng-click="" class="pClose">닫기</a>
+		</div>  -->
+
+		<!--포인트 공지-- >
+		<div class="bsPop pop_pointGuide">
+			<div class="pInnder">
+				<div class="pTxtBox">
+					<p>
+						상품적립금 00,000점<br>
+						롯데포인트플러스카드 결제시<br>
+						최대 000,000점 적립
+					</p>
+					<div class="stit">적립 기준</div>
+					<ul>
+						<li>① 상기 표시된 적립금은 쿠폰 등 할인 금액에 따라 변동될 수 있습니다.</li>
+						<li>② 무이자할부 이용시 롯데카드 적립은 제외됩니다.</li>
+						<li>③ 적립쿠폰은 2배 적립에서 제외됩니다.</li>
+						<li>④ 카드사에서 제공되는 적립금은 롯데포인트 플러스카드 결제분에 한해 산정된 적립율로 지급됩니다. (롯데포인트플러스카드와 현금/포인트 복합 결제시 현금/포인트 결제금액 제외)</li>
+						<li>⑤ 롯데닷컴 ID기준의 멤버스 회원과 결제하신 롯데포인트플러스카드의 소유주가 다른 경우 롯데카드 적립금은 적립되지 않습니다. <br>(롯데닷컴 적립금은 정상 지급)</li>
+					</ul>
+				</div>
+			</div>
+			<a ng-click="" class="pClose">닫기</a>
+		</div>
+		<!--// 레이어 팝업-->
+
+		<!--샤넬헤더 20171127 랜딩url 추가-->
+		<div class="chanel_sub_header" ng-if="pageUI.data.commonInfo.chanelYn">
+			<a ng-href="/mall/chanel/chanel_main.do?{{baseParam}}&tclick=m_DC_specialshop_Chanel_LOGO_01">
+				<p chanel-sub-header>CHANEL</p>
+			</a>
+		</div>
+
+		<!-- 상품상세 공통 & 배송정보 -->
+		<div class="prod_detail_wrap">
+			<div class="img_swipe_wrap">
+				<!-- CHANEL 상품 -->
+				<div class="prd_top_imgwrap chanel_wrap" ng-if="pageUI.data.commonInfo.chanelYn">
+					<ul class="swipeBox">
+						<li><img ng-src="{{pageUI.chanel.imgUrl}}" alt="상품이미지" err-src="550" ng-click="prodImgDeatilView(0, 'm_RDC_ProdDetail_Clk_Elg');logGAEvtPrdView('상품이미지','확대보기');" /></li>
+					</ul>
+				</div>
+				<!-- 일반/기획전 상품 -->
+				<div class="prd_top_imgwrap" ng-if="!pageUI.data.commonInfo.chanelYn && pageUI.data.imglist.length > 0" id="slide_product_info" roll-swipe-banner getcontrol="getProdDetailSwipeControl" rolling="true" width320="1" width640="1" width900="1" interval="300000" endfnc="swipeEnd" fixed-height="true" item-cnt="{{pageUI.data.imglist.length}}">
+					<!--20180125 엘포인트 엠블럼 추가, 텐텐 상품이 아닌경우-->
+                    <div class="lpoint_icon" ng-if="pageUI.data.prdPriceInfo.saveLpointAmt > 0 && pageUI.data.callUrlInfo.lPointImgUrl != undefined && !pageUI.data.callUrlInfo.tenten_url">
+					    <img ng-src="{{pageUI.data.callUrlInfo.lPointImgUrl}}">
+					</div>
+
+					<ul class="swipeBox">
+						<!-- 단일 이미지 -->
+						<li ng-if="pageUI.data.imglist.length == 1">
+							<div><img ng-src="{{pageUI.data.imglist[0].img}}" alt="상품이미지" err-src="550" ng-click="prodImgDeatilView(0, 'm_RDC_ProdDetail_Clk_Elg');logGAEvtPrdView('상품이미지','확대보기');" /></div>
+                            <!--텐텐 플래그 20180510 -->
+                            <div class="tt_flag" ng-if="pageUI.data.callUrlInfo.tenten_url">
+                                <img ng-src="{{pageUI.data.callUrlInfo.tenten_url}}">
+                            </div>
+
+						</li>
+						<!-- 이미지 스와이프 -->
+						<li ng-if="pageUI.data.imglist.length > 1" ng-repeat="item in pageUI.data.imglist">
+							<!-- 이미지 -->
+							<div class="thumb cover2 cover3" ng-if="item.type != 'youtube' && item.type != 'vod'">
+								<img ng-src="{{item.img}}" alt="상품이미지" err-src="550" ng-click="prodImgDeatilView($index, 'm_RDC_ProdDetail_Clk_Elg');logGAEvtPrdView('상품이미지','확대보기');" />
+                                <!--텐텐 플래그 20180510 -->
+                                <div class="tt_flag" ng-if="pageUI.data.callUrlInfo.tenten_url">
+                                    <img ng-src="{{pageUI.data.callUrlInfo.tenten_url}}">
+                                </div>
+
+								<a ng-click="goSWipe(pageUI.data.imglist.length);" ng-if="item.type == 'vodimg'" class="play_btn_first"></a>
+							</div>
+							<!-- 동영상 -->
+							<div class="video_wrap" ng-if="item.type == 'vod' && $index == pageUI.data.imglist.length-1">
+								<video id="autoVideoPrdView" class="auto_video_prd_view" controls="controls" video-poster="{{pageUI.data.imgInfo.wecandeoImgUrl | trusted}}" playsinline="true" webkit-playsinline="true">
+									<source type="video/mp4" ng-src="{{pageUI.data.imglist[$index].vodurl | trusted}}">
+								</video>
+								<div class="play_cover"></div>
+								<div class="stop_cover"></div>
+								<div class="click_cover"></div>
+								<a id="btnVolume1" ng-click="movVolume('btnVolume1')" class="btn_move_volume btn_text">음소거</a>
+								<a ng-click="movPlay(); sendTclick('m_RDC_ProdDetail_Clk_play');logGAEvtPrdView('상품이미지','비디오플레이');" class="btn_move_start">비디오 재생</a>
+								<a ng-click="movPause()" class="btn_move_stop btn_text">일시정지</a>
+								<!-- <a ng-click="" class="btn_move_goods btn_text">자세히보기</a> -->
+								<a ng-if="!appObj.isApp" ng-click="movFull()" class="btn_move_full btn_text">전체화면보기</a>
+							</div>
+							<!-- 유튜브 동영상 -->
+							<div class="youtube_wrap" ng-if="item.type == 'youtube'">
+								<div id="vodBox" class="vodBox" youtubeID="{{pageUI.data.imgInfo.youtubeVodUrl}}" style="width:100%">
+									<div id="player"></div>
+									<div class="sktMsg" ng-if="baseParam.schema == 'sklotte001'">
+										동영상은 외부 호스팅 사용으로 <br>SKT 데이터 프리가 적용되지 않으니 유의하시기 바랍니다.
+										<a href="javascript:$('.sktMsg').remove()"><img ng-src="http://image.lotte.com/lotte/mobile/mobile_new/main/maintv_close.png" alt="닫기" /></a>
+									</div>
+									<script>
+										if ( $( '.vodBox' ).length > 0 ) {
+										}
+									</script>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<!--이미지 스와이프 좌우버튼, 플레이버튼-->
+					<div class="btn_wrap" ng-if="pageUI.data.imglist.length != 1 && pageUI.data.imglist.length > 0">
+						<span class="prev_btn" ng-click="swipeBefore()"></span>
+						<span class="next_btn" ng-click="swipeNext()"></span>
+					</div>
+					<!--페이징-->
+					<div class="page_wrap" ng-if="pageUI.data.imglist.length > 1">
+						<p class="page"><span class="cur_page">{{sb_index}}</span>/<span class="all">{{pageUI.data.imglist.length}}</span></p>
+					</div>
+				</div>
+				<!--추천-->
+				<div class="recom" ng-if="pageUI.data.imgInfo.styleIconYn && pageUI.styleIconShow">
+					<!-- <span class="recom_msg" ng-click="close_stylemsg()"><img src="http://image.lotte.com/lotte/mo2015/angular/detail/style_0223_1.png"></span> -->
+					<span class="recom_btn" ng-click="goStyleRecom();"></span>
+				</div>
+				<!--플래그-->
+				<div class="flag_wrap">
+					<span ng-repeat="item in pageUI.data.prdInfo.flagData" class="flag2 {{item.css}}">{{item.name}}</span>
+				</div>
+
+				<!--종류(색상표,컬러칩)정보-->
+				<div class="kind_info div_line_b" ng-if="pageUI.data.commonInfo.chanelYn && pageUI.data.imgInfo.chanelColorList.items" ng-controller="lotteNgSwipeCtrl" >
+					<p class="kind_nm">{{pageUI.chanel.data.colorNm}} <em ng-if="pageUI.chanel.data.soldOutYn">(품절)</em></p>
+					<div class="kind_color">
+						<ul class="kind_swipe" lotte-ng-list-swipe
+							swipe-id="chanelColorSwipe"
+							swipe-list-model="pageUI.data.imgInfo.chanelColorList.items"
+							swipe-responsive="true"
+							swipe-autoheight="true"
+							swipe-slide-item="true"
+							swipe-max-ratio="0.2"
+							swipe-min-distance="40">
+							<li ng-repeat="nodeItem in getColorRange(pageUI.data.imgInfo.chanelColorList.items.length, 6) track by $index">
+								<span class="chip_wrap" ng-repeat="item in pageUI.data.imgInfo.chanelColorList.items|pageRange:$index:6"><span class="chip_item" ng-class="{'dim_cont dim50':item.soldOutYn, on:item.colorNo == pageUI.chanel.data.colorNo}" ng-click="colorSelect()"><img ng-src="{{item.colorImgUrl}}"></span></span>
+							</li>
+						</ul>
+					</div>
+					<div class="swipe_btn_wrap">
+						<!--<div class="mask"></div>-->
+						<div class="swipe_btn">
+							<span class="prev" ng-click="beforeSlide()" ng-class="{on:swipeBulletIdx > 0}">이전</span> <!--상태변화 클래스 on: 활성화-->
+							<span class="next" ng-click="swipeBulletIdx<(pageUI.data.imgInfo.chanelColorList.items.length/6)-1 && nextSlide();" ng-class="{on:swipeBulletIdx<(pageUI.data.imgInfo.chanelColorList.items.length/6)-1}">다음</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--기본정보-->
+			<div class="detail_base_wrap basic">
+				<!--상품 타이틀-->
+				<p class="brand_nm" ng-if="pageUI.data.commonInfo.chanelYn">CHANEL</p>
+				<p class="prod_tit eng" ng-if="pageUI.data.commonInfo.chanelYn">{{pageUI.data.prdInfo.engGoodsNm}}</p>
+				<h4 class="prod_tit">{{pageUI.data.prdInfo.goodsNm}}</h4>
+				<!--구매수-->
+				<div class="sale_cnt" ng-if="pageUI.data.prdInfo.ordCnt > 0"><span class="no"><em>{{pageUI.data.prdInfo.ordCnt|number}}</em>개 구매 중</span></div>
+				<!--원산지-->
+				<div class="origin" ng-if="pageUI.data.prdInfo.orplNm != null">원산지 : <span>{{pageUI.data.prdInfo.orplNm}}</span></div>
+
+				<div class="score_wish_share_wrap">
+					<!--별점-->
+					<div class="score_wrap" ng-if="pageUI.data.prdInfo.gdasStfdVal" ng-click="linkClick(pageUI.data.callUrlInfo.commentDtlUrl,'m_RDC_ProdDetail_Clk_Rvw01');logGAEvtPrdView('상품정보','상품평보러가기');">
+						<span class="starScoreWrap big"><span class="starScoreCnt" style="width:{{pageUI.data.prdInfo.gdasStfdVal|starScorePolicy:100}}%"></span></span>
+						<span class="review chanel" ng-if="pageUI.data.commonInfo.chanelYn">({{pageUI.data.prdInfo.gdasCnt|number}})</span> <!-- 샤넬 전용 -->
+						<span class="review arrow_gray" ng-if="!pageUI.data.commonInfo.chanelYn"><span class="grade">{{pageUI.data.prdInfo.gdasStfdVal}}</span>/5 (<span class="point_color">{{pageUI.data.prdInfo.gdasCnt|number}}</span>개)</span> <!-- 상품상세개선 -->
+					</div>
+					<!--찜 & 공유-->
+					<div class="wish_share_wrap">
+						<!-- 20180528 위시리스트 담기 하단 옵션바로 이동
+						<span class="wish div_line_v_s2" ng-click="wishClick(pageUI.data.commonInfo.goodsNo)" ng-class="{on:pageUI.wish[pageUI.data.commonInfo.goodsNo]}"></span>
+						-->
+						<span class="share" ng-click="showSharePop({shareImg:pageUI.data.imgInfo.imgList[0], goodsNm: pageUI.data.prdInfo.goodsNm, goodsNo:pageUI.data.commonInfo.goodsNo, tclick:'m_RDC_ProdDetail_Clk_SNS' });logGAEvtPrdView('상품정보','공유하기');">공유</span>
+					</div>
+					<div class="hideDiv" id="hbtnWish" ng-click="btnWish_click()"></div>
+				</div>
+			</div>
+			<!--상품 가격-->
+			<div class="detail_base_wrap price div_line_b10 div_line_t" ng-class="{minHeight:!pageUI.data.commonInfo.chanelYn && pageUI.data.commonInfo.goodsCmpsCd != '30' && pageUI.data.commonInfo.saleStatCd != '30' && pageUI.data.commonInfo.saleStatCd != '20' && pageUI.data.commonInfo.saleMobileYn && !pageUI.data.commonInfo.rentalYn}">
+				<div class="price_wrap" ng-class="{type2: !pageUI.data.commonInfo.rentalYn && !pageUI.data.prdPriceInfo.emPriceYn && pageUI.data.prdPriceInfo.saleRate > 0}">
+					<span ng-if="pageUI.data.commonInfo.rentalYn">월렌탈료</span>
+					<span ng-if="pageUI.data.prdPriceInfo.emPriceYn">이메일특가</span>
+					<span class="prod_price"><strong>{{pageUI.data.prdPriceInfo.price | number}}</strong>원<span ng-if="pageUI.data.commonInfo.goodsCmpsCd == '30'">~</span></span>
+					<span class="deli_fee" ng-if="pageUI.data.prdPriceInfo.dlvFreeYn == true && pageUI.data.dlvInfo.gubunCd != '1' && pageUI.data.dlvInfo.gubunCd != '9' && pageUI.data.commonInfo.chanelYn"><span>무료배송</span></span>
+					<p class="old_price_wrap">
+						<span class="disc_rate" ng-if="pageUI.data.prdPriceInfo.saleRate > 0"><em>{{pageUI.data.prdPriceInfo.saleRate}}</em>%</span>
+						<span class="disc_desc" ng-if="pageUI.data.prdPriceInfo.couponYn">쿠폰포함</span>
+						<span class="old_price" ng-if="pageUI.data.prdPriceInfo.orgPrice != null">{{pageUI.data.prdPriceInfo.orgPrice | number}}<span>원</span></span>
+					</p>
+				</div>
+				<div class="benefit_wrap">
+					<!--L.Point-->
+					<!-- 샤넬 전용 카드혜택 -->
+					<ul class="card_benefit chanel" ng-if="pageUI.data.commonInfo.chanelYn">
+						<li ng-if="pageUI.data.prdPriceInfo.saveLpointAmt > 0 && pageUI.data.commonInfo.goodsCmpsCd != '30' && !pageUI.data.commonInfo.rentalYn">
+							<span class="lpoint">L.POINT 최대 <span class="price">{{pageUI.data.prdPriceInfo.saveLpointAmt | number}}점</span> 적립</span>
+						</li>
+						<li class="benefit_desc" ng-if="(pageUI.data.prdPriceInfo.promCard || pageUI.data.prdPriceInfo.promEtc) && !pageUI.data.commonInfo.rentalYn" ng-click="linkClick(pageUI.data.prdPriceInfo.promCardUrl, 'm_RDC_ProdDetail_Clk_Ban01');logGAEvtPrdView('상품정보',pageUI.data.prdPriceInfo.promCard);"><span ng-if="pageUI.data.prdPriceInfo.promCard">{{pageUI.data.prdPriceInfo.promCard}}</span></li>
+						<li ng-if="pageUI.data.prdPriceInfo.promEtc">{{pageUI.data.prdPriceInfo.promEtc}}</li>
+					</ul>
+					<!-- //샤넬 전용 카드혜택 -->
+					<span class="benefit_all triangle_bottomright" ng-click="linkClick(pageUI.data.prdPriceInfo.benefitInfoUrl, 'm_RDC_ProdDetail_Clk_benefit');logGAEvtPrdView('상품정보','혜택모두보기');" ng-if="pageUI.data.commonInfo.goodsCmpsCd != '30' && pageUI.data.commonInfo.saleStatCd != '30' && pageUI.data.commonInfo.saleStatCd != '20' && pageUI.data.commonInfo.saleMobileYn && !pageUI.data.commonInfo.rentalYn && !pageUI.data.commonInfo.chanelYn">추가 혜택가</span> <!-- 상품상세개선 -->
+				</div>
+			</div>
+
+			<!--
+				gubunCd : 2 // 예약상품
+				gubunCd : 3 // 설치상품
+				gubunCd : 4 // 렌탈상품
+				gubunCd : 9 // e쿠폰상품
+				gubunCd : 10 // 일반상품
+				gubunCd : 88 // 희망일배송
+			-->
+
+			<!-- 혜택정보 -->
+			<div class="detail_base_wrap div_line_b10" ng-if="
+			(pageUI.data.prdPriceInfo.clmDscntPromList.items.length > 0 || pageUI.data.prdPriceInfo.promCard)
+			|| (pageUI.data.prdPriceInfo.saveLpointAmt > 0 && pageUI.data.commonInfo.goodsCmpsCd != '30' && !pageUI.data.commonInfo.rentalYn)
+			|| (pageUI.data.prdPriceInfo.nintCardMonth > 0 && !pageUI.data.commonInfo.rentalYn && !pageUI.data.commonInfo.chanelYn)
+			|| pageUI.data.prdPriceInfo.promEtc">
+				<p class="detail_tit">혜택정보</p>
+				<ul class="card_benefit">
+					<li class="ico_benefit card" ng-if="pageUI.data.prdPriceInfo.clmDscntPromList.items.length > 0 || pageUI.data.prdPriceInfo.promCard">
+						<p ng-repeat="item in pageUI.data.prdPriceInfo.clmDscntPromList.items">{{item.fvrDesc}} <span ng-if="item.fvrPrc > 0"><span class="point_color">{{item.fvrPrc | number}}</span>원</span></p>
+						<p class="benefit_desc" ng-if="pageUI.data.prdPriceInfo.promCard && !pageUI.data.commonInfo.rentalYn" ng-click="linkClick(pageUI.data.prdPriceInfo.promCardUrl, 'm_RDC_ProdDetail_Clk_Ban01');logGAEvtPrdView('상품정보',pageUI.data.prdPriceInfo.promCard);"><span class="arrow_gray">{{pageUI.data.prdPriceInfo.promCard}}</span></p>
+					</li>
+					<li class="ico_benefit point" ng-if="pageUI.data.prdPriceInfo.saveLpointAmt > 0 && pageUI.data.commonInfo.goodsCmpsCd != '30' && !pageUI.data.commonInfo.rentalYn">L.POINT 적립 최대 <span class="point_color">{{pageUI.data.prdPriceInfo.saveLpointAmt | number}}</span>점</li>
+					<li class="ico_benefit interest" ng-if="pageUI.data.prdPriceInfo.nintCardMonth > 0 && !pageUI.data.commonInfo.rentalYn && !pageUI.data.commonInfo.chanelYn" ng-click="nintCardClick()"><span class="arrow_gray">무이자 최대 {{pageUI.data.prdPriceInfo.nintCardMonth}}개월 <span ng-if="pageUI.data.prdPriceInfo.nintCardPrice">(<span class="point_color">{{pageUI.data.prdPriceInfo.nintCardPrice}}</span>원x{{pageUI.data.prdPriceInfo.nintCardMonth}}개월)</span></span></li>
+					<li ng-if="pageUI.data.prdPriceInfo.promEtc">{{pageUI.data.prdPriceInfo.promEtc}}</li>
+				</ul>
+			</div>
+			<!-- //혜택정보 -->
+
+			<!-- 샤넬 전용 배송정보 -->
+			<div class="detail_base_wrap delivery chanel div_line_b10" ng-if="pageUI.data.commonInfo.chanelYn">
+				<div class="deli_date">
+					<strong class="num">{{pageUI.data.dlvInfo.dlvDate}}<span class="day">{{pageUI.data.dlvInfo.dlvYoil}}</span></strong> <span>{{pageUI.data.dlvInfo.dlvDesc}}</span>
+				</div>
+				<div ng-if="pageUI.data.dlvInfo.etcDesc">{{pageUI.data.dlvInfo.etcDesc}}</div>
+				<span class="deli_desc" ng-if="pageUI.data.dlvInfo.tdarDlvArea != null" ng-click="todayArriveShipInfoClick('')">{{pageUI.data.dlvInfo.tdarDlvArea}} <em>{{pageUI.data.dlvInfo.tdarDlvDate}}</em></span>
+				<div class="deli_desc2" ng-if="pageUI.data.dlvInfo.reserveDesc">{{pageUI.data.dlvInfo.reserveDesc}} {{pageUI.data.dlvInfo.reservePeriod}}</div>
+				<p class="today_deli_go" ng-if="pageUI.data.dlvInfo.tdarDlvDate"><span class="right_clamp" ng-click="linkClick(pageUI.data.dlvInfo.tdarShopUrl, 'm_RDC_ProdDetail_Clk_Tdlrmore');logGAEvtPrdView('상품정보','오늘도착상품보기');">오늘도착 상품보기</span></p>
+				<ul class="deli_type" ng-if="pageUI.data.dlvInfo.quickDispYn || pageUI.data.dlvInfo.smpDispYn">
+					<li class="quick" ng-if="pageUI.data.dlvInfo.quickDispYn"><span class="tit">퀵배송</span> <span>{{pageUI.data.dlvInfo.quickDesc}}</span></li>
+					<li class="smartpick" ng-if="pageUI.data.dlvInfo.smpDispYn">
+						<span class="tit">스마트픽</span> 
+						<span>{{pageUI.data.dlvInfo.smpDlvArea}}{{pageUI.data.dlvInfo.smpDlvDesc}}</span>
+						<span class="smp_etc" ng-if="pageUI.data.dlvInfo && pageUI.data.dlvInfo.smpDlvEtc">{{pageUI.data.dlvInfo.smpDlvEtc}}</span>
+					</li>
+				</ul>
+			</div>
+			<!-- //샤넬 전용 배송정보 -->
+
+			<!--배송정보-->
+			<div class="detail_base_wrap delivery div_line_b10" ng-if="pageUI.data.dlvInfo && !pageUI.data.runFishInfo && !pageUI.data.commonInfo.chanelYn">
+				<p class="detail_tit">배송정보</p>
+				<ul class="deli_type">
+					<!-- 출발예정 -->
+					<li ng-if="pageUI.data.dlvInfo.gubunCd != '3' && pageUI.data.dlvInfo.gubunCd != '4' && pageUI.data.dlvInfo.gubunCd != '9'">
+						<span class="point_color">{{pageUI.data.dlvInfo.dlvDate}}{{pageUI.data.dlvInfo.dlvYoil}}</span> {{pageUI.data.dlvInfo.dlvDesc}}
+					</li>
+					<!-- //출발예정 -->
+
+					<!-- 렌탈상품 -->
+					<li class="deli_date" ng-if="pageUI.data.dlvInfo.gubunCd == '4'">
+						{{pageUI.data.dlvInfo.dlvDate}}
+					</li>
+					<!-- //렌탈상품 -->
+
+					<!-- 예약상품 -->
+					<li ng-if="pageUI.data.dlvInfo.gubunCd == 2">
+						{{pageUI.data.dlvInfo.reserveDesc}} {{pageUI.data.dlvInfo.reservePeriod}}
+					</li>
+					<!-- //예약상품 -->
+
+					<!-- 설치상품 -->
+					<li ng-if="pageUI.data.dlvInfo.gubunCd == 3">
+						{{pageUI.data.dlvInfo.dlvDate}}
+					</li>
+					<!-- //설치상품 -->
+
+					<!-- E쿠폰 -->
+					<li ng-if="pageUI.data.dlvInfo.gubunCd == '9'">
+						{{pageUI.data.dlvInfo.dlvDate}}
+					</li>
+
+					<li ng-if="pageUI.data.dlvInfo.gubunCd == 9">
+						<p>{{pageUI.data.dlvInfo.etcDesc}}</p>
+					</li>
+					<!-- //E쿠폰 -->
+
+					<!-- 무료배송 -->
+					<li ng-if="pageUI.data.prdPriceInfo.dlvFreeYn != true && pageUI.data.dlvInfo.gubunCd != '1' && pageUI.data.dlvInfo.gubunCd != '9'">
+						{{pageUI.data.prdPriceInfo.dlvFeeTxt}} {{pageUI.data.prdPriceInfo.dlvFee | number}}원 <span ng-if="pageUI.data.prdPriceInfo.price <= 100000 && pageUI.data.prdPriceInfo.stdAmt > 0">({{pageUI.data.prdPriceInfo.stdAmt | number}}원 이상 무료배송)</span>
+					</li>
+					<li ng-if="pageUI.data.prdPriceInfo.dlvFreeYn == true && pageUI.data.dlvInfo.gubunCd != '1' && pageUI.data.dlvInfo.gubunCd != '9'">
+						무료배송
+					</li>
+					<!-- //무료배송 -->
+
+					<!-- 오늘도착 -->
+					<li ng-if="pageUI.data.dlvInfo.tdarDlvArea != null">
+						<span class="tit" ng-if="pageUI.data.dlvInfo.tdarDlvDate != '오늘도착'">빠른배송</span>
+						<span class="tit" ng-if="pageUI.data.dlvInfo.tdarDlvDate == '오늘도착'">{{pageUI.data.dlvInfo.tdarDlvDate}}</span>
+						<div class="txt_wrap" ng-click="todayArriveShipInfoClick('')">
+							<span>
+								{{pageUI.data.dlvInfo.tdarDlvArea}}
+								<span class="point_color_black" ng-if="pageUI.data.dlvInfo.tdarDlvDate != '오늘도착'">{{pageUI.data.dlvInfo.tdarDlvDate}}</span>
+								<span class="ico_info">오늘도착안내</span>
+							</span>
+						</div>
+					</li>
+					<!-- //오늘도착 -->
+
+					<!-- 퀵배송 -->
+					<li ng-if="pageUI.data.dlvInfo.quickDispYn">
+						<span class="tit">퀵배송</span>
+						<div class="txt_wrap" ng-click="linkClick(pageUI.data.callUrlInfo.quickDlvDispUrl);logGAEvtPrdView('상품정보', '퀵배송 안내');">
+							<span class="arrow_gray">{{pageUI.data.dlvInfo.quickDesc}}</span>
+						</div>
+					</li>
+					<!-- //퀵배송 -->
+
+					<!-- 스마트픽 -->
+					<li ng-if="pageUI.data.dlvInfo.smpDispYn">
+						<span class="tit smartpick">스마트픽</span> 
+						<div class="txt_wrap">
+							<span class="arrow_gray" ng-click="smpClick()">{{pageUI.data.dlvInfo.smpDlvArea}}{{pageUI.data.dlvInfo.smpDlvDesc}}</span>
+							<span class="smp_etc" ng-if="pageUI.data.dlvInfo && pageUI.data.dlvInfo.smpDlvEtc">{{pageUI.data.dlvInfo.smpDlvEtc}}</span>
+						</div>
+					</li>
+					<!-- //스마트픽 -->
+
+					<!-- 희망배송일 -->
+					<li ng-if="pageUI.data.dlvInfoSetDate.gubunCd && !pageUI.data.runFishInfo">
+						<span class="tit">{{pageUI.data.dlvInfoSetDate.dlvDate}}</span> 
+						<div class="txt_wrap" ng-click="hopePop(pageUI.openHopePop);logGAEvtPrdView('상품정보', '희망일 배송 안내');">
+							<span>{{pageUI.data.dlvInfoSetDate.dlvDesc}}</span><span class="ico_info" ng-if="pageUI.data.dlvInfoSetDate.gubunCd == '88'">희망일배송이란</span>
+						</div>
+					</li>
+					<!-- //희망배송일 -->
+				</ul>
+			</div>
+			<!-- //배송정보 -->
+
+			<!--// 런닝피쉬 배송-->
+			<div class="detail_base_wrap run_fish div_line_b10" ng-if="pageUI.data.runFishInfo">
+				<div class="deli_info"><span class="fish_flag">런닝피쉬</span><span ng-bind-html="pageUI.data.runFishInfo.txt1"></span></div>
+				<p class="deli_area_dsc" ng-bind-html="pageUI.data.runFishInfo.region"></p>
+			</div>
+			<!--혜택비교하기-->
+			<div class="detail_base_wrap benefit_compare div_line_b10" ng-if="pageUI.data.prdCompareInfo != null" ng-click="linkClick(pageUI.data.prdCompareInfo.prdCompareInfoUrl, 'm_RDC_ProdDetail_Clk_SamePrd');logGAEvtPrdView('상품정보','동일상품혜택비교하기');">
+				<span class="tit">동일상품 혜택 비교하기<var>({{pageUI.data.prdCompareInfo.prdCnt}})</var></span>
+				<span class="price right_clamp">{{!pageUI.data.prdCompareInfo.price? '&nbsp;': (pageUI.data.prdCompareInfo.price |number)+'원'}}</span>
+			</div>
+
+			<!--색상표(컬러칩)-->
+			<div class="detail_base_wrap color_chip div_line_b10" ng-if="pageUI.data.commonInfo.chanelYn && pageUI.data.imgInfo.chanelColorList.items.length > 0">
+				<p class="detail_tit">색상</p>
+				<div class="slider_wrap" lotte-slider id="chanelColorChipSlider">
+					<ul class="color_group_swipe" ng-repeat="nodeItem in getColorRange(pageUI.data.imgInfo.chanelColorList.items.length, 8) track by $index">
+						<!--<li ng-repeat="x in pageUI.data.colorChipArr">
+							<ul class="color_group">
+								<li ng-repeat="item in x[0]"><span class="img_wrap"><img ng-src="{{item.colorImgUrl}}"></span> <span class="color_nm">{{item.colorNm}}</span></li>
+							</ul>
+							<ul class="color_group">
+								<li ng-repeat="item in x[1]"><span class="img_wrap"><img ng-src="{{item.colorImgUrl}}"></span> <span class="color_nm">{{item.colorNm}}</span></li>
+							</ul>
+						</li>-->
+						<li  ng-repeat="item in pageUI.data.imgInfo.chanelColorList.items|pageRange:$index:8" ng-class="{newline:$index % 2 == 1}">
+							<p class="chip_item_wrap"><span class="img_wrap"><img ng-src="{{item.colorImgUrl}}"></span> <span class="color_nm">{{item.colorNm}}</span></p>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- // 상품상세 공통 & 배송정보 -->
+			<!-- 함께 구매하면 좋은 상품 -->
+			<div class="detail_base_wrap together div_line_b10" ng-if="pageUI.data.moreBuyPrdInfo != null">
+				<p class="detail_tit">함께 구매하면 좋은 상품</p>
+				<div class="toge_list_wrap" ng-click="pageUI.togeListOpen = true; sendTclick('m_RDC_ProdDetail_Clk_Pkg_more'); logGAEvtPrdView('함께구매하면좋은상품','펼치기');">
+					<ul class="toge_list">
+						<li ng-class="{cur_prod:item.goodsNo == pageUI.data.commonInfo.goodsNo}" ng-repeat="item in pageUI.data.moreBuyPrdInfo.prdList.items | limitTo:3">
+							<span class="thumb cover"><img ng-src="{{item.imgUrl}}"></span>
+						</li>
+					</ul>
+					<p class="toge_price shape_triangle down blue" ng-if="!pageUI.togeListOpen"><em>{{pageUI.data.moreBuyPrdInfo.prdTotalCnt}}</em>개 상품가 <em>{{pageUI.data.moreBuyPrdInfo.prdTotalPrice | number}}원</em></p>
+				</div>
+				<!--자세히 보기 펼친 후-->
+				<div class="toge_detail_list_wrap" ng-if="pageUI.togeListOpen">
+					<ul class="toge_detail_list">
+						<li ng-repeat="item in pageUI.data.moreBuyPrdInfo.prdList.items">
+							<div ng-click="item.goodsNo != pageUI.data.commonInfo.goodsNo && gotoProductPage(item.goodsNo, item.curDispNo, item.curDispNoSctCd, 'm_RDC_ProdDetail_Clk_Pkg_Prd'+ idxSetDigit($index + 1));item.goodsNo != pageUI.data.commonInfo.goodsNo && logGAEvtPrdView('함께구매하면좋은상품', idxSetDigit($index + 1), item.goodsNo);">
+								<div class="thumb_wrap">
+									<span class="thumb cover"><img ng-src="{{item.imgUrl}}" alt=""></span>
+								</div>
+								<div class="info">
+									<p class="tit">{{item.goodsNm}}</p>
+									<p class="tit option">{{item.itemNm}}</p>
+									<p class="price"><b>{{item.price |number}}</b>원</p>
+									<p class="select_wrap" ng-click="wishClick(item.goodsNo, 'm_RDC_ProdDetail_Clk_Pkg_Wsh');logGAEvtPrdView('함께구매하면좋은상품', '위시_' + idxSetDigit($index + 1), item.goodsNo); $event.stopPropagation();"><span class="select" ng-class="{on:item.saveWishYn || pageUI.wish[item.goodsNo]}"></span></p>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<div class="btn fill" ng-click="moreBuyPrdCartClick(); sendTclick('m_RDC_ProdDetail_Clk_Pkg_Cart');logGAEvtPrdView('함께구매하면좋은상품', '장바구니');" ng-if="pageUI.data.moreBuyPrdInfo.cartPssbYn"><var>{{pageUI.data.moreBuyPrdInfo.prdTotalCnt}}</var>개 상품(<var>{{pageUI.data.moreBuyPrdInfo.prdTotalPrice | number}}</var>원) 장바구니 담기</div>
+					<div class="detail_list_close shape_triangle up blue" ng-click="pageUI.togeListOpen = false; sendTclick('m_RDC_ProdDetail_Clk_Pkg_Hide'); logGAEvtPrdView('함께구매하면좋은상품', '접기');">자세히 보기 접기</div>
+				</div>
+			</div>
+			<!-- // 함께 구매하면 좋은 상품 -->
+			<!--MD 공지-->
+			<div class="detail_base_wrap md_noti div_line_b10" ng-if="pageUI.data.mdNoticeInfo.mdNtcFcont1 || pageUI.data.mdNoticeInfo.mdNtcFcont2">
+				<p class="detail_tit" ng-click="pageUI.mdNotiOpen = !pageUI.mdNotiOpen" ng-if="!pageUI.data.commonInfo.chanelYn">MD 공지<button class="shape_triangle blue" ng-class="{up:pageUI.mdNotiOpen, down:!pageUI.mdNotiOpen}">공지 열기닫기</button></p>
+				<div ng-show="pageUI.mdNotiOpen">
+					<div class="noti" ng-if="pageUI.data.mdNoticeInfo.mdNtcFcont1" id="mdNoti1"></div>
+					<div class="noti" ng-if="pageUI.data.mdNoticeInfo.mdNtcFcont2" id="mdNoti2"></div>
+				</div>
+			</div>
+			<!--상품정보-->
+			<div class="detail_base_wrap prod_info div_line_t line_full_w">
+				<p class="detail_tit">상품정보</p>
+				<!-- SKT앱 데이터 프리 안내-->
+				<div class="skt_info" ng-if="appObj.isSktApp">
+					<img src="http://image.lotte.com/lotte/mo2015/angular/common/ic_warning.jpg" class="ico"/>
+					로그인/주문서 등 보안이 필요한 일부 페이지,외부 호스팅<br>&nbsp;&nbsp;&nbsp;
+					서버에서 불러오는 정보, 해외로밍 서비스 이용 시,<br>&nbsp;&nbsp;&nbsp;
+					<em>SKT 데이터 프리가 적용되지 않으니</em> 유의하시기 바랍니다.
+				</div>
+				<table class="info_table white">
+					<tr ng-if="pageUI.data.basicInfo.brndShopNm != null"><td>브랜드</td><td><a ng-click="linkClick(pageUI.data.basicInfo.brndShopUrl, 'm_RDC_ProdDetail_Clk_BrdLnk01');logGAEvtPrdView('상세정보','브랜드샵이동');">{{pageUI.data.basicInfo.brndShopNm}} 매장가기</a></td></tr>
+					<tr ng-if="pageUI.data.basicInfo.giftNm != null"><td>사은품</td><td>{{pageUI.data.basicInfo.giftNm}}</td></tr>
+					<tr class="right_limit" ng-if="pageUI.data.basicInfo.mdTipTitle != null">
+						<td>MD팁</td>
+						<td>
+							<p class="sub_tit">{{pageUI.data.basicInfo.mdTipTitle}}</p>
+							<p ng-bind-html="pageUI.data.basicInfo.mdTipCont"></p>
+						</td>
+					</tr>
+					<tr ng-if="pageUI.data.commonInfo.culture_idne_yn == 'Y'">
+						<td>소득공제</td>
+						<td class="culture_idne_wrap" ng-click="pageUI.culture_idne_pop = true;sendTclick('m_RDC_ProdDetail_Clk_Ban02');">
+							도서·공연비 소득공제 대상상품
+							<span class="ico_info">?</span>
+						</td>
+					</tr>
+				</table>
+				<table class="info_table inner" ng-if="pageUI.data.basicInfo.itemInfoList">
+					<!-- 20180727 선물서비스 문구추가-->
+					<tr ng-if="pageUI.giftChk && pageUI.data.commonInfo.giftYn && pageUI.data.basicInfo.giftInfo">
+						<td>선물서비스</td>
+						<td>{{pageUI.data.basicInfo.giftInfo}}</td>
+					</tr>
+					<tr ng-repeat="item in pageUI.data.basicInfo.itemInfoList.items">
+						<td>{{item.key}}</td>
+						<td ng-class="{'blue bold':item.key == '선물서비스'}">
+							<p ng-if="item.key == '선물서비스' && pageUI.data.basicInfo.giftInfo" class="gift_text">{{pageUI.data.basicInfo.giftInfo}}</p>
+							<span ng-if="item.key != '선물서비스'">{{item.value}}</span>
+							<ul class="thumb_list" ng-if="item.key == '선물서비스'" ng-click="giftServiceInfoClick('op_prodDetail','')">
+								<li ng-if="pageUI.data.basicInfo.giftPkgImgUrl"><span class="thumb cover"><img ng-src="{{pageUI.data.basicInfo.giftPkgImgUrl}}" alt=""></span></li>
+								<li ng-if="pageUI.data.basicInfo.futMsgImgUrl"><span class="thumb cover"><img ng-src="{{pageUI.data.basicInfo.futMsgImgUrl}}" alt=""></span></li>
+							</ul>
+							<span ng-if="item.key == '선물서비스'" ng-click="giftServiceInfoClick('op_prodDetail','')">{{item.value}}</span>
+						</td>
+					</tr>
+					<!-- // 20180727 선물서비스 문구추가-->
+					<tr ng-if="pageUI.data.commonInfo.goodsCmpsCd != '30'">
+						<td colspan="2" ng-click="linkClick(pageUI.data.basicInfo.itemInfoMoreUrl, 'm_RDC_ProdDetail_Clk_PrdInfo');logGAEvtPrdView('상세정보','필수표기정보더보기');">
+							<p class="outlink"><span class="right_clamp">필수표기정보 더보기</span></p>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<!-- 상품정보 module : product_detail_info -->
+		<product-detail-info ng-if="pageUI.data.commonInfo.goodsCmpsCd != '30'"></product-detail-info>
+		<!-- // 상품정보 -->
+
+		<!-- 기획전 상품 리스트 module : plan_product_list -->
+		<plan-product-list ng-if="pageUI.data.commonInfo.goodsCmpsCd == '30'"></plan-product-list>
+		<!-- // 기획전 상품 리스트 -->
+
+		<!-- 다른 고객들이 함께 본 상품 module : product_best_view -->
+		<product-best-view></product-best-view>
+		<!-- // 다른 고객들이 함께 본 상품 -->
+
+		<!-- 비슷한 스타일 추천 module : similar_style_recommend -->
+		<similar-style-recommend></similar-style-recommend>
+		<!-- // 비슷한 스타일 추천 -->
+
+		<!-- 상품평 module : product_comment -->
+		<product-comment ng-if="pageUI.data.commonInfo.goodsCmpsCd != '30'"></product-comment>
+		<!-- // 상품평 -->
+
+		<!-- Q&A module : product_qna -->
+		<product-qna ng-if="pageUI.data.commonInfo.goodsCmpsCd != '30'"></product-qna>
+		<!-- // Q&A -->
+
+		<!-- 브랜드 베스트 상품 (즐겨찾기) module : brand_best -->
+		<brand-best></brand-best>
+		<!-- // 브랜드 베스트 상품 (즐겨찾기) -->
+
+		<!-- 다른 고객들이 많이 산 카테고리명 상품 module : best_category_products -->
+		<best-category-products></best-category-products>
+		<!-- // 다른 고객들이 많이 산 카테고리명 상품 -->
+
+		<!-- MD가 추천하는 상품 module : md_recommend_product -->
+		<md-recommend-product></md-recommend-product>
+		<!-- // MD가 추천하는 상품 -->
+
+		<!-- 함께 볼만한 기획전 module : together_plan_list -->
+		<together-plan-list ng-if="!pageUI.data.commonInfo.chanelYn"></together-plan-list>
+		<!-- // 함께 볼만한 기획전 -->
+
+		<!-- 상품상세 옵션 박스 module : product_option -->
+		<product-option></product-option>
+		<!-- 상품상세 옵션 박스 -->
+
+		<!--기획전형 상품 상세 module : plan_product_detail -->
+		<plan-product-detail ng-show="pageUI.data.commonInfo.goodsCmpsCd == '30' && pageUI.planProduct.show"></plan-product-detail>
+		<!--//기획전형 상품 상세-->
+
+		<!--샤넬 연관상품 정보 module : chanel_relation_info -->
+		<chanel-relation-info ng-if="pageUI.data.commonInfo.chanelYn"></chanel-relation-info>
+
+		<!-- 하단배너 module : product_bottom_banner -->
+		<product-bottom-banner></product-bottom-banner>
+		<!-- // Q&A -->
+	</div>
+	<!--주문서 넘어가기 직전 로딩바-->
+	<div class="buyLoading" id="stayLoading" ng-if="stayLoading">
+		<a class="btnOptionClose" ng-click="hideStayLoading()" style="top:10px;bottom:auto">팝업닫기</a>
+		<div class="loading"></div>
+		<div class="message">
+			탁월한 선택! 롯데닷컴입니다.
+			<p ng-if="loginInfo.isLogin && !pageUI.orderLoading">최대할인 혜택을 주문서에 자동 적용 중입니다.</p>
+			<p ng-if="loginInfo.isLogin && pageUI.orderLoading">최대할인 혜택을 L.pay 간편결제에</br>자동 적용 중입니다.</p>
+			<p ng-if="!loginInfo.isLogin">로그인을 하시면 최대할인 혜택이 적용됩니다.</p>
+		</div>
+	</div>
+	<!-- 20180208 lg희망일배송 레이어팝업  -->
+	<div class="lg_deli_pop" ng-if="pageUI.data.dlvInfoSetDate.gubunCd == '88' || pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfoSetDate.gubunCd == '88'" ng-show="pageUI.openHopePop">
+		<h4>희망일배송이란?</h4>
+		<div class="lg_deli_cont">
+			<ul>
+				<li class="first_list"><em>1.</em>결제시, 원하는 배송일을 지정할 수 있습니다.</li>
+				<li><em>2.</em>물류센터 휴무일에는 배송 및 설치가 불가능합니다.</li>
+				<li><em>3.</em>선택한 배송일에 물류기사가 방문 전 해피콜 예정입니다.</li>
+			</ul>
+			<p>물류 상황에 따라 배송이 지연되는 경우가 있으니 양해 부탁드리며, 지연 시 사전 연락드릴 예정입니다.</p>
+		</div>
+		<a ng-click="hopePop(pageUI.openHopePop)" >닫기</a>
+	</div>
+	<div class="lgpop_dim" ng-if="pageUI.data.dlvInfoSetDate.gubunCd == '88' || pageUI.planProduct.data[pageUI.planProduct.goodsNo].dlvInfoSetDate.gubunCd == '88'" ng-show="pageUI.openHopePop"></div>
+	<!-- // 20180208 lg희망일배송 레이어팝업-->
+	<!--공통 로딩커버-->
+	<div class="loading_cover" ng-if="jsonLoading">
+		<div class="loading"></div>
+	</div>
+	<div class="commonPop culture_idne" id="culture_idne_pop" ng-if="pageUI.culture_idne_pop">
+		<div class="bg" ng-click="pageUI.culture_idne_pop = !pageUI.culture_idne_pop"></div>
+		<div class="box">
+			<div class="popBox">
+				<h2>도서∙공연비 소득공제 적용 안내</h2>
+				<div class="cont">
+					<p><strong>대상 상품 : </strong>도서/티켓 중 일부 상품</p>
+					<p><strong>최대 적용 금액 : </strong>인당 연 100만원</p>
+					<p><strong>시행일 : </strong>2018.7.1 구매금액부터 </p>
+					<ul>
+						<li>도서∙공연비 소득공제는 해당 상품만 구매하실 경우 적용됩니다.<br/><span>일반 상품과 함께 결제하실 경우, 적용되지 않습니다</span></li>
+						<li>소득공제 상세 내역은 연말 국세청 홈택스에서 확인하실 수 있습니다. </li>
+					</ul>
+				</div>
+				<div class="foot" ng-click="pageUI.culture_idne_pop = !pageUI.culture_idne_pop">
+					닫기
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

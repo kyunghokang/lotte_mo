@@ -1,0 +1,159 @@
+<section ng-show="contVisible" class="cont_minheight" id="container">
+	<!-- brand_cate -->
+	<div class="brand_cate" ng-show="BrandCateList && BrandCateList.length > 1">
+		<ul>
+			<li ng-repeat="item in BrandCateList" ng-class="{on:cateSelectIndex==$index}"><a href="#" ng-click="brandSubClick(item)">{{item.disp_nm}} <span>{{item.cate_cnt|number}}</span></a></li>
+		</ul>
+	</div>
+	<!-- //brand_cate -->
+	
+	<!-- <div ng-controller="productCtrl">
+		<product-container template-type="swipe_deal" products="productList"></product-container>
+		</div> -->
+	
+    <div class="mBoxCon recommond_wrap" ng-if="(productList != null && productList.length > 1) || (BannerList != null && BannerList.length > 0)">
+    	
+		<!-- banner_slide -->
+		<div class="banner_slide" ng-controller="lotteNgSwipeCtrl" ng-if="BannerList.length > 1 && screenType < 2">
+			<!-- 스와이프 영역 -->
+			<div class="slide">
+				<ul class="swiper"
+					lotte-ng-list-swipe  
+					swipe-id="listBanner" 
+					swipe-list-model="BannerList" 
+					swipe-slide-item="true"
+					swipe-left-margin="13"
+					swipe-right-margin="95"
+					swipe-max-ratio="0.2" 
+					swipe-min-distance="40"
+					swipe-responsive="true" 
+					swipe-responsive320="1" 
+					swipe-responsive640="1" 
+					swipe-responsive900="1"
+					swipe-edge-last="true">
+					<li ng-repeat="item in BannerList track by $index">
+						<a href="#" ng-click="brandShopBannerClick(item)">
+							<img ng-src="{{item.img_url_addr}}" alt="{{item.spdp_nm}}" />
+						</a>	
+					</li>					
+				</ul>
+			</div>
+	
+			<ul class="indicator" ng-if="BannerList && BannerList.length > 1" >
+				<li ng-repeat="item in BannerList track by $index" ng-class="{on: swipeIdx == $index}"><span>{{$index}}</span></li>
+			</ul>
+			<!-- //스와이프 영역 -->
+		</div>
+		<!-- pad 용 -->
+		<div class="banner_slide" ng-controller="lotteNgSwipeCtrl" ng-if="BannerList2.length > 1 && screenType > 1">
+			<!-- 스와이프 영역 -->
+			<div class="slide">
+				<ul class="recommond_swipe"
+					lotte-ng-list-swipe 
+					swipe-id="listBanner" 
+					swipe-list-model="BannerList2" 
+					swipe-responsive="true" 
+		        	swipe-autoheight="true" 
+		        	swipe-responsive320="1" 
+		        	swipe-responsive640="1" 
+		        	swipe-responsive900="1" 
+		        	swipe-slide-item="true" 
+		        	swipe-max-ratio="0.2" 
+		        	swipe-min-distance="40" >
+					<li ng-repeat="item in BannerList2">
+						<ul class="prd_type13 float_ul">
+							<li ng-repeat="items in item track by $index">
+								<a href="#" ng-click="brandShopBannerClick(items)">
+									<img ng-src="{{items.img_url_addr}}" alt="{{items.spdp_nm}}" />
+								</a>	
+							</li>
+						</ul>
+						
+					</li>					
+				</ul>
+			</div>
+	
+			<ul class="indicator" ng-if="BannerList2 && BannerList2.length > 1" >
+				<li ng-repeat="item in BannerList2 track by $index" ng-class="{on: swipeIdx == $index}"><span>{{$index}}</span></li>
+			</ul>
+			<!-- //스와이프 영역 -->
+		</div>
+		<!-- //pad 용 -->
+		<!-- //banner_slide -->
+		
+		<!-- New Arrival List -->
+		<div class="new_arrival" ng-if="productList && productList.length > 1" >
+			<span class="title">New Arrivals</span>
+	        <ul class="recommond_swipe" 
+	        	lotte-ng-list-swipe 
+	        	swipe-id="newArrivalSwipe" 
+	        	swipe-list-model="productList" 
+	        	swipe-responsive="true" 
+	        	swipe-autoheight="true" 
+	        	swipe-responsive320="1" 
+	        	swipe-responsive640="1" 
+	        	swipe-responsive900="1" 
+	        	swipe-slide-item="true" 
+	        	swipe-max-ratio="0.2" 
+	        	swipe-min-distance="40" 
+	        	swipe-list-model="products">
+	            <li ng-repeat="item in productList">
+	                <ul class="prd_type13 float_ul">
+	                    <li ng-repeat="items in item track by $index">
+	                        <a href="#" ng-click="newArrivalPrdClick(items)">
+	                            <div class="imageCon">
+	                                <img ng-src="{{items.img_url}}">
+	                            </div>
+	                            <div class="titleCon">
+	                                <div class="name elli2 ellih36">{{items.goods_nm}}</div>
+	                                <div class="t1"><b>{{items.discounted_price | number}}</b>원<em ng-if="item.is_plan_prod" class="plan_prod_limit">~</em></div>
+	                            </div>
+	                        </a>
+	                    </li>
+	                </ul>
+	            </li>
+	        </ul>
+	        <ul class="indicator" ng-if="productList.length > 1">
+	            <li ng-repeat="indicator in productList" ng-class="{on: swipeIdx == $index}"><span>{{$index}}</span></li>
+	        </ul>
+        </div>
+    </div>
+		
+	<!-- 카테고리 -->
+	<div class="result_wrap categoryWrap">
+		<!-- 검색 필터 /-->
+		<div class="srh_terms_wrap" prod-list-layer ng-class="{show:uiStateObj.initFlag==false}">
+			<div class="result_cnt"><em>{{srhResultData.tCnt|number}}</em>개</div>
+        	<div class="right">
+				<ul>
+					<li>
+						<span class="unit_listType type1" ng-click="changeTemplate('list');" ng-show="templateType=='swipe'"></span>
+						<span class="unit_listType type2" ng-click="changeTemplate('image');" ng-show="templateType=='list'"></span>
+						<span class="unit_listType type3" ng-click="changeTemplate('swipe');" ng-show="templateType=='image'"></span>
+					</li>
+				</ul>
+        		<a href="#" class="detail" ng-click="showHideSideSearch()" ng-class="{disabled:!uiStateObj.detailSearchDataLoaded}">상세검색</a>
+        		<a href="#" class="sort" ng-click="showHideSideSearch('SORT')">{{uiStateObj.sortTypeArr[uiStateObj.sortTypeIdx].shortLabel}}</a>
+        	</div>
+		</div>
+		<!--/ 검색 필터 -->
+		
+		<!-- 검색 결과 / -->
+		<div class="listWrap" ng-controller="productCtrl" ng-if="!uiStateObj.emptyResult">
+			<!-- s: unit list area -->
+			<div class="unitWrap">
+			<!-- //상품리스트 유형 선택 -->
+				<div product-container template-type="list" total-count="srhResultData.tCnt" templatetype="templateType"
+					products="srhResultData.prdLst.items" more-product-continer="loadMoreData()" ctg-idx="true"></div>
+			</div>
+			<!-- e: unit list area -->
+		</div>
+		<!-- /검색 결과 -->
+		<section class="noData" ng-if="uiStateObj.emptyResult">
+			해당하는 상품이 없습니다.
+		</section>
+	</div>
+	<!-- //카테고리 -->
+    <loading-bar></loading-bar>
+	<cate-side-search></cate-side-search>
+</section>

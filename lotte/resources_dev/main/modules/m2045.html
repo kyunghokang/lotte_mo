@@ -1,0 +1,49 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!--M45	텐어클락/핀터레스트 뷰티형-->
+	<div class="moduleCon" ng-if="moduleData.spdpList.items.length >= 3">
+		<div class="pinterest_list">
+			<ul class="pl">
+				<li class="rud_prd_10oclock">
+					<a ng-click="logGAEvtModuleEach('01', moduleData.prdInfo.goodsNo);mainProductClick(moduleData.prdInfo.goodsNo, moduleData.tclick + '_Clk_Ban01')">
+						<div class="thumb" ng-style="{'background-image':'url({{moduleData.prdInfo.imgUrl}})' }"></div>
+						<div class="info">
+							<p class="toptit"><b>10 O'clock Brunch</b></p>
+							<p class="tit">
+								<span>{{moduleData.prdInfo.goodsNm}}</span>
+							</p>
+							<p class="price">
+								<span>{{moduleData.prdInfo.price | number}}</span>원<em ng-if="moduleData.prdInfo.isPlanPrd">~</em>
+							</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a ng-click="logGAEvtModuleEach('03', moduleData.spdpList.items[1].txt);planClick(moduleData.spdpList.items[1].linkUrl, moduleData.tclick + '_Clk_Ban03')">
+						<div class="thumb" ng-style="{'background-image':'url({{moduleData.spdpList.items[1].imgUrl}})' }"></div>
+						<div class="info">
+							<p class="tit">{{moduleData.spdpList.items[1].txt}}</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<ul class="pr">
+				<li>
+					<a ng-click="logGAEvtModuleEach('02', moduleData.spdpList.items[0].txt);planClick(moduleData.spdpList.items[0].linkUrl, moduleData.tclick + '_Clk_Ban02')">
+						<div class="thumb" ng-style="{'background-image':'url({{moduleData.spdpList.items[0].imgUrl}})' }"></div>
+						<div class="info">
+							<p class="tit">{{moduleData.spdpList.items[0].txt}}</p>
+						</div>
+					</a>
+				</li>
+				<li class="prd_10oclock">
+					<a ng-click="logGAEvtModuleEach('04', moduleData.spdpList.items[2].txt);planClick(moduleData.spdpList.items[2].linkUrl, moduleData.tclick + '_Clk_Ban04')" ng-style="{'background-image':'url({{moduleData.spdpList.items[2].imgUrl}})' }">
+						<div class="thumb"></div>
+						<div class="info">
+							<p class="tit">{{moduleData.spdpList.items[2].txt}}</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>

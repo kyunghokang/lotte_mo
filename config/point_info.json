@@ -1,0 +1,73 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplPointInfo" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mylotte/pointcoupon/m/point_l_point_container.html",
+					"lotte/resources_dev/mylotte/pointcoupon/m/point_lt_point_container.html",
+					"lotte/resources_dev/mylotte/pointcoupon/m/point_clover_container.html",
+					"lotte/resources_dev/mylotte/pointcoupon/m/point_coupon_container.html",
+					"lotte/resources_dev/mylotte/pointcoupon/m/point_deposit_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/point_info.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsPointInfo" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mylotte/pointcoupon/m/point_info.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/point_info.js"
+            }
+        },
+
+        "uglify" : {
+            "jsPointInfo" : {
+                "src" : "lotte/resources/<%= version %>/point_info.js",
+                "dest" : "lotte/resources/<%= version %>/point_info.min.js"
+            },
+            "tplPointInfo" : {
+                "src" : "lotte/resources/<%= version %>/point_info.template.js",
+                "dest" : "lotte/resources/<%= version %>/point_info.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssPointInfo" : {
+                "src" : [
+                    "lotte/resources_dev/mylotte/pointcoupon/m/point_info.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/point_info.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanPointInfo" : [
+                "lotte/resources/<%= version %>/point_info.js",
+                "lotte/resources/<%= version %>/point_info.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlPointInfo" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mylotte/pointcoupon/m/point_info.html" : "mylotte/pointcoupon/m/point_info_dev.html"
+                }
+            }
+        }
+    }
+}
+

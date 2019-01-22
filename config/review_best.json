@@ -1,0 +1,70 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplReviewBest" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/product/m/review_best_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/review_best.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsReviewBest" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/common/lotte_video.js",
+					"lotte/resources_dev/common/lotte_slider.js",
+					"lotte/resources_dev/product/m/review_best.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/review_best.js"
+			}
+		},
+
+		"uglify" : {
+			"jsReviewBest" : {
+				"src" : "lotte/resources/<%= version %>/review_best.js",
+				"dest" : "lotte/resources/<%= version %>/review_best.min.js"
+			},
+			"tplReviewBest" : {
+				"src" : "lotte/resources/<%= version %>/review_best.template.js",
+				"dest" : "lotte/resources/<%= version %>/review_best.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssReviewBest" : {
+				"src" : [
+					"lotte/resources_dev/product/m/review_best.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/review_best.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanReviewBest" : [
+				"lotte/resources/<%= version %>/review_best.js",
+				"lotte/resources/<%= version %>/review_best.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlReviewBest" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"product/m/review_best.html" : "product/m/review_best_dev.html"
+				}
+			}
+		}
+	}
+}

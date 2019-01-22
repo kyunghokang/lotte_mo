@@ -1,0 +1,292 @@
+<div tpml-event ng-if="pageUI.curMenuDispNo == '5537336'" class="cont_wrap tpml_event padding">
+	<!-- 최상단 띠배너 -->
+	<section ng-if="tpmlData.contData.top_banner_list.items[0]" class="top_banner_list">
+		<ul>
+			<li><a ng-click="linkUrl(tpmlData.contData.top_banner_list.items[0].img_link, tpmlData.contData.top_banner_list.items[0].mov_frme_cd, 'm_menu_5537336_rewardevent')"><img ng-src="{{tpmlData.contData.top_banner_list.items[0].img_url}}" alt="{{tpmlData.contData.top_banner_list.items[0].banner_nm}}" /></a></li>
+
+			<!-- 640 이상일때만 나오는 출석 도장 이벤트 -->
+			<li ng-if="winWidth >= 640"><a ng-click="linkUrl(eventLinkObj.eventAttendUrl, false, 'm_menu_5537336_tabletbanner')"><img ng-src="http://image.lotte.com/lotte/mo2015/angular/banner_20161101_attend.png" alt="출석도짱" /></a></li>
+		</ul>
+	</section>
+
+	<!-- 스와이프 배너 -->
+	<section ng-if="tpmlData.contData.first_banner_list.items && tpmlData.contData.first_banner_list.items.length > 0" ng-controller="lotteNgSwipeCtrl" class="top_swipe_wrap">
+		<div class="swipe_wrap">
+			<ul lotte-ng-list-swipe 
+				swipe-id="EventFirstBanner" 
+				swipe-list-model="tpmlData.contData.first_banner_list.items" 
+				swipe-slide-item="true"  
+				swipe-max-ratio="0.2" 
+				swipe-min-distance="40"
+				swipe-responsive="true" 
+				swipe-responsive320="1" 
+				swipe-responsive640="1" 
+				swipe-responsive900="1">
+				<li ng-repeat="item in tpmlData.contData.first_banner_list.items">
+				<a ng-click="linkUrlCon(item.img_link, item.mov_frme_cd, 'm_menu_5537336_Swp_Ban_idx', $index + 1)"><img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}" /></a></li>
+			</ul>			
+<!--			<button class="btn_prev" ng-show="swipeIdx != 0" ng-click="beforeSlide()">이전</button>
+			<button class="btn_next" ng-show="swipeIdx != tpmlData.contData.first_banner_list.items.length - 1" ng-click="nextSlide()">다음</button>
+-->		</div>
+		<ul class="indicator">
+			<li ng-repeat="item in tpmlData.contData.first_banner_list.items" ng-class="{on: swipeIdx == $index}"><span>{{$index}}</span></li>
+		</ul>
+	</section>
+    <!--20160405 참좋은 혜택 -->
+        <!--로그인중이고, 다운받기 전일때 -->
+    <section class="main_coupon" ng-if="loginInfo.isLogin && tpmlData.contData.mbr_down_yn =='N'">
+        <h3><span>coupon</span></h3>
+        <h4><strong>{{loginInfo.name}}</strong>고객님의<strong>참 좋은 쿠폰</strong></h4>
+        <!--플래티넘+  -->
+        <ul class="coupon_list" ng-if="tpmlData.contData.mbrGradeCd == '10'">
+            <li class="dc_precent">
+                <div class="coupon_wrap">
+                    <span class="flag_dcom">롯데닷컴</span>
+                    <div class="cp_icon more">
+                        <span class="cp_name"><strong>5</strong>%</span>
+                        <span class="cp_txt">추가할인</span>
+                    </div>
+                </div>
+            </li>
+            <li class="dc_precent">
+                <div class="coupon_wrap">
+                    <span class="flag_dept">롯데백화점</span>
+                    <div class="cp_icon more">
+                        <span class="cp_name"><strong>5</strong>%</span>
+                        <span class="cp_txt">추가할인</span>
+                        <span class="cp_num" ng-if="tpmlData.contData.lastMonthOrderCnt > 0"><span>x2</span></span> <!--전월구매자 추가할인 포함-->
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <!--플래티넘  -->
+        <ul class="coupon_list" ng-if="tpmlData.contData.mbrGradeCd == '20'">
+            <li class="dc_precent">
+                <div class="coupon_wrap">
+                    <span class="flag_dcom">롯데닷컴</span>
+                    <div class="cp_icon more">
+                        <span class="cp_name"><strong>4</strong>%</span>
+                        <span class="cp_txt">추가할인</span>
+                    </div>
+                </div>
+            </li>
+            <li class="free_delivery">
+                <div class="coupon_wrap">
+                    <span class="flag_dcom">롯데닷컴</span>
+                    <div class="cp_icon">
+                        <span class="cp_name"></span>
+                        <span class="cp_txt">무료배송</span>
+                        <span class="cp_num"><span>x3</span></span>
+                    </div>
+                </div>
+            </li>
+            <!--전월구매자 추가할인-->
+            <li class="dc_precent" ng-if="tpmlData.contData.lastMonthOrderCnt > 0">
+                <div class="coupon_wrap">
+                    <span class="flag_dept">롯데백화점</span>
+                    <div class="cp_icon more">
+                        <span class="cp_name"><strong>5</strong>%</span>
+                        <span class="cp_txt">추가할인</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+         <!--플래티넘#  -->
+        <ul class="coupon_list" ng-if="tpmlData.contData.mbrGradeCd == '30'">
+            <li class="dc_precent">
+                <div class="coupon_wrap">
+                    <span class="flag_dept">롯데백화점</span>
+                    <div class="cp_icon more">
+                        <span class="cp_name"><strong>3</strong>%</span>
+                        <span class="cp_txt">추가할인</span>
+                    </div>
+                </div>
+            </li>
+            <li class="free_delivery">
+                <div class="coupon_wrap">
+                    <span class="flag_dcom">롯데닷컴</span>
+                    <div class="cp_icon">
+                        <span class="cp_name"></span>
+                        <span class="cp_txt">무료배송</span>
+                    </div>
+                </div>
+            </li>
+        </ul>  
+         <!--골드  -->
+        <ul class="coupon_list" ng-if="tpmlData.contData.mbrGradeCd == '40'">
+            <li class="dc_precent">
+                <div class="coupon_wrap">
+                    <span class="flag_dept">롯데백화점</span>
+                    <div class="cp_icon more">
+                        <span class="cp_name"><strong>2</strong>%</span>
+                        <span class="cp_txt">추가할인</span>
+                    </div>
+                </div>
+            </li>
+        </ul>  
+         <!--실버  -->
+        <ul class="coupon_list" ng-if="tpmlData.contData.mbrGradeCd == '50'">
+            <li class="dc_precent">
+                <div class="coupon_wrap">
+                    <span class="flag_dept">롯데백화점</span>
+                    <div class="cp_icon more">
+                        <span class="cp_name"><strong>1</strong>%</span>
+                        <span class="cp_txt">추가할인</span>
+                    </div>
+                </div>
+            </li>
+        </ul>  
+         <!--프렌즈  -->
+        <ul class="coupon_list" ng-if="tpmlData.contData.mbrGradeCd == '70'">
+            <li class="dc_price">
+                <div class="coupon_wrap">
+                    <span class="flag_dcom">롯데닷컴</span>
+                    <div class="cp_icon">
+                        <span class="cp_name"><strong>5</strong>천원</span>
+                        <span class="cp_txt">할인쿠폰 </span>
+                    </div>
+                </div>
+            </li>
+        </ul>  
+         <!--웰컴  -->
+        <ul class="coupon_list" ng-if="tpmlData.contData.mbrGradeCd == '80'">
+            <li class="dc_price">
+                <div class="coupon_wrap">
+                    <span class="flag_dcom">롯데닷컴</span>
+                    <div class="cp_icon">
+                        <span class="cp_name"><strong>3</strong>천원</span>
+                        <span class="cp_txt">할인쿠폰 </span>
+                    </div>
+                </div>
+            </li>
+        </ul>          
+        <div class="btn_wrap">
+            <a ng-click="regCoupon('memberCpn',tpmlData.contData.mbrGradeCd)">쿠폰 전체 다운받기</a>
+        </div>
+    </section>
+        <!--로그인중이고, 다운받은 후일때 -->
+    <section class="main_coupon" ng-if="loginInfo.isLogin && tpmlData.contData.mbr_down_yn =='Y'">
+        <h3><span>coupon</span></h3>
+        <h4><strong>{{loginInfo.name}}</strong>고객님의<strong>참 좋은 쿠폰</strong></h4>
+        <p>쿠폰 다운로드 완료!</p>
+        <div class="btn_wrap">
+            <a ng-click="linkUrl(eventLinkObj.couponUrl, false, 'm_menu_5537336_set3')">쿠폰 확인하기</a>
+        </div>
+    </section>
+        <!--로그아웃 일때 -->
+    <section class="main_coupon" ng-if="!loginInfo.isLogin">
+        <h3><span>coupon</span></h3>
+        <h4>고객님의<strong>참 좋은 쿠폰</strong></h4>
+        <p>로그인하고 참 좋은 혜택을 확인하세요!</p>
+        <div class="btn_wrap">
+            <a ng-click="loginPageFormEvent('m_menu_5537336_Clk_Login_Btn')">로그인 </a>
+        </div>
+    </section>    
+     
+   
+    <section class="main_benefit">
+        <!--20160405 출석도장 
+        <div class="main_attend">
+            <h3>매일 매일 출석도짱<a ng-click="iosbackFnc();linkUrl(eventLinkObj.eventAttendUrl, false, 'm_menu_5537336_Clk_Check_Btn03')">더보기</a></h3>
+            <ul class="stamp_attend">
+                <li class="yester" ng-class="{on:tpmlData.contData.yesterday_stamp =='Y'}">
+                    <div class="stamp_wrap">
+                        <div class="stamp_img">
+                            <div class="stamp"></div>
+                            <span class="stamp_date">{{stamp_yesterday}}</span>
+                        </div>
+                        <div class="stamp_txt">출석마감</div>
+                    </div>
+                </li>
+                <li class="today" ng-class="{on:tpmlData.contData.today_stamp =='Y'}">
+                    <div class="stamp_wrap">
+                        <div class="stamp_img" ng-click="todayStamp()">
+                            <div class="stamp"></div>
+                            <span class="stamp_date">{{stamp_today}}</span>
+                        </div>
+                        <div class="stamp_txt" ng-if="tpmlData.contData.today_stamp =='N'">출석하기</div>
+                        <div class="stamp_txt" ng-if="tpmlData.contData.today_stamp =='Y'">출석완료</div>
+                    </div>
+                </li>
+                <li class="tomorrow">
+                    <div class="stamp_wrap">
+                        <div class="stamp_img" ng-click="tomorrowStamp()">
+                            <div class="stamp"></div>
+                            <span class="stamp_date">{{stamp_tomorrow}}</span>
+                        </div>
+                        <div class="stamp_txt">내일도 출석</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        -->
+        <!--11.01 open -->
+        <div class="main_attend type2">
+            <h3>하루 한 번 롯데닷컴</h3>
+            <ul class="stamp_attend">
+                <li class="yester">
+                    <a ng-click="iosbackFnc();linkUrl(eventLinkObj.eventAttendUrl, false, 'm_menu_5537336_Clk_Check_Btn03')">
+                       <!-- 2016.12.22 이미지 최적화 -->
+                        <span>출석체크</span>
+                        <div class="stamp_txt">매일매일 <b>출석체크</b></div>
+                    </a>
+                </li>
+                <li class="tomorrow">
+                    <a ng-href="/event/luckyBox.do?tclick=m_menu_5537336_clk_btn_luckybox&{{baseParam}}">
+                       <!-- 2016.12.22 이미지 최적화 -->
+                       <span>Lucky Box</span>
+                       <div class="stamp_txt">100%득템 <b>럭키박스</b></div>
+                    </a>
+                </li>
+            </ul>
+        </div>   
+             
+        <div class="link_wrap2">
+            <h3>더 많은 헤택을 모아,모아!</h3>
+            <ul>
+                <li class="item3"><a ng-click="iosbackFnc();linkUrl(eventLinkObj.eventBenefitUrl, false, 'm_menu_5537336_Clk_Btn_A01')">참좋은혜택</a></li>
+                <li class="item2"><a ng-click="linkUrl(eventLinkObj.eventSaunUrl, false, 'm_menu_5537336_Clk_Btn_A02')">구매사은</a></li>
+                <li class="item1"><a ng-click="linkUrl(eventLinkObj.eventInfoUrl, false, 'm_menu_5537336_Clk_Btn_A03')">응모/당첨</a></li>
+            </ul>
+        </div>
+    </section>	
+	
+	
+	<!-- 중간 링크 영역 
+	<section class="link_wrap">
+		<ul>
+			<li class="item1"><a ng-click="linkUrl(eventLinkObj.eventInfoUrl, false, 'm_menu_5537336_set1')">응모/당첨</a></li>
+			<li class="item2"><a ng-click="linkUrl(eventLinkObj.eventSaunUrl, false, 'm_menu_5537336_set2')">구매사은</a></li>
+			<li class="item3"><a ng-click="linkUrl(eventLinkObj.eventBenefitUrl, false, 'm_menu_5537336_set3')">참좋은혜택</a></li>
+			<li class="item4"><a ng-click="linkUrl(eventLinkObj.eventAttendUrl, false, 'm_menu_5537336_set4')">출석도짱</a></li>
+		</ul>
+	</section>
+    -->
+	<!-- 이벤트 리스트 -->
+	<section ng-if="tpmlData.contData.event_banner_list.items && tpmlData.contData.event_banner_list.items.length > 0 && (winWidth < 640 || (winWidth >= 640 && tpmlData.contData.event_banner_list.items.length >= 2) || (winWidth >= 900 && tpmlData.contData.event_banner_list.items.length >= 3))" class="evt_bnr_list">
+		<ul>
+			<!--ng-if="winWidth < 640 || (winWidth >= 640 && $index < 2) || (winWidth >= 900 && $index < 3)" -->
+			<li ng-repeat="item in tpmlData.contData.event_banner_list.items">
+				<a class="item" ng-click="linkUrl(item.img_link, item.mov_frme_cd, 'm_menu_5537336_Clk_Ban_idx0' + ($index + 1))">
+					<div class="img_wrap"><img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}" /></div>
+					<!--<div class="desc_wrap">{{item.banner_nm}} | {{item.note_cont}}</div>-->
+					<div class="date_wrap">기간 : {{item.event_date}}<em ng-if="item.mov_frme_cd" class="out_link">새창</em></div>
+				</a>
+			</li>
+		</ul>
+	</section>
+
+	<!-- 외부고정배너 : 이벤트 -->
+	<section ng-if="tpmlData.contData.outer_banner_list.items && tpmlData.contData.outer_banner_list.items.length > 0" class="outlink_bnr_wrap">
+		<ul>
+			<li ng-repeat="item in tpmlData.contData.outer_banner_list.items">
+				<a class="item" ng-click="linkUrl(item.img_link, item.mov_frme_cd, 'm_menu_5537336_Ban_Text0' + ($index + 1))">
+					<div class="img_wrap"><img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}" /></div>
+					<div class="tit_wrap">{{item.banner_nm}}</div>
+					<div class="desc_wrap">{{item.note_cont}}</div>
+				</a>
+			</li>
+		</ul>
+	</section>
+	
+</div>

@@ -1,0 +1,81 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplDearpetGallery" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev//mall/pet/pet_mall_ctg_container.html",
+					"lotte/resources_dev//mall/pet/pet_mall_photoview.html",
+					"lotte/resources_dev//mall/pet/pet_mall_petgram.html",
+					"lotte/resources_dev//mall/pet/pet_mall_swag.html",
+					"lotte/resources_dev//mall/pet/pet_comment.html",
+					"lotte/resources_dev//mall/pet/dearpet_gallery_container.html",
+					"lotte/resources_dev/mall/pet/dearpet_mall_sub_category.html",
+					"lotte/resources_dev/mall/pet/pet_mall_like.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/dearpet_gallery.template.js"
+			}
+		},
+		
+		"concat" : {
+			"jsDearpetGallery" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/common/lotte_ngswipe.js",
+					"lotte/resources_dev/mall/pet/dearpet_gallery.js",
+					"lotte/resources_dev/mall/pet/dearpet_mall_sub_category.js",
+					"lotte/lib/jquery/ng-pinch-zoom.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/dearpet_gallery.js"
+			}
+		},
+
+		"uglify" : {
+			"jsDearpetGallery" : {
+				"src" : "lotte/resources/<%= version %>/dearpet_gallery.js",
+				"dest" : "lotte/resources/<%= version %>/dearpet_gallery.min.js"
+			},
+			"tplDearpetGallery" : {
+				"src" : "lotte/resources/<%= version %>/dearpet_gallery.template.js",
+				"dest" : "lotte/resources/<%= version %>/dearpet_gallery.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssDearpetGallery" : {
+				"src" : [
+					"lotte/resources_dev/mall/pet/dearpet.css",
+					"lotte/resources_dev//mall/pet/dearpet_gallery.css",
+					"lotte/resources_dev/mall/pet/dearpet_mall_sub_category.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/dearpet_gallery.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanDearpetGallery" : [
+				"lotte/resources/<%= version %>/dearpet_gallery.js",
+				"lotte/resources/<%= version %>/dearpet_gallery.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlDearpetGallery" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"/mall/pet/dearpet_gallery.html" : "/mall/pet/dearpet_gallery_dev.html"
+				}
+			}
+		}
+	}
+}
+

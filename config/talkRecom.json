@@ -1,0 +1,70 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplTalkRecom" : {
+				"options": {
+					"prefix":"/",
+					"module" : "app"
+				},
+				"src" : [
+					"lotte/resources_dev/talk/talkRecom_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/talkRecom.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsTalkRecom" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/common/lotte_ngswipe.js",
+					"lotte/resources_dev/common/lotte_slider.js",
+					"lotte/resources_dev/talk/talkRecom.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/talkRecom.js"
+			}
+		},
+
+		"uglify" : {
+			"jsTalkRecom" : {
+				"src" : "lotte/resources/<%= version %>/talkRecom.js",
+				"dest" : "lotte/resources/<%= version %>/talkRecom.min.js"
+			},
+			"tplTalkRecom" : {
+				"src" : "lotte/resources/<%= version %>/talkRecom.template.js",
+				"dest" : "lotte/resources/<%= version %>/talkRecom.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssTalkRecom" : {
+				"src" : [
+					"lotte/resources_dev/talk/talkRecom.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/talkRecom.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanTalkRecom" : [
+				"lotte/resources/<%= version %>/talkRecom.js",
+				"lotte/resources/<%= version %>/talkRecom.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlTalkRecom" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"talk/talkRecom.html" : "talk/talkRecom_dev.html"
+				}
+			}
+		}
+	}
+}

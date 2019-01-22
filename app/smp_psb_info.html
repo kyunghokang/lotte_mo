@@ -1,0 +1,77 @@
+<html>
+	<meta charset="utf-8">
+	<title>롯데닷컴-스마트픽 가능 지점 안내</title>
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" type="text/css" href="product_info_layer.css"/>
+<body style="background:#fff;">
+	<div class="webview_layer_wrap" style="max-height:250px;"><!-- (D) app에서 class webview_layer_wrap으로 높이값 산출함 변경되거나 삭제되면 안됨 -->
+		<div class="ptit">스마트픽 가능 지점 안내</div>
+		<div class="pInnder">
+			<div id="smartPick" class="pTxtBox">
+				
+			</div>
+		</div>
+	</div>
+	<script>
+	function chkDevice() {
+		var device = "android",
+			agent = (navigator.userAgent).toLowerCase();
+		if (agent.indexOf("iphone") >= 0 || agent.indexOf("ipod") >= 0 || agent.indexOf("ipad") >= 0 ) {
+			device = "iOS";
+		}
+		return device;
+	}
+
+	function loadData() {
+		var xhttp = new XMLHttpRequest();
+		var urlString = window.location.href;
+		var url = new URL(urlString);
+		var goodsNo = url.searchParams.get("goods_no");
+		xhttp.onreadystatechange = function(){
+			if(this.readyState == 4){
+				if(this.status == 200){
+					var data = JSON.parse(this.responseText);
+					var html= "";
+					html += "<ul class='smpList'>";
+					if(data.data.smpDlvInfo.deptPickDesc){
+						html += "<li>";
+						html += "<p class='tit'>롯데백화점 픽업 : </p>";
+						html += "<p class='txt'>"+ data.data.smpDlvInfo.deptPickDesc +"</p>";
+						html += "</li>";
+					}
+					if(data.data.smpDlvInfo.crsPickDesc){
+						html += "<li>";
+						html += "<p class='tit'>내 주변 픽업 : </p>";
+						html += "<p class='txt type2'>"+ data.data.smpDlvInfo.crsPickDesc +"</p>";
+						html += "</li>";
+					}
+					html += "</ul>";
+					if(data.data.smpDlvInfo.deptPickYn === "Y"){
+						html += "<p class='info'>"+ data.data.smpDlvInfo.smpDlvEtc +"</p>";
+					}
+					document.getElementById("smartPick").innerHTML = html;
+					// Android & IOS 팝업 리사이즈를 위한 높이값 전달
+					if(chkDevice() == "iOS"){
+						location.href = 'lottebridge://resizeheight?'+document.getElementsByClassName("webview_layer_wrap")[0].offsetHeight;
+					} else{
+						webResizer.resize(document.getElementsByClassName("webview_layer_wrap")[0].offsetHeight);	
+					}
+				} else{
+					console.log(this.status, "데이터 로드 실패");
+				}
+			}
+		};
+		xhttp.open("GET", "/json/product_new/smp_psb_info.json?goods_no=" + goodsNo, true);
+		xhttp.send();
+	}
+	
+	try {
+		loadData();
+	} catch (e) {}
+	</script>
+</body>
+</html>

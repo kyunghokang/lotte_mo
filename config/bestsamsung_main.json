@@ -1,0 +1,73 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplbestSamsungMain" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mall/samsung/bestsamsung_main_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/bestsamsung_main.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsbestSamsungMain" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/common/lotte_ngswipe.js",
+                	"lotte/resources_dev/common/lotte_slider.js",
+                	"lotte/resources_dev/common/lotte_video.js",
+                    "lotte/resources_dev/mall/samsung/bestsamsung_main.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/bestsamsung_main.js"
+            }
+        },
+
+        "uglify" : {
+            "jsbestSamsungMain" : {
+                "src" : "lotte/resources/<%= version %>/bestsamsung_main.js",
+                "dest" : "lotte/resources/<%= version %>/bestsamsung_main.min.js"
+            },
+            "tplbestSamsungMain" : {
+                "src" : "lotte/resources/<%= version %>/bestsamsung_main.template.js",
+                "dest" : "lotte/resources/<%= version %>/bestsamsung_main.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssbestSamsungMain" : {
+                "src" : [
+                    "lotte/resources_dev/unit/unit_list.css",
+                	"lotte/resources_dev/brandshop/bestbrand_common.css",
+                    "lotte/resources_dev/mall/samsung/bestsamsung_main.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/bestsamsung_main.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanbestSamsungMain" : [
+                "lotte/resources/<%= version %>/bestsamsung_main.js",
+                "lotte/resources/<%= version %>/bestsamsung_main.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlbestSamsungMain" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mall/samsung/bestsamsung_main.html" : "mall/samsung/bestsamsung_main_dev.html"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">	
+<!----------------- current css ----------------->
+	
+<link rel="stylesheet" href="/lotte/resources_dev/login/login.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<!-- container -->
+<section id="container">
+	<!--------------- current html --------------->
+	
+	<form name="findMemberForm" id="findMemberForm">
+		<section class="easy_login_wrap">
+			<div id="fail" class="id_find_box">
+				<!-- 20150515 수정 -->
+				<h3 class="id_find_title">아직 간편가입 계정이 없습니다.</h3>
+				<!-- //20150515 수정 -->
+				<p class="find_fail_txt">고객님, 아직 회원에 가입되어 있지 않습니다.<br>회원가입 하시고 다양한 혜택을 받으세요.</p>
+				<div class="view_order_btn">
+					<a href="javascript:goFamilySite('mem_reg');" class="c_btn col01"><span>계정생성</span></a>
+				</div>
+				<div class="lpoint_member_info_box">
+					<!-- 20150515 수정 -->
+					<p class="lpoint_member_info_txt">롯데계열사를 하나의 아이디로 사용하는 L.POINT<br>통합회원이시면 롯데멤버스에서 회원정보를 찾아주세요.</p>
+					<!-- //20150515 수정 -->
+					<ul class="lpoint_member_btn_list">
+						<li><a href="javascript:goFamilySite('id');">아이디 찾기</a></li>
+						<li><i></i><a href="javascript:goFamilySite('passwd');">비밀번호 찾기</a></li>
+					</ul>
+				</div>
+			</div>       
+		</section>
+		<section class="easy_login_wrap">
+			<div id="success" class="find_success_box">
+				<!-- 20150515 수정 -->
+				<h3 class="find_success_title">가입된 아이디를 확인해주세요.</h3>
+				<div class="find_info_box">
+					<p class="find_info_txt">고**고객님, 안녕하세요.<br>가입된 이메일 아이디는 다음과 같습니다.</p>
+					<!-- //20150515 수정 -->
+					<p class="id_address">kas*****@naver.com</p>
+
+				</div>
+				<div class="login_go_btn">
+					<a href="https://m.lotte.com/login/loginForm.do" class="c_btn col01"><span>로그인 화면 이동</span></a>
+				</div>
+				<!-- 20150515 수정 -->
+				<p class="password_find_txt">비밀번호를 잊어버리셨나요?<br>간편가입 계정 비밀번호를 찾으실수 있습니다.</p>
+				<!-- //20150515 수정 -->
+				<div class="password_find_btn">
+					<a href="/login/simpleSignMemberPWFind.do"><span>비밀번호 찾기</span></a>
+				</div>
+			</div>	        
+		</section>
+	</form>
+		
+	<!-------------// current html --------------->
+</section>
+<!-- footer -->
+<section ng-include src="'/HTML/include/footer.html'"></section>
+</body>
+</html>

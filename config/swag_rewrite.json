@@ -1,0 +1,69 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplSwagRewrite" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev//mall/pet/swag_rewrite_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/swag_rewrite.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsSwagRewrite" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev//mall/pet/swag_rewrite.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/swag_rewrite.js"
+			}
+		},
+
+		"uglify" : {
+			"jsSwagRewrite" : {
+				"src" : "lotte/resources/<%= version %>/swag_rewrite.js",
+				"dest" : "lotte/resources/<%= version %>/swag_rewrite.min.js"
+			},
+			"tplSwagRewrite" : {
+				"src" : "lotte/resources/<%= version %>/swag_rewrite.template.js",
+				"dest" : "lotte/resources/<%= version %>/swag_rewrite.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssSwagRewrite" : {
+				"src" : [
+					"lotte/resources_dev//mall/pet/swag_write.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/swag_rewrite.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanSwagRewrite" : [
+				"lotte/resources/<%= version %>/swag_rewrite.js",
+				"lotte/resources/<%= version %>/swag_rewrite.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlSwagRewrite" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"/mall/pet/swag_rewrite.html" : "/mall/pet/swag_rewrite_dev.html"
+				}
+			}
+		}
+	}
+}
+

@@ -1,0 +1,68 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplUsedInfo" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/mall/UsedInfo_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/UsedInfo.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsUsedInfo" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/mall/UsedInfo.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/UsedInfo.js"
+			}
+		},
+
+		"uglify" : {
+			"jsUsedInfo" : {
+				"src" : "lotte/resources/<%= version %>/UsedInfo.js",
+				"dest" : "lotte/resources/<%= version %>/UsedInfo.min.js"
+			},
+			"tplUsedInfo" : {
+				"src" : "lotte/resources/<%= version %>/UsedInfo.template.js",
+				"dest" : "lotte/resources/<%= version %>/UsedInfo.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssUsedInfo" : {
+				"src" : [
+					"lotte/resources_dev/mall/UsedInfo.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/UsedInfo.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanUsedInfo" : [
+				"lotte/resources/<%= version %>/UsedInfo.js",
+				"lotte/resources/<%= version %>/UsedInfo.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlUsedInfo" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"mall/UsedInfo.html" : "mall/UsedInfo_dev.html"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,1 @@
+angular.module("app").run(["$templateCache",function(a){"use strict";a.put("/lotte/resources_dev/product/m/webview/product_md_notice_container.html",'<section ng-show="contVisible">\r\n	<!--MD 공지-->\r\n	<div class="detail_base_wrap md_noti">\r\n		<div>\r\n			<div id="MD_Notice" class="noti"></div>\r\n		</div>\r\n	</div>\r\n</section>')}]);

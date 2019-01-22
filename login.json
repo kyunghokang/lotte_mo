@@ -1,0 +1,84 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplLogin" : {
+                "src" : [
+                    "resources_dev/layout/header.html",
+                    "resources_dev/layout/sub_header.html",
+                    "resources_dev/layout/lotte_side_category.html",
+                    "resources_dev/layout/lotte_side_mylotte.html",
+                    "resources_dev/common/comm_footer.html",
+                    "resources_dev/layer/layer_search.html",
+                    "resources_dev/login/login_container.html"
+                ],
+                "dest" : "resources/<%= version %>/login.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsLogin" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "resources_dev/login/login.js",
+                    "resources_dev/common/lotte_comm.js",
+                    "resources_dev/common/lotte_svc_dev.js",
+                    "resources_dev/common/lotte_util.js",
+                    "resources_dev/common/lotte_filter.js",
+                    "resources_dev/common/lotte_search.js",
+                    "resources_dev/common/lotte_comm_footer.js",
+                    "resources_dev/layout/lotte_sidectg.js",
+                    "resources_dev/layout/lotte_sidemylotte.js"
+                ],
+                "dest" : "resources/<%= version %>/login.js"
+            }
+        },
+
+        "uglify" : {
+            "jsLogin" : {
+                "options" : {
+                    "sourceMap" : true,
+                    "sourceMapIncludeSources" : true
+                },
+                "src" : "resources/<%= version %>/login.js",
+                "dest" : "resources/<%= version %>/login.min.js"
+            },
+            "tplLogin" : {
+                "src" : "resources/<%= version %>/login.template.js",
+                "dest" : "resources/<%= version %>/login.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssLogin" : {
+                "src" : [
+                    "resources_dev/login/login.css"
+                ],
+                "dest" : "resources/<%= version %>/login.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanLogin" : [
+                "resources/<%= version %>/login.js",
+                "resources/<%= version %>/login.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlLogin" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "login/login.html" : "login/login_dev.html"
+                }
+            }
+        }
+    }
+}
+
+grunt.registerTask('Login', ['ngtemplates:tplLogin', 'concat:jsLogin', 'uglify:jsLogin', 'uglify:tplLogin', 'cssmin:cssLogin', 'clean:cleanLogin']);

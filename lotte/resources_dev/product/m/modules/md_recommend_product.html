@@ -1,0 +1,44 @@
+<div ng-if="pageUI.loadData.product_mdRecom.prdList.items.length >= 3">
+	<div class="prd_title mt10">
+		<p>{{pageUI.loadData.product_mdRecom.mdRecomProdTitle}} ({{pageUI.loadData.product_mdRecom.prdList.items.length|number}}개)</p>
+	</div>
+	<div  lotte-slider class="swipe_wrap bg_white">
+		<ul class="unit_prod_customer">
+			<li ng-repeat="item in pageUI.loadData.product_mdRecom.prdList.items track by $index">
+				<a ng-click="gotoProductPage(
+					item.goodsNo, 
+					item.curDispNo, 
+					item.curDispNoSctCd, 
+					(pageUI.loadData.product_mdRecom.mdRecomType == 'other' ? 'm_RDC_ProdDetail_Swp_Relcodi_Prd' : 'm_RDC_ProdDetail_Swp_RelMD_Prd') + idxSetDigit($index + 1), 
+					(pageUI.loadData.product_mdRecom.mdRecomType == 'other' ? 'M_detail_cross' : '')
+					);
+					logGAEvtPrdView((pageUI.loadData.product_mdRecom.mdRecomType == 'other') ? '다른고객들이함꼐찾은상품' : 'MD가추천한상품', idxSetDigit($index + 1) ,item.goodsNo);">
+					<div class="thumb">
+						<img ng-src="{{item.imgUrl}}" alt="" />
+					</div>
+					<div class="info">
+						<div class="name">{{item.goodsNm}}</div>
+						<div class="price"><strong>{{item.price | currency:'':0}}</strong>원</div>
+						<div class="score_wrap">
+							<span class="starScoreWrap" ng-if="item.gdasCnt > 0"><span class="starScoreCnt" style="width:{{item.gdasStfdVal|starScorePolicy:100}}%"></span></span>
+							<span class="review" ng-if="item.gdasCnt > 0">({{item.gdasCnt|number}})</span>
+						</div>
+						<div class="btnArea">
+							<a class="btn_sty1" ng-if="!item.rentalYn" ng-click="mdRecomAddCart(item);logGAEvtPrdView((pageUI.loadData.product_mdRecom.mdRecomType == 'other') ? '다른고객들이함께찾은상품' : 'MD가추천한상품', '장바구니_' + idxSetDigit($index + 1), item.goodsNo);">장바구니 담기</a>
+							<a class="btn_sty1" ng-if="item.rentalYn" ng-click="productViewAlert({
+								type: 'rent',
+								goodsNo: item.goodsNo,
+								curDispNo: item.curDispNo,
+								curDispNoSctCd: item.curDispNoSctCd,
+								tclick: (pageUI.loadData.product_mdRecom.mdRecomType == 'other' ? 'm_RDC_ProdDetail_Swp_RelMD_Cart' : 'm_RDC_ProdDetail_Swp_RelMD_Cart') + idxSetDigit($index + 1),
+								_reco: (pageUI.loadData.product_mdRecom.mdRecomType == 'other' ? 'M_detail_cross' : ''),
+								time: 2500
+							});
+							logGAEvtPrdView((pageUI.loadData.product_mdRecom.mdRecomType == 'other') ? '다른고객들이함께찾은상품' : 'MD가추천한상품', '장바구니_' + idxSetDigit($index + 1), item.goodsNo);">장바구니 담기</a>
+						</div>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>

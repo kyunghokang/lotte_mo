@@ -1,0 +1,145 @@
+<section id="container" ng-show="contVisible" class="cont_minheight">
+	<section class="pageLoading" ng-show="pageLoading"><p class="loading half"></p></section>
+	<section ng-show="!pageLoading">
+		<!-- category -->
+		<div class="sort_header_wrap">
+			<nav class="box_cate" sort-header>
+				<div class="big_cate">
+					<ul>
+						<li ng-repeat="citem in screenData.cate_list | filter: {disp_no : '!5443065'}" ng-class="{on:screenData.selectCate1==citem.disp_no}"><a href="#" ng-click="menuCategory1Click(citem)">{{citem.disp_nm}}</a></li>
+					</ul>
+				</div>
+				<!-- class on 으로 활성화 -->
+				<div class="big_cate_all" ng-if="screenData.cate_list.length > 5">
+					<button class="open_btn" ng-class="{on:screenData.showAllCategory}" ng-click="showAllCategoryClick()">더보기</button>
+					<div ng-show="screenData.showAllCategory" ng-class="{scroll:screenData.cate_list.length > 14}">
+						<ul>
+							<li ng-repeat="citem in screenData.cate_list | filter: {disp_no : '!5443065'}"><a href="#" ng-click="menuCategoryClick(citem)">{{citem.disp_nm}}</a></li>
+						</ul>
+						<div class="mall_cateLayerbar">
+							<a ng-click="hideCate()" class="close">닫기</a>
+						</div>
+					</div>
+				</div>
+				<!-- class on 으로 활성화 -->
+				<div ng-repeat="citem in screenData.cate_list | filter: {disp_no : '!5443065'}" ng-show="screenData.selectCate1==citem.disp_no">
+					<div class="mid_cate">
+						<ul ng-class="{scroll:citem.sub_cate_list.length > 14}">
+							<li ng-repeat="citem2 in citem.sub_cate_list" ng-class="{on:screenData.selectCate2==citem2.disp_no}">
+								<a href="#" ng-click="menuCategory2Click(citem2)">{{citem2.disp_nm}}</a>
+								<div class="cca" ng-show="screenData.selectCate2==citem2.disp_no">
+									<a href="#" ng-repeat="citem3 in citem2.sub_cate_list" ng-click="menuCategory3Click(citem3)" class="ng-binding ng-scope">{{citem3.disp_nm}}</a>
+								</div>
+
+							</li>
+						</ul>
+						<div class="mall_cateLayerbar">
+							<a ng-click="hideSubCate()" class="close">닫기</a>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</div>
+		<!-- //category -->
+
+		<!-- book_slide -->
+		<div class="book_slide" ng-controller="lotteNgSwipeCtrl">
+			<div class="slide swipe_wrap" roll-swipe-banner id="rolltopbann" rolling="true" width320="2" width640="2" width900="2" info="top_banner" getcontrol="banner_ct">
+				<ul class="list swipeBox">
+					<li ng-repeat="nbitem in screenData.newbest_books">
+						<a href="#" ng-click="planshopBannerClick(nbitem)">
+							<p class="flag new">
+								<span class="n_new">NEW</span>
+								<span class="n_best">BEST</span>
+							</p>
+							<p class="img"><img ng-src="{{nbitem.img.img_url}}" alt="{{nbitem.img.alt_cont}}"></p>
+							<!-- 배너네임은 3개를 불러옴 -->
+							<p class="name"><span ng-bind-html="nbitem.text_list[2].banner_nm"></span></p>
+						</a>
+					</li>
+				</ul>
+				<div class="swipe_indicator">
+					<ul class="bullet indicator">
+						<li ng-repeat="nbitem in screenData.newbest_books"><span>{{$index}}</span></li>
+					</ul>
+				</div>
+			</div>
+			<!-- class active 추가시 활성화 -->
+			<!-- <ol class="bullet">
+				<li ng-repeat="item in swipeBullet" ng-class="{active:$index==swipeIdx/2}">{{$index}}</li>
+			</ol> -->
+			<p class="btn prev" ng-click="banner_move(-1)"><button>prev</button></p>
+			<p class="btn next" class="btn next" ng-click="banner_move(1)"><button>next</button></p>
+		</div>
+		<!-- //book_slide -->
+		<!-- 힐링 포엠 &amp; 에세이 -->
+		<div class="book_list" >
+			<p class="title">{{theme_recomm_title_1}}</p>
+			<ul>
+				<li ng-repeat="tr1item in screenData.theme_recomm_books_1.goods_list">
+					<a href="#" ng-click="mallProductClick(tr1item)">
+						<p class="img"><img ng-src="{{tr1item.img_url}}"></p>
+						<p class="tit">{{tr1item.goods_nm}}</p>
+						<p class="price">{{tr1item.price2 | number}}<span>원</span>	</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<!-- //힐링 포엠 &amp; 에세이 -->
+		<!-- 기말고사 뭐 풀지? -->
+		<div class="book_list" >
+			<p class="title">{{theme_recomm_title_2}}</p>
+			<ul>
+				<li ng-repeat="tr2item in screenData.theme_recomm_books_2.goods_list">
+					<a href="#" ng-click="mallProductClick(tr2item)">
+						<p class="img"><img ng-src="{{tr2item.img_url}}"></p>
+						<p class="tit">{{tr2item.goods_nm}}</p>
+						<p class="price">{{tr2item.price2 | number}}<span>원</span>	</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<!-- //기말고사 뭐 풀지? -->
+		<!-- best_seller -->
+		<div class="best_seller">
+			<p class="title">베스트셀러</p>
+			<ol>
+				<li class="rank01">
+					<a href="#" ng-click="mallProductClick(screenData.no1_best_seller_books.goods)">
+						<p class="img">
+							<img ng-src="{{screenData.no1_best_seller_books.goods.img_url}}">
+							<span class="flag"></span>
+						</p>
+						<dl>
+							<dt>1위</dt>
+							<dd>{{screenData.no1_best_seller_books.text.banner_nm}}</dd>
+						</dl>
+					</a>
+				</li>
+				<li ng-repeat="bbitem in screenData.best_seller_books_list">
+					<a href="#" ng-click="bestTextBannerClick(bbitem)">
+						<dl>
+							<dt>{{$index+2}}위</dt>
+							<dd>{{bbitem.text.banner_nm}}</dd>
+						</dl>
+					</a>
+				</li>
+			</ol>
+		</div>
+		<!-- //best_seller -->
+		<!-- 스테디셀러 -->
+		<div class="book_list">
+			<p class="title">스테디셀러</p>
+			<ul>
+				<li ng-repeat="ssitem in screenData.steady_seller_books_list">
+					<a href="#" ng-click="mallProductClick(ssitem.goods)">
+						<p class="img"><img ng-src="{{ssitem.goods.img_url}}"></p>
+						<p class="tit">{{ssitem.goods.goods_nm}}</p>
+						<p class="price">{{ssitem.goods.price2 | number}}<span>원</span>	</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<!-- 스테디셀러 -->
+	</section>
+</section>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+	<meta charset="utf-8">
+	<title>롯데닷컴-order</title>
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+
+	<script>
+		var APP_KEY = "7fa1e44757a94fd89921";
+		var SERVER_TIME = new Date();
+
+		var LOTTE_CONSTANTS = [];
+			LOTTE_CONSTANTS['MAPI_HOST_API'] = "http://mo.lotte.com";
+			LOTTE_CONSTANTS['MAPI_HOST_SSL_API'] = "http://mo.lotte.com";
+			LOTTE_CONSTANTS['M_HOST_MOBILE'] = "http://mo.lotte.com";
+			LOTTE_CONSTANTS['M_HOST_SSL'] = "http://mo.lotte.com";
+			LOTTE_CONSTANTS['PC_HOST_WEB'] = "http://www.lotte.com";
+
+		var MAPI_HOST_API = LOTTE_CONSTANTS['MAPI_HOST_API'];
+		var MAPI_HOST_SSL_API = LOTTE_CONSTANTS['MAPI_HOST_SSL_API'];
+		var M_HOST_MOBILE = LOTTE_CONSTANTS['M_HOST_MOBILE'];
+		var M_HOST_SSL = LOTTE_CONSTANTS['M_HOST_SSL'];
+		var PC_HOST_WEB = LOTTE_CONSTANTS['PC_HOST_WEB'];
+
+		LOTTE_CONSTANTS['SPLIT_GUBUN_1'] = ":^:";
+		LOTTE_CONSTANTS['SPLIT_GUBUN_3'] = ";;;;;";
+		LOTTE_CONSTANTS['ONENONE_BUY_LOGIN'] = "1";
+		LOTTE_CONSTANTS['IMALL_BUY_LOGIN'] = "4";
+		LOTTE_CONSTANTS['ST_STD_CD_PAY_MEAN_CD_L_POINT'] = "21";
+		LOTTE_CONSTANTS['ST_STD_CD_PAY_MEAN_CD_LOTTE_POINT'] = "19";
+		LOTTE_CONSTANTS['ST_STD_CD_PAY_MEAN_CD_DEPOSIT'] = "20";
+		LOTTE_CONSTANTS['DEFAULT_LATE_VIEW_GOODS_COUNT'] = "20";
+
+		//rudolph start
+		LOTTE_CONSTANTS['NORMAL_LOGIN'] = "0";
+		LOTTE_CONSTANTS['ONENONE_BUY_LOGIN'] = "1";
+		LOTTE_CONSTANTS['CART_BUY_LOGIN'] = "2";
+		LOTTE_CONSTANTS['ORDER_SEARCH_LOGIN'] = "3";
+		LOTTE_CONSTANTS['IMALL_BUY_LOGIN'] = "4";
+		LOTTE_CONSTANTS['IMALL_CART_BUY_LOGIN'] = "5"
+		LOTTE_CONSTANTS['LOGIN_SEED'] = "MDOTCOM";
+		LOTTE_CONSTANTS['ORDER_PROTOCAL'] = "http";
+		LOTTE_CONSTANTS['MOBILE_DOMAIN'] = "mo.lotte.com";
+
+		LOTTE_CONSTANTS['ELLOTTE_HOST_API'] = "http://mapi.ellotte.com";
+		LOTTE_CONSTANTS['ELLOTTE_HOST_SSL_API'] = "https://mapi.ellotte.com";
+		LOTTE_CONSTANTS['ELLOTTE_HOST_MOBILE'] = "http://mo.ellotte.com";
+		LOTTE_CONSTANTS['ELLOTTE_HOST_SSL'] = "http://mo.ellotte.com";
+		LOTTE_CONSTANTS['ELLOTTE_LOGIN_SEED'] = "NMELLOTTE";
+		LOTTE_CONSTANTS['ELLOTTE_IOS_APP_SCHEMA'] = "ellotte001";
+		LOTTE_CONSTANTS['ELLOTTE_ANDROID_APP_SCHEMA'] = "ellotte002";
+		//rudolph end
+
+		LOTTE_CONSTANTS['PAYTYPE_CARD_047'] = "047";
+		LOTTE_CONSTANTS['PAYTYPE_CARD_029'] = "029";
+		LOTTE_CONSTANTS['PAYTYPE_CARD_031'] = "031";
+		LOTTE_CONSTANTS['PAYTYPE_CARD_048'] = "048";
+		LOTTE_CONSTANTS['EXP_MY_LOTTE_KO'] = "마이롯데";
+	</script>
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/common/lotte.css"/>
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/layout/header.css"/>
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/layout/header_sub.css"/>
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/layout/footer.css"/>
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/layout/actionbar.css"/>
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/layout/side_ctg.css"/>
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/layout/side_mylotte.css"/>
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/search/layer_srh.css"/>
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/order_simple/ordersimple.css"/>
+	<script src="../../lotte/lib/jquery/jquery-1.11.2.min.js"></script>
+	<script src="../../lotte/lib/jquery/LottePub.js"></script>
+	<script src="../../lotte/lib/jquery/EGSlider.js"></script>
+	<script src="../../lotte/lib/jquery/cnt_interface.js"></script>
+	<script src="../../lotte/lib/jquery/app_interface.js"></script>
+	<script src="../../lotte/lib/angular/angular.min.js"></script>
+	<script src="../../lotte/lib/angular/angular-sanitize.min.js"></script>
+	<script src="../../lotte/resources_dev/common/lotte_comm.js"></script>
+	<script src="../../lotte/resources_dev/common/lotte_util.js"></script>
+	<script src="../../lotte/resources_dev/common/lotte_filter.js"></script>
+	<script src="../../lotte/resources_dev/common/lotte_svc.js"></script>
+	<script src="../../lotte/resources_dev/common/lotte_search.js"></script>
+	<script src="../../lotte/resources_dev/common/lotte_comm_footer.js"></script>
+	<script src="../../lotte/resources_dev/common/lotte_log_dev.js"></script>
+	<script src="../../lotte/resources_dev/layout/lotte_sidectg.js"></script>
+	<script src="../../lotte/resources_dev/layout/lotte_sidemylotte.js"></script>
+	<script src="../../lotte/resources_dev/order_simple/ordersimple.js"></script>
+
+	<!-- <link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/order/order_form.css"/> -->
+	<script src="../../lotte/resources_dev/order/order_gift_form.js"></script>
+	<!-- 	<script src="/common4/js/order.js"></script> -->
+	<!-- html_meta_angular.jsp -->
+	<script src="../../common4/js/lib/crittercismClientLibraryMin.js"></script>
+	<script src="../../common3/js/function.js"></script>
+	<script src="../../common3/js/storage.js"></script>
+
+	<script src="https://flyasiana.com/CW/common/linkage/ozcd.js"></script>
+
+	<script type="text/javascript">
+		var __defaultDomain = 'http://mo.lotte.com';
+		var __sslDomain = "http://mo.lotte.com";
+		var __commonParam = 'c=mlotte&udid=&v=&cn=&cdn=';
+		var __adultYn = '';
+		var __loginYn = 'Y';
+		var isEllotte = false;
+		var split_gubun_1 = ":^:"; // 구분자1
+		var split_gubun_3 = ";;;;;"; // 구분자3
+		var paytype_card_002 = "002";
+		var paytype_card_008 = "008";
+		var paytype_card_016 = "016";
+		var paytype_card_018 = "018";
+		var paytype_card_020 = "020";
+		var paytype_card_021 = "021";
+		var paytype_card_026 = "026";
+		var paytype_card_029 = "029";
+		var paytype_card_031 = "031";
+		var paytype_card_036 = "036";
+		var paytype_card_047 = "047";
+		var paytype_card_048 = "048";
+		var paytype_card_054 = "054";
+		var hyundaeAppCardAval = false;
+		var grockle_yn = "N";
+		var singleProm = '';
+		var singlePromCnt = 0;
+		var multiProm = '';
+		var multiPromCnt = 0;
+		var cardStr = "<option value ='047'>롯데카드</option><option value ='029'>신한카드</option><option value ='026'>비씨카드</option><option value ='048'>현대카드</option><option value ='031'>삼성카드</option><option value ='016'>KB국민카드</option><option value ='021'>우리카드</option><option value ='008'>하나카드(구,외환)</option><option value ='020'>하나카드(구,하나SK)</option><option value ='018'>NH카드</option><option value ='036'>씨티카드</option><option value ='002'>광주카드</option><option value ='054'>우체국체크카드</option>";
+		var cp_schema = "";
+		var schema_domain = "http://mo.lotte.com";
+		var exp_tel_no = "1577-1110";
+		var cp_udid = "";
+		var cp_v = "";
+		var cp_cn = "";
+		var lotte_app_yn = "N";
+		var smart_pic_app_yn = "N";
+		var ellotte_app_yn = "N";
+		var tstore_yn = "";
+		var simple_mem_yn = "N";
+		var ua_lower_str = "mozilla/5.0 (ipad; cpu os 7_0 like mac os x) applewebkit/537.51.1 (khtml, like gecko) version/7.0 mobile/11a465 safari/9537.53";
+		var adtn_cost_dtl_sct_cd_card = "10";
+		var adtn_cost_dtl_sct_cd_coupon = "12";
+		var adtn_cost_dtl_sct_cd_staff = "27";
+		var adtn_cost_dtl_sct_cd_mrktng_cpn = "11";
+		var varUa = "-1";
+		var gubun = "GOODS";
+		var imallYN = "N";
+		var isDeliPlcChg = true;
+		var freeShippingYn = "N";
+		var dupGoodsInfo = "";
+		var deli_size = "7";
+		var manggo_yn = "N";
+		var gucci_yn = "N";
+		var username = "홍길동";
+		var lPoint = "21";
+		var ltPoint = "19";
+		var soilPoint = "24";
+		var deposit = "20";
+		var from_page = "";
+		var paytype_code_card = "16";
+		var paytype_code_bank = "03";
+		var paytype_code_lpay = "40";
+		var lpayCardCdArr = "008:021:016:031:048:026:029:047:055:";
+		var claim_sale_yn = "N";
+		var claim_sale_fvr_val = "5";
+		var claim_sale_aply_lmt_amt = "50000";
+		var claim_sale_card_knd_cd = "047";
+		var curMonPhnSttlAmt = "0";
+		var phone_no1 = "552";
+		var phone_no2 = "8931";
+		var phone_no3 = "4856";
+		var commid = "300";
+		var cartSn = "1278460735";
+		var goods_smp_normal_etc = "0102ETC";
+		var app_card_only_yn = "N";
+		var app_card_cd = "";
+		var PAYTYPE_CODE_BANK   = '03';
+		var PAYTYPE_CODE_CARD   = '16';
+		var PAYTYPE_CODE_SMART  = '16-1'; // 2011.06.07 스마트페이 추가
+		var PAYTYPE_CODE_PHONE  = '15'; // 2011.05.27 (LotteUtil.java 참조)
+		var PAYTYPE_CODE_LPAY  = '40';
+
+		/*
+		 * 카드 종류 선택시 일시불/무이자할부/일반할부에 대한 정보를 가져온 후
+		 * UI를 구현한다.
+		 */
+
+	</script>
+</head>
+<!-- 20160712 수정 -->
+<body ng-controller="OrderGiftCtrl" ondragstart="return false">
+
+<div id="container" class="order_simple_wrap pop">
+	<div class="pop_wrap">
+		<div class="pop_top">
+			<p>다른 결제수단선택</p>
+			<a href="#" class="pop_top_close">
+				<img src="http://image.lotte.com/lotte/mo2015/angular/order/poptop_close.png" alt="">
+			</a>
+		</div>
+		<div class="pop_middle">
+			<div class="order_section mpdw4 new_paytype_list">
+			 <div class="paytype_list">
+				 <div class="order_product_list">
+					 <dl>
+						 <dd class="bnone card_txt_sp">
+							 <div class="pay_method_area in_mem">
+								 <span id="pay_type4" class="pay_type4" onclick="toggleAction6(this)">
+									 <span>
+										 <input type="radio" name="rdo_paytype" value="40" onfocus="this.blur()" />
+										 <label for="rdo_paytype4">간편결제</label>
+									 </span>
+								 </span>
+
+								 <span id="pay_type1" class="pay_type1" onclick="toggleAction6(this)">
+									 <span>
+										 <input type="radio" name="rdo_paytype" value="16" onfocus="this.blur()" />
+
+										 <label for="rdo_paytype1">신용카드</label>
+									 </span>
+								 </span>
+
+								 <span id="pay_type2" class="pay_type2 on" onclick="toggleAction6(this)">
+									 <span>
+										 <input type="radio" name="rdo_paytype" value="03" onfocus="this.blur()"  />
+										 <label for="rdo_paytype3">무통장입금</label>
+									 </span>
+								 </span>
+								 <span id="pay_type3" class="pay_type3" onclick="toggleAction6(this)">
+									 <span>
+										 <input type="radio" name="rdo_paytype" value="15" onfocus="this.blur()" />
+										 <label for="rdo_paytype3">휴대폰결제</label>
+									 </span>
+								 </span>
+								 <input type="hidden" name="paytype" value="16" />
+							 </div>
+						 </dd>
+					 </dl>
+				 </div>
+			 </div>
+		 	</div>
+			<div class="order_product_content">
+				<div class="order_content_list div_pay_bank">
+					<dl>
+						<dd class="dd_first_margin">
+							<section class="order-confirm new_order">
+								<section class="order_header tit">
+									<h5>은행선택</h5>
+								</section>
+							</section>
+							<div class="sel_cont_new">
+								<span class="s_box02">
+									<select name="bankno" class="ono_selectBox0503 wd95" data-idx="1" style="width:100%">
+										<option value="" selected="일시불">국민은행</option>
+										<option value="">우리은행</option>
+										<option value="">하나은행</option>
+									</select>
+									<span class="img_box"><i></i></span>
+								</span>
+							</div>
+						</dd>
+						<dd>
+						<!--
+							<div class="s_title">입금기한</div>
+							<div class="s_text">
+										<span>2017-04-13 <em>* 기한 내 미입금시 자동취소</em></span>
+							</div> -->
+							<table class="use-period" border="0" width="100%" cellpadding="0" cellspacing="0">
+								<colgroup>
+									<col width="80">
+									<col width="*">
+								</colgroup>
+								<tbody>
+									<tr>
+										<th>
+											입금기한
+										</th>
+										<td>
+											2017-04-13 <em>* 기한 내 미입금시 자동취소</em>
+										</td>
+									</tr>
+									<tr>
+										<th>
+											입금자 이름
+										</th>
+										<td>
+											<input type="text" name="" value="홍길동" class="txtall">
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</dd>
+					</dl>
+				</div>
+				<div class="order_content_list div_cash_receipts">
+					<div class="wd_title">
+						<span>현금영수증 발급</span>
+					</div>
+					<dl>
+						<dd>
+							<div class="sel_cont_new">
+								<span class="s_box02">
+									<select class="ono_selectBox0503 wd95" data-idx="1" style="width:100%">
+										<option value="" selected="">소득공제용 (개인)</option>
+										<option value="">소득공제용 (법인)</option>
+									</select>
+									<span class="img_box"><i></i></span>
+								</span>
+							</div>
+						</dd>
+						<dd class="dd_last_margin">
+							<div class="sel_cont_new">
+								<span class="s_box02">
+									<select class="ono_selectBox0503 wd95" data-idx="1" style="width:100%">
+										<option value="" selected="">신용카드 번호</option>
+										<option value="">핸드폰 번호</option>
+									</select>
+									<span class="img_box"><i></i></span>
+								</span>
+							</div>
+							<div>
+								<span>
+									<span class="s_box02">
+										<input type="number" pattern="[0-9]*" name="" value="0" class="txt_num" maxlength="4" oninput="maxLengthCheck(this)">
+										<input type="number" pattern="[0-9]*" name="" value="0" class="txt_num" maxlength="4" oninput="maxLengthCheck(this)">
+										<input type="number" pattern="[0-9]*" name="" value="0" class="txt_num" maxlength="4" oninput="maxLengthCheck(this)">
+										<input type="number" pattern="[0-9]*" name="" value="0" class="txt_num" maxlength="4" oninput="maxLengthCheck(this)">
+									</span>
+								</span>
+							</div>
+						</dd>
+						<dd>
+
+
+						</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="order_section_bottom div_next_chk">
+				<div class="order_product_list">
+					<dl>
+						<dd class="t_line mgt15">
+							<input type="checkbox" id="next_use_type1" name="next_use" class="check02" checked="">
+							<label for="next_use_type1">지금 선택한 결제수단을 다음에도 사용</label>
+						</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="div_btn_cont">
+				<div class="btn_areaC">
+					<a href="#" class="btn_style2">변경안함</a>
+					<a href="#" class="btn_style3">결제수단 적용</a>
+				</div>
+			</div>
+		</div>
+</div>
+</body>
+</html>

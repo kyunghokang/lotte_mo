@@ -1,0 +1,48 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!--M22	갤러리 서비스게이트형-->
+	<div class="moduleCon">
+		<div class="glr_list">
+			<ul>
+				<li>
+					<a ng-click="logGAEvtModuleEach('-', moduleData.spdpList.items[0].txt);planClick(moduleData.spdpList.items[0].linkUrl, moduleData.tclick + '_Clk_Prd01')">
+						<div class="thumb">
+						<img ng-src="{{moduleData.spdpList.items[0].imgUrl}}" alt="" />
+						</div>
+						<p class="info org"><span ng-bind-html="moduleData.spdpList.items[0].txt | nl2br"></span></p>
+					</a>
+				</li>
+				<li>
+					<a ng-click="logGAEvtModuleEach('01', moduleData.prdList.items[0].goodsNo);mainProductClick(moduleData.prdList.items[0].goodsNo, moduleData.tclick + '_Clk_Prd02')">
+						<div class="thumb">
+						<img ng-src="{{moduleData.prdList.items[0].imgUrl}}" alt="" />
+						</div>
+						<p class="info"><span>{{moduleData.prdList.items[0].price | number}}</span>원<em ng-if="moduleData.prdList.items[0].isPlanPrd">~</em></p>
+					</a>
+				</li>
+				<li>
+					<a ng-click="logGAEvtModuleEach('02', moduleData.prdList.items[1].goodsNo);mainProductClick(moduleData.prdList.items[1].goodsNo, moduleData.tclick + '_Clk_Prd03')">
+						<div class="thumb">
+						<img ng-src="{{moduleData.prdList.items[1].imgUrl}}" alt="" />
+						</div>
+						<p class="info"><span>{{moduleData.prdList.items[1].price | number}}</span>원<em ng-if="moduleData.prdList.items[1].isPlanPrd">~</em></p>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="gate_list">
+			<div class="thumb grad">
+				<a ng-click="logGAEvtModuleEach('-', moduleData.spdpList.items[1].txt);planClick(moduleData.spdpList.items[1].linkUrl, moduleData.tclick + '_Clk_Prd04')">
+					<img ng-src="{{moduleData.spdpList.items[1].imgUrl}}" alt="" />
+					<p ng-bind-html="moduleData.spdpList.items[1].txt | nl2br"></p>
+				</a>
+			</div>
+			<ul>
+				<li class="bg_store" ng-repeat="item in moduleData.imgList.items">
+					<a ng-click="logGAEvtModuleEach($index + 3, '');mainBannerClick(item.linkUrl, item.isOutLink, moduleData.tclick + '_Clk_Btn'+numberFill(($index+1),2))">
+						<div class="thumb" ng-style="{'background-image':'url({{item.imgUrl}})' }"></div>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>

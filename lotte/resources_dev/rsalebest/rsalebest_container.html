@@ -1,0 +1,54 @@
+<section ng-show="contVisible" class="cont_minheight">
+  
+       <div class="testBox" ng-show="testMode">
+            <input type="text" ng-model="lateAction2" class="inputType" >
+            <input type="button" ng-click="func_SaleBestData2()" value="로드" class="buttonType">           
+       </div>
+        <!-- 남들은 뭘 샀지 
+        <div class="peopleBuy" ng-if="SaleBestData.buybest.items.length > 0">
+            <h3>남들은 <strong>뭘 샀지?</strong></h3>
+            <div class="swipe3type">
+                <div>
+                    <ul  style="white-space:normal">
+                        <li ng-repeat="item in SaleBestData.buybest.items" >
+                            <a href="/product/m/product_view.do?goods_no={{item.goods_no}}&{{baseParam}}&curDispNoSctCd=82&tclick=m_DC_ProdDetail_Swp_Rel_B{{$index + 1}}">
+                                <span class="imgWrap">
+                                    <img ng-src="{{item.img_url}}" alt="" />
+                                </span>
+                                <span class="sPrdTit"> {{item.goods_nm}}</span>
+                                <span class="sPrice"><strong>{{Fnproductview.getNumberFormat(item.sale_prc - item.inst_cpn_aply_unit_price - item.immed_pay_dscnt_amt)}}</strong>원</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        -->
+        <!-- 남들은 뭘 봤지 -->
+        <div class="peopleView" ng-if="SaleBestData.relation.items.length > 0">
+            <h3>남들은 <strong>뭘 봤지?</strong></h3>
+            <div>
+                <div>
+                    <ul class="prod_list_01">
+                        <li ng-repeat="item in SaleBestData.relation.items">
+                            <div class="unit_list_01">
+                                <a href="/product/m/product_view.do?goods_no={{item.goods_no}}&{{baseParam}}&curDispNoSctCd=82&tclick=m_DC_ProdDetail_Swp_Rel_C{{$index + 1}}&_reco=M_detail">
+                                    <div class="thumb">
+                                        <img ng-src="{{item.img_url}}">
+                                    </div>
+                                    <div class="info">
+                                        <p class="tit">
+                                            <span ng-bind-html="item.goods_nm">[까르뜨블랑슈남성] 심플 노턱 본딩 겨울용 바지 (239C1381-39,78,87)</span>
+                                        </p>
+                                        <p class="pr_box">
+                                            <span class="price"><em>{{item.sale_prc - item.inst_cpn_aply_unit_price - item.immed_pay_dscnt_amt | number}}</em>원</span>
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>                          
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>      
+</section>

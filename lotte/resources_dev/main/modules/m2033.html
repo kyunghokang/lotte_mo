@@ -1,0 +1,25 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!--M33 TV쇼핑-->
+	<div class="moduleCon tpml_pk" ng-if="unitShow">
+		<div class="gTop_title">
+			<p class="tvsh_icon"><strong><b><em>TV쇼핑</em></b></strong></p>
+		</div>
+		<div class="tv_shopping">
+			<a ng-click="logGAEvtModuleEach('01', moduleData.prdInfo.goodsNo);mainProductClick(moduleData.prdInfo.goodsNo, moduleData.tclick + '_Clk_Prd')">
+				<div class="tvTime" ng-if="moduleData.bdEndTime != ''">ON AIR <strong id="tvTime"></strong></div>
+				<div class="thumb">
+					<div class="imgArea" ng-style="{'background-image':'url({{moduleData.prdInfo.imgUrl}})' }"></div>
+				</div>
+				<div class="info">
+					<div class="name">{{moduleData.prdInfo.goodsNm}}</div>
+					<div class="price"><strong>{{moduleData.prdInfo.price | number}}</strong>원</div>
+				</div>
+			</a>
+		</div>
+
+		<div class="btnMore">
+			<span class="btnArea"><a ng-click="logGAEvtModuleEach('02', 'TV쇼핑더보기');moreClick(moduleData.moreBtnUrl, moduleData.tclick + '_Clk_Btn01')"><span>TV쇼핑 더보기</span></a></span>
+			<span class="btnArea"><a ng-click="logGAEvtModuleEach('03', '구매하기');mainProductClick(moduleData.prdInfo.goodsNo, moduleData.tclick + '_Clk_Btn02')"><span>구매하기</span></a></span>
+		</div>
+	</div>
+</section>

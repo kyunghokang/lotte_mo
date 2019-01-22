@@ -1,0 +1,29 @@
+{
+    "tasks" : {
+        "concat" : {
+            "jsappDownKt" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/event/appDownKt.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/appDownKt.js"
+            }
+        },
+
+        "uglify" : {
+            "jsappDownKt" : {
+                "src" : "lotte/resources/<%= version %>/appDownKt.js",
+                "dest" : "lotte/resources/<%= version %>/appDownKt.min.js"
+            }
+        },
+
+        "clean" : {
+            "cleanappDownKt" : [
+                "lotte/resources/<%= version %>/appDownKt.js"
+            ]
+        }
+    }
+}
+

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+
+<!-- test common css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">
+<!-- //공통 css -->
+<!----------------- current css ----------------->
+
+<link rel="stylesheet" href="/lotte/resources_dev/unit/unit_list.css">
+<link rel="stylesheet" href="/lotte/resources_dev/unit/unit_01.css">
+<link rel="stylesheet" href="/lotte/resources_dev/brandshop/brand_common.css">
+<link rel="stylesheet" href="/lotte/resources_dev/specialshop/specialshop.css">
+
+<!----------------- current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+<script src="specialshop.js"></script>
+</head>
+<body class="tenbyten_warp">
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<!-- container -->
+<section id="container">
+	<!-- category -->
+	<nav class="box_cate">
+		<div class="big_cate">
+			<ul >
+				<li class="on"><a href="#">가구</a></li>
+				<li><a href="#">침구/패브릭</a></li>
+				<li><a href="#">인테리어/조명</a></li>
+				<li><a href="#">주방</a></li>
+				<li><a href="#">생활/수잡</a></li>
+				<li><a href="#">침구/패브릭02</a></li>
+				<li><a href="#">인테리어/조명02</a></li>
+				<li><a href="#">주방02</a></li>
+			</ul>
+		</div>
+		<!-- class on 으로 활성화 -->
+		<div class="big_cate_all ">
+			<button  class="open_btn">더보기</button>
+			<ul >
+				<li><a href="#">가구</a></li>
+				<li><a href="#">침구/패브릭</a></li>
+				<li><a href="#">인테리어/조명</a></li>
+				<li><a href="#">주방</a></li>
+				<li><a href="#">가구</a></li>
+				<li><a href="#">침구/패브릭</a></li>
+				<li><a href="#">인테리어/조명</a></li>
+				<li><a href="#">주방</a></li>
+			</ul>
+		</div>
+		<!-- class on 으로 활성화 -->
+		<div class="mid_cate ">
+			<ul class="on">
+				<li class="on"><a href="#">홈바/아일랜드식탁</a></li>
+				<li><a href="#">식탁(2인)</a></li>
+				<li><a href="#">식탁(4인 이상) </a></li>
+				<li><a href="#">수납장</a></li>
+			</ul>
+			<ul>
+				<li><a href="#">홈바/아일랜드식탁02</a></li>
+				<li><a href="#">식탁(2인)02</a></li>
+				<li><a href="#">식탁(4인 이상) 02</a></li>
+				<li><a href="#">수납장02</a></li>
+			</ul>
+			<ul>
+				<li><a href="#">홈바/아일랜드식탁03</a></li>
+				<li><a href="#">식탁(2인)</a></li>
+				<li><a href="#">식탁(4인 이상) </a></li>
+				<li><a href="#">수납장</a></li>
+			</ul>
+			<ul>
+				<li><a href="#">홈바/아일랜드식탁04</a></li>
+				<li><a href="#">식탁(2인)</a></li>
+				<li><a href="#">식탁(4인 이상) </a></li>
+				<li><a href="#">수납장</a></li>
+			</ul>
+			<ul>
+				<li><a href="#">홈바/아일랜드식탁05</a></li>
+				<li><a href="#">식탁(2인)</a></li>
+				<li><a href="#">식탁(4인 이상) </a></li>
+				<li><a href="#">수납장</a></li>
+			</ul>
+			<ul>
+				<li><a href="#">홈바/아일랜드식탁06</a></li>
+				<li><a href="#">식탁(2인)</a></li>
+				<li><a href="#">식탁(4인 이상) </a></li>
+				<li><a href="#">수납장</a></li>
+			</ul>
+			<ul>
+				<li><a href="#">홈바/아일랜드식탁02</a></li>
+				<li><a href="#">식탁(2인)02</a></li>
+				<li><a href="#">식탁(4인 이상) 02</a></li>
+				<li><a href="#">수납장02</a></li>
+			</ul>
+			<ul>
+				<li><a href="#">홈바/아일랜드식탁03</a></li>
+				<li><a href="#">식탁(2인)</a></li>
+				<li><a href="#">식탁(4인 이상) </a></li>
+				<li><a href="#">수납장</a></li>
+			</ul>
+			<ul>
+				<li><a href="#">홈바/아일랜드식탁04</a></li>
+				<li><a href="#">식탁(2인)</a></li>
+				<li><a href="#">식탁(4인 이상) </a></li>
+				<li><a href="#">수납장</a></li>
+			</ul>
+			<ul>
+				<li><a href="#">홈바/아일랜드식탁05</a></li>
+				<li><a href="#">식탁(2인)</a></li>
+				<li><a href="#">식탁(4인 이상) </a></li>
+				<li><a href="#">수납장</a></li>
+			</ul>
+			<ul>
+				<li><a href="#">홈바/아일랜드식탁06</a></li>
+				<li><a href="#">식탁(2인)</a></li>
+				<li><a href="#">식탁(4인 이상) </a></li>
+				<li><a href="#">수납장</a></li>
+			</ul>
+		</div>
+	</nav>
+	<!-- //category -->
+
+	<!-- main-slider -->
+	<div class="main_slide" >
+		<button class="btn prev">Preview</button>
+		<div class="mask">
+			<ul class="list">
+				<li>
+					<a href="#"><img src="http://image.lotte.com/lotte/mo2015/angular/thumb/main_slide.png" alt="텐바이텐 배너이미지"></a>
+				</li>
+				<li>
+					<a href="#"><img src="http://image.lotte.com/lotte/mo2015/angular/thumb/main_slide.png" alt="텐바이텐 배너이미지"></a>
+				</li>
+				<li>
+					<a href="#"><img src="http://image.lotte.com/lotte/mo2015/angular/thumb/main_slide.png" alt="텐바이텐 배너이미지"></a>
+				</li>
+				<li>
+					<a href="#"><img src="http://image.lotte.com/lotte/mo2015/angular/thumb/main_slide.png" alt="텐바이텐 배너이미지"></a>
+				</li>
+				<li>
+					<a href="#"><img src="http://image.lotte.com/lotte/mo2015/angular/thumb/main_slide.png" alt="텐바이텐 배너이미지"></a>
+				</li>
+			</ul>
+			<ol class="bullet">
+				<li class="active">01</li>
+				<li>02</li>
+				<li>03</li>
+				<li>04</li>
+			</ol>
+		</div>
+		<button class="btn next">Next</button>
+	</div>
+	<!-- //main-slider -->
+
+	<!-- Focus on -->
+	<div class="unit_list_m">
+		<p class="tit_banner">Focus on</p>
+		<ol class="prod_simple_01">
+			
+			<li>
+				<!-- 일반상품 : 이미지형 -->
+				<div class="unit_list_02">
+					<a href="#">
+						<div class="thumb">
+							<img src="http://image.lotte.com/goods/76/89/43/10/1/110438976_1_280.jpg" alt="데체텍스트 넣어주세요.">
+						</div>
+						<div class="info">
+							<span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+							<p class="pr_box">
+								<span class="price"><em>980,000</em>원</span>
+							</p>
+						</div>
+					</a>
+				</div>
+				<!-- //일반상품 : 이미지형 -->
+			</li>
+			<li>
+				<!-- 일반상품 : 이미지형 -->
+				<div class="unit_list_02">
+					<a href="#">
+						<div class="thumb">
+							<img src="http://image.lotte.com/goods/86/16/67/15/1/115671686_1_150.jpg" alt="데체텍스트 넣어주세요.">
+						</div>
+						<div class="info">
+							<span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+							<p class="pr_box">
+								<span class="price"><em>800,000</em>원</span>
+							</p>
+						</div>
+					</a>
+				</div>
+				<!-- //일반상품 : 이미지형 -->
+			</li>
+			<li>
+				<!-- 일반상품 : 이미지형 -->
+				<div class="unit_list_02">
+					<a href="#">
+						<div class="thumb">
+							<img src="http://image.lotte.com/goods/20/50/59/595020_1_150.jpg" alt="데체텍스트 넣어주세요.">
+						</div>
+						<div class="info">
+							<span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+							<p class="pr_box">
+								<span class="price"><em>800,000</em>원</span>
+							</p>
+						</div>
+					</a>
+				</div>
+				<!-- //일반상품 : 이미지형 -->
+			</li>
+			<li>
+				<!-- 일반상품 : 이미지형 -->
+				<div class="unit_list_02">
+					<a href="#">
+						<div class="thumb">
+							<img src="http://image.lotte.com/goods/20/50/59/595020_1_150.jpg"    alt="데체텍스트 넣어주세요.">
+						</div>
+						<div class="info">
+							<span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+							<p class="pr_box">
+								<span class="price"><em>800,000</em>원</span>
+							</p>
+						</div>
+					</a>
+				</div>
+				<!-- //일반상품 : 이미지형 -->
+			</li>
+		</ol>
+	</div>
+	<!-- //Focus on -->
+
+	<!-- New Arrival -->
+	<div class="unit_list_m">
+		<p class="tit_banner">New Arrival</p>
+		<ol class="prod_simple_01">
+			
+			<li>
+				<!-- 일반상품 : 이미지형 -->
+				<div class="unit_list_02">
+					<a href="#">
+						<div class="thumb">
+							<img src="http://image.lotte.com/goods/76/89/43/10/1/110438976_1_280.jpg" alt="데체텍스트 넣어주세요.">
+						</div>
+						<div class="info">
+							<span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+							<p class="pr_box">
+								<span class="price"><em>980,000</em>원</span>
+							</p>
+						</div>
+					</a>
+				</div>
+				<!-- //일반상품 : 이미지형 -->
+			</li>
+			<li>
+				<!-- 일반상품 : 이미지형 -->
+				<div class="unit_list_02">
+					<a href="#">
+						<div class="thumb">
+							<img src="http://image.lotte.com/goods/86/16/67/15/1/115671686_1_150.jpg" alt="데체텍스트 넣어주세요.">
+						</div>
+						<div class="info">
+							<span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+							<p class="pr_box">
+								<span class="price"><em>800,000</em>원</span>
+							</p>
+						</div>
+					</a>
+				</div>
+				<!-- //일반상품 : 이미지형 -->
+			</li>
+			<li>
+				<!-- 일반상품 : 이미지형 -->
+				<div class="unit_list_02">
+					<a href="#">
+						<div class="thumb">
+							<img src="http://image.lotte.com/goods/20/50/59/595020_1_150.jpg" alt="데체텍스트 넣어주세요.">
+						</div>
+						<div class="info">
+							<span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+							<p class="pr_box">
+								<span class="price"><em>800,000</em>원</span>
+							</p>
+						</div>
+					</a>
+				</div>
+				<!-- //일반상품 : 이미지형 -->
+			</li>
+			<li>
+				<!-- 일반상품 : 이미지형 -->
+				<div class="unit_list_02">
+					<a href="#">
+						<div class="thumb">
+							<img src="http://image.lotte.com/goods/20/50/59/595020_1_150.jpg"    alt="데체텍스트 넣어주세요.">
+						</div>
+						<div class="info">
+							<span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+							<p class="pr_box">
+								<span class="price"><em>800,000</em>원</span>
+							</p>
+						</div>
+					</a>
+				</div>
+				<!-- //일반상품 : 이미지형 -->
+			</li>
+		</ol>
+	</div>
+	<!-- //New Arrival -->
+	
+</section>
+<!-- //container -->
+
+<section ng-include src="'/HTML/include/footer.html'"></section>
+
+</body>
+</html>

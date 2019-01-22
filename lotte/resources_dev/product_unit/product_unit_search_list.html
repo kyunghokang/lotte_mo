@@ -1,0 +1,103 @@
+<div class="prod_search_container prd_srh_cnt_lst">
+<ol class="prod_list_01 prod_search_list">
+	<li ng-class-even="list_clear" ng-repeat="item in products track by $index">
+		<div>
+			<div class="unit_list_01 unit_list_01_v2">
+				<div class="unit_box left_box">
+					<a ng-href="{{getProductInfoUrl(item, 'normal', ($index+1))}}" onclick="return false;" ng-click="productInfoClick(item)">
+						<div class="thumb" style="background-image:url({{getProductImage(item)}})">
+							<span class="bestNum" ng-if="templateType=='listrank'">{{$index+1}}</span>
+							<span ng-if="item.find_age != null && item.find_gender != null" class="sex_age"
+								ng-class="{sexm:item.find_gender=='M', sexf:item.find_gender=='F'}">
+								<span class="age">{{item.find_age}}대</span>
+								<span ng-if="item.find_gender == 'M'" class="gender">남성</span><span ng-if="item.find_gender == 'F'" class="gender">여성</span> 인기
+							</span>
+						</div>
+					</a>
+					<div class="wish_wrap">
+						<div class="wish_btn" ng-class="{on:item.has_wish}" ng-click="addWishClick($index,item)">위시리스트</div>
+					</div>
+				</div>
+				<div class="unit_box right_box">
+					<a ng-href="{{getProductInfoUrl(item, 'normal', ($index+1))}}" onclick="return false;" ng-click="productInfoClick(item)">
+						<div class="info">
+							<p class="flag" ng-if="(item.flag=='D'||item.is_dept) || (item.is_tvhome && !item.is_dept) || item.is_super || (item.smartpick_yn=='Y'||item.issmart_pick)">
+								<span class="flag depart" ng-if="item.flag=='D'||item.is_dept">롯데백화점</span>
+								<span class="flag etv" ng-if="item.is_tvhome && !item.is_dept">롯데홈쇼핑</span>
+								<span class="flag depart super" ng-if="item.is_super && !item.is_dept">롯데슈퍼</span>
+							</p>
+							<p class="tit">
+								<span ng-show="item.brnd_nm">[<span ng-bind-html="item.brnd_nm|titleToHtml"></span>]</span>
+								<span ng-bind-html="item.goods_nm|titleToHtml"></span>
+							</p>
+							<p class="pr_box">
+								<span class="price"><em>{{item.discounted_price|number}}</em>원<span ng-show="item.is_sale_promotion">~</span></span>
+								<span class="price2" ng-show="item.original_price!=item.discounted_price && item.original_price !=0 && !item.is_sale_promotion">
+									<em>{{item.original_price|number}}</em>원
+								</span>
+							</p>
+						</div>
+						
+						<div class="info2">
+							<!-- 별점/상품평 -->
+							<div class="user_feedback">
+								<span class="review" ng-if="item.review_count > 0 && item.avg_gdas_stfd_val <= 0" ng-click="productReviewClick(item)">상품평 <em>({{item.review_count|number}})</em></span>
+								<span class="score" ng-if="item.review_count > 0 && item.avg_gdas_stfd_val > 0" ng-click="productReviewClick(item)">
+									<span class="starScoreWrap"><span class="starScoreCnt" style="width:{{ ((item.avg_gdas_stfd_val*2)|ceil)*10 }}%"></span></span>
+									<span class="review"><em>{{item.review_count|number}}</em></span>
+								</span>
+							</div>
+							<!-- //별점/상품평 -->
+							<div class="info_dsc">
+								<!--무이자 추가-->
+								<span ng-if="item.nint_card_flag !='' && item.nint_card_flag != undefined " class="noItr">{{item.nint_card_flag}}</span><span ng-if="item.dlv_fee_tp=='Y'||item.isdlex_free">무료배송</span><span ng-if="item.isDlvToday">오늘도착</span><span ng-if="item.isCrsPickYn || item.isDeptPickYn">스마트픽</span><span ng-if="item.isDlvQuick">퀵배송</span>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+
+			<!-- 해시태그 -->
+			<!-- <div class="hash_list" ng-if="rScope.srhResultData.dispUnitType!='01' && srhKeyword && rScope.srhResultData.dispUnitType!='02'"
+				ng-class="{empty_hash:item.hash_list==undefined || item.hash_list.length==0}"
+				xxx-ng-if="item.hash_list.length > 0 && srhKeyword">
+				<ul>
+					<li ng-if="hash != ''" ng-repeat="hash in item.hash_list track by $index">
+						<a ng-href="{{getSearch(hash, 'M_SEARCH_hash_box')}}" onclick="return false;" ng-click="goSearch(hash, 'M_SEARCH_hash_list')">#{{hash}}</a>
+					</li>
+				</ul>
+			</div> -->
+			<!-- //해시태그 -->
+			<!-- 리뷰 -->
+			<div class="review_list" xxx-ng-if="rScope.srhResultData.dispUnitType=='02'"
+				ng-class="{empty_review:!item.reivew_list || item.is_sale_promotion}">
+				<ul class="review_ul" ng-if="item.reivew_list.length > 0 && rScope.uiStateObj.ageGenderSearched==false">
+					<li ng-repeat="review in item.reivew_list track by $index">
+						<a ng-bind="review.gdasCont" ng-click="rScope.showReviewPop(review, $event)"></a>
+					</li>
+				</ul>
+				<!-- <ul class="hash_ul" ng-if="item.hash_list.length > 0 && rScope.uiStateObj.ageGenderSearched==true">
+					<li ng-if="hash != ''" ng-repeat="hash in item.hash_list track by $index">
+						<a ng-href="{{getSearch(hash, 'M_SEARCH_hash_box')}}" onclick="return false;" ng-click="goSearch(hash, 'M_SEARCH_hash_list')">#{{hash}}</a>
+					</li>
+				</ul> -->
+			</div>
+			<!-- <div class="review_list" ng-if="rScope.srhResultData.dispUnitType=='02'"
+				ng-class="{empty_review:item.reivew_list==undefined || item.reivew_list.length==0 || item.is_sale_promotion
+							,show_hash:rScope.uiStateObj.ageGenderSearched==true}">
+				<ul class="review_ul" ng-if="item.reivew_list.length > 0 && rScope.uiStateObj.ageGenderSearched==false">
+					<li ng-repeat="review in item.reivew_list track by $index">
+						<a ng-bind="review.gdasCont" ng-click="rScope.showReviewPop(review, $event)"></a>
+					</li>
+				</ul>
+				<ul class="hash_ul" ng-if="item.hash_list.length > 0 && rScope.uiStateObj.ageGenderSearched==true">
+					<li ng-if="hash != ''" ng-repeat="hash in item.hash_list track by $index">
+						<a ng-href="{{getSearch(hash, 'M_SEARCH_hash_box')}}" onclick="return false;" ng-click="goSearch(hash, 'M_SEARCH_hash_list')">#{{hash}}</a>
+					</li>
+				</ul>
+			</div> -->
+			<!-- //리뷰 -->
+		</div>
+	</li>
+</ol>
+</div>

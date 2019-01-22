@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+    <meta charset="utf-8">
+    <title>롯데닷컴</title>
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <script>
+    var APP_KEY = "7fa1e44757a94fd89921";
+    var SERVER_TIME = new Date();
+    </script>
+    
+    
+
+
+<script>
+
+var LOTTE_CONSTANTS = [];
+
+	LOTTE_CONSTANTS['MAPI_HOST_API'] = "http://mt2.lotte.com";
+	LOTTE_CONSTANTS['MAPI_HOST_SSL_API'] = "http://mt2.lotte.com";
+	LOTTE_CONSTANTS['M_HOST_MOBILE'] = "http://mt2.lotte.com";
+	LOTTE_CONSTANTS['M_HOST_SSL'] = "http://mt2.lotte.com";
+	LOTTE_CONSTANTS['PC_HOST_WEB'] = "http://test.lotte.com";
+
+// 1차분 호환성을 위해 중복 정의
+var MAPI_HOST_API = LOTTE_CONSTANTS['MAPI_HOST_API'];
+var MAPI_HOST_SSL_API = LOTTE_CONSTANTS['MAPI_HOST_SSL_API'];
+var M_HOST_MOBILE = LOTTE_CONSTANTS['M_HOST_MOBILE'];
+var M_HOST_SSL = LOTTE_CONSTANTS['M_HOST_SSL'];
+var PC_HOST_WEB = LOTTE_CONSTANTS['PC_HOST_WEB'];
+
+LOTTE_CONSTANTS['SPLIT_GUBUN_1'] = ":^:"; 
+LOTTE_CONSTANTS['SPLIT_GUBUN_3'] = ";;;;;"; 
+LOTTE_CONSTANTS['ONENONE_BUY_LOGIN'] = "1"; 
+LOTTE_CONSTANTS['IMALL_BUY_LOGIN'] = "4";
+LOTTE_CONSTANTS['ST_STD_CD_PAY_MEAN_CD_L_POINT'] = "21";
+LOTTE_CONSTANTS['ST_STD_CD_PAY_MEAN_CD_LOTTE_POINT'] = "19";
+LOTTE_CONSTANTS['ST_STD_CD_PAY_MEAN_CD_DEPOSIT'] = "20";
+LOTTE_CONSTANTS['DEFAULT_LATE_VIEW_GOODS_COUNT'] = "20";
+
+//rudolph start
+LOTTE_CONSTANTS['NORMAL_LOGIN'] = "0";
+LOTTE_CONSTANTS['ONENONE_BUY_LOGIN'] = "1"; 
+LOTTE_CONSTANTS['CART_BUY_LOGIN'] = "2";
+LOTTE_CONSTANTS['ORDER_SEARCH_LOGIN'] = "3";
+LOTTE_CONSTANTS['IMALL_BUY_LOGIN'] = "4"; 
+LOTTE_CONSTANTS['IMALL_CART_BUY_LOGIN'] = "5" 
+LOTTE_CONSTANTS['LOGIN_SEED'] = "MDOTCOM";
+LOTTE_CONSTANTS['ORDER_PROTOCAL'] = "http";
+LOTTE_CONSTANTS['MOBILE_DOMAIN'] = "mt2.lotte.com";
+
+LOTTE_CONSTANTS['ELLOTTE_HOST_API'] = "http://test.ellotte.com";
+LOTTE_CONSTANTS['ELLOTTE_HOST_SSL_API'] = "http://test.ellotte.com";
+LOTTE_CONSTANTS['ELLOTTE_HOST_MOBILE'] = "http://mt2.ellotte.com";
+LOTTE_CONSTANTS['ELLOTTE_HOST_SSL'] = "http://mt2.ellotte.com";    
+LOTTE_CONSTANTS['ELLOTTE_LOGIN_SEED'] = "NMELLOTTE";
+LOTTE_CONSTANTS['ELLOTTE_IOS_APP_SCHEMA'] = "ellotte001";
+LOTTE_CONSTANTS['ELLOTTE_ANDROID_APP_SCHEMA'] = "ellotte002";
+//rudolph end
+
+//shpark97:150925 - start
+LOTTE_CONSTANTS['PAYTYPE_CARD_047'] = "047";
+LOTTE_CONSTANTS['PAYTYPE_CARD_029'] = "029";
+LOTTE_CONSTANTS['PAYTYPE_CARD_031'] = "031";
+LOTTE_CONSTANTS['PAYTYPE_CARD_048'] = "048";
+LOTTE_CONSTANTS['EXP_MY_LOTTE_KO'] = "마이롯데";
+//shpark97:150925 - end
+
+</script>
+
+	<link rel="stylesheet" href="../../../../lotte/resources_dev/common/lotte.css">
+	<link rel="stylesheet" href="../../../../lotte/resources_dev/layout/header.css">
+	<link rel="stylesheet" href="../../../../lotte/resources_dev/layout/header_sub.css">
+	<link rel="stylesheet" href="../../../../lotte/resources_dev/layout/footer.css">
+	<link rel="stylesheet" href="../../../../lotte/resources_dev/layout/actionbar.css">
+	<link rel="stylesheet" href="../../../../lotte/resources_dev/layout/side_ctg.css">
+	<link rel="stylesheet" href="../../../../lotte/resources_dev/layout/side_mylotte.css">
+	<link rel="stylesheet" href="../../../../lotte/resources_dev/search/layer_srh.css">	
+
+	<link rel="stylesheet" href="../../../../lotte/resources_dev/mylotte/purchase/m/purchase.css">
+	<link rel="stylesheet" href="../../../../lotte/resources_dev/mylotte/purchase/m/purchase_view.css">
+	<link rel="stylesheet" href="../../../../lotte/resources_dev/mylotte/purchase/m/order_return_reg.css">
+	
+	    
+
+
+<!-- favicon -->
+
+	<link rel="apple-touch-icon" href="/lotte/lotte-touch-icon.png" />
+
+
+	<!-- /WEB-INF/view/mylotte/orderclaim/m/order_change_cancel_info.jsp -->
+	<script type="text/javascript" src="../../../../common4/js/lib/jquery.min.1.11.0.js"></script>
+	<script type="text/javascript" src="../../../../common4/js/lib/crittercismClientLibraryMin.js"></script>
+
+
+<!-- SAS -->
+<script src="/common3/js/SpeedTrapInsert.js"></script>
+
+<!-- 20160226 박형윤 크리터시즘 2.5 버전 적용 -->
+<script src="/common4/js/lib/crittercismClientLibraryMin_22_2.5.js"></script>
+
+<script>
+$(document).ready(function () {
+	try {
+		Crittercism.init({appId: '550904cce0697fa449637803', appVersion: '20160303_ang'});
+
+		if (getCookie) {
+			var crittercismMbrNo = getCookie("MBRNO");
+
+			if (crittercismMbrNo) {
+				Crittercism.setUsername(crittercismMbrNo);
+			}
+
+			// if (location.href && navigator.userAgent) {
+			// 	Crittercism.leaveBreadcrumb("User Visited " + location.href); // 사용자 방문 페이지 로깅
+			// 	Crittercism.leaveBreadcrumb("User Browser Agent : " + navigator.userAgent); // 사용자 브라우저 UserAgent 로깅
+			// }
+		}
+	} catch (e) {}
+});
+</script>
+
+<!-- 와이즈 로그 -->
+<script>
+/**
+ * WISELOG TRACKING SCRIPT CODE
+ * DO NOT MODIFY THIS SCRIPT CODE.
+ * COPYRIGHT (C) 1999-2010 NETHRU INC. ALL RIGHTS RESERVED.
+ */
+(function () {
+var nl = document.createElement('script'); nl.type = 'text/javascript';
+nl.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'm.lotte.com/common4/js/lib/wl6.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(nl, s);
+var done = false;
+nl.onload = nl.onreadystatechange = function() {
+	if ( !done && (!this.readyState || this.readyState === "loaded" || this.readyState === "complete") ) {
+		done = true;
+		_n_sid = "m.lotte.com";
+		_n_uid_cookie = "MBRNO";
+		n_logging();
+		nl.onload = nl.onreadystatechange = null;
+	}
+}
+})();
+</script>
+
+
+<script>
+// Cosem Log Gathering Script V.2.0
+var cosem_Request = function () {
+var cookieDay = 30; // 쿠키설정 날짜
+var accountCode = "19";
+this.getParameter = function (name) {
+	var rtnval = ''; var nowAddress = unescape( location.href ); var parameters = (nowAddress.slice(nowAddress.indexOf('?')+1,nowAddress.length)).split('&');
+	for(var i = 0 ; i < parameters.length ; i++){
+		var varName = parameters[i].split('=')[0];if(varName.toUpperCase() == name.toUpperCase()){rtnval = parameters[i].split('=')[1]; break;};}; return rtnval;
+	}
+	this.imageURL = function(){ var cosem = this.getParameter('cosemkid'); var cosem_kid = ""; var cosemProtocol = ( location.protocol=="https:" )? "https:" :"http:";
+	if( cosem.length == 0 ) cosem = this.getParameter('cosem');
+	if( cosem.length > 0 ) { cosem_kid = "&kid=" + cosem + "&referer=" + encodeURIComponent(location.href);
+	var image = new Image(); image.src = cosemProtocol + "//" + "tracking.icomas.co.kr" + "/Script/script3.php" + "?aid="+accountCode+"&ctime=" + cookieDay + cosem_kid;};};
+	this.tracking = function( ){ var obj = this; setTimeout( function(){ obj.imageURL(); }, 10); };
+};
+var cosemRequest = new cosem_Request();
+cosemRequest.tracking( );
+</script>
+
+
+
+<script>
+// Facebook Pixel Code (DPA)
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,"script","//connect.facebook.net/en_US/fbevents.js");
+
+try {
+	fbq("init", "500204110159268");
+	fbq("track", "PageView");
+} catch (e) {
+	console.log("Facebook Pixel Script Error.");
+}
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=500204110159268&ev=PageView&noscript=1"/></noscript><!-- Facebook Pixel Code (DPA) noscript -->
+
+
+
+ 
+
+
+
+<script>
+function goAdultSci(loginChk) {
+	if(loginChk != "Y"){
+		if(!confirm("19세 미만 청소년 접근이 제한된 정보로 본인인증이 필요합니다.")){
+			// 2015.01.12 iylee 상품상세의 경우, 인증창을 띄우지 않은 경우 main으로 이동되게 한다.
+			// 2016.02.17 jgseo2 상품상세에서의 인증 취소시 뒤로가기
+			if(location.href.indexOf('/product_view.do')>-1){
+				//self.location.href = "http://mt2.lotte.com/main.do?c=mlotte&udid=&v=&cn=&cdn=";
+				history.go(-1);
+				return;
+			} else {
+				return;
+			}
+		}
+	}	
+
+	var backUrl = "";
+	
+	if(location.href.indexOf('adultChk=Y')>-1){
+		backUrl = location.href;
+	}else{
+		backUrl = location.href+'&adultChk=Y';
+	}
+
+	localStorage.removeItem('sci_param'); // 주문서로 전달하기 위한 파리메터
+	localStorage.removeItem('sci_action'); // 주문서 이전 사은품 선택 페이지 url
+	localStorage.removeItem('sci_login_href'); // 로그인 폼 url
+
+		window.location = 'http://mt2.lotte.com/sci/pcc_V3_seed.jsp?adultChk=Y&c=mlotte&udid=&v=&cn=&cdn=&returnDomain=mt2.lotte.com&backUrl='+encodeURIComponent(backUrl,'UTF-8');
+
+}
+</script>
+	    <link rel="stylesheet" type="text/css" href="/lotte/resources/r20160229_1/order_change_cancel_info.min.css"/>
+	    <script src="/lotte/resources/r20160229_1/order_change_cancel_info.min.js"></script>
+	    <script src="/lotte/resources/r20160229_1/order_change_cancel_info.tpl.js"></script>
+	    <link href="/common3/css/jquery-ui.css" rel="stylesheet">
+			<script src="/common3/js/function.js"></script>
+			<script src="/common3/js/main2012.js"></script>
+    			
+</head>
+<body ng-controller="OrderChangeCancelInfoCtrl" >
+    <div id="wrapper" ng-show="showWrap">
+		<!-- 공통 header -->
+		<header id="head">
+			<h1 class="logo">
+
+				<a href="javascript:mainLogoClick2()"><i>LOTTE.COM</i></a>
+
+
+			</h1>
+			<ul class="glSearchL">
+				<li class="category"><a href="#go"><i>카테고리</i></a></li>
+				<li class="search"><a href="#"><i>검색</i></a></li>
+			</ul>
+		</header>
+		<!--// 공통 header -->
+		<!-- 검색 레이어 -->
+		<section id="feSrhLayer">
+			<form id="searchForm" name="searchForm" action="http://molocal.lotte.com/search/m/mobile_search_list.do">
+				<input type="hidden" id="c" name="c" value="mlotte">
+				<input type="hidden" id="udid" name="udid" value="">
+				<input type="hidden" id="v" name="v" value="">
+				<input type="hidden" id="cn" name="cn" value="">
+				<input type="hidden" id="cdn" name="cdn" value="">
+
+
+				<input type="hidden" id="dpml_no" name="dpml_no" value="1">
+
+
+				<input type="hidden" id="type" name="type" value="">
+
+
+
+				<input type="hidden" id="dispCnt" name="dispCnt" value="30">
+				<input type="hidden" id="reqType" name="reqType" value="N">
+				<input type="hidden" id="reqKind" name="reqKind" value="C">
+				<fieldset>
+					<legend class="blind">키워드 검색</legend>
+					<section class="srh_layer">
+						<!-- 상단 검색 영역 -->
+						<div class="srh_wrap">
+							<div class="srh_ipt">
+								<input type="search" title="검색어 입력" name="keyword" id="searchKeyword" placeholder="검색어를 입력하세요." autocomplete="off" autocapitalize="off" autocorrect="off">
+								<a href="#none" class="btn_del">검색어 삭제</a>
+							</div>
+							<div class="srh_btn">
+								<input type="image" src="http://image.lotte.com/lotte/mobile/mobile_new/search/btn_search.png">
+							</div>
+						</div>
+						<!-- // 상단 검색 영역 -->
+						<!-- 최근 검색어 목록 -->
+						<div class="srh_recent">
+							<ol style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);"></ol>
+							<div class="iScrollVerticalScrollbar iScrollLoneScrollbar" style="position: absolute; z-index: 9999; width: 7px; bottom: 2px; top: 2px; right: 1px; overflow: hidden;"><div class="iScrollIndicator" style="box-sizing: border-box; position: absolute; border: 1px solid rgba(255, 255, 255, 0.901961); border-radius: 3px; width: 100%; transition-duration: 0ms; display: none; height: 8px; transform: translate(0px, -8px) translateZ(0px); transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); background: rgba(0, 0, 0, 0.498039);"></div></div></div>
+						<!-- // 최근 검색어 목록 -->
+						<!-- 자동완성 -->
+						<div class="srh_auto">
+							<ol style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);"></ol>
+							<div class="iScrollVerticalScrollbar iScrollLoneScrollbar" style="position: absolute; z-index: 9999; width: 7px; bottom: 2px; top: 2px; right: 1px; overflow: hidden;"><div class="iScrollIndicator" style="box-sizing: border-box; position: absolute; border: 1px solid rgba(255, 255, 255, 0.901961); border-radius: 3px; width: 100%; transition-duration: 0ms; display: none; height: 8px; transform: translate(0px, -8px) translateZ(0px); transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); background: rgba(0, 0, 0, 0.498039);"></div></div></div>
+						<!-- // 자동완성 -->
+						<!-- 하단바 -->
+						<div class="srh_bar">
+							<button type="button" class="del">최근 검색어 전체삭제</button>
+							<button type="button" class="close">취소</button>
+						</div>
+						<!-- // 하단바 -->
+					</section>
+					<section class="srh_cover"></section>
+				</fieldset>
+			</form>
+		</section>
+		<!-- // 검색 레이어 -->
+
+		<!-- 서브 헤더  : S -->
+		<header id="head_sub" class="ps_head">
+			<h2><span>반품취소</span></h2>
+			<p class="prev"><a href="#">이전</a></p>
+
+			<p class="btn" style="top:9px;"></p>
+		</header>
+		<!-- 서브 헤더  : E -->
+
+	<script type="text/javascript">
+	$(document).ready(function(){//html dom이 로드되면
+		$(".closePopBtn").click(function(){
+			$("#cover").css("display", "none");
+			$('#noticePop').hide();
+		});
+		
+		$(".openPopBtn").click(function(){
+			$( '#cover' ).css({ 'display' : 'block', 'height' : '100%', 'top' : 0 });
+			$('#noticePop').show();
+			var layerTop = $("#target").offset().top - 50;
+			$( '#noticePop' ).css('top', layerTop);
+		});
+
+		$(".safe_num").click(function(){// D:20150915 연락처제공안내 팝업
+			if($(this).hasClass("on")){
+				$(this).removeClass("on");
+				$(this).next(".tooltip").hide();
+			}else{
+				$(this).addClass("on");
+				$(this).next(".tooltip").show();
+			}
+		});
+		$(".btnClose").click(function(){// D:20150915 연락처제공안내 팝업
+			$(".safe_num").removeClass("on");
+			$(".safe_num").next(".tooltip").hide();
+		});
+	});
+
+	function fn_chkChangeCancel() {
+		//선택한 상품내역일련번호 , 취소수량 셋팅하기 
+		var obj_goods_no			= $("input[name=goods_no_]");
+		var obj_entr_no				= $("input[name=entr_no_]");
+		var obj_entr_contr_no		= $("input[name=entr_contr_no_]");
+		var obj_ord_dtl_sct_cd		= $("input[name=ord_dtl_sct_cd_]");
+		var obj_item_no				= $("input[name=item_no_]");
+		var obj_ord_dtl_sn			= $("input[name=ord_dtl_sn_]");
+		var obj_ord_qty				= $("input[name=ord_qty_]");
+		var obj_ord_accp_sn			= $("input[name=ord_accp_sn_]");
+		var obj_clm_caus_cd			= $("input[name=clm_caus_cd_]");
+		var obj_clm_caus_etc_cont	= $("input[name=clm_caus_etc_cont_]");
+	
+		//셋팅하기 전 초기화 한다.
+		$("#goods_no").val("");
+		$("#entr_no").val("");
+		$("#entr_contr_no").val("");
+		$("#ord_dtl_sct_cd").val("");
+		$("#item_no").val("");
+		$("#ord_dtl_sn").val("");
+		$("#ord_qty").val("");
+		$("#ord_accp_sn").val("");
+		$("#clm_caus_cd").val("");
+		$("#clm_caus_etc_cont").val("");
+			
+		for(var i=0;  i <obj_goods_no.length; i++){
+			if((i+1)== obj_goods_no.length) {
+				$("#goods_no").val($("#goods_no").val() + obj_goods_no[i].value);
+				$("#entr_no").val($("#entr_no").val() + obj_entr_no[i].value);
+				$("#entr_contr_no").val($("#entr_contr_no").val() + obj_entr_contr_no[i].value);
+				$("#ord_dtl_sct_cd").val($("#ord_dtl_sct_cd").val() + obj_ord_dtl_sct_cd[i].value);
+				$("#item_no").val($("#item_no").val() + obj_item_no[i].value);
+				$("#ord_dtl_sn").val($("#ord_dtl_sn").val() + obj_ord_dtl_sn[i].value);
+				$("#ord_qty").val($("#ord_qty").val() + obj_ord_qty[i].value);
+				$("#ord_accp_sn").val($("#ord_accp_sn").val() + obj_ord_accp_sn[i].value);
+				$("#clm_caus_cd").val($("#clm_caus_cd").val() + obj_clm_caus_cd[i].value);
+				$("#clm_caus_etc_cont").val($("#clm_caus_etc_cont").val() + obj_clm_caus_etc_cont[i].value);
+			} else {
+				$("#goods_no").val($("#goods_no").val() + obj_goods_no[i].value + ",");
+				$("#entr_no").val($("#entr_no").val() + obj_entr_no[i].value + ",");
+				$("#entr_contr_no").val($("#entr_contr_no").val() + obj_entr_contr_no[i].value + ",");
+				$("#ord_dtl_sct_cd").val($("#ord_dtl_sct_cd").val() + obj_ord_dtl_sct_cd[i].value + ",");
+				$("#item_no").val($("#item_no").val() + obj_item_no[i].value + ",");
+				$("#ord_dtl_sn").val($("#ord_dtl_sn").val() + obj_ord_dtl_sn[i].value + ",");
+				$("#ord_qty").val($("#ord_qty").val() + obj_ord_qty[i].value + ",");
+				$("#ord_accp_sn").val($("#ord_accp_sn").val() + obj_ord_accp_sn[i].value + ",");
+				$("#clm_caus_cd").val($("#clm_caus_cd").val() + obj_clm_caus_cd[i].value + ",");
+				$("#clm_caus_etc_cont").val($("#clm_caus_etc_cont").val() + obj_clm_caus_etc_cont[i].value + ",");
+			}
+		}
+		/*
+		alert($("#chnfrm input[name=ord_no]").val());
+		alert($("#goods_no").val());
+		return;
+		*/
+		$("#chnfrm").attr("action", "/mylotte/orderclaim/m/order_change_cancel_conf.do?c=mlotte&udid=&v=&cn=&cdn=");
+		$("#chnfrm").attr("method", "post");
+		$("#chnfrm").submit();
+	}
+	</script>
+
+<!-- warpper -->
+<form id="chnfrm">
+
+	
+	<!-- 안심번호 서비스 안내 팝업 Start -->
+	<section id="noticePop" style="display:none;z-index:111;position:absolute;background-color:#fff;">
+		<!-- sub header -->
+		<header id="head_sub">
+			<h2>안심번호 서비스란?</h2>
+			<p class="close"><a href="#none" class="closePopBtn">닫기</a></p>
+		</header>
+		<!--// sub header -->
+	
+		<section id="safety_number_layer">
+			<ul class="lst_box">
+				<li>안심번호 서비스는 고객님의 개인정보보호를 위해 상품 주문 시 실제 연락처 정보가 판매자 또는 택배사에게 노출되지 않도록 일회용 안심번호 (0503-000-0000)를 발급해 드리는 서비스 입니다.</li>
+				<li>안심번호는 경우에 따라 주문 접수 후 일정 시간 뒤에 부여되며, 배송완료 후 일정기간이 지나면 자동으로 해지되며 고객님 연락처정보는 ***-***-****로 표시됩니다.</li>
+			</ul>
+		</section>
+	</section>
+	<!-- 안심번호 서비스 안내 팝업 End -->
+
+	<section id="cover"></section>
+	
+	<section id="cscenter" class="order_change_cancel_info step4_2016"><!-- 20160420 class 추가 -->
+		<div class="receipt_cancel">
+			<p class="order_no">주문번호 
+				
+					
+					2016-03-16-4423414				  
+				 
+			</p>
+			
+			<!-- 반품일때 -->
+			<input type="hidden" name="exist_invo" id="exist_invo" value="N" />
+			<input type="hidden" name="ord_no" id="ord_no" value="201603164423414" />
+			<input type="hidden" name="lt_new_pavv" id="lt_new_pavv" value="new" />
+			<input type="hidden" name="goods_no" id="goods_no" value="" />
+			<input type="hidden" name="entr_no" id="entr_no" value="" />
+			<input type="hidden" name="entr_contr_no" id="entr_contr_no" value="" />
+			<input type="hidden" name="ord_dtl_sct_cd" id="ord_dtl_sct_cd" value="" />
+			<input type="hidden" name="item_no" id="item_no" value="" />
+			<input type="hidden" name="ord_dtl_sn" id="ord_dtl_sn" value="" />
+			<input type="hidden" name="ord_qty" id="ord_qty" value="" />
+			<input type="hidden" name="ord_accp_sn" id="ord_accp_sn" value="" />
+			<input type="hidden" name="clm_caus_cd" id="clm_caus_cd" value=""/>
+			<input type="hidden" name="clm_caus_etc_cont" id="clm_caus_etc_cont" value=""/>
+			
+			
+			
+			
+			<input type="hidden" name="goods_no_" id="goods_no_" value="11068693" />
+			<input type="hidden" name="entr_no_" id="entr_no_" value="1" />
+			<input type="hidden" name="entr_contr_no_" id="entr_contr_no_" value="11220" />
+			<input type="hidden" name="ord_dtl_sct_cd_" id="ord_dtl_sct_cd_" value="16" />
+			<input type="hidden" name="item_no_" id="item_no_" value="31" />
+			<input type="hidden" name="ord_dtl_sn_" id="ord_dtl_sn_" value="681981938" />
+			<input type="hidden" name="ord_qty_" id="ord_qty_" value="1" />
+			<input type="hidden" name="ord_accp_sn_" id="ord_accp_sn_" value="2" />
+			<input type="hidden" name="clm_caus_cd_" id="clm_caus_cd_" value="상품 하자/파손"/>
+			<input type="hidden" name="clm_caus_etc_cont_" id="clm_caus_etc_cont_" value=""/>
+			
+				
+				
+				
+				
+				
+			
+			<!-- 
+			[1],<br />
+			[11220],<br />
+			[16],<br />
+			[31],<br />
+			[681981938],<br />
+			[1],<br />
+			[2],<br />
+			[상품 하자/파손],<br />
+			[],<br />
+			-->
+			
+			
+			<div class="receipt_info unit_top">
+				
+				<h3>
+					
+						
+						03월 16일 주문
+					
+				</h3>
+								
+				
+				<!-- 상품정보 (반품반품 상품만 표현)-->
+				<div class="order_goods">
+					<span class="thumb">
+						<img src="http://image.lotte.com/goods/93/86/06/11/11068693_1_150.jpg" onError="javascript:this.src='http://image.lotte.com/lotte/images/common/product/no_150.gif'" alt="상품이미지">
+					</span>
+					<span class="cont01">
+						<!-- 20160530 선물하기 추가 -->
+						<p class="recipient">김지혜</p>
+						<p class="flag">
+						
+						
+							
+						</p>					
+						<p class="tl">[교육용]스카프_옵션O(상품사은품)</p>
+						
+						
+						
+						<p class="option">
+							사이즈:44,색상:그린
+						</p>
+						
+						<p class="money">
+							<span class="price"><span>7,900</span>원</span>
+						</p>
+					</span>
+				</div>
+				<!-- //상품정보 -->
+				
+				<div class="receipt_option">
+					<dl>
+						<dt>반품수량</dt>
+						<dd class="num">1</dd>
+						<dt>반품상품</dt>
+						
+						
+						<dd>사이즈:44,색상:그린</dd>
+						
+						
+						
+					</dl>
+				</div>
+			</div>
+			<!--// 반품일때 -->
+			
+			<div class="receipt_info">
+				<!-- 반품일때 (반품 ↔ 반품 텍스트만 다름) -->
+				<h3 class="lotte hide">반품 사유</h3>
+				<!--// 반품일때 (반품 ↔ 반품 텍스트만 다름) -->
+				
+				<div class="receipt_reason">
+					<dl>
+						<!-- 반품일때 (반품 ↔ 반품 텍스트만 다름) -->
+						<dt>반품사유</dt>
+						<!--// 반품일때 (반품 ↔ 반품 텍스트만 다름) -->
+						
+						<dd>
+							<p class="static_ment">상품 하자/파손</p>
+							<p></p>
+						</dd>
+					</dl>
+				</div>
+			</div>
+
+			<input type="hidden" name="goods_no_" id="goods_no_" value="11068693" />
+			<input type="hidden" name="entr_no_" id="entr_no_" value="1" />
+			<input type="hidden" name="entr_contr_no_" id="entr_contr_no_" value="11220" />
+			<input type="hidden" name="ord_dtl_sct_cd_" id="ord_dtl_sct_cd_" value="14" />
+			<input type="hidden" name="item_no_" id="item_no_" value="31" />
+			<input type="hidden" name="ord_dtl_sn_" id="ord_dtl_sn_" value="681981939" />
+			<input type="hidden" name="ord_qty_" id="ord_qty_" value="1" />
+			<input type="hidden" name="ord_accp_sn_" id="ord_accp_sn_" value="2" />
+			<input type="hidden" name="clm_caus_cd_" id="clm_caus_cd_" value="상품 하자/파손"/>
+			<input type="hidden" name="clm_caus_etc_cont_" id="clm_caus_etc_cont_" value=""/>
+			
+			<!-- 
+			[1],<br />
+			[11220],<br />
+			[14],<br />
+			[31],<br />
+			[681981939],<br />
+			[1],<br />
+			[2],<br />
+			[상품 하자/파손],<br />
+			[],<br />
+			-->
+			
+			
+			<span class="seper_area"></span>
+			<div class="receipt_info">
+
+				<!-- 반품일때 (반품 ↔ 반품 텍스트만 다름) -->
+				<!-- 20160420 삭제 --><!-- <h3>반품 수거방법/수거주소</h3><!-- //20160420 삭제-->
+				<!--// 반품일때 (반품 ↔ 반품 텍스트만 다름) -->
+
+				<!-- 20160420 수정 : 수거방법과 수거주소 테이블 나누기, caption 문구수정 -->
+				<div class="addr_info">
+					<!-- 반품일때 (반품 ↔ 반품 텍스트만 다름) -->
+					<table class="tbl_form_01" summary="반품상품 수거 방법, 이름, 수거지 연락처, 휴대폰, 지번주소, 도로명 주소 안내표">
+						<caption>반품상품 수거방법 안내</caption>
+						<colgroup>
+							<col width="30%">
+							<col width="70%">
+						</colgroup>
+						<tbody>
+							<tr>
+								<th scope="row">수거방법</th>
+								<td>
+									<p class="static_ment">택배기사 방문</p>
+									<p>반품접수 완료 후, 1~2일 이후에 택배기사가 직접 방문하여 반품 상품을 수거해 갑니다.</p>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!--// 반품일때 (반품 ↔ 반품 텍스트만 다름) -->
+
+					<!-- 20160420 편의점 택배 ( 세븐일레븐 or GS25/CU ) -->
+					<table class="tbl_form_01" summary="반품상품 수거 방법, 이름, 수거지 연락처, 휴대폰, 지번주소, 도로명 주소 안내표">
+						<caption>편의점 택배 반품상품 수거방법 안내</caption>
+						<colgroup>
+							<col width="30%">
+							<col width="70%">
+						</colgroup>
+						<tbody>
+							<tr>
+								<th scope="row">수거방법</th>
+								<td>
+									<!-- 20171128 편의점택배 텍스트 cu삭제 -->
+									<p class="static_ment">편의점 택배 (GS25<!-- 세븐일레븐 or GS25 -->)</p>
+									<p>편의점 택배로 접수가 완료되면 승인번호를 꼭 기억하세요!</p>
+									
+									<!-- 20160420 추가 -->
+									<!-- 20160420 세븐일레븐 선택시 노출-->
+									<ul class="store_txt">
+										<!-- 20180910 문구수정 -->
+										<li>반품접수가 완료되면 <span>승인번호를 문자로 보내드립니다.</span></li>
+										<li>승인번호를 편의점 직원에게 보여주신 후 상품을 맡겨주세요.</li>
+										<li>락커를 통해서 반품을 진행하시는 경우, 락커에서 [반품접수]를 선택 후 반품승인번호를 확인하세요.</li>
+										<li><span>지하철 역사점은 반품접수 불가합니다.</span></li>
+										<li><span>쇼핑몰 반품접수 가능지점 검색 후 방문해주세요.</span></li>
+										 <!-- // 20180910 문구수정 -->
+									</ul>
+									<!-- //20160420 세븐일레븐 선택시 노출-->
+
+									<!-- 20160420 GS25/CU 선택시 노출-->
+									<ul class="store_txt">
+										<li>반품접수가 완료되면 <span>승인번호를 문자로 보내드립니다.</span></li>
+										<li>편의점 무인택배기에서 [쇼핑몰거래] 선택 후 승인번호를 확인한 후 접수해주세요</li>
+									</ul>
+									<!-- //20160420 GS25/CU 선택시 노출-->
+									<!-- //20160420 추가 -->
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!--// 반품일때 (반품 ↔ 반품 텍스트만 다름) -->
+				</div>
+
+				<div class="addr_info">
+					<!-- 20160420 추가--><h4>반품상품 수거주소<!-- 반품상품 수거주소 or 반품상품 수신주소--></h4><!-- //20160420 추가-->
+					<!-- 반품일때 (반품 ↔ 반품 텍스트만 다름) -->
+					<table class="tbl_form_01" summary="반품상품 수거 방법, 이름, 수거지 연락처, 휴대폰, 지번주소, 도로명 주소 안내표">
+						<caption>반품상품 수거방법, 수거주소 안내</caption>
+						<colgroup>
+							<col width="30%">
+							<col width="70%">
+						</colgroup>
+						<tbody>
+							<tr>
+								<th scope="row">이름</th>
+								<td>강지인</td>
+							</tr>
+							<tr>
+								<th scope="row">도로명주소</th>
+								<td>경기 고양시 덕양구 호국로 859, 118동 602호(성사동,대림e편한세상아파트)</td>
+							</tr>
+							<tr>
+								<th scope="row">연락처
+								<a href="#" class="safe_num">안심번호 서비스 안내</a>
+								<div class="tooltip" style="display:none;">
+									<div class="tit">연락처 제공 안내</div>
+									<div class="cont">
+										<ul>
+											<li>고객님의 연락처는 안심번호 서비스로 보호받고 있습니다.</li>
+											<li>안심번호 서비스란, <strong>고객님의 연락처를 1회성 임시번호(050-000-0000)로 자동전환 하여 택배사에 전달함으로써 개인정보 유출을 사전에 방지</strong>하는 서비스 입니다.</li>
+											<li><strong>택배기사님이 부재시 전화를 드리거나, 배송진행상황을 택배사에서 SMS로 안내해 드릴 수 있습니다.</strong></li>
+										</ul>
+									</div>
+									<a href="#" class="btnClose">닫기</a>
+								</div>
+								</th>
+								<td>031-904-2650 / 010-4111-2650</td>
+							</tr>
+						</tbody>
+					</table>
+					<!--// 반품일때 (반품 ↔ 반품 텍스트만 다름) -->
+					
+					<!-- 20160420 추가 : 편의점 택배일 경우 -->
+                    <table class="tbl_form_01" summary="반품상품 수거지 연락처, 휴대폰, 지번주소, 도로명 주소 안내표">
+                        <caption>반품상품 수신주소 안내</caption>
+                        <colgroup>
+                            <col width="30%">
+                            <col width="70%">
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <th scope="row">업체명</th>
+                            <td>(주)씨쓰리아이디</td>
+                            <input type="hidden" name="292377653_5401_entr_nm" value="(주)씨쓰리아이디">
+                        </tr>
+                        <tr>
+                            <th scope="row">연락처</th>
+                            <td>070-4640-5729
+                                <input type="hidden" name="292377653_5401_cbl_tel_no" value="070-4640-5729">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">휴대폰</th>
+                            <td>
+                                016-744-4522
+                                <input type="hidden" name="292377653_5401_cell_no" value="016-744-4522">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">도로명 주소</th>
+                            <td>
+                                전라남도 장흥군 행원4길 1808
+                                <input type="hidden" name="292377653_5401_stnm_addr_all" value="전라남도 장흥군 행원4길 1808">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">지번주소</th>
+                            <td>
+                                경상북도 예천군 예천읍 산성리 357-2
+                                <input type="hidden" name="292377653_5401_addr_all" value="경상북도 예천군 예천읍 산성리 357-2">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+					<!-- //20160420 추가 : 편의점 택배일 경우 -->
+				</div>
+				<!-- //20160420 수정 : 수거방법과 수거주소 테이블 나누기, caption 문구수정 -->
+			</div>
+
+			<!-- 20160322 항목변경 -->
+			  <div id="nonSmrtPc_292377653_5401" class="receipt_info return_cost"><!--퍼블수정 return_cost-->
+                <!-- 20160420 수정 --><h3>반품배송비 결제 정보</h3><!-- //20160420 수정-->
+                 <!-- 20160323 -->
+                 <p class="text_top">최초배송비를 지불하여야 하는 경우에만 최초배송비가 표기됩니다.</p>
+                  <!-- //20160323 --><!--퍼블수정-->
+                <div class="tbl_wrap">
+                    <table class="tbl_exchange_cost" summary="반품상품 재배송비, 반품배송비 합계 및 고객부담 배송비 안내표">
+                        <caption>반품 배송비 안내</caption>
+                        <colgroup>
+                            <col width="40%">
+                            <col width="60%">
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <th scope="row">최초 배송비</th>
+                            <td><span class="price"><span>2,500</span>원</span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">반품 수거비</th>
+                            <td>2,500원</td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th scope="row">합계</th>
+                            <td><span>5,000</span>원</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">고객 부담</th>
+                            <td><strong>5,000</strong>원</td>
+                            <input type="hidden" name="292377653_5401_price" value="5000:^:16516">
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+               <!-- 20160323 -->
+               <p class="text_bottom">고객부담금은 반품 사유에 따라 고객님께 부담되지 않을 수 있습니다.</p>
+                <!-- //20160323 -->
+            </div>
+         <!-- 20160322 항목변경 -->
+			 
+			<!-- 반품 배송비 결제 정보 -->	
+			<!-- <span class="seper_area"></span>
+			<div class="receipt_info">
+				<h3>반품 배송비</h3>
+				<div class="order_sum">
+					<ul>
+						
+						
+						<li>
+							<span class="title">반품 배송비</span>
+							<span class="price"><span class="num">0</span>원</span>
+						</li>
+						<li>
+							<span class="title">반품 수거비</span>
+							<span class="price"><span class="num">0</span>원</span>
+						</li>
+						<li class="sum1">
+							<p>
+				 				<span class="title">합계</span>
+								<span class="price"><span class="num">0</span>원</span>
+							</p>
+						</li>
+						<li class="sum2">
+							
+								<span class="title">고객부담</span>
+								
+								
+								<span class="price"><strong>0</strong>원</span>
+								
+							
+						</li> -->
+						<!-- 
+						<li>
+							<span class="title">L-포인트</span>
+							<span class="price"><span class="num">500</span>원</span>
+						</li>
+						<li>
+							<span class="title">롯데포인트</span>
+							<span class="price"><span class="num">500</span>원</span>
+						</li>
+						<li>
+							<span class="title">OK 캐쉬백포인트</span>
+							<span class="price"><span class="num">500</span>원</span>
+						</li>
+						<li>
+							<span class="title">보관금</span>
+							<span class="price"><span class="num">500</span>원</span>
+						</li>
+						<li class="sum1">
+							<p>
+								<span class="title">최종 결제 금액</span>
+								<span class="price"><span class="num">500</span>원</span>
+							</p>
+						</li>
+						<li class="sum2">
+							<p>
+								<span class="title">신용카드</span>
+								<span class="price"><strong>2,000</strong>원
+								<em>2014.01.29 롯데카드 [일시불]</em></span>
+							</p>
+						</li>
+					
+						
+						
+						
+					</ul>
+			
+			
+			
+			
+
+			
+			
+			
+			
+			<!-- //반품 배송비 결제 정보 
+			<div class="payment_notice_wrap">
+					<div class="refund_info">고객부담금은 반품사유에 따라 고객님께 부담되지 않을 수 있습니다.</div>
+			</div>
+			</div>
+				</div>
+		</div>	-->
+		
+		<div class="footButton">
+			<!-- <a href="#go" class="c_btn col05"><span>이전</span></a> -->
+			<a href="javascript:history.back();" class="c_btn col05"><span>이전</span></a>
+			<!--  existInvo : [false][true][N] -->
+			
+			
+			<a href="javascript:fn_chkChangeCancel();" class="c_btn col01"><span>반품취소</span></a>
+			
+			
+			
+		</div>
+	</section>
+	
+</form>
+<!--// warpper -->
+
+
+
+	<!-- footer -->
+    <footer id="footer" class="new2015">
+        <div id="footerBn" class="banner">
+
+        </div>
+        <ul class="menu01"><!-- 2014-04-30 수정(메뉴순서 변경) -->
+            <li id="dotcomStaff">
+                <a href="http://molocal.lotte.com/mylotte/mylotte.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;tclick=m_footer_mylotte">마이롯데</a><i></i>
+
+            </li>
+            <li><a href="javascript:setTclick('m_footer_PC');outLink('http://www.lotte.com/main/viewMain.lotte?dpml_no=1&amp;check=N');">PC버전</a><i></i></li>
+            <li><a href="http://molocal.lotte.com/mylotte/cart/cart_list.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;tclick=m_footer_cart">장바구니</a><i></i></li>
+            <li><a href="http://molocal.lotte.com/custcenter/m/submain.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;tclick=m_footer_customercenter">고객센터</a><i></i></li>
+            <li><a href="javascript:goLogout();">로그아웃</a></li><!-- 로그인 전 -->
+        </ul>
+        <div class="info">
+            <ul class="menu02">
+                <li><strong>(주)롯데닷컴</strong></li>
+                <li><a href="http://molocal.lotte.com/agreement/company.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;tclick=m_footer1">회사소개</a></li>
+                <li><a href="javascript:setTclick('m_footer2');outLink('http://www.ftc.go.kr/info/bizinfo/communicationList.jsp');">사업자정보확인</a></li>
+                <li><a href="javascript:setTclick('m_footer3');outLink('http://www.lotte.com/main/common/forward.GuaranteeService_pop.lotte');">채무지급보증안내</a></li>
+            </ul>
+            <p class="add">
+                <span>대표이사 : 김형준</span><br>
+                <span class="line">서울시 중구 을지로 158 10층(을지로4가, 삼풍빌딩)</span> <span class="line">사업자등록번호 : 101-81-52964 통신판매업신고 : 중구 제00402호</span><br>
+                <span class="line">고객만족센터 : 1577-1110  webmaster@lotte.com</span> <span class="line">개인정보관리책임 : 임성묵</span> <span class="line">청소년보호 책임자:김진수</span><br>
+            <span>호스팅 사업자 : (주)롯데닷컴
+        </span></p>
+        </div>
+        <div class="menu03">
+            <ul>
+                <li><a href="http://molocal.lotte.com/agreement/custAgreement.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;tclick=m_footer4">이용약관</a></li>
+                <li><a href="http://molocal.lotte.com/agreement/custPrivacy.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;tclick=m_footer5"><strong>개인정보취급(처리)방침</strong></a></li>
+                <li><a href="http://molocal.lotte.com/agreement/protect_youth.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;tclick=m_footer6">청소년보호정책</a></li>
+
+            </ul>
+        </div>
+        <div class="capyright">Copyright © LOTTE.com, Inc. All rights Reserved.</div>
+    </footer>
+    <!--// footer -->
+	</div>
+</body>
+</html>

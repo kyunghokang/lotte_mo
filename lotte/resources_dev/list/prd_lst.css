@@ -1,0 +1,24 @@
+/* common */
+section.prd_lst {overflow:hidden;width:100%}
+section.prd_lst ul li{box-sizing:border-box;-webkit-box-sizing:border-box;}
+
+/* sv-unit list (작은박스형 리스트) */
+section.prd_lst ul.sv-unit li{width:50%;float:left;border-bottom:solid 1px #dde1e7;border-right:solid 1px #dde1e7;min-height:270px}
+section.prd_lst ul.sv-unit li:nth-child(even) {border-right:solid 1px #fff;box-sizing:border-box;-webkit-box-sizing:border-box}
+
+/* sh-unit list (작은 가로형 리스트) */
+section.prd_lst ul.sh-unit li{padding:10px 0 10px 8px;border-bottom:solid 1px #e2e4e8;position:relative;left:0;}
+
+/* more view button ( list 공통) */
+.more_view {overflow:hidden;clear:both;padding:0 8px 10px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.more_view div.btn_more {border:solid 1px #d3d3d3;background:#fff;text-align:center;background-image:-webkit-linear-gradient(#fff, #e5e5e5);background-image:-moz-linear-gradient(#fff, #e5e5e5);background-image:linear-gradient(#fff, #e5e5e5);box-sizing:border-box;-webkit-box-sizing:border-box}
+.more_view a {display:block;font-size:14px;padding:14px;color:#666;box-sizing:border-box;-webkit-box-sizing:border-box}
+.more_view strong {font-weight:bold}
+.more_view i {width:15px;position:relative}
+.more_view i:before, .more_view i:after{content:'';height:2px;width:10px;display:block;background:#9a9da0;position:absolute;top:-6px;left:0px}
+.more_view i:after {height:10px;width:2px;top:-10px;left:4px }
+.more_view .load_img{margin: 0px auto; width: 55px; border: 0px;}
+
+@media screen and (min-width:640px){
+	section.prd_lst ul.sh-unit li{float:left;width:50%}
+}

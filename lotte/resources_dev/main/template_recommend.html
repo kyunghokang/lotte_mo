@@ -1,0 +1,76 @@
+<div template-recommend class="cont_wrap template_recommend padding">
+	<!-- 나만을 위한 맞춤상품 안내 -->
+	<section class="login_info_txt" ng-if="loginInfo!=null && (!loginInfo.isLogin || screenData.recommendPrd.total_count == 0)">
+		<p ng-if="!loginInfo.isLogin">
+			<span>로그인하시면</span>
+			보고, 검색하고, 구매한 정보로<br><strong>맞춤상품</strong>을 추천해 드립니다.
+		</p>
+		<p ng-if="loginInfo.isLogin">
+			<span>기대하세요! 고객님의 쇼핑 활동 정보가 쌓인 후</span><br>
+			<strong>맞춤상품</strong>을 추천해 드립니다.
+		</p>
+	</section>
+
+	<!-- 오늘의 맞춤 추천상품 -->
+	<!--<div ng-if="loginInfo.isLogin && ( max.recommendPrd.total_count != 0 )">-->
+	<section ng-if="loginInfo.isLogin && screenData.recommendPrd.length > 0" class="recommend_today_wrap">
+		<div class="recom_tit"><p>오늘의 맞춤 추천상품</p></div>
+		<!-- 상품 리스트 -->
+		<div product-container
+			template-type="list2"
+			templatetype="templateType"
+			special-key-param = "reco"
+			products="screenData.recommendPrd"
+			tclick="m_DC_main{{mainTemplateType}}_Clk_Prd_idx"
+			class="prd_lst_wrap"></div>
+	</section>
+
+	<!-- 최근 본 상품 -->
+	<section ng-if="latelyPrdItems != null && latelyPrdItems.length > 0" ng-controller="lotteNgSwipeCtrl" class="lately_prd_wrap">
+		<div class="view_history_tit">
+			<p>최근 본 상품 <span class="counter">{{latelyPrdItems.length|number}}</span></p>
+			<a ng-click="goLatestPrdPage()" class="all_view">전체보기</a>
+		</div>
+
+		<div class="swipe_wrap">
+			<div id="latelyPrdSwipe" product-container lotte-ng-list-swipe
+				products="latelyPrdItems"
+				templatetype="templateType"
+				template-type="recommend"
+				swipe-id="RecommendLatelyPrdItems"
+				swipe-list-model="latelyPrdItems"
+				swipe-slide-item="true"
+				swipe-max-ratio="0.2"
+				swipe-min-distance="40"
+				swipe-responsive="true"
+				swipe-responsive320="1"
+				swipe-responsive640="2"
+				swipe-responsive900="3"
+				tclick="m_DC_main{{mainTemplateType}}_Swp_Prd_A"
+				tclick-review="m_DC_main{{mainTemplateType}}_Clk_Rvw"
+				tclick-wish="m_DC_main{{mainTemplateType}}_Clk_Wsh"
+				class="prd_lst_wrap"></div>
+			<button class="btn_prev" ng-show="swipeIdx != 0" ng-click="beforeSlide()">이전</button>
+			<button class="btn_next" ng-show="swipeIdx != latelyPrdItems.length - 1" ng-click="nextSlide()">다음</button>
+		</div>
+		<ul class="lately_prd_indicator" ng-if="(winWidth < 640 && latelyPrdItems.length > 1) || (winWidth >= 640 && latelyPrdItems.length > 2)">
+			<li ng-repeat="item in latelyPrdItems" ng-class="{on: swipeIdx == $index}"><span>{{$index}}</span></li>
+		</ul>
+	</section>
+
+	<!-- 공유 Best -->
+	<!-- <section ng-if="(!latelyPrdItems || latelyPrdItems.length == 0) && (!loginInfo.isLogin || screenData.recommendPrd.total_count || (screenData.recommendPrd.items && screenData.recommendPrd.items.length != 0)) && screenData.bestShare"> -->
+	<!-- <section ng-if="(!latelyPrdItems || latelyPrdItems.length == 0) && (!loginInfo.isLogin || screenData.recommendPrd.total_count==0 || (screenData.recommendPrd.items && screenData.recommendPrd.items == null)) && screenData.bestShare"> -->
+	<section ng-if="(!latelyPrdItems || latelyPrdItems.length == 0) && 
+		(!loginInfo.isLogin || screenData.recommendPrd.total_count || (screenData.recommendPrd.items && screenData.recommendPrd.items.length != 0)) && 
+		screenData.bestShare">
+		<div class="sharing_best_tit"><p>공유 BEST10</p></div>
+		<div product-container template-type="best10" templatetype="templateType" products="screenData.bestShare" class="prd_lst_wrap"></div>
+		<!--
+		<div class="ranking_info_txt">
+			<p>최근 <strong>7일</strong>간 상품별 매출순위와 구매순위를<br>합산한 순위입니다.</p>
+		</div>
+		-->
+	</section>
+
+</div>

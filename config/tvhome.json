@@ -1,0 +1,72 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplTvHome" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/main/tvhome_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/tvhome.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsTvHome" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/lib/angular/moment.min.js",
+                    "lotte/lib/angular/humanize-duration.js",
+                    "lotte/lib/angular/angular-timer.min.js",
+                    "lotte/resources_dev/main/tvhome.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/tvhome.js"
+            }
+        },
+
+        "uglify" : {
+            "jsTvHome" : {
+                "src" : "lotte/resources/<%= version %>/tvhome.js",
+                "dest" : "lotte/resources/<%= version %>/tvhome.min.js"
+            },
+            "tplTvHome" : {
+                "src" : "lotte/resources/<%= version %>/tvhome.template.js",
+                "dest" : "lotte/resources/<%= version %>/tvhome.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssTvHome" : {
+                "src" : [
+                    "lotte/resources_dev/main/tvhome.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/tvhome.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanTvHome" : [
+                "lotte/resources/<%= version %>/tvhome.js",
+                "lotte/resources/<%= version %>/tvhome.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlTvHome" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "main/tvhome.html" : "main/tvhome_dev.html"
+                }
+            }
+        }
+    }
+}
+

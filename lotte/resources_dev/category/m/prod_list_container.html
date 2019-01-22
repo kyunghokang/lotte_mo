@@ -1,0 +1,119 @@
+<section ng-show="contVisible" class="cont_minheight" ng-class="{vine_wrap:screenData.isWine}">
+	<div class="gucci_title" ng-if="!screenData.isWine">구찌 공식 스토어</div>
+	<div class="gucci_sub_header_wrap">
+		<header id="gucciSubHead" sub-header-each ng-if="!screenData.isWine">
+			<h2><a ng-href="/mall/gucci/gucci_main.do?{{baseParam}}&tclick=G_LOGO"><span>GUCCI</span></a></h2>
+			<nav>
+				<ul class="ctg_list_big">
+					<li  ng-repeat="citem in screenData.cate_list" ng-class="{big_on:screenData.selectCate1==citem.disp_no}">
+						<a href="#" class="btn_ctg_big" ng-click="GucciMenuCategory1Click(citem)">{{citem.disp_nm}}</a>
+					</li>
+				</ul>
+				<ul class="ctg_list_mid" ng-show="screenData.showAllCategory"><!-- <button class="open_btn" ng-click="showAllCategoryClick()">더보기</button> -->
+					<li ng-repeat="citem in screenData.cate_list"><a href="#" ng-click="GucciMenuCategoryClick(citem)">{{citem.disp_nm}}</a></li>
+				</ul>
+				<div class="ctg_list_sml" ng-repeat="citem in screenData.cate_list" ng-show="screenData.selectCate1==citem.disp_no">
+					<ul>
+						<li ng-repeat="citem2 in citem.sub_cate_list" ng-class="{on:screenData.selectCate2==citem2.disp_no}">
+							<a href="#" ng-click="GucciMenuCategory2Click(citem2, citem)">{{citem2.disp_nm}}</a>
+							<div class="cca" ng-show="screenData.selectCate2==citem2.disp_no" ng-class="{scroll:citem2.sub_cate_list.length > 7}">
+								<a href="#" ng-repeat="citem3 in citem2.sub_cate_list" ng-click="GucciMenuCategory3Click(citem3, citem2)" class="ng-binding ng-scope">{{citem3.disp_nm}}</a>
+							</div>
+						</li>
+					</ul>
+					<div class="mall_cateLayerbar">
+						<a ng-click="hideSubCate()" class="close">닫기</a>
+					</div>
+				</div>
+			</nav>
+		</header>
+	</div>
+	<!-- category -->
+	<div class="sort_header_wrap" ng-if="screenData.isWine && !screenData.isComm">
+		<nav class="box_cate" sort-header>
+			<div class="big_cate">
+				<ul lotte-ng-list-swipe swipe-slide-menu="true" swipe-list-model="screenData.cate_list" swipe-id="mainMenu" swipe-max-ratio="0.2" swipe-min-distance="40" swipe-right-margin="50">
+					<li ng-repeat="citem in screenData.cate_list" ng-class="{on:screenData.selectCate1==citem.disp_no}"><a href="#" ng-click="menuCategory1Click(citem)">{{citem.disp_nm}}</a></li>
+				</ul>
+			</div>
+			<!-- class on 으로 활성화 -->
+			<div ng-repeat="citem in screenData.cate_list" ng-show="screenData.selectCate1==citem.disp_no">
+				<div class="mid_cate">
+					<ul ng-class="{scroll:citem.sub_cate_list.length > 14}">
+						<li ng-repeat="citem2 in citem.sub_cate_list" ng-class="{on:screenData.selectCate2==citem2.disp_no}">
+							<a href="#" ng-click="menuCategory2Click(citem2)">{{citem2.disp_nm}}</a>
+							<div class="cca" ng-show="screenData.selectCate2==citem2.disp_no">
+								<a href="#" ng-repeat="citem3 in citem2.sub_cate_list" ng-click="menuCategory3Click(citem3)" class="ng-binding ng-scope">{{citem3.disp_nm}}</a>
+							</div>
+						</li>
+					</ul>
+					<div class="mall_cateLayerbar">
+						<a ng-click="hideSubCate()" class="close">닫기</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<!-- //category -->
+
+	<!-- container -->
+	<section class="gucci_location_area">
+		<p>
+			<span ng-if="!screenData.isComm">{{screenData.cateNodeName[0]}}</span>
+			<span ng-class="{last_location:screenData.cateNodeName[2]==''}" ng-if="!screenData.isComm">{{screenData.cateNodeName[1]}}</span>
+			<span ng-class="{last_location:screenData.cateNodeName[2]!=''}" ng-if="screenData.cateNodeName[2] != ''" && !screenData.isComm>{{screenData.cateNodeName[2]}}</span>
+		</p>
+		<div class="gucciSelect wine" ng-if="screenData.isWine">
+			<div class="gucciAlign">
+				<select name="gucciSort" id="gucciSort" ng-model="screenData.sortIdx" ng-change="sortClick()">
+					<option value="10">신상품순</option>
+					<option value="12">낮은가격순</option>
+					<option value="13">높은가격순</option>
+				</select>
+			</div>
+		</div>
+		<!-- D:20150925 html 추가 -->
+		<div class="gucciSelect clear" ng-if="!screenData.isWine">
+			<div class="gucciAlign">
+				<select name="gucciSort" id="gucciSort" ng-model="screenData.sortIdx" ng-change="sortClick()">
+					<option value="10">신상품순</option>
+					<option value="12">낮은가격순</option>
+					<option value="13">높은가격순</option>
+				</select>
+			</div>
+			<div class="gucciPrice">
+				<select name="gucciMoney" id="gucciMoney" ng-model="screenData.moneySelect" ng-change="moneyClick(screenData.moneySelect)">
+					<option value="">전체보기</option>
+					<option value="0_500000">0~50만원 이하</option>
+					<option value="500000_1000000">50~100만원 이하</option>
+					<option value="1000000_1500000">100~150만원 이하</option>
+					<option value="1500000_2000000">150~200만원 이하</option>
+					<option value="2000000_2500000">200~250만원 이하</option>
+					<option value="2500000_3000000">250~300만원 이하</option>
+					<option value="3000000_99999999">300만원 이상</option>
+				</select>
+			</div>
+		</div>
+		<!-- //D:20150925 html 추가 -->
+		<section class="gucci_category_list">
+			<ul>
+				<li ng-repeat="item in screenData.dispGoodsList">
+					<article class="prd_item">
+						<a ng-click="productClick(item)">
+							<div class="prd_img">
+								<img ng-src="{{item.img_url}}" alt="{{item.goods_nm}}" onerror="chImg(this,150)"></div>
+							<dl class="prd_info">
+								<dt class="name">상품명 : {{item.goods_nm}}</dt>
+								<dd class="name"><span>[{{item.brnd_nm}}] {{item.goods_nm}} </span></dd>
+								<dt class="price">현재가 :</dt>
+								<dd class="price"><span>{{item.sale_prc|number}}</span></dd>
+							</dl>
+						</a>
+					</article>
+				</li>
+			</ul>
+			<div class="noData" ng-if="!screenData.dispGoodsList.length && !productListLoading">해당하는 상품이 없습니다.</div>
+		</section>
+	</section>
+	<!-- //container -->
+</section>

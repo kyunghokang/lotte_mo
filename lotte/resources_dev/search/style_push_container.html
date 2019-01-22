@@ -1,0 +1,21 @@
+<section ng-show="contVisible" class="cont_minheight">
+	<div class="style_push_wrap" ng-controller="productCtrl">
+		<!-- s: unit list area -->
+		<div class="style_push_list"
+			product-container 
+			template-type="stylepush" 
+			total-count="srhResultData.tCnt" 
+			templatetype="templateType" 
+			products="srhResultData.prdList"
+			camera-img="defaultParams.imgPath"
+			more-product-continer="loadMoreData()">
+		</div>
+		<div class="listLoading" ng-if="productListLoadingFlag">
+			<p class="loading half"></p>
+		</div>
+		<div class="empty_product" ng-if="!prodcutFirstLoadFlag && (!srhResultData.prdList || srhResultData.prdList.length == 0) && screenData.pageEnd">죄송합니다! 고객님께서 찾는 이미지와 유사한 스타일의 상품이 없습니다.</div>
+		<button ng-click="stylePushLink()" class="btn_style_research">다시 찾아보기</button>
+	</div>
+
+	<lotte-btntop></lotte-btntop>
+</section>

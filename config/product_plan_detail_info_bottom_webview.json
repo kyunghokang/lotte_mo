@@ -1,0 +1,33 @@
+{
+	"tasks" : {
+		"uglify" : {
+			"jsproductPlanDetailInfoBottomWebview" : {
+				"src" : "lotte/resources_dev/product/m/webview/product_plan_detail_info_bottom_webview.js",
+				"dest" : "lotte/resources/webview/product_plan_detail_info_bottom_webview.min.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssproductPlanDetailInfoBottomWebview" : {
+				"src" : [
+					"lotte/resources_dev/product/m/webview/product_plan_detail_info_bottom_webview.css"
+				],
+				"dest" : "lotte/resources/webview/product_plan_detail_info_bottom_webview.min.css"
+			}
+		},
+
+		"processhtml" : {
+			"htmlproductPlanDetailInfoBottomWebview" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"product/m/webview/product_plan_detail_info_bottom_webview.html" : "product/m/webview/product_plan_detail_info_bottom_webview_dev.html"
+				}
+			}
+		}
+	}
+}
+

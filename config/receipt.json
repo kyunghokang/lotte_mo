@@ -1,0 +1,30 @@
+{
+    "tasks" : {
+        "concat" : {
+            "jsreceipt" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/event/receipt.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/receipt.js"
+            }
+        },
+
+        "uglify" : {
+            "jsreceipt" : {
+                "src" : "lotte/resources/<%= version %>/receipt.js",
+                "dest" : "lotte/resources/<%= version %>/receipt.min.js"
+            }
+        },
+
+
+        "clean" : {
+            "cleanreceipt" : [
+                "lotte/resources/<%= version %>/receipt.js"
+            ]
+        }
+    }
+}
+

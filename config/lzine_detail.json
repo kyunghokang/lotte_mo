@@ -1,0 +1,72 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplWineDetail" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/webzine/m/lzine_detail_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/lzine_detail.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsWineDetail" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                	"lotte/resources_dev/common/lotte_ngswipe.js",
+                    "lotte/resources_dev/webzine/m/lzine_detail.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/lzine_detail.js"
+            }
+        },
+
+        "uglify" : {
+            "jsWineDetail" : {
+                "src" : "lotte/resources/<%= version %>/lzine_detail.js",
+                "dest" : "lotte/resources/<%= version %>/lzine_detail.min.js"
+            },
+            "tplWineDetail" : {
+                "src" : "lotte/resources/<%= version %>/lzine_detail.template.js",
+                "dest" : "lotte/resources/<%= version %>/lzine_detail.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssWineDetail" : {
+                "src" : [
+                	"lotte/resources_dev/brandshop/brand_common.css",
+                	"lotte/resources_dev/specialHall/specialsHall.css",
+                    "lotte/resources_dev/webzine/m/lzine_detail.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/lzine_detail.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanWineDetail" : [
+                "lotte/resources/<%= version %>/lzine_detail.js",
+                "lotte/resources/<%= version %>/lzine_detail.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlWineDetail" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "webzine/m/lzine_detail.html" : "webzine/m/lzine_detail_dev.html"
+                }
+            }
+        }
+    }
+}
+

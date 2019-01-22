@@ -1,0 +1,69 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplEventInfo" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mylotte/pointcoupon/m/event_info_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/event_info.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsEventInfo" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mylotte/pointcoupon/m/event_info.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/event_info.js"
+            }
+        },
+
+        "uglify" : {
+            "jsEventInfo" : {
+                "src" : "lotte/resources/<%= version %>/event_info.js",
+                "dest" : "lotte/resources/<%= version %>/event_info.min.js"
+            },
+            "tplEventInfo" : {
+                "src" : "lotte/resources/<%= version %>/event_info.template.js",
+                "dest" : "lotte/resources/<%= version %>/event_info.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssEventInfo" : {
+                "src" : [
+                    "lotte/resources_dev/mylotte/pointcoupon/m/mylotte_event.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/event_info.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanEventInfo" : [
+                "lotte/resources/<%= version %>/event_info.js",
+                "lotte/resources/<%= version %>/event_info.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlEventInfo" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mylotte/pointcoupon/m/event_info.html" : "mylotte/pointcoupon/m/event_info_dev.html"
+                }
+            }
+        }
+    }
+}
+

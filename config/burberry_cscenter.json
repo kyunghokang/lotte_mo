@@ -1,0 +1,73 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplburberryCscenter" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mall/burberry/cscenter/burberry_cscenter_container.html",
+                    "lotte/resources_dev/mall/burberry/mall_sub_header.html",
+                    "lotte/resources_dev/mall/burberry/burberry_footer.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/burberry_cscenter.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsburberryCscenter" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mall/burberry/cscenter/burberry_cscenter.js",
+                    "lotte/resources_dev/common/lotte_ngswipe.js",
+                    "lotte/resources_dev/common/lotte_slider.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/burberry_cscenter.js"
+            }
+        },
+
+        "uglify" : {
+            "jsburberryCscenter" : {
+                "src" : "lotte/resources/<%= version %>/burberry_cscenter.js",
+                "dest" : "lotte/resources/<%= version %>/burberry_cscenter.min.js"
+            },
+            "tplburberryCscenter" : {
+                "src" : "lotte/resources/<%= version %>/burberry_cscenter.template.js",
+                "dest" : "lotte/resources/<%= version %>/burberry_cscenter.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssburberryCscenter" : {
+                "src" : [
+                    "lotte/resources_dev/mall/burberry/cscenter/burberry_cscenter.css",
+                    "lotte/resources_dev/mall/burberry/burberry_common.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/burberry_cscenter.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanburberryCscenter" : [
+                "lotte/resources/<%= version %>/burberry_cscenter.js",
+                "lotte/resources/<%= version %>/burberry_cscenter.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlburberryCscenter" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mall/burberry/cscenter/burberry_cscenter.html" : "mall/burberry/cscenter/burberry_cscenter_dev.html"
+                }
+            }
+        }
+    }
+}

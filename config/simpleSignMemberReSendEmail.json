@@ -1,0 +1,72 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplreSendEmail" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/login/find_ellotte_head.html",
+                    "lotte/resources_dev/login/resend_email_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberReSendEmail.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsreSendEmail" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/login/resend_email.js",
+                    "lotte/resources_dev/login/find_ellotte.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberReSendEmail.js"
+            }
+        },
+
+        "uglify" : {
+            "jsreSendEmail" : {
+                "src" : "lotte/resources/<%= version %>/simpleSignMemberReSendEmail.js",
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberReSendEmail.min.js"
+            },
+            "tplreSendEmail" : {
+                "src" : "lotte/resources/<%= version %>/simpleSignMemberReSendEmail.template.js",
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberReSendEmail.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssreSendEmail" : {
+                "src" : [
+                    "lotte/resources_dev/login/find_ellotte.css",
+                    "lotte/resources_dev/login/login.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberReSendEmail.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanreSendEmail" : [
+                "lotte/resources/<%= version %>/simpleSignMemberReSendEmail.js",
+                "lotte/resources/<%= version %>/simpleSignMemberReSendEmail.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlreSendEmail" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "login/simpleSignMemberReSendEmail.html" : "login/simpleSignMemberReSendEmail_dev.html"
+                }
+            }
+        }
+    }
+}
+

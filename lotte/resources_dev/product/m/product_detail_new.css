@@ -1,0 +1,100 @@
+@charset "utf-8";
+
+/* layer popup */
+/*
+.layerPop{position:fixed; width:100%; top:0; left:0; background:#fff; z-index:600;overflow-y:auto; max-height:100%;}
+#container ~ .layerPop{padding-bottom:50px}
+.layerPop #head_sub {position:fixed; left:0; top:0;}
+.layerPop #head_sub h2{background:#f3f3f3;border-bottom:1px solid #d0d0d0;color:#333;text-align:left;padding-left:10px;}
+.layerPop #head_sub .close a:before{background:url(http://image.lotte.com/lotte/mo2015/angular/common/btn_close_gray.png) no-repeat;background-size:12px 12px;}
+
+.detailQuick .quick {width:32px;height:16px;padding:8px 0;z-index:5000;text-indent:-9999px;text-align:center;}
+.detailQuick .goBack {left:7px;bottom:54px;background:rgba(0,0,0,0.3) url(http://image.lotte.com/lotte/mo2015/angular/detail/btn_quick1.png) center center no-repeat;background-size:16px;}
+.detailQuick .goTop {right:7px;bottom:54px;background:rgba(0,0,0,0.3) url(http://image.lotte.com/lotte/mo2015/angular/detail/btn_quick2.png) center center no-repeat;background-size:16px;}
+*/
+/*팝업*/
+/*
+.popup {position:fixed;display:none;top:50%;left:50%;width:300px;height:248px;margin:-124px 0 0 -150px;background:#fff;border-radius:15px;-webkit-border-radius:15px;z-index:5002;}
+.popup h6 {padding:12px 0;background:#f6f6f6;text-align:center;font-size:17px;color:#333;border-radius:15px 15px 0 0;}
+.popup .con_gift ul {width:100%; padding:5px 0; margin:15px 0; overflow:hidden;}
+.popup .con_gift ul li {width:50%; float:left; text-align:center; margin-left:-1px;}
+.popup .con_gift ul li:nth-child(1) {border-right:1px solid #f6f6f6;}
+.popup .con_gift ul li p {padding-top:5px;}
+.popup .txt_gift {text-align:center; color:#999; clear:both;}
+.popup .close {display:block;width:100%; height:35px; line-height:35px; position:absolute; left:0; bottom:0; border-top:1px solid #e6e6e6;text-align:center;border-radius:0 0 15px 15px;font-size:13px;color:#333;}
+*/
+/*말풍선*/
+/*
+.helpLayer {position:absolute; display:none; left:50%; top:50%; width:300px; margin-left:-170px; border:1px solid #719cff; padding:20px; background:#fff; color:#888; font-size:12px; z-index:10;}
+.helpLayer.lottePointPlusCard,
+.helpLayer.giftPrice,
+.helpLayer.lottePointPlusCard,
+.helpLayer.rentalOnly {margin-top:0px;}
+
+.helpLayer.rentalOnly, .helpLayer.rentalOnlyError{width: 234px; margin-left: -140px;letter-spacing: -1px}
+
+.helpLayer h6 {font-size:14px; padding-bottom:5px; color:#000; line-height:17px; font-weight:bold;}
+.helpLayer h6 strong {font-size:15px;}
+.helpLayer h6 span {font-size:10px; font-weight:normal;}
+.helpLayer p.tit {padding:10px 0 5px 0; color:#333; font-weight:bold;}
+.helpLayer ol li {list-style-type:decimal; margin-left:20px; font-size:11px; padding-bottom:5px;}
+.helpLayer .close {width:12px; height:12px; display:block; position:absolute; right:5px; top:5px; background:url(http://image.lotte.com/lotte/mo2015/angular/common/help_close.png) no-repeat; background-size:12px;}
+*/
+html,body{height:100%;}
+.product_detail_new{height:100%;padding-top:35px;}
+.product_detail_new #head_sub{overflow:hidden;position:fixed;width:100%;height:35px;left:0; top:0;border-bottom:1px solid #d0d0d0;background-color:#f3f3f3;z-index:1;}
+.product_detail_new #head_sub >h2{height:35px;padding:0 10px;line-height:35px;color:#333;font-size:1em;font-weight:normal;text-align:left}
+.product_detail_new #head_sub >.btn_close{display:block;overflow:hidden;position:absolute;top:0;right:0;width:50px;height:35px;border:0;background-color:transparent;text-indent:100%;white-space:nowrap;
+-webkit-appearance:none;
+-moz-appearance:none;
+appearance:none;
+outline:none
+}
+.product_detail_new #head_sub >.btn_close:after{content:"";display:block;position:absolute;top:50%;right:15px;width:12px;height:12px;margin:-6px;background:url(http://image.lotte.com/lotte/mo2015/angular/detail/btn_close_prd_detail.png) 0 0 no-repeat;background-size:12px 12px;}
+.product_detail_new .detail_wrap .detail_zoom{width:100%;}
+.product_detail_new .detail_wrap .detail_zoom img{max-width:100% !important;height:auto !important;}
+.product_detail_new .pop_zoom_info{position:fixed;top:50%;left:50%;width:150px;height:150px;margin:-75px;background:url(http://image.lotte.com/lotte/mo2015/angular/detail/pop_prd_detail_layer.png) 0 0 no-repeat;background-size:150px 150px;
+opacity:1;
+-webkit-transition: opacity .5s ease-in-out;
+-moz-transition: opacity .5s ease-in-out;
+-ms-transition: opacity .5s ease-in-out;
+-o-transition: opacity .5s ease-in-out;
+transition: opacity .5s ease-in-out;
+}
+.product_detail_new .pop_zoom_info.hide{opacity:0}
+
+/*
+@ -ms-viewport {
+	width:device-width;
+}
+@ -o-viewport { 
+	width:device-width;
+}
+@viewport {
+	width:device-width;
+}
+*/
+
+.product_detail_new.view640{padding-top:70px;}
+.product_detail_new.view640 #head_sub{height:70px;}
+.product_detail_new.view640 #head_sub >h2{height:70px;padding:0 20px;line-height:70px;font-size:2em;}
+.product_detail_new.view640 #head_sub >.btn_close{width:100px;height:70px;}
+.product_detail_new.view640 #head_sub >.btn_close:after{right:30px;width:24px;height:24px;margin:-12px;background-size:24px 24px;}
+.product_detail_new.view640 .pop_zoom_info{width:300px;height:300px;margin:-150px;background-size:300px 300px;}
+
+.product_detail_new.view900{padding-top:105px;}
+.product_detail_new.view900 #head_sub{height:105px;}
+.product_detail_new.view900 #head_sub >h2{height:105px;padding:0 30px;line-height:105px;font-size:3em;}
+.product_detail_new.view900 #head_sub >.btn_close{width:150px;height:105px;}
+.product_detail_new.view900 #head_sub >.btn_close:after{right:45px;width:36px;height:36px;margin:-18px;background-size:36px 36px;}
+.product_detail_new.view900 .pop_zoom_info{width:450px;height:450px;margin:-225px;background-size:450px 450px;}
+
+/*
+@media screen and (min-width:640px) {
+.product_detail_new.view640 #head_sub{background-color:red;}
+}
+
+@media screen and (min-width:900px) {
+.product_detail_new.view900 #head_sub{background-color:blue;}
+}
+*/

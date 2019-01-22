@@ -1,0 +1,71 @@
+<div class="main_popup n201811" ng-class="{full:appObj.isApp && mainPop.ppp_prt_tp_cd == 'F'}"  ng-if="isOpenPop" ng-show="isShowPop">     
+     <div class="dimmed2" ng-if="mainPop.ppp_tp_cd != 'A'" ng-click="popClose()"></div>
+     <div class="inner noswipe" ng-if="mainPop.ppp_tp_cd != 'A'">        
+          <!--공통팝업 (기존) -->
+          <div class="cont" id="id_main_popup" ng-if="mainPopNew == null">
+            <div class="img" ng-if="mainPop.ppp_tp_cd == 'I'">
+                <a href="{{mainPop.ppp_lnk_url_addr}}" ng-if="mainPop.is_function == true">
+                    <img ng-src="{{mainPop.ppp_img_file_path_nm}}" alt="LOTTE.COM"/>
+                </a>
+                <a ng-click="cornerBanView(mainPop.ppp_lnk_url_addr)" ng-if="mainPop.is_function == false">
+                    <img ng-src="{{mainPop.ppp_img_file_path_nm}}" alt="LOTTE.COM"/>
+                </a>
+            </div>
+            <div class="img" ng-if="mainPop.ppp_tp_cd == 'C'">
+                <a href="#" ng-click="dupCouponIssue(mainPop.cpn_no)">
+                    <img ng-src="{{mainPop.ppp_img_file_path_nm}}" alt="LOTTE.COM"/>
+                </a>
+                <a ng-if="mainPop.lnk_url_addr" ng-click="couponBnrLink(mainPop)">
+                    <img ng-src="{{mainPop.conts_file}}" alt="쿠폰 배너">
+                </a>
+            </div>
+        </div>      
+        <!--메인 전용 스와이프 팝업 -->
+        <div class="cont" ng-if="mainPopNew != null" id="id_main_popup" roll-swipe-banner rolling="true" width320="1" width640="1" width900="1" info="mainPopNew" getcontrol="getControlmp">
+			<ul class="swipeBox">
+				<li class="shop1" ng-repeat="item in mainPopNew">
+                   <div class="popCon">
+                       <div class="absolutePop">
+                            <div class="img" ng-if="item.ppp_tp_cd == 'I'">
+                                <a ng-click="popGATag(2, $index);pop_move({{item.ppp_lnk_url_addr}})" ng-if="item.is_function == true">
+                                    <img ng-src="{{item.ppp_img_file_path_nm}}" alt="LOTTE.COM"/>
+                                </a>
+                                <a ng-click="popGATag(2, $index);cornerBanView(item.ppp_lnk_url_addr)" ng-if="item.is_function == false">
+                                    <img ng-src="{{item.ppp_img_file_path_nm}}" alt="LOTTE.COM"/>
+                                </a>
+                            </div>
+                            <div class="img" ng-if="item.ppp_tp_cd == 'C'">
+                                <a href="#" ng-click="popGATag(2, $index);dupCouponIssue(item.cpn_no)">
+                                    <img ng-src="{{item.ppp_img_file_path_nm}}" alt="LOTTE.COM"/>
+                                </a>
+                                <a ng-if="item.lnk_url_addr" ng-click="couponBnrLink(item)">
+                                    <img ng-src="{{item.conts_file}}" alt="쿠폰 배너">
+                                </a>
+                            </div>                                                  
+                       </div>
+                   </div>
+                </li>
+            </ul> 
+            <ul class="indicator" ng-show="mainPopNew.length > 1">
+                <li ng-repeat="indicator in mainPopNew"><span>{{$index}}</span></li>
+            </ul>
+            <div class="sideindi next"  ng-show="mainPopNew.length > 1" ng-click="next_pop(1)"><img ng-src="http://image.lotte.com/lotte/mo2018/main/ic-control-right.png"></div>                                   
+            <div class="sideindi prv"  ng-show="mainPopNew.length > 1" ng-click="next_pop(-1)"><img ng-src="http://image.lotte.com/lotte/mo2018/main/ic-control-left.png"></div>                                   
+        </div>
+        
+        <div class="check" ng-class="{cType :mainPop.ppp_tp_cd == 'C' }">            
+            <button ng-click="popToday()">오늘은 그만 보기</button>
+            <button class="btn_close" ng-click="popClose()">닫기</button>
+        </div>
+    </div>
+
+    <!-- 20160819 제휴채널 전면 팝업 -->
+    <div ng-if="chkAlliancePopupObj.flag && mainPop.ppp_tp_cd == 'A'" class="alliance_pop">
+        <div class="dimmed"></div>
+        <div class="cont">
+            <a ng-click="allianceExcuteApp('{{mainPop.referrer}}')" class="img_wrap"><img ng-src="{{mainPop.ppp_img_file_path_nm}}" alt="롯데닷컴 앱 다운로드" /></a>
+            <!-- 2016.12.06 requests-->
+            <a ng-click="closeAlliancePopup();" class="btn_close"><img ng-src="http://image.lotte.com/lotte/mo2015/angular/detail/popBann_close_20160512.png" alt="롯데닷컴 앱 다운로드-닫기" /></a>
+        </div>
+    </div>
+</div>

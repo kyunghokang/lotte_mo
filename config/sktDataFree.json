@@ -1,0 +1,38 @@
+{
+    "tasks" : {
+        "concat" : {
+            "jssktDataFree" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/event/sktDataFree.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/sktDataFree.js"
+            }
+        },
+
+        "uglify" : {
+            "jssktDataFree" : {
+                "src" : "lotte/resources/<%= version %>/sktDataFree.js",
+                "dest" : "lotte/resources/<%= version %>/sktDataFree.min.js"
+            }
+        },
+
+        "cssmin" : {
+            "csssktDataFree" : {
+                "src" : [
+                    "lotte/resources_dev/event/sktDataFree.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/sktDataFree.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleansktDataFree" : [
+                "lotte/resources/<%= version %>/sktDataFree.js"
+            ]
+        }
+    }
+}
+

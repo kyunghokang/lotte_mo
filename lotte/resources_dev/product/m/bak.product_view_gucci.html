@@ -1,0 +1,137 @@
+<section ng-if="isBasicData">
+	<gucci-header></gucci-header>
+	<section class="gucci_slide_image">
+	        <div class="slide_image_wrap" ng-controller="lotteNgSwipeCtrl"  style="height:300px;">
+	            <ul class="swiper-wrapper" lotte-ng-list-swipe swipe-slide-item="true" swipe-list-model="imageList" swipe-max-ratio="0.2" swipe-min-distance="40" >
+	            	<li ng-repeat="sctg in imageList"  class="swiper-slide"><img ng-src="{{sctg.imgUrl}}" alt="상품이미지" /></li>
+	            </ul>
+	            <div class="page"></div>
+	            <div class="zoom_view_btn"><a href="#none">확대보기</a></div>
+	        </div>
+	</section>
+	
+	<section class="gucci_product_title">
+            <h3 class="product_name">{{BasicData.product.mgoods_nm}}</h3>
+    </section>
+
+    <section class="gucci_product_option">
+        <form name="frm_input" id="frm_input" style="display:block"  onsubmit="return false;">
+        	<input type="hidden"  name="invMgmtYn" value="{{BasicData.product.inv_mgmt_yn}}" />
+        	<input type="hidden"  name="mdl_no" value="{{BasicData.product.model_no}}" />
+        	
+            <dl>
+                <dt><span>판매가</span></dt>
+                <dd><span class="price">{{Fnproductview.getNumberFormat(BasicData.product.sale_prc)}}</span></dd>
+            </dl>
+            <div style="display:none">
+            <dl ng-repeat="itemDtl in BasicData.product.item_dtl.items" >
+                <dt><label for="option1">{{itemDtl.name }}</label></dt>
+                <dd>
+                	<input type="hidden" name="opt_name{{$index+1}}" value="{{itemDtl.name }}" />
+                    <div class="s_box02">
+                        <select id="opt_value{{$index+1}}" name="opt_value{{$index+1}}" ng-model="item_no" ng-change="optionChange({{$index+1}}, this)">
+                            <option value="">선택하세요</option>
+                            <option ng-repeat="item in itemDtl.item.items" ng-model="item_no"  ng-selected="selectedItem == item.item_no" ng-disabled="item.opt_stk_yn=='Y' && item.opt_cnt=='0'" value="{{item.opt_value }}^{{item.item_no}}^{{item.opt_stk_yn}}^{{item.opt_cnt}}">{{(item.opt_stk_yn=='Y' && item.opt_cnt=='0')?'(품절)':''}}{{item.opt_value }}</option>
+                        </select>
+                    </div>
+                </dd>
+            </dl>
+            <dl ng-if="btnDispTp == '00'">
+                <dt><label for="option2">수량</label></dt>
+                <dd>
+                    <button class="qty_minus" onclick="setOptsQty(-1)"><span>-</span></button>
+                    <span class="qty_number">
+                    	<input class="qty_input" type="number" id="optQty" name="opt_qty" value="{{BasicData.product.min_lmt_qty}}">
+                    </span>
+                    <button class="qty_plus" onclick="setOptsQty(1)"><span>+</span></button>
+                </dd>
+            </dl>
+        </form>
+        
+		<!--버튼영역-->
+		<div ng-switch on="btnDispTp">
+			<div ng-switch-when="01" class="end">죄송합니다. T월드를 통해서 오신 경우<br/>이 상품은 구매하실 수 없습니다.<br/>바로 방문으로 구매해 주세요.</div>
+			<div ng-switch-when="02" class="end">죄송합니다. 모바일에서 주문할 수 없는 <br/>상품입니다.컴퓨터로 접속 후 이용해 주세요.</div>
+			<div ng-switch-when="03" class="end">죄송합니다. 모바일에서 주문할 수 없는 <br/>상품입니다.컴퓨터로 접속 후 이용해 주세요.</div>
+			<div ng-switch-when="04" class="end">죄송합니다. 모바일에서 주문할 수 없는 <br/>상품입니다.컴퓨터로 접속 후 이용해 주세요.</div>
+			<div ng-switch-when="05" class="end">죄송합니다. 모바일에서 주문할 수 없는 <br/>상품입니다.컴퓨터로 접속 후 이용해 주세요.</div>
+			<div ng-switch-when="06" class="end">죄송합니다. 모바일에서 주문할 수 없는 <br/>상품입니다.컴퓨터로 접속 후 이용해 주세요.</div>
+			<div ng-switch-when="07" class="sold_out">죄송합니다. 본 상품은 품절 상태입니다.</div>
+			<div ng-switch-when="08" class="sold_out">죄송합니다. 본 상품은 품절 상태입니다.</div>
+			<div ng-switch-when="09" class="sold_out">죄송합니다. 본 상품을 구매하실 수 없습니다.</div>
+			<div ng-switch-default>
+				<ul class="order_button_list">
+		            <li class="wishlist_button"><a href="javascript:openOptionCheck('wish');">위시리스트</a></li>
+		            <li class="cart_button"><a href="javascript:openOptionCheck('cart');">장바구니</a></li>
+		            <li class="quick_order_button"><a href="javascript:openOptionCheck('buy');">바로주문</a></li>
+		        </ul>
+			</div>
+		</div>
+		</div>
+    </section>
+    <!-- //gucci product option -->
+
+    <!-- gucci other product -->
+    <section ng-if="BasicData.product_list.products.total_count > 0" class="gucci_other_product">
+        <h4 class="title">다른 옵션 보기</h4>
+        <div class="other_product_list">
+            <ul>
+             <li ng-repeat="item in BasicData.product_list.products.items" ng-model="item_no"><a href="javascript:productView('{{reqParam.curDispNo}}', '{{item.goods_no}}')">
+	            	<img ng-src="{{item.img_url}}" alt="{{item.goods_nm}}"/></a></li> <!--  onerror="chImg(this,150)" -->
+            </ul>
+        </div>
+    </section>
+    <!-- //gucci other product -->
+    
+    <product-form-info  ng-if="isBasicData"></product-form-info>
+    <!-- gucci md notice -->
+    <section class="gucci_md_notice">
+    	<div ng-if="BasicData.product.md_ntc_fcont != 'null' || BasicData.product.md_ntc_fcont1 != '' || BasicData.product.md_ntc_fcont2 != ''" class="md_notice_box" ng-bind-html="mdNtcFcont"></div>
+	    <dl>
+            <dt>상품코드</dt>
+            <dd>{{reqParam.goods_no }}</dd>
+        </dl>
+        <dl>
+            <dt>구찌상품코드</dt>
+            <dd>{{BasicData.product.model_no}}</dd>
+        </dl>
+        <dl>
+            <dt>상품정보</dt>
+            <dd>
+            	<product-detail-html></product-detail-html>
+            </dd>
+        </dl>
+    </section>
+    <!-- //gucci md notice -->
+
+    <!-- gucci product info -->
+    <gucci-product-info></gucci-product-info>
+    
+    <!-- gucci new product -->
+    <section ng-if="BasicData.product_list2.products.total_count > 0" class="gucci_new_product">
+        <h4 class="title">해당 카테고리 신상품</h4>
+        <ul>
+		
+		<c:forEach var="item" items="${productList2}" varStatus="cnt" begin="1" end ="4">
+            <li ng-repeat="item in BasicData.product_list2.products.items | filter:($index < 4)" ng-model="item_no">
+                <article>
+                    <a href="javascript:productView('{{item.disp_no }}', '${item.goods_no}')">
+                        <div class="prd_img"><img ng-src="{{item.img_url}}" alt=""></div>
+                        <dl class="prd_info">
+                            <dt class="name">상품명 :</dt>
+                            <dd class="name"><span>{{item.goods_nm}} </span></dd>
+                            <dt class="price">현재가 :</dt>
+                            <dd class="price"><span>{{Fnproductview.getNumberFormat(item.sale_prc)}}</span></dd>
+                        </dl>
+                    </a>
+                </article>
+            </li>
+		</c:forEach>
+            
+        </ul>
+    </section>
+
+
+	<gucci-bottom-menu></gucci-bottom-menu>
+	<lotte-footer-product-optionbar ></lotte-footer-product-optionbar>
+</section>

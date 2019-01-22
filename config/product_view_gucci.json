@@ -1,0 +1,100 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplGucciProduct" : {
+				"options": {
+					"prefix":"/",
+					"module" : "app"
+				},
+				"src" : [
+					"lotte/resources_dev/layout/header_sub_gucci.html",
+					"lotte/resources_dev/unit/comm_unit.html",
+					"lotte/resources_dev/unit/unit_deal_01.html",
+					"lotte/resources_dev/unit/unit_type01.html",
+
+					"lotte/resources_dev/layer/main_popup.html",
+					"lotte/resources_dev/layer/app_down_bnr.html",
+
+					"lotte/resources_dev/product/m/gucci_product_view_container.html",
+					"lotte/resources_dev/product/m/gucci_product_view_ctg.html",
+					"lotte/resources_dev/product/m/gucci_product_info.html",
+					"lotte/resources_dev/product/m/gucci_product_info_size10.html",
+					"lotte/resources_dev/product/m/gucci_product_info_size11.html",
+					"lotte/resources_dev/product/m/gucci_product_info_size12.html",
+					"lotte/resources_dev/product/m/gucci_product_info_size13.html",
+					"lotte/resources_dev/product/m/gucci_product_info_size14.html",
+					"lotte/resources_dev/product/m/gucci_product_info_size15.html",
+					"lotte/resources_dev/product/m/gucci_product_info_size16.html",
+					"lotte/resources_dev/product/m/gucci_product_info_size17.html",
+					"lotte/resources_dev/product/m/gucci_product_info_size18.html",
+					"lotte/resources_dev/product/m/gucci_product_info_size19.html",
+					"lotte/resources_dev/product/m/gucci_product_info_size20.html",
+					"lotte/resources_dev/product/m/gucci_product_info_size21.html",
+					"lotte/resources_dev/product/m/gucci_bottom_menu.html",
+					"lotte/resources_dev/product/m/lotte_footer_product_optionbar.html",
+					"lotte/resources_dev/product/m/productFormInfo.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/product_view_gucci.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsGucciProduct" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/lib/angular/angular-route.min.js",
+					"lotte/resources_dev/common/lotte_ngswipe.js",
+					"lotte/resources_dev/common/lotte_unit_new.js",
+					"lotte/resources_dev/layer/main_popup.js",
+					"lotte/resources_dev/product/m/gucci_product_view.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/product_view_gucci.js"
+			}
+		},
+
+		"uglify" : {
+			"jsGucciProduct" : {
+				"src" : "lotte/resources/<%= version %>/product_view_gucci.js",
+				"dest" : "lotte/resources/<%= version %>/product_view_gucci.min.js"
+			},
+			"tplGucciProduct" : {
+				"src" : "lotte/resources/<%= version %>/product_view_gucci.template.js",
+				"dest" : "lotte/resources/<%= version %>/product_view_gucci.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssGucciProduct" : {
+				"src" : [
+					"lotte/resources_dev/layout/header_sub_gucci.css",
+					"lotte/resources_dev/product/m/gucci.css",
+					"lotte/resources_dev/product/m/gucci_common.css",
+					"lotte/resources_dev/product/m/gucci_product.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/product_view_gucci.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanGucciProduct" : [
+				"lotte/resources/<%= version %>/product_view_gucci.js",
+				"lotte/resources/<%= version %>/product_view_gucci.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlGucciProduct" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"product/m/product_view_gucci.html" : "product/m/product_view_gucci_dev.html"
+				}
+			}
+		}
+	}
+}

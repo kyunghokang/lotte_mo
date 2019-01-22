@@ -1,0 +1,99 @@
+<div class="infant_tip_wrap" >
+
+	<div class="keyword_area" dep-filter-layer ng-class="{on:keyword_more}">
+		<ul>
+			<li ng-repeat="item in screenData.KeyWrodList" ng-if="$index<9">
+				<a ng-click="">#{{item.title}}</a>
+			</li>
+			<li ng-show="!keyword_more"><a ng-click="moreKeyword()" class="more">+더보기</a></li>
+		</ul>
+	</div>
+	
+	<section class="useful_tip_wrap photo_area">
+		<ul class="list_wrap">
+			<li ng-repeat="item in screenData.gallery_list">
+				<div class="write_info">
+					<span>{{item.w_date}}</span>
+					<span>{{item.user_name | hidestr}}</span>
+					<div class="btn_wrap">
+						{{snsSubtitleChange(item.text)}}
+						<span class="sns"><a ng-click="showSharePop({prdComment:item.text.substr(0,100),shareImg:item.img_list.items[0].img_url, bbsNo :item.bbs_no})">공유</a></span>
+						<span class="modify" ng-if="item.login_id == item.user_name"><a ng-click="modifyClick(item,$index)">수정/삭제</a></span>
+					</div>
+				</div>
+				<div class="txt_area">
+					<div class="cont" ng-class={on:item.open}>
+						<a ng-click="contMoreClick(item)" >
+							<div class="contentsText" ng-bind-html="item.text" id="swaglist_cont{{$index}}"></div>
+						</a>
+					</div>
+                    <span ng-class={on:item.more} class="btn_more" ng-if="item.big"><a ng-click="contMoreClick(item)" class="more">더보기</a></span>
+				</div>					
+				
+				<div class="slide" ng-controller="lotteNgSwipeCtrl" ng-click="popOption.zoomPopup({{$index}},{{pidx}})">		
+					<button class="btn prev" ng-show="swipeIdx > 0" ng-click="beforeSlide()">Preview</button>
+					<div class="mask">			
+						<ul class="list" lotte-ng-list-swipe swipe-responsive="true" swipe-responsive640="1" swipe-responsive900="1" swipe-slide-item="true" swipe-list-model="img_list" swipe-id="img_list{{$index+1}}" swipe-max-ratio="0.2"swipe-min-distance="40">
+							<!-- 이미지가 하나인경우 -->							
+							<li class="one" ng-repeat="items in item.img_list.items" ng-if="item.img_list.items.length==1">
+								<span style="background-image:url({{items.img_url}})"></span>
+							</li>							
+							<!-- 이미지가 여러개인 경우 -->
+							<li ng-repeat="items in item.img_list.items" ng-if="item.img_list.items.length>1 && !(img_list.length%2==1 && $index==item.img_list.length-1 && screenType > 1)">
+								<img ng-src="{{items.img_url}}">
+							</li>							
+						</ul>					
+					</div>
+					<button class="btn next" ng-show="swipeIdx<=(item.img_list.items.length-2)" ng-click="nextSlide()">Next</button>
+					<ol class="bullet" ng-if="item.img_list.items && item.img_list.items.length > 1">
+						<li ng-repeat="item in item.img_list.items" ng-class="{active:$index==swipeIdx}">{{$index}}</li>
+					</ol>
+				</div>
+				<div class="prod">
+					<a href="#" ng-click="mallProductClick(item, 'm_DC_SpeDisp_Dearpet_Clk_Prd_I{{$index + 1}}')">	
+						<div class="imgArea"><span class="img_wrap"><img ng-src="{{item.goods_img}}" alt="{{item.goods_nm}}"></span></div>
+						<div class="txt_wrap">
+							<span class="title"><var><span ng-if="item.brnd_nm">[{{item.brnd_nm}}]</span> {{item.goods_nm}}</var></span>
+							<span class="price"><strong>{{item.price | number}}</strong>원<var ng-if="item.is_plan_prod == true">~</var></span>
+						</div>
+					</a>	
+				</div>
+			</li>
+		</ul>
+	</section>
+</div>
+
+<!-- imagePopUp -->
+<ImagePopUp 
+	ng-if="popOption.open && popOption.data.length" 
+	class='gellery-zoomPopup'>
+	<figure>
+		<img 
+			ng-pinch-zoom 
+			max-scale="4" 
+			ng-src='{{popOption.data[popOption.cnt].img_url}}'
+			orientable	
+			width='{{imageSize.width}}'
+			height='{{imageSize.height}}'			
+			alt=''/>
+		</figure>
+	<span 
+		class='close' 
+		ng-click='popOption.popState()'>
+	</span>
+	<div class='indicator'>
+		<span class='page'>
+			{{popOption.cnt +1}}/{{popOption.data.length}}
+		</span>
+	</div>
+	<span 
+		ng-if='popOption.cnt>0' 
+		class='arrow prev' 
+		ng-click='popOption.prev()'>
+	</span>
+	<span 
+		ng-if='popOption.data.length>1&&popOption.cnt<popOption.data.length-1' 
+		class='arrow next' 
+		ng-click='popOption.next()'>
+	</span>	
+</ImagePopUp>

@@ -1,0 +1,24 @@
+<div class="popup reviewPop">
+	<div class="popCont">
+		<div class="text_wrap">
+			<span class="desc">리뷰 작성하고 상위 랭크에 도전 해보세요!</span>
+		</div>
+		<div class="image_wrap">
+			<ul>
+				<li ng-repeat="item in myLotteMainInfo.noCritCommentInfo.items" ng-if="$index < 3">
+					<a ng-click="goRegComment(item, $index + 1)">
+						<span class="image" ng-style="{'background' : 'url(' + item.imgUrl + ') center center no-repeat', 'background-size': 'cover'}"></span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<label for="">7일간 다시보지 않기
+			<input type="checkbox" id="cbReviewPop" name="cbReviewPop"
+					ng-model="reviewPopHide"
+					ng-change="saveReviewPop()"
+					ng-true-value="'Y'"
+					ng-false-value="'N'">
+		</label>
+	</div>
+	<a ng-click="closeReviewPop()" class="close">닫기</a>
+</div>

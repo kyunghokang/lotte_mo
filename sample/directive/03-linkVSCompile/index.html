@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>AngularJS Sample App</title>
+<link rel="stylesheet" href="../../css/bootstrap.css"/> 
+<script src="../../../lib/angular/angular.js"></script>
+<script src="../../common/logger.js"></script>
+<script src="app.js"></script>
+</head>
+<body ng-app="app" > 
+<H2>Directive compilation vs linking function</H2>
+<pre>
+compilation stage는 app 전체 lifecycle에서 한번만 실행되고, scope 생성 전에 실행됨에 따라 scope 변수를 사용할 수 없다.
+linking stage는 scope가 directive에 attach 될 때 실행됨에 따라 scope 변수 사용이 가능하다.
+
+* ng-repeate에서 반복적으로 호출되는 directive의 경우 매번 실행이 되므로 복잡한 로직을 처리하는 것은 바람직하지 않다.
+compile 레벨에서 element를 한번에 처리하도록 로직의 구성을 하는 것이 필요하다. 
+</pre>
+
+<div ng-controller="appCtrl">
+<H4>Linking function</H4>
+<ul>
+	<ol ng-repeat="item in items"><a-nineteen-check-link></a></ol>
+</ul>
+<H4>compile function</H4>
+<ul>
+	<ol ng-repeat="item in items"><a-nineteen-check-compile name="{{item.name}}" type="{{item.type}}"></a></ol>
+</ul>
+</div>
+</body> 
+</html>

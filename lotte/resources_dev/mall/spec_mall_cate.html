@@ -1,0 +1,103 @@
+<div class="smcCateContainer">
+	
+	<!-- 메인 페이지 카테고리 -->
+	<div class="smcCateMain" ng-class="{spec_mkc:kShopUI.type == 'mk_template'}" ng-if="smcCateType=='main'">
+		<!-- 아이콘 슬라이드형 -->
+		<div class="smcIconType cnt{{smcCateList.length}}" ng-if="smcListType=='icon'">
+			<div lotte-slider>
+				<ul style="width:{{smcCateWidth*smcCateList.length}}px">
+					<li ng-repeat="cate in smcCateList track by $index" style="width:{{smcCateWidth}}px">
+						<a ng-href="{{smcGetSubUrl1(cate)}}" ng-link3d-touch>
+							<span style="background-image:url({{cate.img_url}})" class="img"></span>
+							<span class="txt">{{cate.name}}</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		<!-- 리스트형 -->
+		<div class="smcListType" ng-if="smcListType=='list'">
+			<!-- 6개 미만 -->
+			<div ng-if="smcCateList.length <= 6">
+				<ul>
+					<li ng-repeat="cate in smcCateList track by $index">
+						<a ng-href="{{smcGetSubUrl1(cate)}}" ng-link3d-touch>{{cate.name}}</a>
+					</li>
+				</ul>
+			</div>
+			<!-- 6개 이상 -->
+			<div ng-if="smcCateList.length > 6">
+				<ul ng-if="smcListMore==false">
+					<li ng-repeat="cate in smcCateList | limitTo:5">
+						<a ng-href="{{smcGetSubUrl1(cate)}}" ng-link3d-touch>{{cate.name}}</a>
+					</li>
+					<li class="more">
+						<a ng-click="smcCateListShowMore()">더보기</a>
+					</li>
+				</ul>
+				<ul ng-if="smcListMore==true">
+					<li ng-repeat="cate in smcCateList track by $index">
+						<a ng-href="{{smcGetSubUrl1(cate)}}" ng-link3d-touch>{{cate.name}}</a>
+					</li>
+					<!-- <li class="more">
+						<a>더보기</a>
+					</li> -->
+				</ul>
+			</div>
+		</div>
+		
+		<!-- 20180607 마이클코어스 2단 카테고리 형 -->
+		<div class="smcDepthType cnt{{smcCateList.length}}" ng-if="smcListType=='depth'">
+			<div class="depthWrap" lotte-slider>
+				<ul class="smcCateUl">
+					<li ng-repeat="cate in smcCateList track by $index" class="dpList">
+						<a href="#" ng-click="subCateShow($index)" ng-link3d-touch><span ng-class="{on:mainSubCateNo == $index}">{{cate.name}}</span></a>
+					</li>
+				</ul>
+			</div>
+			<div class="sub_cate_wrap" ng-if="subShow">
+				<div class="sub_cate_inWrap">
+					<ul>
+						<li ng-repeat="cate2 in smcCateList[mainSubCateNo].sctgs track by $index">
+							<a href="#" ng-href="{{smcGetSubUrl2(cate2)}}" ng-link3d-touch>{{cate2.name}}</a>
+						</li>
+					</ul>
+					<span class="closeSubCate" ng-click="subCateClose();">닫기</span>
+				</div>
+			</div>
+			<div class="sub_dimm" ng-if="subShow" ng-click="subCateClose();"></div>
+		</div>
+	</div>
+	
+	<!-- 서브 페이지 카테고리 -->
+	<div class="smcSubCate" ng-if="smcCateType=='sub'">
+		<div class="smcNavigator cd{{smcSubNaviList.currentDepth}}" ng-class="{open:smcSubNaviList.visible,d0:smcSubNaviList.depth==0,d1:smcSubNaviList.depth==1,d2:smcSubNaviList.depth==2}">
+			<div class="navi d{{$index}}" ng-repeat="cate in smcSubIndicator track by $index">
+				<a ng-click="smcShowSubNavi(cate, $index)"><span>{{cate.name}}</span></a>
+			</div>
+		</div>
+		<div class="smcSubNavi" ng-if="smcSubNaviList.visible">
+			<div class="smcSubNaviList">
+				<ul lotte-ng-list-swipe swipe-id="smcSubNaviSwipe" swipe-list-model="smcSubNaviList.list" swipe-slide-item="true"
+					swipe-max-ratio="0.2" swipe-min-distance="40" swipe-responsive="true" swipe-responsive320="1" swipe-responsive640="1">
+					<li ng-repeat="item in smcSubNaviList.list track by $index">
+						<a ng-repeat="ctg in item track by $index" ng-href={{smcGetNaviUrl(ctg)}} ng-link3d-touch
+							ng-class="{on:
+								(smcSubNaviList.depth==0 && smcSubIndicator[0].ctg_no==ctg.ctg_no)
+								|| (smcSubNaviList.depth==1 && smcSubIndicator[1].ctg_no==ctg.ctg_no)
+								|| (smcSubNaviList.depth==2 && smcSubIndicator[2].ctg_no==ctg.ctg_no)
+							}">{{ctg.name}}</a>
+					</li>
+				</ul>
+			</div>
+			<div class="smcSubNaviIndi">
+				<ul ng-if="smcSubNaviList.list.length > 1">
+					<li ng-repeat="item in smcSubNaviList.list track by $index" ng-class="{on:$index==swipeIdx}">{{$index}}</li>
+				</ul>
+				<a class="close" ng-click="smcHideSubNavi()">닫기</a>
+			</div>
+		</div>
+	</div>
+	
+</div>

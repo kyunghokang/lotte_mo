@@ -1,0 +1,39 @@
+<div class="dearpetgram_wrap">
+	<!--h3 class="title">{{screenData.disp_name}}</h3-->
+	<section class="dear_wrap social photo_area dearpetgram">
+		<ul class="list_wrap" ng-if="screenData.dispGallery">
+			<li id="bbc_{{item.bbc_no}}" ng-repeat="item in screenData.gallery_list">
+				<div class="box_area">
+					<div class="txt_area">
+						<div class="txt_wrap">
+							<span class="userphoto"><img ng-src="http://image.lotte.com/lotte/mo2015/angular/mall/v_dearpet_petgram_photo.gif" /></span>
+							<p><span>{{item.user_name}}</span></p>
+							<div class="btn_wrap">
+								<span class="sns"><a ng-click="showSharePop({prdComment:item.goods_nm,shareImg:item.img_url, bbsNo:item.bbs_no})">공유</a></span>
+							</div>
+						</div>
+						<div class="cont" ng-class={on:item.open}>
+							<a class='detail_txt'>
+								<div class="contentsText" ng-bind-html="item.text" id="swaglist_cont{{$index}}"></div>
+							</a>
+						</div>
+						<span ng-class={on:item.more} class="btn_more" ng-if="item.big&&screenType<2"><a ng-click="contMoreClick(item)" class="more">더보기</a>
+					</div>
+					<div class="img_wrap" ng-click="popOption.zoomPopup(0,{{$index}},true)"><img ng-src="{{item.img_url}}"></div>
+					<div class="prod">
+						<a href="#" ng-click="mallProductClick(item, 'm_DC_SpeDisp_Dearpet_Clk_Prd_H{{$index + 1}}')">
+							<div class="imgArea"><span class="img_wrap"><img ng-src="{{item.goods_img}}" alt="{{item.goods_nm}}"></span></div>
+							<div class="txt_wrap">
+								<span class="title"><var><span ng-if="item.brnd_nm">[{{item.brnd_nm}}]</span> {{item.goods_nm}}</var></span>
+								<span class="price"><span>{{item.price | number}}</span>원<var ng-if="item.is_plan_prod == true">~</var></span>
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="count_wrap">
+					<span id="recomm_{{item.bbc_no}}" class="like" ng-click="recomm_click(item)">{{item.like_count}}</span>
+				</div>
+			</li>
+		</ul>
+	</section>
+</div>

@@ -1,0 +1,347 @@
+<section id="lotteLoginFormCont" ng-show="contVisible" >
+    <!--201710 비밀번호변경 안내 팝업-->
+    <div ng-if="alpass" class="whitebox">
+        <div class="alpass_box" ng-if="alpass_case1">
+            <div class="rockIcon">자물쇠아이콘</div>    
+            <p class="msg">고객님의 소중한 개인정보 보호를 위해<br>자동 로그아웃 되었습니다.</p>
+            <ul class="msg_info">
+                <li>최근 외부사이트에서 해킹에 의한 <br>개인정보 유출 사례가 발생하고 있습니다.</li>
+                <li>회원님의 소중한 개인정보가 안전하게 관리될 수 <br>있도록 자동 로그아웃되며, 재로그인 시 <br>비밀번호를 반드시 변경해주세요.</li>
+            </ul>
+            <div class="msg_btn" ng-click="alpass_ok()">확인</div>
+        </div>
+        <div class="alpass_box"  ng-if="alpass_case2">
+            <div class="rockIcon rock">자물쇠아이콘</div>    
+            <p class="msg">고객님의 소중한 개인정보 보호를 위해<br>지금 비밀번호를 변경해주세요.</p>
+            <ul class="msg_info">
+                <li>최근 외부사이트에서 해킹에 의한 <br>개인정보 유출 사례가 발생하고 있습니다.</li>
+                <li>회원님의 소중한 개인정보가 안전하게 관리될 수 <br>있도록 비밀번호를 반드시 변경해주세요.</li>
+            </ul>
+            <div class="foot_btn">
+                <div class="btn type2" ng-click="alpass_close()">취소</div>
+                <div class="btn" ng-click="alpass_ok()">변경하기</div>                
+            </div>
+        </div>
+    </div>
+    <div ng-if="!alpass">
+        <ul id="smp_nav" ng-if="smp_yn">
+            <li><a ng-click="promotionUrl()"><span>LOTTE smart pick</span></a></li>
+            <li class="on"><a ng-click="pickListUrl()"><span>my 교환권</span></a></li>
+            <li><a ng-click="setupUrl()"><span>설정</span></a></li>
+        </ul>
+        <form id="frm" name="frm" method="post" action="" onsubmit="">
+            <input type="hidden" name="targetUrl" id="targetUrl" value="{{targetUrl}}" />
+            <input type="hidden" id="udid" name="udid" value="{{udid}}" />
+            <input type="hidden" name="schema" value="{{schema}}" />
+            <input type="hidden" name="grockle_yn" value="" ng-model="grockle_yn" ng-value="{{grockle_yn}}" />
+            <input type="hidden" name="app_login_form" value="N" />
+            <input type="hidden" name="mach_knd_cd" value="{{mach_knd_cd}}" />
+            <input type="hidden" name="mbl_app_ver_val" value="{{v}}" />
+            <input type="hidden" name="fromPg" ng-model="fromPg" value="{{fromPg}}" /> <!-- 0 = 로그인, 1 = 비회원 구매하기, 2 = 비회원 주문조회 구분 값 -->
+            <input type="hidden" name="simpleSignMember" id="simpleSignMember" ng-model="simpleSignYn" value="{{simpleSignYn}}" /> <!-- ng-value=" simpleSignYn = 'N' " 간편 로그인 유무 -->
+            <input type="hidden" name="adultChkDrmc" id="adultChkDrmc" value="{{adultChk}}" />
+            <input type="hidden" name="tmpOnlCno" id="tmpOnlCno" value="{{tmpOnlCno}}" />
+
+            <input type="hidden" name="minority_yn" id="minority_yn" ng-model="minority_yn" value="{{minority_yn}}" />
+            <input type="hidden" name="reg_status" id="reg_status" ng-model="reg_status" value="{{reg_status}}" />
+            <!-- 20160113 추가 -->
+            <input type="hidden" name="drmcCust_id" id="drmcCust_id" ng-model="drmcCust_id" value="{{drmcCust_id}}"  />
+
+            <input type="hidden" name="userIdEasy" id="user_id_easy"> <!-- 20181221 추가 강민수 -->
+
+            <!-- 20160310 추가 -->
+            <input type="hidden" name="mbrIP" id="mbrIP" ng-model="mbrIP" value="{{mbrIP}}"  />
+
+            <!-- 20181113 sso 로그인 접근/갱신토큰 전달  -->
+            <input type="hidden" name="sso_aces_tkn" ng-model="sso_aces_tkn" value="{{sso_aces_tkn}}" />
+            <input type="hidden" name="sso_rnw_tkn" ng-model="sso_rnw_tkn" value="{{sso_rnw_tkn}}" />
+            <input type="hidden" name="socialChannel" ng-model="socialChannel" value="{{socialChannel}}">
+            <!-- 로그인 -->
+            <section class="easy_login_wrap type2017" >
+                <p class="login_des" ng-if="isSmartpick == 'Y'"><img src="http://image.lotte.com/lotte/mobile/smartpick/common/login_des0326.gif" alt="LOTTE smart pick 방문을 진심으로 환영합니다."></p>
+                <ul class="menu type2" ng-if="isSmartpick != 'Y'">
+                    <li class="list-tab" id="tab_lpoint" ng-class="{on : isOnTab == 0 || isOnTab == 1 || isOnTab == 3}">
+                        <a ng-click="tabFunc(0)">L.POINT 통합/간편 회원</a>
+                    </li>
+                    <li class="list-tab" id="tab_only"  ng-class="{on : isOnTab == 2}">
+                        <a ng-click="tabFunc(2)">비회원 주문조회</a>
+                    </li>
+                </ul>
+                <p class="adult_txt" ng-if="adultChk && isSmartpick != 'Y' && (isOnTab == 0 || isOnTab == 1)">19세 미만의 청소년에게 접근이 제한된 정보입니다.<br><span>본인인증 후 이용이 가능합니다.</span></p>
+                <ul class="menu radio" ng-if="(isOnTab == 0 || isOnTab == 1 || isOnTab == 3)">
+                    <li>
+                        <span class="combo">
+                            <input type="radio" ng-click="tabFunc(3)" name="mem_login" id="mem_login1" value="" class="radio01" checked="">
+                            <label for="mem_login1"><span>L.POINT 통합 회원</span></label>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="combo">
+                            <input type="radio" ng-click="tabFunc(1)" name="mem_login" id="mem_login2" value="" class="radio01">
+                            <label for="mem_login2"><span>간편가입 계정</span></label>
+                        </span>
+                    </li>
+                </ul>
+
+                <!-- 회원 -->
+                <div class="easy_login_box" ng-if="sysChkYn == 'N'">
+                    <article class="member sub-tab" style="display: block;">
+                        <fieldset>
+                            <legend>L.POINT 통합회원 로그인</legend>
+                            <p class="info_txt" ng-if="isSmartpick == 'Y'"><span>간편가입 계정은 엘롯데, 롯데닷컴 등 일부 사이트만 이용 가능합니다.</span></p>
+                            <p class="info_txt" ng-if="isSmartpick != 'Y'"><span>L.POINT 통합 회원은 한 아이디로 롯데 전 계열사를 이용 가능합니다. </span></p>
+                            <ul class="easy_login_input">
+                                <li><input type="text" class="txt01" id="userId" value="{{saveId}}" ng-model="lPointId" name="userId" value="" placeholder="아이디 또는 이메일 아이디" title="아이디 또는 이메일 아이디" maxlength="200" autocapitalize="off"></li>
+                                <li><input type="password" class="txt01" id="lPointPw" ng-model="lPointPw"  name="lPointPw"  ng-keyup="fn_enterKeyUp(this.name, $event)" placeholder="비밀번호" title="비밀번호" maxlength="200"></li>
+                                <li>
+                                    <span>
+                                        <input type="checkbox" class="check01" id="auto" name="auto" value="1" title="자동 로그인" checked onclick="this.checked == true? this.value='1' : this.value=''">
+                                        <label for="auto">자동 로그인</label>
+                                    </span>
+                                    <span>
+                                        <input type="checkbox" class="check01" id="save" name="save" value="1" title="아이디 저장" checked onclick="this.checked == true? this.value='1' : this.value=''">
+                                        <label for="save">아이디 저장</label>
+                                    </span>
+                                    <span class="keyboard" ng-click="keyboardToggle(0)">
+                                        <a href="#go" class="on">한글자판열기</a>
+                                    </span>
+                                </li>
+                            </ul>
+                            <div class="keyboard_layer" style="display: none;"><img src="http://image.lotte.com/lotte/mobile/mobile_new/footer/login_keyboard.png" alt="키보드화면"></div>
+                            <div class="login_btn01">
+                                <a href="#go" class="c_btn col01"  ng-click="checkLoginDelay('N')"><span>로그인</span></a>
+                            </div>
+
+                            <!-- 아이디찾기 / 비밀번호찾기 / 회원가입 -->
+                            <ul ng-if="joinBtnViewYn != 'N'" class="join_link_wrap">
+                                <li><a href="#none" ng-click="goFamilySite('id')">아이디 찾기</a></li>
+                                <li><a href="#none" ng-click="goFamilySite('passwd')">비밀번호 찾기</a></li>
+                                <li><a href="#none" ng-click="goFamilySite('mem_reg')">회원가입</a></li>
+                            </ul>
+
+                            <div class="new_msg" ng-if="joinBtnViewYn != 'N'">간편가입 회원이실 경우 간편가입 계정 선택 후 회원정보를 찾아주세요.</div>
+
+                            <!-- 회원가입불가 안내 -->
+                            <div ng-if="joinBtnViewYn == 'N'" id="ios_text" class="unable_join">
+                                [아이디/비밀번호 찾기, 회원가입] 서비스는 일시적으로 <br />
+                                롯데닷컴/엘롯데 PC를 통해 이용가능합니다.<br />
+                                이용에 불편을 드려 죄송합니다.
+                            </div>
+
+                            <ul class="join_link_wrap">
+                                <!--  비회원 구매하기 -->
+                                <li class="none_member" ng-show="fromPg != '3' && minority_yn != 'Y' && smp_buy_yn != 'Y' && fromPg != '0' && fromGift == '0' && !prdbbr"><i></i><a class="btn_view_buy" id="buy" href="#none" ng-click="none_member_buy()">비회원 구매하기</a></li>
+
+                                <!--  비회원 주문조회 -->
+                                <!-- <li class="none_member" ng-show="fromPg == '3'"><i></i><a class="btn_view_order" id="search" href="#none" ng-click="none_member_search()">비회원 주문조회</a></li> -->
+                            </ul>
+
+                            <!-- Social Login /-->
+                            <div ng-if="socialLoginFlag" class="social_login_wrap">
+                                <!-- <ul>
+                                    <li class="social_facebook"><a ng-click="fbLogin()" class="btn_social_login">페이스북으로 로그인</a></li>
+                                    <li class="social_naver"><a ng-click="naverLogin()" class="btn_social_login">네이버로 로그인</a></li>
+                                </ul> -->
+                                <button type="button" class="btn_sociallogin_naver" ng-click="naverLogin();">네이버 아이디로 로그인</button>
+                            </div>
+                        </fieldset>
+                    </article>
+                    <!-- //회원 -->
+
+                    <!-- 비회원 -->
+                    <article class="nonmember sub-tab" style="display: none">
+                        <fieldset>
+                            <legend>간편가입 계정 로그인</legend>
+                            <!-- <p class="adult_txt" ng-if="adultChk">19세 미만의 청소년에게 접근이 제한된 정보입니다.<br><span>본인인증 후 이용이 가능합니다.</span></p> -->
+                            <p class="info_txt"><span>간편가입 계정은 롯데닷컴, 엘롯데 등 일부 사이트만 이용 가능합니다.</span></p>
+                            <ul class="easy_login_input">
+                            	<!-- 20181220 간편회원 아이디입력창 수정 강민수 -->
+                                <li class="login_id_box2018">
+                                    <input type="text" class="txt01" id="userIdEasy" placeholder="이메일 아이디" title="이메일 아이디" value="{{saveIdEasy}}" maxlength="200" autocapitalize="off">
+                                    <em>@</em>
+                                    <select class="userIdEasySel" id="userIdEasySel" ng-model="register.val" value="{{saveIdEasyNum}}" ng-options="item.cd as item.cd_nm for item in emailIdSel" ng-if="textType" ng-change="userIdEasySelFn()"></select>
+                                    <input class="userIdEasySel" id="userIdEasyTxt" type="text" placeholder="직접입력" value="{{saveIdEasy2}}" ng-if="!textType" ng-blur="loginTxtVal()"/>
+                                    <i ng-if="textType"></i>
+                                </li>
+                                <!-- //20181220 간편회원 아이디입력창 수정 강민수 -->
+                                <li><input type="password" class="txt01" id="userPwEasy" name="userPwEasy" placeholder="비밀번호" title="비밀번호" maxlength="200"></li>
+                                <li>
+                                    <span>
+                                        <input type="checkbox" class="check01" id="autoEasy" name="autoEasy" value="1"  title="자동 로그인" checked onclick="this.checked == true? this.value='1' : this.value=''">
+                                        <label for="autoEasy">자동 로그인</label>
+                                    </span>
+                                    <span>
+                                        <input type="checkbox" class="check01" id="saveEasy" name="saveEasy" value="1"  title="계정 저장" checked onclick="this.checked == true? this.value='1' : this.value=''">
+                                        <label for="saveEasy">계정 저장</label>
+                                    </span>
+                                    <span class="keyboard" ng-click="keyboardToggle(1)">
+                                        <a href="#go" class="on">한글자판열기</a>
+                                    </span>
+                                </li>
+                            </ul>
+                            <div class="keyboard_layer"><img src="http://image.lotte.com/lotte/mobile/mobile_new/footer/login_keyboard.png" alt="키보드화면"></div>
+                            <div class="login_btn01">
+                                <a href="#go" class="c_btn col01" ng-click="checkLoginDelay('N')"><span>로그인</span></a>
+                            </div>
+
+                            <ul class="join_link_wrap">
+                                <li><a href="#" ng-click="goSimpleMemberId()">계정 찾기</a></li>
+                                <li><a href="#" ng-click="goSimpleMemberPw()">비밀번호 찾기</a></li>
+                            </ul>
+
+                            <!--20180612 안내문구추가-->
+                            <div class="new_msg">간편가입 계정 회원가입은 PC에서 가능합니다.</div>
+
+                            <ul class="join_link_wrap">
+                                <!--  비회원 구매하기 -->
+                                <li class="none_member" ng-show="fromPg != '3' && minority_yn != 'Y' && smp_buy_yn != 'Y' && fromPg != '0' && fromGift == '0' && !prdbbr"><i></i><a class="btn_view_buy" id="buy" href="#none" ng-click="none_member_buy()">비회원 구매하기</a></li>
+                                <!--  비회원 주문조회 -->
+                                <!-- <li class="none_member" ng-show="fromPg == '3'"><i></i><a class="btn_view_order" id="search" href="#none" ng-click="none_member_search()">비회원 주문조회</a></li> -->
+                            </ul>
+                        </fieldset>
+                    </article>
+                    <!-- //비회원 -->
+                    <!-- 비회원 주문조회 -->
+                    <!-- 20170502로그인화면개선 -->
+                    <section class="view_order_wrap type2017 nonmember sub-tab" id="view_order_wrap">
+                        <fieldset>
+                            <legend>비회원 주문조회</legend>
+                            <div class="view_order_box">
+                                <h3 class="view_order_title">비회원의 주문번호와 이메일 주소를 입력해주세요.</h3>
+                                <h3 class="view_order_title2">주문일로부터 1년 이내 주문정보만 조회 가능합니다.</h3>
+                                <ul class="view_order_input">
+                                    <li><input type="tel" name="ord_no" class="txt01" placeholder="주문번호 (예시 : 2015-02-01-1234567)" title="주문번호" maxlength="1000"></li>
+                                    <li><input type="text" name="grockle_mail" class="txt01" placeholder="이메일 주소" title="비밀번호" ng-keyup="fn_enterKeyUp( event )" maxlength="1000"></li>
+                                </ul>
+                                <div class="view_order_btn">
+                                    <a href="#go" class="c_btn col01" ng-click="searchOrderNumDelay()"><span>비회원 주문조회</span></a>
+                                </div>
+                                <p class="join_txt">회원가입하시면  다양한 쿠폰/포인트 등<br>혜택을 받으실 수 있습니다.</p>
+                                <div class="join_btn">
+                                    <a href="#" ng-click="goFamilySite('mem_reg')"><span>회원가입</span></a>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </section>
+                    <!-- //비회원 주문조회 -->
+                    <section ng-show="sysChkYn == 'Y'">
+                        <!--서비스 점검 페이지-->
+                        <div class="boxA">
+                            <div class="boxB">
+                                <p>점검시간 : <span>2013년 5월 12일 AM 02:00~05:30</span></p>
+                                <p>작업시간동안 <span>로그인 서비스</span>를 이용하실 수 없습니다.</p>
+                            </div>
+                            <div class="boxB">
+                                롯데닷컴을 사랑하시는 고객님들께 불편을 드려 대단히 죄송합니다.<br>
+                                빠른시간 내에 작업을 마치고 정상화 할 수 있도록 노력하겠습니다.
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </section>
+            <!-- //로그인 -->
+
+<!-- 비회원 구매하기 --> <section class="login"> <div class="nonmember sub-tab" id="view_order_wrap2" > <div ng-show="minority_yn == 'Y'"> <div class="btn_member"> <span class="txt"> <b>비회원은 이용하실 수 없습니다.</b><br> 이 상품은 청소년유해매체물로서<br> 정보통신망 이용촉진 및 정보보호 등에 관한<br> 법률 및 청소년보호법의 규정에 의하여<br> 19세 미만의 청소년이 이용할 수 없습니다. </span> </div> </div> <div ng-show="smp_buy_yn == 'Y'"> <div class="btn_member"> <span class="txt"> <b>스마트픽</b><br> 1.스마트픽 상품은 로그인후 구매하실 수 있습니다.<br> 2.회원 로그인 후 서비스를 이용하세요.<br> </span> </div> </div> <div class="non_buy" ng-show="minority_yn != 'Y' && smp_buy_yn != 'Y'"> <span class="txt">비회원으로 상품을 구매하시면<br>롯데닷컴의 쿠폰/포인트 등의 혜택을 받으실 수 없습니다.</span> <div class="btn"><a ng-click="buy()" class="c_btn col01"><span>비회원 구매하기</span></a></div> </div> <div ng-show="isEllotte == true"> <div class="non_order"> <p>2014년 9월 22일 이전주문 내역 조회는 <br>고객센터 (1899-2500)로 문의해주시기 바랍니다.</p> </div> </div> <!-- ELLOTTE PROJECT : HSLIM8 END --> <div class="btn_member"> <span class="txt"> L.Point 회원가입을 하시면<br>할인쿠폰과 L-money 등의 혜택을 드립니다.<br> <em>모바일로 상품 구매시 카드/쿠폰할인 등<br>푸짐한 혜택을 드립니다.</em> </span> <div class="btn"><a href="#go" ng-click="goFamilySite('mem_reg')" class="c_btn col05"><span>회원가입</span></a></div> </div> </div> </section> <!-- //비회원 구매하기 --> <!-- 비회원 주문조회 --> <section class="view_order_wrap" id="view_order_wrap" > <fieldset> <legend>비회원 주문조회</legend> <div class="view_order_box"> <h3 class="view_order_title">비회원의 주문번호와 이메일 주소를 입력해주세요.</h3> <ul class="view_order_input"> <li><input type="tel" name="ord_no" class="txt01" placeholder="주문번호 (예시 : 2015-02-01-1234567)" title="주문번호" maxlength="1000"></li> <li><input type="text" name="grockle_mail" class="txt01" placeholder="이메일 주소" title="비밀번호" ng-keyup="fn_enterKeyUp( event )" maxlength="1000"></li> </ul> <div class="view_order_btn"> <a class="c_btn col01" ng-click="searchOrderNumDelay()"><span>비회원 주문조회</span></a> </div> <p class="join_txt">회원가입하시면  다양한 쿠폰/포인트 등<br>혜택을 받으실 수 있습니다.</p> <div class="join_btn"> <a ng-click="goFamilySite('mem_reg')"><span>회원가입</span></a> </div> </div> </fieldset> </section> <!-- //비회원 주문조회 --> </form> <div name="divfrmSend" id="divfrmSend"> <p ng-bind-html="FrmSendData"></p> </div>
+
+
+		<!-- 2017-12-26 스마트픽 앱 종료 팝업 -->
+		<div class="app_end_pop_bg" ng-if="isSmartpick == 'Y' && smp_end_yn == true"></div>
+		<div class="app_end_pop" ng-if="isSmartpick == 'Y' && smp_end_yn == true">
+			<div class="content">
+				<div class="cont_scroll">
+					<img src="http://image.lotte.com/lotte/mobile/smartpick/common/pop_app_end.gif" alt="스마트픽 앱 서비스 종료를 안내 드립니다." />
+					<a class="btn_lottecom" ng-click="smpEndAppCall('lotte');">롯데닷컴 앱 다운받기</a>
+					<a class="btn_ellotte" ng-click="smpEndAppCall('ellotte');">엘롯데 앱 다운받기</a>
+				</div>
+			</div>
+		</div>
+
+
+        <!-- 20140917 참좋은혜택 팝업-->
+        <div class="benefit_layer grade_up bg" style="display:none"></div>
+
+        <!-- 20140822 top:35% 제거-->
+        <div class="benefit_layer grade_up" style="display:none">
+            <div class="cont">
+                <a href="{{defaultDomain}}/mylotte/sub/soGoodBenefit.do?{{baseParam}}"><img src="http://image.lotte.com/lotte/mobile/popup/popup_benefit_0917.png" alt="혜택받으러가기"></a><br>
+            </div>
+            <div class="check">
+                <span class="today">
+                    <input type="checkbox" id="choice01" onclick="javascript:setToDayNotView('ellotteMemPopYn');">
+                    <label for="choice01">오늘하루 그만보기</label>
+                </span>
+                <span class="close"><a href="javascript:closeMemPopup();">닫기</a></span>
+            </div>
+        </div>
+
+        <form name="grockle_frm" id="grockle_frm" method="post">
+            <input type="hidden" name="grockle_yn" value="">
+            <input type="hidden" name="grockle_mbr_no" value="">
+            <input type="hidden" name="orderNo" value="">
+        </form>
+
+        <!-- 소셜 로그인 -->
+        <form id="sociallogin_frm" name="sociallogin_frm" method="post">
+            <input type="hidden" name="targetUrl" id="targetUrl" />
+            <input type="hidden" name="copToken">
+            <input type="hidden" name="copCls">
+
+            <!-- 20181113 sso 로그인 접근/갱신토큰 전달  -->
+            <input type="hidden" name="sso_aces_tkn" ng-model="sso_aces_tkn" value="{{sso_aces_tkn}}" />
+            <input type="hidden" name="sso_rnw_tkn" ng-model="sso_rnw_tkn" value="{{sso_rnw_tkn}}" />
+            <input type="hidden" name="socialChannel" ng-model="socialChannel" value="{{socialChannel}}">
+        </form>
+
+        <!--주문서 넘어가기 직전 로딩바-->
+        <div class="buyLoading" id="buyLoading">
+            <a class="btnOptionClose" ng-click="buyLoadingClose()">팝업닫기</a>
+            <div class="loading"></div>
+            <div class="message">탁월한 선택! 롯데닷컴입니다.</div>
+        </div>
+
+        <!-- 휴면회원 복원용 레이어 -->
+        <div ng-if="mbRestoreLoadingFlag" ng-show="mbRestoreLoadingFlag" class="mb_restore_loading">
+            <a class="btn_close" ng-click="mbRestoreClose()">팝업닫기</a>
+            <div class="loading"></div>
+            <div class="message">
+                휴면되었던 고객님의 정보를 <strong>복원하는 중</strong>입니다.<br />
+                잠시만 기다려 주세요.
+            </div>
+        </div>
+
+        <!-- 임직원 등록 팝업 -->
+        <section id="pageCover"></section>
+        <div id="lotteStaffGuide" class="lotteStaffGuide">
+            <header id="head_sub">
+                <h2><strong>롯데 임직원 고객님</strong> 환영합니다!</h2>
+                <p>지금 임직원 등록하시고 혜택 누리세요~</p>
+            </header>
+            <div>
+                <ul class="list">
+                    <li><span class="first_letter">혜택1. </span>
+                        상품 구매 시 최대 15% 할인혜택을 드립니다.<br />
+                        <var>(단, 임직원 할인 시 타할인 수단 적용 불가)</var>
+                    </li>
+                    <li><span class="first_letter">혜택2. </span>
+                        임직원 전용 특가매장(임직원 명절 매장 등)<br />
+                        운영 시 상품 구매 혜택을 드립니다.
+                    </li>
+                </ul>
+                <ul class="optionBtn">
+                    <li><a ng-click="closeLotteStaffPopup()" class="btn_close">닫기</a></li>
+                    <li><a ng-click="RegLotteStaff()" class="btn_addr">임직원 등록하기</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- //임직원 등록 팝업 -->
+
+        <!-- 제휴로그인 미맵핑 Loadding -->
+        <div class="social_mapping_wrap" ng-show="socialMapping">
+            <div class="inner_wrap">
+                로그인 처리중입니다. 잠시만 기다려 주세요.
+            </div>
+            <div class="loading"></div>
+        </div>
+
+    </div>
+</section>

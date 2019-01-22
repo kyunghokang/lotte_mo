@@ -1,0 +1,70 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplProdList2" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/category/m/prod_list_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/prod_list2.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsProdList2" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/category/m/prod_list.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/prod_list2.js"
+            }
+        },
+
+        "uglify" : {
+            "jsProdList2" : {
+                "src" : "lotte/resources/<%= version %>/prod_list2.js",
+                "dest" : "lotte/resources/<%= version %>/prod_list2.min.js"
+            },
+            "tplProdList2" : {
+                "src" : "lotte/resources/<%= version %>/prod_list2.template.js",
+                "dest" : "lotte/resources/<%= version %>/prod_list2.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssProdList2" : {
+                "src" : [
+					"lotte/resources_dev/brandshop/brand_common.css",
+					"lotte/resources_dev/specialHall/specialsHall.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/prod_list2.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanProdList2" : [
+                "lotte/resources/<%= version %>/prod_list2.js",
+                "lotte/resources/<%= version %>/prod_list2.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlProdList2" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "category/m/prod_list.html" : "category/m/prod_list_dev.html"
+                }
+            }
+        }
+    }
+}
+

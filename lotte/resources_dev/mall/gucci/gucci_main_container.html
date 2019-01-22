@@ -1,0 +1,81 @@
+<section ng-show="contVisible" class="cont_minheight">
+	<div class="gucci_title">구찌 공식 스토어</div>
+	<header id="gucciSubHead" sub-header-each>
+		<h2><a ng-href="/mall/gucci/gucci_main.do?{{baseParam}}&tclick=G_LOGO"><span>GUCCI</span></a></h2>
+		<nav>
+			<ul class="ctg_list_big">
+				<li ng-repeat="citem in screenData.cate_list" ng-class="{big_on:screenData.selectCate1==citem.disp_no}">
+					<a href="#" class="btn_ctg_big" ng-click="menuCategory1Click(citem)">{{citem.disp_nm}}</a>
+				</li>
+			</ul>
+			<ul class="ctg_list_mid" ng-show="screenData.showAllCategory">
+				<!-- <button class="open_btn" ng-click="showAllCategoryClick()">더보기</button> -->
+				<li ng-repeat="citem in screenData.cate_list"><a href="#" ng-click="menuCategoryClick(citem)">{{citem.disp_nm}}</a></li>
+			</ul>
+			<div class="ctg_list_sml" ng-repeat="citem in screenData.cate_list" ng-show="screenData.selectCate1==citem.disp_no">
+				<ul>
+					<li ng-repeat="citem2 in citem.sub_cate_list" ng-class="{on:screenData.selectCate2==citem2.disp_no}">
+						<a href="#" ng-click="menuCategory2Click(citem2, citem)">{{citem2.disp_nm}}</a>
+						<div class="cca" ng-show="screenData.selectCate2==citem2.disp_no" ng-class="{scroll:citem2.sub_cate_list.length > 7}">
+		                    <a href="#" ng-repeat="citem3 in citem2.sub_cate_list" ng-click="menuCategory3Click(citem3, citem2)" class="ng-binding ng-scope"><span>{{citem3.disp_nm}}</span></a>
+		                </div>
+					</li>
+				</ul>
+				<div class="mall_cateLayerbar">
+		        	<a ng-click="hideCate()" class="close">닫기</a>
+		        </div>
+		    </div>
+		</nav>
+	</header>
+	<!-- Main Banner -->
+	<section class="main_visual_area">
+		<ul ng-repeat="items in screenData.planshop_banner_list">
+			<li>
+				<a ng-click="gucciBannerClick(items)">
+				<img ng-src="{{items.img.img_url}}" ng-alt="{{items.img.banner_nm}}" onerror="chImg(this,170)"/></a>
+			</li>
+		</ul>
+	</section>
+	<!-- //Main Banner -->
+
+	<!-- Main Product -->
+	<section class="new_arrivals_area">
+
+		<!-- 구분자 Iamge 20160509 이미지 수정 -->
+		<h3 class="section_title">
+			<a ng-click="newArrival()">
+				<img src="http://image.lotte.com/lotte/mo2015/angular/detail/gucci_newarrivals_title_v2.gif" alt="NEW ARRIVALS" />
+			</a>
+		</h3>
+		<!-- // 구분자 Iamge -->
+
+		<ul>
+			<li ng-repeat="items in screenData.new_arrival_prod_list">
+				<article class="prd_item">
+					<a ng-click="goProduct(items.goods.goods_no)">
+						<div class="prd_img">
+							<img ng-src="{{items.goods.img_url}}" alt="" onerror="chImg(this,150)">
+						</div>
+						<dl class="prd_info">
+							<dt class="name">상품명 :</dt>
+							<dd class="name"><span>{{items.goods.goods_nm}}</span></dd>
+							<dt class="price">현재가</dt>
+							<dd class="price"><span>{{items.goods.discounted_price | number}}</span></dd>
+						</dl>
+					</a>
+				</article>
+			</li>
+		</ul>
+	</section>
+	<!-- //Main Product -->
+
+	<!-- button Area -->
+	<section class="main_cs_link_area">
+		<ul>
+			<li class="faq_link"><a ng-click="gucciFAQClick()"><span>FAQ</span></a></li>
+			<li class="inquiry_link"><a ng-click="gucciQNAClick()"><span>문의하기</span></a></li>
+		</ul>
+	</section>
+	<!-- //button Area -->
+
+</section>

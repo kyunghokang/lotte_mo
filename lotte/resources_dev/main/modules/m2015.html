@@ -1,0 +1,28 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<div class="moduleCon">
+		<div class="gTop_title">
+			<span>{{moduleData.topTxt}}</span>
+			<b><p class="line2" ng-bind-html="moduleData.serviceTxt | trusted"></p></b>
+		</div>
+
+		<div class="mov_wrap">
+			<ul>
+				<li>
+					<div class="mov_cnt">
+						<video controls="controls" video-poster="{{moduleData.imgUrl}}" id="autoVideo1" playsinline="true" webkit-playsinline="true">
+							<source ng-src="{{moduleData.mvUrl | trusted}}" type="video/mp4">
+						</video>
+						<div class="play_cover"></div>
+						<div class="stop_cover"></div>
+						<div class="click_cover"></div>
+						<a ng-click="movMute();" class="btn_move_volume btn_text">음소거</a>
+						<a ng-click="logGAEvtModuleEach('01', '재생');movPlay();" class="btn_move_start">비디오 재생</a>
+						<a ng-click="movPause()" class="btn_move_stop btn_text">일시정지</a>
+						<a ng-click="movieClick(moduleData.detailUrl, moduleData.tclick + '_Clk_video01')" class="btn_move_goods btn_text">자세히보기</a>
+					</div>
+				</li>
+			</ul>
+			<p class="mov_txt"><a ng-click="logGAEvtModuleEach('02', moduleData.btmTxt);movieClick(moduleData.detailUrl, moduleData.tclick + '_Clk_video01')">{{moduleData.btmTxt}}</a></p>
+		</div>
+	</div>
+</section>

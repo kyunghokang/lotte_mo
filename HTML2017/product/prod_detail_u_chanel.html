@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+	<meta charset="utf-8">
+	<title>롯데닷컴</title>
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+
+	<!-- 기존 css & js -->
+	<!-- <script src="/lotte/resources_dev/common/common_load_2017.js"></script> -->
+	<link rel="stylesheet" type="text/css" href="common.min.css">
+	<link rel="stylesheet" type="text/css" href="product_view.min.css">
+	<!-- //기존 css & js -->
+	<!-- 신규 css -->
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/product/m/product_view_2017.css"/>
+	<!-- //신규 css -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script><!-- 코딩용 angular js -->
+
+</head>
+<body ng-controller="ProductCtrl">
+
+	<div id="wrapper">
+
+		<section>
+			<header class="sub_header_top_wrap" id="lotteHeader">
+				<div class="inner_wrap headerFixed">
+					<h1 class="logo"><button class="btn_main">LOTTE.COM</button></h1>
+					<button class="btn_prev">이전</button>
+					<div class="header_srh_wrap web">
+						<div class="srh_box">
+							<label for="keyword" class="btn_srh"></label>
+						</div>
+					</div>
+					<button class="btn_ctg">카테고리</button>
+					<button class="btn_cart">장바구니<i class="cnt">5</i></button>
+				</div>
+			</header>
+		</section>
+
+		<section class="cont_minheight">
+			<!-- sub_header_wrap -->
+			<div class="sub_header_wrap">
+				<header id="head_sub" style="z-index:10;position:fixed;top:48px;width:100%">
+					<div class="ng-scope">
+						<h2>
+							<span>
+								<span>상품상세</span>
+								<a class="btn_sel"></a>
+							</span>
+							<span class="titLocation">
+								<span class="headTagspan">
+									<a class="ddca ng-binding">화장품</a>
+								</span>
+								<span class="headTagspan">
+									<a>색조메이크업</a>
+								</span>
+								<span class="headTagspan">
+									<a>립스틱</a>
+								</span>
+							</span>
+						</h2>
+						<p class="header_wish share gift"><a href="#"><img id="wishIcon" src="http://image.lotte.com/lotte/mo2015/angular/detail/detail_wish_icon.png"></a></p>
+						<p class="this gift"><a href="#">공유</a></p>
+					</div>
+				</header>
+			</div>
+			<!-- //sub_header_wrap -->
+
+			<!-- container -->
+			<div id="container">
+				<!-- 퍼블리싱 시작-->
+
+				<div class="chanel_sub_header">
+					<p>CHANEL</p>
+				</div>
+
+				<!--상품 상세 기본 wrapper(한번만 사용할 것): prod_detail_wrap-->
+				<div class="prod_detail_wrap">
+
+					<div class="img_swipe_wrap">
+						<!-- 이미지 스와이프 -->
+						<ul class="swipeBox">
+							<li>
+								<div>
+									<img src="http://image.lotte.com/goods/03/16/09/97/3/397091603_2_550.jpg" alt="">
+									<!--<span class="play_btn"></span>-->
+								</div>
+							</li>
+						</ul>
+
+						<!--이미지 스와이프 좌우버튼, 플레이버튼-->
+						<div class="btn_wrap">
+							<span class="prev_btn"></span>
+							<span class="next_btn"></span>
+						</div>
+
+						<!--페이징-->
+						<div class="page_wrap">
+							<p class="page"><span class="cur_page">1</span>/<span class="all">6</span></p>
+						</div>
+
+						<!--추천-- >
+						<div class="recom">
+							<span class="recom_msg"><img src="http://image.lotte.com/lotte/mo2015/angular/detail/style_0223_1.png"></span>
+							<span class="recom_btn"></span>
+						</div>
+
+						<!--&lt;!&ndash;플래그&ndash;&gt;
+						<div class="flag_wrap">
+							<span class="flag2 depart">롯데백화점</span>
+							&lt;!&ndash;<span class="flag2 free_ship">무료배송</span>&ndash;&gt;
+							&lt;!&ndash;<span class="flag2 gift_pack">선물포장</span>&ndash;&gt;
+							&lt;!&ndash;<span class="flag2 tv_shopping">TV쇼핑</span>&ndash;&gt;
+							<span class="flag2 smartpick">스마트픽</span>
+						</div>-->
+					</div>
+
+					<!--종류(색상)정보-->
+					<div class="kind_info div_line_b">
+						<p class="kind_nm">90 팜팡트 <em>(품절)</em></p>
+						<div class="kind_color" style="overflow: scroll;">
+							<!--<ul class="recommond_swipe" ng-class="{small : BasicData.product.colors.items.length < 6}" lotte-ng-list-swipe swipe-id="chanelColorSwipe" swipe-list-model="chanelColorData" swipe-responsive="true" swipe-autoheight="true" swipe-responsive320="1" swipe-responsive640="1" swipe-responsive900="1" swipe-slide-item="true" swipe-max-ratio="0.2" swipe-min-distance="40" swipe-list-model="products">
+								<li ng-repeat="item in chanelColorData">
+									<ul>
+										<li ng-repeat="items in item">
+											<a ng-click="ColorClick(items, 'm_DC_ProdDetail_Swp_Color_idx', ($parent.$index * 6 + ($index)));" ng-class="{on:ColorNo==items.color_no}">
+												<span ng-if="items.is_soldout == true" class="dim"></span>
+												<div>
+													<img ng-src="{{items.cr_img_url}}">
+												</div>
+											</a>
+										</li>
+									</ul>
+								</li>
+							</ul>-->
+
+							<!--swipe-end-exec : 실행할 scope 함수 [Function Name($event)]
+								swipe=loading-el : 로딩 엘리면트 class 또는 id
+								swipe-max-ratio : 실행 조건 비율 [0.0 ~ 1]
+								swipe-min-distance : 최소 범위 [0-100]%
+								swipe-loop : 무한 스와이프 [true/false]
+								swipe-responsive : 반응형 스와이프 [true/false]
+								swipe-responsive320 : 320px 이상 640 이하 일때의 반응형 스와이프 겟수
+								swipe-responsive640 : 640px 이상 900 이하 일때의 반응형 스와이프 겟수
+								swipe-responsive900 : 900px 이상 일때의 반응형 스와이프 겟수
+								swipe-disp-count : 노출 갯수
+								swipe-slide-item : 슬라이드형 스와이프 좌 우 둘다 사용시 ] [ ] [ 이련 유형의 스와이프 구성 가능
+								swipe-left-margin : 좌측 여백 설정 ] [ ] 이련 유형의 스와이프 구성 가능
+								swipe-right-margin: 우측 여백 설정 [ ] [ 이련 유형의 스와이프 구성 가능
+								swipe-first-index : 처음에 노출할 인덱스(1개씩 노출할때 사용 권장)
+								swipe-list-model : 리스트 스코프명 (적용 안할경우 기존 리스트로 구동 사용할경우 리스트가 변경됨에 따라 같이 변경)
+								swipe-autoheight : true/false 스와이프 자동 높이 계산-->
+
+							<ul class="kind_swipe" lotte-ng-list-swipe
+								swipe-id="chanelColorSwipe"
+								swipe-list-model="chanelColorData"
+								swipe-responsive="true"
+								swipe-autoheight="true"
+								swipe-responsive320="1"
+								swipe-responsive640="1"
+								swipe-responsive900="1"
+								swipe-slide-item="true"
+								swipe-max-ratio="0.2"
+								swipe-min-distance="40">
+								<!--li 상태 변화 클래스 on: 선택, dim_cont dim50: 품절-->
+								<li><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_1.jpg"></li>
+								<li><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_13.jpg"></li>
+								<li><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_17.jpg"></li>
+								<li class="on"><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_18.jpg"></li>
+								<li class="dim_cont dim50"><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_19.jpg"></li>
+								<li><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_2.jpg"></li>
+								<li><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_22.jpg"></li>
+								<li><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_25.jpg"></li>
+								<li><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_26.jpg"></li>
+								<li><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_27.jpg"></li>
+								<li><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_29.jpg"></li>
+								<li><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_31.jpg"></li>
+								<li><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_32.jpg"></li>
+								<li><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_35.jpg"></li>
+								<li><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_36.jpg"></li>
+								<li><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_37.jpg"></li>
+								<li><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_38.jpg"></li>
+								<li><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_4.jpg"></li>
+								<li><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_42.jpg"></li>
+								<li><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_43.jpg"></li>
+								<li><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_44.jpg"></li>
+								<li><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_45.jpg"></li>
+								<li><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_5.jpg"></li>
+								<li><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_6.jpg"></li>
+							</ul>
+						</div>
+
+						<div class="swipe_btn_wrap">
+							<div class="swipe_btn">
+								<span class="prev" ng-click="beforeSlide()" ng-show="swipeBulletIdx > 0">이전</span> <!--상태변화 클래스 on: 활성화-->
+								<span class="next on" ng-click="nextSlide()" ng-show="swipeBulletIdx<=(swipeBullet.length-2)">다음</span>
+							</div>
+						</div>
+
+					</div>
+
+					<!--기본정보-->
+					<div class="detail_base_wrap basic">
+						<!--상품 타이틀-->
+						<p class="brand_nm">CHANEL</p>
+						<p class="prod_tit eng">ROUGE COCO SHINE</p>
+						<h4 class="prod_tit">루쥬 코코 샤인</h4>
+						<!--구매수-- >
+						<div class="sale_cnt"><span class="no"><em>355</em>개 구매 중</span></div>
+						<!--원산지-- >
+						<div class="origin">원산지 : <span>필리핀</span></div>
+						<!--별점-->
+						<div class="score_wrap">
+							<span class="starScoreWrap"><span class="starScoreCnt" style="width:100%"></span></span>
+							<span class="review">(102)</span>
+						</div>
+						<!--찜 & 공유-->
+						<div class="wish_share_wrap">
+							<span class="wish"><img src="http://image.lotte.com/lotte/mo2015/angular/detail/detail_wish_icon.png"></span>
+							<span class="share">공유</span>
+						</div>
+					</div>
+
+					<!--상품 가격-->
+					<div class="detail_base_wrap price div_line_b10 div_line_t">
+						<div class="price_wrap">
+							<span class="prod_price"><strong>18,900</strong>원<span>~</span></span>
+							<span class="deli_fee"><span>2,500원</span><span>(3만원 이상 구매 시 무료배송)</span></span>
+							<!--<p class="old_price_wrap">
+								<span class="disc_rate"><em>5</em>%</span>
+								<span class="disc_desc">쿠폰포함</span>
+								<span class="old_price">21,000<span>원</span></span>
+							</p>-->
+						</div>
+
+						<div class="benefit_wrap">
+							<!--L.Point-- >
+							<p class="lpoint">L-money <span class="price">10,925원</span> 적립</p>
+							<!--카드혜택-->
+							<ul class="card_benefit">
+								<li class="benefit_name">무이자 <em>5</em></li>
+								<li class="benefit_desc">현대/KB카드 7% 청구</li>
+							</ul>
+
+							<!--<span class="benefit_all triangle_bottomright">혜택 모두보기</span>-->
+						</div>
+					</div>
+
+					<!--배송정보-->
+					<div class="detail_base_wrap delivery div_line_b10">
+						<div class="deli_date"><strong>11/24(수)</strong> <span>도착예정</span></div>
+						<!--<span class="deli_desc">서울/경기/인천 일부지역 <em>오늘도착</em></span>-->
+
+						<ul class="deli_type">
+							<li class="quick">퀵배송 <span>서울지역 4시간 이내 도착</span></li>
+							<li class="smartpick">스마트픽 <span>롯데백화점/세븐일레븐/하이마트에서 픽업가능</span></li>
+						</ul>
+					</div>
+
+					<!--색상표-->
+					<div class="detail_base_wrap color_chip div_line_b10">
+						<p class="detail_tit">색상</p>
+						<ul class="color_group_swipe" style="overflow-x: auto;">
+							<li>
+								<ul class="color_group">
+									<li><span class="img_wrap"><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_13.jpg"></span> <span class="color_nm">228 띠쎄 깡봉 띠쎄 깡봉</span></li>
+									<li><span class="img_wrap"><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_17.jpg"></span> <span class="color_nm">202 띠쎄 까멜리아 띠쎄 까멜리아</span></li>
+									<li><span class="img_wrap"><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_18.jpg"></span> <span class="color_nm">226 띠쎄 리볼리</span></li>
+									<li><span class="img_wrap"><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_19.jpg"></span> <span class="color_nm">204 띠쎄 방돔</span></li>
+								</ul>
+								<ul class="color_group">
+									<li><span class="img_wrap"><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_2.jpg"></span> <span class="color_nm">232 띠쎄 베니시안 띠쎄 베니시안</span></li>
+									<li><span class="img_wrap"><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_22.jpg"></span> <span class="color_nm">79 .스파이스 .스파이스 .스파이스</span></li>
+									<li><span class="img_wrap"><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_25.jpg"></span> <span class="color_nm">띠쎄 스모키 #246</span></li>
+									<li><span class="img_wrap"><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_26.jpg"></span> <span class="color_nm">254 띠쎄 어텀</span></li>
+								</ul>
+							</li>
+							<li>
+								<ul class="color_group">
+									<li><span class="img_wrap"><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_13.jpg"></span> <span class="color_nm">2 228 띠쎄 깡봉 띠쎄 깡봉</span></li>
+									<li><span class="img_wrap"><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_17.jpg"></span> <span class="color_nm">2 202 띠쎄 까멜리아 띠쎄 까멜리아</span></li>
+									<li><span class="img_wrap"><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_18.jpg"></span> <span class="color_nm">2 226 띠쎄 리볼리</span></li>
+									<li><span class="img_wrap"><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_19.jpg"></span> <span class="color_nm">2 204 띠쎄 방돔</span></li>
+								</ul>
+								<ul class="color_group">
+									<li><span class="img_wrap"><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_2.jpg"></span> <span class="color_nm">2 232 띠쎄 베니시안 띠쎄 베니시안</span></li>
+									<li><span class="img_wrap"><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_22.jpg"></span> <span class="color_nm">2 79 .스파이스 .스파이스 .스파이스</span></li>
+									<li><span class="img_wrap"><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_25.jpg"></span> <span class="color_nm">2 띠쎄 스모키 #246</span></li>
+									<li><span class="img_wrap"><img src="http://image.lotte.com/goods/49/39/46/58/chip/58463949_26.jpg"></span> <span class="color_nm">2 254 띠쎄 어텀</span></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+
+					<!--MD공지-->
+					<div class="detail_base_wrap md_noti div_line_b line_full_w">
+						<ul>
+							<li>2012년 1월 1일부터 별도의 백화점 또는 브랜드 쇼핑백은 제공 되지 않습니다.</li>
+							<li>샤넬 유한회사 내부 규정상 샤넬 제품은 1인 1회 구매시 동일한 품목(혹은 색상)은 3개까지 구매 가능합니다.</li>
+							<li>제품에 대한 궁금하신 사항은 샤넬 본사 고객서비스 센터로 연락 주시기 바랍니다.(080-332-2700)</li>
+						</ul>
+					</div>
+
+
+
+				</div>
+
+				<!-- 퍼블리싱 끝-->
+			</div>
+			<!-- //container -->
+
+		</section>
+		<!-- //sub_header_wrap -->
+
+		<!-- footer -->
+		<footer id="footer">
+			<ul class="menu01">
+				<li><a class="ng-binding" href="#">마이롯데</a><i></i>	</li>
+				<li><a ng-click="pcClick()">PC버전</a><i></i></li>
+				<li><a href="#">장바구니</a><i></i></li>
+				<li><a href="#">고객센터</a><i></i></li>
+				<li><a href="#" ng-click="loginProc()" ng-bind="(loginInfo.isLogin)?'로그아웃':'로그인'" class="ng-binding">로그아웃</a></li>
+			</ul>
+			<div class="info">
+				<ul class="menu02">
+					<li><strong>(주)롯데닷컴</strong></li>
+					<li><a ng-click="ftcClick()">사업자정보확인</a></li>
+					<li><a ng-click="forwardClick()">채무지급보증안내</a></li>
+				</ul>
+				<p class="add">
+					<span class="addFirst">대표이사 : 김형준</span>
+					<span class="line">서울시 중구 을지로 158 10층(을지로4가, 삼풍빌딩)</span>
+					<span class="line">사업자등록번호 : 101-81-52964 통신판매업신고 : 중구 제00402호</span>
+					<span class="line">고객만족센터 : <a href="tel:1577-1110">1577-1110</a>  webmaster@lotte.com</span>
+					<span class="line">개인정보보호책임자 : 윤상선</span> <span class="line">청소년보호책임자 : 김찬기</span>
+					<span>호스팅 사업자 : (주)롯데닷컴</span>
+				</p>
+			</div>
+			<div class="menu03">
+				<ul>
+					<li><a href="#">이용약관</a></li>
+					<li><a href="#"><strong>개인정보처리방침</strong></a></li>
+					<li><a href="#">청소년보호정책</a></li>
+				</ul>
+			</div>
+			<div class="capyright">Copyright © LOTTE.com, Inc. All rights Reserved.</div>
+		</footer>
+		<!-- //footer -->
+
+		<!-- quick_btn -->
+		<div class="quick_btn">
+			<div ng-show="visible" class="">
+				<a class="btn_back ng-hide" ng-click="gotoPrepageSide()" ng-show="quickBackBtn">뒤로</a><a class="btn_top" ng-click="gotoTop()">위로</a>
+			</div>
+			<a class="btn_talk" ng-click="gotoTalk()">톡상담</a>
+		</div>
+		<!-- quick_btn -->
+	</div>
+
+	<!-- lotteActionbar -->
+	<section id="lotteActionbar" class="actionbar" ng-show="!appObj.isApp &amp;&amp; !actionbarHideFlag">
+		<ul class="actionbar_wrap">
+			<li class="home on" ng-class="{on:cur_pageid == 1 &amp;&amp; !isShowSideCtg}"><button ng-click="gotoMainFooter()" class="btn_main">홈</button></li>
+			<li class="ctg" ng-class="{on: isShowSideCtg}"><button ng-click="showSideCtgFooter()" class="btn_ctg">카테고리</button></li>
+			<li class="order" ng-class="{on:cur_pageid == 2}"><button ng-click="gotoOrderLstFooter()" class="btn_order">주문배송</button></li>
+			<li class="mylotte" ng-class="{on:cur_pageid == 3}"><button ng-click="gotoMyPageFooter()" class="btn_mylotte">마이롯데</button></li>
+		</ul>
+	</section>
+	<!-- //lotteActionbar -->
+</body>
+</html>

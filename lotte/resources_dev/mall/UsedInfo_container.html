@@ -1,0 +1,13 @@
+<section ng-show="contVisible" class="cont_minheight">
+    <ul class="tmenu">
+       <li ng-class="{on:tmenu == 0}" ng-click="tmenu = 0">{{menuStr[0]}}</li>       
+       <li ng-class="{on:tmenu == 1}" ng-click="tmenu = 1">{{menuStr[1]}}</li>
+       <li ng-class="{on:tmenu == 2}" ng-click="tmenu = 2">{{menuStr[2]}}</li>
+       <li ng-class="{on:tmenu == 3}" ng-click="tmenu = 3">{{menuStr[3]}}</li>
+    </ul>
+   
+    <div class="tcont">
+        <p class="title">{{menuStr[tmenu]}}</p>
+        <div class="box" ng-bind-html="contentHtml[tmenu]"></div>
+    </div>
+</section>

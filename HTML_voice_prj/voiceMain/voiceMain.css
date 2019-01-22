@@ -1,0 +1,123 @@
+@charset "UTF-8";
+
+.voice_main { height:100%; background:#f5f5f5;}
+.voice_main .message { position:absolute; top:42%; left:20px; right:20px; transform:translateY(-50%); line-height:52px; font-size:34px; font-weight:bold; text-align:center; letter-spacing:-3px; color:#000;}
+
+/* 실시간 채팅 상담*/
+.live_chat_consult { position:absolute; bottom:83px; right:14px;  transition:all .3s ease;}
+.live_chat_consult .btn_chat { width:175px; height:50px; border:1px solid rgba(17,0,0,0.1); box-shadow:0px 4px 6px rgba(0,0,0,0.1); border-radius:30px;background:#fff;}
+.live_chat_consult .btn_chat span { font-size:16px; font-weight:bold; color:#547ffa; line-height:24px; letter-spacing:-1.5px;}
+.live_chat_consult .btn_chat span:before { content:''; display:inline-block; width:28px; height:24px; margin-right:7px; margin-top:-2px; vertical-align:middle; background:url('/HTML_voice_prj/images/icon_chat.png') no-repeat; background-size:100%;}
+
+.live_chat_consult .chat_message { position:absolute; bottom:62px; right:0; width:206px; padding:11px 14px; box-shadow:0px 2px 6px rgba(0,0,0,0.2); border-radius:6px; line-height:21px; color:#fff; font-size:14px;  background:#719cff;}
+.live_chat_consult .chat_message:after { content:''; display:block; position:absolute; bottom:-4px; right:11px; width:12px; height:12px; transform:rotate(-137deg);box-shadow:-3px -3px 6px rgba(0,0,0,0.2); background:#719cff}
+
+.live_chat_consult.active { bottom:153px;}
+
+
+/* 마이크 */
+.voice_mic { position:absolute; bottom:0; left:0; width:100%; height:64px; padding:0 64px 0 20px; box-sizing:border-box; box-shadow:0px -4px 10px rgba(0,0,0,0.1); background:#fff; transition:all .3s ease;}
+.voice_mic .mic_txt { display:table-cell; height:64px; line-height:27px; font-size:18px; color:#aaa; vertical-align:middle; transition:all .3s ease;}
+.voice_mic .btn_mic { position:absolute; bottom:0; right:0; width:64px; height:64px; border:0; font-size:0; background:url('/HTML_voice_prj/images/mic_helper.png') no-repeat center center; background-size:28px; transition:all .3s ease;}
+.voice_mic .btn_keyboard { position:absolute; bottom:0; right:0; width:64px; height:64px; border:0; font-size:0; background:url('/HTML_voice_prj/images/ico_keyboard.png') no-repeat center center; background-size:35px; transition:all .3s ease;}
+.voice_mic .btn_submit { position:absolute; bottom:0; right:0; width:64px; height:64px; border:0; font-size:0; background:url('/HTML_voice_prj/images/ico_submit.png') no-repeat center center; background-size:35px; transition:all .3s ease;}
+
+/* input 때문에 추가*/
+.voice_mic .mic_txt { border:0; background:none;}
+
+.voice_mic.active { overflow:hidden; display:table; table-layout:fixed; height:140px; padding:0 20px;
+	background: #f06cbe; /* Old browsers */
+	background: -moz-linear-gradient(left, #f06cbe 0%, #fb527f 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left, #f06cbe 0%,#fb527f 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right, #f06cbe 0%,#fb527f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f06cbe', endColorstr='#fb527f',GradientType=1 ); /* IE6-9 */ 
+}
+
+.voice_mic.active .mic_txt { width:100%; height:140px; color:#fff; text-align:center; font-size:24px; color:rgba(255,255,255,0.6); letter-spacing:-1px; line-height:36px; font-family:'Noto Sans'; font-weight:bold;}
+.voice_mic.active .btn_mic { width:48px; height:48px; background:url('/HTML_voice_prj/images/keyboard.png') no-repeat center center; background-size:22px;}
+.voice_mic.active:before { content:''; display:block; position:absolute; top:50%; left:50%; width:50px; height:50px; border-radius:50%; transform:translate(-50%, -50%); background:rgba(255,255,255,0.2);
+	animation: micActive 3s ease-in-out infinite;
+}
+
+.voice_mic.active.listen .mic_txt { color:#fff;}
+.voice_mic.active.listen:before {animation: micListen 0.6s ease-in-out infinite alternate;}
+
+@keyframes micActive {
+	0% { width:20px; height:20px; opacity:0;}
+	10% { opacity:1;}
+	100% { width:200px; height:200px; opacity:0;}
+}
+
+@keyframes micListen {
+	0% { width:20px; height:20px; opacity:0.2;}
+	20% { opacity:1;}
+	100% { width:200px; height:200px; opacity:0.2;}
+}
+
+
+/* 마이크 헬퍼 */
+.voice_helper { position:fixed; bottom:-100px; left:16px; right:16px; height:86px; border-radius:6px; box-shadow:0 0 20px #ff96b2; background:#fff; }
+.voice_helper .text { display:table-cell; height:86px; padding:0 72px 0 20px; font-size:18px; line-height:27px; vertical-align:middle;}
+.voice_helper .text span { font-weight:bold; color:#fb527f;}
+.voice_helper:after { content:''; display:block; position:absolute; right:24px; top:24px; width:28px; height:37px; background:url('/HTML_voice_prj/images/mic_helper.png') no-repeat; background-size:100%;}
+
+/* 올라오는 모션 */
+.voice_helper.show {bottom:14px; animation:bounceInUp 0.8s;}
+.voice_helper.hide {bottom:-100px; transition:all .3s ease;}
+@keyframes bounceInUp {
+    0%,60%,75%,90%,to {
+        animation-timing-function: cubic-bezier(.215,.61,.355,1)
+    }
+
+    0% {
+        opacity: 0;
+        transform: translate3d(0,3000px,0)
+    }
+
+    60% {
+        opacity: 1;
+        transform: translate3d(0,-20px,0)
+    }
+
+    75% {
+        transform: translate3d(0,10px,0)
+    }
+
+    90% {
+        transform: translate3d(0,-5px,0)
+    }
+
+    to {
+        transform: translateZ(0)
+    }
+}
+
+.voice_helper.active {animation:bounceInUp 0.8s, micHelper 0.8s ease-in-out infinite alternate;}
+@keyframes micHelper {
+	0% { box-shadow:0 0 20px #ff96b2;}
+	100% { box-shadow:0 0 60px #ff96b2;}
+}
+
+
+/* 검색결과가 없을때 */
+.search_no_data { min-height:100%; padding:76px 20px 20px; box-sizing:border-box; background:#f5f5f5;}
+.search_no_data .message { font-size:16px; line-height:24px; font-weight:bold;}
+.voice_keyword { margin-top:18px;}
+.voice_keyword ul {}
+.voice_keyword li { position:relative; display:table; width:100%; border:1px solid #e0e0e0; box-shadow:0 2px 6px rgba(0,0,0,0.15); tex-align:center; background:#fff;}
+.voice_keyword li + li { margin-top:12px;}
+.voice_keyword li .keyword { display:table-cell; width:100%; height:128px; padding:0 20px; vertical-align:middle; font-size:24px; line-height:37px; text-align:center; color:#333; font-weight:bold; box-sizing:border-box;}
+.voice_keyword li .count { position:absolute; top:8px; left:8px; width:44px; height:26px;  border-radius:30px; font-size:14px; color:#fff; text-align:center; line-height:24px; background:#fb527f}
+.voice_keyword li:nth-child(n+4) .count { color:#888; background:#f4f4f4;}
+
+@media screen and (min-width: 640px){
+	
+}
+
+/* 코치마크 */
+.coach_mark_wrap {position:fixed; top:0; left:0; right:0; bottom:0; width:100%; z-index:99;}
+.coach_mark_wrap .dim {position:fixed; top:0; left:0; right:0; bottom:0; width:100%; height:100%;background:rgba(0, 0, 0, 0.8);}
+.coach_mark_wrap .img01, .coach_mark_wrap .img02 {text-indent:-9999px;} 
+.coach_mark_wrap .img01 {position:absolute; top:12px; right:48px; width:263px; height:159px; background:url(/HTML_voice_prj/images/img_coach_01.png) no-repeat; background-size:100%;}
+.coach_mark_wrap .img02 {position:absolute; bottom:-17px; right:-18px; width:299px; height:223px; background:url(/HTML_voice_prj/images/img_coach_02.png) no-repeat; background-size:100%;}
+

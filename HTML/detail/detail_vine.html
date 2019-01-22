@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">	
+<!----------------- current css ----------------->
+
+<link rel="stylesheet" href="/lotte/resources_dev/product/m/detail.css">
+<link rel="stylesheet" href="/lotte/resources_dev/product/m/detail_datepicker.css">
+<link rel="stylesheet" href="/lotte/resources_dev/product/m/detail_popup.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+</head>
+<body>
+
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<!-- container -->
+<div id="container">
+	<!-- vine일 경우 클래스 vineDetail 추가 -->
+	<section id="detail" class="vineDetail">
+		<!-- 상세 스와이프 -->
+		<div class="detailSwipe">
+			<!-- 스와이프 이미지 -->
+			<ul class="dSwipeImg">
+				<li>
+					<img src="http://image.lotte.com/goods/93/64/10/05/1/105106493_1_550.jpg" alt="" />
+				</li>
+				<li>
+					<img src="http://image.lotte.com/goods/93/64/10/05/1/105106493_1_550.jpg" alt="" />
+				</li>
+				<li>
+					<img src="http://image.lotte.com/goods/93/64/10/05/1/105106493_1_550.jpg" alt="" />
+				</li>
+				<li>
+					<img src="http://image.lotte.com/goods/93/64/10/05/1/105106493_1_550.jpg" alt="" />
+				</li>
+				<li>
+					<img src="http://image.lotte.com/goods/93/64/10/05/1/105106493_1_550.jpg" alt="" />
+				</li>
+				<li>
+					<img src="http://image.lotte.com/goods/93/64/10/05/1/105106493_1_550.jpg" alt="" />
+				</li>
+			</ul>
+			<!-- 스와이프 화살표 -->
+			<div class="swipeArr">
+				<a href="#none" class="arrPrev">이전</a>
+				<a href="#none" class="arrNext">다음</a>
+			</div>
+			<!-- 스와이프 페이지 -->
+			<div class="swipeNum">
+				<span class="numWrap"><span class="currentNum">1</span>/<span class="totalNum">6</span></span>
+			</div>
+		</div>
+		<!-- 상세 타이틀 -->
+		<div class="detailTitWrap">
+			<!-- 국가 아이콘 및 국가명 -->
+			<div class="wine_country">
+				<img src="http://image.lotte.com/goods/71/63/10/05/1/105106371_2_280.jpg" alt="작은 상품이미지">
+				<span>프랑스</span>
+			</div>
+			<!-- 상세 상품명 -->
+			<h4 class="titText">[vine Wine]루안 화이트 모스카텔</h4>
+			<!-- 영문명 -->
+			<p class="engTit">Luan white</p>
+			<!-- 상세 타이틀 가격 -->
+			<div class="titPriceWrap">
+				<!-- 최적가 -->
+				<span class="titPrice"><strong>1,279,000</strong>원</span>
+			</div>
+			<p class="winePriceTxt">본 가격은 와인수입사가 권장하는 소비자가입니다.<br />실제 판매가격은 지점별 프로모션에 따라 상이할 수 있습니다.</p>
+			<!-- 와인예약 서비스란? -->
+			<div class="titBtn">
+				<div class="btnWrap">
+					<span class="btnArea">
+						<a href="#none" class="btnSmart"><span class="btnIcon"></span>와인예약 서비스란?<span class="icQst">?</span></a>
+					</span>
+				</div>
+			</div>
+		</div>
+		<!-- 상품 상세 -->
+		<div class="detailPrdInfoWrap">
+			<!-- 상세 탭 -->
+			<ul class="detailPrdTab">
+				<!-- 선택 시 클래스 on -->
+				<li class="on">
+					<a href="#none">상품설명</a>
+				</li>
+				<li>
+					<a href="#none">구매정보</a>
+				</li>
+			</ul>
+			<!-- 상품 상세 내용 -->
+			<div class="detailInfoCnt">
+				<!-- 상품설명 탭 내용 -->
+				<div class="prdExplain">
+					<h4>상품상세정보</h4>
+					<ul class="vineInfo">
+						<li>
+							<div class="infoTit">종류 :</div>
+							<div class="infoCon">화이트 와인</div>
+						</li>
+						<li>
+							<div class="infoTit">지역 :</div>
+							<div class="infoCon">리마리 벨리(Valley del Limari)</div>
+						</li>
+						<li>
+							<div class="infoTit">품종 :</div>
+							<div class="infoCon">100% 모스카토</div>
+						</li>
+						<li>
+							<div class="infoTit">당도 :</div>
+							<div class="infoCon">medium-sweet</div>
+						</li>
+						<li>
+							<div class="infoTit">바디감 :</div>
+							<div class="infoCon">medium-light</div>
+						</li>
+						<li>
+							<div class="infoTit">알코올도수 :</div>
+							<div class="infoCon">9.5%</div>
+						</li>
+						<li>
+							<div class="infoTit">향 :</div>
+							<div class="infoCon">신선하고 향긋한 모스카토만의 달콤한 아로마가 살아있는 와인이다.</div>
+						</li>
+						<li>
+							<div class="infoTit">맛 :</div>
+							<div class="infoCon">천천히 진행되는 침용 과정과 저온 발효를 통해 와인의 아로마와 풍미를 충분히 살렸다. 모스카토 특유의 상큼한 달콤함이 기분 좋게 이어지며 떡뽁이,제육볶음과 같은 매콤한 한국음식과도 잘 어울린다. 식전주로도 좋지만 디저트와도 안성맞춤이다.</div>
+						</li>
+					</ul>
+				</div>
+				<!-- 구매정보 -->
+				<div class="prdBuyInfo">
+					<h4>스마트픽 와인예약 서비스 안내</h4>
+					<ul class="vineInfo">
+						<li>주류 상품은 온라인으로 구입이 불가합니다.</li>
+						<li>9세 이상 회원에 한하여 와인 예약이 가능하며, 경우에 따라 매장에서 신분증을 확인할 수 있으니 참고해주시기 바랍니다.</li>
+						<li>예약완료 후 상품준비 SMS 알람을 드리면 예약증을 지참하신 후 매장에 방문해주시기 바랍니다.</li>
+						<li>예약하신 상품을 매장에서 직접 확인 후 마음에 들지 않으실 경우, 다른 와인상품으로 변경하여 구매가 가능합니다.</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+<!-- //container -->
+
+<!-- 바로주문 영역 -->
+<div class="optionLayerWrap">
+	<div class="optionBtnWrap">
+		<!-- 스마트픽 -->
+		<ul class="optionBtn">
+			<li class="btnOrder">
+				<a href="#none" class="btnSmart"><span>smart pick</span>예약주문</a>
+			</li>
+		</ul>
+	</div>
+</div>
+
+
+<!-- footer -->
+<section ng-include src="'/HTML/include/footer.html'"></section>
+
+
+</body>
+</html>

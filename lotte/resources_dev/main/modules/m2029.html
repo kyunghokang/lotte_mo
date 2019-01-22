@@ -1,0 +1,24 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!--M29	최근 본 상품 일반형-->
+	<div class="moduleCon" ng-if="latelyData.prdList.items.length >= 3">
+		<div class="gTop_title">
+			<p><b><em ng-if="loginInfo.isLogin"><strong>{{loginInfo.name}}님</strong>이</em> {{latelyData.txt}}</b></p>
+		</div>
+		<ul class="prd_unit_type01 float_ul margin">
+			<li ng-repeat="item in latelyData.prdList.items | limitTo: limitToCnt">
+				<a ng-click="logGAEvtModuleEach($index + 1, item.goodsNo);mainProductClick(item.goodsNo, moduleData.tclick + '_Clk_Prd'+numberFill(($index+1),2))">
+					<div class="imageCon">
+						<img ng-src="{{item.imgUrl}}" alt="" />
+					</div>
+					<div class="titleCon">
+						<div class="name">{{item.goodsNm}}</div>
+						<div class="ti"><strong>{{item.price | number}}</strong>원<em ng-if="item.isPlanPrd">~</em></div>
+					</div>
+				</a>
+			</li>
+		</ul>
+		<div class="btnMore">
+			<span class="btnArea"><a ng-click="logGAEvtModuleEach('더보기', '더보기');moreClick(latelyData.moreLinkUrl, moduleData.tclick + '_Clk_more')"><span>더보기</span></a></span>
+		</div>
+	</div>
+</section>

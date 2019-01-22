@@ -1,0 +1,68 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplReviewFavorite" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/product/m/review_favorite_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/review_favorite.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsReviewFavorite" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/product/m/review_favorite.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/review_favorite.js"
+			}
+		},
+
+		"uglify" : {
+			"jsReviewFavorite" : {
+				"src" : "lotte/resources/<%= version %>/review_favorite.js",
+				"dest" : "lotte/resources/<%= version %>/review_favorite.min.js"
+			},
+			"tplReviewFavorite" : {
+				"src" : "lotte/resources/<%= version %>/review_favorite.template.js",
+				"dest" : "lotte/resources/<%= version %>/review_favorite.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssReviewFavorite" : {
+				"src" : [
+					"lotte/resources_dev/product/m/review_favorite.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/review_favorite.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanReviewFavorite" : [
+				"lotte/resources/<%= version %>/review_favorite.js",
+				"lotte/resources/<%= version %>/review_favorite.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlReviewFavorite" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"product/m/review_favorite.html" : "product/m/review_favorite_dev.html"
+				}
+			}
+		}
+	}
+}

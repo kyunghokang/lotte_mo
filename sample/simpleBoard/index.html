@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ko" ng-app="app">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AngularJS Simple Board</title>
+<base href="{{baseHref}}">
+<link rel="stylesheet" href="../css/bootstrap.css"/> 
+<style type="text/css">
+div.executeDimm, div.errorDimm {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  background: url('./screen.png');
+}
+span.hover_link {
+  cursor:pointer;
+}
+
+/*
+ * start: ng-file-upload css
+ */
+img.thumb {
+    width: 100px;
+    float: none;
+    position: relative;
+}
+
+form .progress {
+    line-height: 15px;
+}
+
+.progress {
+    display: inline-block;
+    width: 100px;
+    border: 3px groove #CCC;
+}
+
+.progress div {
+    font-size: smaller;
+    background: orange;
+    width: 0;
+}
+/*
+ * end: ng-file-upload css
+ */
+</style>
+<script src="../../lib/angular/angular.js"></script>
+<script src="../../lib/angular/angular-route.js"></script>
+<script src="../lib/ng-file-upload/ng-file-upload.js"></script>
+<script src="../lib/log4javascript/log4javascript_uncompressed.js"></script>
+<script src="../common/logger.js"></script>
+<script src="../common/storage.js"></script>
+<script src="../common/pagination.js"></script>
+<script src="app.js"></script> 
+</head>
+<body ng-controller="appCtrl">
+<h2>Simple Board</h2>
+
+<div class="view-animate-container">
+	<div ng-view class="view-animate"></div>
+</div>
+
+<div class="executeDimm">서버 호출 대기중<a href="javascript:toggleExecuteDimm(false);">클릭</a></div>
+<div class="errorDimm">서버 호출 중 에러 발생<br><a href="javascript:toggleErrorDimm(false);">닫기</a></div>
+</body>
+</html>

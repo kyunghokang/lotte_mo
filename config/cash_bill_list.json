@@ -1,0 +1,69 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplCashBill" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mylotte/cscenter/m/cash_bill_list_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/cash_bill_list.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsCashBill" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mylotte/cscenter/m/cash_bill_list.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/cash_bill_list.js"
+            }
+        },
+
+        "uglify" : {
+            "jsCashBill" : {
+                "src" : "lotte/resources/<%= version %>/cash_bill_list.js",
+                "dest" : "lotte/resources/<%= version %>/cash_bill_list.min.js"
+            },
+            "tplCashBill" : {
+                "src" : "lotte/resources/<%= version %>/cash_bill_list.template.js",
+                "dest" : "lotte/resources/<%= version %>/cash_bill_list.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssCashBill" : {
+                "src" : [
+                    "lotte/resources_dev/mylotte/cscenter/m/cash_bill_list.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/cash_bill_list.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanCashBill" : [
+                "lotte/resources/<%= version %>/cash_bill_list.js",
+                "lotte/resources/<%= version %>/cash_bill_list.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlCashBill" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mylotte/cscenter/m/cash_bill_list.html" : "mylotte/cscenter/m/cash_bill_list_dev.html"
+                }
+            }
+        }
+    }
+}
+

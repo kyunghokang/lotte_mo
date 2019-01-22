@@ -1,0 +1,38 @@
+<section ng-show="!hideLotteHeaderFlag">
+	<div app-down-bnr ng-if="appDownBnrFlag"></div>
+	<header class="sub_header_top_wrap" ng-show="!appObj.isNativeHeader" id="lotteHeader">
+		<div class="inner_wrap" ng-class="{headerFixed: headerFixed}">
+			<!-- 햄버거 메뉴/ 로고/검색/ 장바구니 -->
+			<h1 class="logo" ng-class="{hideBack:hideHeaderBack}"><button ng-click="logGAEvtComm('subHeader','로고');gotoMainHeader()" class="btn_main">LOTTE.COM</button></h1>
+
+			<button ng-if="!hideHeaderBack" ng-click="logGAEvtComm('subHeader','뒤로가기');gotoPrepage()" class="btn_prev">이전</button>
+			<!-- 검색창 (음성검색/스타일 추천) -->
+			<div class="header_srh_wrap" ng-class="{
+				web: !appObj.isApp,
+				app: appObj.isApp && speechSrhFlag && stylePushFlag && screenType >= 2,
+				app_speech_only: speechSrhFlag && !stylePushFlag && screenType >= 2,
+				app_stylesrh_only: !speechSrhFlag && stylePushFlag && screenType >= 2
+				}">
+				<div class="srh_box">
+					<label ng-click="logGAEvtComm('subHeader','검색');showSrhLayerHeader()" for="keyword" class="btn_srh"></label>
+					<div ng-if="appObj.isApp && screenType >= 2" class="app_btn_area">
+						<!-- button ng-if="speechSrhFlag" ng-click="speechSrhLink()" class="btn_mic">음성검색</button>
+						<button ng-if="stylePushFlag" ng-click="stylePushLink()" class="btn_stylesrh" ng-class="{after_line: speechSrhFlag}">스타일 추천</button -->
+						<!--
+								<div ng-if="stylePushFlag && showStyleDesc" class="imgsrh_desc">
+									<i></i>
+									스타일도 검색해보세요
+									<button class="btn_close" ng-click="hideStylePushDesc()">닫기</button>
+								</div>
+								-->
+					</div>
+				</div>
+			</div>
+
+			<button ng-click="logGAEvtComm('subHeader','카테고리');showSideCtgHeader()" class="btn_ctg" ng-class="{hideBack:hideHeaderBack}">카테고리<i ng-if="intTodayDate && intLastCtgFlagDate && intTodayDate < intLastCtgFlagDate" class="reddot"></i></button>
+			<button ng-click="logGAEvtComm('subHeader','장바구니');gotoCart()" class="btn_cart">장바구니<i ng-if="cartCount && cartCount > 0" class="cnt">{{cartCount}}</i></button>
+			<div class="btn_super" ng-click="logGAEvtComm('subHeader','오늘장보기');superMove()"><img ng-src="{{sub_site_move}}" alt="" /></div>
+		</div>
+	</header>
+	<!--<section id="headerSpace" ng-style="!appObj.isNativeHeader ? {'padding-top':'48px'}:{}"></section>-->
+</section>

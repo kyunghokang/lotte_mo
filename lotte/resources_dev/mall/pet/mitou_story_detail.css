@@ -1,0 +1,90 @@
+@charset "UTF-8";
+.dear_wrap{margin:0;padding: 0}
+/* 스와이프 영역 */
+.slide{position:relative;overflow:hidden;height:330px;}
+.slide .btn{display:none;background: url(http://image.lotte.com/lotte/mo2015/angular/bg_sprite_bullet.png) no-repeat 0 0;-webkit-background-size: 57px 80px;background-size: 57px 80px;}
+.slide ul{backface-visibility:hidden;transform:translateX(0px);height:100%}
+.slide li{height:330px;overflow:hidden;text-align:center;backface-visibility:hidden;}
+.slide li.one{position:relative;padding-top:100%;}
+.slide li.one span{height:330px;display:block;background-size:auto 100%;background-repeat:no-repeat;background-position:center center;position:absolute;top:0;left:0;right:0;bottom:0;}
+.slide li a{height:100%;display:block;}
+.slide li img{width:auto;height:100%}
+.slide li a{display:block;width:100%;}
+.slide .btn{width:15px;height:25px;position:absolute;top:50%;margin-top:-13px;z-index:9;border:0;font-size:0;cursor:pointer}
+.slide .btn:focus {outline:none;}
+.slide .btn.hide {visibility:hidden;}
+.slide .btn.prev {left:10px;background-position:0 -19px}
+.slide .btn.next {right:10px;background-position:-16px -19px}
+.slide .bullet{position:absolute;bottom:0;text-align:center;height:18px; width:100%;clear:both}
+.slide .bullet li{display:inline-block;position:relative;top:8px;width:6px;height:6px;margin:0 2px;border-radius:100%;-webkit-border-radius:100%;background:#adadad;font-size:0;vertical-align: top;}
+.slide .bullet li.active{background:#ff7559}
+
+.slide .mask { height:100%; overflow:hidden }
+.mark.fail span{color:#fff;background-color:rgba(0,0,0,0.3);position: absolute;top:50%;width: 100%;text-align: center;}
+.slide .blind {  top:auto; visibility: visible; }
+.dear_wrap{position:fixed;top:0;left: 0;right: 0;bottom:0;background-color: #fff}
+.dear_wrap.typeB{position:fixed;/* top:47px; */left: 0;right: 0;bottom:0;background-color: #fff;/* bottom: 50px */}
+/* .dear_wrap.typeA{top:47px;} */
+.dear_wrap.typeB .list_wrap{ background-color: black;}
+.dear_wrap.typeA.absolute{width: 100% ;height: 100%;position:relative;min-height: 100%;border: none;}
+.dear_wrap.typeB.absolute{width: 100% ;height: 100%;position:relative;min-height: 100%;border: none}
+.dear_wrap.social .list_wrap{height: 100%}
+.dear_wrap.social .list_wrap > li{height: 100%}
+.story_item{position: relative;}
+.story_item .box_area{position: absolute;width: 100%;height: 100%;}
+.dear_wrap .list_wrap{padding:0;}
+.story_item ul{height: 100%;width: 100%}
+.story_item li{height: 100%;width: 100%;} 
+.story_item ul.list li{background-size: 100% auto !important ;position:relative;}
+.story_item ul.list li > img {position:relative}
+.story_item ul.list li .text{position: absolute;color: #fff;left:4%;right:3%;top:55%}
+.story_item ul.list li .text span{background-color: rgba(0,0,0,0.27);line-height: 22px;font-size: 14px;text-align: left ;word-wrap:break-word }
+.indicator{position: absolute;color: #fff;width: 100%;text-align: center;bottom: 35px; line-height: 1;height: 20px;font-size: 100%}
+.indicator .page{ height: 90% ;padding-top:3.5px;display: inline-block;padding-left: 12px;padding-right: 12px;border-radius: 12px;background-color:rgba(0,0,0,0.3)}
+.typeA .indicator {bottom:5%;}
+.typeB .indicator {bottom:5%;}
+.story_cont{position: relative;background-color: #fff;min-height: 100% !important}
+@media (max-height:600px){
+	.cont_minheight,
+	#container {min-height:-webkit-fill-available}
+}
+/* .page_btn{position: absolute;top:55%;}
+.page_btn .arrow.prev{left:0;}
+.page_btn .arrow.next{right: 0} */
+.page_btn{visibility: hidden;}
+.page_btn .arrow { position:absolute; top:50%; -webkit-transform:translate3d(0,-50%,0px); -moz-transform:translate3d(0,-50%,0px); -ms-transform:translate3d(0,-50%,0px); -o-transform:translate3d(0,-50%,0px); transform:translate3d(0,-50%,0px) }
+.page_btn .prev { left:0px; width:15px; height:26px; padding:10px 15px; background-color:rgba(0,0,0,.2) !important }
+.page_btn .prev:after { content:"";  position:absolute; background:url("http://image.lotte.com/lotte/mo2015/angular/mall/gallery_icons.png") no-repeat; width:15px; height:26px; background-position:-17px -58px; left:50%; top:50%; -webkit-transform:translate3d(-50%,-50%,0px); -moz-transform:translate3d(-50%,-50%,0px); -ms-transform:translate3d(-50%,-50%,0px); -o-transform:translate3d(-50%,-50%,0px); transform:translate3d(-50%,-50%,0px);   }
+.page_btn .next { width:15px; height:26px; right:0px;  padding:10px 15px; background-color:rgba(0,0,0,.2) !important }
+.page_btn .next:after { content:""; position:absolute; background:url("http://image.lotte.com/lotte/mo2015/angular/mall/gallery_icons.png") no-repeat; width:15px; height:26px; background-position:-58px -58px; left:50%; top:50%; -webkit-transform:translate3d(-50%,-50%,0px); -moz-transform:translate3d(-50%,-50%,0px); -ms-transform:translate3d(-50%,-50%,0px); -o-transform:translate3d(-50%,-50%,0px); transform:translate3d(-50%,-50%,0px); }
+
+
+/* iPads (portrait and landscape)  */
+@media only screen
+and (min-width : 768px)  
+and (max-width : 1024px) {  
+  .dear_wrap.social .list_wrap{width: 80%;margin-left: 10%}
+  .page_btn{visibility: visible;}
+}
+/* iPads (landscape)  */
+@media only screen
+and (min-device-width : 768px)  
+and (max-device-width : 1024px)  
+and (orientation : landscape) {  
+  .dear_wrap.social .list_wrap{width: 80%;margin-left:10%;}
+  .page_btn{visibility: visible;}
+}
+/* iPads (portrait)  */
+@media only screen
+and (min-device-width : 768px)  
+and (max-device-width : 1024px)  
+and (orientation : portrait) {  
+    .dear_wrap.social .list_wrap{width: 80%;margin-left:10%;}
+    .page_btn{visibility: visible;}
+}
+/* Desktops and laptops */
+@media only screen
+and (min-width : 1025px) {  
+    .dear_wrap.social .list_wrap{width: 80%;margin-left:10%;}
+    .page_btn{visibility: visible;}
+}

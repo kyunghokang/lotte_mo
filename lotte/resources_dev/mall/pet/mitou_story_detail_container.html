@@ -1,0 +1,69 @@
+<section ng-show="contVisible" class="story_cont" ng-style="getHeight()"  >
+	<section ng-show="!pageLoading">
+		<section>
+		    <div class='sub_header_wrap'>
+		        <header id="head_sub" sub-header-each ng-show="subTitle" class="fixedSubHeader " ng-class="{fixedHeader: fixedHeader && subHeaderFixed && !appObj.isNativeHeader}">
+		            <div class='head_sub_inner'>
+		                <h2><a ng-click="mallMainClick('m_DC_SpeDisp_Dearpet_Clk_logo')"><span>Dear Pet</span></a></h2>
+		                <a class='share' href='#' ng-click="petShare({shareImg:screenData.story_list[0].img_list.items[0].img_url})"><span>공유</span></a>
+		            </div>
+		        </header>
+		    </div>
+		     <div>
+			<!-- *view_type이 A,B 두가지* view_type이 B 이면 class="typeB" 추가 그외는 class="typeA"-->
+				<section class="dear_wrap social photo_area absolute" ng-class="screenData.story_list[0].view_type=='B'?'typeB':'typeA'" ng-if="screenData.story_list">
+					<ul class="list_wrap" >
+						<li class="story_item"  ng-repeat="item in screenData.story_list track by $index" ng-controller="lotteNgSwipeCtrl"  >
+						<!-- 이미지가 여러개인 경우 start-->
+
+							<ul class="list mask" lotte-ng-list-swipe swipe-responsive="true" swipe-id="story_list" swipe-responsive640="1" swipe-responsive900="1" swipe-slide-item="true" swipe-list-model="item.img_list.items" swipe-max-ratio="0.2" swipe-min-distance="40" ng-if="item.img_list.items.length>1" is-swipe="true">								
+								<li ng-repeat="items in item.img_list.items">
+									<img ng-src="{{items.img_url}}"/>
+									<div class="text" ng-if=item.view_type=='B'>
+										<span ng-bind-html='items.text'></span><!--view_type B만 text 뿌림 -->
+									</div>			
+								</li>							
+							</ul>
+						<!-- 이미지가 여러개인 경우 end-->
+						<!-- 이미지가 한개인 경우 start-->
+							<ul class="list mask" ng-if="item.img_list.items.length==1">					
+								<li ng-repeat="items in item.img_list.items">
+									<img ng-src="{{items.img_url}}"/>
+									<div class="text" ng-if=item.view_type=='B'><span ng-bind-html='items.text'></span></div>				
+								</li>							
+							</ul>
+							<ul class="list mark fail" ng-if="item.img_list.items==null||item.img_list.items.length==0">
+								<span>등록된 이미지가 없습니다.{{item.img_list.length}}</span>
+							</ul>
+						<!-- 이미지가 한개인 경우 end -->
+						<!-- 페이지 뷰start -->
+							<div class='indicator bullet' ng-if="item.img_list.items.length&&item.img_list.items.length!=1">
+								<span class='page' ng-if ="item.img_list.items.length>1" >
+
+									{{getSwipeIndex()+1}}/{{item.img_list.items.length}}
+								</span>
+							
+							</div>
+						<!--페이지 뷰 end-->														
+						</li>										
+					</ul>
+					
+				<!-- 페이지 버튼 (ipad)-->
+					<div class="page_btn" ng-if='!screenData.story_list[0].img_list.items.length<2'>
+						<span
+							ng-if='swipeIdx > 0 &&screenData.story_list[0].img_list.items.length!=1'
+							class='arrow prev'
+							ng-click='btn_beforeSlide()'>
+						</span>
+						<span
+							ng-if='swipeIdx + 1 <= screenData.story_list[0].img_list.items.length -1'
+							class='arrow next'
+							ng-click='btn_nextSlide()'>
+						</span>								
+					</div>
+				<!-- 페이지 버튼 (ipad) -->
+				</section>
+			</div>
+		</section>
+	</section>
+</section>

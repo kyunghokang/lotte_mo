@@ -1,0 +1,75 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplsmartpick2016" : {
+                "options": {
+	            	"prefix":"/",
+					"module": "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mall/smartpick2016_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/smartpick2016.template.js"
+            }
+        },
+
+        "concat" : {
+            "jssmartpick2016" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/common/lotte_ngswipe.js",
+                    "lotte/resources_dev/mall/smartpick2016.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/smartpick2016.js"
+            }
+        },
+
+        "uglify" : {
+            "jssmartpick2016" : {
+                "options" : {
+                    "sourceMap" : true,
+                    "sourceMapIncludeSources" : true,
+                    "sourceMapRoot" : "<%= sourceMapRootURL %>/"
+                },
+                "src" : "lotte/resources/<%= version %>/smartpick2016.js",
+                "dest" : "lotte/resources/<%= version %>/smartpick2016.min.js"
+            },
+            "tplsmartpick2016" : {
+                "src" : "lotte/resources/<%= version %>/smartpick2016.template.js",
+                "dest" : "lotte/resources/<%= version %>/smartpick2016.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "csssmartpick2016" : {
+                "src" : [
+                    "lotte/resources_dev/mall/smartpick2016.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/smartpick2016.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleansmartpick2016" : [
+                "lotte/resources/<%= version %>/smartpick2016.js",
+                "lotte/resources/<%= version %>/smartpick2016.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlsmartpick2016" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mall/smartpick2016.html" : "mall/smartpick2016_dev.html"
+                }
+            }
+        }
+    }
+}
+

@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="pragma" content="no-cache" />
+
+    <title>Lotte.com App Api</title>
+
+    <!-- jQuery -->
+    <script src="http://m.lotte.com/lotte/lib/jquery/jquery-1.11.2.min.js"></script>
+
+    <!-- 롯데닷컴 API -->
+    <script src="/app/lottecom_api.js?20180911_02"></script>
+
+    <!-- SAS -->
+    <!--<script src="/common3/js/SpeedTrapInsert.js" defer="defer"></script>-->
+
+    <!-- Wiselog -->
+    <script src="/common4/js/lib/wl6.js"></script>
+    <script>
+    /**
+    * WISELOG TRACKING SCRIPT CODE
+    * DO NOT MODIFY THIS SCRIPT CODE.
+    * COPYRIGHT (C) 1999-2010 NETHRU INC. ALL RIGHTS RESERVED.
+    */
+    (function() {
+    var nl = document.createElement('script'); nl.type = 'text/javascript';
+    nl.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'm.lotte.com/common4/js/lib/wl6.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(nl, s);
+    var done = false;
+    nl.onload = nl.onreadystatechange = function() {
+        if ( !done && (!this.readyState || this.readyState === "loaded" || this.readyState === "complete") ) {
+            done = true;
+            _n_sid = "m.lotte.com";
+            _n_uid_cookie = "MBRNO";
+            n_logging();
+            nl.onload = nl.onreadystatechange = null;
+        }
+    }
+    })();
+    </script>
+
+    <!-- 홈쇼핑 모아 버즈니 -->
+    <!-- WEB ONLY -->
+    <!--
+    <script src="//hsmoa.com/media/buzzni_rt.min.js"></script>
+    -->
+    
+    <!-- 데이터사이언스 수집스크립트 -->
+    <script src="/lotte/lib/jquery/pub_tracking.js?20180710" defer="defer"></script>
+</head>
+<body>
+    <!-- Recobell -->
+    <!-- <jsp:include page="/WEB-INF/view/product/include/recobell_product_script.jsp" /> -->
+    <script type="text/javascript">
+        var rlqDevice = "MW";
+
+        if (nativeAppInfo.isAndroid) {
+            rlqDevice = "MA";
+        } else if (nativeAppInfo.isIOS) {
+            rlqDevice = "MI";
+        }
+
+        var _rlq = _rlq || [];
+        _rlq.push(['setVar','cuid','fdd29847-94cd-480d-a0d9-16144485d58b']);
+        _rlq.push(['setVar','device',rlqDevice]);
+        _rlq.push(['setVar','userId',getCookie('MBRNO') ? getCookie('MBRNO') : ""]);
+        _rlq.push(['setVar','searchTerm',urlPrams.keyword ? urlPrams.keyword : ""]);
+        _rlq.push(['track','search']);
+        setTimeout(function() {
+          (function(s,x){s=document.createElement('script');s.type='text/javascript';
+          s.async=true;s.defer=true;s.src=(('https:'==document.location.protocol)?'https':'http')+ '://d1hn8mrtxasu7m.cloudfront.net/rblc/js/rblc-apne1.min.js';
+          x=document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);})();
+        }, 0);
+    </script>
+
+    <!-- 카울리 -->
+    <!-- <jsp:include page="/WEB-INF/view/product/include/cauly_product_script.jsp" /> -->
+    <!-- 사용안함 -->
+    <!--
+    <script type="text/javascript">
+        window._paq = window._paq || [];
+        _paq.push(['track_code',"fdd29847-94cd-480d-a0d9-16144485d58b"]);
+        _paq.push(['user_id',getCookie('LOGINID') ? getCookie('LOGINID') : ""]); 
+        _paq.push(['event_name','SEARCH']);
+        _paq.push(['event_param',urlPrams.keyword ? urlPrams.keyword : ""]);
+        _paq.push(['exclude_rb']);
+        _paq.push(['send_event']);
+        (function() { var u="//image.cauly.co.kr/script/"; var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'caulytracker_async.js'; s.parentNode.insertBefore(g,s); }
+    )();
+    </script>
+    -->
+
+    <!-- 홈쇼핑모아 버즈니 -->
+    <!-- <jsp:include page="/WEB-INF/view/product/include/hsmoa_product_script.jsp" /> -->
+    <!-- WEB ONLY -->
+    <!--
+    <script  type="text/javascript" src="http://hsmoa.com/media/buzzni_rt.min.js"></script>
+    <script type="text/javascript">
+        var hsmoaDevice = "mweb";
+
+        if (nativeAppInfo.isAndroid) {
+            hsmoaDevice = "android";
+        } else if (nativeAppInfo.isIOS) {
+            hsmoaDevice = "ios";
+        }
+
+        var account_id = '5';
+        var site = hsmoaDevice;
+        var user_id  = getCookie('MBRNO_M') ? getCookie('MBRNO_M') : "";
+        var email = '' ;
+        var from_hsmoa = urlPrams.cn == "194925" ? true : false;
+        var product_id = urlPrams.goods_no ? urlPrams.goods_no : "";
+        var query = urlPrams.keyword ? urlPrams.keyword : "" ;
+        window.buzzni_rt.sendProduct(
+            account_id, 
+            site, 
+            user_id, 
+            email, 
+            query, 
+            from_hsmoa
+        );
+    </script>
+    -->
+</body>
+</html>

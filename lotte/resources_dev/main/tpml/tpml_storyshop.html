@@ -1,0 +1,69 @@
+<div tpml-storyshop ng-if="pageUI.curMenuDispNo == '5544340'" class="cont_wrap tpml_storyshop padding" ng-class="{pad:screenType > 1}">
+    <!-- 상단 배너 -->
+    <section ng-if="tpmlData.contData.stsp_banner_top.items[0]" class="storyTopBann" ng-class="{pad:screenType > 1}">
+        <a ng-click="storyLink(tpmlData.contData.stsp_banner_top.items[0], 'm_DC_menu_5544340_Ban_01', null, 0)">        
+                   <div class="storyBanBox">
+                <img ng-src="{{tpmlData.contData.stsp_banner_top.items[0].img_url}}" alt="{{tpmlData.contData.stsp_banner_top.items[0].banner_nm}}" />
+                <div class="dim"></div>
+                <div class="info">
+                    <span class="cateName" ng-if="tpmlData.contData.stsp_banner_top.items[0].category_nm != null">
+                        {{tpmlData.contData.stsp_banner_top.items[0].category_nm}}
+                    </span>
+                    <p class="banTitle" ng-bind-html="brReplace(tpmlData.contData.stsp_banner_top.items[0].banner_nm)"></p>
+                </div>    
+            </div>            
+        </a>
+    </section>
+
+   <!--201604 카테고리-->
+    <section ng-if="tpmlData.contData.category.items" class="story_cate">
+        <ul>
+            <li ng-class="{on:stSelectId == 0}" ng-click="stCateLink(0, 0)">전체</li>
+            <li ng-class="{on:stSelectId == item.cate_no}" ng-repeat="item in tpmlData.contData.category.items" ng-click="stCateLink(item.cate_no, $index+1)" ng-bind-html="item.cate_nm"></li>
+        </ul>
+    </section>
+      
+    <!-- 배너 리스트 -->
+    <section ng-if="tpmlData.contData.stsp_banner_list.items">
+        <ul id="fbanner">
+            <li ng-repeat="item in tpmlData.contData.stsp_banner_list.items" class="storyList" ng-if="stSelectId == item.category_no || stSelectId == 0" id="ban{{$index}}">
+                <a ng-click="storyLink(item, 'm_DC_menu_5544340_Clk_0' + (stSelectIndex + 1) + '_Ban_idx', '#ban' + $index, 0)">                    
+                    <div class="storyBanBox">
+                       <img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}" />
+                        <div class="dim"></div>
+                        <div class="info">
+                            <span class="cateName">{{item.category_nm}}</span>
+                            <p class="banTitle" ng-bind-html="brReplace(item.banner_nm)"></p>
+                        </div>    
+                    </div>                     
+                </a>
+            </li>
+        </ul>
+    </section>
+    <!--201604 지난컨텐츠 더보기-->
+    <section ng-if="tpmlData.contData.prv_banner_list.items" class="storyShop_prvList">
+        
+        <!--<div class="prvMoreBtn">지난 스토리 <div class="icon"></div></div>-->
+        <div class="prvMoreBtn type_a">지난 스토리</div>
+        <ul>
+            <li ng-repeat="item in tpmlData.contData.prv_banner_list.items" class="boxType{{$index%4}}"  ng-if="stSelectId == item.category_no || stSelectId == 0" id="card{{$index}}">
+                <a ng-click="storyLink(item, 'm_DC_menu_5544340_Clk_0' + (stSelectIndex + 1) + '_Ban_idx', '#card' + $index, 1)">
+                    <div class="storyPrvBox" >
+                        <div class="imgBox">
+                            <img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}" />    
+                        </div>                    
+                        <div class="info">
+                            <p class="banTitle" ng-bind-html="brReplace(item.banner_nm)"></p>
+                            <p class="banCate">{{item.category_nm}}</p>
+                        </div>    
+                    </div>                     
+                    
+                </a>
+            </li>
+        </ul>
+    </section>
+
+   
+    <!-- Html 코너 영역 -->
+    <section ng-if="tpmlData.contData.htmlTxt" class="html_corner_wrap" ng-bind-html="tpmlData.contData.htmlTxt"></section>
+</div>

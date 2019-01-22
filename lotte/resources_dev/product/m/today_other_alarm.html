@@ -1,0 +1,12 @@
+<div class="today_other_alarm" ng-class="{on:showTodayOtherAlarm}" ng-if="useTodayOtherAlarm">
+    <div class="head">
+        <a href="" ng-click="showLayor()">오늘의 다른 알림</a>
+    </div>
+    <div class="list">
+        <ul>
+            <li ng-repeat="item in toaData">
+                <a ng-href="{{item.link_url}}">{{item.content}}</a>
+            </li>
+        </ul>
+    </div>
+</div>

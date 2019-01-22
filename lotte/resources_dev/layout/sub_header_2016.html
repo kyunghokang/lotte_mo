@@ -1,0 +1,43 @@
+<header id="head_sub" ng-show="subTitle" ng-class="{wine: screenData.isWine && !screenData.isComm, fixedSubHeader: subHeaderFixed, fixedHeaderOn: headerFixed}">
+	<h2 ng-class="{search:searchCntTxt}" class="{{addCls}}">
+		<!--<span ng-if="kShopUI.dispNo != '5558814'">
+			<span class="title" ng-bind="subTitle" ></span>
+			<em ng-if="searchCntTxt" class="fixed_txt" ng-bind="searchCntTxt"></em>
+		</span>
+		<span ng-if="kShopUI.dispNo == '5558814'">
+            <style>#head_sub h2 a.noAfter:after{display:none}</style>
+		    <a ng-href="/mall/spec_mall.do?{{baseParam}}&dispNo=5558814#/" class="noAfter">
+			<span class="title" ng-bind="subTitle" ></span>
+			<em ng-if="searchCntTxt" class="fixed_txt" ng-bind="searchCntTxt"></em>
+			</a>
+		</span>-->
+
+		<!-- 전문관 로고 클릭 시, 홈이동 -->
+		<span ng-if="specHeadLogoLink(subTitle)!=''">
+			<style>#head_sub h2 a.noAfter:after{display:none}</style>
+			<a ng-href="{{specHeadLogoLink(subTitle)}}" class="noAfter">
+				<span class="title" ng-bind="subTitle" ></span>
+				<em ng-if="searchCntTxt" class="fixed_txt" ng-bind="searchCntTxt"></em>
+			</a>
+		</span>
+		<span ng-if="specHeadLogoLink(subTitle)=='' && !isBrandProdList">
+			<span class="title" ng-bind="subTitle" ></span>
+			<em ng-if="searchCntTxt" class="fixed_txt" ng-bind="searchCntTxt"></em>
+		</span>
+		<span ng-if="specHeadLogoLink(subTitle)=='' && isBrandProdList">
+			<a ng-click="brandSelectAll()">
+				<span class="title" ng-bind="subTitle" ></span>
+				<em ng-if="searchCntTxt" class="fixed_txt" ng-bind="searchCntTxt"></em>
+			</a>
+		</span>
+
+	</h2>
+	<p class="prev {{addCls}}" ng-if="isShowBack">
+		<a ng-click="gotoPrepage()">이전</a>
+	</p>
+	<p class="this" ng-if="isShowThisSns">
+		<!-- 2017.02.17 공유하기 수정 -->
+		<a ng-if="planShopSns == undefined" ng-click="showSharePop()">공유</a>
+		<a ng-if="planShopSns == true" ng-click="showSharePop({shareImg:share_img})">공유</a>
+	</p>
+</header>

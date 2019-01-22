@@ -1,0 +1,34 @@
+<section>
+	<!-- 국가 아이콘 및 국가명 -->
+	<div class="wine_country">
+		<img ng-if="contryImg != null" ng-src="{{contryImg}}" alt="작은 상품이미지">
+		<span>{{BasicData.product.orpl_nm }}</span>
+	</div>
+	<!-- 상세 상품명 -->
+	<h4 class="titText">{{BasicData.product.mgoods_nm }}</h4>
+	<!-- 영문명 -->
+	<p class="engTit">{{BasicData.product.eng_goods_nm }}</p>
+	<!-- 상세 타이틀 가격 -->
+	<div class="titPriceWrap">
+		<!-- 최적가 -->
+		<span class="titPrice"><strong>{{Fnproductview.getNumberFormat(priceInfo.lowPrice)}}</strong>원</span>
+	</div>
+	<p class="winePriceTxt">본 가격은 와인수입사가 권장하는 소비자가입니다.<br />실제 판매가격은 지점별 프로모션에 따라 상이할 수 있습니다.</p>
+	<!-- 와인예약 서비스란? -->
+	<div class="titBtn">
+		<div class="btnWrap">
+			<span class="btnArea wineRbtn">
+			    <img ng-click="wineGuide = !wineGuide" src="http://image.lotte.com/lotte/mo2015/angular/common/wine_reserve_banner.png" alt="와인예약서비스란?">
+			</span>
+		</div>
+	</div>
+</section>	
+
+<!--와인안내 레이어-->
+<div ng-show="wineGuide" class="wineGuideLayer">
+    <a ng-click="wineGuide = false"><img src="http://image.lotte.com/lotte/mo2015/angular/detail/winePopInfo_1.png" alt="와인예약서비스란?"></a>
+    <img src="http://image.lotte.com/lotte/mo2015/angular/detail/winePopInfo_2.png" alt="와인예약서비스란?">
+    <a ng-click="wineFootOpen()"><img src="http://image.lotte.com/lotte/mo2015/angular/detail/winePopInfo_3.png" alt="와인예약서비스란?"></a>
+    <img ng-show="wineInfoFoot" src="http://image.lotte.com/lotte/mo2015/angular/detail/winePopInfo_4.png" alt="와인예약서비스란?">
+    <div class="wwfoot" id="wineFoot"></div>    
+</div>

@@ -1,0 +1,85 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!--M51 연령별 추천형..-->
+	<div ng-if="unitShow">
+		<div class="moduleCon">
+			<div class="unit unit_bn_svcB age">
+				<ul>
+					<li ng-repeat="item in moduleData.items" ng-click="logGAEvtModuleEach($index + 1, item.topTxt.replace('#', '') + ' ' + item.btmTxt, item.topTxt.replace('#', ''));tabClick($event, $index)" ng-class="{on:$index == selectIdx}">
+						<div class="imgwrap cover_img"><img ng-src="{{item.imgUrl}}"></div>
+						<div class="tit_wrap">
+							<p class="tit">{{item.topTxt}}</p>
+							<p class="sub_tit">{{item.btmTxt}}</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="unit unit_prod_4">
+				<ul>
+					<li ng-repeat="item in moduleData.items[selectIdx].prdList.items">
+						<a ng-click="logGAEvtModuleEach(selectIdx+1, item.goodsNo, moduleData.items[selectIdx].topTxt.replace('#', ''),$index + 1);mainProductClick(item.goodsNo, moduleData.tclick + '_Clk_Btn' + numberFill((selectIdx + 1), 2) + '_Prd' + numberFill(($index + 1),2))">
+							<!--상품이미지-->
+							<p class="imgwrap"><img ng-src="{{item.imgUrl}}"></p>
+							<!--브랜드명-- >
+							<p class="brandname">{{item.brdNm}}</p>
+							<!--상품명-->
+							<p class="prodname">{{item.goodsNm}}</p>
+							<!--가격-->
+							<p class="price">{{item.price | currency: '':0}}<em>원<em class="plan_prod_limit" ng-if="item.isPlanPrd">~</em></em></p>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="moduleCon blankT10">
+			<div class="gTop_title">
+				<span>베스트</span>
+				<p>{{moduleData.items[selectIdx].bestList.items[0].txt}}</p>
+			</div>
+			<div lotte-slider class="swipe_wrap">
+				<ul class="prd_unit_type01_line">
+					<li ng-repeat="item in moduleData.items[selectIdx].bestList.items[0].prdList.items">
+						<a ng-click="logGAEvtModuleEach(selectIdx+1, item.goodsNo, moduleData.items[selectIdx].topTxt.replace('#', ''),$index + 5);mainProductClick(item.goodsNo, moduleData.tclick + '_Clk_Btn'+numberFill((selectIdx+1),2) + '_BEST1_Prd'+numberFill(($index+1),2))">
+							<div class="imageCon">
+								<img ng-src="{{item.imgUrl}}">
+								<span class="rkNum">{{$index + 1}}</span>
+							</div>
+							<div class="titleCon">
+								<div class="name">{{item.goodsNm}}</div>
+								<div class="ti"><strong>{{item.price | currency: '':0}}</strong>원</div>
+							</div>
+						</a>
+					</li>
+					<li class="bestMore">
+						<a class="txt_store" ng-click="logGAEvtModuleEach('더보기1', '더보기', moduleData.items[selectIdx].topTxt.replace('#', ''));dispNoClick(moduleData.items[selectIdx].bestList.items[0].moreLinkInfo.dispNo, moduleData.tclick + '_Btn'+numberFill((selectIdx+1),2)+'_BEST1_more')">
+							<p>베스트<br>더보기</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="gTop_title top_line">
+				<p>{{moduleData.items[selectIdx].bestList.items[1].txt}}</p>
+			</div>
+			<div lotte-slider class="swipe_wrap">
+				<ul class="prd_unit_type01_line">
+					<li ng-repeat="item in moduleData.items[selectIdx].bestList.items[1].prdList.items">
+						<a ng-click="logGAEvtModuleEach(selectIdx+1, item.goodsNo, moduleData.items[selectIdx].topTxt.replace('#', ''),$index + 9);mainProductClick(item.goodsNo, moduleData.tclick + '_Clk_Btn'+numberFill((selectIdx+1),2) + '_BEST2_Prd'+numberFill(($index+1),2))">
+							<div class="imageCon">
+								<img ng-src="{{item.imgUrl}}">
+								<span class="rkNum">{{$index + 1}}</span>
+							</div>
+							<div class="titleCon">
+								<div class="name">{{item.goodsNm}}</div>
+								<div class="ti"><strong>{{item.price | currency: '':0}}</strong>원</div>
+							</div>
+						</a>
+					</li>
+					<li class="bestMore">
+						<a class="txt_store" ng-click="logGAEvtModuleEach('더보기2', '더보기', moduleData.items[selectIdx].topTxt.replace('#', ''));dispNoClick(moduleData.items[selectIdx].bestList.items[1].moreLinkInfo.dispNo, moduleData.tclick + '_Btn'+numberFill((selectIdx+1),2)+'_BEST2_more')">
+							<p>베스트<br>더보기</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>

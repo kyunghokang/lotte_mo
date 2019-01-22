@@ -1,0 +1,189 @@
+<div tpml-normal ng-if="pageUI.curMenuDispNo == '5555564'" class="cont_wrap tpml_normal padding">
+	<!-- 메인탑배너 - 폰용 -->
+	<!--20170227 무한롤링 적용-->
+	<section class="main_banner" ng-if="randomTopBann && randomTopBann.length > 0" id="normal_b"  interval="3000" roll-swipe-banner rolling="true" width320="1" width640="1" width900="1" info="randomTopBann">
+		<ul class="swipe_wrap swipeBox">
+			<li ng-repeat="item in bn_order track by $index">
+				<a href="#" ng-click="processTclick(randomTopBann[item].link_url, {prefix:'Swp_Ban', useIndex:true, index:item+1})">
+					<span class="imageCon"><img ng-src="{{randomTopBann[item].img_url}}" alt="{{randomTopBann[item].title}}" /></span>
+					<span class="txt">
+						<span class="maintxt">{{randomTopBann[item].title}}</span>
+						<span class="subtxt">{{randomTopBann[item].sub_title}}</span>
+					</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="indicator">
+			<li ng-repeat="item in bn_order"><span>{{$index}}</span></li>
+		</ul>
+	</section>
+	
+	<!-- 동영상 영역 -->
+	<section class="mov_auto_wrap" ng-if="tpmlData.contData.mov_plan != null">
+
+		<ul>
+			<li ng-repeat="item in ::tpmlData.contData.mov_plan.items track by $index">
+				<div class="video_wrap">
+				    <video controls="controls" video-poster="{{::item.poster_img | trustUrl}}" id="autoVideo1" playsinline="true" webkit-playsinline="true">
+				    	<source video-source="{{::item.mov_url | trustUrl}}" type="video/mp4">
+				    </video>
+				    <div class="play_cover">
+				    	<span class="move_title">PLAY#</span>
+				    </div>
+				    <div class="stop_cover">
+				    	<span class="move_title">PLAY#</span>
+				    </div>
+				    <div class="click_cover"></div>
+				    <a ng-click="movMuteTclick('Clk_mute', 'Clk_vol');" class="btn_move_volume btn_text">음소거</a>
+				    <a ng-click="movPlayTclick();" class="btn_move_start">비디오 재생</a>
+				    <a ng-click="movStopTclick();" class="btn_move_stop btn_text">일시정지</a>
+				    <a ng-click="movProdLink(item.goods_no, 'm_DC_menu_5555564_Clk_Video_lnk')" class="btn_move_goods btn_text">상품보기</a>
+				</div>
+				<script type="text/javascript">
+				setTimeout(function(){
+					autoVideoPlay('autoVideo1', '#autoVideo1');
+				}, 1500);
+				</script>
+				<div class="plan_wrap">
+					<a ng-click="movProdLink(item.goods_no, 'm_DC_menu_5555564_Clk_Video_goods')">
+						<span class="plan_img"><img ng-src="{{::item.designer_img}}" /></span>
+						<span class="plan_txt">
+							<span class="plan_title">
+								<span class="plan_name" ng-bind-html="::item.designer_nm"></span>
+								<span class="plan_brand" ng-bind-html="::item.brand_nm"></span>
+							</span>
+							<p class="plan_subtitle"><span ng-bind-html="::item.plan_txt"></span></p>
+						</span>
+					</a>
+					<a ng-click="processTclick('/product/product_list.do?curDispNo=' + item.cur_disp_no, {prefix:'Clk_Video_Btn', useIndex:true, index:$index+1})" class="btn_goods_detail">PLAY# 더보기</a>
+				</div>
+				
+			</li>
+		</ul>
+	</section>
+	
+	<!-- 바로가기 아이콘 -->
+	<section class="norm_icon" ng-if="tpmlData.contData.shortcut.items && tpmlData.contData.shortcut.items.length > 0">
+		<ul>
+			<li ng-repeat="item in tpmlData.contData.shortcut.items track by $index">
+				<a href="#" ng-click="processTclick(item.link_url, {prefix:'Clk_Quick', useIndex:true, index:$index+1})">
+					<span class="icon_img"><img ng-src="{{item.img_url}}" alt="{{item.menu_nm}}" /></span>
+					<span class="icon_txt">{{item.menu_nm}}<em ng-if="item.menu_nm==''">　</em></span>
+				</a>
+			</li>
+		</ul>
+	</section>
+	
+	<!-- 코너 운영 5개 반복 -->
+	<section class="normCornerSect" ng-repeat="corner in tpmlData.contData.coner_list track by $index" ng-if="corner">
+		<h4>{{corner.title}}</h4>
+		<!--20170227 무한롤링 적용-->
+        <div id="normal_b{{$index}}"  roll-swipe-banner rolling="true" width320="1" width640="1" width900="1" info="corner.bnr_list.items">
+            <ul class="swipe_wrap swipeBox">
+                <li ng-repeat="item in corner.bnr_list.items track by $index">
+                    <a href="#" ng-click="processTclick(item.link_url, {prefix:'Swp_Ban_'+corner.tclick, useIndex:true, index:$index+1})">
+                        <span class="imageCon"><img ng-src="{{item.img_url}}" alt="" /></span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="indicator">
+                <li ng-repeat="item in corner.bnr_list.items track by $index"><span>{{$index}}</span></li>
+            </ul>
+        </div>		
+        
+		<div class="normCateProd">
+			<ul>
+				<li ng-repeat="item in corner.prod_list.items track by $index">
+					<a href="#" ng-click="productDealClickNorm(item, corner.tclick)">
+						<span class="imageCon"><img ng-src="{{item.img_url}}" alt="{{item.goods_nm}}" /></span>
+						<span class="brandname">{{item.brand_nm}}</span>
+						<span class="goodname">{{item.goods_nm}}</span>
+						<span class="price">{{item.sale_price | number:0}}<em>원<em ng-if="item.is_plan_prod" class="plan_prod_limit">~</em></em></span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="normCategory">
+			<h5>더 많은 상품보기</h5>
+			<!-- 카테고리: 폰 -->
+			<ul ng-class="{short:corner.cate_list.total_count<=6}">
+				<li ng-repeat="item in corner.cate_list.items track by $index" ng-class="{blank:item.ctg_nm=='', extra:$index>=5}" ng-if="item.ctg_nm!='' || item.scrtype==1 "> 
+					<a href="#" ng-click="categoryClick(this, corner.tclick)">{{item.ctg_nm}}</a>
+				</li>
+				<li class="more"><a href="#" ng-click="categoryShowMore($event)"><span></span></a>
+			</ul>
+		</div>
+	</section>
+	
+	<!-- 빅딜 -->
+	<section class="normBigDeal">
+		<div class="titlearea">
+			<div class="subtitle">설렘가득 두근두근</div>
+			<div class="title">오늘의 BIG딜</div>
+			<div class="more"><a href="#" ng-click="showMoreBigDeal()">BIG딜</a></div>
+		</div>
+	
+		<ol class="prod_list_mix_2016">
+			<li ng-repeat="item in tpmlData.contData.big_deal.items track by $index" class="prod swipe">
+				<div class="unit_mixdeal_01" ><!-- ng-if="item.isProduct" -->
+					<a ng-click="productDealClickNorm(item, 'Bigdeal')"><!-- -->
+						<!-- 품절 -->
+						<!-- <div class="soldout" ng-show="item.is_soldout">SOLD OUT</div> -->
+	
+						<!-- MD Talk -->
+						<!-- <div class="md_talk_wrap">
+							<p ng-class="{md_talk:item.md_tip}" class="md_talk_copy"><span> {{item.md_tip}} </span></p>
+						</div> -->
+	
+						<!-- 상품 이미지 : 대표이미지 불러오는 경우 class='thumb normal' 코너이미지 불러오는 경우 clas='thumb' -->
+						<div class="thumb" ><!-- ng-class="{normal:item.default_img}" default_img REMOVED -->
+							<!-- 명절 플레그 -->
+							<!-- <span ng-if="(
+											mainTemplateType == '5537338' ||
+											mainTemplateType == '5532649' ||
+											mainTemplateType == '5532659' ||
+											mainTemplateType == '5532658' ||
+											mainTemplateType == '5532663'
+										 ) && item.goods_nm.indexOf('[설]') > -1"
+								  class="holiday_flag">명절상품</span> -->
+							<!-- <span ng-if="holidayFlag == true && item.pIdx < 5" class="holiday_rank holiday_rank_0{{item.pIdx + 1}}">{{item.pIdx + 1}}</span> -->
+	
+							<img ng-src="{{getProductImage2(item)}}" alt="{{item.goods_nm}}"/>
+	
+							<div class="prod_flag_wrap">
+								<span class="flag depart" ng-if="item.mall_flag.is_dept">롯데백화점</span>
+								<span class="flag etv" ng-if="item.mall_flag.is_tvhome && !item.mall_flag.is_dept">롯데홈쇼핑</span>
+								<!--<span class="flag tag" ng-show="item.dlv_fee_tp=='Y'||item.isdlex_free">무료배송</span>-->
+								<span class="flag smart" ng-show="item.mall_flag.is_smartpick">스마트픽</span>
+							</div>
+						</div>
+	
+						<!-- 상품 정보 -->
+						<div class="info"><!--  ng-class="{true:item.is_coupon}" -->
+							<div class="prod">
+								<!-- 할인율 : 할인율 표시 (기획전형 상품이 아니고 할인율이 0이 아니면서 있을 경우) -->
+								<p ng-if="item.sale_rate && item.sale_rate != 0" class="sale_rate_wrap">
+									<span class="sale_rate">{{item.sale_rate}}</span>
+									<span class="sale_limit">%</span>
+									<em class="sale_desc">쿠폰포함</em>
+								</p>
+	
+								<!-- 상품명 -->
+								<span class="tit" ng-bind-html="item.goods_nm"></span><!-- ng-bind-html="item.goods_nm|titleToHtml" -->
+	
+								<!-- 상품가격 -->
+								<p class="price"><span>{{item.sale_price|number}}</span>원<em ng-if="item.is_plan_prod" class="plan_prod_limit">~</em></p>
+							</div>
+	
+							<!-- 구매 개수 및 입력형 Flag -->
+							<div class="sale_wrap">
+								<span class="no" ng-show="item.sale_cnt > 0"><em>{{item.sale_cnt|number}}</em>개 구매 중</span>
+								<span ng-if="item.ipt_flags" class="flag_tag" >{{item.ipt_flags}}</span>
+							</div>
+						</div>
+					</a>
+				</div>
+			</li>
+		</ol>
+	</section>
+</div>

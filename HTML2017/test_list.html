@@ -1,0 +1,374 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+<title>통테 결함 정리</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+<style type="text/css">
+/* common */
+*{margin:0; padding:0;}
+body,table, tr, td{font-family:돋움, Tahoma, verdana; font-size:12px; line-height:16px;color:#2d2d2d;}
+a:link, a:visited {color: #1a88a8;/*text-decoration: none;*/}
+a:active, a:hover {color: #000;}
+h2, h3, h4, h5{font-size:12px;}
+li{list-style:none;}
+/* tab */
+.tab_area{margin:20px 0 10px;height:34px;border-bottom:1px solid #dbd3c8;zoom:1;}
+.tab_area:after{content:"";display:block;clear:both;height:0;visibility:hidden;}
+.tab_area li{float:left}
+.tab_area li a{display:block;width:150px;height:31px;text-align:center;margin:0 -1px -1px 0;line-height:31px;font-size:12px;border:1px solid #cccccc;border-top:3px solid #cccccc;text-decoration:none;}
+.tab_area li .active, .tab_area li a:hover{ position:relative;font-weight:bold;color:#1a88a8;z-index:10;border:1px solid #1a88a8;border-top:3px solid #1a88a8;border-bottom:1px solid #fff;}
+.cont-view{display:none;} .cont-view-on{display:block;}
+
+/* layout*/
+#wrapper{padding:20px;}
+h1{text-align:center; padding:15px 0 30px;font-weight:900;font-family:'Nanum Gothic',verdana,Tahoma,Helvetica,sans-serif}
+p{margin-bottom:10px;}
+.tbList{width:100%;border-collapse:collapse; padding:0; margin:0; border-top:3px solid #1a88a8; border-bottom:3px solid #ccc;}
+.tbList thead{background:#7fbbc5; color:#fff; padding:4px; text-align:center;}
+.tbList thead th{border:1px solid #ccc; padding:5px 0; font-weight:normal;color:#fff}
+.tbList tbody{background:#fff; text-align:left;}
+.tbList tbody td{border:1px solid #ccc; padding:5px 5px;}
+.tbList tbody tr:hover{background-color:#EEE !important}
+.tbList tbody tr.listBar td{font-weight:bold; text-align:center; padding:5px;background:#ddd;}
+.tbList tbody tr.categoryBar td{font-weight:bold; font-size:14px;text-align:center; padding:10px;background:#eee;}
+.tbList tbody tr.request td{background:#F0FFFF;}
+.tbList tbody tr.request td.title{background:#fff;}
+.tbList tbody tr.closed td{background:#ededed; text-decoration:line-through;}
+.tbList tbody td.center{text-align:center;}
+.tbList tbody td.flash{background:#D3B9FF;}
+#footer{padding:5px 0; text-align:center; color:#fff; font-size:10px; background:#ccc;}
+</style>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<h1>롯데닷컴 모바일리뉴얼 통테결함정리</h1>
+	<p>
+		※ <span style="border:1px solid #999;background:#F0FFFF;padding:2px 3px 1px;">운영반영요청</span> | 
+		<span style="border:1px solid #999;background:#ededed;padding:2px 3px 1px;">Close</span>  
+	</p>
+	
+	<table class="tbList" summary="개발 코딩 IA">
+		<colgroup>
+			<col width="3%" />
+			<col width="5%" />
+			<col width="10%" />
+			<col width="10%" />
+			<col width="20%" />
+			<col width />
+			<col width="15%" />
+			<col />
+		</colgroup>
+		<thead>
+			<tr>
+				<th>No</th>
+				<th>진행상태</th>
+				<th>심각도</th>
+				<th>결함등록일</th>
+				<th>제목</th>
+				<th>결함내용</th>
+				<th>비고</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- <tr class="">
+				<td>821</td>
+				<td>Resolved</td>
+				<td>P2-보통</td>
+				<td>2017-06-29</td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr> -->
+			<tr class="listBar">
+				<td colspan="7">▼ 2017-07-06(목) 배포</td>
+			</tr>
+			<tr class="request">
+				<td>947</td>
+				<td>Assign</td>
+				<td>	P3-보통</td>
+				<td>2017-07-04</td>
+				<td>	[web] 빅딜 상품상세에서 이동 후 상단 카테고리탭 위치 조정 필요</td>
+				<td>빅딜 > 가전가구탭 > 상품상세 이동 > 뒤로가기 > 빅딜매장 재인입 상단 카테고리탭 위치 조정 필요 <br>
+					-> 가전/가구탭이 저 뒤에 숨어있음</td>
+				<td></td>
+			</tr>
+			<tr class="request">
+				<td>931</td>
+				<td>Assign</td>
+				<td>	P4-사소</td>
+				<td>2017-07-04</td>
+				<td>	[web] 갤러리 서비스 게이트형 모듈 텍스트 크기</td>
+				<td>텍스트 크기 동일해야함</td>
+				<td></td>
+			</tr>
+			<tr class="request">
+				<td>741</td>
+				<td>Assign</td>
+				<td>	P4-사소</td>
+				<td>2017-06-26</td>
+				<td>	[IOS_APP] 스마트픽 페이지 내 상품확대보기 아이콘 위치 수정 요청</td>
+				<td>스마트픽 페이지 내 각 상품 이미지 우측 하단의 확대보기 아이콘위치가 제품명 텍스트와 겹쳐 보여짐</td>
+				<td></td>
+			</tr>
+			<tr class="listBar">
+				<td colspan="7">▼ 2017-07-04(화) 배포</td>
+			</tr>			
+			<tr class="request">
+				<td>881</td>
+				<td>Assign</td>
+				<td>	P1-심각</td>
+				<td>2017-07-03</td>
+				<td>	[web] 장바구니 바로 담기 모듈, 옵션있는 상품 오류</td>
+				<td>
+					생활/식품 > 장바구니 바로 담기 모듈 > 옵션있는 상품을 눌렀을 때 얼럿 메세지 노출 후 상품상세로 이동해야 하나, 상품상세로 이동 안함<br />
+					- 4번째 한샘 커트러리 세트 상품<br />
+					- 얼럿 노출하고 확인 누르면 상품상세로 이동해야함
+				</td>
+				<td></td>
+			</tr>
+			<tr class="request">
+				<td>859</td>
+				<td>Assign</td>
+				<td>	P4-사소</td>
+				<td>2017-06-30</td>
+				<td>	[AOS/iOS/WEB] 상품4개형 수정</td>
+				<td>1. 상품4개형 모듈 상단에 라인 추가<br />
+					2. 3+4개형 탭 삼각아이콘이 라인 두께만큼 밑으로 1px 이동<br/>
+					<b>[반영요청 file]</b> main_2017.css<br/>
+					<b>[확인방법]</b> M13 상품 4개형 - 탭메뉴 > 스타일 > 뷰티 <br>
+					M26 3+4형 - 탭메뉴 > 스타일 > 뷰티 <br>
+					M51 연령별 추천형 - 탭메뉴 > 키즈 <br>
+					M55 N+4형 - 탭메뉴 > 기프트
+				</td>
+				<td></td>
+			</tr>
+			<tr class="request">
+				<td>850</td>
+				<td>Assign</td>
+				<td>	P4-사소</td>
+				<td>2017-06-30</td>
+				<td>	[AOS, iOS, WEB] 라인컬러변경</td>
+				<td>
+					​1. 모든 모듈하단의 라인 컬러 #e9e9e9 변경<br />
+					2. 더보기모듈  하단 라인 컬러 #e9e9e9 변경<br />
+					3. 더보기모듈 상단 라인 삭제
+				</td>
+				<td></td>
+			</tr>
+			<tr class="request">
+				<td>833</td>
+				<td>Resolved</td>
+				<td>	P4-사소</td>
+				<td>2017-06-30</td>
+				<td>	[web] 브랜드찾기/추가 페이지 텍스트/버튼 위치조정</td>
+				<td>
+					브랜드 찾기/추가 페이지에서 터치영역이 좁아<br />
+					텍스트와 즐겨찾기 버튼의 위치 수정부탁드립니다.<br />
+					빨간색 처리된 부분은 현재 반영되어있는 상태이고<br />
+					초록색 to-be로 되어있는 부분으로 수정요청 드립니다.
+				</td>
+				<td></td>
+			</tr>
+			<tr class="request">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>2017-06-30</td>
+				<td>	이기적 랭킹</td>
+				<td>0원일때 수정</td>
+				<td></td>
+			</tr>
+			<tr class="request">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>2017-06-30</td>
+				<td>	[브랜드 검색/추가] 검색 속도개선</td>
+				<td>결과 표시할때 스크롤 페이징으로</td>
+				<td></td>
+			</tr>
+			<tr class="request">
+				<td>821</td>
+				<td>Resolved</td>
+				<td>	P3-보통</td>
+				<td>2017-06-29</td>
+				<td>	[web] 스와이프배너 카운트 오류 및 레이어팝업 미노출</td>
+				<td>
+					홈탭에서 빅딜탭 클릭이 아닌 스와이프로 탭 이동하려다가 다시 돌아왔을 경우(탭이동 하려다 터치를 떼지 않은 상태에서 다시 홈탭으로 돌아온 상태) 홈탭 > 전사행사 배너를 스와이프해도 1/8 카운트가 증가하지 않습니다.<br />
+					그 상태에서 1/8 클릭시 '모두보기' 레이어팝업이 뜨지 않습니다.<br />
+					스와이프배너가 포함된 모든 탭에서 동일현상 발생합니다.<br />
+					aos는 정상동작 중입니다.
+				</td>
+				<td></td>
+			</tr>
+			<tr class="request">
+				<td>817</td>
+				<td>Resolved</td>
+				<td>	P3-보통</td>
+				<td>2017-06-29</td>
+				<td>[web][app][브랜드 즐겨찾기 오류]</td>
+				<td>
+					현재  25개의 브랜드를 즐겨찾기 한 상태에서<br />
+					한개의 브랜드를 더 추가하려고 즐겨찾기 버튼을 클릭하면,<br />
+					'브랜드 즐겨찾기는 최대 50개까지 가능합니다.' 문구가 노출되지만,<br />
+					즐겨찾기는 불가능한 상태입니다.<br />
+					확인 부탁드립니다.
+				</td>
+				<td></td>
+			</tr>
+			<tr class="request">
+				<td>811</td>
+				<td>Resolved</td>
+				<td>	P4-사소</td>
+				<td>2017-06-28</td>
+				<td>	[ios/web] 브랜드 즐겨찾기 더보기시 팝업오류</td>
+				<td>
+					상품상세/기획전 이동 등 반복적인 액션 이후 <br />
+					브랜드 즐겨찾기에서 더보기 눌렀을때 딤처리만 실행되고<br />
+					팝업이 열리지 않는 현상이 특정패턴없이 간헐적으로 발생하고 있습니다.<br />
+					이전 액션 없이 다이렉트로 브랜드 즐겨찾기 더보기 실행에는 오류없습니다.
+				</td>
+				<td></td>
+			</tr>
+			<tr class="request">
+				<td>810</td>
+				<td>Closed</td>
+				<td>P3-보통</td>
+				<td>2017-06-28</td>
+				<td>	[ios/web] 빅딜 카테고리탭 오류</td>
+				<td>
+					빅딜 카테고리 터치하면 하위 카테고리가 뜨지않고<br />
+					라인이 나타납니다. (화면을 껐다 다시 실행하면 제대로 나옴)
+				</td>
+				<td></td>
+			</tr>
+			<tr class="request">
+				<td>809</td>
+				<td>Closed</td>
+				<td>P2-중요</td>
+				<td>2017-06-28</td>
+				<td>	[ios/web] 뷰티매장 탭터치 오류</td>
+				<td>
+					웹의 뷰티매장에서 3+4개형 탭이 터치시 선택되지 않습니다.
+				</td>
+				<td></td>
+			</tr>
+			<tr class="closed">
+				<td>808</td>
+				<td>Assign</td>
+				<td>P4-사소</td>
+				<td>2017-06-28</td>
+				<td>[AOS/ WEB, APP] 카테고리 영역 로딩 속도</td>
+				<td>
+					​특정모듈에서만 로딩속도가 평균5초이상입니다.<br />
+					다른 탭은 괜찮은데 카테고리 영역(M2010)은 모두 접속 속도가<br />
+					느려서 문의드립니다.
+				</td>
+				<td>중카매장 자체 이슈입니다. 본 결함은 closed처리합니다.</td></tr>
+			<tr class="request">
+				<td>807</td>
+				<td>Resolved</td>
+				<td>P4-사소</td>
+				<td>2017-06-28</td>
+				<td>[	ios/web] 카테고리 터치 오류</td>
+				<td>
+					상품상세/기획전 페이지 이동후 되돌아오기 등의 액션 이후 빅딜 카테고리 영역의 활성 테두리 움직임에 오류가 있습니다.<br />
+					터치시 하단의 상품리스트도 변동이 없습니다. <br />
+					실사아이콘은 중앙으로 오고있으나<br />
+					활성화된 테두리가 같이 움직이지 않는 오류입니다.<br />
+					특정 패턴이 없고 여러 동작 이후에 생기는 오류입니다.
+				</td>
+				<td></td>
+			</tr>
+			<tr class="closed">
+				<td>804</td>
+				<td>Assign</td>
+				<td>P3-보통</td>
+				<td>2017-06-28</td>
+				<td>[ios/web] 장바구니 숫자 사라졌다 나타나는 현상</td>
+				<td>​화면 이동할때 장바구니의 숫자가 사라졌다 다시 나타납니다.</td>
+				<td>close됨. IT운영팀에서 처리예정</td>
+			</tr>
+			<tr class="request">
+				<td>802</td>
+				<td>Resolved</td>
+				<td>P4-사소</td>
+				<td>2017-06-28</td>
+				<td>	[ios/web] 동영상모듈 유닛/상품가격 위치 이동</td>
+				<td>
+					1번 간격여백 없어져야함 동영상 시작점과 유닛 시작점 동일하게<br />
+					2번 상품가격 하단으로 조정
+				</td>
+				<td></td>
+			</tr>
+			<tr class="request">
+				<td>799</td>
+				<td>Resolved</td>
+				<td>P4-사소</td>
+				<td>2017-06-28</td>
+				<td>	[ios/web] 빅딜에서 전체항목 사라지는 현상</td>
+				<td>다른 탭이나 상품을 누르고 되돌아오기 동작후 빅딜에서 전체항목 사라지는 현상</td>
+				<td></td>
+			</tr>
+			<tr class="request">
+				<td>793</td>
+				<td>Assign</td>
+				<td>	P2-중요</td>
+				<td>2017-06-28</td>
+				<td>	[ios/web] 모두보기 팝업오류</td>
+				<td>모두보기 팝업 - IOS safari 브라우저에서 최하단 배너 다 안보이는 문제 <br>
+					<b>[반영요청 file]</b> main_2017.css<br/>
+					<b>[확인방법]</b> M35 프로모션배너 A형 - 탭메뉴 > 홈 > 프로모션배너 A형 + 클릭
+				</td>
+				<td></td>
+			</tr>
+			<tr class="closed">
+				<td>669</td>
+				<td> AfterJob</td>
+				<td>P1-심각</td>
+				<td>2017-06-24</td>
+				<td>	[ios, aos, mo] 비로그인 > 브랜드 즐겨찾기 페이지 오류</td>
+				<td>​
+					​비로그인 > 브랜드탭 메인 인입 > 브랜드 검색/추가 버튼 누름 > 브랜드 검색/추가 페이지 -> 하단 10개 브랜드 중 1개 브랜드 별표 누름 -> 로그인 -> 브랜드 검색/추가 페이지 -> 즐겨찾기에 추가되었습니다 얼럿 뜸 -> 뒤로가기 버튼 누르면 로그인 창으로 이동하여 로그인이 풀려버림<br />
+					1. 브랜드 메인을 가도 브랜드 즐겨찾기 영역에 즐겨찾기 추가한 브랜드가 없음 (로그 아웃 상태라..)<br />
+					로그인을 유지시켜 줄 필요 발생
+				</td>
+				<td>정책결정이 필요사항으로 closed처리됨</td>
+			</tr>
+			<tr class="closed">
+				<td>669</td>
+				<td>AfterJob</td>
+				<td>P4-사소</td>
+				<td>2017-06-21</td>
+				<td>	[ios, aos] 임직원 오류신고</td>
+				<td>​
+					​로그인 -> 푸터영역 -> 오류신고 클릭<br />
+					아래와 같은 얼럿 노출됨<br />
+					기대효과 : 이미 로그인이 된 상태에서만 오류신고 버튼이 노출되므로 아래와 같은 얼럿은 뜨지 않고, 오류신고 페이지로 접속 되어야함
+				</td>
+				<td>closed됨. 김낙원님 처리예정</td>
+			</tr>
+			<tr class="closed">
+				<td>519</td>
+				<td>AfterJob</td>
+				<td>P4-사소</td>
+				<td>2017-06-21</td>
+				<td>	[IOS,AOS,WEB] 홈탭/실시간베스트탭 인기검색어 모듈 수정 건</td>
+				<td>​
+					1) 인기검색어 키워드의 검색키워드 클릭영역 강화를 위해 키워드 면 채우기<br />
+					2) 전국민이 많이 찾고있는 상품보기  '>' 넣기
+				</td>
+				<td>closed됨. 디자인 재진행예정</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+</body>
+</html>

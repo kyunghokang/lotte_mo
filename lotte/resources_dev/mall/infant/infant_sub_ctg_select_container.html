@@ -1,0 +1,40 @@
+<section class="allSubCateFlag" ng-if="allSubCateFlag">
+    <!-- 전체보기 열렸을때(class 'on'추가) -->
+    <div class="subCateAllView" ng-class="{on:allSubCateOpenFlag}" >
+        <!--버튼-->
+        <div class="btnWrap"  ng-click="allSubCateClick()" >
+            <span class="btnArea">
+                <a class="btn_prdView"><span id="curcatenm">{{divName}}</span><span class="btnIcon"></span></a>
+            </span>
+        </div>
+
+		<!-- 스크롤 -->
+        <div ng-show="allSubCateOpenFlag" ng-class="{true: 'subCateAllViewList on', false: 'subCateAllViewList'}[allSubCateOpenFlag]">
+            <div class="list scrolltype">
+                <ul>
+					<!-- SubCate :: 메인 -->
+                    <li ng-repeat="items in screenData.cate_list[0].sub_cate_list" ng-if="inFantUi.uiDispNo == '5571264'">
+                		<a ng-click="sortCateClick(items.divObjNo, items.divObjNm, $index)" ng-class="{on : items.divObjNo == divObjNoParam}">{{items.disp_nm}}<span ng-if="items.sub_cate_list.disp_nm != ''">({{items.sub_cate_list.disp_nm}})</span></a>
+                    </li>
+					<!-- //SubCate :: 메인 -->
+					<!-- SubCate :: 스토리 -->
+                    <li ng-repeat="items in screenData.cate_list[0].sub_cate_list" ng-if="inFantUi.uiDispNo == '5571265'">
+                		<a ng-click="sortCateClick(items.divObjNo, items.divObjNm, $index)" ng-class="{on : items.divObjNo == divObjNoParam}">{{items.disp_nm}}<span ng-if="items.sub_cate_list.disp_nm != ''">({{items.sub_cate_list.disp_nm}})</span></a>
+                    </li>
+					<!-- //SubCate :: 스토리 -->
+					<!-- SubCate :: 육아Tip -->
+					 <li ng-repeat="items in screenData.cate_list[0].sub_cate_list" ng-if="inFantUi.uiDispNo == '5571267'">
+                		<a ng-click="sortCateClick(items.divObjNo, items.divObjNm, $index)" ng-class="{on : items.divObjNo == divObjNoParam}">{{items.disp_nm}}<span ng-if="items.sub_cate_list.disp_nm != ''">({{items.sub_cate_list.disp_nm}})</span></a>
+                    </li>
+					<!-- //SubCate :: 육아Tip -->
+					<!-- SubCate :: 포토후기 -->
+					 <li ng-repeat="items in screenData.cate_list[0].sub_cate_list" ng-if="inFantUi.uiDispNo == '5571268'">
+                		<a ng-click="sortCateClick(items.divObjNo, items.divObjNm, $index)" ng-class="{on : items.divObjNo == divObjNoParam}">{{items.disp_nm}}<span ng-if="items.sub_cate_list.disp_nm != ''">({{items.sub_cate_list.disp_nm}})</span></a>
+                    </li>
+					<!-- //SubCate :: 포토후기 -->
+				</ul>
+			</div>
+        </div>
+        <!-- //스크롤 -->
+    </div>
+</section>

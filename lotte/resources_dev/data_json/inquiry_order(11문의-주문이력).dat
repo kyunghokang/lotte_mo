@@ -1,0 +1,44 @@
+1. 업무명: 고객센터 > 1:1 문의 - 주문 이력 단 건
+2. 담당자: 이형근
+3. URL: http://molocal.lotte.com/json/custcenter/inquiry_order.json?ord_no=201508149332426&ord_dtl_sn=657292088&ord_dtl_sn=657292091
+4. 파라미터
+	- ord_no : 주문번호
+	- ord_dtl_sn : 주문내역일련번호
+5. JSON 파라미터
+	- view_ord_no : 주문번호 날짜형
+	- ord_no : 주문번호
+	- goods_list : 주문 이력의 상품 정보
+	- goods_no : 상품번호
+	- goods_desc : 상품설명
+	- ord_qty : 주문수량
+	- rmit_nm : 주문자명
+	- ord_state_nm : 주문상태명
+	- ord_dtl_sn : 주문내역일련번호
+	- img_url : 이미지URL
+6. JSON
+{
+  "inquiry_order" : {
+    "view_ord_no" : "2015-08-14-9332426",
+    "ord_no" : "201508149332426",
+    "goods_list" : {
+      "items" : [ {
+        "goods_no" : 167047802,
+        "goods_desc" : "<strong>[발렌티노루디]</strong>단품 남녀 페이크덧신/누드실리콘 덧신",
+        "ord_qty" : 1,
+        "rmit_nm" : "이형근",
+        "ord_state_nm" : "발송완료",
+        "ord_dtl_sn" : 657292091,
+        "img_url" : "http://image.lotte.com/goods/02/78/04/67/1/167047802_1_220.jpg"
+      }, {
+        "goods_no" : 167047802,
+        "goods_desc" : "<strong>[발렌티노루디]</strong>단품 남녀 페이크덧신/누드실리콘 덧신",
+        "ord_qty" : 1,
+        "rmit_nm" : "이형근",
+        "ord_state_nm" : "발송완료",
+        "ord_dtl_sn" : 657292088,
+        "img_url" : "http://image.lotte.com/goods/02/78/04/67/1/167047802_1_220.jpg"
+      } ],
+      "total_count" : 2
+    }
+  }
+}

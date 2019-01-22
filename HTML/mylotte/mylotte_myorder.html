@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="../../lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="../../lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="../../lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="../../lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="../../lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="../../lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="../../lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="../../lotte/resources_dev/search/layer_srh.css">	
+<!----------------- current css ----------------->
+
+<link rel="stylesheet" href="../../lotte/resources_dev/mylotte/purchase/m/purchase_list.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="../../lotte/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="../../lotte/lib/angular/angular.min.js"></script>
+<script src="../../lotte/lib/angular/angular-route.min.js"></script>
+<script src="../js/testPub.js"></script>
+
+</head>
+<body>
+<!--------------- current js ----------------->
+<script>
+	$(function(){
+		$(".editDt").click(function(){
+			if($(this).hasClass("dtOn")){
+			}else{
+				$(".dtOn").removeClass("dtOn");
+				$(".ddOn").removeClass("ddOn");
+				$(this).addClass("dtOn");
+				$(this).parent().next("dd").addClass("ddOn");
+			}
+		});
+		$(".tab_addr li a.tit").click(function(){// D:20150915 배송지변경
+			if($(this).parent("li").hasClass("on")){
+			}else{
+				$(".tab_addr li.on").removeClass("on");
+				$(".tab_addr li dl").hide();
+				$(this).parent("li").addClass("on");
+				$(this).next("dl").show()
+			}
+		});
+		$(".safe_num").click(function(){
+			if($(this).hasClass("on")){
+				$(this).removeClass("on");
+				$(this).next(".tooltip").hide();
+			}else{
+				$(this).addClass("on");
+				$(this).next(".tooltip").show();
+			}
+		});
+		$(".btnClose").click(function(){
+			$(this).parent(".tooltip").hide();
+			$(".safe_num").removeClass("on");
+		});
+	});
+</script>
+<!---------------// current js ----------------->
+</head>
+<body>
+
+<!-- common -->
+<section ng-include="'../include/common.html'"></section>
+<!-- header -->
+<section ng-include="'../include/header.html'"></section>
+<section ng-include="'../include/head_sub.html'"></section>
+
+<!-- container -->
+<section id="container">	
+	<!-- 주문/배송조회_상세보기 -->
+
+	<section id="order" class="myOrder"><!-- D:20150915 마크업추가 / 클래스추가 -->
+		<section class="tips">
+			<!-- D:20150915 마크업추가 -->
+			<ul class="period period_v2 clear"><!-- 클래스 추가 2017.02.08 -->
+				<li><a href="#none">최근 15일</a></li>
+				<li><a href="#none" class="on">1개월</a></li>
+				<li><a href="#none">3개월</a></li>
+				<li><a href="#none">6개월</a></li>
+				<li><a href="#none" class="editPeriod">기간설정</a></li>
+			</ul>
+			<div class="periodChk periodChk_v2"><!-- 클래스 추가 2017.02.08 -->
+				<div class="periodChkInner">
+					<div class="addInfoDate">
+						<input type="text" class="calendar-input" name="opt_input_value" value="" readonly="" placeholder="2015-09-09">
+						<a href="#" class="wa-datechooser-btn"><span>달력</span></a>
+					</div>
+					<span class="cal_space">~</span>
+					<div class="addInfoDate">
+						<input type="text" class="calendar-input" name="opt_input_value" value="" readonly="" placeholder="2015-09-09">
+						<a href="#" class="wa-datechooser-btn"><span>달력</span></a>
+					</div>
+				</div>
+				<!-- <div class="btnPeriod"><a href="#none">확인</a></div> 2017.02.08 주석처리 -->
+			</div>
+			<!-- 2017.02.08 주문배송조회 검색기능 개선 -->
+			<div class="requery_box">
+				<div class="requery">
+					<input type="text" id="requery" name="requery" value="상품명 또는 브랜드명을 입력해 주세요" title="상품명 또는 브랜드명을 입력해주세요" onclick="this.value=''">
+				</div>
+				<div class="btnPeriod"><a href="#none">조회</a></div> 	
+			</div>
+			<!-- //2017.02.08 주문배송조회 검색기능 개선 -->	
+			<!-- //D:20150915 마크업추가 -->
+		</section>
+		<!-- D:20150915 마크업추가 -->
+		<div class="statusCount">
+			<ul class="clear">
+				<li class="current">
+					<dl>
+						<dt>주문접수</dt>
+						<dd>12</dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt>주문완료</dt>
+						<dd>3</dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt>출고지시</dt>
+						<dd class="nodata">0</dd><!-- D: 내역없을때 클래스 nodata -->
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt>상품준비</dt>
+						<dd>2</dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt>발송완료</dt>
+						<dd class="nodata">0</dd><!-- D: 내역없을때 클래스 nodata -->
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt>발송불가</dt>
+						<dd class="nodata">0</dd><!-- D: 내역없을때 클래스 nodata -->
+					</dl>
+				</li>
+			</ul>
+		</div>
+		<!-- D:20150915 마크업추가 -->
+		<section class="order_none">
+			<div class="box">
+				<div class="txt">
+					<p>
+						<span class="txt01">
+							해당되는 주문내역이 없습니다.
+						</span>
+					</p>
+				</div>
+				<div class="btn"><a href="javascript:navback();" class="a_btn col02"><span>이전 페이지 가기</span></a></div>
+			</div>
+		</section>
+		<section class="order_list">
+			<ul id="a_list">
+				<li class="order_unit unit_top">
+					<h3>
+						<span>09월 16일</span>
+						<span class="order_no">2015-08-30-1234567</span>
+					</h3>
+					<ul>
+						<li>
+							<!-- 상품정보 -->
+							<div class="order_goods">
+								<a href="/mylotte/purchase/purchase_view.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;orderNo=201509161459693#10972220">
+									<span class="thumb">
+										<img src="http://image.lotte.com/goods/20/22/97/10/10972220_1_150.jpg" alt="상품이미지" onerror="chImg(this,150)">
+									</span>
+								</a>
+								<!-- 20180209 lg희망일배송 수정 -->
+								
+								<a href="/mylotte/purchase/purchase_view.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;orderNo=201509161459693#10972220">
+									<span class="cont01"></span>
+										<!-- 20160530 선물하기 추가 -->
+										<p class="recipient">김지혜</p>
+										<p class="icon">
+											<!-- D:20150915 마크업추가 -->
+											<span class="flag depart">롯데백화점</span>
+											<span class="flag tag">무료배송</span>
+											<span class="flag smart">스마트픽</span>
+											<!-- //D:20150915 마크업추가 -->
+										</p>
+										<p class="tl">[브랜드명]상품명이 노출됩니다. 상품명이 노출됩니다.</p>
+										<p class="option">
+											색상:화이트(WH)
+											<!-- D:20150915 마크업추가 -->
+											<span>|</span>
+											<span>사이즈:45(55)</span>
+											<!-- //D:20150915 마크업추가 -->
+										</p>
+									</span>
+								</a>
+								<div class="new_wrap_lg">
+									<p class="lg_delivery">
+										<span href="#">희망일배송 : <span class="sel_date">2017-12-22</span></span>
+									</p>
+									<p class="money">
+										<a href="/mylotte/purchase/purchase_view.do?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;orderNo=201509161459693#10972220">
+											1,158,000원 X  1개 =<!-- D:20150915 마크업수정 / 텍스트수정 -->
+											<span class="price"><span>1,158,000</span>원</span>
+										</a>
+									</p>
+								</div>
+								<!-- // 20180209 lg희망일배송 수정 -->
+
+								<!-- 일반 배송 문구 -->
+								<span class="order_step">
+									<p class="step"><span>발송완료</span></p>
+									<p class="step_detail">CJ택배 68878133412</p>
+									<!-- D:20150915 마크업추가 -->
+									<span class="btnMore trackingMore">배송조회</span>
+									<!-- //D:20150915 마크업추가 -->
+								</span>
+								<!-- 20160715 퀵배송 문구 추가 클래스 quick추가 -->
+								<span class="order_step quick">
+									<p class="step">발송완료</p>
+									<p class="step_detail">2시간 내료 배송완료 예정입니다.(06월 16일 06시 13분 발송완료)</p>
+								</span>
+								<!-- 2016.10.24 주문취소 사유보기-->
+								<span class="order_step order_cancle">
+									<p class="step"><span>주문취소</span></p>
+									<p class="step_detail">거절로 주문 건이 취소되었습니다.</p>
+									<span class="btnMore trackingMore" onclick="javascript:$('.rejectionPop').show()">사유보기</span>
+								</span>
+								<!-- 2016.10.24 주문완료 알람보내기-->
+								<span class="order_step order_gift">
+									<p class="step"><span>주문완료</span></p>
+									<p class="step_detail">결제/입금 내역이 확인되었습니다.</p>
+								</span>
+								<!-- 주문완료 case02-->
+								<span class="order_step order_gift">
+									<p class="step"><span>주문완료</span></p>
+									<p class="step_detail">아직 선물을 수락하지 않으셨어요!</p>
+									<span class="btnMore trackingMore" onclick="javascript:$('.send_notification').show()">알람보내기</span>
+								</span>
+								
+								<span class="order_step order_gift">
+									<p class="step"><span>주문완료</span></p>
+									<p class="step_detail">선물을 수락하셨습니다.</p>
+								</span>
+								<!-- 주문완료 case03-->
+								<span class="order_step order_gift">
+									<p class="step"><span>주문완료</span></p>
+									<p class="step_detail">선물거절로 취소처리 중입니다.</p>
+									<span class="btnMore trackingMore cancle" onclick="javascript:$('.rejectionPop').show()">사유보기</span>
+								</span>
+					<!-- 20161107  배송진행 case-->
+								<span class="order_step">
+									<p class="step"><span>배송진행</span></p>
+									<p class="step_detail">CJ택배 68878133412</p>									
+									<span class="btnMore trackingMore">배송조회</span>									
+								</span>
+					<!-- 20161107  상품배송접수 case-->
+								<span class="order_step">
+									<p class="step"><span>상품배송접수</span></p>
+									<p class="step_detail">CJ택배 68878133412</p>									
+									<span class="btnMore trackingMore">배송조회</span>									
+								</span>
+					<!-- 20161107  상품이동중 case-->
+								<span class="order_step">
+									<p class="step"><span>상품이동중</span></p>
+									<p class="step_detail">CJ택배 68878133412</p>									
+									<span class="btnMore trackingMore">배송조회</span>									
+								</span>
+					<!-- 20161107  영업소도착 case-->
+								<span class="order_step">
+									<p class="step"><span>영업소도착</span></p>
+									<p class="step_detail">CJ택배 68878133412</p>									
+									<span class="btnMore trackingMore">배송조회</span>									
+								</span>
+					<!-- 20161107  택배기사출발 case-->
+								<span class="order_step">
+									<p class="step"><span>택배기사출발</span></p>
+									<p class="step_detail">CJ택배 68878133412</p>									
+									<span class="btnMore trackingMore">배송조회</span>									
+								</span>
+						<!-- 20161107  배송완료 case-->
+								<span class="order_step">
+									<p class="step"><span>배송완료</span></p>
+									<p class="step_detail">CJ택배 68878133412</p>									
+									<span class="btnMore trackingMore">배송조회</span>									
+								</span>
+
+								
+								<span class="goods_btn_wrap">
+									<!-- 20160530 선물후기 쓰기 -->
+									<span><a href="#none" class="x_btn ly_gift">선물 후기 쓰기</a></span>
+									<span><a href="#none" class="y_btn top ly_change_opt">옵션변경</a></span><!-- 클릭시 레이어 열리면 changeClass btm -> top -->
+									<span><a href="#none" class="y_btn btm ly_change_addr">배송지변경</a></span>
+									<span><a href="#none" class="x_btn">결제수단 변경</a></span>
+									<span><a href="#none" class="y_btn btm ly_cancel_order">주문취소</a></span>
+									<span><a href="#none" class="y_btn btm ly_refund_prd">반품접수</a></span>
+									<span><a href="#none" class="y_btn btm ly_chang_prd">교환접수</a></span>
+									<span><a href="#none" class="x_btn">재결제</a></span>
+									<span><a href="#none" class="y_btn btm ly_input_shipping">운송장번호 입력</a></span>
+									<span><a href="#none" class="x_btn">반품조회</a></span>
+									<span><a href="#none" class="x_btn">교환권전송</a></span>
+									<!-- 20160405 버튼 추가 -->
+									<span><a href="#none" class="x_btn">상품평 쓰기</a></span><!-- 클레임 버튼 영역에 상품평 쓰기 버튼 추가  -->
+									<span><a href="#none" class="x_btn">이용후기 작성</a></span><!-- 스마트픽/E쿠폰 상품의 경우 이용후기 작성 버튼 추가  -->
+									<!-- //20160405 버튼 추가 -->
+									<!-- 20160520 버튼 추가 -->
+									<span><a href="#none" class="x_btn">승인번호 보내기</a></span>
+									<!-- //20160520 버튼 추가 -->
+								</span>
+							</div>
+
+							<!-- D:20150915 레이어 -->
+							<div class="order_layer ly_change_opt" id=" " name="optionFrm201509161459693-660705168_1" frmkey="optionFrm" style="display: block;">
+								<input type="hidden" name="productItemDtlSize" value="1">
+								<input type="hidden" name="invMgmtYn" value="N">
+								<!-- <span class="bar"></span> D:20150915 마크업삭제-->
+								<div class="ly_inner">
+									<!-- D:20150915 옵션변경/반품접수/운송장번호입력 -->
+									<div class="ly_cont">
+										<dl class="opt_wrap">
+											<dt>주문한 옵션</dt>
+											<dd>색상:그레이</dd>
+											<dt><div class="pdt5"><label for="opt_name1">색상</label></div></dt>
+											<dd>
+												<div class="s_box02">	
+													<input type="hidden" id="opt_name1" name="opt_name1" value="색상" key="optKey">
+													<select key="gg" id="opt_value1" name="opt_value1" onchange="optionChange(1, this, 'chg', 'optionFrm201509161459693-660705168_1')">
+														<option value="">선택하세요</option>
+														<option value="퍼플^0^N^9999"> 퍼플 </option>
+														<option value="레드^3^N^9999"> 레드 </option>
+														<option value="다크그린^5^N^9999"> 다크그린 </option>
+														<option value="다크그레이^1^N^0">(품절) 다크그레이 </option>
+														<option value="블랙^2^N^0">(품절) 블랙 </option>
+													</select>
+													<!--<div class="img_box"><i></i></div> D:20150915 용도를 모르겠어서 주석처리, 필요시 주석제거 -->
+												</div>
+											</dd>
+											<dt>수거지주소</dt>
+											<dd class="returnAddr">
+												<div class="findAddr">서울시 중구 을지로 4가 610-38 삼풍빌딩 12층</div>
+												<a href="#none" class="editAccount">수거지변경</a>
+											</dd>
+											<!-- //D:20150915 반품접수 -->
+											<!-- D:20150915 운송장번호입력 -->
+											<dt><label for="shipping_no201509161459693_660705168_1">운송장번호</label></dt><!-- D:20150915 마크업 수정 / 텍스트 수정 -->
+											<dd>
+												<input id="shipping_no201509161459693_660705168_1" class="txt01" name="inv_no" type="text" value="" onblur="fn_removeHyphen($(this));" placeholder="'-' 없이 번호 입력해 주세요.">
+											</dd>
+											<!-- //D:20150915 운송장번호입력 -->
+										</dl>
+										<p class="desc">반품완료 후 최대 3일 이내 환불됩니다.</p>
+									</div>
+									<select key="gg" id="qtySelect" name="qty" style="display:none;">
+										<option value="1" selected="selected">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>	               
+									</select>
+									<!-- //D:20150915 옵션변경 -->
+
+									<!-- D:20150915 마크업추가 / 배송지변경 from주문서작성 -->
+									 <div class="ly_cont">
+										<div class="order_section  pdb10">
+											<div class="order_product_list" id="deli_1">
+												<ul class="tab_addr clearfix">
+													<li id="li_mine" class="on">
+														<a href="javascript:void(0)" class="tit" cnt="1">내 배송지</a>
+														<dl id="deli_mine" class="pdb0" style="display: block;">	
+															<!-- D:20150915 마크업삭제
+															<dd>
+																	<div class="s_title">주문자</div>
+																	<div class="s_text" id="o_name">
+																			<div id="orderer_name_text_1" class="name_area">
+																				<span id="nameSp">이대평</span>
+																				<a id="changeMyDlvp" href="javascript:changeMyDlvp('1', 'mod')" class="btn_typeA">내 배송지 수정</a>
+																				<a id="changeNameM" style="display: none;" href="javascript:changeName('mod', '1', '')" class="btn_typeA">주문자 변경</a>
+																			</div>
+																			<div id="orderer_name_val_1" class="namemodi_area" style="display: none;">
+																				<input id="nameInpt" class="txt01 mgb0" type="text" value="이대평" style="width:70%">
+																				<span class="namemodi_a">
+																					<a href="javascript:changeName('cnfm', '1', '')" class="btn_typeA">완료</a>
+																				</span>
+																			</div>
+																	</div>
+																
+															</dd>
+															--->
+															<dd>
+																<div class="s_title">받는분</div>
+																<div class="s_text">
+																	<span class="s_box02">
+																		<!-- icjung 20150708 -->
+																		<a href="javascript:listOpen('1','1')" class="addr_list_open" id="selectedRmitNmList">이대평 (직장)</a>
+																		<input type="hidden" name="deli_select" id="deli_select_1" value="303368086">
+																		<input type="hidden" name="deli_selected_no" id="deli_selected_no_1" value="0">
+																		<input type="hidden" name="inprmitnm" id="inprmitnm_1" value="" placeholder="이름">
+																		<input type="hidden" name="inpdlvpnm" id="inpdlvpnm_1" value="" placeholder="배송지명">
+																		<input type="hidden" name="inpbasedlvpyn" id="inpbasedlvpyn_1" value="Y">
+																		
+																		<input type="hidden" name="inpzip1" value="">
+																		<input type="hidden" name="inpzip2" value="">
+																		<input type="hidden" name="inpaddr1" value="">
+																		<input type="hidden" name="inpaddr2" value="">
+																		
+																		<input type="hidden" name="stnm_inp_zip1" value="">
+																		<input type="hidden" name="stnm_inp_zip2" value="">
+																		<input type="hidden" name="stnm_inp_addr1" value="">
+																		<input type="hidden" name="stnm_inp_addr2" value="">
+																		<!--
+																		<span class="img_box"> D:20150915 마크업감춤 / 레이아웃이 깨져 가렸으니 개발시 주석제거 요망
+																			<i></i>
+																		</span>
+																		-->
+																	</span>
+																</div>
+															</dd>
+															<dd class="deli_303368086" style="display: block;">
+																
+																<input type="hidden" id="deliVal_rmitnm_303368086" value="이대평">
+																<input type="hidden" id="deliVal_dlvpnm_303368086" value="직장">
+																<input type="hidden" id="deliVal_zip1_303368086" value="430">
+																<input type="hidden" id="deliVal_zip2_303368086" value="753">
+																<input type="hidden" id="deliVal_addr1_303368086" value="경기 안양시 만안구 안양1동">
+																<input type="hidden" id="deliVal_addr2_303368086" value="1380번지 주공뜨란채아파트 106동 1104호">
+																<input type="hidden" id="deliVal_stnmzip1_303368086" value="430">
+																<input type="hidden" id="deliVal_stnmzip2_303368086" value="753">
+																<input type="hidden" id="deliVal_stnmaddr1_303368086" value="경기 안양시 만안구 안양천서로">
+																<input type="hidden" id="deliVal_stnmaddr2_303368086" value="289,  106동 1104호(안양동,주공뜨란채아파트)">
+																
+																<input type="hidden" id="deliVal_cbltelrgnno_303368086" value="031">
+																<input type="hidden" id="deliVal_cblteltxnono_303368086" value="446">
+																<input type="hidden" id="deliVal_cbltelendno_303368086" value="2635">
+																
+																<input type="hidden" id="deliVal_cellsctno_303368086" value="010">
+																<input type="hidden" id="deliVal_celltxnono_303368086" value="7194">
+																<input type="hidden" id="deliVal_cellendno_303368086" value="0515">
+																<input type="hidden" id="deliVal_basedlvpyn_303368086" value="Y">
+																										
+																<div class="s_title">주소</div>
+																<div class="s_text">
+																	<span class="combo long_txt">
+																		서울시 중구 을지로 4가 610-38 삼풍빌딩 12층
+																	</span>
+																	<a id="changeMyDlvp" href="javascript:changeMyDlvp('1', 'mod')" class="btn_typeA">주소찾기</a><!-- D:20150915 마크업이동 -->
+																</div>
+															</dd>
+																
+															<dd class="deli_303368086" style="display: block;">
+																<div class="s_title">
+																	연락처<a href="javascript:showANSPop();" class="safe_num">안심번호 서비스 안내</a>
+																</div>
+																
+																<!-- D:20150915 마크업삭제 
+																<div id="deli_phone_text_1_303368086" class="s_text">
+																	<span class="combo pdl12">010-7194-0515</span>
+																	
+																</div>
+																-->
+																<!-- D:20150915 마크업추가 -->
+																<div id="" class="s_text">
+																	<span class="s_box02 s_box02s">
+																		<select name="inpcell1" class="phone_modi">
+																		
+																			<option value="010">010</option>
+																		
+																			<option value="011">011</option>
+																		
+																			<option value="016">016</option>
+																		
+																			<option value="017">017</option>
+																		
+																			<option value="018">018</option>
+																		
+																			<option value="019">019</option>
+																		
+																			<option value="0502">0502</option>
+																		
+																			<option value="0505">0505</option>
+																		
+																			<option value="직접입력">직접입력</option>
+																		</select>
+																		<!--
+																		<span class="img_box"> D:20150915 마크업감춤 / 레이아웃이 깨져 가렸으니 개발시 주석제거 요망
+																			<i></i>
+																		</span>
+																		-->
+																	</span>
+																	<input type="tel" class="txt01 mgb0" name="inpcell1" style="display:none;" maxlength="4" pattern="[0-9]*" disabled="">
+																	<input type="tel" class="txt01 mgb0" name="inpcell2" maxlength="4" pattern="[0-9]*"><!-- D:20150915 마크업수정 / style삭제 -->
+																	<input type="tel" class="txt01 mgb0" name="inpcell3" maxlength="4" pattern="[0-9]*"><!-- D:20150915 마크업수정 / style삭제 -->
+																	
+																	<input type="hidden" name="inptel1" value="">
+																	<input type="hidden" name="inptel2" value="">
+																	<input type="hidden" name="inptel3" value="">
+																</div>
+																<!-- //D:20150915 마크업추가 -->
+															
+															</dd>
+															
+															<dd class="deli_273809923" style="display:none;">
+																
+																<input type="hidden" id="deliVal_rmitnm_273809923" value="qwe">
+																<input type="hidden" id="deliVal_dlvpnm_273809923" value="ㅂㅈ">
+																<input type="hidden" id="deliVal_zip1_273809923" value="431">
+																<input type="hidden" id="deliVal_zip2_273809923" value="050">
+																<input type="hidden" id="deliVal_addr1_273809923" value="경기도 안양시 동안구 비산동">
+																<input type="hidden" id="deliVal_addr2_273809923" value="234234">
+																<input type="hidden" id="deliVal_stnmzip1_273809923" value="">
+																<input type="hidden" id="deliVal_stnmzip2_273809923" value="">
+																<input type="hidden" id="deliVal_stnmaddr1_273809923" value="">
+																<input type="hidden" id="deliVal_stnmaddr2_273809923" value="">
+																
+																<input type="hidden" id="deliVal_cbltelrgnno_273809923" value="02">
+																<input type="hidden" id="deliVal_cblteltxnono_273809923" value="1231">
+																<input type="hidden" id="deliVal_cbltelendno_273809923" value="1231">
+																
+																<input type="hidden" id="deliVal_cellsctno_273809923" value="010">
+																<input type="hidden" id="deliVal_celltxnono_273809923" value="3123">
+																<input type="hidden" id="deliVal_cellendno_273809923" value="2231">
+																<input type="hidden" id="deliVal_basedlvpyn_273809923" value="N">
+																										
+																<div class="s_title">주소</div>
+																<div class="s_text">
+																	<span class="combo long_txt">
+																	
+																	
+																	경기도 안양시 동안구 비산동 234234
+																	
+																	</span>
+																</div>
+															</dd>
+															
+															<dd class="deli_273809923" style="display:none;">
+															 
+																<div class="s_title">
+																	연락처<a href="javascript:showANSPop();" class="safe_num">안심번호 서비스 안내</a>
+																</div>
+																
+																<div id="deli_phone_text_1_273809923" class="s_text">
+																	<span class="combo pdl12">010-3123-2231</span>
+																	
+																</div>
+															
+															</dd>
+															
+															<dd class="deli_274471811" style="display:none;">
+																
+																<input type="hidden" id="deliVal_rmitnm_274471811" value="qwe">
+																<input type="hidden" id="deliVal_dlvpnm_274471811" value="qwe">
+																<input type="hidden" id="deliVal_zip1_274471811" value="431">
+																<input type="hidden" id="deliVal_zip2_274471811" value="050">
+																<input type="hidden" id="deliVal_addr1_274471811" value="경기도 안양시 동안구 비산동">
+																<input type="hidden" id="deliVal_addr2_274471811" value="21ㅈㄷㄱㅈㄷㄱ">
+																<input type="hidden" id="deliVal_stnmzip1_274471811" value="">
+																<input type="hidden" id="deliVal_stnmzip2_274471811" value="">
+																<input type="hidden" id="deliVal_stnmaddr1_274471811" value="도로명주소가 존재하지 않습니다.">
+																<input type="hidden" id="deliVal_stnmaddr2_274471811" value="">
+																
+																<input type="hidden" id="deliVal_cbltelrgnno_274471811" value="031">
+																<input type="hidden" id="deliVal_cblteltxnono_274471811" value="3453">
+																<input type="hidden" id="deliVal_cbltelendno_274471811" value="3453">
+																
+																<input type="hidden" id="deliVal_cellsctno_274471811" value="010">
+																<input type="hidden" id="deliVal_celltxnono_274471811" value="4334">
+																<input type="hidden" id="deliVal_cellendno_274471811" value="3435">
+																<input type="hidden" id="deliVal_basedlvpyn_274471811" value="N">
+																										
+																<div class="s_title">주소</div>
+																<div class="s_text">
+																	<span class="combo long_txt">
+																	
+																	
+																	경기도 안양시 동안구 비산동 21ㅈㄷㄱㅈㄷㄱ
+																	
+																	</span>
+																</div>
+															</dd>
+															
+															<dd class="deli_274471811" style="display:none;">
+															 
+																<div class="s_title">
+																	연락처<a href="javascript:showANSPop();" class="safe_num">안심번호 서비스 안내</a>
+																</div>
+																
+																<div id="deli_phone_text_1_274471811" class="s_text">
+																	<span class="combo pdl12">010-4334-3435</span>
+																	
+																</div>
+															
+															</dd>
+															
+															
+															<!-- 배송지 재사용 D:20150915 마크업삭제
+															<dd id="dlvp_reuse">
+															  <div class="s_text pdt0 pdb10">
+																  <input type="checkbox" id="chk_dlvp_reuse" name="chk_dlvp_reuse" class="check01 mgb0" checked="checked">
+																  <label for="chk_dlvp_reuse" style="font-weight:normal">지금 배송지를 다음에도 사용</label>
+															  </div>
+															</dd>
+															 배송메시지 -->
+															
+															<dd id="deli_msg_1">
+																<div class="s_title">배송메시지</div>
+																<div class="s_text">
+																	<span class="s_box02">
+																		<select name="deli_msg" class="del_msg" data-idx="1" style="width:100%">
+																			<option value="" selected="selected">배송메시지 선택하기</option>
+																			<option value="부재시 경비실에 맡겨주세요.">부재시 경비실에 맡겨주세요.</option>
+																			<option value="빠른 배송 부탁드립니다.">빠른 배송 부탁드립니다.</option>
+																			<option value="부재시 핸드폰으로 연락바랍니다.">부재시 핸드폰으로 연락바랍니다.</option>
+																			<option value="배송 전 연락바랍니다.">배송 전 연락바랍니다.</option>
+																			<option value="직접입력">직접 입력하기 (20자 이내)</option>
+																		</select>
+																		<!--
+																		<span class="img_box"> D:20150915 마크업감춤 / 레이아웃이 깨져 가렸으니 개발시 주석제거 요망
+																			<i></i>
+																		</span>
+																		-->
+																	</span>
+																	<!-- 직접 입력하기 활성화시! (default시 빠짐) -->
+																	<input type="text" class="txt01 mgb0" id="rcvmessage_1" name="rcvmessage" style="display:none;" maxlength="20" placeholder="직접 입력하기 (20자 이내)">
+																</div>
+															</dd>
+															<!-- 메시지카드 -->
+														</dl>
+													</li>
+													
+													<li id="li_new" class="">
+														<a href="javascript:void(0)" class="tit" cnt="1">새로운 배송지</a>
+														<dl id="deli_new" class="pdb0" style="display: none;">
+															<!-- D:20150915 마크업삭제
+															<dd>								 
+																	<div class="s_title">주문자</div>
+																	<div class="s_text" id="o_name">
+																			<div id="orderer_name_text_1_new" class="name_area">
+																				<span id="nameSp">이대평</span>
+																				<a href="javascript:changeName('mod', '1', '_new')" class="btn_typeA">주문자 변경</a>
+																			</div>
+																			<div id="orderer_name_val_1_new" class="namemodi_area" style="display: none;">
+																				<input id="nameInpt" class="txt01 mgb0" type="text" value="이대평" style="width:70%" disabled="">
+																				<span class="namemodi_a">
+																					<a id="changeMyDlvpCncl" style="display:none;" href="javascript:changeMyDlvp('1', 'cncl')" class="btn_typeA">수정취소</a>
+																					<a id="changeNameNC" href="javascript:changeName('cnfm', '1', '_new')" class="btn_typeA">완료</a>
+																				</span>
+																			</div>										
+																	</div>
+																
+															</dd>
+															//D:20150915 마크업삭제 -->
+															<dd>
+																<div class="s_title">받는분</div>
+																<div class="s_text flex">
+																	<input type="text" name="inprmitnm" class="txt01" style="width:55%;" placeholder="이름" disabled="">
+																	<input type="text" name="inpdlvpnm" class="txt01" style="width:42%;" placeholder="배송지명" disabled="">
+																</div>
+															</dd>
+															
+															<dd class="txtarea">
+																<div class="s_title">주소</div>
+																<div class="s_text flex">
+																	<input type="hidden" name="inpzip1" value="" disabled="">
+																	<input type="hidden" name="inpzip2" value="" disabled="">
+																	<input type="hidden" name="inpaddr1" value="" disabled="">
+																	<input type="hidden" name="inpaddr2" value="" disabled="">
+																	
+																	<input type="hidden" name="stnm_inp_zip1" value="" disabled="">
+																	<input type="hidden" name="stnm_inp_zip2" value="" disabled="">
+																	<input type="hidden" name="stnm_inp_addr1" value="" disabled="">
+																	<input type="hidden" name="stnm_inp_addr2" value="" disabled="">
+																	
+																	<input type="hidden" id="temp_zip1_1" disabled="">
+																	<input type="hidden" id="temp_zip2_1" disabled="">
+																	<input type="hidden" id="temp_addr1_1" disabled="">
+																	<input type="hidden" id="temp_addr2_1" disabled="">
+																	
+																	<input type="number" id="txt_zip1_1" class="txt01" readonly="readonly" style="width:29%;;" disabled="">
+																	<input type="number" id="txt_zip2_1" class="txt01" readonly="readonly" style="width:29%;" disabled="">
+																	<a href="#none" id="search_addr_trigger_1" class="btn_typeA tit_addr_search"><span class="txt">주소찾기</span></a>
+																</div>
+																
+																<div class="addr_boxline" style="display: none;">
+																	<div class="wrap_addr_detail">
+																		<ul class="tab_addr_detail clearfix">
+																			<li class="on">
+																				<a href="#none" class="tab_tit">지번주소</a>
+																				<div id="seq1_J_1" class="tab_txt">
+																					<div class="flex mgb15">
+																						<input type="search" id="inp_seq1_J_1" class="txt01" placeholder="동(읍/면/리) 이름입력" disabled="">
+																						<a href="javascript: searchAddress('1', 'S', 'J', 'c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=')" class="btn_typeA mgl2">검색</a>
+																					</div>
+																					<ul id="result_seq1_J_1" style="display:none;">
+																					
+																					</ul>
+																				</div>
+																				
+																				
+																				<div id="seq2_J_1" class="tab_txt" style="display: none;">
+																					<p id="txt_seq2_J_1" class="txt_addr1"></p>
+																					<div class="flex mgb15">
+																						<input type="search" id="inp_seq2_J_1" class="txt01" placeholder="나머지 주소 입력" disabled="">
+																						<a href="javascript: searchAddress('1', 'M', 'J', 'c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=')" class="btn_typeA mg12">입력</a>
+																					</div>
+																				</div>
+																				
+																				
+																				<div id="seq3_J_1" class="tab_txt" style="display: none;">
+																				
+																				</div>
+																			</li>
+																			<li>
+																				<a href="#none" class="tab_tit">도로명주소</a>
+																				
+																				<div id="seq1_N_1" class="tab_txt" style="display:none;">
+																					<div class="flex">
+																						<span class="s_box02  mgb10" style="width:49%;">
+																							<select id="key1_seq1_N_1" disabled="">
+																								<option value="" selected="selected">＊시/도 선택</option>
+																								<option value="서울">서울</option>
+																								<option value="부산">부산</option>
+																								<option value="대구">대구</option>
+																								<option value="인천">인천</option>
+																								<option value="광주">광주</option>
+																								<option value="대전">대전</option>
+																								<option value="울산">울산</option>
+																								<option value="세종">세종</option>
+																								<option value="경기">경기</option>
+																								<option value="강원">강원</option>
+																								<option value="충북">충북</option>
+																								<option value="충남">충남</option>
+																								<option value="전북">전북</option>
+																								<option value="전남">전남</option>
+																								<option value="경북">경북</option>
+																								<option value="경남">경남</option>
+																								<option value="제주">제주</option>
+																								<option value="서울">서울</option>
+																							</select>
+																							<!--
+																							<span class="img_box"> D:20150915 마크업감춤 / 레이아웃이 깨져 가렸으니 개발시 주석제거 요망
+																								<i></i>
+																							</span>
+																							-->
+																						</span>
+																						<input type="text" class="txt01 mgb10" id="key2_seq1_N_1" style="width:49%;" placeholder="＊시/군/구 입력" disabled="">
+																					</div>
+																					<div class="flex">
+																						<input type="text" class="txt01 mgb10" id="key3_seq1_N_1" style="width:49%;" placeholder="＊도로명 입력" disabled="">
+																						<input type="number" class="txt01 mgb10" id="key4_seq1_N_1" style="width:49%; text-align:left;" placeholder="건물번호 입력" disabled="">
+																					</div>
+																					<div class="flex mgb10">
+																						<input type="text" class="txt01" id="key5_seq1_N_1" placeholder="건물명 입력" disabled="">
+																						<a href="javascript: searchAddress('1', 'S', 'N', 'c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=')" class="btn_typeA mgl2">검색</a>
+																					</div>
+																					<ul id="result_seq1_N_1">
+																						
+																					</ul>
+																				</div>
+																				
+																				
+																				
+																				<div id="seq2_N_1" class="tab_txt" style="display: none;">
+																					<p id="txt_seq2_N_1" class="txt_addr1"></p>
+																					<div class="flex mgb10">
+																						<input type="search" id="inp_seq2_N_1" class="txt01" placeholder="나머지 주소 입력" disabled="">
+																						<a href="javascript: searchAddress('1', 'M', 'N', 'c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=')" class="btn_typeA mgl2">입력</a>
+																					</div>
+																				</div>
+																				
+																				
+																				<div id="seq3_N_1" class="tab_txt" style="display: none;">
+																				
+																				</div>
+																			</li>
+																		</ul>
+																	</div>
+																</div>
+																<div id="txt_addr_wrap_1" class="s_text pdt0">
+																  <input type="text" id="txt_addr1_1" class="txt01 mgb5" readonly="readonly" style="width:100%;margin-bottom:7px" disabled="">
+																  <input type="text" id="txt_addr2_1" class="txt01 mgb5" readonly="readonly" style="width:100%;" disabled="">
+																</div>
+																
+															</dd>
+															
+															<dd class="txtarea">
+																<div class="s_title">
+																	연락처<a href="javascript:showANSPop();" class="safe_num">안심번호 서비스 안내</a>
+																</div>
+																<div id="deli_phone_val_1" class="s_text flex">
+																	<span class="s_box02 s_box02s"><!-- D:20150915 마크업수정 / 클래스추가 -->
+																		<select name="inpcell1" class="phone_modi" disabled="">
+																		
+																			<option value="010">010</option>
+																		
+																			<option value="011">011</option>
+																		
+																			<option value="016">016</option>
+																		
+																			<option value="017">017</option>
+																		
+																			<option value="018">018</option>
+																		
+																			<option value="019">019</option>
+																		
+																			<option value="0502">0502</option>
+																		
+																			<option value="0505">0505</option>
+																		
+																			<option value="직접입력">직접입력</option>
+																		</select>
+																		<!--
+																		<span class="img_box"> D:20150915 마크업감춤 / 레이아웃이 깨져 가렸으니 개발시 주석제거 요망
+																			<i></i>
+																		</span>
+																		-->
+																	</span>
+																	<input type="tel" class="txt01 mgb0" name="inpcell1" style="display: none; width:31%;" maxlength="4" pattern="[0-9]*" disabled="">
+																	<input type="tel" class="txt01 mgb0" name="inpcell2" maxlength="4" pattern="[0-9]*" disabled=""><!-- D:20150915 마크업수정 / style삭제 -->
+																	<input type="tel" class="txt01 mgb0" name="inpcell3" maxlength="4" pattern="[0-9]*" disabled=""><!-- D:20150915 마크업수정 / style삭제 -->
+																	<input type="hidden" name="inptel1" value="" disabled="">
+																	<input type="hidden" name="inptel2" value="" disabled="">
+																	<input type="hidden" name="inptel3" value="" disabled="">
+																</div>
+															</dd>
+
+															<!-- D:20150915 마크업삭제 회원 배송지 재사용 및 내 배송지 목록에 추가 
+															<dd id="dlvp_reuse_mod" style="display:none;">
+															  <div class="s_text pdt0 pdb10">
+																  <input type="checkbox" id="chk_dlvp_reuse_mod" name="chk_dlvp_reuse_mod" class="check01 mgb0" checked="checked" disabled="">
+																  <label for="chk_dlvp_reuse_mod" style="font-weight:normal">지금 배송지를 다음에도 사용</label>
+															  </div>
+															</dd>
+															<dd id="dlvpuseyn_dd_1">
+															  <div class="s_text pdt0 pdb10">
+																  <input type="checkbox" id="dlvpuseyn_1" class="check01 mgb0" checked="checked" disabled="">
+																  <label for="dlvpuseyn_1">내 배송지 목록에 추가</label>
+															  </div>
+															</dd>
+															-->
+															
+																													
+															<!-- 배송메시지 -->
+															
+																<dd class="mgt5" id="deli_msg_1">
+																	<div class="s_title">배송메시지</div>
+																	<div class="s_text">
+																		<span class="s_box02">
+																			<select name="deli_msg" class="del_msg" data-idx="1" style="width:100%" disabled="">
+																				<option value="" selected="selected">배송메시지 선택하기</option>
+																				<option value="부재시 경비실에 맡겨주세요.">부재시 경비실에 맡겨주세요.</option>
+																				<option value="빠른 배송 부탁드립니다.">빠른 배송 부탁드립니다.</option>
+																				<option value="부재시 핸드폰으로 연락바랍니다.">부재시 핸드폰으로 연락바랍니다.</option>
+																				<option value="배송 전 연락바랍니다.">배송 전 연락바랍니다.</option>
+																				<option value="직접입력">직접 입력하기 (20자 이내)</option>
+																			</select>
+																			<!--
+																			<span class="img_box"> D:20150915 마크업감춤 / 레이아웃이 깨져 가렸으니 개발시 주석제거 요망
+																				<i></i>
+																			</span>
+																			-->
+																		</span>
+																		<!-- 직접 입력하기 활성화시! (default시 빠짐) -->
+																		<input type="text" class="txt01 mgb0" id="rcvmessage_1" name="rcvmessage" style="display:none;" maxlength="20" placeholder="직접 입력하기 (20자 이내)" disabled="">
+																	</div>
+																</dd>
+															
+											
+															<!-- 메시지카드 -->
+															
+															
+														</dl>		
+												 
+													</li>
+												</ul>
+												
+												<div id="deli_option_1" style="display:none;">
+													<!-- 기존 배송정보에 업데이트 -->
+													<input type="radio" class="radio01" name="deli_chk_1" value="U">
+													<!-- 새로운 배송지로 추가 -->
+													<input type="radio" class="radio01" name="deli_chk_1" value="C">
+												</div>
+											</div>
+										</div>									 
+									 </div>
+									 <!-- //D:20150915 마크업추가 / 배송지변경 from주문서작성 -->
+
+									<!-- D:20150915 주문취소 -->
+									<div class="ly_cont">
+										<dl class="opt_wrap">
+											<dt>취소사유</dt>
+											<dd class="pd0">
+												<div class="rBox rBox_v2">
+													<!-- 20180323 라디오 버튼 <ul class="clear">
+														<li>
+															<input type="radio" name="orderC" id="orderC1">
+															<label for="orderC1">단순변심</label>
+														</li>
+														<li>
+															<input type="radio" name="orderC" id="orderC2">
+															<label for="orderC2">옵션 잘못선택</label>
+														</li>
+														<li>
+															<input type="radio" name="orderC" id="orderC3">
+															<label for="orderC3">품절(발송불가)</label>
+														</li>
+														<li class="line2">
+															<input type="radio" name="orderC" id="orderC4">
+															<label for="orderC4">쿠폰&#47;적립금&#47;할인 미적용</label>
+														</li>
+														<li>
+															<input type="radio" name="orderC" id="orderC5">
+															<label for="orderC5">유사상품구입</label>
+														</li>
+														<li>
+															<input type="radio" name="orderC" id="orderC6">
+															<label for="orderC6">기타(직접입력)</label>
+														</li>
+													</ul> 삭제 -->
+													<!-- 20180323 셀렉트 박스 -->
+													<div class="s_box02">
+														<select name="clm_caus_cd">
+															<option value="N" selected="selected">취소 사유를 선택해주세요.</option>
+															<option value="02011043">옵션/사이즈/수량 잘못 선택</option>
+															<option value="02011045">옵션/사이즈/수량 잘못 선택</option>
+															<option value="02011286">상품 품절(주문취소)</option>
+															<option value="02011904">쿠폰/적립금/할인 미적용</option>
+															<option value="02011042">유사상품 구입</option>
+															<option value="33012673">기타</option>
+														</select>
+													</div>
+													<textarea name="clm_caus_etc_cont" id="clm_caus_etc_cont" placeholder="200자 이내 입력 가능합니다."></textarea><!-- textarea 제거 하면 주문취소처리 안됨 - hidden으로라도 반드시 있어야됨 / 조성우 2014-06-16 -->
+												</div>
+												<!-- D:20150915 마크업 삭제
+												<div class="s_box02">
+													<select name="clm_caus_cd" id="clm_caus_cd+626666220">
+														<option value="N">사유를 선택해주세요</option>
+														<option value="02011044">배송 지연</option>
+														<option value="02011286">상품 품절(주문취소)</option>
+														<option value="02011045">옵션/사이즈/수량 잘못 선택</option>
+														<option value="02011902">가격 불만</option>
+														<option value="02011904">쿠폰/적립금/할인 미적용</option>
+														<option value="02011042">유사상품 구입</option>
+														<option value="02011046">상품정보 미흡</option>
+														<option value="02011043">단순변심</option>
+													</select>
+												</div>
+												<!--<div class="img_box"><i></i></div> D:20150915 용도를 모르겠어서 주석처리, 필요시 주석제거 -->
+												<!-- //D:20150915 마크업 삭제-->
+											</dd>
+										</dl>
+										<!-- D:20150915 마크업 수정 -->
+										<dl class="price_wrap">
+											<dt>환불예정금액</dt>
+											<dd>
+												89,000원
+												<a href="#none" class="editAccount">계좌변경</a>
+											</dd>
+										</dl>
+										<dl class="price_wrap">
+											<dt>환불계좌</dt>
+											<dd>
+												<span class="account">국민은행 000-0000-0000-00</span>
+											</dd>
+										</dl>
+										<!-- //D:20150915 마크업 수정 -->
+									</div>
+									<!-- //D:20150915 주문취소 -->
+
+									<div class="ly_btn_wrap">
+										<span><a href="javascript:closeFastServiceAllLayer();changeFastServiceAllButton();" class="c_btn col05"><span>닫기</span></a></span>
+										<span><a href="javascript:goSubmit('optionFrm201509161459693-660705168_1')" class="c_btn col01"><span>옵션변경</span></a></span><!-- D:20150915 옵션변경,주문취소,반품접수,교환접수,등록,배송지변경 -->
+									</div>
+								</div>
+							</div>
+							<!--// 레이어 -->
+						</li>
+					</ul>
+					<a href="#none" class="btnMore ">자세히보기</a>
+				</li>
+			</ul>
+		</section>
+	</section>
+	<!-- 거절사유 팝업 2016.10.24 -->
+	<div class="commonPop rejectionPop">
+		<div class="bg" ></div>
+		<div class="box">
+			<div class="popBox">
+				<h2>거절사유</h2>
+				<div class="cont">
+					<p>고맙지만 마음만 받겠습니다.</p>
+				 </div>
+				<div class="foot">
+					<a href="#">확인</a>
+				</div>
+				<a class="btnClose" href="#" onclick="javascript:$('.rejectionPop').hide()" >닫기</a>	
+			</div>
+		</div>
+	</div>		
+	<!-- //거절사유 팝업 2016.10.24 -->	
+	<!-- 알람보내기 팝업 2016.10.24 -->
+	<div class="commonPop send_notification">
+		<div class="bg" ></div>
+		<div class="box">
+			<div class="popBox">
+				<h2>알림 문자 보내기</h2>
+				<div class="cont">
+					<p>선물수신자에게 선물을 수락할 수 있도록<br/>안내 문자를 재발송 해드립니다. </p>
+					<ul>
+						<li>발송 가능 기간 :<span>2016.12.06~2016.12.09</span></li>
+						<li>발송 가능 횟수 : 기간 동안 최대 3번 (남은횟수: <em>3</em>)</li>
+					</ul>
+				</div>
+				<div class="foot">
+					<ul>
+						<li><a href="#" onclick="javascript:$('.send_notification').hide()">닫기</a></li>
+						<li><a href="#">보내기</a></li>
+					</ul>
+				</div>
+				<a class="btnClose" href="#" onclick="javascript:$('.send_notification').hide()" >닫기</a>
+			</div>
+		</div>
+	</div>		
+	<!-- //알람보내기 팝업 2016.10.24 -->	
+
+	<section class="more_view_top">
+		<div id="viewPageMore1" class="btn_more" style=""><a href="javascript:appendPurchaseList();"><i></i><span id="pageTxt1">더보기 (6/6)</span></a></div>
+		<div id="viewPageMore2" class="btn_more" style="display: none;"><span id="pageTxt2"><a href="#" onclick="return false;">더보기 (6/6) </a></span></div>
+		<!--<div class="btn_top_wrap"><a href="#"><strong>맨위로</strong></a></div> D:20150915 마크업삭제 -->
+	</section>
+
+	<!-- //교환권 유형 선택 -->
+	<form id="smartpick_frm" name="smartpick_frm" method="post" action="">
+		<input type="hidden" name="ord_no" value="">
+		<input type="hidden" name="ord_dtl_sn" value="">
+		<input type="hidden" name="mms_lmt_cnt" value="">
+	</form>
+	<!-- D:20150915 교환권전송 -->
+	<div id="coupon_select" style="display:none;">
+		<div id="wrapper">
+			<header id="head_sub">
+				<h2>교환권 전송</h2><!-- D:20150915 마크업수정 / 텍스트수정 -->
+				<p class="close"><a href="#none" onclick="closePickType();">닫기</a></p>
+			</header>
+			<section id="smart_pick">
+				<div class="coupon_send">
+					<a href="javascript:goSendMMS();" class="mms">MMS 보내기</a>
+					<a href="javascript:closePickType();" class="kkc">카카오톡 보내기</a>
+				</div>
+				<ul class="info_list">
+					<li>교환권 문자 전송은 총 3회까지 재전송 가능합니다.</li><!-- D:20150915 마크업수정 / 텍스트수정 -->
+					<li>일부 상품은 상품준비 후 고객님께 별도 안내드립니다.</li><!-- D:20150915 마크업수정 / 텍스트수정 -->
+				</ul>
+				<div class="btn_c">
+					<a href="#none" onclick="closePickType();"><span>확인</span></a><!-- D:20150915 마크업수정 / 클래스삭제,텍스트수정 -->
+				</div>
+			</section>
+		</div>			
+	</div>
+	<!-- //D:20150915 교환권전송 -->
+	<!-- 교환권 유형 선택// -->	
+	<!-- 20180208 lg희망일배송 레이어팝업  -->
+	<div class="lg_deli_pop" style="display:none">
+		<h4>희망일배송이란?</h4>
+		<div class="lg_deli_cont">
+			<ul>
+				<li><em>1.</em>선택한 배송일에 물류기사가 방문 전 해피콜<br />예정입니다.</li>
+				<li><em>2.</em>희망배송일 변경은 <span class="first_list">고객센터(1577-1110)</span>로<br />연락주세요.</li>
+				<li><em>3.</em>금일 절제완료 시 선택하신 날짜에<br />배송됩니다.</li>
+			</ul>
+			<p>물류 상황에 따라 배송이 지연되는 경우가<br />있으니 양해 부탁드리며,<br />지연 시 사전 연락드릴 예정입니다.</p>
+		</div>
+		<a href="javascripe:void(0);">닫기</a>
+	</div>
+	<div class="lgpop_dim" style="display:none"></div>
+	<!-- // 20180208 lg희망일배송 레이어팝업-->
+</section>
+
+
+<section ng-include="'../include/footer.html'"></section>
+</body>
+</html>

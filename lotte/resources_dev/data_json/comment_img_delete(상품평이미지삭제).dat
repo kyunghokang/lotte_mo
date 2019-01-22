@@ -1,0 +1,35 @@
+1. 업무명: 마이롯데 > 상품평 이미지 삭제
+2. 담당자: 이형근
+3. URL: http://molocal.lotte.com/json/cn/comment/comment_img_delete.json
+4. 파라미터
+	- goods_no: 상품번호
+	- del_file: 삭제할 파일
+	- img_file_1: 이미지파일명1
+	- img_path_1: 이미지경로명1
+	- img_file_2: 이미지파일명2
+	- img_path_2: 이미지경로명2
+	- img_file_3: 이미지파일명3
+	- img_path_3: 이미지경로명3
+5. JSON 파라미터
+    - response_code: 응답코드
+    - response_msg: 응답메시지
+6. 성공 시
+{
+  "data_set": {
+    "response_code" : "0000",
+    "response_msg" : "상품평 파일 삭제가 처리 되었습니다." 
+  }
+}
+7. 실패 시
+{
+  "error" : {
+    "response_code" : "9999",
+    "response_msg" : "서버 오류"
+  }
+}
+{
+  "error" : {
+    "response_code" : "9004",
+    "response_msg" : "아이디 또는 회원번호 존재하지 않음"
+  }
+}

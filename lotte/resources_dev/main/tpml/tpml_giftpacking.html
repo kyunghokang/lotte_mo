@@ -1,0 +1,196 @@
+<div tpml-giftpacking ng-if="pageUI.curMenuDispNo == '5556743'" class="cont_wrap tpml_giftpacking padding">
+    <h2 class="hidden">선물포장</h2>
+    <!-- 롤링배너 -->
+	<!--20170227 무한롤링 적용  -->
+    <div ng-if="randomTopBann && randomTopBann.length > 0">
+    	<div class="swipe_wrap" id="giftpack_b"  roll-swipe-banner rolling="true" width320="1" width640="1" width900="1" interval="3000" info="randomTopBann">
+	        <ul class="swipeBox">
+	            <li ng-repeat="item in bn_order">
+	                <a ng-click="linkUrl(randomTopBann[item].link_url, '', 'm_gift_event0{{item + 1}}', '')">
+	                   <img ng-src="{{randomTopBann[item].img_url}}">
+	                </a>        
+	            </li>
+	        </ul> 
+            <ul class="indicator roll">
+                <li ng-repeat="item in bn_order"><span>{{$index}}</span></li>
+            </ul>   	        
+	    </div>         
+    </div>
+    
+    <div class="target_sel">
+    	<ul>
+    		<li><a ng-click="gotoAnchor01()"><img ng-src="{{tpmlData.contData.target_sel.items[0].img_url}}">{{tpmlData.contData.target_sel.items[0].title}}</a></li>
+    		<li><a ng-click="gotoAnchor02()"><img ng-src="{{tpmlData.contData.target_sel.items[1].img_url}}">{{tpmlData.contData.target_sel.items[1].title}}</a></li>
+    		<li><a ng-click="gotoAnchor03()"><img ng-src="{{tpmlData.contData.target_sel.items[2].img_url}}">{{tpmlData.contData.target_sel.items[2].title}}</a></li>
+    		<li><a ng-click="gotoAnchor04()"><img ng-src="{{tpmlData.contData.target_sel.items[3].img_url}}">{{tpmlData.contData.target_sel.items[3].title}}</a></li>
+    		<li><a ng-click="gotoAnchor05()"><img ng-src="{{tpmlData.contData.target_sel.items[4].img_url}}">{{tpmlData.contData.target_sel.items[4].title}}</a></li>
+    	</ul> 
+    </div>
+    <!-- 테마전시영역 -->
+    <section ng-if="tpmlData.contData.theme_prd_list.items && tpmlData.contData.theme_prd_list.items.length > 0" ng-controller="lotteNgSwipeCtrl" class="top_swipe_wrap themelist">
+		<!-- 스와이프 영역 -->
+		<div class="swipe_wrap">
+			<ul lotte-ng-list-swipe 
+				swipe-id="packingThemelistBanner" 
+				swipe-first-index="1" 
+				swipe-list-model="tpmlData.contData.theme_prd_list.items" 
+				swipe-slide-item="true"
+				swipe-left-margin="13"
+				swipe-right-margin="10"
+				swipe-max-ratio="0.2" 
+				swipe-min-distance="40"
+				swipe-responsive="true" 
+				swipe-responsive320="1" 
+				swipe-responsive640="1" 
+				swipe-responsive900="1">
+				<li ng-repeat="item in tpmlData.contData.theme_prd_list.items track by $index" ng-init="$pindex = $index + 1">
+					<div>
+						<a ng-click="ProdLink2(item, 'm_gift_planshop0{{$index + 1}}')">
+					    	<span class="subtitle">{{item.subtitle}}</span>
+					    	<span class="title">{{item.title}}</span>
+				    	</a>
+						<dl class="pd_list">
+				    		<dd ng-repeat="items in item.goods_list.items track by $index" >
+				    			<a ng-click="ProDetail(items, 'm_gift_planshop0', $pindex ,$index + 1)">
+					    			<div><img ng-src="{{items.img_url}}"></div>
+					    			<span class="tit">{{items.goods_nm}}</span>
+					    			<span class="price"><strong>{{items.price|number}}</strong>원<em ng-if="items.is_plan_prod">~</em></span>
+				    			</a>
+				    		</dd>
+				    	</dl>
+				    </div>				
+				</li>					
+			</ul>
+		</div>
+
+		<ul class="indicator" ng-if="tpmlData.contData.theme_prd_list.items && tpmlData.contData.theme_prd_list.items.length > 1" >
+			<li ng-repeat="item in tpmlData.contData.theme_prd_list.items track by $index" ng-class="{on: swipeIdx == $index}"><span>{{$index}}</span></li>
+		</ul>
+		<!-- //스와이프 영역 -->
+		<!-- 상단 html 배너 영역 -->
+	</section>
+    
+    <!-- 추천선물영역 -->
+    <div class="giftarea gift_a"ng-if="tpmlData.contData.gift_type_a != null" id="anch1">
+    	<h3><!-- <a ng-click="goLink(tpmlData.contData.gift_type_a.banner_link, 'm_gift_theme01_title01')"> --><img ng-src="{{tpmlData.contData.gift_type_a.img_banner}}" alt=""></h3>
+    	<ul class="pd_list">
+    		<li ng-repeat="item in tpmlData.contData.gift_type_a.banner_list.items">
+				<a ng-click="goLink(item.link_url, 'm_gift_theme01_event{{$index + 1}}')"><img ng-src="{{item.img_url}}"><span class="tit">{{item.title}}</span></a></li>
+    	</ul>
+    	<div class="area taglist">
+    		<h4>인기 추천선물</h4>
+    		<ul>
+	    		<li><a ng-click="fn_goSearch2(tpmlData.contData.gift_type_a.tag_list.items[0].tag_nm, 'm_gift_theme01_keyworkd01')">#{{tpmlData.contData.gift_type_a.tag_list.items[0].tag_nm}}</a></li>
+	    		<li><a ng-click="fn_goSearch2(tpmlData.contData.gift_type_a.tag_list.items[1].tag_nm, 'm_gift_theme01_keyworkd02')">#{{tpmlData.contData.gift_type_a.tag_list.items[1].tag_nm}}</a></li>
+	    		<li><a ng-click="fn_goSearch2(tpmlData.contData.gift_type_a.tag_list.items[2].tag_nm, 'm_gift_theme01_keyworkd03')">#{{tpmlData.contData.gift_type_a.tag_list.items[2].tag_nm}}</a></li>
+	    	</ul>
+	    	<ul>
+	    		<li><a ng-click="fn_goSearch2(tpmlData.contData.gift_type_a.tag_list.items[3].tag_nm, 'm_gift_theme01_keyworkd04')">#{{tpmlData.contData.gift_type_a.tag_list.items[3].tag_nm}}</a></li>
+	    		<li><a ng-click="fn_goSearch2(tpmlData.contData.gift_type_a.tag_list.items[4].tag_nm, 'm_gift_theme01_keyworkd05')">#{{tpmlData.contData.gift_type_a.tag_list.items[4].tag_nm}}</a></li>
+	    		<li><a ng-click="fn_goSearch2(tpmlData.contData.gift_type_a.tag_list.items[5].tag_nm, 'm_gift_theme01_keyworkd06')">#{{tpmlData.contData.gift_type_a.tag_list.items[5].tag_nm}}</a></li>
+	    	</ul>
+    	</div>	
+    	<div class="area guide">
+    		<h4>선물포장 가능상품을 한번에 찾아 보는 방법!</h4>
+    		<a ng-click="fn_goSearch2('수분크림','m_gift_theme01_keyworkd07')"><strong>검색창에서</strong> "수분크림 선물포장" <strong>을 검색하세요</strong></a>
+    	</div>
+    </div>
+    <!-- //추천선물영역 -->    
+    <!-- 생일선물영역 -->
+    <div class="giftarea target_area gift_b" ng-if="tpmlData.contData.gift_type_b != null">
+    	<h3><a ng-click="goLink(tpmlData.contData.gift_type_b.banner_link, 'm_gift_theme02_title02')"><img ng-src="{{tpmlData.contData.gift_type_b.img_banner}}" alt=""></a></h3>
+    	
+    	<ul class="area">
+	    	<li ng-repeat="item in tpmlData.contData.gift_type_b.more_list.items track by $index" ng-init="$pindex = $index + 1">
+		    	<h4>{{item.title}}</h4>
+		    	<ul class="pd_list">
+		    		<li ng-repeat="items in item.goods_list.items track by $index">
+		    			<a ng-click="ProDetail(items, 'm_gift_theme02_product0', $pindex ,$index + 1)">
+			    			<div><img ng-src="{{items.img_url}}"></div>
+			    			<span class="tit">{{items.goods_nm}}</span>
+			    			<span class="price"><strong>{{items.price|number}}</strong>원<em ng-if="items.is_plan_prod">~</em></span>
+		    			</a>
+		    		</li>
+		    	</ul>       
+	    		<a ng-click="proListMoreTclick(tpmlData.contData.gift_type_b.banner_link, item, 'm_gift_theme02_more0{{$index + 1}}')" class="add">더보기</a>
+	    	</li>
+	    </ul>	
+	    <div class="item_add">
+	    	<a ng-click="goLink(tpmlData.contData.gift_type_b.banner_link, 'm_gift_theme02_go02')">{{tpmlData.contData.gift_type_b.txt_banner}}<span class="go">go</span></a>
+	    </div>
+    </div>
+    <!-- //생일선물영역 -->
+    
+    <!-- 기념일선물영역 -->
+    <div class="giftarea target_area gift_c" ng-if="tpmlData.contData.gift_type_c != null">
+    	<h3><a ng-click="goLink(tpmlData.contData.gift_type_c.banner_link, 'm_gift_theme03_title03')"><img ng-src="{{tpmlData.contData.gift_type_c.img_banner}}" alt=""></a></h3>
+    	<ul class="area">
+	    	<li ng-repeat="item in tpmlData.contData.gift_type_c.more_list.items track by $index" ng-init="$pindex = $index + 1">
+	    	<h4>{{item.title}}</h4>
+	    	<ul class="pd_list">
+	    		<li ng-repeat="items in item.goods_list.items track by $index" >
+	    			<a ng-click="ProDetail(items, 'm_gift_theme03_product0', $pindex ,$index + 1)">
+		    			<div><img ng-src="{{items.img_url}}"></div>
+		    			<span class="tit">{{items.goods_nm}}</span>
+		    			<span class="price"><strong>{{items.price|number}}</strong>원<em ng-if="items.is_plan_prod">~</em></span>
+	    			</a>
+	    		</li>
+	    	</ul>
+	    	<a ng-click="proListMoreTclick(tpmlData.contData.gift_type_c.banner_link, item, 'm_gift_theme03_more0{{$index + 1}}')" class="add">더보기</a>
+	    	</li>
+	    </ul>	
+	    <div class="item_add">
+	    	<a ng-click="goLink(tpmlData.contData.gift_type_c.banner_link, 'm_gift_theme03_go03')">{{tpmlData.contData.gift_type_c.txt_banner}}<span class="go">go</span></a>
+	    </div>
+    </div>
+    <!-- //기념일선물영역 -->
+    <div class="targetArea">
+	    <!-- 유아동선물영역 -->
+	    <div class="giftarea target_area gift_d" ng-if="tpmlData.contData.gift_type_d != null">
+	    	<h3><a ng-click="goLink(tpmlData.contData.gift_type_d.banner_link, 'm_gift_theme04_title04')"><img ng-src="{{tpmlData.contData.gift_type_d.img_banner}}" alt=""></a></h3>
+	    	<ul class="area">
+		    	<li ng-repeat="item in tpmlData.contData.gift_type_d.more_list.items track by $index" ng-init="$pindex = $index + 1">
+		    	<h4>{{item.title}}</h4>
+		    	<ul class="pd_list">
+		    		<li ng-repeat="items in item.goods_list.items track by $index" >
+		    			<a ng-click="ProDetail(items, 'm_gift_theme04_product0', $pindex ,$index + 1)">
+			    			<div><img ng-src="{{items.img_url}}"></div>
+			    			<span class="tit">{{items.goods_nm}}</span>
+			    			<span class="price"><strong>{{items.price|number}}</strong>원<em ng-if="items.is_plan_prod">~</em></span>
+		    			</a>
+		    		</li>
+		    	</ul>
+		    	<a ng-click="proListMoreTclick(tpmlData.contData.gift_type_d.banner_link, item, 'm_gift_theme04_more0{{$index + 1}}')" class="add">더보기</a>
+		    	</li>
+		    </ul>		
+		    <div class="item_add">
+		    	<a ng-click="goLink(tpmlData.contData.gift_type_d.banner_link, 'm_gift_theme04_go04')">{{tpmlData.contData.gift_type_d.txt_banner}}<span class="go">go</span></a>
+		    </div>
+	    </div>
+	    <!-- //유아동선물영역 -->
+	    
+	    <!-- 어르신선물영역 -->
+	    <div class="giftarea target_area gift_e" ng-if="tpmlData.contData.gift_type_e != null">
+	    	<h3><a ng-click="goLink(tpmlData.contData.gift_type_e.banner_link, 'm_gift_theme05_title05')"><img ng-src="{{tpmlData.contData.gift_type_e.img_banner}}" alt=""></a></h3>
+	    	<ul class="area">
+		    	<li ng-repeat="item in tpmlData.contData.gift_type_e.more_list.items track by $index" ng-init="$pindex = $index + 1">
+		    	<h4>{{item.title}}</h4>
+		    	<ul class="pd_list">
+		    		<li ng-repeat="items in item.goods_list.items track by $index" >
+		    			<a ng-click="ProDetail(items, 'm_gift_theme05_product0', $pindex ,$index + 1)">
+			    			<div><img ng-src="{{items.img_url}}"></div>
+			    			<span class="tit">{{items.goods_nm}}</span>
+			    			<span class="price"><strong>{{items.price|number}}</strong>원<em ng-if="items.is_plan_prod">~</em></span>
+		    			</a>
+		    		</li>
+		    	</ul>
+		    	<a ng-click="proListMoreTclick(tpmlData.contData.gift_type_e.banner_link, item, 'm_gift_theme05_more0{{$index + 1}}')" class="add">더보기</a>
+		    	</li>
+		    </ul>	
+		    <div class="item_add">
+		    	<a ng-click="goLink(tpmlData.contData.gift_type_e.banner_link, 'm_gift_theme05_go05')">{{tpmlData.contData.gift_type_e.txt_banner}}<span class="go">go</span></a>
+		    </div>
+	    </div>
+	    <!-- //어르신선물영역 -->
+    </div>
+</div>

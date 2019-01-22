@@ -1,0 +1,269 @@
+<section ng-show="contVisible" class="cont_minheight">
+  
+    <div ng-if="smp.today_product.product.items" class="onair">
+       <div class="onair_box" ng-if="smp.today_product.tv_time != ''">
+            <div class="onair_time"><span id="tvTime"></span></div>   
+       </div>       
+       <div class="mov_auto_wrap shadow" ng-show="playcover">
+           <div class="vod_close" ng-click="hide_play()"><img ng-src="http://image.lotte.com/lotte/mo2015/angular/mall/mall_tv_close.png"></div>
+            <div class="video_wrap">
+                <video id="autoVideo" playsinline="true" webkit-playsinline="true" poster="" controls="false">
+                    <source type="video/mp4" src="http://mohlslive.lotteimall.com/live/livestream/lotteimalllive_mp4.m3u8">
+                </video>
+                <div class="play_cover">&nbsp;</div>
+                <div class="stop_cover">&nbsp;</div>
+                <div class="click_cover">&nbsp;</div>
+                <a class="btn_move_start" onclick="appTclick('m_DC_menu_TV_Clk_Video_play_idx01'); return false;" href="#" style="display: inline;">비디오 재생</a>
+                <a class="btn_move_stop btn_text" onclick="appTclick('m_DC_menu_TV_Clk_Video_pause_idx01');return false;" href="#">일시정지</a>
+                <a class="btn_move_goods btn_text" ng-href="/product/m/product_view.do?goods_no={{smp.today_product.product.items[0].goods_no}}&amp;tclick=m_DC_menu_TV_Clk_Video_link_idx01&amp;{{baseParam}}">상품보기</a>
+            </div>                    
+       </div>
+        <!--상품이 여러개일 때 스와이프 -->
+        <div roll-swipe-banner id="roll1" rolling="true" width320="1" width640="1" width900="1" info="smp.today_product.product.items" endfnc="setInfo" getcontrol="getControl1" style="overflow:hidden" ng-if="smp.today_product.product.items.length > 1">
+           <ul class="swipeBox">
+               <li ng-repeat="item in smp.today_product.product.items">
+                    <a ng-click="linkProduct_gbn(item, {{$index + 1}})">
+                        <div class="imageCon mid25"><img ng-src="{{item.img_url}}"></div>
+                        <div class="title"><b ng-if="item.brand_nm != '기타'">{{item.brand_nm}}</b>{{item.goods_nm}}</div>
+                        <div class="price">
+                            <span class="price1" ng-if="item.original_price != item.discounted_price">{{item.original_price | number}}원</span>
+                            <span class="price2"><b>{{item.discounted_price | number}}</b>원<span ng-if="item.is_plan_prod">~</span></span>
+                        </div>
+                        <div class="buy_btn">구매<br>하기</div>
+                    </a>                   
+               </li>
+           </ul> 
+           <div class="subIndi"><b>{{tg_index}}</b>/{{smp.today_product.product.items.length}}</div>
+           <a class="side_btn" ng-click="tg_go(-1)">이전</a>
+           <a class="side_btn next"  ng-click="tg_go(1)">다음</a>           
+        </div>        
+        <!--상품이 한개일 때 -->
+        <a ng-click="linkProduct_gbn(smp.today_product.product.items[0], 1)"  ng-if="smp.today_product.product.items.length == 1">
+            <div class="imageCon mid25"><img ng-src="{{smp.today_product.product.items[0].img_url}}"></div>
+            <div class="title"><b ng-if="smp.today_product.product.items[0].brand_nm != '기타'">{{smp.today_product.product.items[0].brand_nm}}</b>{{smp.today_product.product.items[0].goods_nm}}</div>
+            <div class="price">
+                <span class="price1" ng-if="smp.today_product.product.items[0].original_price != smp.today_product.product.items[0].discounted_price">{{smp.today_product.product.items[0].original_price | number}}원</span>
+                <span class="price2"><b>{{smp.today_product.product.items[0].discounted_price | number}}</b>원<span ng-if="smp.today_product.product.items[0].is_plan_prod">~</span></span>
+            </div>
+            <div class="buy_btn">구매<br>하기</div>
+        </a>                   
+        <a class="vod_play_btn" ng-click="show_play()" ng-if="smp.today_product.tv_time != ''">play</a>        
+    </div>
+    <!--TV편성표, 베스트30 링크-->
+    <div class="mtable tvlink">
+        <div class="mcell" ng-click="onAirClick()">TV편성표<p class="icon"></p></div>
+        <div class="mcell line"></div>
+        <div class="mcell" ng-click="onBestClick()">베스트30<p class="icon"></p></div>
+    </div>
+            
+    <!--이전/다음방송-->
+    <div class="todayBox pn" ng-show="smp.today_tv.tv_list.total_count > 0">
+        <div class="title">
+            이전/다음방송
+        </div>
+        <div class="listCon" simple-swipe>
+            <ul style="width:{{smp.today_tv.tv_list.items.length*153 - 8}}px" class="swipeBox" ng-class="{smallWidth:winWidth > 670}">
+                <li ng-repeat="item in smp.today_tv.tv_list.items" ng-click="linkProduct(item,'m_DC_TV_Clk_Prd_A_idx', $index + 1, '')">
+                    <div class="imageCon"><img ng-src="{{item.img_url}}"></div>
+                    <div class="info"> 
+                       <div class="tvtime">
+                           <span ng-if="item.type == 'PREV'">이전방송</span>                      
+                           <span ng-if="item.type == 'NEXT'">다음방송</span>                      
+                           {{item.tv_time}}                           
+                       </div>
+                       <div class="goods_nm" ng-if="item.goods_nm">{{item.goods_nm}}</div>
+                       <div class="goods_price" ng-if="item.discounted_price"><b>{{item.discounted_price}}</b>원</div>
+                   </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div ng-if="smp.top_ban_list.items" class="topBann" ng-click="linkUrl(smp.top_ban_list.items[0], 'm_DC_TV_Clk_Ban_01', '')">
+        <img ng-src="{{smp.top_ban_list.items[0].img_url}}">
+    </div>
+    
+    <!--인기호스트배너-->
+    <div class="hostBox" ng-class="{pad:screenType != 1}" ng-show="smp.host_ban_list.items">
+        <div class="title">
+            인기 프로그램
+        </div>       
+        <ul>
+            <li ng-repeat="item in smp.host_ban_list.items">
+               <a ng-click="linkUrl(item,'m_DC_TV_Clk_Ban_A', $index + 1)">
+                    <div class="imageCon"><img ng-src="{{item.img_url}}"></div>
+                    <div class="time">
+                       <div class="title1">{{item.banner_nm}}</div>
+                       <div class="title2" ng-bind-html="item.banner_sub_nm" ng-show="screenType == 1"></div>
+                       <div class="title2" ng-show="screenType > 1">{{item.banner_sub_pad_nm}}</div>
+                   </div>
+               </a>
+            </li>
+        </ul>
+    </div>
+
+    <!--상품리스트-->
+    <section ng-if="smp.best_prd1_list.prd_list.items" class="mgtop">
+        <h2 class="listHead">{{smp.best_prd1_list.conr_title}}</h2>
+        <ol class="prod_list_02">
+            <li ng-repeat="item in smp.best_prd1_list.prd_list.items track by $index"  ng-class="{ncate:$last}">
+                <div class="unit_list_02">
+                    <span class="unit_zoom" ng-click="zoomImageClick(getProductImage(item))">크게보기</span>
+                    <a ng-click="linkProduct(item,'m_DC_TV_Clk_Prd_B_idx', $index + 1, '')">
+                        <div class="soldout" ng-show="item.soldout">SOLD OUT</div>
+                        <div class="thumb">
+                            <img ng-src="{{item.img_url}}" alt="{{item.goods_nm}}" err-src />
+                            <p class="flag">
+                                <span class="flag istoday" ng-show="item.is_today">오늘방송</span>
+                            </p>
+                        </div>
+                        <div class="info">
+                            <span class="tit"><span ng-show="item.brand_nm && item.brand_nm != '기타'">[<span ng-bind-html="item.brand_nm"></span>]</span> <span ng-bind-html="item.goods_nm"></span></span>
+                            <p class="pr_box">
+                                <span class="price"><em>{{item.discounted_price|number}}</em>원<span ng-show="item.is_plan_prod">~</span></span>
+                                <span class="price2" ng-show="item.original_price!=item.discounted_price && item.original_price !=0 && !item.is_sale_promotion">
+                                    <em>{{item.original_price|number}}</em>원<span ng-if="item.is_plan_prod">~</span>
+                                </span>
+                            </p>
+                            <!-- ng-show="item.has_coupon" -->
+                            <p class="coupon" ng-show="!item.is_sale_promotion"><span ng-show="item.original_price&&item.sale_rate!='0'&&item.original_price!=item.discounted_price"><em class="no">{{item.sale_rate}}</em><em class="po">%</em></span><span ng-show="item.has_coupon">쿠폰포함</span></p>
+                        </div>
+                        <!-- 별점/상품평 -->
+                        <div class="user_feedback">
+                            <span class="score" ng-if="item.review_count > 0 && item.avg_gdas_stfd_val > 0">
+                                <span class="starScoreWrap"><span class="starScoreCnt" style="width:{{ ((item.avg_gdas_stfd_val*2)|ceil)*10 }}%"></span></span>
+                                <span class="review"><em>({{item.review_count|number}})</em></span>
+                            </span>
+                        </div>                      
+                    </a>
+                </div>
+                <div class="prod_null">
+                    lotte.com
+                </div>        
+                <div class="prod_null" style="right:-200%">
+                    lotte.com
+                </div>        
+                <div class="prod_null" style="right:-300%">
+                    lotte.com
+                </div>                        
+            </li>
+        </ol>
+    </section>
+    <!-- 스와이프 배너 리스트-->
+	<section ng-if="smp.ban2_list.items"
+		ng-controller="lotteNgSwipeCtrl" class="mgtop" ng-class="{pad:screenType > 1}">
+		<div class="swipe_wrap">
+			<ul lotte-ng-list-swipe
+				swipe-id="TrendFirstBanner"
+				swipe-list-model="smp.ban2_list.items"
+				swipe-slide-item="true"
+				swipe-max-ratio="0.2"
+				swipe-min-distance="40"
+				swipe-responsive="true"
+				swipe-responsive320="1"
+				swipe-responsive640="2"
+				swipe-responsive900="2">
+				<li ng-repeat="item in smp.ban2_list.items track by $index" ng-if="!($index%2 == 0 && $index==smp.ban2_list.items.length-1 && screenType > 1)">
+					<a ng-click="linkUrl(item, 'm_DC_TV_Swp_Ban_B_idx',  $index + 1)">
+						<div class="img_wrap">
+							<img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}" />
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<ul ng-if="smp.ban2_list.items" class="indicator">
+			<li ng-repeat="item in smp.ban2_list.items track by $index" ng-class="{on: swipeIdx == $index}" ng-hide="($index%2==1 && screenType > 1) || ($index==smp.ban2_list.items.length-1 && $index%2==0 && screenType > 1)"><span>{{$index}}</span></li>
+		</ul>
+	</section>
+   
+    <!-- 스와이프 배너 리스트-->
+	<section ng-if="smp.ban1_list.items"
+		ng-controller="lotteNgSwipeCtrl" class="todayBox spbann" ng-class="{pad:screenType > 1}">
+        <div class="title">
+            추천 기획전
+        </div>  				
+		<div class="swipe_wrap" roll-swipe-banner id="rolltopbann" rolling="true" width320="1" width640="1" width900="1" info="top_banner">
+			<ul class="swipeBox">
+				<li ng-repeat="item in smp.ban1_list.items track by $index" ng-if="!($index%2 == 0 && $index == smp.ban1_list.items.length-1 && screenType > 1)">
+					<a ng-click="linkUrl(item, 'm_DC_TV_Swp_Ban_A_idx',  $index + 1)">
+						<div class="img_wrap">
+							<img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}" />
+						</div>
+						<div class="txt_wrap">
+						    <p class="txt1">{{item.txt1}}</p>
+						    <p class="txt2">{{item.txt2}}</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+      <div class="swipe_indicator">
+        <ul class="bullet indicator" ng-if="smp.ban1_list.items">
+          <li ng-repeat="item in smp.ban1_list.items track by $index">{{$index + 1}} <span class="sub">/ {{smp.ban1_list.items.length}}</span></li>          
+        </ul>
+      </div>
+		</div>
+	</section>
+      
+    <!--카테고리 상품리스트-->
+    <section class="mgtop" ng-if="smp.best_prd2_list.category.items">
+       <h2 class="listHead">{{smp.best_prd2_list.conr_title}}</h2>
+       <div class="tv_category">
+           <ul>
+               <li ng-repeat="item in smp.best_prd2_list.category.items" ng-class="{on:$index == screen.tv_cate}" ng-click="changeCate({{$index}})">
+                   <span><img ng-src="{{item.img_url}}"></span>
+                   <p>{{item.cate_name}}</p>                                      
+                   <div class="outline"></div>           
+                   <div class="arrbox"><div class="arr"></div>           </div>
+               </li>
+           </ul>
+           
+       </div>
+       
+        <ol class="prod_list_02">
+            <li ng-repeat="item in smp.best_prd2_list.category.items[screen.tv_cate].prd_list.items track by $index" ng-class="{ncate:$last}">
+                <div class="unit_list_02">
+                    <span class="unit_zoom" ng-click="zoomImageClick(getProductImage(item))">크게보기</span>
+                    <a ng-click="linkProduct(item,'m_DC_TV_Clk_Prd_C_Tap0' + ({{screen.tv_cate}} + 1) + '_', $index + 1, '')">
+                        <div class="soldout" ng-show="item.soldout">SOLD OUT</div>
+                        <div class="thumb">
+                            <img ng-src="{{item.img_url}}" alt="{{item.goods_nm}}" err-src />
+                            <p class="flag">
+                                <span class="flag istoday" ng-show="item.is_today">오늘방송</span>
+                            </p>
+                        </div>
+                        <div class="info">
+                            <span class="tit"><span ng-show="item.brand_nm && item.brand_nm != '기타'">[<span ng-bind-html="item.brand_nm"></span>]</span> <span ng-bind-html="item.goods_nm"></span></span>
+                            <p class="pr_box">
+                                <span class="price"><em>{{item.discounted_price|number}}</em>원<span ng-show="item.is_plan_prod">~</span></span>
+                                <span class="price2" ng-show="item.original_price!=item.discounted_price && item.original_price !=0 && !item.is_sale_promotion">
+                                    <em>{{item.original_price|number}}</em>원<span ng-if="item.is_plan_prod">~</span>
+                                </span>
+                            </p>
+                            <!-- ng-show="item.has_coupon" -->
+                            <p class="coupon" ng-show="!item.is_sale_promotion"><span ng-show="item.original_price&&item.sale_rate!='0'&&item.original_price!=item.discounted_price"><em class="no">{{item.sale_rate}}</em><em class="po">%</em></span><span ng-show="item.has_coupon">쿠폰포함</span></p>
+                        </div>
+                        <!-- 별점/상품평 -->
+                        <div class="user_feedback">
+                            <span class="score" ng-if="item.review_count > 0 && item.avg_gdas_stfd_val > 0">
+                                <span class="starScoreWrap"><span class="starScoreCnt" style="width:{{ ((item.avg_gdas_stfd_val*2)|ceil)*10 }}%"></span></span>
+                                <span class="review"><em>({{item.review_count|number}})</em></span>
+                            </span>
+                        </div>                         
+                    </a>
+
+                </div>
+                <div class="prod_null">
+                    lotte.com
+                </div>        
+                <div class="prod_null" style="right:-200%">
+                    lotte.com
+                </div>        
+                <div class="prod_null" style="right:-300%">
+                    lotte.com
+                </div>                 
+            </li>
+        </ol>
+    </section>
+	<dungdung id="ddpop" start="201701061000" end="201701070000"></dungdung>
+</section>

@@ -1,0 +1,9 @@
+<section ng-if="contents.prdList.totalCnt-dispCntNum" class="more_view">
+    <div class="btn_more" style="position:relative" ng-if="!isPrdLoading">
+        <a href="" ng-click="clickMoreView()">
+            <i></i>
+            <span id="pageTxt1">더보기 ({{dispCntNum}} /  {{contents.prdList.totalCnt}})</span>
+        </a>
+    </div>
+	<loading-bar></loading-bar>
+</section>

@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+    <meta charset="utf-8">
+    <title>롯데닷컴</title>
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+
+<script>
+var APP_KEY = "7fa1e44757a94fd89921";
+var SERVER_TIME = new Date();
+
+var LOTTE_CONSTANTS = [];
+
+	LOTTE_CONSTANTS['MAPI_HOST_API'] = "http://m.lotte.com";
+	LOTTE_CONSTANTS['MAPI_HOST_SSL_API'] = "https://m.lotte.com";
+	LOTTE_CONSTANTS['M_HOST_MOBILE'] = "http://m.lotte.com";
+	LOTTE_CONSTANTS['M_HOST_SSL'] = "https://m.lotte.com";
+	LOTTE_CONSTANTS['PC_HOST_WEB'] = "http://www.lotte.com";
+
+// 1차분 호환성을 위해 중복 정의
+var MAPI_HOST_API = LOTTE_CONSTANTS['MAPI_HOST_API'];
+var MAPI_HOST_SSL_API = LOTTE_CONSTANTS['MAPI_HOST_SSL_API'];
+var M_HOST_MOBILE = LOTTE_CONSTANTS['M_HOST_MOBILE'];
+var M_HOST_SSL = LOTTE_CONSTANTS['M_HOST_SSL'];
+var PC_HOST_WEB = LOTTE_CONSTANTS['PC_HOST_WEB'];
+
+LOTTE_CONSTANTS['SPLIT_GUBUN_1'] = ":^:"; 
+LOTTE_CONSTANTS['SPLIT_GUBUN_3'] = ";;;;;"; 
+LOTTE_CONSTANTS['ONENONE_BUY_LOGIN'] = "1"; 
+LOTTE_CONSTANTS['IMALL_BUY_LOGIN'] = "4";
+LOTTE_CONSTANTS['ST_STD_CD_PAY_MEAN_CD_L_POINT'] = "21";
+LOTTE_CONSTANTS['ST_STD_CD_PAY_MEAN_CD_LOTTE_POINT'] = "19";
+LOTTE_CONSTANTS['ST_STD_CD_PAY_MEAN_CD_DEPOSIT'] = "20";
+LOTTE_CONSTANTS['DEFAULT_LATE_VIEW_GOODS_COUNT'] = "20";
+
+//rudolph start
+LOTTE_CONSTANTS['NORMAL_LOGIN'] = "0";
+LOTTE_CONSTANTS['ONENONE_BUY_LOGIN'] = "1"; 
+LOTTE_CONSTANTS['CART_BUY_LOGIN'] = "2";
+LOTTE_CONSTANTS['ORDER_SEARCH_LOGIN'] = "3";
+LOTTE_CONSTANTS['IMALL_BUY_LOGIN'] = "4"; 
+LOTTE_CONSTANTS['IMALL_CART_BUY_LOGIN'] = "5" 
+LOTTE_CONSTANTS['LOGIN_SEED'] = "MDOTCOM";
+LOTTE_CONSTANTS['ORDER_PROTOCAL'] = "https";
+LOTTE_CONSTANTS['MOBILE_DOMAIN'] = "m.lotte.com";
+
+LOTTE_CONSTANTS['ELLOTTE_HOST_API'] = "http://mapi.ellotte.com";
+LOTTE_CONSTANTS['ELLOTTE_HOST_SSL_API'] = "http://mapi.ellotte.com";
+LOTTE_CONSTANTS['ELLOTTE_HOST_MOBILE'] = "http://m.ellotte.com";
+LOTTE_CONSTANTS['ELLOTTE_HOST_SSL'] = "https://m.ellotte.com";    
+LOTTE_CONSTANTS['ELLOTTE_LOGIN_SEED'] = "NMELLOTTE";
+LOTTE_CONSTANTS['ELLOTTE_IOS_APP_SCHEMA'] = "ellotte001";
+LOTTE_CONSTANTS['ELLOTTE_ANDROID_APP_SCHEMA'] = "ellotte002";
+//rudolph end
+
+//shpark97:150925 - start
+LOTTE_CONSTANTS['PAYTYPE_CARD_047'] = "047";
+LOTTE_CONSTANTS['PAYTYPE_CARD_029'] = "029";
+LOTTE_CONSTANTS['PAYTYPE_CARD_031'] = "031";
+LOTTE_CONSTANTS['PAYTYPE_CARD_048'] = "048";
+LOTTE_CONSTANTS['EXP_MY_LOTTE_KO'] = "마이롯데";
+//shpark97:150925 - end
+
+</script>
+
+<!-- 검색 최적화 작업을 위한 네이버 메타태그 - 2017.12.12 ~ -->
+<meta name="naver-site-verification" content="d61f66e975f97af64beb4d1faf4218fc1c315a2e"/>
+<link rel="apple-touch-icon" href="/lotte/lotte-touch-icon_new.png" />
+<link rel="stylesheet" type="text/css" href="/common3/css/lotte.inc" /><!-- DDOS 최초 로드 방어 -->
+<!-- /WEB-INF/lotte_template/search/m/search_list.jsp -->
+<!-- Secure : false -->
+
+<link rel="stylesheet" type="text/css" href="/lotte/resources/r20180426_1/common.min.css" />
+<script src="/lotte/resources/r20180426_1/common.min.js"></script>
+<script src="/lotte/resources/r20180426_1/common.tpl.js"></script>
+
+<script>
+function goAdultSci(loginChk) {
+	if(loginChk != "Y"){
+		if(!confirm("19세 미만 청소년 접근이 제한된 정보로 본인인증이 필요합니다.")){
+			// 2015.01.12 iylee 상품상세의 경우, 인증창을 띄우지 않은 경우 main으로 이동되게 한다.
+			// 2016.02.17 jgseo2 상품상세에서의 인증 취소시 뒤로가기
+			if(location.href.indexOf('/product_view.do')>-1){
+				//self.location.href = "http://mo2.lotte.com/main.do?c=&udid=&v=&cn=&cdn=";
+				history.go(-1);
+				return;
+			} else {
+				return;
+			}
+		}
+	}	
+
+	var backUrl = "";
+	
+	if(location.href.indexOf('adultChk=Y')>-1){
+		backUrl = location.href;
+	}else{
+		backUrl = location.href+'&adultChk=Y';
+	}
+
+	localStorage.removeItem('sci_param'); // 주문서로 전달하기 위한 파리메터
+	localStorage.removeItem('sci_action'); // 주문서 이전 사은품 선택 페이지 url
+	localStorage.removeItem('sci_login_href'); // 로그인 폼 url
+
+	window.location.href = 'http://mo2.lotte.com/sci/pcc_V3_seed.jsp?adultChk=Y&c=&udid=&v=&cn=&cdn=&returnDomain=mo2.lotte.com&backUrl='+encodeURIComponent(backUrl,'UTF-8');
+}
+</script>
+<link rel="stylesheet" type="text/css" href="/lotte/resources/r20180420_1/search_list.min.css"/>
+<script src="/lotte/resources/r20180420_1/search_list.min.js"></script>
+<script src="/lotte/resources/r20180420_1/search_list.tpl.js"></script>
+<link rel="stylesheet" type="text/css" href="/lotte/resources/r20180420_1/lotte_product.min.css"/>
+<script src="/lotte/resources/r20180420_1/lotte_product.min.js"></script>
+<script src="/lotte/resources/r20180420_1/lotte_product.tpl.js"></script>
+</head>
+<body ng-controller="SearchList">
+    <div id="wrapper" ng-show="showWrap">
+     
+        <section id="headerSpace"></section>
+        <sub-header-search></sub-header-search>
+            
+
+        <lotte-container></lotte-container>
+
+        <lotte-footer></lotte-footer>
+        <lotte-btntop></lotte-btntop>
+    </div>
+
+    <lotte-search></lotte-search>
+    <lotte-main-popup ppp_tgt_pg_cd="40"></lotte-main-popup>
+    <lotte-side-category></lotte-side-category>
+    <lotte-side-mylotte></lotte-side-mylotte>
+    <lotte-footer-actionbar></lotte-footer-actionbar>
+
+    <lotte-comm-footer></lotte-comm-footer>
+</body>
+</html>

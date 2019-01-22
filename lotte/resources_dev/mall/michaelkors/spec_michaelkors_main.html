@@ -1,0 +1,66 @@
+<section class="mk_mall_wrap">
+    <!-- Top Banner area -->
+    <div class="top_banner_area" ng-if="MkMallmain.mkTopBanner && MkMallmain.mkTopBanner.imgUrl">
+        <a href="#" ng-click="goMkLink(MkMallmain.mkTopBanner,'Ban_main')" ng-link3d-touch>
+           <img ng-src="{{MkMallmain.mkTopBanner.imgUrl}}" alt="" />
+        </a>
+    </div>
+    <!-- // Top Banner area -->
+    <!-- Text Banner area-->
+    <div class="title_area" ng-if="MkMallmain.mkTitle.text1">
+        <dl>
+            <dt class="text_01"><a href="#" ng-click="goMkLink(MkMallmain.mkTitle,'Title_',1)" ng-link3d-touch>{{MkMallmain.mkTitle.text1}}</a></dt>
+            <dd class="text_02" ng-if="MkMallmain.mkTitle.text2">
+                <a href="#" ng-click="goMkLink(MkMallmain.mkTitle,'Title_',2)" ng-link3d-touch>{{MkMallmain.mkTitle.text2}}</a>
+            </dd>
+            <dd class="text_03" ng-if="MkMallmain.mkTitle.text3">
+                <a href="#" ng-click="goMkLink(MkMallmain.mkTitle,'Title_',3)" ng-link3d-touch>{{MkMallmain.mkTitle.text3}}</a>
+            </dd>
+        </dl>
+    </div>
+    <!-- // Text Banner area-->
+    <!-- Inventory Banner area (01~04) -->
+    <div class="inventory_wrap_top" ng-if="MkMallmain.mkInventoryTop && MkMallmain.mkInventoryTop.length > 0">
+        <ul class="invent_top_list">
+            <li ng-repeat="topItem in MkMallmain.mkInventoryTop" ng-if="topItem.imgUrl && topItem.linkUrl">
+                <div class="invent_img_wrap">
+                    <a href="#" ng-click="goMkLink(topItem,'Ban0' +($index+1))" ng-link3d-touch>
+                        <img ng-src="{{topItem.imgUrl}}" alt="" />
+                    </a>
+                </div>
+                <div class="invent_cont_wrap">
+                    <p class="inv_text1" ng-if="topItem.text1">
+                       <a href="#" ng-click="goMkLink(topItem,'Txt0'+($index+1)+'_',1)" ng-link3d-touch>{{topItem.text1}}</a>
+                    </p>
+                    <p class="inv_text2" ng-if="topItem.text2">
+                       <a href="#" ng-click="goMkLink(topItem,'Txt0'+($index+1)+'_',2)" ng-link3d-touch>{{topItem.text2}}</a>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!-- // Inventory Banner area (01~04) -->
+    <!-- Inventory Banner area (05~07) -->
+    <div class="inventory_wrap_btm" ng-if="MkMallmain.mkInventoryBtm && MkMallmain.mkInventoryBtm.length > 0">
+        <ul class="invent_btm_list">
+            <li ng-repeat="btmItem in MkMallmain.mkInventoryBtm" ng-if="btmItem.imgUrl && btmItem.linkUrl">
+                <div class="invent_img_wrap">
+                    <a href="#" ng-click="goMkLink(btmItem,'Ban0'+ (startIdx + ($index + 1)))" ng-link3d-touch>
+                        <img ng-src="{{btmItem.imgUrl}}" alt="" />
+                    </a>
+                </div>
+                <div class="invent_cont_wrap_all">
+                    <div class="invent_cont_wrap">
+                        <p class="inv_text1" ng-if="btmItem.text1">
+                           <a href="#" ng-click="goMkLink(btmItem,'Txt0'+(startIdx + ($index + 1))+'_', 1)" ng-link3d-touch>{{btmItem.text1}}</a>
+                        </p>
+                        <p class="inv_text2" ng-if="btmItem.text2">
+                           <a href="#" ng-click="goMkLink(btmItem,'Txt0'+(startIdx + ($index + 1))+'_', 2)" ng-link3d-touch>{{btmItem.text2}}</a>
+                        </p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!-- // Inventory Banner area (05~07) -->
+</section>

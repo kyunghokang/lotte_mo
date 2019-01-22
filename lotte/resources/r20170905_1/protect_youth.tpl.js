@@ -1,0 +1,1 @@
+angular.module("app").run(["$templateCache",function(a){"use strict";a.put("/lotte/resources_dev/agreement/protect_youth_container.html",'<section class="footer_terms">\r\n    <p ng-bind-html="agreementData"></p>\r\n</section>')}]);

@@ -1,0 +1,66 @@
+<section ng-show="contVisible" class="cont_minheight">
+	<product-sub-header></product-sub-header>
+
+	<section class="profile_wrap">
+		<section class="picture_wrap">
+			<div>
+				<span class="image" ng-class='{
+					horizontal:pageUI.mylotte.rote_code==2,
+					rotate180:pageUI.mylotte.rote_code==3,
+					rotate90:pageUI.mylotte.rote_code==6,
+					rotateM90:pageUI.mylotte.rote_code==8,
+					vertical:pageUI.mylotte.rote_code==4,
+					horizontalRotate90:pageUI.mylotte.rote_code==5,
+					horizontalRotateM90:pageUI.mylotte.rote_code==7
+				}' ng-style="{'background' : 'url(' + pageUI.mylotte.imgUrl + ') center center no-repeat', 'background-size': 'cover'}"></span>
+				<img ng-src="{{pageUI.mylotte.imgUrl}}" on-error-src style="display:none" />
+				<input id="file1" name="" type="file" 
+				onchange="angular.element(this).scope().detectFile(this)" 
+				ng-click="callAppUpload($event)" accept="image/*">
+				<a class="btn_del" ng-show="pageUI.mylotte.imgUrl != blankImgUrl" ng-click="deleteImg()">이미지 삭제</a>
+			</div>
+			<span class="title">프로필 사진 바꾸기</span>
+		</section>
+		
+		<section class="form_wrap">
+			<span class="title">이름설정</span>
+			<ul class="option_select">
+				<li ng-class="{'disable' : pageUI.mylotte.nknmSetYn}">
+					<input type="radio" id="rd_1" name="rg_1" ng-value="false" ng-model="pageUI.mylotte.nknmSetYn">
+					<label for="rd_1"><span class="head">ID</span><span>{{pageUI.mylotte.loginId}}</span></label>
+				</li>
+				<li ng-class="{'disable' : !pageUI.mylotte.nknmSetYn}">
+					<input type="radio" id="rd_2" name="rg_1" ng-value="true" ng-model="pageUI.mylotte.nknmSetYn">
+					<label for="rd_2">
+						<span class="head">닉네임</span>
+						<input type="text" id="ipNick" class="nick" ng-model="pageUI.mylotte.mbrNick" ng-change="calcByte()" ng-keyup="calcByte()"/>
+						<a class="btn_nick" ng-click="checkDupId()">중복확인</a>
+						<span class="byte"><span id="curbyte">0</span> / 16 Byte</span>
+					</label>
+				</li>
+			</ul>
+		</section>
+		
+		<section class="desc_wrap">
+			<span class="title">이름이 타인에게 아래와 같이 보입니다.</span>
+			<span ng-if="!pageUI.mylotte.nknmSetYn" class="writer">{{pageUI.mylotte.loginId | maskingId}}</span>
+			<span ng-if="pageUI.mylotte.nknmSetYn" class="writer">{{checkedNick.org == pageUI.mylotte.mbrNick || checkedNick.nick == pageUI.mylotte.mbrNick ? pageUI.mylotte.mbrNick : ''}}</span>
+			<span class="notice">※ 잠깐!</span>
+			<p class="desc">
+			타인의 저작물(캐릭터, 사진, 그림, 상품평 등), 연예인 이미지, 
+타인의 개인정보(타인의 사진 및 이름), 음란물, 비속어, 비방글, 
+광고를 게재하셨나요? 나의 권리만큼 타인의 권리도 보호할 가치가 
+있는 소중한 재산입니다. 
+타인의 지적재산권, 퍼블리시티권 등을 침해한 경우 소정의 절차에 
+따라 게시물이 삭제될 수 있습니다. 
+			
+			</p>
+		</section>
+
+		<div class="btn_wrap">
+			<a ng-click="clickCancel()" class="btn">취소</a>
+			<a ng-click="save()" class="btn btn_write">등록하기</a>
+		</div>
+	</section>
+
+</section>

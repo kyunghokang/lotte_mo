@@ -1,0 +1,70 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplusedMain" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/mall/used_main_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/used_main.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsusedMain" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+                    "lotte/lib/jquery/ng-pinch-zoom.js",
+					"lotte/resources_dev/mall/used_main.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/used_main.js"
+			}
+		},
+
+		"uglify" : {
+			"jsusedMain" : {
+				"src" : "lotte/resources/<%= version %>/used_main.js",
+				"dest" : "lotte/resources/<%= version %>/used_main.min.js"
+			},
+			"tplusedMain" : {
+				"src" : "lotte/resources/<%= version %>/used_main.template.js",
+				"dest" : "lotte/resources/<%= version %>/used_main.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssusedMain" : {
+				"src" : [
+					"lotte/resources_dev/mall/used_main.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/used_main.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanusedMain" : [
+				"lotte/resources/<%= version %>/used_main.js",
+				"lotte/resources/<%= version %>/used_main.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlusedMain" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"mall/used_main.html" : "mall/used_main_dev.html"
+				}
+			}
+		}
+	}
+}
+

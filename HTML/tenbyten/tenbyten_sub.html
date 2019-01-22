@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+
+<!-- test common css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">
+<!-- //공통 css -->
+<!----------------- current css ----------------->
+
+<link rel="stylesheet" href="/lotte/resources_dev/tenbyten/tenbyten.css">
+<link rel="stylesheet" href="/lotte/resources_dev/tenbyten/tenbyten_unit_01.css">
+
+<!----------------- current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+<script src="tenbyten.js"></script>
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+
+<!-- container -->
+<section id="container">
+	<!-- sub_category -->
+	<nav class="sub_cate">
+		<ul class="menu">
+			<li><a href="#">카테고리</a></li>
+			<li><a href="#">브랜드</a></li>
+			<li><a href="#">상세검색</a></li>
+			<li><a href="#">인기순</a></li>
+		</ul>
+		<div class="cotn_cate">
+			<!-- 카테고리 -->
+			<div class="category ">
+				<ul>
+					<li><a href="#"><strong>전체</strong> <span class="num">1,234</span></a></li>
+					<li><a href="#">셔츠/블라우스 <span class="num">1,234</span></a></li>
+					<li><a href="#">니트/스웨터 <span class="num">1,234</span></a></li>
+					<li><a href="#">베스트/조끼 <span class="num">1,234</span></a></li>
+					<li><a href="#">가디건/볼레로 <span class="num">1,234</span></a></li>
+					<li><a href="#">원피스 <span class="num">1,234</span></a></li>
+					<li><a href="#">팬츠 <span class="num">1,234</span></a></li>
+					<li><a href="#">스커트 <span class="num">1,234</span></a></li>
+				</ul>
+			</div>
+			<!-- //카테고리 -->
+			<!-- 브랜드 -->
+			<div class="brand ">
+				<div class="top_area">
+					<p class="totall_num">전체 (총 240개 브랜드)</p>
+					<div class="sort_radio">
+						<label for="brand_prod_num"><input type="radio" id="brand_prod_num" name="brand_sort"> 상품수</label> <label for="brand_prod_name"><input type="radio" id="brand_prod_name" name="brand_sort"> 가나다</label>
+					</div>
+				</div>
+				<ul>
+					<li><label for="brand_type1"><input id="brand_type1" type="checkbox"> 톰앤래빗</label>
+						<p class="totall_prod">120개</p></li>
+					<li><label for="brand_type2"><input id="brand_type2" type="checkbox"> 톰앤래빗</label>
+						<p class="totall_prod">120개</p></li>
+					<li><label for="brand_type3"><input id="brand_type3" type="checkbox"> 톰앤래빗</label>
+						<p class="totall_prod">120개</p></li>
+					<li><label for="brand_type4"><input id="brand_type4" type="checkbox"> 톰앤래빗</label>
+						<p class="totall_prod">120개</p></li>
+					<li><label for="brand_type5"><input id="brand_type5" type="checkbox"> 톰앤래빗</label>
+						<p class="totall_prod">120개</p></li>
+				</ul>
+			</div>
+			<!-- //브랜드 -->
+			<!-- 상세검색 -->
+			<div class="detail_srch">
+				<table>
+					<caption>삼세검색 표</caption>
+					<colgroup>
+						<col style="width: 75px">
+						<col style="">
+						<col style="width: 73px">
+					</colgroup>
+					<tbody>
+						<tr class="benefit">
+							<th class="type_top type_bor" rowspan="2">혜택</th>
+							<td colspan="2"><label for="free_delivery"><input id="free_delivery" type="checkbox"> 무료배송</label> <label for="free_interest"><input id="free_interest" type="checkbox"> 무이자</label> <label for="point"><input id="point" type="checkbox"> 포인트</label></td>
+						</tr>
+						<tr class="benefit type_pb">
+							<td colspan="2" class="type_bor">
+								<div class="box_col">
+									<label for="smart_pic"><input id="smart_pic" type="checkbox"> 스마트픽</label>
+									<div class="box_select">
+										<select>
+											<option>전체</option>
+											<option>전체</option>
+											<option>전체</option>
+											<option>전체</option>
+											<option>전체</option>
+										</select>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr class="tr_search type_pt">
+							<th>결과 내 검색</th>
+							<td class="td_in_search"><label for="in_search"><input id="in_search" type="search" placeholder="검색어를 입력해주세요"> </label></td>
+							<td class="btn_in_serh" rowspan="2">
+								<button>검색</button>
+							</td>
+						</tr>
+						<tr class="tr_search type_pb">
+							<th>가격대 검색</th>
+							<td>
+								<div class="val_saerch">
+									<label class="min" for="min_num"><input id="min_num" type="number" placeholder="최저가"> </label> <span>~</span> <label class="max" for="max_num"><input id="min_num" type="number" placeholder="최고가"> </label>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- //상세검색 -->
+			<!-- 인기순 -->
+			<div class="favor_num ">
+				<ul>
+					<li><label for="favor1"><input id="favor1" type="radio" name="favor_radio"> 인기 BEST</label></li>
+					<li><label for="favor2"><input id="favor2" type="radio" name="favor_radio"> 판매 BEST</label></li>
+					<li><label for="favor3"><input id="favor3" type="radio" name="favor_radio"> 낮은가격순</label></li>
+					<li><label for="favor4"><input id="favor4" type="radio" name="favor_radio"> 높은가격순</label></li>
+					<li><label for="favor5"><input id="favor5" type="radio" name="favor_radio"> 상품평 많은순</label></li>
+				</ul>
+				<p class="area_guide">기준 안내 영역</p>
+			</div>
+			<!-- //인기순 -->
+			<!-- 데이터 없음 -->
+			<div class="no_data">
+				<p class="type_cate">해당하는 카테고리가 없습니다.</p>
+				<p class="type_brand">해당하는 브랜드가 없습니다.</p>
+			</div>
+			<!-- //데이터 없음 -->
+		</div>
+		<div class="box_btn">
+			<p class="reset">
+				<button>초기화</button>
+			</p>
+			<p class="close">
+				<button>닫기</button>
+			</p>
+		</div>
+	</nav>
+	<!-- //sub_category -->
+
+	<!-- list -->
+	<ol class="list">
+		<li>
+			<div class="unit_type01">
+				<a href="#">
+					<div class="thumb">
+						<img alt="남녘과 북녘의 초.중등 학생들이 함께 보는 -  보리 국어사전" src="http://image.lotte.com/goods/12/76/51/55/55517612_1_280.jpg">
+					</div>
+					<div class="info">
+						<p class="flag ng-scope">
+							<span class="flag_00 ">무료배송</span>
+						</p>
+						<p class="tit ng-binding">남녘과 북녘의 초.중등 학생들이 함께 보는 - 보리 국어사전</p>
+						<p class="price">
+							<span class="price02"><strong>54,000</strong>원</span>
+						</p>
+
+					</div>
+				</a>
+				<div class="review">
+					<a href="#">상품평(<span>0</span>)
+					</a>
+				</div>
+				<div class="wish">
+					<a href="#">위시리스트</a>
+				</div>
+			</div>
+		</li>
+		<li>
+			<div class="unit_type01">
+				<a href="#">
+					<div class="thumb">
+						<img alt="남녘과 북녘의 초.중등 학생들이 함께 보는 -  보리 국어사전" src="http://image.lotte.com/goods/12/76/51/55/55517612_1_280.jpg">
+					</div>
+					<div class="info">
+						<p class="flag ng-scope">
+							<span class="flag_00 ">무료배송</span>
+						</p>
+						<p class="tit ng-binding">남녘과 북녘의 초.중등 학생들이 함께 보는 - 보리 국어사전</p>
+						<p class="price">
+							<span class="price02"><strong>54,000</strong>원</span>
+						</p>
+
+					</div>
+				</a>
+				<div class="review">
+					<a href="#">상품평(<span>0</span>)
+					</a>
+				</div>
+				<div class="wish">
+					<a href="#">위시리스트</a>
+				</div>
+			</div>
+		</li>
+		<li>
+			<div class="unit_type01">
+				<a href="#">
+					<div class="thumb">
+						<img alt="남녘과 북녘의 초.중등 학생들이 함께 보는 -  보리 국어사전" src="http://image.lotte.com/goods/12/76/51/55/55517612_1_280.jpg">
+					</div>
+					<div class="info">
+						<p class="flag ng-scope">
+							<span class="flag_00 ">무료배송</span>
+						</p>
+						<p class="tit ng-binding">남녘과 북녘의 초.중등 학생들이 함께 보는 - 보리 국어사전</p>
+						<p class="price">
+							<span class="price02"><strong>54,000</strong>원</span>
+						</p>
+
+					</div>
+				</a>
+				<div class="review">
+					<a href="#">상품평(<span>0</span>)
+					</a>
+				</div>
+				<div class="wish">
+					<a href="#">위시리스트</a>
+				</div>
+			</div>
+		</li>
+		<li>
+			<div class="unit_type01">
+				<a href="#">
+					<div class="thumb">
+						<img alt="남녘과 북녘의 초.중등 학생들이 함께 보는 -  보리 국어사전" src="http://image.lotte.com/goods/12/76/51/55/55517612_1_280.jpg">
+					</div>
+					<div class="info">
+						<p class="flag ng-scope">
+							<span class="flag_00 ">무료배송</span>
+						</p>
+						<p class="tit ng-binding">남녘과 북녘의 초.중등 학생들이 함께 보는 - 보리 국어사전</p>
+						<p class="price">
+							<span class="price02"><strong>54,000</strong>원</span>
+						</p>
+
+					</div>
+				</a>
+				<div class="review">
+					<a href="#">상품평(<span>0</span>)
+					</a>
+				</div>
+				<div class="wish">
+					<a href="#">위시리스트</a>
+				</div>
+			</div>
+		</li>
+		<li>
+			<div class="unit_type01">
+				<a href="#">
+					<div class="thumb">
+						<img alt="남녘과 북녘의 초.중등 학생들이 함께 보는 -  보리 국어사전" src="http://image.lotte.com/goods/12/76/51/55/55517612_1_280.jpg">
+					</div>
+					<div class="info">
+						<p class="flag ng-scope">
+							<span class="flag_00 ">무료배송</span>
+						</p>
+						<p class="tit ng-binding">남녘과 북녘의 초.중등 학생들이 함께 보는 - 보리 국어사전</p>
+						<p class="price">
+							<span class="price02"><strong>54,000</strong>원</span>
+						</p>
+
+					</div>
+				</a>
+				<div class="review">
+					<a href="#">상품평(<span>0</span>)
+					</a>
+				</div>
+				<div class="wish">
+					<a href="#">위시리스트</a>
+				</div>
+			</div>
+		</li>
+		<li>
+			<div class="unit_type01">
+				<a href="#">
+					<div class="thumb">
+						<img alt="남녘과 북녘의 초.중등 학생들이 함께 보는 -  보리 국어사전" src="http://image.lotte.com/goods/12/76/51/55/55517612_1_280.jpg">
+					</div>
+					<div class="info">
+						<p class="flag ng-scope">
+							<span class="flag_00 ">무료배송</span>
+						</p>
+						<p class="tit ng-binding">남녘과 북녘의 초.중등 학생들이 함께 보는 - 보리 국어사전</p>
+						<p class="price">
+							<span class="price02"><strong>54,000</strong>원</span>
+						</p>
+
+					</div>
+				</a>
+				<div class="review">
+					<a href="#">상품평(<span>0</span>)
+					</a>
+				</div>
+				<div class="wish">
+					<a href="#">위시리스트</a>
+				</div>
+			</div>
+		</li>
+	</ol>
+	<!-- //list -->
+</section>
+<!-- //container -->
+
+<section ng-include src="'/HTML/include/footer.html'"></section>
+
+</body>
+</html>

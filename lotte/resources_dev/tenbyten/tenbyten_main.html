@@ -1,0 +1,66 @@
+<section>
+    <!-- main slide  -->
+    <div class="sshop_spot" ng-if="swipeBanner">
+        <ul rn-carousel rn-carousel-controls rn-carousel-controls-allow-loop rn-carousel-index="swipeBnrIdx">
+            <li ng-repeat="banner in swipeBanner">
+                <a href="{{banner.img_link}}"><img ng-src="{{banner.img_url}}" alt="{{banner.banner_nm}}" /></a>
+            </li>
+        </ul>
+        <ul rn-carousel-indicator custom-indicator class="swipe_indicator" ng-if="swipeBanner && swipeBanner.length > 1">
+            <li ng-repeat="slide in swipeBanner" ng-class="{on: $index==$parent.swipeBnrIdx}" ng-click="$parent.swipeBnrIdx = $index"></li>
+        </ul>
+    </div>
+    <!-- //main slide -->
+
+    <div class="main_slide type2"  ng-if="newData.items">
+		<p class="tit_banner">WHAT’s NEW</p>
+		<div class="mask">
+			<ul class="list">
+				<li ng-repeat="item in newData.items">
+					<a href="{{item.img_link}}">
+						<img ng-src="{{item.img_url}}" alt="{{item.goods_nm}}">
+						<span class="name">{{item.goods_nm}}</span>
+						<span class="value">
+							<strong>{{item.price2}}</strong>원
+						</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="main_slide type2"  ng-if="focusData.items">
+		<p class="tit_banner">MD's PICK</p>
+		<div class="mask">
+			<ul class="list">
+				<li ng-repeat="item in focusData.items">
+					<a href="{{item.img_link}}">
+						<img ng-src="{{item.img_url}}" alt="{{item.goods_nm}}">
+						<span class="name">{{item.goods_nm}}</span>
+						<span class="value">
+							<strong>{{item.price2}}</strong>원
+						</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="main_slide type2"  ng-if="bestData.items">
+		<p class="tit_banner">BEST OF BEST</p>
+		<div class="mask">
+			<ul class="list">
+				<li ng-repeat="item in bestData.items">
+					<a href="{{item.img_link}}">
+						<img ng-src="{{item.img_url}}" alt="{{item.goods_nm}}">
+						<span class="name">{{item.goods_nm}}</span>
+						<span class="value">
+							<strong>{{item.price2}}</strong>원
+						</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+</section>

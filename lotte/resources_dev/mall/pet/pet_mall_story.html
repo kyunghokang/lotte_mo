@@ -1,0 +1,48 @@
+<div class="story_wrap">
+	<!--h3 class="title">{{screenData.disp_name}}</h3-->
+	<section class="dear_wrap social photo_area dearpetgram">
+		<ul class="list_wrap" ng-if="screenData.story_list">
+			<li id="" ng-repeat="item in screenData.story_list track by $index">
+				<div class="box_area">
+					<div class="txt_area">
+						<div class="txt_wrap">
+							<span class="userphoto"><img ng-src="http://image.lotte.com/lotte/mobile/mobile_new/brandshop/kshop/mitou_story_list_icon.png" /></span>
+							<p><span class="item_id">{{item.id}}</span><span class="item_time">{{item.time  | date:'yyyy-MM-dd'}}</span></p>
+							<div class="btn_wrap">
+								<span class="sns"><a ng-click="petShare2({prdComment:item.goods_nm,shareImg:item.img_list.items[0].img_url, story_no:item.story_no,index:$index})">공유</a></span>
+							</div>
+						</div>
+						<div class ="cont_title">
+							<div class="title">{{item.title}}</div>
+							<div class="sub_title">{{item.subtitle}}</div>
+						</div>
+						<div class="cont" ng-class={on:item.open}>
+							<div class="slide" ng-controller="lotteNgSwipeCtrl" ng-click="storyDetailCick(item.story_no,{{$index}})" >								
+								<div class="mask">
+									<ul ng-if="item.img_list.items.length>1" class="list" lotte-ng-list-swipe swipe-responsive="true" swipe-responsive640="1" swipe-responsive900="1" swipe-slide-item="true" swipe-list-model="img_list.items" swipe-id="img_list{{$index+1}}" swipe-max-ratio="0.2" swipe-min-distance="40">
+										<!-- 이미지가 여러개인 경우 -->
+										<li
+											ng-repeat="items in item.img_list.items">
+												<img ng-src="{{items.img_url}}">
+										</li>
+									</ul>
+									<ul class="list" ng-if="item.img_list.items.length==1" >
+										<!-- 이미지가 하나인경우 -->
+										<li class="one" ng-repeat="items in item.img_list.items" ng-if="item.img_list.items.length==1" ng-click="storyDetailCick(item.story_no)">
+											<span style="background-image:url({{items.img_url}})"></span>
+										</li>
+
+									</ul>
+								</div>							
+								<!-- <ol class="bullet" ng-if="item.img_list && item.img_list.length > 1">
+									<li ng-repeat="item in item.img_list" ng-class="{active:$index==swipeIdx}">{{$index}}</li>
+								</ol> -->
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</section>
+</div>

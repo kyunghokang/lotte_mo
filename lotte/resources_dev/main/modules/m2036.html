@@ -1,0 +1,34 @@
+<section class="n201811 blankCd{{moduleData.blankCd}}">
+	<!--M36 인기검색어(실시간검색어) 형 1 ..-->
+	<div class="moduleCon">
+		<div class="gTop_title">
+			<span ng-show="moduleData.topTxt">BEST</span>
+			<b><p>{{m36Today}}, 지금!</p></b>
+		</div>
+		<div class="unit unit_search">
+			<div class="slide_wrap" lotte-slider>
+				<ul class="search_word">
+					<li ng-repeat="item in moduleData.items | limitTo:5" ng-class="{on:$index == selectIdx}">
+						<a ng-click="logGAEvtModuleEach($index + 1, item.keyword, '탭' + numberFill(($index + 1), 2));tabClick($event, $index)"><span>{{$index+1}}. {{item.keyword}}</span></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="side_padding">
+            <div class="unit_table a">
+                <div class="unit_cell" ng-repeat="id in [0,1,2,3]" ng-click="logGAEvtModuleEach(selectIdx + 1, moduleData.items[selectIdx].prdList.items[id].goodsNo, '탭' + numberFill((selectIdx + 1), 2),id + 1);mainProductClick(moduleData.items[selectIdx].prdList.items[id].goodsNo, moduleData.tclick + '_Clk_idx'+numberFill((selectIdx + 1), 2) + '_Prd' + numberFill((id + 1), 2))">
+                    <p class="imgwrap"><img ng-src="{{moduleData.items[selectIdx].prdList.items[id].imgUrl}}"></p>
+                </div>
+            </div>		    
+            <div class="unit_table b">
+                <div class="unit_cell" ng-repeat="id in [4,5,6]" ng-click="logGAEvtModuleEach(selectIdx + 1, moduleData.items[selectIdx].prdList.items[id].goodsNo, '탭' + numberFill((selectIdx + 1), 2),id + 1);mainProductClick(moduleData.items[selectIdx].prdList.items[id].goodsNo, moduleData.tclick + '_Clk_idx'+numberFill((selectIdx + 1), 2) + '_Prd' + numberFill((id + 1), 2))">
+                    <p class="imgwrap"><img ng-src="{{moduleData.items[selectIdx].prdList.items[id].imgUrl}}"></p>                    
+                </div>
+                <div class="unit_cell more" ng-click="logGAEvtModuleEach('-', '더보기', '탭' + numberFill((selectIdx + 1), 2));keywordMoreClick(moduleData.tclick + '_Clk_idx' + numberFill((selectIdx + 1), 2) + '_more')">
+                    <p class="imgwrap dim50_cont"><img ng-src="{{moduleData.items[selectIdx].prdList.items[7].imgUrl}}"></p>
+                </div>                    
+            </div>		    
+		</div>
+	</div>
+</section>

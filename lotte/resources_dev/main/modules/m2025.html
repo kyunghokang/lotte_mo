@@ -1,0 +1,49 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!--M25	핀터레스트 전문몰형-->
+	<div class="moduleCon" ng-if="moduleData.spdpList.items.length == 4">
+		<div class="pinterest_list">
+			<ul class="pl">
+				<li class="long_prd">
+					<a ng-click="logGAEvtModuleEach('01', moduleData.spdpList.items[0].txt);planClick(moduleData.spdpList.items[0].linkUrl, moduleData.tclick + '_Clk_Ban01')">
+						<div class="thumb" ng-style="{'background-image':'url({{moduleData.spdpList.items[0].imgUrl}})' }"></div>
+						<div class="info">
+						<div class="info">
+							<p class="tit" ng-bind-html="moduleData.spdpList.items[0].txt | nl2br"></p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a ng-click="logGAEvtModuleEach('03', moduleData.spdpList.items[2].txt);planClick(moduleData.spdpList.items[2].linkUrl, moduleData.tclick + '_Clk_Ban03')">
+						<div class="thumb" ng-style="{'background-image':'url({{moduleData.spdpList.items[2].imgUrl}})' }"></div>
+						<div class="info">
+							<p class="tit" ng-bind-html="moduleData.spdpList.items[2].txt | nl2br"></p>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<ul class="pr">
+				<li>
+					<a ng-click="logGAEvtModuleEach('02', moduleData.spdpList.items[1].txt);planClick(moduleData.spdpList.items[1].linkUrl, moduleData.tclick + '_Clk_Ban02')">
+						<div class="thumb" ng-style="{'background-image':'url({{moduleData.spdpList.items[1].imgUrl}})' }"></div>
+						<div class="info">
+							<p class="tit" ng-bind-html="moduleData.spdpList.items[1].txt | nl2br"></p>
+						</div>
+					</a>
+				</li>
+				<li class="short_prd">
+					<a ng-click="logGAEvtModuleEach('05', '');mainBannerClick(moduleData.imgInfo.linkUrl, moduleData.imgInfo.isOutLink, moduleData.tclick + '_Clk_Ban05')">
+						<div class="thumb" ng-style="{'background-image':'url({{moduleData.imgInfo.imgUrl}})' }"></div>
+					</a>
+				</li>
+				<li>
+					<a ng-click="logGAEvtModuleEach('04', moduleData.spdpList.items[3].txt);planClick(moduleData.spdpList.items[3].linkUrl, moduleData.tclick + '_Clk_Ban04')">
+						<div class="thumb" ng-style="{'background-image':'url({{moduleData.spdpList.items[3].imgUrl}})' }"></div>
+						<div class="info">
+							<p class="tit" ng-bind-html="moduleData.spdpList.items[3].txt | nl2br"></p>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,22 @@
+<div class="list_header">
+    <div class="wid">
+        <div class="s_box04">
+            <select ng-model="divNum" ng-options="ctg.divObjNm for ctg in contents.ctgList track by ctg.divObjNo" ng-change="changeDivObj()"></select>
+            <div class="img_box"><i></i></div>
+        </div>
+    </div>
+    <div unit-view-type id="vtypeLst" class="s_box03">
+        <div class="tl">
+            <a href="" ng-click="openViewTypeList()">
+                <span class="vtype {{srhObj.imgListGbn}}">상품 정렬 변경</span>
+            </a>
+        </div>
+        <ul class="s_list03">
+            <li ng-repeat="vtype in viewTypeObj">
+                <a href="" ng-click="changeViewType(vtype.vt)">
+                    <span class="vtype {{vtype.vt}}">{{vtype.vtNm}}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

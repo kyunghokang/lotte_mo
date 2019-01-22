@@ -1,0 +1,264 @@
+<section>
+   
+    <div class="gtable myAddrTab mb20" ng-if="loginInfo.isLogin">
+        <div class="gcell" ng-class="{on:myAddr_tab||editMode}" ng-click="myAddrChange(true)">내 배송지</div>
+        <div class="gcell" ng-class="{on:!myAddr_tab && !editMode}"  ng-click="myAddrChange(false)">새로운 배송지</div>
+    </div>                  
+   
+    <div class="stepBody inputData">     
+        <!--비로그인-->   
+        <div class="gtable mb20" ng-if="!loginInfo.isLogin">
+            <div class="gcell ta">받는분</div>                    
+            <div class="gcell"><input type="text" placeholder="이름" ng-model="inprmitnm" id="inprmitnm2"></div>                    
+        </div>
+        <!--로그인-->
+        <div class="gtable mb20" ng-if="loginInfo.isLogin">
+            <div class="gcell ta">받는분</div>                                
+            <div class="gcell">
+                <!--내배송지-->
+                <div class="gtable" ng-show="myAddr_tab">
+                    <div class="gcell tn"><div class="tar_name" ng-click="addrLayer_show(true)">{{giftData.user_addr_info.default_addr.addr_name}}</div></div>
+                    <div class="gcell" style="width:110px"><a href="#none" ng-click="editMyAddr()" class="btnType">내 배송지 수정</a> </div>
+                </div>
+                <!--새로운배송지-->               
+                <div class="gtable" ng-show="!myAddr_tab">
+                    <div class="gcell tn"><input type="text" placeholder="이름" ng-model="inprmitnm" id="inprmitnm1"></div>
+                    <div class="gcell" style="width:86px"><input type="text" placeholder="배송지명" ng-model="inpdlvpnm" id="inpdlvpnm"> </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="gtable" ng-show="!myAddr_tab || !loginInfo.isLogin">
+            <div class="gcell ta">주소</div>                    
+            <!--주소찾기 전화면-->
+            <div class="gcell" ng-show="!searchAddressFlag">
+                <div class="searchAddr">
+                    <input type="text" ng-model="address_post">
+                    <a href="#none" ng-click="search_step1(true)">주소찾기</a>                    
+                </div>
+                <input type="text" class="mb8" ng-model="address1" id="address1">
+                <input type="text" ng-model="address2"  id="address2">                                             
+            </div>            
+            <!--주소찾기-->
+            <div class="gcell" ng-show="searchAddressFlag">
+                <div class="searchAddr">
+                    <input type="text">
+                    <a href="#none"  ng-click="search_step1(false)">취소하기</a>                    
+                </div>
+            </div>                                
+        </div>
+
+        <div class="gtable" ng-show="myAddr_tab && loginInfo.isLogin">
+            <div class="gcell ta">주소</div>                    
+            <div class="gcell">
+               {{giftData.user_addr_info.default_addr.addr_detail}}
+            </div>            
+        </div>
+                    
+          
+           <div ng-show="searchAddressFlag">
+            <!--주소검색 탭 -->
+                <div class="addressTab">
+                    <div class="gtable mb20" >
+                        <div class="gcell t1" ng-class="{on:!addressTab}" ng-click="search_step2(false)">지번주소</div>
+                        <div class="gcell t2" ng-class="{on:addressTab}" ng-click="search_step2(true)">도로명주소</div>
+                    </div>
+                </div>                 
+                
+                <!--지번주소 검색 내역-->   
+                <div class="tab_txt" ng-show="!addressTab">
+                    <!--1지번주소검색--------------------------->
+                    <div class="srch_input gtable" ng-show="searchJListInput">
+                        <div class="gcell">
+                            <input type="search" id="inp_seq1_J_1" placeholder="동(읍/면/리) 이름입력" ng-model="inp_seq1_J_1">
+                        </div>
+                        <div class="gcell c2">
+                            <a href="#none"  ng-click="searchAddress(1, 'S', 'J')" class="btnType">검색</a>    
+                        </div>                    
+                    </div>                                     
+                </div>                
+                <!--도로명주소 검색 내역-->
+                <div class="tab_txt key" ng-show="addressTab && searchJListInput2">
+                   <!--step 1-->
+                    <div class="gtable s50">
+                       <div class="gcell">
+                            <select class="gift" id="key1_seq1_N_1" >
+                                <option value="" selected="selected">＊시/도 선택</option>
+                                <option value="서울">서울</option>
+                                <option value="부산">부산</option>
+                                <option value="대구">대구</option>
+                                <option value="인천">인천</option>
+                                <option value="광주">광주</option>
+                                <option value="대전">대전</option>
+                                <option value="울산">울산</option>
+                                <option value="세종">세종</option>
+                                <option value="경기">경기</option>
+                                <option value="강원">강원</option>
+                                <option value="충북">충북</option>
+                                <option value="충남">충남</option>
+                                <option value="전북">전북</option>
+                                <option value="전남">전남</option>
+                                <option value="경북">경북</option>
+                                <option value="경남">경남</option>
+                                <option value="제주">제주</option>
+                                <option value="서울">서울</option>
+                            </select>                           
+                       </div>
+                       <div class="gcell">
+                           <input type="text" id="key2_seq1_N_1" placeholder="＊시/군/구 입력">
+                       </div>                        
+                    </div>
+                    <div class="gtable s50">
+                       <div class="gcell">    
+                            <input type="text" id="key3_seq1_N_1" placeholder="＊도로명 입력">                          
+                       </div>
+                       <div class="gcell">
+                           <input type="text" id="key4_seq1_N_1" placeholder="건물번호 입력">
+                       </div>                        
+                    </div>        
+                    <div class="srch_input gtable" ng-show="searchJListInput2">
+                        <div class="gcell">
+                            <input type="search" id="key5_seq1_N_1" placeholder="건물명 입력" ng-model="key5_seq1_N_1">
+                        </div>
+                        <div class="gcell c2">
+                            <a href="#none"  ng-click="searchAddress(1, 'S', 'N')" class="btnType">검색</a>    
+                        </div>                    
+                    </div>                    
+                </div>                       
+           </div>
+            <div class="tab_txt">
+                <!--2검색결과목록-->
+                <ul id="result_seq1_J_1" ng-show="searchJListFlag">
+                    <li ng-repeat="item in searchJList">                            
+                        <div class="gcell moreAddr">
+                            {{item.post_addr}}
+                        </div>
+                        <div class="gcell c2">
+                            <a href="#none"  ng-click="selectAddress('SJ',item)" class="btnType">선택</a>    
+                        </div>                              
+                    </li>
+                    <li ng-if="searchJList.length == 0">                            
+                        <div class="gcell moreAddr">
+                            검색 결과가 없습니다.
+                        </div>
+                    </li>                        
+                </ul>
+                <!--3나머지 주소입력-->
+                <div id="seq2_J_1" class="tab_txt" ng-show="moreAddress">
+                    <p id="txt_seq2_J_1" class="txt_addr1">{{txt_seq2_J_1}}</p>
+                    <div class="gtable srch_input">
+                        <div class="gcell">
+                            <input type="search" id="inp_seq2_J_1" placeholder="나머지 주소 입력" ng-model="inp_seq2_J_1">
+                        </div>
+                        <div class="gcell c2">
+                            <a  ng-click="searchAddress('1', 'M', 'J')" class="btnType">입력</a>
+                        </div>    
+                    </div>
+                </div>
+                <!--4 지번,도로명 주소 -> 선택-->
+                <div id="seq3_J_1" class="tab_txt s3j" ng-show="seq3_J_1_flag">
+                    <p class="addr_title">[고객이 입력한 주소]</p>
+                    <div class="addr_choice">{{addrData.ipt_addr}}</div>
+                    <p class="change_roadNameAddr">아래 주소는 지번주소로 변환되는 주소입니다.</p>                    
+                    <p class="addr_title">[지번주소]</p>
+                    <div class="gtable mb20">
+                        <div class="gcell">
+                            ({{addrData.s_addr.post_no}}) {{addrData.s_addr.post_addr}} {{addrData.s_addr.dtl_addr}}({{addrData.s_addr.bldg_nm}})
+                        </div>
+                        <div class="gcell c2">
+                            <a ng-click="selectAddress('MJa',addrData.s_addr)" class="btnType">선택</a>
+                        </div>    
+                    </div>
+                    <p class="change_roadNameAddr">아래 주소는 도로명주소로 변환되는 주소입니다.</p>                       
+                    <p class="addr_title">[도로명주소]</p>
+                    <div class="gtable">
+                        <div class="gcell">
+                            ({{addrData.n_addr.post_no}}) {{addrData.n_addr.post_addr}} {{addrData.n_addr.dtl_addr}}({{addrData.n_addr.bldg_nm}})
+                        </div>
+                        <div class="gcell c2">
+                            <a ng-click="selectAddress('MJ',addrData.n_addr)" class="btnType">선택</a>
+                        </div>    
+                    </div>
+                </div>             
+        </div>
+   
+        <div class="gtable mb20" ng-show="!myAddr_tab || !loginInfo.isLogin">
+            <div class="gcell ta">연락처</div>                    
+            <div class="gcell">
+                <div class="gtable">
+                    <div  class="gcell">
+                        <select class="gift" name="inpcell1" ng-show="!typeTel" ng-model="inpcell1">
+                            <option value="010">010</option>
+                            <option value="011">011</option>
+                            <option value="016">016</option>
+                            <option value="017">017</option>
+                            <option value="018">018</option>
+                            <option value="019">019</option>
+                            <option value="0502">0502</option>
+                            <option value="0505">0505</option>
+                            <option value="직접입력">직접입력</option>
+                        </select>
+                        <!--직접입력-->
+                        <input type="text" ng-show="typeTel">                      
+                    </div>
+                    <div  class="gcell telW"><input type="text" ng-model="inpcell2" id="inpcell2"></div>
+                    <div  class="gcell telW"><input type="text" ng-model="inpcell3" id="inpcell3"></div>
+                </div>
+            </div>                    
+        </div>
+        <div class="gtable mb20" ng-show="myAddr_tab && loginInfo.isLogin">
+            <div class="gcell ta">연락처</div>                    
+            <div class="gcell">
+            {{giftData.user_addr_info.default_addr.addr_tel}}
+            </div>                    
+        </div>
+        
+        <div class="gtable mb20">
+            <div class="gcell ta" ng-click="getlastAddress()">배송메시지</div>                    
+            <div class="gcell">
+                <select name="deli_msg" class="gift">
+                    <option value="" selected="selected">배송메시지 선택하기</option>												
+                    <option value="부재시 경비실에 맡겨주세요.">부재시 경비실에 맡겨주세요.</option>
+                    <option value="빠른 배송 부탁드립니다.">빠른 배송 부탁드립니다.</option>
+                    <option value="부재시 핸드폰으로 연락바랍니다.">부재시 핸드폰으로 연락바랍니다.</option>
+                    <option value="배송 전 연락바랍니다.">배송 전 연락바랍니다.</option>
+                    <option value="직접입력">직접 입력하기 (20자 이내)</option>
+                </select>
+            </div>                    
+        </div>                
+    </div>       
+    <!--배송지 목록-->
+    <div class="addr_list_layer" ng-show="addr_layer">
+        <div class="bg"></div>
+        <div class="cont">
+            <p class="tit">배송지 목록</p>
+            <div class="contList">
+                <ul class="list" id="filterType">
+                    <li class="gtable" ng-repeat="item in giftData.user_addr_info.addr_list" ng-if="item.del == undefined">
+                        <div class="gcell tl1"><input type="radio" class="radio01" id="tl_d{{$index}}" name="detail_list" value="{{$index}}"></div>
+                        <div class="gcell tl2"><label for="tl_d{{$index}}">
+                                <p class="stit">{{item.r_name}} ({{item.addr_name}}) </p>
+                                <p>({{item.addr_post}}) {{item.addr1}} {{item.addr2}}
+                				  <br>{{item.addr_tel}}</p>
+                        </label></div>
+                        <div class="gcell tl3" ng-if="item.is_default">
+                          <a href="javascript:alert('기본 배송지는 마이롯데 > 회원정보에서 수정 가능합니다.')" class="btnType">수정</a>				  
+                        </div>
+                        <div class="gcell tl3" ng-if="!item.is_default">
+                          <a href="#none" ng-click="list_edit({{$index}}, item)" class="btnType">수정</a>				  
+                          <a href="#none" ng-click="list_del({{$index}}, item)" class="btnType">삭제</a>
+                        </div>
+                        
+                    </li>
+                </ul>                            
+            </div>
+            <ul class="optionBtn gtable">
+	    	    <li class="gcell"><a href="#none"  ng-click="addrLayer_show(false)"  class="btn_cancel"><span>취소</span></a></li>
+	    	    <li class="gcell"><a href="#none" ng-click="addrLayer_select()" class="btn_addr_list"><span>선택완료</span></a></li>
+	        </ul>
+        </div>
+    </div>
+    
+</section>
+

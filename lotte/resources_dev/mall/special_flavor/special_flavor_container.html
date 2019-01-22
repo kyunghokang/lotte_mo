@@ -1,0 +1,47 @@
+<section id="container">
+	<section class="pageLoading" ng-show="pageLoading"><p class="loading half"></p></section>
+	<section ng-show="!pageLoading">
+	
+		<!-- 상단 이미지 코너 스와이프 배너 영역 -->
+		<section ng-if="top_banner && top_banner.length > 0" class="top_swipe_wrap">
+			<!-- 스와이프 영역 -->
+			<div class="swipe_wrap">
+				<ul rn-carousel rn-carousel-controls rn-carousel-controls-allow-loop rn-carousel-index="swipeIdx">
+					<li ng-repeat="item in top_banner"><a ng-click="specialFlavorBannerClick(item.img_link, item.mov_frme_cd, 'm_SpecialFood_THEME_0' + ($index + 1))"><img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}" /></a></li>
+				</ul>
+			</div>
+
+			<ul class="indicator">
+				<li ng-repeat="item in top_banner" ng-class="{on: swipeIdx == $index}"><span>{{$index}}</span></li>
+			</ul>
+			<!-- //스와이프 영역 -->
+			<!-- 상단 html 배너 영역 -->
+		</section>
+
+		<div class="category_tab">
+			<ul>
+				<li ng-repeat="item in screenData.tab_list" ng-class="{tab_on: opt_dispno == $index}">
+					<a ng-click="tabMenu($index)"><span style="background-image:url({{item.img_url}})">&nbsp;</span><em>{{item.tab_name}}</em></a>
+				</li>
+			</ul>
+		</div>
+		<div ng-controller="productCtrl">
+			<div product-container 
+				template-type="mixdeal"
+				templatetype="templateType"
+				products="screenData.bannerMixContents"
+				banners="screenData.deal_banners" 
+				more-product-continer="getProductData()"
+				win-width="winWidth"
+				tclick-prod="m_SpecialFood_TAB_0{{tab_idx + 1}}_prd_0"
+				tclick-banner="m_SpecialFood_TAB_0{{tab_idx + 1}}_IMG_0"
+				tclick-banner-idx-key="bannerIdx" 
+				class="prd_lst_wrap"></div>
+
+			<!-- Product Load Loading -->
+			<div class="listLoading" ng-if="productListLoading && !pageLoading">
+				<p class="loading half"></p>
+			</div>
+		</div>
+	</section>
+</section>

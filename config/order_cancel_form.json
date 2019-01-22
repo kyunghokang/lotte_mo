@@ -1,0 +1,78 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplOrderCancel" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                ],
+                "dest" : "lotte/resources/<%= version %>/order_cancel_form.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsOrderCancel" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+					"common3/js/function.js",
+					"common3/js/jquery-ui.min.js",
+					"common3/js/main2012.js",
+					"common4/js/lib/crittercismClientLibraryMin.js",
+					"common4/js/lib/idangerous.swiper.min.js",
+					"common3/js/smp/smp.common.sendpick.js",
+					"lotte/resources_dev/order/m/order_cancel_form.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/order_cancel_form.js"
+            }
+        },
+
+        "uglify" : {
+            "jsOrderCancel" : {
+                "src" : "lotte/resources/<%= version %>/order_cancel_form.js",
+                "dest" : "lotte/resources/<%= version %>/order_cancel_form.min.js"
+            },
+            "tplOrderCancel" : {
+                "src" : "lotte/resources/<%= version %>/order_cancel_form.template.js",
+                "dest" : "lotte/resources/<%= version %>/order_cancel_form.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssOrderCancel" : {
+                "src" : [
+					"lotte/resources_dev/unit/unit_list.css",
+					"lotte/resources_dev/unit/unit_list_01.css",
+					"lotte/resources_dev/mylotte/purchase/m/purchase.css",
+					"lotte/resources_dev/order/m/order_cancel_form.css",
+					"common4/css/idangerous.swiper.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/order_cancel_form.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanOrderCancel" : [
+                "lotte/resources/<%= version %>/order_cancel_form.js",
+                "lotte/resources/<%= version %>/order_cancel_form.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlOrderCancel" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "order/m/order_cancel_form.html" : "order/m/order_cancel_form_dev.html"
+                }
+            }
+        }
+    }
+}
+

@@ -1,0 +1,109 @@
+1. 업무명 : 스마트픽 예약하기
+2. 담당자 : 신주섭
+3. URL : 
+	http://molocal.lotte.com/json/product/product_wine_buy_view.json?c=mlotte&udid=&v=&cn=&cdn=&curDispNoSctCd=40&curDispNo=&mastDispNo=5520985&goods_no=99536683&smp_tp_cd=
+4. 파라미터
+	- curDispNoSctCd : 
+  - curDispNo : 카테고리
+  - goods_no : 상품
+5. JSON 파라미터
+	1) wine : 와인 스마트픽 정보 
+		- goods_no : 상품코드
+    - goods_nm : 상품명
+    - min_lmt_qty : 최소 구매 수량
+    - max_lmt_qty : 최대 구매 수량
+    - smp_wine_yn : 스마트픽 와인 YN
+    - img_url : 60사이즈 이미지
+    - img_url1 : 280사이즈 이미지1
+    - img_url2 : 280사이즈 이미지2
+    - org_sale_prc" : 권장소비자가
+    - mbr_no : 회원 번호(로그인시)
+    - mbr_name" : 회원명(로그인시)
+    - cell_sct_no : 핸드폰(010)
+    - cell_txno_no : 핸드폰 국번
+    - cell_end_no : 핸드폰 번호
+	2) storeList : 와인 예약 매장 정보
+    - mng_strt_time" : 매장 시작 시간
+    - mng_end_time" : 매장 종료 시간
+    - lwst_entr_no" : "786",
+    - pitem_nm : 매장명
+    - pitem_no : 매정번호
+    - entr_contr_no : "111163",
+    - inv_qty : 재고수량
+    - entr_no : "271332",
+    - goods_no : 예약 상품 번호
+    - min_lmt_qty : 최소 구매 수량
+    - max_lmt_qty : 최대 구매 수량
+
+6. JSON
+
+{
+  "wine" : {
+    "goods_no" : "99536683",
+    "goods_nm" : "고스트 파인 까베르네 소",
+    "min_lmt_qty" : "1",
+    "max_lmt_qty" : "20",
+    "smp_wine_yn" : "Y",
+    "img_url" : "http://image.lotte.com/goods/83/66/53/99/99536683_1_60.jpg",
+    "img_url1" : "http://image.lotte.com/goods/83/66/53/99/99536683_1_280.jpg",
+    "img_url2" : "http://image.lotte.com/goods/83/66/53/99/99536683_2_280.jpg",
+    "org_sale_prc" : "90000",
+    "mbr_no" : "0011786705",
+    "mbr_name" : "신주섭",
+    "cell_sct_no" : "010",
+    "cell_txno_no" : "3994",
+    "cell_end_no" : "3214"
+  },
+"storeList" : {
+    "items" : [ {
+      "mng_end_time" : "1900",
+      "lwst_entr_no" : "786",
+      "pitem_nm" : "광복점 B1층 와인매장",
+      "pitem_no" : "58100",
+      "entr_contr_no" : "111163",
+      "inv_qty" : "3996",
+      "entr_no" : "271332",
+      "goods_no" : "99536683",
+      "min_lmt_qty" : "1",
+      "max_lmt_qty" : "20",
+      "mng_strt_time" : "1030"
+    }, {
+      "mng_end_time" : "1900",
+      "lwst_entr_no" : "1009",
+      "pitem_nm" : "청량리점 B2층 와인매장",
+      "pitem_no" : "58101",
+      "entr_contr_no" : "104849",
+      "inv_qty" : "3996",
+      "entr_no" : "16599",
+      "goods_no" : "99536683",
+      "min_lmt_qty" : "1",
+      "max_lmt_qty" : "20",
+      "mng_strt_time" : "1030"
+    }, {
+      "mng_end_time" : "1900",
+      "lwst_entr_no" : "3138",
+      "pitem_nm" : "영등포점 B1층 와인매장",
+      "pitem_no" : "58102",
+      "entr_contr_no" : "11050",
+      "inv_qty" : "3996",
+      "entr_no" : "11724",
+      "goods_no" : "99536683",
+      "min_lmt_qty" : "1",
+      "max_lmt_qty" : "20",
+      "mng_strt_time" : "1030"
+    }, {
+      "mng_end_time" : "1900",
+      "lwst_entr_no" : "3389",
+      "pitem_nm" : "본점 B1 와인매장",
+      "pitem_no" : "132120",
+      "entr_contr_no" : "20",
+      "inv_qty" : "3996",
+      "entr_no" : "10591",
+      "goods_no" : "99536683",
+      "min_lmt_qty" : "1",
+      "max_lmt_qty" : "20",
+      "mng_strt_time" : "1030"
+    } ],
+    "total_count" : 4
+  }
+}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">	
+<!----------------- current css ----------------->
+	
+<link rel="stylesheet" href="/lotte/resources_dev/custcenter/m/question.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+<script>
+$(function(){
+	getScope().dimmedOpen({target:"order_pop"});
+	$(".order_pop .close").click(function(){
+		getScope().dimmedClose({target:"order_pop"});
+	})
+});
+</script>
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<section class="order_pop">
+	<span class="close"></span>
+	<div class="wrap">			
+		<div class="list_no">
+			<h3>주문내역조회(최근3개월)</h3>
+			<div><i></i>내역이 없습니다.</div>
+		</div>			
+		<div class="list_wrap" ng-if="order_list_wrap">
+			<h3>주문내역조회(최근3개월)</h3>
+			<div class="guide">
+				<span>문의하실 상품을 터치 해주세요.</span>
+			</div>
+			<div class="scroll">
+				<section class="list" ng-repeat="i in orderListData">
+					<p class="order_num">주문번호 : {{i.view_ord_no}}</p>
+					<div class="product" ng-repeat="j in i.goods_list.items" ng-click="listSelect(i.view_ord_no,i.ord_no,j.goods_no,$index)">
+						<div class="select_mask"><span></span></div>
+						<dl>
+							<dt><img ng-src="{{j.img_url}}" alt=""></dt>
+							<dd>
+								<p class="pname" ng-bind-html="j.goods_desc"></p>
+								<p class="presult">{{j.ord_qty}} 개 / {{j.rmit_nm}} / {{j.ord_state_nm}}</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+			</div>			
+		</div>		
+	</div>
+	<div class="btn_end" ng-click="listSelectEnd()">취소</div>
+</section>
+
+<!-- container -->
+<section id="container">
+	
+	<section id="custcenter">
+		<div class="cs_lotte">
+			<section>
+				<p >안녕하세요. <strong>홍길동 고객님</strong><br>
+				롯데닷컴 고객센터입니다.</p>
+				<p ng-if="fail">잘못된 접근입니다.</p>
+			</section>
+			<br>
+			<section ng-if="! fail">
+				<p>1:1문의를 원하시는 상품을 선택해주세요<br></p>
+				<dl>
+					<dt><img ng-src="{{goodsData.img_url}}" alt=""></dt>
+					<dd>
+						<p class="pname">{{goodsData.goods_nm}}</p>
+						<p class="presult">상품 문의를 원하시면 아래 입력창에 작성해 주세요.</p>
+					</dd>
+				</dl>
+				<p class="date">{{now}}</p>
+			</section>
+		</div>		
+		<div class="cs_my">
+			<section>
+				<p ng-bind="accp_cont"></p>
+				<p class="date">{{now1}}</p>
+			</section>		
+		</div>
+		<div class="cs_lotte">
+			<section>
+				<p>문의사항이 접수 되었습니다.<br>확인 후 신속하게 답변 드리도록 하겠습니다.</p>
+				<p class="date">{{now1}}</p>
+			</section>			
+		</div>
+		<div class="cs_lotte">
+			<section>
+				<p>현재 담당 상담사가 배정되어<br>고객님의 상담문의를 확인 중입니다.</p>
+				<p class="date">15.07.10 11:30</p>
+			<p class="status">답변 대기중</p>
+			</section>
+		</div>
+		<div class="cs_lotte">
+			<section>
+				<p>홍길동 고객님, 안녕하십니까?
+				롯데닷컴을 이용해 주셔서 감사합니다.
+				앞으로도 저의 롯데닷컴 많은 이용 바라며
+				이용 중 불편사항이나 문의사항있으시면 
+				언제든 http:www.lotte.com 접속을 통한 
+				1:1 E-Mail 문의 또는 고객센터(1577-1110)로 
+				연락주시기 바랍니다.
+				오늘도 즐거운 하루 되시길 바랍니다.</p>
+				<p class="date">15.07.10 11:30</p>
+				<p class="status">상담사 답변</p>
+			</section>		
+		</div>
+		<div class="cs_lotte">
+			<section>
+				<p>추가 문의사항이 있으시면<br> 추가로 작성해 주세요.</p>
+				<p class="date">15.07.10 11:30</p>
+			</section>
+		</div>
+		<div class="btn_continue">추가 문의하기</div>
+	</section>
+		
+	<form id="write_box_form">	
+		<div id="write_box">
+			<div class="input_wrap noca">
+				<input type="hidden" name="goods_no" ng-value="goods_no">
+				<input type="hidden" name="usm_goods_no" ng-value="usm_goods_no">
+				<textarea type="text" name="inq_ans_cont" ng-model="inq_ans_cont" class="textarea" ng-change="byteCheck()"></textarea>
+				<div class="byte">{{bytes}} /2000</div>
+			</div>		
+			<button type="submit" ng-click="questionSubmit()">등록</button>
+		</div>
+	</form>
+		
+</section>
+<!-- //container -->
+
+</form>
+
+<!-- footer -->
+<section ng-include src="'/HTML/include/footer.html'"></section>
+
+</body>
+</html>

@@ -1,0 +1,682 @@
+<div tpml-styleshop ng-if="pageUI.curMenuDispNo == '5550633'" class="cont_wrap tpml_styleshop padding">
+
+	<!-- 여성/남성 탭 -->
+	<section class="styleshop_tab">
+		<ul>
+			<li ng-class="{on: tpmlData.uiOpt.gender == 'F'}"><button ng-click="tabChange('F');" class="btn_tab tab_women">WOMEN</button></li>
+			<li ng-class="{on: tpmlData.uiOpt.gender == 'M'}"><button ng-click="tabChange('M');" class="btn_tab tab_men">MEN</button></li>
+			<li ng-class="{on: tpmlData.uiOpt.gender == 'D'}"><button ng-click="tabChange('D');" class="btn_tab tab_designer">DESIGNER</button></li>
+		</ul>
+	</section>
+
+	<!-- 여성탭 -->
+	<section ng-if="tpmlData.uiOpt.gender == 'F'" class="tab_cont tab_women">
+		<!-- 상품형 스와이프 배너 Type 01 (메인 상품 배너) -->
+		<section ng-if="tpmlData.contData.first_banner_list.banner_list.items && tpmlData.contData.first_banner_list.banner_list.items.length > 0" class="style_swipe_type01 slide swipe_wrap" roll-swipe-banner id="rolltopbann" rolling="true" width320="1" width640="1" width900="1" info="top_banner">
+			<!-- <div class="slide swipe_wrap" roll-swipe-banner id="rolltopbann" rolling="true" width320="1" width640="1" width900="1" info="top_banner"> -->
+			<ul class="swipeBox">
+				<li ng-repeat="item in tpmlData.contData.first_banner_list.banner_list.items">
+					<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_W_TopBanner_{{$index + 1}}')">
+						<div class="img_wrap">
+							<img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}">
+						</div>
+						<div class="desc" ng-class="{'valign_middle': tpmlData.contData.first_banner_list.banner_list.items.length == 1}">
+							<div class="bg_wrap" style="background-color:{{chkHtmlColorCode(item.bg_color)}}"></div>
+							<span ng-bind-html="item.banner_nm"></span>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<div class="swipe_indicator" ng-if="tpmlData.contData.first_banner_list.banner_list.items && tpmlData.contData.first_banner_list.banner_list.items.length > 1">
+				<ul class="bullet indicator">
+					<li ng-repeat="item in tpmlData.contData.first_banner_list.banner_list.items"><span>{{$index}}</span></li>
+				</ul>
+			</div>
+			<!-- <ul ng-if="tpmlData.contData.first_banner_list.banner_list.items && tpmlData.contData.first_banner_list.banner_list.items.length > 1" class="indicator">
+				<li ng-repeat="item in tpmlData.contData.first_banner_list.banner_list.items" ng-class="{on: swipeIdx == $index}"><span>{{$index + 1}}</span></li>
+			</ul> -->
+		</section>
+
+		<!-- 동영상 영역 -->
+		<section class="mov_auto_wrap" ng-if="tpmlData.contData.mov_plan != null">
+
+			<ul>
+				<li ng-repeat="item in ::tpmlData.contData.mov_plan.items track by $index">
+					<div class="video_wrap">
+					    <video controls="controls" video-poster="{{::item.poster_img | trustUrl}}" id="autoVideo1" playsinline="true" webkit-playsinline="true">
+					    	<source video-source="{{::item.mov_url | trustUrl}}" type="video/mp4">
+					    </video>
+					    <!-- div class="play_cover">
+					    	<span class="move_title">PLAY#</span>
+					    </div>
+					    <div class="stop_cover">
+					    	<span class="move_title">PLAY#</span>
+					    </div-->
+					    <div class="click_cover"></div>
+					    <a ng-click="movPlayTclick();" class="btn_move_volume btn_text">음소거</a>
+					    <a ng-click="movPlayTclick();" class="btn_move_start">비디오 재생</a>
+					    <a ng-click="movStopTclick();" class="btn_move_stop btn_text">일시정지</a>
+					    <a ng-click="processTclick('/product/product_list.do?curDispNo=' + item.cur_disp_no, {prefix:'Clk_Video_lnk'})" class="btn_move_goods btn_text">상품보기</a>
+					</div>
+					<script type="text/javascript">
+					setTimeout(function(){
+						autoVideoPlay('autoVideo1', '#autoVideo1');
+					}, 1500);
+					</script>
+					<div class="plan_wrap">
+						<a ng-click="processTclick('/product/product_list.do?curDispNo=' + item.cur_disp_no, {prefix:'Clk_Video_goods'})">
+							<span class="plan_img"><img ng-src="{{::item.designer_img}}" /></span>
+							<span class="plan_txt">
+								<span class="plan_title">
+									<span class="plan_name no_line" ng-bind-html="::item.designer_nm" ng-class="{'line': tpmlData.contData.mov_plan.items[0].brand_nm}"></span>
+									<span class="plan_brand" ng-bind-html="::item.brand_nm"></span>
+								</span>
+								<p class="plan_subtitle"><span ng-bind-html="::item.plan_txt"></span></p>
+							</span>
+						</a>
+						<a ng-click="processTclick('/product/product_list.do?curDispNo=' + item.cur_disp_no, {prefix:'Clk_Video_Btn', useIndex:true, index:$index+1})" class="btn_goods_detail">컬렉션 더보기</a>
+					</div>
+
+				</li>
+			</ul>
+		</section>
+
+
+		<div ng-if="styleRecomBnr" class="styleRecomBanner">
+			<a ng-click="gotoStyleRecom(styleRecomBnr)">
+				<img ng-src="{{styleRecomBnr.img_url}}" alt="{{styleRecomBnr.img_url}}" />
+			</a>
+		</div>
+
+		<!-- 상품형스와이프 배너 Type 02 (동그라미) (인기 키워드) -->
+		<section ng-if="tpmlData.contData.keyword_list.banner_list.items && tpmlData.contData.keyword_list.banner_list.items.length > 0" class="style_swipe_type02">
+			<h3 ng-if="tpmlData.contData.keyword_list.title" class="style_tit">{{tpmlData.contData.keyword_list.title}}</h3>
+			<div ng-if="tpmlData.contData.keyword_list.sub_title" class="style_desc" ng-bind-html="tpmlData.contData.keyword_list.sub_title"></div>
+			<div lotte-slider ng-if="tpmlData.contData.keyword_list.banner_list.items.length > 0" class="swipe_wrap">
+				<ul>
+					<li ng-repeat="item in tpmlData.contData.keyword_list.banner_list.items">
+						<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_W_HotKeyword_{{$index + 1}}')">
+							<div class="img_wrap"><img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}"></div>
+							<div class="desc"><span>#{{item.banner_nm}}</span></div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<!-- Category 여성탭 전용 (아이템 카테고리) -->
+		<section ng-if="tpmlData.contData.cate_list.items && tpmlData.contData.cate_list.items.length > 0" class="style_category_women">
+			<ul>
+				<li ng-repeat="item in tpmlData.contData.cate_list.items" ng-if="$index < 8">
+					<a ng-click="goStyleShopCategory(item.disp_no, 'm_DC_SpeDisp5_W_ItemCat_{{item.disp_no}}')">{{item.disp_nm}}</a>
+				</li>
+			</ul>
+		</section>
+
+		<!-- 상품 리스트형 (베스트 상품) -->
+		<section ng-if="tpmlData.contData.best_list.banner_list.items && tpmlData.contData.best_list.banner_list.items.length > 0" class="style_prd_list">
+			<h3 ng-if="tpmlData.contData.best_list.title" class="style_tit">{{tpmlData.contData.best_list.title}}</h3>
+			<div ng-if="tpmlData.contData.best_list.sub_title" class="style_desc" ng-bind-html="tpmlData.contData.best_list.sub_title"></div>
+			<div class="prd_list_wrap">
+				<ul>
+					<li ng-repeat="item in tpmlData.contData.best_list.banner_list.items" ng-if="$index < 8">
+						<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_W_BestItem_{{$index + 1}}')">
+							<div class="img_wrap" style="background:transparent url({{item.img_url}}) no-repeat  center center;background-size:auto 100%;">
+							</div>
+							<div class="desc" ng-bind-html="item.brnd_nm"></div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<ul ng-if="tpmlData.contData.best_list.hash_list && tpmlData.contData.best_list.hash_list.length > 0" class="hash_list_wrap">
+				<li ng-repeat="item in tpmlData.contData.best_list.hash_list"><a ng-click="goStyleKeyword(item, 'm_DC_SpeDisp5_W_BestCat_{{$index + 1}}')">#{{item.hash_nm}}</a></li>
+			</ul>
+		</section>
+
+		<!-- 타임 세일 배너 -->
+		<section ng-if="tpmlData.contData.timesale_banner.banner_list.items && tpmlData.contData.timesale_banner.banner_list.items.length > 0" class="style_timesale" ng-class="{'sold_out': tpmlData.contData.timesale_banner.banner_list.items[0].sold_out}">
+			<a ng-click="goStyleShopLink(tpmlData.contData.timesale_banner.banner_list.items[0], 'm_DC_SepDisp5_W_TimeSaleBan')">
+				<h3 class="tit">TIME SALE! AM 10:00</h3>
+				<div class="desc" ng-bind-html="tpmlData.contData.timesale_banner.banner_list.items[0].banner_nm"></div>
+				<div class="img_wrap"><img ng-src="{{tpmlData.contData.timesale_banner.banner_list.items[0].img_url}}" alt="tpmlData.contData.timesale_banner.banner_list.items[0].banner_nm"></div>
+			</a>
+		</section>
+
+		<!-- 상품형스와이프 배너 Type 03 (사각형) (뷰티) -->
+		<section ng-if="tpmlData.contData.beauty_list.banner_list_1.items && tpmlData.contData.beauty_list.banner_list_1.items.length > 0" class="style_swipe_type03 beauty_list_banner">
+			<h3 ng-if="tpmlData.contData.beauty_list.title" class="style_tit">{{tpmlData.contData.beauty_list.title}}</h3>
+			<div ng-if="tpmlData.contData.beauty_list.sub_title" class="style_desc" ng-bind-html="tpmlData.contData.beauty_list.sub_title"></div>
+			<div ng-if="tpmlData.contData.beauty_list.banner_list_1.items.length > 0" class="style_swipe_type01" ng-controller="lotteNgSwipeCtrl">
+				<ul lotte-ng-list-swipe
+					swipe-id="StyleShopType01_01"
+					swipe-list-model="tpmlData.contData.beauty_list.banner_list_1.items"
+					swipe-slide-item="true"
+					swipe-max-ratio="0.2"
+					swipe-min-distance="40"
+					swipe-responsive="true"
+					swipe-responsive320="1"
+					swipe-responsive640="1"
+					swipe-responsive900="1">
+					<li ng-repeat="item in tpmlData.contData.beauty_list.banner_list_1.items">
+						<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_W_BeautyBanner{{$index + 1}}')">
+							<div class="img_wrap">
+								<img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}">
+							</div>
+							<div class="desc" ng-class="{'valign_middle': tpmlData.contData.beauty_list.banner_list_1.items.length == 1}">
+								<div class="bg_wrap" style="background-color:{{chkHtmlColorCode(item.bg_color)}}"></div>
+								<span ng-bind-html="item.banner_nm"></span>
+							</div>
+						</a>
+					</li>
+				</ul>
+				<ul ng-if="tpmlData.contData.beauty_list.banner_list_1.items && tpmlData.contData.beauty_list.banner_list_1.items.length > 1" class="indicator">
+					<li ng-repeat="item in tpmlData.contData.beauty_list.banner_list_1.items" ng-class="{on: swipeIdx == $index}"><span>{{$index + 1}}</span></li>
+				</ul>
+			</div>
+
+			<div lotte-slider ng-if="tpmlData.contData.beauty_list.banner_list_2.items.length > 0" class="swipe_wrap">
+				<ul>
+					<li ng-repeat="item in tpmlData.contData.beauty_list.banner_list_2.items">
+						<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_W_BeautyCat_{{$index + 1}}')">
+							<div class="img_wrap"><img ng-src="{{item.img_url}}" alt="{{item.disp_nm}}"></div>
+							<div class="desc"><span>{{item.banner_nm}}</span></div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<ul ng-if="tpmlData.contData.beauty_list.hash_list && tpmlData.contData.beauty_list.hash_list.items.length > 0" class="hash_list_wrap">
+				<li ng-repeat="item in tpmlData.contData.beauty_list.hash_list.items"><a ng-click="goStyleShop(item, 'm_DC_SpeDisp5_W_BeautyKw{{$index + 1}}')">#{{item.hash_nm}}</a></li>
+			</ul>
+		</section>
+		<!-- 상품형스와이프 배너 Type 03 (사각형) (테마형 상품 전시1) -->
+		<section ng-if="tpmlData.contData.theme_list_1.banner_list.items && tpmlData.contData.theme_list_1.banner_list.items.length > 0" class="style_swipe_type03">
+			<h3 ng-if="tpmlData.contData.theme_list_1.title" class="style_tit">{{tpmlData.contData.theme_list_1.title}}</h3>
+			<div ng-if="tpmlData.contData.theme_list_1.sub_title" class="style_desc" ng-bind-html="tpmlData.contData.theme_list_1.sub_title"></div>
+			<div lotte-slider ng-if="tpmlData.contData.theme_list_1.banner_list.items.length > 0" class="swipe_wrap">
+				<ul>
+					<li ng-repeat="item in tpmlData.contData.theme_list_1.banner_list.items">
+						<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_W_Theme1Item_{{$index + 1}}')">
+							<div class="img_wrap"><img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}"></div>
+							<div class="desc"><span>{{item.banner_nm}}</span></div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<ul ng-if="tpmlData.contData.theme_list_1.hash_list && tpmlData.contData.theme_list_1.hash_list.length > 0" class="hash_list_wrap">
+				<li ng-repeat="item in tpmlData.contData.theme_list_1.hash_list"><a ng-click="goStyleKeyword(item, 'm_DC_SpeDisp5_W_Theme1Cat_{{$index + 1}}')">#{{item.hash_nm}}</a></li>
+			</ul>
+		</section>
+
+		<!-- 상품형스와이프 배너 Type 03 (사각형) (테마형 상품 전시 2) -->
+		<section ng-if="tpmlData.contData.theme_list_2.banner_list.items && tpmlData.contData.theme_list_2.banner_list.items.length > 0" class="style_swipe_type03 dark">
+			<h3 ng-if="tpmlData.contData.theme_list_2.title" class="style_tit">{{tpmlData.contData.theme_list_2.title}}</h3>
+			<div ng-if="tpmlData.contData.theme_list_2.sub_title" class="style_desc" ng-bind-html="tpmlData.contData.theme_list_2.sub_title"></div>
+			<div lotte-slider ng-if="tpmlData.contData.theme_list_2.banner_list.items.length > 0" class="swipe_wrap">
+				<ul>
+					<li ng-repeat="item in tpmlData.contData.theme_list_2.banner_list.items">
+						<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_W_Theme2Item_{{$index + 1}}')">
+							<div class="img_wrap"><img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}"></div>
+							<div class="desc"><span>{{item.banner_nm}}</span></div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<ul ng-if="tpmlData.contData.theme_list_2.hash_list && tpmlData.contData.theme_list_2.hash_list.length > 0" class="hash_list_wrap">
+				<li ng-repeat="item in tpmlData.contData.theme_list_2.hash_list"><a ng-click="goStyleKeyword(item, 'm_DC_SpeDisp5_W_Theme2Cat_{{$index + 1}}')">#{{item.hash_nm}}</a></li>
+			</ul>
+		</section>
+
+		<!-- 상품 리스트형 (신상품) -->
+		<section ng-if="tpmlData.contData.new_prd_list.banner_list.items && tpmlData.contData.new_prd_list.banner_list.items.length > 0" class="style_prd_list">
+			<h3 ng-if="tpmlData.contData.new_prd_list.title" class="style_tit">{{tpmlData.contData.new_prd_list.title}}</h3>
+			<div ng-if="tpmlData.contData.new_prd_list.sub_title" class="style_desc" ng-bind-html="tpmlData.contData.new_prd_list.sub_title"></div>
+			<div class="prd_list_wrap">
+				<ul>
+					<li ng-repeat="item in tpmlData.contData.new_prd_list.banner_list.items" ng-if="$index < 8">
+						<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_W_NewItem_{{$index + 1}}')">
+							<div class="img_wrap" style="background:transparent url({{item.img_url}}) no-repeat  center center;background-size:auto 100%;"></div>
+							<div class="desc" ng-bind-html="item.brnd_nm"></div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<ul ng-if="tpmlData.contData.new_prd_list.hash_list && tpmlData.contData.new_prd_list.hash_list.length > 0" class="hash_list_wrap">
+				<li ng-repeat="item in tpmlData.contData.new_prd_list.hash_list"><a ng-click="goStyleKeyword(item, 'm_DC_SpeDisp5_W_NewCat_{{$index + 1}}')">#{{item.hash_nm}}</a></li>
+			</ul>
+		</section>
+
+		<!-- 상품 단일 배너형 Type 01 (테마 배너) -->
+		<section ng-if="tpmlData.contData.last_banner_list.banner_list.items && tpmlData.contData.last_banner_list.banner_list.items.length > 0" class="style_bnr_type01">
+			<ul>
+				<li ng-repeat="item in tpmlData.contData.last_banner_list.banner_list.items">
+					<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_W_ThemeBan')">
+						<div class="img_wrap">
+							<img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}">
+						</div>
+						<div class="desc">
+							<div class="bg_wrap" style="background-color:{{chkHtmlColorCode(item.bg_color)}}"></div>
+							<span ng-bind-html="item.banner_nm"></span>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</section>
+
+		<!-- 상품형스와이프 배너 Type 03 (사각형) (테마형 상품 전시 3) -->
+		<section ng-if="tpmlData.contData.theme_list_3.banner_list.items && tpmlData.contData.theme_list_3.banner_list.items.length > 0" class="style_swipe_type03">
+			<h3 ng-if="tpmlData.contData.theme_list_3.title" class="style_tit">{{tpmlData.contData.theme_list_3.title}}</h3>
+			<div ng-if="tpmlData.contData.theme_list_3.sub_title" class="style_desc" ng-bind-html="tpmlData.contData.theme_list_3.sub_title"></div>
+			<div lotte-slider ng-if="tpmlData.contData.theme_list_3.banner_list.items.length > 0" class="swipe_wrap">
+				<ul>
+					<li ng-repeat="item in tpmlData.contData.theme_list_3.banner_list.items">
+						<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_W_Theme3Item_{{$index + 1}}')">
+							<div class="img_wrap"><img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}"></div>
+							<div class="desc"><span>{{item.banner_nm}}</span></div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<ul ng-if="tpmlData.contData.theme_list_3.hash_list && tpmlData.contData.theme_list_3.hash_list.length > 0" class="hash_list_wrap">
+				<li ng-repeat="item in tpmlData.contData.theme_list_3.hash_list"><a ng-click="goStyleKeyword(item, 'm_DC_SpeDisp5_W_Theme3Cat_{{$index + 1}}')">#{{item.hash_nm}}</a></li>
+			</ul>
+		</section>
+
+		<!-- 브랜드 나열형 -->
+		<section ng-if="tpmlData.contData.brand_shop_list.banner_list.items && tpmlData.contData.brand_shop_list.banner_list.items.length > 0" class="style_brand">
+			<h3 ng-if="tpmlData.contData.brand_shop_list.title" class="style_tit">{{tpmlData.contData.brand_shop_list.title}}</h3>
+			<div ng-if="tpmlData.contData.brand_shop_list.sub_title" class="style_desc" ng-bind-html="tpmlData.contData.brand_shop_list.sub_title"></div>
+			<div class="brand_list_wrap">
+				<ul>
+					<li ng-repeat="item in tpmlData.contData.brand_shop_list.banner_list.items">
+						<a ng-click="goStyleBrand(item, 'm_DC_SpeDisp5_W_BrandShop_{{$index + 1}}');">
+							<div class="brand_wrap">
+								<div class="img_wrap">
+									<span><img ng-src="{{item.img_url}}" alt="{{item.img_link}}"></span>
+								</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</section>
+	</section>
+
+	<!-- 남성탭 -->
+	<section ng-if="tpmlData.uiOpt.gender == 'M'" class="tab_cont tab_men">
+		<!-- Category 남성탭 전용 (아이템 카테고리) -->
+		<section ng-if="tpmlData.contData.cate_list.items && tpmlData.contData.cate_list.items.length > 0" class="style_category_men">
+			<ul>
+				<li ng-repeat="item in tpmlData.contData.cate_list.items" ng-if="$index < 8">
+					<a ng-click="goStyleCateLink(item.link_url, 'm_DC_SpeDisp5_M_ItemCat_'+($index+1));">
+						<div class="img_wrap"><img ng-if="item.img_url" ng-src="{{item.img_url}}" alt="{{item.disp_nm}}"></div>
+						<div class="desc">
+							<span>{{item.disp_nm}}</span>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</section>
+
+		<!-- 상품형 스와이프 배너 Type 01 (메인 상품 배너) -->
+		<section ng-if="tpmlData.contData.top_banner_list.banner_list.items && tpmlData.contData.top_banner_list.banner_list.items.length > 0" class="top_banner">
+			<div class="area style_swipe_type01" ng-controller="lotteNgSwipeCtrl">
+				<h3 ng-if="tpmlData.contData.top_banner_list.title" class="style_tit">{{tpmlData.contData.top_banner_list.title}}</h3>
+				<div ng-if="tpmlData.contData.top_banner_list.sub_title" class="style_desc" ng-bind-html="tpmlData.contData.top_banner_list.sub_title"></div>
+				<div class="listArea">
+					<ul lotte-ng-list-swipe
+						swipe-id="StyleShopType01_01"
+						swipe-list-model="tpmlData.contData.top_banner_list.banner_list.items"
+						swipe-slide-item="true"
+						swipe-max-ratio="0.2"
+						swipe-min-distance="40"
+						swipe-responsive="true"
+						swipe-responsive320="1"
+						swipe-responsive640="1"
+						swipe-responsive900="1">
+						<li ng-repeat="item in tpmlData.contData.top_banner_list.banner_list.items">
+							<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_M_TopBanner_{{$index + 1}}')">
+								<div class="img_wrap">
+									<img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}">
+								</div>
+								<div class="desc" ng-class="{'valign_middle': tpmlData.contData.top_banner_list.banner_list.items.length == 1}">
+									<div class="bg_wrap"></div>
+									<span ng-bind-html="item.banner_nm"></span>
+								</div>
+							</a>
+						</li>
+					</ul>
+					<ul ng-if="tpmlData.contData.top_banner_list.banner_list.items && tpmlData.contData.top_banner_list.banner_list.items.length > 1" class="indicator">
+						<li ng-repeat="item in tpmlData.contData.top_banner_list.banner_list.items" ng-class="{on: swipeIdx == $index}"><span>{{$index + 1}}</span></li>
+					</ul>
+				</div>
+			</div>
+		</section>
+		<!-- 상품형스와이프 배너 Type 02 (동그라미) (인기 키워드) -->
+		<section ng-if="tpmlData.contData.keyword_list.banner_list.items && tpmlData.contData.keyword_list.banner_list.items.length > 0" class="men_keyword">
+			<h3 ng-if="tpmlData.contData.keyword_list.title" class="style_tit">{{tpmlData.contData.keyword_list.title}}</h3>
+			<div ng-if="tpmlData.contData.keyword_list.sub_title" class="style_desc" ng-bind-html="tpmlData.contData.keyword_list.sub_title"></div>
+			<ul>
+				<li ng-repeat="item in tpmlData.contData.keyword_list.banner_list.items" ng-if="$index < 4">
+					<a ng-click="goStyleShopMenLink(item, 'm_DC_SpeDisp5_M_HotKeyword_{{$index + 1}}')">
+						<div class="img_wrap"><img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}"></div>
+						<div class="desc"><span>#{{item.banner_nm}}</span></div>
+					</a>
+				</li>
+			</ul>
+		</section>
+
+		<!-- 상품 리스트형 (베스트 상품) -->
+		<section ng-if="tpmlData.contData.best_list.banner_list.items && tpmlData.contData.best_list.banner_list.items.length > 0" class="style_prd_list">
+			<h3 ng-if="tpmlData.contData.best_list.title" class="style_tit">{{tpmlData.contData.best_list.title}}</h3>
+			<div ng-if="tpmlData.contData.best_list.sub_title" class="style_desc" ng-bind-html="tpmlData.contData.best_list.sub_title"></div>
+			<div class="prd_list_wrap">
+				<ul>
+					<li ng-repeat="item in tpmlData.contData.best_list.banner_list.items" ng-if="$index < 8">
+						<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_M_BestItem_{{$index + 1}}');">
+							<div class="img_wrap" style="background:transparent url({{item.img_url}}) no-repeat  center center;background-size:auto 100%;"></div>
+							<div class="desc" ng-bind-html="item.brnd_nm"></div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<ul ng-if="tpmlData.contData.best_list.hash_list && tpmlData.contData.best_list.hash_list.length > 0" class="hash_list_wrap">
+				<li ng-repeat="item in tpmlData.contData.best_list.hash_list"><a ng-click="goStyleKeyword(item, 'm_DC_SpeDisp5_M_BestCat_{{$index + 1}}');">#{{item.hash_nm}}</a></li>
+			</ul>
+		</section>
+
+		<!-- 상품 단일 배너형 Type 01 (테마 배너1) -->
+		<section ng-if="tpmlData.contData.first_banner_list.banner_list.items && tpmlData.contData.first_banner_list.banner_list.items.length > 0" class="style_bnr_type01">
+			<ul>
+				<li ng-repeat="item in tpmlData.contData.first_banner_list.banner_list.items">
+					<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_M_ThemeBan_1')">
+						<div class="img_wrap">
+							<img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}">
+						</div>
+						<div class="desc">
+							<div class="bg_wrap" style="background-color:{{chkHtmlColorCode(item.bg_color)}}"></div>
+							<span ng-bind-html="item.banner_nm"></span>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</section>
+
+		<!-- 상품 단일 배너형 Type 01 (테마 배너 2) -->
+		<section ng-if="tpmlData.contData.last_banner_list.banner_list.items && tpmlData.contData.last_banner_list.banner_list.items.length > 0 && winWidth >= 640" class="style_bnr_type01">
+			<ul>
+				<li ng-repeat="item in tpmlData.contData.last_banner_list.banner_list.items">
+					<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_M_ThemeBan_2')">
+						<div class="img_wrap">
+							<img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}">
+						</div>
+						<div class="desc">
+							<div class="bg_wrap" style="background-color:{{chkHtmlColorCode(item.bg_color)}}"></div>
+							<span ng-bind-html="item.banner_nm"></span>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</section>
+
+		<!-- 상품 리스트형 (신상품) -->
+		<section ng-if="tpmlData.contData.new_prd_list.banner_list.items && tpmlData.contData.new_prd_list.banner_list.items.length > 0" class="style_prd_list">
+			<h3 ng-if="tpmlData.contData.new_prd_list.title" class="style_tit">{{tpmlData.contData.new_prd_list.title}}</h3>
+			<div ng-if="tpmlData.contData.new_prd_list.sub_title" class="style_desc" ng-bind-html="tpmlData.contData.new_prd_list.sub_title"></div>
+			<div class="prd_list_wrap">
+				<ul>
+					<li ng-repeat="item in tpmlData.contData.new_prd_list.banner_list.items" ng-if="$index < 8">
+						<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_M_NewItem_{{$index + 1}}')">
+							<div class="img_wrap" style="background:transparent url({{item.img_url}}) no-repeat  center center;background-size:auto 100%;"></div>
+							<div class="desc" ng-bind-html="item.brnd_nm"></div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<ul ng-if="tpmlData.contData.new_prd_list.hash_list && tpmlData.contData.new_prd_list.hash_list.length > 0" class="hash_list_wrap">
+				<li ng-repeat="item in tpmlData.contData.new_prd_list.hash_list"><a ng-click="goStyleKeyword(item, 'm_DC_SpeDisp5_M_NewCat_{{$index + 1}}');">#{{item.hash_nm}}</a></li>
+			</ul>
+		</section>
+
+		<!-- 상품 단일 배너형 Type 01 (테마 배너 2) -->
+		<section ng-if="tpmlData.contData.last_banner_list.banner_list.items && tpmlData.contData.last_banner_list.banner_list.items.length > 0 && winWidth < 640" class="style_bnr_type01">
+			<ul>
+				<li ng-repeat="item in tpmlData.contData.last_banner_list.banner_list.items">
+					<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_M_ThemeBan_2')">
+						<div class="img_wrap">
+							<img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}">
+						</div>
+						<div class="desc">
+							<div class="bg_wrap" style="background-color:{{chkHtmlColorCode(item.bg_color)}}"></div>
+							<span ng-bind-html="item.banner_nm"></span>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</section>
+
+		<!-- 상품형스와이프 배너 Type 03 (사각형) (테마형 상품 전시) -->
+		<section ng-if="tpmlData.contData.theme_list_1.banner_list.items && tpmlData.contData.theme_list_1.banner_list.items.length > 0" class="style_swipe_type03">
+			<h3 ng-if="tpmlData.contData.theme_list_1.title" class="style_tit">{{tpmlData.contData.theme_list_1.title}}</h3>
+			<div ng-if="tpmlData.contData.theme_list_1.sub_title" class="style_desc" ng-bind-html="tpmlData.contData.theme_list_1.sub_title"></div>
+			<div lotte-slider ng-if="tpmlData.contData.theme_list_1.banner_list.items.length > 0" class="swipe_wrap">
+				<ul>
+					<li ng-repeat="item in tpmlData.contData.theme_list_1.banner_list.items">
+						<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_M_ThemeItem_{{$index + 1}}')">
+							<div class="img_wrap"><img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}"></div>
+							<div class="desc"><span>{{item.banner_nm}}</span></div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<ul ng-if="tpmlData.contData.theme_list_1.hash_list && tpmlData.contData.theme_list_1.hash_list.length > 0" class="hash_list_wrap">
+				<li ng-repeat="item in tpmlData.contData.theme_list_1.hash_list"><a ng-click="goStyleKeyword(item, 'm_DC_SpeDisp5_M_ThemeCat_{{$index + 1}}');">#{{item.hash_nm}}</a></li>
+			</ul>
+		</section>
+
+		<!-- 브랜드 나열형 -->
+		<section ng-if="tpmlData.contData.brand_shop_list.banner_list.items && tpmlData.contData.brand_shop_list.banner_list.items.length > 0" class="style_brand">
+			<h3 ng-if="tpmlData.contData.brand_shop_list.title" class="style_tit">{{tpmlData.contData.brand_shop_list.title}}</h3>
+			<div ng-if="tpmlData.contData.brand_shop_list.sub_title" class="style_desc" ng-bind-html="tpmlData.contData.brand_shop_list.sub_title"></div>
+			<div class="brand_list_wrap">
+				<ul>
+					<li ng-repeat="item in tpmlData.contData.brand_shop_list.banner_list.items">
+						<a ng-click="goStyleBrand(item, 'm_DC_SpeDisp5_M_BrandShop_{{$index + 1}}');">
+							<div class="brand_wrap">
+								<div class="img_wrap">
+									<span><img ng-src="{{item.img_url}}" alt="{{item.img_link}}"></span>
+								</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</section>
+	</section>
+	<!-- 디자이너탭 -->
+	<section ng-if="tpmlData.uiOpt.gender == 'D'" class="tab_cont tab_designer">
+		<!-- 동영상 영역 -->
+		<section class="pd_type mov_auto_wrap" ng-if="tpmlData.contData.mov_plan != null">
+			<div class="area">
+				<div class="bg bg_bottom"></div>
+				<div class="topbar">
+					<div class="bg leftbar"></div>
+					<div class="bg rightbar"></div>
+				</div>
+				<div class="toparea">
+					<div class="video_wrap">
+					    <video controls="controls" video-poster="{{::tpmlData.contData.mov_plan.postert_img | trustUrl}}" id="autoVideo1" playsinline="true" webkit-playsinline="true">
+					    	<source video-source="{{::tpmlData.contData.mov_plan.mov_url | trustUrl}}" type="video/mp4">
+					    </video>
+					    <div class="play_cover">
+					    	<!-- span class="move_title">PLAY#</span -->
+					    </div>
+					    <div class="stop_cover">
+					    	<!--  span class="move_title">PLAY#</span -->
+					    </div>
+					    <div class="click_cover"></div>
+						<a ng-click="movMuteTclick('Clk_mute', 'Clk_vol');" class="btn_move_volume btn_text">음소거</a>
+					   <a ng-click="movPlayTclick();" class="btn_move_start">비디오 재생</a>
+					    <a ng-click="movStopTclick();" class="btn_move_stop btn_text">일시정지</a>
+					    <a ng-click="movProdLink(tpmlData.contData.mov_plan.link_url, 'm_DC_SpeDisp5_D_PlayshopBan')" class="btn_move_goods btn_text">상품보기</a>
+					</div>
+					<script type="text/javascript">
+					setTimeout(function(){
+						autoVideoPlay('autoVideo1', '#autoVideo1');
+					}, 1500);
+					</script>
+				</div>
+				<div class="title_area">
+					<h3 ng-if="tpmlData.contData.mov_plan.designer_nm" class="designer_nm">{{tpmlData.contData.mov_plan.designer_nm}}</h3>
+					<div ng-if="tpmlData.contData.mov_plan.brand_nm" class="brand_nm" ng-bind-html="tpmlData.contData.mov_plan.brand_nm"></div>
+					<div ng-if="tpmlData.contData.mov_plan.sub_title" class="desc" ng-bind-html="tpmlData.contData.mov_plan.sub_title"></div>
+				</div>
+				<div class=pd_list>
+					<div ng-if="tpmlData.contData.mov_plan.prd_list.items.length > 0" class="swipe_wrap">
+						<ul>
+							<li ng-repeat="item in tpmlData.contData.mov_plan.prd_list.items">
+								<a ng-click="goStyleShopLink(item, 'm_DC_SpeDisp5_D_PlayshopItem{{$index + 1}}')">
+									<div class="img_wrap"><img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}"></div>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- 테마 영역 -->
+		<section ng-if="tpmlData.contData.theme_list.items" class="pd_type theme_list">
+			<ul>
+				<li ng-repeat="item in tpmlData.contData.theme_list.items">
+					<div class="area">
+						<a ng-click="themeGoLink(item, 'm_DC_SpeDisp5_D_Theme{{$index + 1}}_banner')">
+							<div class="title_area">
+								<h3 ng-if="item.designer_nm" class="designer_nm">{{item.designer_nm}}</h3>
+								<div ng-if="item.brand_nm" class="brand_nm" ng-bind-html="item.brand_nm"></div>
+								<div ng-if="item.sub_title" class="desc" ng-bind-html="item.sub_title"></div>
+							</div>
+							<div class="img_wrap"><img ng-src="{{item.postert_img}}" alt="{{item.sub_title}}"></div>
+						</a>
+						<div class="pd_list">
+							<div class="swipe_wrap">
+								<ul>
+									<li ng-repeat="items in item.prd_list.items">
+										<a ng-click="goStyleShop(items, 'm_DC_SpeDisp5_D_Theme{{$index + 1}}_Item')">
+											<div class="img_wrap"><img ng-src="{{items.img_url}}" alt="{{items.banner_nm}}"><span ng-if="items.banner_nm"></span></div>
+											<div ng-if="items.banner_nm" class="desc" ng-bind-html="items.banner_nm"></div>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</section>
+		<!-- 상품 리스트형 (코디 상품- 일반형) -->
+		<section ng-if="tpmlData.contData.coordi_list && tpmlData.contData.coordi_list.prd_list.items.length > 0" ng-controller="lotteNgSwipeCtrl" class="top_swipe_wrap bg_none_type coordi_list">
+			<h3 ng-if="tpmlData.contData.coordi_list.title" class="style_tit">{{tpmlData.contData.coordi_list.title}}</h3>
+			<div class="swipe_wrap">
+				<ul lotte-ng-list-swipe
+					swipe-id="packingThemelistBanner"
+					swipe-first-index="1"
+					swipe-list-model="tpmlData.contData.coordi_list.prd_list.items"
+					swipe-slide-item="true"
+					swipe-left-margin="80"
+					swipe-right-margin="80"
+					swipe-max-ratio="0.2"
+					swipe-min-distance="40"
+					swipe-responsive="true"
+					swipe-responsive320="1"
+					swipe-responsive640="1"
+					swipe-responsive900="1">
+					<li ng-repeat="item in tpmlData.contData.coordi_list.prd_list.items track by $index" class="photo_type01">
+						<a ng-click="goStyleShop(item, 'm_DC_SpeDisp5_D_CoordiItem{{$index + 1}}')">
+					    	<div class="img_wrap_area">
+					    		<div class="area">
+					    			<div class="img_wrap" style="background:transparent url({{item.img_url}}) no-repeat  center center;background-size:auto 100%;background-position:1px 0;"></div>
+					    		</div>
+							</div>
+							<div class="desc" ng-class="{'valign_middle': tpmlData.contData.coordi_list.items.length == 1}">
+								<span ng-bind-html="item.banner_nm"></span>
+							</div>
+			    		</a>
+
+					</li>
+				</ul>
+				<!--
+				<ul ng-if="tpmlData.contData.coordi_list.items && tpmlData.contData.coordi_list.items.length > 1" class="indicator">
+					<li ng-repeat="item in tpmlData.contData.coordi_list.items" ng-class="{on: swipeIdx == $index}"><span>{{$index + 1}}</span></li>
+				</ul> -->
+			</div>
+			<div class="more_link"><a ng-click="goBannerLink('{{tpmlData.contData.coordi_list.more_link_url}}&tclick=m_DC_SpeDisp5_D_CoordiMore')"><span>{{tpmlData.contData.coordi_list.more_link_txt}}</span></a></div>
+		</section>
+
+		<!-- 상품 리스트형 (베스트 상품) -->
+		<section ng-if="tpmlData.contData.best_list && tpmlData.contData.best_list.prd_list.items.length > 0" class="bg_none_type style_prd_list">
+			<div class="title_area">
+				<h3 ng-if="tpmlData.contData.best_list.title" class="style_tit">{{tpmlData.contData.best_list.title}}</h3>
+				<div ng-if="tpmlData.contData.best_list.sub_title" class="style_desc" ng-bind-html="tpmlData.contData.best_list.sub_title"></div>
+			</div>
+			<div class="prd_list_wrap">
+				<ul>
+					<li ng-repeat="item in tpmlData.contData.best_list.prd_list.items" ng-if="$index < 8" class="photo_type01">
+						<a ng-click="goStyleShop(item, 'm_DC_SpeDisp5_D_BestItem{{$index + 1}}')">
+							<div class="img_wrap" style="background:transparent url({{item.img_url}}) no-repeat  center center;background-size:auto 100%;">
+							</div>
+							<div ng-if="item.banner_nm" class="desc"><span ng-bind-html="item.banner_nm"></span></div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<!-- 상품 리스트형 (신상품) -->
+		<section ng-if="tpmlData.contData.new_arrivals && tpmlData.contData.new_arrivals.prd_list.items.length > 0" class="bg_none_type new_arrivals">
+			<div class="title_area">
+				<h3 ng-if="tpmlData.contData.new_arrivals.title" class="style_tit">{{tpmlData.contData.new_arrivals.title}}</h3>
+			</div>
+			<div class="prd_list_wrap">
+				<ul>
+					<li ng-repeat="item in tpmlData.contData.new_arrivals.prd_list.items" style="background-color:{{chkHtmlColorCode(item.bg_color)}}"  ng-if="$index < 4" class="photo_type01">
+						<a ng-click="goStyleShop(item, 'm_DC_SpeDisp5_D_NewItem{{$index + 1}}')">
+							<div class="img_area">
+								<div class="icon" style="background-color:{{chkHtmlColorCode(item.bg_color)}}"></div>
+								<div class="img_wrap_area">
+						    		<div class="area">
+						    			<div class="img_wrap" style="background:transparent url({{item.img_url}}) no-repeat  center center;background-size:auto 100%;background-position:0 0;"></div>
+						    		</div>
+								</div>
+							</div>
+							<div class="txt_area">
+								<div class="brand_nm" ng-bind-html="item.brand_nm"></div>
+								<div class="desc" ng-bind-html="item.banner_nm"></div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<!-- 브랜드 나열형 일반형 -->
+		<section ng-if="tpmlData.contData.brand_shop_list.items && tpmlData.contData.brand_shop_list.items.length > 0" class="recommond_wrap style_brand">
+			<h3 ng-if="tpmlData.contData.brand_shop_list.title" class="style_tit">{{tpmlData.contData.brand_shop_list.title}}</h3>
+			<ul class="recommond_swipe" lotte-ng-list-swipe swipe-id="brandshopSwipe_0" swipe-list-model="tpmlData.brandshopData" swipe-responsive="true" swipe-autoheight="true" swipe-responsive320="1" swipe-responsive640="1" swipe-responsive900="1" swipe-slide-item="true" swipe-max-ratio="0.2" swipe-min-distance="40" swipe-list-model="products">
+	            <li ng-repeat="item in tpmlData.brandshopData">
+	                <ul class="float_ul">
+	                    <li ng-repeat="items in item">
+	                        <a ng-click="dBrandShopGo(items, 'm_DC_SpeDisp5_D_Brandlist', ($parent.$index * 16 + ($index)));">
+	                            <div class="brand_wrap">
+	                              <div class="img_wrap"><span ng-bind-html="items.brand_nm"></span></div>
+	                            </div>
+	                        </a>
+	                    </li>
+	                </ul>
+	            </li>
+	        </ul>
+	        <ul class="indicator" ng-if="tpmlData.brandshopData.length > 1">
+	            <li ng-repeat="indicator in tpmlData.brandshopData" ng-class="{on: swipeIdx == $index}"><span>{{$index}}</span></li>
+	        </ul>
+		</section>
+	</section>
+	<dungdung id="ddpop" start="201702031000" end="201702040000"></dungdung>
+</div>

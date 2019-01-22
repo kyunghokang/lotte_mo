@@ -1,0 +1,142 @@
+<section id="container">
+	<!-- 위시리스트 -->
+	
+	<section class="mylotte" id="wishListView" ng-if="(currentCategory != '') || !notExistWishItem()">
+		<!-- 위시리스트 header -->
+		<section class="wish_header" ng-if="initLoadingProductList">
+			<span>전체 {{productTotalCount | number:0}}개</span>
+			<div class="btn_list" ng-if="loadedProductList.length">
+				<a href="javascript:void(0);" ng-click="deleteMultiProduct()" name="deleteSelected" class="btn_style1 check_del">선택삭제</a>
+				<a href="javascript:void(0);" ng-click="deleteAllProduct()" name="selectAll" class="btn_style1 check_all">전체삭제</a>
+			</div>
+			<!-- 카테고리 20160418 -->
+			<div class="wish_cate" ng-class="{open:categoryOpenState}" ng-if="categoryList.length>0">
+				<a href="#" class="wish_cate_sel" ng-click="showHideCategory()">{{currentCategoryName}}</a>
+				<div class="wish_cate_list">
+					<div class="scroll_wrap">
+						<ul lotte-ng-list-swipe swipe-autoheight="true" swipe-list-model="categoryList" swipe-slide-item="true" swipe-id="wishCateSwipe" swipe-max-ratio="0.2" swipe-min-distance="40" swipe-first-index="{{categorySwipeIdx}}">
+							<li ng-repeat="cate_arr in categoryList track by $index">
+								<a href="#" ng-click="wishCateClick(cate);" ng-repeat="cate in cate_arr track by $index" ng-class="{on:cate.curDispNo==currentCategory,blank:cate.ctg_nm==''}">{{cate.ctg_nm}}</a>
+							</li>
+						</ul>
+					</div>
+					<div class="wish_cate_page">
+						<div ng-if="categoryList.length > 1">
+							<span class="cur_page" id="cateSwipeCurPage" data-cur-page="{{swipeIdx}}">{{swipeIdx+1}}</span>/<span class="total_page">{{categoryList.length}}</span>
+						</div>
+					</div>
+				</div>
+				<a href="#" class="wish_cate_close" ng-click="showHideCategory()">닫기</a>
+			</div>
+			<!-- 카테고리 20160418 -->
+		</section>
+		<!--// 위시리스트 header -->
+		<section class="loadingWrap" style="position:relative; height:300px;" ng-if="!initLoadingProductList">
+			<p class="loading half"></p>
+		</section>	
+			
+		<!-- 상품 목록 -->
+		<section class="wish_list" id="wish_list" ng-hide="notExistWishItem()">
+			<!--  
+			<product-container></product-container>
+			-->
+			<wishlist-normal-product-list></wishlist-normal-product-list>
+		</section>
+		<!-- // 상품 목록 -->
+
+		<!-- LOADING -->
+		<div class="listLoading" ng-if="isShowNormalListLoadingBar">
+			<p class="loading half"></p>
+		</div>
+		<!--// LOADING -->
+		
+		<!-- 더보기 버튼 -->
+		<section class="more_view" ng-hide="!existMoreItem() || notExistWishItem() || isShowNormalListLoadingBar">
+			<div><a href="javascript:void(0);" ng-click="loadMoreProduct()"><span><strong>더보기</strong> (<label id="currentCnt">{{loadedProductList.length | number:0}}</label>/<label id="totalCnt">{{productTotalCount | number:0}}</label>)</a></span></div>
+		</section>
+		<!--// 더보기 버튼 -->
+	</section>
+	
+	<!-- 판매중인 상품이 없을 경우 -->
+	<section class="mylotte">
+		<p class="noData" ng-if="!notExistAnyWishItem() && notExistWishItem()">위시리스트에 판매중인 상품이 없습니다.</p>
+	</section>
+	<!-- // 담긴 상품이 없을 경우 -->
+	
+	<section class="mylotte" id="discontinueListView" ng-hide="notExistSoldoutWishItem()">
+		<!-- 위시리스트 header -->
+		<section class="wish_header discontinue">
+			<a href="javascript:void(0);" ng-click="toggleSoldoutSection()" ng-class="{btn_close:isOpenSoldoutSection, btn_open:!isOpenSoldoutSection}">
+				<span>
+					품절/판매종료 상품 ({{soldOutProductTotalCount | number:0}})
+				</span>
+				<span class="btnArrow">{{!isOpenSoldoutSection ? '열기' : '닫기'}}</span>
+			</a>
+			<div class="btn_list">
+				<a href="javascript:void(0);" ng-click="deleteAllSoldoutProduct()" name="selectAll" class="btn_style1 check_all_del">전체삭제</a>
+			</div>
+		</section>
+		<!--// 위시리스트 header -->
+		
+		<!-- 품절/판매종료 상품 -->
+		<section class="discontinue_list " id="discontinue_list" ng-if="isOpenSoldoutSection">
+			<wishlist-soldout-product-list></wishlist-soldout-product-list>
+		</section>
+		<!-- // 품절/판매종료 상품 -->
+	</section>
+	
+	<!-- LOADING -->
+	<div class="listLoading" ng-show="isShowSoldoutListLoadingBar">
+		<p class="loading half"></p>
+	</div>
+	<!--// LOADING -->
+	
+	<!-- 담긴 상품이 없을 경우 -->
+	<section class="mylotte">
+		<p class="noData" ng-show="notExistAnyWishItem()">위시리스트에 담긴 상품이 없습니다.</p>
+	</section>
+	<!-- // 담긴 상품이 없을 경우 -->
+	
+	<!-- 인스턴트팝업: 공통 -->
+	<div class="alertPop" ng-show="commonAlramInfo.is_show">
+		<p><span>{{commonAlramInfo.message}}</span></p>
+	</div>
+	<!-- 인스턴트팝업: 공통 -->
+	
+	<!-- 중복쿠폰 팝업 -->
+	<div class="popCouponDown" ng-if="couponPopupInfo.isShow" style="z-index:9999;">
+		<div class="popWrap">
+			<div class="contArea">
+				<div class="popImg"><img src="http://image.lotte.com/lotte/mobile/mobile_new/mylotte/img_surprise_alarm_coupon_7.gif" alt="깜짝알림쿠폰. 7% 추가할인"></div>
+				<div class="expiration">사용기간 : 다운받은 일로부터 1일 이내</div>
+				<div class="info">&#39;앱하단 &gt; 더보기 (+) &gt; 깜짝알림&#39;에서 다운로드 가능!</div>
+				<a href="javascript:void(0);" ng-click="downloadCoupon()" class="btnDown"><span>쿠폰 다운로드</span></a>
+			</div>
+			<div class="btnArea">
+				<a href="javascript:void(0);" class="btn btnToday" ng-click="stopShowingCouponPopup()">오늘하루 그만보기</a>
+				<a href="javascript:void(0);" class="btn btnClose" ng-click="closeCouponPopup()">닫기</a>
+			</div>
+		</div>
+	</div>
+	<!-- 퀵 배송 안내 팝업 -->
+	<div class="commonPop quick_layer">
+		<div class="bg" ng-click="close_quickPop()"></div>
+		<div class="box">
+			<div class="popBox">
+				<h2>퀵 배송 안내</h2>
+				<div class="cont">
+					<ul>
+						<li>이용시간 : 09:00~16:30<br />(롯데백화점 본점 휴무, 공휴일 제외)</li>
+						<li>가능 지역 : 서울지역</li>
+						<li>퀵 배송비 : 10만원 미만 주문 시 <em>10,000원</em><br />10만원 이상 주문 시 <em>5,000원</em></li>
+						<li>배송 소요 시간 : 결제완료 후 4시간 이내<br />(마포구,서대문구,용산구,은평구,종로구,중구: 결제 완료 후 2시간 이내)</li>
+						<li>교환/반품 : 교환 불가/택배로 반품만 가능</li>
+					</ul>
+				 </div>
+				<div class="foot" ng-click="close_quickPop()">
+					닫기
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

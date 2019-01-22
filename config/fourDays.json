@@ -1,0 +1,68 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplFourDays" : {
+				"options": {
+					"prefix":"/",
+					"module" : "app"
+				},
+				"src" : [
+				],
+				"dest" : "lotte/resources/<%= version %>/fourDays.template.js"
+			}
+		},
+		
+		"concat" : {
+			"jsFourDays" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/event/fourDays.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/fourDays.js"
+			}
+		},
+		
+		"uglify" : {
+			"jsFourDays" : {
+				"src" : "lotte/resources/<%= version %>/fourDays.js",
+				"dest" : "lotte/resources/<%= version %>/fourDays.min.js"
+			},
+			"tplFourDays" : {
+				"src" : "lotte/resources/<%= version %>/fourDays.template.js",
+				"dest" : "lotte/resources/<%= version %>/fourDays.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssFourDays" : {
+				"src" : [
+					"lotte/resources_dev/event/fourDays.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/fourDays.min.css"
+			}
+		},
+
+		"processhtml" : {
+			"htmlFourDays" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"event/fourDays.html" : "event/fourDays_dev.html"
+				}
+			}
+		},
+		
+		"clean" : {
+			"cleanFourDays" : [
+				"lotte/resources/<%= version %>/fourDays.js",
+				"lotte/resources/<%= version %>/fourDays.template.js"
+			]
+		}
+	}
+}
+

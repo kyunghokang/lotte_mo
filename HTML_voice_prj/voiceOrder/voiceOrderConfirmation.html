@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/push/common.css"/>
+
+<link rel="stylesheet" type="text/css" href="voiceOrder.css"/>
+
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script>
+	$(function(){
+		$('.agree_check_box button').click(function(){
+			$(this).parent().toggleClass('on');
+			return false;
+		});
+	})
+</script>
+
+</head>
+<body>
+
+	<section class="voice_order_check">
+		<p class="tit">3,700원이 할인된 14,500원에 결제 하실 수 있어요. 결제를 진행할까요?</p>
+		<div class="item_box">
+			<figure>
+				<img src="../images/img_sample1.png" alt="" />
+				<figcaption>
+					<h2 class="product_name">[맥]프로 롱웨어 SPF 10 파운데이션 촉촉한 버전</h2>
+					<p class="product_option">색상:(47)네이비, 사이즈66 / 1개</p>
+				</figcaption>
+			</figure>
+			
+			<div class="casy_box">
+				<dl class="discount">
+					<dt>총 할인금액</dt>
+					<dd>-3,700원</dd>
+				</dl>
+				<dl class="payment">
+					<dt>최종 결제금액</dt>
+					<dd>
+						<span class="casy">18,022,790</span>원
+						<span class="small">배송비 2,500원 포함</span>
+					</dd>
+				</dl>
+			</div>
+			
+			<div class="other_info">
+				<dl>
+					<dt>결제수단</dt>
+					<dd>L-PAY 롯데카드</dd>
+				</dl>
+				<dl>
+					<dt>배송지</dt>
+					<dd>
+						<strong>롯데닷컴(회사)</strong>
+						서울시 중구 을지로 158<br />10층(을지로4가, 삼풍빌딩)
+					</dd>
+				</dl>
+			</div>
+		</div>
+		
+		<div class="agree_check_box">
+			<button>주문내역 확인 및 결제서비스 이용약관에 모두 동의합니다.<span></span></button>
+			<ul>
+				<li>주문할 상품의 상품명, 상품가격, 배송정보를 확인하였습니다. (전자상거래법 제8조 제2항)</li>
+				<li>결제서비스 이용 약관에 동의합니다.<a href="#">약관보기</a></li>
+			</ul>
+		</div>
+	</section>
+
+</body>
+</html>

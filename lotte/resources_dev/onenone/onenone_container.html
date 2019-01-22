@@ -1,0 +1,177 @@
+<section ng-show="contVisible">
+	<share-pop></share-pop>
+	<pickup-pop></pickup-pop>
+	
+	<product-img></product-img>	
+	<section class="product_info">
+	
+		<h3>[아크테릭스]픽시스 12 ptere2323 (ABDF) (23232#)</h3>
+		<div class="division">
+			<span>
+				<img src="http://image.lotte.com/lotte/mobile/mobile_new/common/smp_shop_logo.gif" alt="롯데백화점">
+				<img src="http://image.lotte.com/lotte/mobile/mobile_new/common/smp_shop_prod_logo_lt.gif" alt="스마트픽">
+			</span>
+			<a href="#salebestView" onclick="setTclick('m_o_otherBuy');">남들은 뭘 샀지?</a>
+		</div>
+			
+	
+		<!--가격+주요정보-->
+<div class="price01">
+	<div>
+		<dl>
+			<dl>
+				<dt>판매가</dt>
+				<dd><span class="clr02"> 89,000 </span></dd>
+			</dl>
+		</dl>
+<!--쿠폰정보-->
+<div class="sum">
+<p><a href="#go" onclick="ahead_calculation();setTclick('m_o_calculate');"><span>미리계산</span></a></p>
+</div>
+
+</div>
+<div class="benefit_layer">
+<p><span>참좋은 혜택가란?</span> 일시불결제,쿠폰 등을<br>
+즉시 할인해 드리는<br>
+새로운 가격제도입니다. <a href="#go" class="close">닫기</a></p>
+</div>
+</div>
+
+<div class="price02">
+<dl>
+	<dt>카드즉시할인가</dt>
+	<dd><em>84,550</em>원 <span class="txt01">(롯데카드 5%할인)</span></dd>
+</dl>
+<dl>
+	<dt>카드 청구할인가</dt>
+	<dd><em>80,320</em>원<span class="txt01">(롯데카드 5%할인)</span></dd>
+</dl>
+</div>
+
+<!-- 구매하기 옵션 BODY -->
+<div class="option_list">
+<form name="frm_input" id="frm_input" style="display: block"
+	onsubmit="return false;"><input type="hidden" name="invMgmtYn"
+	value="Y">
+<div class="option_choice" style="display: block;">
+<dl>
+
+	<dt><label for="option1">색상</label></dt>
+	<dd><input type="hidden" name="opt_name1" value="색상">
+	<div class="s_box02"><select id="opt_value1" name="opt_value1"
+		onchange="optionChange(1, this)">
+		<option value="" selected="selected">선택하세요</option>
+
+
+
+
+		<option value="BLACK^2^^">BLACK</option>
+
+
+
+
+
+
+		<option value="CHIPOTLE^3^^">CHIPOTLE</option>
+
+
+
+	</select>
+	<div class="img_box"><i></i></div>
+	</div>
+	</dd>
+
+	<dt><label for="option1">사입즈</label></dt>
+	<dd><input type="hidden" name="opt_name2" value="사입즈">
+	<div class="s_box02"><select id="opt_value2" name="opt_value2"
+		onchange="optionChange(2, this)">
+		<option value="">선택하세요</option>
+
+
+
+
+		<option value="One Size^1^^">One Size</option>
+
+
+
+	</select>
+	<div class="img_box"><i></i></div>
+	</div>
+	</dd>
+
+
+	<dt><label for="optQty">수량</label></dt>
+	<dd class="num_input">
+	<button class="btnMinus" onclick="setOptsQty(-1)"><span>-</span></button>
+	<span class="ipt_num"><input class="iptNumber" type="number"
+		id="optQty" name="opt_qty" value="1"></span>
+	<button class="btnPlus" onclick="setOptsQty(1)"><span>+</span></button>
+	</dd>
+
+	<!-- 입력 옵션 상품 -->
+
+</dl>
+</div>
+</form>
+
+<!-- 점별쿠폰 -->
+
+
+<div class="option_smartpic" style="display: block">
+<dl>
+	<dt class="shop">배송방법</dt>
+	<dd class="shop place"><input type="radio" name="shipping"
+		id="method1" class="radio01" value="1" checked="checked"
+		onclick="setSmpShippingValue(1)"> <label for="method1">택배로
+	받기</label> <input type="radio" name="shipping" id="method2" class="radio01"
+		value="2" onclick="setSmpShippingValue(2)"> <label
+		for="method2">스마트픽으로 찾기</label> <!-- 20150521 추가 --> <!-- //20150521 추가 --></dd>
+</dl>
+</div>
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		<div class="product_btn">
+			<div class="wish"><a ng-click="openOptionCheck('wish');"><span>위시리스트</span></a></div>
+			<div class="cart"><a ng-click="jopenOptionCheck('cart');"><span>장바구니</span></a></div>
+			<div class="buy"><a ng-click="openOptionCheck('buy');"><span>바로주문</span></a></div>
+		</div>
+		<div class="sns_box">
+			<p class="sns_title"><img src="http://image.lotte.com/lotte/mobile/mobile_new/product/img_this.png" alt="이거 어때?. 친구에게 공유하기" /></p>
+			<ul class="sns_link">
+				<li class="kakao"><a ng-click="shareSNS('kakao');">카카오톡</a></li>
+				<li class="facebook"><a ng-click="shareSNS('facebook');">페이스북</a></li>
+				<li class="sms"><a ng-click="shareSNS('sms');">문자</a></li>
+				<li class="kas"><a ng-click="shareSNS('kakaostory');">카카오스토리</a></li>
+				<li class="twitter"><a ng-click="shareSNS('twitter');">트위터</a></li>
+			</ul>
+		</div>
+	</section>
+	
+	
+	
+	
+	
+	
+		
+	
+	
+	
+</section>

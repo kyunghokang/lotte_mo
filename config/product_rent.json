@@ -1,0 +1,68 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplProductRent" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/product/m/product_rent_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/product_rent.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsProductRent" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/product/m/product_rent.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/product_rent.js"
+            }
+        },
+
+        "uglify" : {
+            "jsProductRent" : {
+                "src" : "lotte/resources/<%= version %>/product_rent.js",
+                "dest" : "lotte/resources/<%= version %>/product_rent.min.js"
+            },
+            "tplProductRent" : {
+                "src" : "lotte/resources/<%= version %>/product_rent.template.js",
+                "dest" : "lotte/resources/<%= version %>/product_rent.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssProductRent" : {
+                "src" : [
+                    "lotte/resources_dev/product/m/product_rent.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/product_rent.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanProductRent" : [
+                "lotte/resources/<%= version %>/product_rent.js",
+                "lotte/resources/<%= version %>/product_rent.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlProductRent" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "product/m/product_rent.html" : "product/m/product_rent_dev.html"
+                }
+            }
+        }
+    }
+}

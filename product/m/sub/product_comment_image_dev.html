@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+    <meta charset="utf-8">
+    <title>롯데닷컴-사진/영상 모아보기</title>
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+
+    <script>
+    var APP_KEY = "7fa1e44757a94fd89921";
+    var SERVER_TIME = new Date();
+    </script>
+	<!-- JSP 영역 -->
+	<!-- 
+	<%@ page language="java" contentType="text/html;charset=utf-8"  %>
+    
+    <%@include file="/common3/angular_common_include.jsp"%>
+    <% if (LOTTE_DEVEL_MODE) { %>
+    <%@include file="/angular_common/lotte_common_css.jsp"%>
+    <%@include file="/angular_common/lotte_common_js.jsp"%>
+    
+    <!-- 이 화면에서 쓰이는 CSS -->
+    
+    <!-- 이 화면에서 쓰이는 JS -->
+    
+    <!-- 
+    <% } else {  %>
+	    <%@include file="/common3/html_meta_angular.jsp"%>
+	    <link rel="stylesheet" type="text/css" href="/lotte/resources/<%= pubVersion %>/product_comment_image.min.css"/>
+	    <script src="/lotte/resources/<%= pubVersion %>/product_comment_image.min.js"></script>
+	    <script src="/lotte/resources/<%= pubVersion %>/product_comment_image.tpl.js"></script>
+    <% } %>
+     -->
+    <!-- // JSP 영역 -->
+     
+    <!-- build:template
+    <link rel="stylesheet" type="text/css" href="/lotte/resources/<%= version %>/common.min.css"/>
+    /build -->
+    <!-- build:remove -->
+    <script src="/lotte/resources_dev/common/common_load_2018.js"></script>
+    <!-- /build -->
+
+    <!-- build:template
+    <link rel="stylesheet" type="text/css" href="/lotte/resources/<%= version %>/product_comment_image.min.css"/>
+    /build -->
+    <!-- build:remove -->
+    <link rel="stylesheet" type="text/css" href="/lotte/resources_dev/product/m/sub/product_comment_image.css"/>
+    <!-- /build -->
+
+    <!-- build:template
+    <script src="/lotte/resources/<%= version %>/common.min.js"></script>
+    /build -->
+    <!-- build:remove -->
+    <!-- /build -->
+
+    <!-- build:template
+    <script src="/lotte/resources/<%= version %>/product_comment_image.min.js"></script>
+    /build -->
+    <!-- build:remove -->
+    <script src="/lotte/resources_dev/product/m/sub/product_comment_image.js"></script>
+    <script src="/lotte/resources_dev/product/m/sub/product_sub_header.js"></script>
+    <!-- /build -->
+    
+    <!-- build:template
+    <script src="/lotte/resources/<%= version %>/product_comment_image.tpl.js"></script>
+    /build -->
+</head>
+<body ng-controller="ProductCommentImageCtrl">
+    <div id="wrapper" ng-show="showWrap">
+        <lotte-container></lotte-container>
+
+        <lotte-footer></lotte-footer>
+        <lotte-btntop></lotte-btntop>
+    </div>
+    <lotte-side-category></lotte-side-category>
+    <lotte-footer-actionbar></lotte-footer-actionbar>
+    <lotte-comm-footer></lotte-comm-footer>
+</body>
+</html>

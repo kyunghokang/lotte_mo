@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">	
+<!----------------- current css ----------------->
+
+<link rel="stylesheet" href="/lotte/resources_dev/mylotte/mylotte_point.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<!-- container -->
+<section id="container">
+	
+	<section class="mylotte_point">
+		
+		<div class="bg_white">
+			
+			<!-- 클로버 내역 -->
+			<section class="clover_info">
+				<p class="tot_clover">총 클로버 <span><strong>1400</strong>개</span></p>
+				<p class="extinction_count">30일 이내 소멸 예정 클로버 <strong>480</strong>개</p>
+				<p class="desc">적립 클로버 중 사용하고 남은 잔여클로버만 소멸됩니다.</p>
+	
+				<div class="btn_areaC">
+					<a href="#" class="btn_style2s bi-mr disabled">상세보기</a>
+				</div>
+				<div class="btn_areaC">
+					<a href="#" class="btn_style2s bi-mr on">상세보기</a>
+				</div>
+				<div class="btn_areaC">
+					<a href="#" class="btn_style2s bi-mr">상세보기</a>
+				</div>
+			</section>
+	
+			<!-- 소멸 예정 클로버 -->
+			<section class="point_list extinction">
+				<h3>소멸 예정 클로버 <span>(30일 이내)</span></h3>
+				<table id="tb_point_list" class="tbl_list_01" summary="상세내용, 소멸예정 포인트가 나와있는 표">
+					<caption>소멸예정 내역 상세 테이블</caption>
+					<colgroup>
+						<col width="65%">
+						<col width="35%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">상세내용</th>
+							<th scope="col">소멸예정</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<span class="date">2015.07.18</span>
+								<p>[적립] 이거 어때?</p>
+							</td>
+							<td class="point minus"><strong>-320</strong></td>
+						</tr>
+						<tr>
+							<td>
+								<span class="date">2015.07.18</span>
+								<p>[적립] 바로방분 on 출석(평일)</p>
+							</td>
+							<td class="point minus"><strong>-320</strong></td>
+						</tr>
+						<tr>
+							<td>
+								<span class="date">2015.07.18</span>
+								<p>[적립] 이거 어때?</p>
+							</td>
+							<td class="point minus"><strong>-320</strong></td>
+						</tr>
+						<tr>
+							<td>
+								<span class="date">2015.07.18</span>
+								<p>[적립] 바로방분 on 출석(평일)</p>
+							</td>
+							<td class="point minus"><strong>-320</strong></td>
+						</tr>
+						<tr>
+							<td>
+								<span class="date">2015.07.18</span>
+								<p>[적립] 이거 어때?</p>
+							</td>
+							<td class="point minus"><strong>-320</strong></td>
+						</tr>
+						<tr>
+							<td>
+								<span class="date">2015.07.18</span>
+								<p>[적립] 바로방분 on 출석(평일)</p>
+							</td>
+							<td class="point minus"><strong>-320</strong></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+			<!-- // 소멸 예정 클로버 -->
+	
+			<!-- 포인트 적립.사용 내역 -->
+			<section class="point_list">
+				<h3>클로버 적립/사용 내역 <span>(최근 3개월간)</span></h3>
+				<table id="tb_point_list" class="tbl_list_01" summary="상세내용, 적립/사용 포인트가 나와있는 표">
+					<caption>L.POINT 적립/사용 내역 상세 테이블</caption>
+					<colgroup>
+						<col width="65%">
+						<col width="35%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">상세내용</th>
+							<th scope="col">적립/사용</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<span class="date">2015.07.18</span>
+								<p>[적립] 이거 어때?</p>
+							</td>
+							<td class="point plus"><strong>+320</strong></td>
+						</tr>
+						<tr>
+							<td>
+								<span class="date">2015.07.18</span>
+								<p>[적립] 바로방분 on 출석(평일)</p>
+							</td>
+							<td class="point minus"><strong>-320</strong></td>
+						</tr>
+						<tr>
+							<td>
+								<span class="date">2015.07.18</span>
+								<p>[적립] 이거 어때?</p>
+							</td>
+							<td class="point plus"><strong>+320</strong></td>
+						</tr>
+						<tr>
+							<td>
+								<span class="date">2015.07.18</span>
+								<p>[적립] 바로방분 on 출석(평일)</p>
+							</td>
+							<td class="point minus"><strong>-320</strong></td>
+						</tr>
+						<tr>
+							<td>
+								<span class="date">2015.07.18</span>
+								<p>[적립] 이거 어때?</p>
+							</td>
+							<td class="point plus"><strong>+320</strong></td>
+						</tr>
+						<tr>
+							<td>
+								<span class="date">2015.07.18</span>
+								<p>[적립] 바로방분 on 출석(평일)</p>
+							</td>
+							<td class="point minus"><strong>-320</strong></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+			<!-- // 포인트 적립.사용 내역 -->
+	
+			<!-- 클로버 사용 내역 -->
+			<section class="point_list">
+				<h3>클로버 적립/사용 내역 <span>(30일 이내)</span></h3>
+				<p class="cont_no">적립/사용 내역이 없습니다.</p>
+			</section>
+			<!-- // 클로버 사용 내역 -->
+	
+			<!-- 더보기 버튼 -->
+			<section class="more_view">
+				<div><a href="#"><span>더보기 (<label id="currentCnt">10</label>/<label id="totalCnt">50</label>)</a></span></div>
+			</section>
+			<!--// 더보기 버튼 -->
+			
+			
+		</div>
+			
+	</section>
+	
+</section>
+<!-- //container -->
+
+<!-- footer -->
+<section ng-include src="'/HTML/include/footer.html'"></section>
+
+</body>
+</html>

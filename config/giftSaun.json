@@ -1,0 +1,39 @@
+{
+	"tasks" : {
+		"uglify" : {
+			"jsGiftSaun" : {
+				"src" : "lotte/resources_dev/event/giftSaun.js",
+				"dest" : "lotte/resources/<%= version %>/giftSaun.min.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssGiftSaun" : {
+				"src" : [
+					"lotte/resources_dev/event/giftSaun.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/giftSaun.min.css"
+			}
+		},
+
+		"processhtml" : {
+			"htmlGiftSaun" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"event/giftSaun.html" : "event/giftSaun_dev.html"
+				}
+			}
+		},
+		
+		"clean" : {
+			"cleanGiftSaun" : [
+				"lotte/resources/<%= version %>/giftSaun.js"
+			]
+		}
+	}
+}
+

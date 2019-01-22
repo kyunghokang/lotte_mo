@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">	
+<!----------------- current css ----------------->
+
+<link rel="stylesheet" href="/lotte/resources_dev/mylotte/mylotte_smp.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<!-- container -->
+<section id="container">	
+	<!-- 스마트픽상품교환권_상세보기 -->
+	<div class="smp_coupon">
+		<section class="detail">
+			<div class="cont_wrap">
+				<div class="cont contRegular">
+					<img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/smp_coupon.jpg" alt="">
+					<div class="day">
+						<p>방문예정일</p><!-- D: 일반스마트픽상품-픽업예정일 / 와인상품-방문예정일 -->
+						<!--<p>주문취소</p> D: 주문취소 -->
+						<p class="num"><span>09/11(금)</span></p><!-- D: e-쿠폰상품일 경우 남은기간 표시 -->
+					</div>
+					<!-- D: tobe 추가 -->
+					<div class="smpLogo"><img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/smp_logo_coach.png" alt="coach"></div>
+					<!-- //D: tobe 추가 -->
+				</div>
+				<!-- 기발송된 쿠폰 -->
+				<div class="cont contSent">
+					<img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/smp_couponSent.jpg" alt="">
+					<div class="proImg"><img src="http://image.lotte.com/goods/33/76/92/5/5927633_1_280.jpg" alt=""></div>
+					<div class="day">
+						<p>방문예정일</p>
+						<p class="num"><span>09/11(금)</span></p>
+					</div>
+					<!-- D: tobe 추가 -->
+					<div class="smpLogo"><img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/smp_logo_coach.png" alt="coach"></div>
+					<div class="sentComment">
+						<div>To. <span class="name">홍길동</span>님께 발송된 교환권 입니다.</div>
+					</div>
+					<!-- //D: tobe 추가 -->
+				</div>
+				<!-- 취소된 쿠폰 -->
+				<div class="cont contCancel">
+					<img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/smp_couponCancel.jpg" alt="">
+					<div class="proImg"><img src="http://image.lotte.com/goods/33/76/92/5/5927633_1_280.jpg" alt=""></div>
+					<div class="day">
+						<p>방문예정일</p>
+						<p class="num"><span>09/11(금)</span></p>
+					</div>
+					<!-- D: tobe 추가 -->
+					<div class="smpLogo"><img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/smp_logo_coach.png" alt="coach"></div>
+					<div class="sentComment">
+						<div class="proTitle">올리비아데코 COACH 스칸디 순면 차렵패드세트 SS</div>
+						<div>주문 취소된 상품입니다.</div>
+					</div>
+					<!-- //D: tobe 추가 -->
+				</div>
+
+				<!-- 상품정보 -->		
+				<div class="box_layout_wap">			
+					<dl class="box_layout">
+						<dt>상품정보</dt>
+						<dd>
+							<p class="tit">주문 번호</p>
+							<p>2015-09-10-W027501</p>
+						</dd>
+						
+						<dd>
+							<p class="tit">판매가</p> 
+							<p>17,000원 / 1개</p>
+						</dd>
+						<dd>
+							<p class="tit">구매처</p>
+							<p>롯데닷컴</p>
+						</dd>
+						<dd class="btn">
+							<a href="#none" class="btn_color">이 상품 더 구매하기</a>
+						</dd>
+					</dl>
+				</div>
+				
+				<!-- 와인상품일 경우 -->
+				<div class="box_layout_wap">
+					<dl class="box_layout">
+						<dt>예약 안내</dt>
+						<dd class="dd_btn">
+							<p class="tit">방문예정일</p>
+							<p><span class="point">남은기간  D -7</span>2015. 09. 11</p>
+						</dd>
+						<dd>
+							<p class="tit">예약매장</p>
+							<div class="place">
+								본점 지하 1층 픽업데스크
+								<p class="ptit">위치 보기<span>열기/닫기</span></p>
+								<div class="wild">
+									<!--<p class="pAddress">광복점 B01층 와인매장 (부산공역시 중구 중앙동 7가 20-1)</p>-->
+									<div class="map">
+										<section id="mapContainer">
+											<img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/smp_map.jpg" alt="">
+										</section>					
+									</div>
+								</div>
+							</div>
+							<script>
+								$(".ptit").click(function(){
+									var nWidth = screen.width*0.94;
+									var dWidth = $(this).parent().parent("dd").height();
+									if($(this).hasClass("on")){
+										$(this).removeClass("on");
+										$(".wildOn").removeClass("wildOn");
+										$(".wild").parent().parent("dd").css("padding-bottom",0);
+									}else{
+										$(this).addClass("on");
+										$(".wild").addClass("wildOn");
+										$(".wildOn").css({"width":nWidth,"top":dWidth+5});
+										var nHeight = $(".wild").height();
+										$(".wildOn").parent().parent("dd").css("padding-bottom",nHeight+5);
+									}
+								});
+							</script>
+						</dd>
+						<dd>
+							<p class="tit">사용제한</p>
+							<p>지정된 픽업장소에서만 상품 수령 가능</p>
+						</dd>
+						<dd>
+							<p class="tit">주의사항</p>
+							<p>방문예정일 + 1일까지 상품 수령 가능 (미수령 시 예약취소)</p>
+						</dd>
+						<dd class="dd_btn">
+							<p class="tit">사용여부</p> 
+							<p class="clearfix"> 
+								<span>사용가능</span>
+								<a href="#none" class="btn_small">예약취소하기</a>
+							</p>					 
+						</dd>
+						<dd class="tel">
+							<p class="tit">전화연결</p>
+							<p><a href="tel:1577-1110">1577-1110</a></p>
+						</dd>
+						<!-- 20151106 e쿠폰환불규정추가 -->
+						<dd class="returnDd">
+							<p class="tit">환불유형</p>
+							<p>자동환불 상품</p>
+						</dd>
+						<dd>
+							<p class="tit">환불방법</p>
+							<p>유효기간 경과 후 롯데닷컴 ID 내 "보관금"으로 자동환불</p>
+						</dd>
+						<dd>
+							<p class="tit">환불대상</p>
+							<p>받는분/010-9651-0228</p>
+						</dd>
+						<dd>
+							<p class="tit">환불신청</p>
+							<p>"로그인 &gt 마이롯데 &gt e쿠폰 환불 신청"에서 쿠폰번호 등록<br>* 환불신청 하셔야 환불 받으실 수 있습니다.</p>
+						</dd>
+						<!-- //20151106 e쿠폰환불규정추가 -->
+					</dl>
+				</div>	
+				<!-- //와인상품일 경우 -->
+				
+				<div class="box_layout_wap">
+					<dl class="box_layout">
+						<dt>교환권 발송 정보</dt>
+						<dd>
+							<p class="tit">수신인</p>
+							<p>박상현 / 01020649673</p>
+						</dd>
+						<dd>
+							<p class="tit">입력메시지</p>
+							<p>생일축하해~맛있게 먹어~</p>
+						</dd>
+						<dd class="btn">
+							<a href="#none" class="btn_color">예약증 다시 보내기</a>
+						</dd>
+					</dl>
+				</div>	
+			</div>
+		</section>
+	</div>
+	<!-- //스마트픽상품교환권_상세보기 -->
+</section>
+
+
+<section ng-include src="'/HTML/include/footer.html'"></section>
+</body>
+</html>

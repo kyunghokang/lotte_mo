@@ -1,0 +1,33 @@
+{
+	"tasks" : {
+		"uglify" : {
+			"jsEventMeritzCar" : {
+				"src" : "lotte/resources_dev/event/meritzCar.js",
+				"dest" : "lotte/resources/<%= version %>/meritzCar.min.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssEventMeritzCar" : {
+				"src" : [
+					"lotte/resources_dev/event/meritzCar.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/meritzCar.min.css"
+			}
+		},
+
+		"processhtml" : {
+			"htmlEventMeritzCar" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"event/meritzCar.html" : "event/meritzCar_dev.html"
+				}
+			}
+		}
+	}
+}
+

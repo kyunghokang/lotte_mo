@@ -1,0 +1,164 @@
+<section ng-show="contVisible" class="cont_minheight">
+    <div ng-if="smp.top_ban_list.items" class="topBann"  ng-click="linkUrl(smp.top_ban_list.items[0], 'm_DC_Smartpick_Clk_Ban01', '')">
+        <img ng-src="{{smp.top_ban_list.items[0].img_url}}">
+    </div>
+    <!-- 스와이프 배너 리스트-->
+	<section ng-if="smp.swipe_ban_list.items"
+		ng-controller="lotteNgSwipeCtrl" class="top_swipe_wrap" ng-class="{pad:screenType > 1}">
+		<div class="swipe_wrap"roll-swipe-banner id="rolltopbann" rolling="true" width320="1" width640="1" width900="1" info="top_banner">
+			<ul class="swipeBox">
+				<li ng-repeat="item in smp.swipe_ban_list.items track by $index" ng-if="!($index%2 == 0 && $index==smp.swipe_ban_list.items.length-1 && screenType > 1)">
+					<a ng-click="linkUrl(item, 'm_DC_Smartpick_Swp_Ban_idx',  $index + 1)">
+						<div class="img_wrap">
+							<img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}" />
+						</div>
+					</a>
+				</li>
+			</ul>
+      <div class="swipe_indicator">
+        <ul class="bullet indicator">
+          <li ng-repeat="item in smp.swipe_ban_list.items track by $index"><span>{{$index}}</span></li>
+        </ul>
+      </div>
+		</div>
+		<!-- <ul ng-if="smp.swipe_ban_list.items" class="indicator">
+			<li ng-repeat="item in smp.swipe_ban_list.items track by $index" ng-class="{on: swipeIdx == $index}" ng-hide="($index%2==1 && screenType > 1) || ($index==smp.swipe_ban_list.items.length-1 && $index%2==0 && screenType > 1)"><span>{{$index}}</span></li>
+		</ul> -->
+	</section>
+
+    <section class="smp_list">
+        <!-- 상단 스마트픽 정보 -->
+        <div class="topInfo">
+            <p>{{smp.smp_sub_str}}</p>
+            <b>{{smp.smp_main_str}}</b>
+        </div>
+        <div class="myStore" ng-class="{on:showBranchLayer}">
+           <div class="my" ng-if="!loginInfo.login">본점 </div>
+            <div class="my" ng-if="loginInfo.login">{{loginInfo.name}}님의 단골지점 : <b>{{branch_list.fav_branch.branch_nm|trim}}</b></div>
+            <div class="store"><a href="#" ng-click="showHideStoreList()" ng-class="{on:showBranchLayer}">단골지점 설정</a></div>
+        </div>
+        <!--단골지점설정 탭-->
+        <div class="select_store" ng-class="{showlayer:showBranchLayer}">
+            <div class="storelist_layer">
+                <div class="inform" ng-if="!loginInfo.login">
+                    로그인 후 단골지점을 설정할 수 있습니다.
+                    <a href="#" ng-click="goLogin()">로그인</a>
+                </div>
+                <div class="inform" ng-if="loginInfo.login">
+                    <span ng-if="branch_list.fav_branch==undefined">단골지점을 선택해주세요.</span>
+                    <span ng-if="branch_list.fav_branch">고객님의 단골지점은
+                        <b>{{branch_list.fav_branch.branch_nm | trim}}</b>
+                    입니다.</span>
+                </div>
+                <ul>
+                    <li ng-repeat="group in branch_list.items">
+                        <ol>
+                            <li>{{group.branch_grp_nm}}</li>
+                            <li ng-repeat="branch in group.branch_list.items" ng-class="{on:branch.is_fav}"><a href="#" ng-click="branchClick(this)">{{branch.branch_nm | trim}}</a></li>
+                        </ol>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul class="storeInfo type{{smp.branch_detail_info.length}}" >
+            <li ng-if='smp.branchInfoView[0]'><div class="icon" ng-click="calendarHolidayClick()"></div>영업일</li>
+            <li ng-if='smp.branchInfoView[1]'><div class="icon t2" ng-click="floorInfo()"></div>층별안내</li>
+            <li ng-if='smp.branchInfoView[2]'><div class="icon t3" ng-click="dmCoupon()" ></div>스마트픽 교환권</li>
+            <li ng-if='smp.branchInfoView[3]'><div class="icon t4" ng-click="showPickup()" ></div>픽업장소/시간</li>
+        </ul>
+        <!--상품리스트-->
+        <ol class="prod_list_02">
+            <li ng-repeat="item in products track by $index">
+                <!-- 일반상품 : 이미지형 -->
+                <div class="unit_list_02">
+                    <span class="unit_zoom" ng-click="zoomImageClick(getProductImage(item))">크게보기</span>
+                    <a href="#" ng-click="linkProduct(item,'m_DC_Smartpick_Clk_Prd_idx', $index + 1, '')">
+                        <div class="soldout" ng-show="item.soldout">SOLD OUT</div>
+                        <div class="thumb">
+                            <img ng-src="{{item.img_url}}" alt="{{item.goods_nm}}" err-src />
+                            <p class="flag">
+                                <span class="flag depart" ng-show="item.is_dept">롯데백화점</span>
+                                <span class="flag smart" ng-show="item.is_smartpick">스마트픽</span>
+                            </p>
+                        </div>
+                        <div class="info">
+                            <span class="tit"><span ng-show="item.brand_nm">[<span ng-bind-html="item.brand_nm"></span>]</span> <span ng-bind-html="item.goods_nm"></span></span>
+                            <p class="pr_box">
+                                <span class="price"><em>{{item.discounted_price|number}}</em>원<span ng-if="item.is_plan_prod">~</span></span>
+                                <span class="price2" ng-show="item.original_price!=item.discounted_price && item.original_price !=0 && !item.is_sale_promotion">
+                                    <em>{{item.original_price|number}}</em>원
+                                </span>
+                            </p>
+                            <!-- ng-show="item.has_coupon" -->
+                            <p class="coupon" ng-show="!item.is_sale_promotion"><span ng-show="item.original_price&&item.sale_rate!='0'&&item.original_price!=item.discounted_price"><em class="no">{{item.sale_rate}}</em><em class="po">%</em></span><span ng-show="item.has_coupon">쿠폰포함</span></p>
+                        </div>
+                    </a>
+
+<!--                    <div class="info2">
+                        <span class="review" ng-click="linkProduct(item,'tClickCode', $index + 1, '&tabIdx=1')">상품평 <em>({{item.review_count|number}})</em></span>
+                        <span class="wish_icon"  ng-class="{on:item.has_wish}" ng-click="addWishClick(item, 'tclickCode')">위시리스트</span>
+                    </div>
+-->                </div>
+                <!-- //일반상품 : 이미지형 -->
+
+            </li>
+        </ol>
+        <!--더보기-->
+        <div class="moreBtn">
+            <div class="smpMore" ng-click="viewMorePick()">{{branch_list.fav_branch.branch_nm | trim}} 스마트픽 상품 더보기<div class="icon"></div></div>
+        </div>
+    </section>
+    <!--배너 리스트-->
+	<section ng-if="smp.foot_ban_list.items" class="foot_banner" ng-class="{pad:screenType > 1}">
+        <ul>
+            <li ng-repeat="item in smp.foot_ban_list.items track by $index" ng-hide="$index%2 == 0 && $index==smp.foot_ban_list.items.length-1 && screenType > 1">
+                <a ng-click="linkUrl(item, 'm_DC_Smartpick_Clk_Ban_idx',  $index + 1)">
+                    <div class="img_wrap">
+                        <img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}" />
+                    </div>
+                </a>
+            </li>
+        </ul>
+	</section>
+        <!--픽업장소/시간 팝업-->
+        <div class="pop_pickup" ng-show="pickupFlag">
+            <div class="dim"  ng-click="hidePickup()"></div>
+            <div class="info">
+               <div class="box">
+                <div class="title">픽업 가능 장소/시간 안내</div>
+                <div class="list">
+                    <dl ng-repeat="item in smp.pickup_info.items">
+                       <dt>{{item.place}}</dt>
+                       <dd>{{item.time}}</dd>
+                    </dl>
+                </div>
+                <div class="close" ng-click="hidePickup()">닫기</div>
+                </div>
+            </div>
+        </div>
+        <!--영업일-->
+        <section class="calendar_holiday" ng-show="calendarHoliday" calendar-holiday>
+            <span class="close" ng-click="calenderHolidayClose()"></span>
+            <div class="head">
+                <h5>
+                   <strong ng-bind="date | date:'yyyy'"></strong> 년
+                   <strong ng-bind="date | date:'MM'"></strong> 월
+                </h5>
+            </div>
+            <section class="calendar">
+                <div class="week" ng-repeat="val in dateHead" ng-class="{sun:($index == 0)}">{{val}}</div>
+                <div ng-repeat="i in day track by $index"><span ng-class="{minute30:(dept_store.biz_dd_sct_class_nms[$index] == 'minute30'),minute60:(dept_store.biz_dd_sct_class_nms[$index] == 'minute60'),closed:(dept_store.biz_dd_sct_class_nms[$index] == 'closed')}"><strong ng-class="{on:(cdate.getDate() == i)}">{{i}}</strong></span></div>
+            </section>
+            <div class="info">
+                <ul>
+                    <li class="closed">휴점</li>
+                    <li class="minute30">30분 연장</li>
+                    <li class="minute60">60분 연장</li>
+                </ul>
+            </div>
+            <div class="info"><p class="time">영업시간 AM 10:30 ~ PM 08:00</p></div>
+        </section>
+        <div ng-if="smpcurDispNo.curDispNo == '5553631'">
+			<dungdung id="ddpop" start="201701271000" end="201701280000"></dungdung>
+        </div>
+</section>

@@ -1,0 +1,69 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplStyleShopMen" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/styleshop/styleshopmen_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/styleshopmen.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsStyleShopMen" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/common/lotte_ngswipe.js",
+					"lotte/resources_dev/styleshop/styleshopmen.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/styleshopmen.js"
+			}
+		},
+
+		"uglify" : {
+			"jsStyleShopMen" : {
+				"src" : "lotte/resources/<%= version %>/styleshopmen.js",
+				"dest" : "lotte/resources/<%= version %>/styleshopmen.min.js"
+			},
+			"tplStyleShopMen" : {
+				"src" : "lotte/resources/<%= version %>/styleshopmen.template.js",
+				"dest" : "lotte/resources/<%= version %>/styleshopmen.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssStyleShopMen" : {
+				"src" : [
+					"lotte/resources_dev/styleshop/styleshopmen.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/styleshopmen.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanStyleShopMen" : [
+				"lotte/resources/<%= version %>/styleshopmen.js",
+				"lotte/resources/<%= version %>/styleshopmen.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlStyleShopMen" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"styleshop/styleshop.html" : "styleshop/styleshopmen_dev.html"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,40 @@
+<section class="cscenter_main" ng-class="{cscenter_guccimain: gucci}">
+	<div ng-if="gucci" class="gucci_sub_header_wrap">
+		<header id="gucciSubHead" class="fixed" sub-header-each>
+			<h2><a ng-href="/mall/gucci/gucci_main.do?{{baseParam}}&tclick=G_LOGO"><span>GUCCI</span></a></h2>
+			<nav ng-show="!gucciLoading">
+				<ul class="ctg_list_big">
+					<li ng-repeat="citem in screenData.cate_list" ng-class="{big_on:screenData.selectCate1==citem.disp_no}" style="width:{{100/screenData.cate_list.length}}%">
+						<a href="#" class="btn_ctg_big" ng-click="menuCategory1Click(citem)">{{citem.disp_nm}}</a>
+					</li><!-- 2016.10.21 카테고리 반응형 -->
+				</ul>
+				<ul class="ctg_list_mid" ng-show="screenData.showAllCategory"><!-- <button class="open_btn" ng-click="showAllCategoryClick()">더보기</button> -->
+					<li ng-repeat="citem in screenData.cate_list"><a href="#" ng-click="menuCategoryClick(citem)">{{citem.disp_nm}}</a></li>
+				</ul>
+				<ul class="ctg_list_sml" ng-repeat="citem in screenData.cate_list" ng-show="screenData.selectCate1==citem.disp_no">
+					<li ng-repeat="citem2 in citem.sub_cate_list" ng-class="{on:screenData.selectCate2==citem2.disp_no}">
+						<a href="#" ng-click="menuCategory2Click(citem2)">{{citem2.disp_nm}}</a>
+						<div class="cca" ng-show="screenData.selectCate2==citem2.disp_no">
+							<a href="#" ng-repeat="citem3 in citem2.sub_cate_list" ng-click="menuCategory3Click(citem3)" class="ng-binding ng-scope">{{citem3.disp_nm}}</a>
+						</div>
+					</li>
+				</ul>
+			</nav>
+		</header>
+	</div>
+	<section class="gucci_sub_title">
+        <h3 class="title">FAQ</h3>
+    </section>
+    <div class="list faq">
+        <div class="slide_list">
+        	<dl ng-repeat="items in faqList" ng-click="faqDetail(items)" ng-hide="notExistItem()" ng-class="{show:faqDeatailView[items.bbc_no] === true}">
+                <dt name="items.bbc_no" ng-bind="items.bbc_tit_nm" ></dt>
+                <dd name="items.bbc_no" ng-bind-html="items.bbc_fcont" ng-class="{show:faqDeatailView[items.bbc_no] === true}" ng-if="faqDeatailView[items.bbc_no]"> </dd>
+            </dl>
+        </div>
+        <div class="list_more" ng-if="faqList.length != faq_tot_cnt">
+			<a href="#" ng-click="moreListClick()"><span>더보기 (<label id="currentCnt">{{faqList.length}}</label>/<label id="totalCnt">{{faq_tot_cnt}}</label>)</a></span>
+        </div>
+    </div>
+
+</section>

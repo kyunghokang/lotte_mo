@@ -1,0 +1,44 @@
+<div class="commentArea">
+	<div class="commentForm">
+		<fieldset>
+			<legend>댓글등록</legend>
+			<label ng-if="commentData.bbc_reg_gd_desc != '' || commentData.bbc_reg_gd_desc != undefined" ng-bind-html="commentData.bbc_reg_gd_desc" class="label" for="formPlanComment"></label>
+			<label ng-if="commentData.bbc_reg_gd_desc == '' || commentData.bbc_reg_gd_desc == undefined" class="label" for="formPlanComment">이 기획전에 대한 여러분의 의견을 나눠 보세요</label>
+			<div class="reg">
+				<textarea class="textarea" id="commentTxt" ng-trim ng-click="registerCheck()" ng-model="input.commentTxt" onchange="maxLengthCheck('200', null, this, commentTxt)" onkeyup="maxLengthCheck('200', null, this)" placeholder="※ 덧글은 최대 200bytes까지 작성가능">
+				{{input.commentTxt}}
+				</textarea>
+				<a class="btn" ng-click="newRegister()">등록하기</a>
+			</div>
+		</fieldset>
+	</div>
+	<div class="accordionWrap comment_list">
+		<ul>
+			<li ng-repeat="item in commentListData" ng-class="{on:commentListIndex == $index}">
+			    <!-- 아코디언 리스트 타이틀 -->
+			    <div class="accordionCnt">
+		    		<p class="cont" ng-click="commentListClick($index)">{{item.cont}}</p>
+		    		<div class="etc">
+		    			<p class="date"><strong>작성일</strong>{{item.wr_date}}</p>
+		    			<p class="name"><strong>작성자</strong> <span>{{idChange(item.mbr_id)}}</span></p>
+		    		</div>
+		    		<div class="btn">
+		    			<a ng-if="item.mbr_id == item.login_id" ng-click="deleteComment(item.bbc_no,$index)" class="del">삭제</a>
+		    			<a ng-click="commentListClick($index)" class="close">닫기</a>
+		    		</div>
+			    </div>
+			</li>
+		</ul>
+		<div>
+	        <a ng-if="commentData.page_now != commentData.page_total" ng-show="commentData.total_cnt != null" ng-click="getCommentListPaging(commentData.page_now,'','')" class="btn_more"><span class="ic"></span><em>더보기&nbsp;</em>({{commentData.page_cur_row_cnt}}/{{commentData.total_cnt}})</a>
+	    </div>
+	</div>
+	<div class="secretCommentsPop" ng-if="agrCommentsPop">
+		<div class="commentsPopCont">
+			<img src="http://image.lotte.com/lotte/images/mobile/commentsPopBg.png" alt="응모하시기 전아래사항을 확인해주세요. 본 이벤트에 참여하며, 아래 사항에 동의합니다.">
+			<p class="text_cont" ng-bind-html="pop_txt_cont"></p>
+			<a ng-click="commentsPopClose()" class="disAgreeBtn">동의하지 않습니다.</a>
+			<a ng-click="register()" class="agreeBtn">동의합니다.</a>
+		</div>
+	</div>
+</div>

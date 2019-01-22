@@ -1,0 +1,34 @@
+<section class="blankCd{{moduleData.blankCd}}">
+    <!-- 명절상품전용검색 (M2066) -->
+    <div class='sul_prd_search_wrap'>
+        <div class='sul_search_head'>
+            <h4><b>명절상품바로 찾아드립니다<em>!</em></b></h4>
+        </div>
+        <div class="input_search">
+            <!--<img class="bg_obj obj01" ng-src="http://image.lotte.com/lotte/mo2015/angular/main/bg_object_01.png" alt=""/>
+            <img class="bg_obj obj02" ng-src="http://image.lotte.com/lotte/mo2015/angular/main/bg_object_02.png" alt=""/>
+            <img class="bg_obj obj03" ng-src="http://image.lotte.com/lotte/mo2015/angular/main/bg_object_03.png" alt=""/>-->
+            <div class='input_search_wrap'>
+                <div>
+                    <form ng-model='sulPrdModel'>
+                        <input
+                            type='text'
+                            style="ime-mode:active;"
+                            ng-keydown="keyDown($event)"
+                            ng-keyup="keyUp()"
+                            ng-model='sulPrdModel.keyword'
+                            placeholder='찾으시는 상품 검색해주세요.'
+                            ng-focus="focusIn($event)"
+                            ng-blur="blur()"/>
+                        <span class="btn_ic ic_clear" ng-class="{showBtn:clearShow}" ng-click="keywordReset()">
+                            <img ng-src="http://image.lotte.com/lotte/mo2017/search/btn_close.png"/>
+                        </span>
+                        <span class="btn_ic ic_search" ng-click="logGAEvtModuleEach('검색', '검색');goSearch();">
+                            <img ng-src="http://image.lotte.com/lotte/mo2015/angular/common/ic_search_blue.png"/>
+                        </span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

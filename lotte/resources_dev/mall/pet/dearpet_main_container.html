@@ -1,0 +1,599 @@
+<section ng-show="contVisible" class="cont_minheight dearpet_v4_main v5">
+	<section class="pageLoading" ng-show="pageLoading"><p class="loading half"></p></section>
+	<section>
+		<div class='sub_header_wrap'>
+			<header id="head_sub" sub-header-each ng-show="subTitle" class="fixedSubHeader " ng-class="{fixedHeader: fixedHeader && subHeaderFixed && !appObj.isNativeHeader}">
+				<div class='head_sub_inner'>
+					<h2><a ng-click="mallMainClick('m_DC_SpeDisp_Dearpet_Clk_logo')"><span>Dear Pet</span></a></h2>
+					<a class='share' href='#' ng-click="petShare({shareImg:screenData.top_banner[0].img_url})"><span>공유</span></a>
+				</div>
+			</header>
+		</div>
+	</section>
+	<section ng-show="!pageLoading">
+		<section id="container">
+			<!-- 스와이프 배너 (메인 배너) -->
+			<!-- main-slider -->
+			<div ng-if='screenData.top_banner.length' class="mgtop10">
+				<div class="main_slide" id="roll-swipe-id-1500009205687" roll-swipe-banner rolling="true" interval="3000" width320="1" width640="2" width900="2" info="screenData.top_banner" >
+					<ul class="list swipeBox tp">
+						<li ng-repeat="item in screenData.top_banner track by $index">
+							<a href="#" ng-click="BannerClick(item.img_link, 'm_DC_SpeDisp_Dearpet_Clk_Ban_0{{$index + 1}}')">
+								<div class="img_wrap">
+									<img ng-src="{{item.img_url}}" alt="{{item.title}}">
+								</div>
+								<div class="text_wrap">
+									<span
+										class="title"
+										ng-bind-html="item.title"></span>
+									<span
+										class="subtitle"
+										ng-bind-html="item.subtitle"></span>
+								</div>
+							</a>
+						</li>
+					</ul>
+					<ol class="bullet indicator" ng-if='screenData.top_banner.length>1'>
+						<li ng-repeat="indicator in screenData.top_banner"></li>
+					</ol>
+				</div>
+			</div>
+
+			<!-- 메인 탑 행사 띠배너-->
+			<div class="top_band_banner" ng-if="screenData.event_banner" >
+				<a href="#" ng-click="tob_banner_click(screenData.event_banner.img_link)">
+					<img ng-src="{{screenData.event_banner.img_url}}">
+				</a>
+			</div>
+        
+			<!-- 카테고리 -->
+			<!--<pet-mall-ctg ng-if="screenData.cate_list.length"></pet-mall-ctg>-->
+			<div class="pet_ctg_v5" ng-if="screenData.cate_list.length">
+			    <div class="p_table" ng-repeat="item in [0, 4]">
+                    <div class="p_cell" ng-repeat="cell in [0,1,2,3] track by $index" ng-click="go_cate(screenData.cate_list[cell + item], {{cell + item}})">
+                        <div class="p_icon"><img ng-src="{{screenData.cate_list[cell + item].disp_img}}"></div>
+                        <p ng-bind-html="screenData.cate_list[cell + item].disp_nm"></p>
+                    </div>			        
+                </div>
+			</div>
+			
+			
+			
+			
+			<!-- //카테고리 -->
+
+			<!-- 등록 펫 목록 -->
+			<div class='pet_view' ng-class='{bobottomBoder:screenData.recom_list.length}'>
+				<!-- 등록된 데이타가 없을경우 -->
+				<div class='not_my_pet' ng-if="!screenData.pet_list.length">
+				    <div class="nmp_bg" ng-if="screenType == 1">
+                        <img class='bg_left' src='http://image.lotte.com/lotte/mo2018/mall/img-left-pattern.png'/>
+                        <img class='bg_right' src='http://image.lotte.com/lotte/mo2018/mall/img-right-pattern.png'/>                    				        
+				    </div>
+				    <div class="nmp_bg pad" ng-if="screenType >= 2">
+                        <img class='bg_left' src='http://image.lotte.com/lotte/mo2018/mall/p-1-left.png'/>
+                        <img class='bg_right' src='http://image.lotte.com/lotte/mo2018/mall/p-1-right.png'/>                    				        
+				    </div>
+				    <div class="nmp_cont">
+                       <div class="cell a">
+                            <button ng-click="petFunc('insert')">
+                                <span>
+                                    <img ng-src="http://image.lotte.com/lotte/mo2018/mall/img-profile.png" alt=''/>
+                                </span>
+                                <em>아이 등록하기</em>
+                            </button>				                                                              
+                       </div>
+                       <div class="cell b">
+                           <h3>우리 아이 등록하면<br><b>22%쿠폰</b> 바로 사용! </h3>
+                            <p>매월 1일 생일쿠폰과<br>선호하는 펫푸드 쿠폰도 드려요! </p>                           
+                       </div>                       
+				    </div>
+				</div>
+				<!-- 등록된 데이타가 있을경우 -->
+				<div class='my_pet_list' ng-if="screenData.pet_list.length">
+                    <div class='fix_foot'  ng-if="screenData.pet_list.length">
+                        <div class='view_post clear'>
+                            <button ng-click="petFunc('myswag')">내가 쓴 뽐내기</button>
+                            <button class='add_heart' ng-click="petFunc('likePost')">좋아한 게시물 </button>
+                        </div>
+                    </div>                
+				    <div class="my_pet_cont">
+                        <div class="nmp_bg" ng-if="screenType == 1">
+                            <img class='bg_left' src='http://image.lotte.com/lotte/mo2018/mall/img-2-left-pattern.png'/>
+                            <img class='bg_right' src='http://image.lotte.com/lotte/mo2018/mall/img-2-right-pattern.png'/>                    				        
+                        </div>
+                        <div class="nmp_bg pad" ng-if="screenType >= 2">
+                            <img class='bg_left' src='http://image.lotte.com/lotte/mo2018/mall/p-2-left.png'/>
+                            <img class='bg_right' src='http://image.lotte.com/lotte/mo2018/mall/p-2-right.png'/>                    				        
+                        </div>				        
+                        <div
+                            roll-swipe-banner
+                            refesh-size
+                            width320="1"
+                            width640="1"
+                            width900="1"
+                            endFnc="petSwipeEnd"
+                            info="screenData.pet_list"
+                            id="pet_list_swipe">
+                            <ul	class='mask swipeBox'>
+                                <li ng-repeat='item in screenData.pet_list' class=''>
+                                    <div class='table per100' ng-class='{petTabletLayout:screenType>1}'>
+                                        <div class='table-cell pet_photo' ng-click='petFunc("petPhoto",(item.bbs_no||item.bbc_no))'>
+                                            <div class='no_img' ng-if='item.type'> <!--!item.img_url&&-->
+                                                <img ng-if="item.type==10" ng-src='http://image.lotte.com/lotte/mo2018/mall/img-dog.png' alt=''/>
+                                                <img ng-if="item.type==20" ng-src='http://image.lotte.com/lotte/mo2018/mall/img-cat.png' alt=''/>
+                                                <img ng-if="item.type==30" ng-src='http://image.lotte.com/lotte/mo2018/mall/img-tinyanimal.png' alt=''/>
+                                            </div>
+                                            <figure
+                                                ng-if="item.img_url"
+                                                class='female'
+                                                ng-class='{
+                                                        female:item.gender=="F",
+                                                        male:item.gender=="M",
+                                                        horizontal:item.rotate_code==2,
+                                                        rotate180:item.rotate_code==3,
+                                                        rotate90:item.rotate_code==6,
+                                                        rotateM90:item.rotate_code==8,
+                                                        vertical:item.rotate_code==4,
+                                                        horizontalRotate90:item.rotate_code==5,
+                                                        horizontalRotateM90:item.rotate_code==7
+                                                    }'
+                                                style='background:url({{item.img_url}}) no-repeat center center; background-size:cover'>
+                                            </figure>
+                                            <div class="edit" ng-click="petFunc('edit',(item.bbs_no||item.bbc_no))">
+                                                <!--정보수정-->
+                                                <img ng-src="http://image.lotte.com/lotte/mo2018/mall/pet_edit_pen.png">
+                                            </div>
+                                        </div>
+                                        <div class='table-cell pet_info'>
+                                            <div class='info-body'>
+                                                <b>{{item.name}}</b>
+                                                <p><span>생일</span>{{item.birthday}}</p>
+                                                <p><span>성별</span>{{item.gender=="M"?"남아":"여아"}}</p>
+                                                <p ng-show="item.brand_nm"><span>선호브랜드</span>{{item.brand_nm}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>				        
+				        
+				    </div>
+				
+
+				</div>
+				<ul class='my_pet_indicator' ng-if="screenData.pet_list.length>1">
+					<li class="active"><b>{{petSwipeIndex + 1}}</b>/{{screenData.pet_list.length}}</li>
+				</ul>
+
+			</div>
+			<!-- // 등록 펫 목록 -->
+
+			<!-- 등록된 펫 이 있을경우 펫과 관련된 상품 목록 -->
+			<div class='pet_recoms dear_wrap new_dear_wrap' ng-if="screenData.pet_list.length&&screenData.recom_list.length">
+				<div class='align_block clear'>
+					<div class="recomm_pet"
+						ng-repeat="group in screenData.recom_list"
+						ng-class='{
+								listType1:screenType>1&&screenData.recom_list.length<2,
+								listType2:screenType>1&&screenData.recom_list.length>1,
+								firstline:$index == 0 && screenData.recom_list.length > 1
+							}'>
+						<div class='recom_head'>
+							<h3>{{group.title | replacebr}}</h3>
+						</div>
+						<ul class='clear pet_recom_item_list list_wrap three'>
+							<li ng-repeat='item in group.items'>
+								<a href="#" ticlick-old='m_DC_SpeDisp_Dearpet_Clk_Prd_A01' ng-click="mallProductClick(item.goods_no, group.tclick+($index+1) )">
+									<div class="img_wrap"><img ng-src="{{item.sImgUrl}}" alt="{{items.brnd_nm}}"></div>
+									<div class='goods_info'>
+										<em ng-if="item.brnd_nm">[{{item.brnd_nm}}]</em>
+										<span class="" ng-bind-html="item.goods_nm"></span>
+									</div>
+									<span class="price"><span>{{item.price2||item.price1}}</span>원</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+			<!--20170926펫상식(스토리) 배너 -->
+            <div ng-if="screenData.storyBanner!=null" class="mypet_story_wrap">	
+                <h3 class="title">우리아이에게 딱 맞는 스토리</h3>	
+	            <div ng-if="screenData.storyBanner.items.length >1" class="bnr_swipe story_swipe">
+	                <div class="swipe_wrap"  id="roll-swipe-id-150000960" rolling="true" roll-swipe-banner interval="3000" width320="1" width640="1" width900="1" info="screenData.storyBanner.items" >
+	                    <ul class="swipeBox">
+	                        <li ng-repeat="bnrItem in screenData.storyBanner.items" ng-click="story_banner_swipe_click(bnrItem.img_link,$index+1)" >
+	                        	
+	                        	<a class="inner_img_wrap">
+	                        		<span class="story_img" style="background:url({{bnrItem.img_url}}) center center no-repeat;"></span>
+	                        		<div class="title"><span class="content floating_text" ng-bind-html='bnrItem.title'></span></div>
+	                        	</a>
+	                        </li>
+	                    </ul>
+	                    <ol class="bullet indicator" ng-if="screenData.storyBanner.items.length>1" >
+		                    <li ng-repeat="indicator in screenData.storyBanner.items"><span></span></li>
+		                </ol>
+	                </div>
+	                
+	            </div>
+	            <div ng-if="screenData.storyBanner.items.length < 2" class="bnr_swipe story_swipe">
+	            	<div class="swipe_wrap" >	             
+	                    <ul class="swipeBox">
+	                       <li ng-repeat="bnrItem in screenData.storyBanner.items" ng-click="story_banner_swipe_click(bnrItem.img_link,$index+1)">
+	                        <a class="inner_img_wrap">	                        		
+	                        		<span class="story_img" style="background:url({{bnrItem.img_url}})center center no-repeat;"></span>
+	                        		<div class="title"><span class="content floating_text" ng-bind-html='bnrItem.title'></span></div>
+	                        	</a>
+	                        </li>
+	                    </ul>
+	                </div>
+	            </div>    
+	        </div>
+			<!--//20170926펫상식(스토리) 배너 -->
+
+			<div class="list_area" ng-if="screenData.brdBestList || screenData.weekBestList">
+				<section class="dear_wrap brd_best" ng-if="screenData.brdBestList && screenData.brdBestList.brd_list.items.length > 2">
+					<h3 class="title type2">{{screenData.brdBestList.title}}
+    					<em class="brdbest_view" ng-click="BannerClick(screenData.brdBestList.more_url, 'm_DC_SpeDisp_Dearpet_Clk_Prd_more')">더보기 <img src="http://image.lotte.com/lotte/mo2018/mall/ic-seemore-arrow.png"></em>
+					</h3>
+					
+					<div class="list_wrap">
+					    <div class="box3">
+					        <div class="box3_left" ng-click="BannerClick(screenData.brdBestList.brd_list.items[0].link_url, 'm_DC_SpeDisp_Dearpet_Clk_Prd_A01')">
+                                <div class="img_con">
+                                    <img ng-src="{{screenData.brdBestList.brd_list.items[0].img_url}}">
+                                </div>					            
+                                <div class="txt_con">
+                                    <p>{{screenData.brdBestList.brd_list.items[0].brd_nm}}</p>
+                                    <p>{{screenData.brdBestList.brd_list.items[0].sub_title}}</p>                                                                            
+                                </div>                                
+					        </div>
+					        <div class="box3_right">
+                                <div class="cell" ng-click="BannerClick(screenData.brdBestList.brd_list.items[1].link_url, 'm_DC_SpeDisp_Dearpet_Clk_Prd_A02')">
+                                    <div class="img_con t2">
+                                        <img ng-src="{{screenData.brdBestList.brd_list.items[1].img_url}}">
+                                    </div>                                   
+                                    <div class="txt_con t2">
+                                        <p>{{screenData.brdBestList.brd_list.items[1].brd_nm}}</p>
+                                        <p>{{screenData.brdBestList.brd_list.items[1].sub_title}}</p>                                                                            
+                                    </div>
+                                </div>
+                                <div class="cell bdt" ng-click="BannerClick(screenData.brdBestList.brd_list.items[2].link_url, 'm_DC_SpeDisp_Dearpet_Clk_Prd_A02')">
+                                    <div class="img_box">
+                                        <div class="img_con t2">
+                                            <img ng-src="{{screenData.brdBestList.brd_list.items[2].img_url}}">
+                                        </div>                                   
+                                    </div>                                   
+                                    <div class="txt_con t2">
+                                        <p>{{screenData.brdBestList.brd_list.items[2].brd_nm}}</p>
+                                        <p>{{screenData.brdBestList.brd_list.items[2].sub_title}}</p>                                                                            
+                                    </div>
+                                </div>					            
+					        </div>
+					    </div>					
+					</div>
+				</section>
+				<section class="dear_wrap list_area week_best" ng-if="screenData.weekBestList&&screenData.weekBestList.length">
+					<h3 class="title">한주간 Best</h3>
+					<ul class="list_wrap three">
+						<li ng-repeat="item in screenData.weekBestList" ng-if="$index<3">
+							<a href="#" ng-click="mallProductClick(item.goods_no, 'm_DC_SpeDisp_Dearpet_Clk_Prd_B0{{$index + 1}}')">
+								<div class="img_wrap"><img ng-src="{{item.sImgUrl}}" alt="{{item.goods_nm}}"></div>
+								<div class='goods_info'>
+									<em ng-if="item.brnd_nm">[{{item.brnd_nm}}]</em>
+									<span ng-bind-html="item.goods_nm"></span>
+								</div>
+								<span class="price"><span>{{item.price2}}</span>원<var ng-if="item.goodsCmpsCd == '30'">~</var></span>
+							</a>
+						</li>
+					</ul>
+				</section>
+			</div>
+		
+			<div class="list_area isTablet">
+				<section class="dear_wrap list_area theme_plan"  ng-if="screenData.themePlan">
+					<p class="subtitle" ng-bind-html="screenData.themePlan.subtitle"></p>
+					<h3 class="title" ng-bind-html="screenData.themePlan.title"></h3>
+					<div class="plan">
+						<a href="#" ng-click="BannerClick(screenData.themePlan.plan.img_link, 'm_DC_SpeDisp_Dearpet_Clk_Ban_07')">
+							<div class="img_wrap">
+								<img ng-src="{{screenData.themePlan.plan.img_url}}">
+							</div>
+							<div class="txt_area">
+								<p class="plan_title" ng-bind-html="screenData.themePlan.plan.title"></p>
+								<span class="plan_subtitle" ng-bind-html="screenData.themePlan.plan.subtitle"></span>
+							</div>
+						</a>
+					</div>
+					<ul class="list_wrap three">
+						<li ng-repeat="item in screenData.themePlan.goods_list.items" ng-if="$index<3">
+							<a href="#" ng-click="mallProductClick(item.goods_no, 'm_DC_SpeDisp_Dearpet_Clk_Prd_C0{{$index + 1}}')">
+								<div class="img_wrap"><img ng-src="{{item.img_url}}" alt="{{item.goods_nm}}"></div>
+								<div class='goods_info'>
+									<em ng-if="item.brnd_nm">[{{item.brnd_nm}}]</em>
+									<span  ng-bind-html="item.goods_nm"></span>
+								</div>
+								<span class="price"><span>{{item.price | number}}</span>원<var ng-if="item.is_plan_prod == true">~</var></span>
+							</a>
+						</li>
+					</ul>
+				</section>
+						<!-- 20170927 수의사 배너 첫번째 위치 /배너 유입이 지나치게 많아질경우 두번째 위치(최하단 캠페인영역위)로 프로에서 변경 -->
+						<!-- 20170927 수의사 배너 첫번째 위치 /배너 유입이 지나치게 많아질경우 두번째 위치(최하단 캠페인영역위)로 프로에서 변경 -->
+		<div class="advice_banner advece_banner_phone" ng-repeat="item in screenData.advice_banner.items" ng-if="item.banner_position=='1'">
+			<a href="" ng-click="advice_banner_click(item.img_link,petTclickList.ban11)">
+				<img ng-src="{{item.img_url}}">
+			</a>
+		</div>
+		<!-- //20170927 수의사 배너 첫번째 위치 -->
+				<!-- 폰용 -->
+				<div ng-if="screenType==1">
+					<section class="dear_wrap list_area social swag">
+						<p class="subtitle">도전! 스타일펫</p>
+						<h3 class="title">뽐내기</h3>
+						<a data-ctg-disp-no="5566438" data-ctg-name="뽐내기" data-ctg-before-disp-no="5566305" data-ctg-depth="2" class="more"><span ng-click="galleryMoreClick($event, 'm_DC_SpeDisp_Dearpet_Clk_Btn03')">더보기</span></a>
+						<ul class="list_wrap">
+							<li>
+								<div class="img_wrap" data-ctg-disp-no="5566438" data-ctg-name="뽐내기" data-ctg-before-disp-no="5566305" data-ctg-depth="2">
+									<!-- img ng-click="galleryMoreClick($event, 'm_DC_SpeDisp_Dearpet_Clk_Btn03')" ng-src="{{screenData.swagView.img_url}}"-->
+									<div ng-if="screenData.swagView.img_url" ng-click="galleryMoreClick($event, 'm_DC_SpeDisp_Dearpet_Clk_Btn03')" class='cover' style='background:url({{screenData.swagView.img_url}}) no-repeat center center; background-size:cover; height:300px'></div>
+									<div class="count_wrap">
+										<span class="like">{{screenData.swagView.like_count}}</span>
+										<span class="reply">{{screenData.swagView.reply_count}}</span>
+									</div>
+								</div>
+								<div class="txt_wrap">
+									<span class="userphoto">
+										<em
+											class='pet_img'
+											ng-if="screenData.swagView.user_img"
+											ng-class='{
+											   horizontal:screenData.swagView.rotate_code==2,
+											   rotate180:screenData.swagView.rotate_code==3,
+											   rotate90:screenData.swagView.rotate_code==6,
+											   rotateM90:screenData.swagView.rotate_code==8,
+											   vertical:screenData.swagView.rotate_code==4,
+											   horizontalRotate90:screenData.swagView.rotate_code==5,
+											   horizontalRotateM90:screenData.swagView.rotate_code==7
+										    }'
+											style='background:url({{screenData.swagView.user_img}}) center center no-repeat'>
+										</em>
+										<img ng-if="!screenData.swagView.user_img" ng-src="http://image.lotte.com/lotte/mo2015/angular/mall/v_dearpet_swag_photo.gif" />
+									</span>
+									<p data-ctg-disp-no="5566438" data-ctg-name="뽐내기" data-ctg-before-disp-no="5566305" data-ctg-depth="2"><span ng-click="galleryMoreClick($event, 'm_DC_SpeDisp_Dearpet_Clk_Btn03')" ng-bind-html="screenData.swagView.text"></span></p>
+								</div>
+							</li>
+						</ul>
+					</section>
+				</div>
+				<!-- 태블릿용 -->
+				<div ng-if="screenType>1">
+					<section class="dear_wrap list_area social photo_area photo_review">
+						<p class="subtitle">BEST</p>
+						<h3 class="title">#포토후기</h3>
+						<a data-ctg-disp-no="5566437" data-ctg-name="포토후기" data-ctg-before-disp-no="5566305" data-ctg-depth="2" class="more"><span ng-click="galleryMoreClick($event, 'm_DC_SpeDisp_Dearpet_Clk_Btn01')">더보기</span></a>
+						<ul class="list_wrap">
+							<li>
+								<div class="txt_wrap">
+									<span class="userphoto" data-ctg-disp-no="5566437" data-ctg-name="포토후기" data-ctg-before-disp-no="5566305" data-ctg-depth="2">
+										<em
+											class='pet_img'
+											ng-if="screenData.photoView.user_img"
+											ng-class='{
+											   horizontal:screenData.photoView.rotate_code==2,
+											   rotate180:screenData.photoView.rotate_code==3,
+											   rotate90:screenData.photoView.rotate_code==6,
+											   rotateM90:screenData.photoView.rotate_code==8,
+											   vertical:screenData.photoView.rotate_code==4,
+											   horizontalRotate90:screenData.photoView.rotate_code==5,
+											   horizontalRotateM90:screenData.photoView.rotate_code==7
+										    }'
+											style='background:url({{screenData.photoView.user_img}}) center center no-repeat'>
+										</em>
+										<img
+											ng-if="!screenData.photoView.user_img"
+											ng-click="galleryMoreClick($event, 'm_DC_SpeDisp_Dearpet_Clk_Btn01')"
+											ng-src="http://image.lotte.com/lotte/mo2015/angular/mall/v_dearpet_photoview_photo.gif" /></span>
+									<p>
+										<span ng-if="!screenData.photoView.user_img">{{screenData.photoView.user_name.substr(0,6) | hidestr}}</span>
+										<span ng-if="screenData.photoView.user_img">{{screenData.photoView.user_name}}</span>
+									</p>
+								</div>
+								<p data-ctg-disp-no="5566437" data-ctg-name="포토후기" data-ctg-before-disp-no="5566305" data-ctg-depth="2">상품후기: <span ng-click="galleryMoreClick($event, 'm_DC_SpeDisp_Dearpet_Clk_Ban_10')" ng-bind-html="screenData.photoView.text"></span></p>
+								<div class="img_wrap" data-ctg-disp-no="5566437" data-ctg-name="포토후기" data-ctg-before-disp-no="5566305" data-ctg-depth="2"><img ng-click="galleryMoreClick($event, 'm_DC_SpeDisp_Dearpet_Clk_Ban_10')" ng-src="{{screenData.photoView.img_url}}"></div>
+								<div class="prod" ng-click="mallProductClick(screenData.photoView.goods_no, 'm_DC_SpeDisp_Dearpet_Clk_Prd_D0{{$index + 1}}')">
+									<div class="imgArea"><span class="img_wrap"><img ng-src="{{screenData.photoView.goods_img}}" alt="{{screenData.photoView.goods_nm}}"></span></div>
+									<div class="txt_wrap">
+										<span class="title"><em ng-if="screenData.photoView.brnd_nm">[{{screenData.photoView.brnd_nm}}]</em><var ng-bind-html="screenData.photoView.goods_nm"></var></span>
+										<span class="price"><span>{{screenData.photoView.price | number}}</span>원<var ng-if="screenData.dearpetGramView.is_plan_prod == true">~</var></span>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</section>
+				</div>
+			</div>
+	
+			<div class="list_area isTablet">
+				<section class="dear_wrap list_area social photo_area dearpetgram">
+					<p class="subtitle">실시간 이야기</p>
+					<h3 class="title">#미뚜그램</h3>
+					<a data-ctg-disp-no="5566436" data-ctg-name="디어펫그램" data-ctg-before-disp-no="5566305" data-ctg-depth="2" class="more"><span ng-click="galleryMoreClick($event, 'm_DC_SpeDisp_Dearpet_Clk_Btn02')">더보기</span></a>
+					<ul class="list_wrap">
+						<li ng-repeat="item in screenData.dearpetGramView.items">
+							<a data-ctg-disp-no="5566436" data-ctg-name="디어펫그램" data-ctg-before-disp-no="5566305" data-ctg-depth="2"><img ng-click="gallerydearpetClick($event, item.bbc_no, 'm_DC_SpeDisp_Dearpet_Clk_Prd_E0{{$index + 1}}')" ng-src="{{item.img_url}}"/></a>
+						</li>
+					</ul>
+				</section>
+
+				<!-- 폰용 -->
+				<div ng-if="screenType==1">
+					<section class="dear_wrap list_area social photo_area photo_review">
+						<p class="subtitle">BEST</p>
+						<h3 class="title">#포토후기</h3>
+						<a data-ctg-disp-no="5566437" data-ctg-name="포토후기" data-ctg-before-disp-no="5566305" data-ctg-depth="2" class="more"><span ng-click="galleryMoreClick($event, 'm_DC_SpeDisp_Dearpet_Clk_Btn01')">더보기</span></a>
+						<ul class="list_wrap">
+							<li>
+								<div class="txt_wrap">
+									<span class="userphoto" data-ctg-disp-no="5566437" data-ctg-name="포토후기" data-ctg-before-disp-no="5566305" data-ctg-depth="2">
+										<em
+											class='pet_img'
+											ng-if="screenData.photoView.user_img"
+											ng-class='{
+											   horizontal:screenData.photoView.rotate_code==2,
+											   rotate180:screenData.photoView.rotate_code==3,
+											   rotate90:screenData.photoView.rotate_code==6,
+											   rotateM90:screenData.photoView.rotate_code==8,
+											   vertical:screenData.photoView.rotate_code==4,
+											   horizontalRotate90:screenData.photoView.rotate_code==5,
+											   horizontalRotateM90:screenData.photoView.rotate_code==7
+										    }'
+											style='background:url({{screenData.photoView.user_img}}) center center no-repeat'>
+										</em>
+										<img
+											ng-if="!screenData.photoView.user_img"
+											ng-click="galleryMoreClick($event, 'm_DC_SpeDisp_Dearpet_Clk_Btn01')"
+											ng-src="http://image.lotte.com/lotte/mo2015/angular/mall/v_dearpet_photoview_photo.gif" />
+									</span>
+									<p>
+										<span ng-if="!screenData.photoView.user_img">{{screenData.photoView.user_name.substr(0,6) | hidestr}}</span>
+										<span ng-if="screenData.photoView.user_img">{{screenData.photoView.user_name}}</span>
+									</p>
+								</div>
+								<p data-ctg-disp-no="5566437" data-ctg-name="포토후기" data-ctg-before-disp-no="5566305" data-ctg-depth="2">상품후기: <span ng-click="galleryMoreClick($event, 'm_DC_SpeDisp_Dearpet_Clk_Ban_10')" ng-bind-html="screenData.photoView.text"></span></p>
+								<div class="img_wrap" data-ctg-disp-no="5566437" data-ctg-name="포토후기" data-ctg-before-disp-no="5566305" data-ctg-depth="2">
+									<!-- img ng-click="galleryMoreClick($event, 'm_DC_SpeDisp_Dearpet_Clk_Ban_10')" ng-src="{{screenData.photoView.img_url}}" -->
+									<div ng-if="screenData.photoView.img_url" class='cover photo' ng-click="galleryMoreClick($event, 'm_DC_SpeDisp_Dearpet_Clk_Ban_10')" style="background:url({{screenData.photoView.img_url}}) no-repeat center center"></div>
+								</div>
+								<div class="prod" ng-click="mallProductClick(screenData.photoView.goods_no, 'm_DC_SpeDisp_Dearpet_Clk_Prd_D0{{$index + 1}}')">
+									<div class="imgArea"><span class="img_wrap"><img ng-src="{{screenData.photoView.goods_img}}" alt="{{screenData.photoView.goods_nm}}"></span></div>
+									<div class="txt_wrap">
+										<div class='goods_info no'>
+											<span class="title"><em ng-if="screenData.photoView.brnd_nm">[{{screenData.photoView.brnd_nm}}]</em><var ng-bind-html="screenData.photoView.goods_nm"></var></span>
+										</div>
+										<span class="price pd10"><span>{{screenData.photoView.price | number}}</span>원<var ng-if="screenData.dearpetGramView.is_plan_prod == true">~</var></span>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</section>
+				</div>
+				<!-- 태블릿용 -->
+				<div ng-if="screenType>1">
+					<section class="dear_wrap list_area social swag">
+						<p class="subtitle">도전! 스타일펫</p>
+						<h3 class="title">뽐내기</h3>
+						<a
+							data-ctg-disp-no="5566438"
+							data-ctg-name="뽐내기"
+							data-ctg-before-disp-no="5566305"
+							data-ctg-depth="2"
+							class="more">
+							<span ng-click="galleryMoreClick($event, 'm_DC_SpeDisp_Dearpet_Clk_Btn03')">
+								더보기
+							</span>
+						</a>
+						<ul class="list_wrap">
+							<li>
+								<div
+									data-ctg-disp-no="5566438"
+									data-ctg-name="뽐내기"
+									data-ctg-before-disp-no="5566305"
+									data-ctg-depth="2"
+									class="img_wrap">
+									<img
+										ng-click="galleryMoreClick($event, 'm_DC_SpeDisp_Dearpet_Clk_Btn03')"
+										ng-src="{{screenData.swagView.img_url}}">
+									<div class="count_wrap">
+										<span class="like">{{screenData.swagView.like_count}}</span>
+										<span class="reply">{{screenData.swagView.reply_count}}</span>
+									</div>
+								</div>
+								<div class="txt_wrap">
+									<span class="userphoto">
+										<em
+											class='pet_img'
+											ng-if="screenData.swagView.user_img"
+											ng-class='{
+											   horizontal:screenData.swagView.rotate_code==2,
+											   rotate180:screenData.swagView.rotate_code==3,
+											   rotate90:screenData.swagView.rotate_code==6,
+											   rotateM90:screenData.swagView.rotate_code==8,
+											   vertical:screenData.swagView.rotate_code==4,
+											   horizontalRotate90:screenData.swagView.rotate_code==5,
+											   horizontalRotateM90:screenData.swagView.rotate_code==7
+										    }'
+											style='background:url({{screenData.swagView.user_img}}) center center no-repeat'>
+										</em>
+										<img
+											ng-if="!screenData.swagView.user_img"
+											ng-src="http://image.lotte.com/lotte/mo2015/angular/mall/v_dearpet_swag_photo.gif" />
+									</span>
+									<p data-ctg-disp-no="5566438" data-ctg-name="뽐내기" data-ctg-before-disp-no="5564054" data-ctg-depth="2"><span ng-click="galleryMoreClick($event, 'm_DC_SpeDisp_Dearpet_Clk_Btn03')"><em ng-bind-html="screenData.swagView.text"></em></span></p>
+								</div>
+							</li>
+						</ul>
+					</section>
+				</div>
+			</div>										<!-- 20170927 수의사 배너 첫번째 위치 /배너 유입이 지나치게 많아질경우 두번째 위치(최하단 캠페인영역위)로 프로에서 변경 -->
+		<div class="advice_banner advece_banner_pad"  ng-repeat="item in screenData.advice_banner.items" ng-if="item.banner_position=='1'">
+			<a href="" ng-click="advice_banner_click(item.img_link,petTclickList.ban11)">
+				<img ng-src="{{item.img_url}}">
+			</a>
+		</div>
+		<!-- //20170927 수의사 배너 첫번째 위치 -->
+			<section class="dear_wrap statege">
+				<ul class="tab">
+					<li class="a"><a ng-click="tabDepChange('a');" ng-class="{on:screenData.take == 'a'}">강아지</a></li>
+					<li class="b"><a ng-click="tabDepChange('b');" ng-class="{on:screenData.take == 'b'}">고양이</a></li>
+				</ul>
+				<div class="tab_contents tab01" ng-if="screenData.take == 'a'">
+					<p class="subtitle" ng-bind-html="screenData.strategeList[0].subtitle"></p>
+					<h3 class="title" ng-bind-html="screenData.strategeList[0].title"></h3>
+					<ul class="list_wrap two">
+						<li ng-repeat="item in screenData.strategeList[0].list.items" ng-if="$index<4">
+							<a href="#" ng-click="stategeBannerClick(item.img_link, 'm_DC_SpeDisp_Dearpet_Clk_Prd_F0{{$index + 1}}')">
+								<div class="img_wrap">
+									<img ng-src="{{item.img_url}}" alt="{{item.title}}">
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="tab_contents tab02" ng-if="screenData.take == 'b'">
+					<p class="subtitle" ng-bind-html="screenData.strategeList[1].subtitle"></p>
+					<h3 class="title" ng-bind-html="screenData.strategeList[1].title"></h3>
+					<ul class="list_wrap two">
+						<li ng-repeat="item in screenData.strategeList[1].list.items" ng-if="$index<4">
+							<a href="#" ng-click="stategeBannerClick(item.img_link, 'm_DC_SpeDisp_Dearpet_Clk_Prd_G{{$index + 1}}')">
+								<div class="img_wrap">
+									<img ng-src="{{item.img_url}}" alt="{{item.title}}">
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</section>
+				<!-- 20170927 수의사 배너 두번째 위치 -->
+			<div class="advice_banner" ng-repeat="item in screenData.advice_banner.items track by $index" ng-if="item.banner_position=='2'">
+				<a href="" ng-click="advice_banner_click(item.img_link,petTclickList.ban12)">
+					<img ng-src="{{item.img_url}}">
+				</a>
+			</div>
+			<!-- 20170927 수의사 배너 두번째 위치 -->
+			<section class="dear_wrap dearpet_campain">
+				<h3 class="title" ng-click='appDown()'>미미뚜뚜 캠페인</h3>
+				<ul class="list_wrap two">
+					<li ng-repeat="item in screenData.dearpetCampainList" ng-if="$index<2">
+						<a href="#" ng-click="BannerClick(item.img_link, 'm_DC_SpeDisp_Dearpet_Clk_Ban_0{{$index + 8}}')">
+							<div class="img_wrap"><img ng-src="{{item.img_url}}" alt="{{item.title}}"></div>
+							<span class="title" ng-bind-html="item.title"></span>
+						</a>
+					</li>
+				</ul>
+			</section>
+		</section>
+	</section>
+</section>

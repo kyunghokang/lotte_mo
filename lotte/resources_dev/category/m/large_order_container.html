@@ -1,0 +1,116 @@
+<section ng-show="contVisible" class="cont_minheight">
+    <div ng-bind-html="pageData.html | toTrustedHtml" class="mt10" ng-if="pageData.html != ''">        
+    </div>
+  
+    <div class="baseBox mt10">
+        <div class="utable">
+            <div class="ucell ls">성명</div>
+            <div class="ucell rs">
+                <input type="text" ng-model="oInfo.name" maxlength="20" id="oname" ng-click="check_login()"><!--disabled-->
+            </div>
+        </div>        
+        <div class="utable">
+            <div class="ucell ls">통합회원 ID</div>
+            <div class="ucell rs">
+                <input type="text" ng-model="oInfo.id" maxlength="20" id="oid"  ng-click="check_login()">
+            </div>
+        </div>
+        <div class="utable">
+            <div class="ucell ls">연락처</div>
+            <div class="ucell rs ph">
+                <select name="pfn" class="phone1" ng-model="oInfo.tel1">
+                    <option value="010">010</option>
+                    <option value="011">011</option>
+                    <option value="016">016</option>
+                    <option value="017">017</option>
+                    <option value="018">018</option>
+                    <option value="019">019</option>
+                    <option value="0502">0502</option>
+                    <option value="0505">0505</option>
+                </select>               
+                <input type="text" maxlength="20" class="phone2" ng-model="oInfo.tel2" id="otel2"  ng-click="check_login()">
+            </div>
+        </div>
+        <div class="utable">
+            <div class="ucell ls">E-mail</div>
+            <div class="ucell rs">
+                <input type="text" ng-model="oInfo.email" id="oemail"  ng-click="check_login()">                
+            </div>
+            <div class="ucell rs2">@</div>
+            <div class="ucell rs3">
+                <select name="pfn" class="phone1" ng-model="oInfo.email2" ng-if="!emailview" ng-change="emailchange()">
+                    <option value="naver.com">naver.com</option>
+                    <option value="hanmail.net">hanmail.net</option>
+                    <option value="gmail.com">gmail.com</option>
+                    <option value="nate.com">nate.com</option>
+                    <option value="hotmail.com">hotmail.com</option>
+                    <option value="yahoo.co.kr">yahoo.co.kr</option>
+                    <option value="">직접입력</option>
+                </select>                              
+                <input type="text" ng-model="oInfo.email2" id="oemail2" ng-if="emailview">
+            </div>
+        </div>                                
+    </div>
+    <!--관심품목 01 ~ 05-->
+    <div ng-repeat="box in box_count track by $index" ng-class="{other:$index > 1,view:view_more}">
+        <div class="titBox mt10">관심품목0{{box}}</div>
+        <div class="baseBox">
+            <div class="utable">
+                <div class="ucell ls">품목</div>
+                <div class="ucell rs">
+                    <select ng-class="{s2:oInfo.a[$index] == ''}" ng-model="oInfo.a[$index]" id="a{{$index}}">
+                        <option value="" selected>선택해주세요.</option>
+                        <option value="{{item}}" ng-repeat="item in data_pm">{{item}}</option>
+                    </select>                
+                </div>
+            </div> 
+            <div class="utable">
+                <div class="ucell ls">가격대</div>
+                <div class="ucell rs">
+                    <select ng-class="{s2:oInfo.b[$index] == ''}" ng-model="oInfo.b[$index]" id="b{{$index}}">
+                        <option value="" selected>선택해주세요.</option>
+                        <option value="{{item}}만원대" ng-repeat="item in data_num">{{item}}만원대 </option>
+                    </select>                
+                </div>
+            </div> 
+            <div class="utable">
+                <div class="ucell ls">수량</div>
+                <div class="ucell rs">
+                    <select ng-class="{s2:oInfo.c[$index] == ''}" ng-model="oInfo.c[$index]" id="c{{$index}}">
+                        <option value="" selected>선택해주세요.</option>
+                        <option value="{{item}}개" ng-repeat="item in data_num">{{item}}개</option>
+                    </select>                
+                </div>
+            </div>                        
+            <div ng-if="$index == 1 && !view_more" class="moreBox">
+                <div class="btn" ng-click="viewMore()"><span>+</span> 상담 품목 추가 입력하기 (2/5)</div>
+            </div>                           
+        </div> 
+    </div>
+     
+     <!--추가메모사항-->
+    <div class="baseBox mt10">
+        <p>추가 메모사항</p>
+        <div class="mt10">
+            <textarea placeholder="입력해주세요." id="memo" ng-change="change_field()" ng-model="memo"></textarea>
+        </div>
+        <div class="byte">({{memo_count}}/5,000byte)</div>
+        <div class="ainfo">
+            <b>개인정보 수집 이용 동의 안내</b>
+            <p class="txt">기재된 개인정보(성명/ID/E-mail/핸드폰)를 롯데쇼핑(주) e커머스 사업본부에 제공함을 동의합니다.<br>
+            기재된 개인정보는 대량주문 전화상담을 위해 사용되며, <br>금번 명절행사 기간 내 목적 소멸 시 지체없이 파기 됩니다.</p>
+            <input type="checkbox" id="agree" class="check01" ng-model="agree"><label for="agree" class="txt">개인정보 수집 이용에 동의합니다.</label>
+        </div>
+        
+        <div class="submit_btn">
+            <div class="btn close" ng-click="again()">다시 입력하기</div>
+            <div class="btn change" ng-click="register()">상담 신청하기</div>
+        </div>
+    </div>
+    <!--상품목록-->
+    <div ng-if="pageData.prdList.length > 0" class="mt10">
+        <div ng-controller="productCtrl">
+            <div product-container template-type="list" total-count="pageData.prdList.length" templatetype="templateType" products="pageData.prdList"  more-product-continer="getProductDataLoad()"></div>
+        </div>    
+    </div>
+</section>

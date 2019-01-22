@@ -1,0 +1,29 @@
+{
+    "tasks" : {
+        "concat" : {
+            "jsEventSmartpick" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/event/smartpick.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/smartpick.js"
+            }
+        },
+
+        "uglify" : {
+            "jsEventSmartpick" : {
+                "src" : "lotte/resources/<%= version %>/smartpick.js",
+                "dest" : "lotte/resources/<%= version %>/smartpick.min.js"
+            }
+        },
+
+
+        "clean" : {
+            "cleanEventSmartpick" : [
+                "lotte/resources/<%= version %>/smartpick.js"
+            ]
+        }
+    }
+}

@@ -1,0 +1,69 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplsoGoodBenefit" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mylotte/sub/so_good_benefit_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/soGoodBenefit.template.js"
+            }
+        },
+
+        "concat" : {
+            "jssoGoodBenefit" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mylotte/sub/so_good_benefit.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/soGoodBenefit.js"
+            }
+        },
+
+        "uglify" : {
+            "jssoGoodBenefit" : {
+                "src" : "lotte/resources/<%= version %>/soGoodBenefit.js",
+                "dest" : "lotte/resources/<%= version %>/soGoodBenefit.min.js"
+            },
+            "tplsoGoodBenefit" : {
+                "src" : "lotte/resources/<%= version %>/soGoodBenefit.template.js",
+                "dest" : "lotte/resources/<%= version %>/soGoodBenefit.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "csssoGoodBenefit" : {
+                "src" : [
+                    "lotte/resources_dev/mylotte/sub/so_good_benefit.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/soGoodBenefit.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleansoGoodBenefit" : [
+                "lotte/resources/<%= version %>/soGoodBenefit.js",
+                "lotte/resources/<%= version %>/soGoodBenefit.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlsoGoodBenefit" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mylotte/sub/soGoodBenefit.html" : "mylotte/sub/soGoodBenefit_dev.html"
+                }
+            }
+        }
+    }
+}
+

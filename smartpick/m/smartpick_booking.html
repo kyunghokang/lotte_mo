@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+    <meta charset="utf-8">
+    <title>롯데닷컴-smartpick_booking</title>
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+
+    <script>
+    var APP_KEY = "7fa1e44757a94fd89921";
+    var SERVER_TIME = new Date();
+    </script>
+	<!-- JSP 영역 -->
+	<!--
+	<%@ page language="java" contentType="text/html;charset=utf-8"  %>
+
+    <%@include file="/common3/angular_common_include.jsp"%>
+    <% if (LOTTE_DEVEL_MODE) { %>
+    <%@include file="/angular_common/lotte_common_css.jsp"%>
+    <%@include file="/angular_common/lotte_common_js.jsp"%>
+
+    <!-- 이 화면에서 쓰이는 CSS -->
+
+    <!-- 이 화면에서 쓰이는 JS -->
+
+    <!--
+    <% } else {  %>
+	    <%@include file="/common3/html_meta_angular.jsp"%>
+	    <link rel="stylesheet" type="text/css" href="/lotte/resources/<%= pubVersion %>/smartpick_booking.min.css"/>
+	    <script src="/lotte/resources/<%= pubVersion %>/smartpick_booking.min.js"></script>
+	    <script src="/lotte/resources/<%= pubVersion %>/smartpick_booking.tpl.js"></script>
+    <% } %>
+     -->
+    <!-- // JSP 영역 -->
+
+    <link rel="stylesheet" type="text/css" href="/lotte/resources/r20181226_1/common.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/lotte/resources/r20181226_1/smartpick_booking.min.css"/>
+    <script src="/lotte/resources/r20181226_1/common.min.js"></script>
+    <script src="/lotte/resources/r20181226_1/smartpick_booking.min.js"></script>
+    <script src="/lotte/resources/r20181226_1/smartpick_booking.tpl.js"></script>
+
+    <!--
+    <script src="/lotte/resources_dev/common/SpeedTrapInsert.js"></script>
+    -->
+</head>
+<body ng-controller="SmpBookingCtrl">
+    <div id="wrapper" ng-show="showWrap">
+        <lotte-header></lotte-header>
+        <lotte-search></lotte-search>
+        <sub-header></sub-header>
+
+        <lotte-container></lotte-container>
+
+        <lotte-footer></lotte-footer>
+        <lotte-btntop></lotte-btntop>
+    </div>
+
+    <form name="smp_frm">
+        <input type="hidden" name="c" ng-model="postdata.c" ng-init="postdata.c='mlotte'" value="{{postdata.c}}" />
+        <input type="hidden" name="udid" ng-model="postdata.udid" ng-init="postdata.udid=''" value="{{postdata.udid}}" />
+        <input type="hidden" name="v" ng-model="postdata.v" ng-init="postdata.v=''" value="{{postdata.v}}" />
+        <input type="hidden" name="cn" ng-model="postdata.cn" ng-init="postdata.cn=''" value="{{postdata.cn}}" />
+        <input type="hidden" name="cdn" ng-model="postdata.cdn" ng-init="postdata.cdn=''" value="{{postdata.cdn}}" />
+        <input type="hidden" name="schema" ng-model="postdata.schema" ng-init="postdata.schema=''" value="{{postdata.schema}}" />
+        <input type="hidden" name="tclick" ng-model="postdata.tclick" ng-init="postdata.tclick='m_DC_ProdDetail_Clk_Btn_2'" value="{{postdata.tclick}}" />
+        <input type="hidden" name="goods_no" ng-model="postdata.goods_no" ng-init="postdata.goods_no='218169351'" value="{{postdata.goods_no}}" />
+        <input type="hidden" name="item_no" ng-model="postdata.item_no" ng-init="postdata.item_no='0'" value="{{postdata.item_no}}" />
+        <input type="hidden" name="goods_cmps_cd" ng-model="postdata.goods_cmps_cd" ng-init="postdata.goods_cmps_cd='50'" value="{{postdata.goods_cmps_cd}}" />
+        <input type="hidden" name="goods_choc_desc" ng-model="postdata.goods_choc_desc" ng-init="postdata.goods_choc_desc=''" value="{{postdata.goods_choc_desc}}" />
+        <input type="hidden" name="ord_qty" ng-model="postdata.ord_qty" ng-init="postdata.ord_qty='1'" value="{{postdata.ord_qty}}" />
+        <input type="hidden" name="infw_disp_no" ng-model="postdata.infw_disp_no" ng-init="postdata.infw_disp_no='5539740'" value="{{postdata.infw_disp_no}}" />
+        <input type="hidden" name="infw_disp_no_sct_cd" ng-model="postdata.infw_disp_no_sct_cd" ng-init="postdata.infw_disp_no_sct_cd='12'" value="{{postdata.infw_disp_no_sct_cd}}" />
+        <input type="hidden" name="master_goods_yn" ng-model="postdata.master_goods_yn" ng-init="postdata.master_goods_yn='N'" value="{{postdata.master_goods_yn}}" />
+        <input type="hidden" name="cart_sn" ng-model="postdata.cart_sn" ng-init="postdata.cart_sn=''" value="{{postdata.cart_sn}}" />
+        <input type="hidden" name="cart_no" ng-model="postdata.cart_no" ng-init="postdata.cart_no=''" value="{{postdata.cart_no}}" />
+        <input type="hidden" name="cmps_qty" ng-model="postdata.cmps_qty" ng-init="postdata.cmps_qty='0'" value="{{postdata.cmps_qty}}" />
+        <input type="hidden" name="mast_disp_no" ng-model="postdata.mast_disp_no" ng-init="postdata.mast_disp_no='5415292'" value="{{postdata.mast_disp_no}}" />
+        <input type="hidden" name="smartOrd" ng-model="postdata.smartOrd" ng-init="postdata.smartOrd='Y'" value="{{postdata.smartOrd}}" />
+        <input type="hidden" name="smp_prod_yn" ng-model="postdata.smp_prod_yn" ng-init="postdata.smp_prod_yn='Y'" value="{{postdata.smp_prod_yn}}" />
+        <input type="hidden" name="smp_vst_shop_no" ng-model="postdata.smp_vst_shop_no" ng-init="postdata.smp_vst_shop_no='135885'" value="{{postdata.smp_vst_shop_no}}" />
+        <input type="hidden" name="smp_vst_rsv_dtime" ng-model="postdata.smp_vst_rsv_dtime" ng-init="postdata.smp_vst_rsv_dtime=''" value="{{postdata.smp_vst_rsv_dtime}}" />
+        <input type="hidden" name="smp_tp_cd" ng-model="postdata.smp_tp_cd" ng-init="postdata.smp_tp_cd=''" value="{{postdata.smp_tp_cd}}" />
+        <input type="hidden" name="smp_deli_loc_sn" ng-model="postdata.smp_deli_loc_sn" ng-init="postdata.smp_deli_loc_sn=''" value="{{postdata.smp_deli_loc_sn}}" />
+        <input type="hidden" name="smp_entr_no" ng-model="postdata.smp_entr_no" ng-init="postdata.smp_entr_no=''" value="{{postdata.smp_entr_no}}" />
+        <input type="hidden" name="smp_shop_no" ng-model="postdata.smp_shop_no" ng-init="postdata.smp_shop_no='135885'" value="{{postdata.smp_shop_no}}" />
+        <input type="hidden" name="back_url" ng-model="postdata.back_url" ng-init="postdata.back_url='http%3A%2F%2Fm.lotte.com%2Fproduct%2Fm%2Fproduct_view.do%3Fc%3Dmlotte%26udid%3D%26v%3D%26cn%3D%26cdn%3D%26schema%3D%26goods_no%3D212324588%26curDispNo%3D5539740%26curDispNoSctCd%3D12%26genie_yn%3DY%26tclick%3Dm_menu_5539740_unit3'" value="{{postdata.back_url}}" />
+        <input type="hidden" name="shop_memo_tp_cd" ng-model="postdata.shop_memo_tp_cd" ng-init="postdata.shop_memo_tp_cd=''" value="{{postdata.shop_memo_tp_cd}}" />
+        <input type="hidden" name="shop_memo_cont" ng-model="postdata.shop_memo_cont" ng-init="postdata.shop_memo_cont=''" value="{{postdata.shop_memo_cont}}" />
+        <input type="hidden" name="is_ecoupon" ng-model="postdata.is_ecoupon" ng-init="postdata.is_ecoupon='false'" value="{{postdata.is_ecoupon}}" />
+    </form>
+
+    <lotte-side-category></lotte-side-category>
+    <lotte-side-mylotte></lotte-side-mylotte>
+    <lotte-footer-actionbar></lotte-footer-actionbar>
+
+    <lotte-comm-footer></lotte-comm-footer>
+</body>
+</html>

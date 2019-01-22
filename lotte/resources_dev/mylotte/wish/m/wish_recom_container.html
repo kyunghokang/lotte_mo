@@ -1,0 +1,80 @@
+<section ng-show="contVisible" class="cont_minheight">
+	<div class="wish_prod_wrap" ng-class="{wide:screenType > 2}">
+		<div class="mTop_title" ng-if="screenType < 2">
+			<p><strong class="m3F20B">위시리스트에 담은,</strong></p>
+			<p><span class="m6F14" >바로 그 상품!</span></p>
+		</div>
+		<div class="mTop_title" ng-if="screenType > 1" >
+			<p><strong class="m3F20B">위시리스트에 담은, </strong><span>바로 그 상품!</span></p>
+		</div>	
+		<div class="wish_unit" ng-if="wishRecomTopGood" ng-class="{on:wishRecomCouponBnr}">
+			<a ng-click="wiRecomGoUrl(wishRecomTopGood, $index+1, 'wishTopPrd')">
+				<div class="thumb">
+					<img ng-src="{{wishRecomTopGood.img_url}}" alt="{{wishRecomTopGood.goods_nm}}"/>
+				</div>
+				<div class="info">
+					<p class="flag">
+						<span class="flag depart" ng-if="wishRecomTopGood.is_dept">롯데백화점</span>
+						<span class="flag etv" ng-if="wishRecomTopGood.is_tvhome && !wishRecomTopGood.is_dept">롯데홈쇼핑</span>
+						<span class="flag smart" ng-show="wishRecomTopGood.smartpick_yn=='Y'||wishRecomTopGood.issmart_pick">스마트픽</span>
+					</p>
+					<div class="tit">
+						<span ng-bind-html="wishRecomTopGood.brnd_nm|titleToHtml"></span><span  ng-bind-html="wishRecomTopGood.goods_nm|titleToHtml"></span>
+					</div>
+					<p class="pr_box">
+						<span class="price2" ng-show="wishRecomTopGood.price1 && !wishRecomTopGood.plan_prod_yn && wishRecomTopGood.price1 !='0' "><em>{{wishRecomTopGood.price1|number}}</em>원</span>
+						<span class="price"><em>{{wishRecomTopGood.price2|number}}</em>원<span ng-show="wishRecomTopGood.plan_prod_yn">~</span></span>
+					</p>
+				</div>
+			</a>
+		</div>
+		<div class="coupon_box" ng-if="wishRecomCouponBnr != null">
+			<div ng-if="!wishRecomCouponBnr.banner_nm" ng-class="{wide:screenType > 2}" class="coupon_contents">
+				<a ng-click="wiRecomGoUrl(wishRecomCouponBnr, $index, 'bnr1')"><img ng-src="{{wishRecomCouponBnr.img_url}}" alt=""></a>
+			</div>
+			<div ng-if="wishRecomCouponBnr.banner_nm" ng-class="{wide:screenType > 2}" class="coupon_contents">
+				<a ng-click="wishRecomRegNewCoupon({{wishRecomCouponBnr.banner_nm}})"><img ng-src="{{wishRecomCouponBnr.img_url}}" alt=""></a>
+			</div>
+		</div>
+		<div class="wish_moreBtn">
+			<a ng-click="wishMoreUrl()"><span>위시리스트 더 보러 가기</span></a>
+		</div>
+	</div>
+	<div class="recomm_goods min260" ng-if="wishlist_recomm_good.items && goodListIdx != 0" ng-class="{wide:screenType > 2}">
+		<div class="mTop_title">
+			<p><span class="m6F14" >이 상품을 눈여겨본</span></p>
+			<p><strong class="m3F20B">다른 고객들이 함께 본 상품</strong></p>
+		</div>
+		<ul>
+			<li ng-repeat="item in wishlist_recomm_good.items track by $index" ng-hide="$index == goodListIdx">
+				<a href="#" ng-click="wiRecomGoUrl(item, $index+1, 'prdList')">
+					<span class="imageCon"><img ng-src="{{item.img_url}}" alt="{{item.goods_nm}}" /></span>
+					<span class="brandname">{{item.brand_nm}}</span>
+					<span class="goodname">{{item.goods_nm}}</span>
+					<span class="price">{{item.sale_price | number:0}}<em>원<em ng-if="item.is_plan_prod" class="plan_prod_limit">~</em></em></span>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="plan_bnr_list" ng-if="wishRecomData.spdp_list.total_count != 0" ng-class="{wide:screenType > 2}">
+		<div class="mTop_title">
+			<p><span class="m6F14" >이 상품을 눈여겨본</span></p>
+			<p><strong class="m3F20B">다른 고객들이 함께 본 기획전</strong></p>
+		</div>
+		<ul>
+			<li ng-repeat="item in wishRecomData.spdp_list.items track by $index" ng-if="($index < 4)">
+				<a ng-click="wiRecomGoUrl(item, $index+1, 'planBnr')"><img ng-src="{{item.img_url}}" alt=""></a>
+			</li>
+
+		</ul>
+	</div>
+	<a ng-href="/mylotte/m/myfeed.do?{{baseParam}}&tclick=m_DC_wishpush_Clk_more" class="btn_more_recom"><span>더 많은 추천을 원하신다면? &gt;</span></a>
+	<div class="plan_bottom_bnr" ng-if="wishRecomData.bottom_ban_list.items">
+		<ul>
+			<li ng-repeat="item in wishRecomData.bottom_ban_list.items track by $index" ng-if="$index < 1"> 
+				<a ng-click="wiRecomGoUrl(item, $index, 'bnr2')" ><img ng-src="{{item.img_url}}" alt="#"></a>
+			</li>
+		</ul>
+	</div>
+	<div id="msg" style="display: none">&nbsp;</div> 							
+</section>

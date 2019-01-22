@@ -1,0 +1,98 @@
+<section ng-show="contVisible" class="cont_minheight">
+	<!-- lately_product -->
+
+	<section class="mylotte" id="wishListView" ng-show="!noDataFlag">
+		<!-- 위시리스트 header -->
+		<section class="wish_header">
+			<span>전체 <em>{{totalCount}}</em>개</span>
+			<div class="btn_list">
+				<a ng-click="deleteItems()" name="selectAll" class="btn_style1 check_all_del">전체삭제</a>
+			</div>
+		</section>
+		<!--// 위시리스트 header -->
+
+		<!-- 최근 본 상품 -->
+		<section class="lately_list" id="lately_list">
+			<ul class="product_list_01">
+				<li product-list01 ng-repeat="items in itemListData" >
+					<div class="group" ng-class="{on:otherViewFlag[items.goods_no]}">
+						<span class="thumb02">
+							<a href="javascript:void(0);" ng-click="goGoodsDetail(items.goods_no, $index, 'late')"><img ng-src="{{items.img_url}}" alt="" /></a>
+						</span>
+						<span class="cont01">
+							<p class="flag">
+								<!-- <span class="brand">{{items.brnd_nm}}</span> -->
+								<span ng-if="items.is_dept == true" class="flag depart">롯데백화점</span>
+								<span ng-if="items.is_tvhome == true" class="flag etv">롯데홈쇼핑</span>
+								<span ng-if="items.dlv_fee_tp == 'Y'" class="flag free">무료배송</span>
+								<span ng-if="items.smartpick_yn == 'Y'" class="flag smart">스마트픽</span>
+							</p>
+							<a href="javascript:void(0);" ng-click="goGoodsDetail(items.goods_no, $index, 'late')">
+								<p class="tl"><b style="font-weight:normal;" ng-if="items.brnd_nm">[{{items.brnd_nm}}] </b> {{items.goods_nm}}</p>
+							</a>
+							<div class="money_coupon" ng-if="items.is_sale_promotion == false">
+								<p class="money">
+									<span class="price"><strong>{{items.discounted_price | number}}</strong>원</span>
+									<del class="small" ng-if="items.original_price != 0">{{items.original_price | number}}원</del>
+								</p>
+								<p class="coupon">
+									<span class="percent" ng-if="items.sale_rate > 0">{{items.sale_rate}}<em>%</em></span>
+									<span class="tx" ng-if="items.has_coupon">쿠폰포함</span>
+								</p>
+							</div>
+							<div class="money_coupon" ng-if="items.is_sale_promotion == true">
+								<p class="money">
+									<span class="price"><strong>{{items.discounted_price | number}}</strong>원<span ng-if="items.is_sale_promotion == true">~</span></span>
+								</p>
+							</div>
+						</span>
+						<!-- detail -->
+						<p class="detail" ng-if="!otherViewFlag[items.goods_no]"><a ng-click="otherView($index,items.goods_no,items.disp_no)">남들은 뭘 봤지?</a></p>
+						<p class="detail" ng-if="otherViewFlag[items.goods_no]"><a ng-click="otherViewClose(items.goods_no)" class="on">남들은 뭘 봤지?</a></p>
+						<div ng-controller="lotteNgSwipeCtrl">
+							<div class="detail_view" ng-if="otherViewFlag[items.goods_no] == true" >
+								<div id="{{items.goods_no}}" class="touchSlider" >
+									<ul lotte-ng-list-swipe swipe-autoheight="true" swipe-slide-item="true" swipe-list-model="otersItemData[$index]" swipe-id="otersItemData{{$index}}" swipe-disp-count="3" swipe-max-ratio="0.2" swipe-min-distance="40" style="overflow:visible;height:200px">
+										<li ng-repeat="items in otersItemData[$index]">
+											<a ng-click="goGoodsDetail(items.goods_no, $index, 'other')">
+												<span class="thumb03"><img ng-src="{{items.img_url0}}" alt=""></span>
+												<p><b style="font-weight:normal;" ng-if="items.brnd_nm">[{{items.brnd_nm}}] </b> {{items.goods_nm}}</p>
+												<span class="price"><span>{{items.dscnt_sale_prc | number}}</span>원<span ng-if="items.is_sale_promotion">~</span></span>
+											</a>
+										</li>
+									</ul>
+								</div>
+
+
+								<!-- bullet area -->
+								<ol id="touchSlider1_paging" class="bullet" style="text-align:center;">
+									<li ng-repeat="item in swipeBullet" ng-class="{'btn_page on':$index==swipeIdx/3, 'btn_page':$index!=swipeIdx/3 }">page{{$index}}</li>
+								</ol>
+								<!-- //bullet area -->
+							</div>
+						</div>
+						<!-- // detail -->
+					</div>
+				</li>
+			</ul>
+		</section>
+		<!-- // 최근 본 상품 -->
+	</section>
+	<section class="mylotte" id="wishListView" ng-show="noDataFlag">
+		<section class="lately_list" id="lately_list">
+			<li ng-show="noDataFlag" style="display:none;" ng-class="{ngShow:!totalCount && !isLatelyLoading}" class="noData">
+				최근 본 상품이 없습니다.
+			</li>
+		</section>
+	</section>
+	<!-- 20171214 최근 본 상품/자주 구매 상품 버튼 추가-->
+	<section class="sub_btn_wrap" ng-class="{btn_position:itemListData.length > 2}">
+		<ul>
+			<li><a href="#" ng-click="myLotteLateProd()"><span class="sub_btn_icon wish_icon"></span><span class="sub_btn_title">위시리스트</span></a></li>
+			<li><a href="#" ng-click="myLotteOftenProd()"><span class="sub_btn_icon often_icon"></span><span class="sub_btn_title">자주구매</span></a></li>
+		</ul>
+		<!-- MY 추천 링크 -->
+		<a ng-if="itemListData && itemListData.length > 0 && loginInfo.isLogin && loginInfo.name" ng-href="/mylotte/m/myfeed.do?{{baseParam}}&tclick=m_DC_RctView_Clk_more" class="btn_more_recom"><span>{{loginInfo.name}}님 취향의 상품을 추천 드립니다.<em></em></span></a>
+		<a ng-if="itemListData && itemListData.length > 0 && (!loginInfo.isLogin || !loginInfo.name)" ng-href="/mylotte/m/myfeed.do?{{baseParam}}&tclick=m_DC_RctView_Clk_more" class="btn_more_recom"><span>고객님 취향의 상품을 추천 드립니다.<em></em></span></a>
+	</section>	
+</section>

@@ -1,0 +1,77 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplSpecMallDetail" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/unit/comm_unit.html",
+                    "lotte/resources_dev/mall/spec_mall_detail_container.html",
+                    "lotte/resources_dev/mall/spec_mall_cate.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/spec_mall_detail.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsSpecMallDetail" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mall/spec_mall_detail.js",
+                    "lotte/resources_dev/mall/spec_mall_cate.js",
+                    "lotte/resources_dev/common/lotte_unit.js",
+                    "lotte/resources_dev/common/lotte_ngswipe.js",
+                    "lotte/resources_dev/common/HWSwipe.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/spec_mall_detail.js"
+            }
+        },
+
+        "uglify" : {
+            "jsSpecMallDetail" : {
+                "src" : "lotte/resources/<%= version %>/spec_mall_detail.js",
+                "dest" : "lotte/resources/<%= version %>/spec_mall_detail.min.js"
+            },
+            "tplSpecMallDetail" : {
+                "src" : "lotte/resources/<%= version %>/spec_mall_detail.template.js",
+                "dest" : "lotte/resources/<%= version %>/spec_mall_detail.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssSpecMallDetail" : {
+                "src" : [
+                    "lotte/resources_dev/mall/spec_mall_detail.css",
+                    "lotte/resources_dev/unit/comm_unit.css",
+                    "lotte/resources_dev/icon/unit_ico.css",
+                    "lotte/resources_dev/mall/spec_mall_cate.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/spec_mall_detail.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanSpecMallDetail" : [
+                "lotte/resources/<%= version %>/spec_mall_detail.js",
+                "lotte/resources/<%= version %>/spec_mall_detail.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlSpecMallDetail" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mall/spec_mall_detail.html" : "mall/spec_mall_detail_dev.html"
+                }
+            }
+        }
+    }
+}

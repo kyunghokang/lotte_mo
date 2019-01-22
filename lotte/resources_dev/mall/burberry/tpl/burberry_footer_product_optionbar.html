@@ -1,0 +1,113 @@
+<section >
+        <div ng-switch on="btnDispTp">
+            <div ng-switch-when="01" class="detail_option_layer_btn burberry"><p><span>모바일 주문 불가</span> 상품입니다.</p>.</div>
+            <div ng-switch-when="02" class="detail_option_layer_btn burberry"><p><span>모바일 주문 불가</span> 상품입니다.</p></div>
+            <div ng-switch-when="03" class="detail_option_layer_btn burberry"><p><span>모바일 주문 불가</span> 상품입니다.</p></div>
+            <div ng-switch-when="04" class="detail_option_layer_btn burberry"><p><span>모바일 주문 불가</span> 상품입니다.</p></div>
+            <div ng-switch-when="05" class="detail_option_layer_btn burberry"><p><span>모바일 주문 불가</span> 상품입니다.</p></div>
+            <div ng-switch-when="06" class="detail_option_layer_btn burberry"><p><span>모바일 주문 불가</span> 상품입니다.</p></div>
+            <div ng-switch-when="07" class="detail_option_layer_btn burberry"><p>이 상품은 <span>품절</span>되었습니다. </p></div>
+            <div ng-switch-when="08" class="detail_option_layer_btn burberry"><p><span>판매종료된</span> 상품입니다.</p></div>
+            <div ng-switch-when="09" class="detail_option_layer_btn burberry"><p><span>모바일 주문 불가</span> 상품입니다.</p></div>
+            <div ng-switch-default class="detail_option_layer_btn burberry">
+                <!--20160126-->
+                <a class="wish_btn" ng-click="openOptionCheck('wish')" ng-show="wishCheckYn">위시리스트</a>
+                <a class="cart_btn" ng-click="openOptionCheck('cart')" ng-class="{half:wishCheckYn}">장바구니<span ng-show="!wishCheckYn">담기</span></a>
+                <a class="order_btn" ng-click="openOptionCheck('buy')"><span>바로구매</span></a>
+            </div>
+        </div>
+        
+        <div class="detail_option_layer new burberry">
+            <div class="layer_head"><a ng-click="closeOpt()">닫기</a></div>
+            <div class="option_list_layer">
+                <div class="option_choice" style="display:block;">
+                    <dl>
+                         <div ng-repeat="itemDtl in BasicData.product.item_dtl.items">		
+                            <dt><label for="option1">{{itemDtl.name }}</label></dt>
+                            <dd>
+                                <div class="s_box01"><div class="tl"><a>선택하세요</a></div></div>
+                                
+                                <div class="option_select_layer" id="option_select_layer_{{$index+1}}">
+                                    <div class="layer_head"><a class="on"></a></div>
+                                    <div class="option_select">
+                                        <h5>{{itemDtl.name }}</h5>
+                                        <ul>
+                                            <li ng-repeat="item in itemDtl.item.items" ng-model="item_no" ng-class="(item.opt_stk_yn=='Y' && item.opt_cnt=='0') ? 'soldout' : ''">
+                                                <a {{(item.opt_stk_yn=='Y' && item.opt_cnt=='0')?'disabled':' ng-click="setLayerOrderQty({{$parent.$index+1}}, {{$index+1}});"'}}>{{(item.opt_stk_yn=='Y' && item.opt_cnt=='0')?'(품절)':''}}{{item.opt_value }}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </dd>
+                        </div>
+                        <div ng-if="btnDispTp == '00'">
+                            <dt><label for="optQtyLayer">수량</label></dt>
+                            <dd class="num_input">
+                                <button class="btnMinus" ng-click="setOptsQty(-1)"><span>-</span></button>
+                                <span class="ipt_num"><input class="iptNumber" type="number" id="optQtyLayer" name="opt_qty_layer" value="{{BasicData.product.min_lmt_qty}}"></span>
+                                <button class="btnPlus" ng-click="setOptsQty(1)"><span>+</span></button>
+                            </dd>
+                        </div>
+                    </dl>
+                    
+                    <div class="mtable pd_plusinfo totalPrice">
+                        <span class="label">총 상품금액(수량):</span> <span class="price" ng-bind="BasicData.product.sale_prc | number:0"></span><span class="unit">원 (<em class="num">{{BasicData.product.min_lmt_qty}}</em>개)</span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <form  id="frm_send" name="frm_send" method="post" action="">
+            <input type="hidden" name="cartcatcode" value="{{reqParam.curDispNo }}" />
+            <input type="hidden" name="carttype" value="{{BasicData.carttype}}" />
+            <input type="hidden" name="cartuseyn" value="N" />
+            <input type="hidden" name="dir_delv_yn" value="1" />
+            <input type="hidden" name="dispno" value="{{reqParam.curDispNo }}" />
+            <input type="hidden" name="goodsnm" value="{{BasicData.product.mgoods_nm }}" />
+            <input type="hidden" name="goods_sort_cd" value="{{BasicData.product.pmg_md_gsgr_no }}" />
+            <input type="hidden" name="goodsCmpsCd" value="50" /><!-- 1:일반주문 만 진행 -->
+            <input type="hidden" name="goodsno" value="{{reqParam.goods_no }}" />
+            <input type="hidden" name="goodsdtlcd" value="{{BasicData.product.goods_dtl_cd }}" />
+            <input type="hidden" name="goodsChocDesc" value="" /><!-- 입력형 상품 옵션 정보 -->
+            <input type="hidden" name="itemno" value="{{BasicData.product.item_no }}" />
+            <input type="hidden" name="lmt_cnt_max" value="{{BasicData.product.max_lmt_qty }}" />
+            <input type="hidden" name="lmt_cnt_min" value="{{BasicData.product.min_lmt_qty }}" />
+            <input type="hidden" name="myshop" value="{{BasicData.product.myshop }}" />
+            <input type="hidden" name="ordertype" value="ORD_TP_NOCART" />
+            <input type="hidden" name="tdfSctCd" value="{{BasicData.product.tdf_sct_cd }}" />
+            <input type="hidden" name="qty" value="" />
+            <input type="hidden" name="order_qty" value="{{BasicData.product.min_lmt_qty}}" /><!-- 주문수량 -->		
+            <input type="hidden" name="smartpickdate" value="" />
+            <input type="hidden" name="smpVstShopNo" value="{{BasicData.product.smp_vst_shop_no }}" />
+            <input type="hidden" name="smpVstShopNm"  value="{{BasicData.product.smp_vst_shop_nm}}" />
+            <input type="hidden" name="smartpicktime" value="13" />
+            <input type="hidden" name="wishlistyn" value="{{BasicData.product.wish_yn }}" />
+            <input type="hidden" name="opt_name1" value="" />
+            <input type="hidden" name="opt_name2" value="" />
+            <input type="hidden" name="opt_name3" value="" />
+            <input type="hidden" name="opt_name4" value="" />
+            <input type="hidden" name="opt_name5" value="" />
+            <input type="hidden" name="opt_value1" value="" />
+            <input type="hidden" name="opt_value2" value="" />
+            <input type="hidden" name="opt_value3" value="" />
+            <input type="hidden" name="opt_value4" value="" />
+            <input type="hidden" name="opt_value5" value="" />
+            <input type="hidden" name="imgUrl0" value="{{BasicData.product.img_url0}}"> 
+            <input type="hidden" name="imgUrl" value="{{BasicData.product.img_url}}"> 
+            <input type="hidden" name="mfcpNm" value="{{BasicData.product.mfcp_nm}}"> 
+            <input type="hidden" name="brndNm" value="{{BasicData.product.brnd_nm}}">
+            <input type="hidden" name="deliverydate" value="" />
+            <input type="hidden" name="smartOrd" value="N"/>
+            <input type="hidden" name="goodsCmpsCd" value="{{BasicData.product.goods_cmps_cd}}"/>
+            <input type="hidden" name="infwDispNo" value="{{reqParam.curDispNo }}"/>
+            <input type="hidden" name="infwDispNoSctCd" value="{{BasicData.disp_no_sct_cd}}"/>
+            <input type="hidden" name="mastDispNo" value="{{BasicData.product.mast_disp_no}}"/>
+            <input type="hidden" name="masterGoodsYn" value="{{BasicData.product.master_goods_yn}}"/>
+            <input type="hidden" name="gift_goods_no" value=""/>		
+            <input type="hidden" name="girtGoodsChoice" value=""/>
+            <input type="hidden" name="smp_tp_cd"/>
+            <input type="hidden" name="smp_deli_loc_sn"/>
+            
+        </form>
+    </section>

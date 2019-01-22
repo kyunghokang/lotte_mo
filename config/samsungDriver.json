@@ -1,0 +1,68 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplSamsungDriver" : {
+				"options": {
+					"prefix":"/",
+					"module" : "app"
+				},
+				"src" : [
+				],
+				"dest" : "lotte/resources/<%= version %>/samsungDriver.template.js"
+			}
+		},
+		
+		"concat" : {
+			"jsSamsungDriver" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/event/samsungDriver.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/samsungDriver.js"
+			}
+		},
+		
+		"uglify" : {
+			"jsSamsungDriver" : {
+				"src" : "lotte/resources/<%= version %>/samsungDriver.js",
+				"dest" : "lotte/resources/<%= version %>/samsungDriver.min.js"
+			},
+			"tplSamsungDriver" : {
+				"src" : "lotte/resources/<%= version %>/samsungDriver.template.js",
+				"dest" : "lotte/resources/<%= version %>/samsungDriver.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssSamsungDriver" : {
+				"src" : [
+					"lotte/resources_dev/event/samsungDriver.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/samsungDriver.min.css"
+			}
+		},
+
+		"processhtml" : {
+			"htmlSamsungDriver" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"event/samsungDriver.html" : "event/samsungDriver_dev.html"
+				}
+			}
+		},
+		
+		"clean" : {
+			"cleanSamsungDriver" : [
+				"lotte/resources/<%= version %>/samsungDriver.js",
+				"lotte/resources/<%= version %>/samsungDriver.template.js"
+			]
+		}
+	}
+}
+

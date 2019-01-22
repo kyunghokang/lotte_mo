@@ -1,0 +1,95 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplProductViewBurberry" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mall/burberry/product_view_burberry_container.html",
+                    "lotte/resources_dev/mall/burberry/tpl/burberry_info.html",
+                    "lotte/resources_dev/mall/burberry/mall_sub_header.html",
+                    "lotte/resources_dev/mall/burberry/tpl/burberry_product_info_size10.html",
+                    "lotte/resources_dev/mall/burberry/tpl/burberry_product_info_size11.html",
+                    "lotte/resources_dev/mall/burberry/tpl/burberry_product_info_size12.html",
+                    "lotte/resources_dev/mall/burberry/tpl/burberry_product_info_size13.html",
+                    "lotte/resources_dev/mall/burberry/tpl/burberry_product_info_size14.html",
+                    "lotte/resources_dev/mall/burberry/tpl/burberry_product_info_size15.html",
+                    "lotte/resources_dev/mall/burberry/tpl/burberry_product_info_size16.html",
+                    "lotte/resources_dev/mall/burberry/tpl/burberry_product_info_size17.html",
+                    "lotte/resources_dev/mall/burberry/tpl/burberry_product_info_size18.html",
+                    "lotte/resources_dev/mall/burberry/tpl/burberry_product_info_size19.html",
+                    "lotte/resources_dev/mall/burberry/tpl/burberry_product_info_size20.html",
+                    "lotte/resources_dev/mall/burberry/tpl/burberry_product_info_size21.html",
+                    "lotte/resources_dev/mall/burberry/tpl/burberry_product_info_size22.html",
+                    "lotte/resources_dev/mall/burberry/tpl/burberry_product_info_size23.html",
+                    "lotte/resources_dev/mall/burberry/tpl/burberry_product_info_size24.html",
+                    "lotte/resources_dev/mall/burberry/tpl/burberry_product_info_size25.html",
+                    "lotte/resources_dev/mall/burberry/tpl/burberry_product_info_size26.html",
+                    "lotte/resources_dev/mall/burberry/tpl/burberry_product_info_size27.html",
+                    "lotte/resources_dev/mall/burberry/tpl/burberry_detail.html",
+                    "lotte/resources_dev/mall/burberry/burberry_footer.html",
+                    "lotte/resources_dev/mall/burberry/tpl/burberry_footer_product_optionbar.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/product_view_burberry.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsProductViewBurberry" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mall/burberry/product_view_burberry.js",
+                    "lotte/resources_dev/common/lotte_ngswipe.js",
+                    "lotte/resources_dev/common/lotte_slider.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/product_view_burberry.js"
+            }
+        },
+
+        "uglify" : {
+            "jsProductViewBurberry" : {
+                "src" : "lotte/resources/<%= version %>/product_view_burberry.js",
+                "dest" : "lotte/resources/<%= version %>/product_view_burberry.min.js"
+            },
+            "tplProductViewBurberry" : {
+                "src" : "lotte/resources/<%= version %>/product_view_burberry.template.js",
+                "dest" : "lotte/resources/<%= version %>/product_view_burberry.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssProductViewBurberry" : {
+                "src" : [
+                    "lotte/resources_dev/mall/burberry/product_view_burberry.css",
+                    "lotte/resources_dev/mall/burberry/burberry_common.css",
+                    "lotte/resources_dev/mall/burberry/tpl/burberry_footer_option.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/product_view_burberry.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanProductViewBurberry" : [
+                "lotte/resources/<%= version %>/product_view_burberry.js",
+                "lotte/resources/<%= version %>/product_view_burberry.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlProductViewBurberry" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mall/burberry/product_view_burberry.html" : "mall/burberry/product_view_burberry_dev.html"
+                }
+            }
+        }
+    }
+}

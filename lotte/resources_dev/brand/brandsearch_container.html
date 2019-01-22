@@ -1,0 +1,62 @@
+<section ng-show="contVisible" class="cont_minheight">
+	<!--브랜드 찾기-->
+	<section class="pageLoading" ng-show="pageLoading">
+		<p class="loading half"></p>
+	</section>
+	<div class="brd_wrap">
+		<section class="ctg_list">
+			<!--<h3 class="tit">브랜드</h3>-->
+			<section class="brdsrh_wrap">
+				<form class="brdsrh_frm">
+					<fieldset>
+						<legend>검색</legend>
+						<!--검색 후 상태표시 class: searched-->
+						<input id="srhBrdKeyword" name="srhBrdKeyword" type="search" ng-model="pageOptions.keyword" ng-trim="true" placeholder="브랜드명을 입력하세요" autocomplete="off" autocapitalize="off" autocorrect="off">
+						<button ng-click="searchKeywordClick()" type="submit" class="btn_srh">검색</button>
+						<button ng-click="pageOptions.keyword = null" class="btn_clear" ng-show="pageOptions.keyword">삭제</button>
+					</fieldset>
+				</form>
+
+				<div class="unit unit_tabmenu brand_search">
+					<ul>
+						<li class="menu1" ng-class="{on:pageOptions.searchTab == 0}" ng-click="pageOptions.searchTab=0"><a><span>ㄱㄴㄷ</span></a></li>
+						<li class="menu2" ng-class="{on:pageOptions.searchTab == 1}" ng-click="pageOptions.searchTab=1"><a><span>ABC</span></a></li>
+					</ul>
+				</div>
+				<nav class="brdsrh_key_list" ng-if="pageOptions.searchTab == 0">
+					<ul class="key kor">
+						<li ng-repeat="(k,v) in keys[0]" ng-class="{on:pageOptions.curKorKeyIdx == $index}" ng-click="keyClick('kor', $index)"><button class="btn_key">{{v}}</button></li>
+					</ul>
+				</nav>
+				<nav class="brdsrh_key_list"  ng-if="pageOptions.searchTab == 1">
+					<ul class="key eng">
+						<li ng-repeat="(k,v) in keys[1]" ng-class="{on:pageOptions.curEngKeyIdx == $index}" ng-click="keyClick('eng', $index)"><button class="btn_key">{{v}}</button></li>
+					</ul>
+				</nav>
+			</section>
+			<section class="brdsrh_result_wrap" ng-if="screenData.searchList != null">
+				<h4 class="tit">
+					<span ng-if="pageOptions.curKeyword == ''">추천브랜드</span>
+					<span ng-if="pageOptions.curKeyword != '' && screenData.searchList.items.length > 0">'<b class="select_search_key">{{pageOptions.curKeyword}}</b>' 검색결과 총 <b class="searched_cnt">{{screenData.searchList.items.length | number}}</b>건</span>
+					<span ng-if="screenData.searchList.items.length == 0" class="noresult">'<b class="select_search_key">{{pageOptions.curKeyword}}</b>' 브랜드 검색결과가 없습니다.</span>
+				</h4>
+				<ul class="result_list">
+					<li ng-repeat="item in screenData.searchList.items | limitTo:showCnt" ng-class="{on:item.isMyBrand}"><a><em ng-click="goBrandPage(item.brnd_no, item.brdNo, $index)">{{item.brnd_nm || item.brdNm}}</em> <span ng-click="brandBookMark()">&nbsp;</span></a></li>
+				</ul>
+			</section>
+
+			<!--알림팝업-->
+			<div class="header_alert_pop">
+				<!--브랜드 즐겨찾기-->
+				<!--<p class="msg">브랜드 즐겨찾기는 최대 50개까지 가능합니다.</p>-->
+				<p class="msg"></p>
+
+				<!--장바구니 담기-- >
+				<p class="msg">장바구니에 담겼습니다.</p>
+				<p class="btn"><a>장바구니 바로가기</a></p>
+				<!---->
+			</div>
+
+		</section>
+	</div>
+</section>

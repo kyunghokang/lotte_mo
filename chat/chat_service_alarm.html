@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>LOTTE.COM</title>
+<meta charset="UTF-8">
+<meta http-equiv="cache-control" content="no-cache"/>
+<meta http-equiv="expires" content="0"/>
+<meta http-equiv="pragma" content="no-cache"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta name="format-detection" content="telephone=no">
+<link rel="apple-touch-icon-precomposed" href="/images/common/icon/bookmark_and.ico">
+<link rel="apple-touch-icon" href="/images/common/icon/bookmark_iso.png">
+<link rel="stylesheet" type="text/css" href="./css/chat_service_v2.css">
+<script type="text/javascript" src="./js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="./js/pub_chat_service.js"></script>
+<script type="text/javascript" src="./js/EGSlider_20150707_v1.js"></script>
+
+</head>
+
+<div id="wrapper" class="alarm_wrapper"><!-- 20151208 추가 : SMS 받기/끄기만 남는 경우에는 클래스명 추가 <div id="wrapper" class="alarm_wrapper white">  -->
+	<header id="head">
+		<h1>알림 설정</h1>
+		<ul>
+			<li class="back"><a href="#">뒤로가기</a></li>
+		</ul>
+	</header>
+	<section id="alarm">
+		<div class="download">
+			<h2>채팅상담 메시지 알림은<br/>롯데닷컴 앱으로 전달됩니다.</h2>
+			<!-- APP 일시 
+			<h2>채팅상담 메시지 알림을<br/>ON/OFF 하실 수 있습니다.</h2>
+			-->
+			<a href="#" class="btn"><span>롯데닷컴 앱 다운로드</span></a>
+			<!-- APP 일시 
+			<a href="#" class="btn"><span>설정하기</span></a>
+			-->
+		</div>
+		<div class="option">
+			<p>SMS 알림을 ON/OFF 하시거나<br/>수신번호를 변경할 수 있습니다.</p>
+			<div class="btn">
+				<a href="#" class="change_btn">번호변경</a>
+				<a href="#" class="alarm_btn">SMS 알림받기</a>
+			</div>
+		</div>
+		<div class="option_check">
+			<p>주문/배송 메시지를 카카오톡으로 받으실 경우 채팅상담 SMS 알림도 카카오톡으로 전송됩니다. <a href="#" class="check_btn">설정 확인</a></p>
+		</div>
+	</section>
+	<div class="pop_appdown bg layer_popup" style="display: block;"></div>
+	<div class="pop_appdown layer_popup" style="left: 8%; right: 8%; display: block;">
+        <div class="cont">
+			<img src="http://image.lotte.com/lotte/mobile/mobile_new/mylotte/layerpopup_relogin.png" alt="회원정보 변경 안내 -원할한 회원정보 변경을 위해서 로그아웃 후 재로그인이 필요합니다. 불편을 드려 죄송합니다."><br>
+            <a href="javascript:goto_loginForm();"><img src="http://image.lotte.com/lotte/mobile/mobile_new/mylotte/layerpopup_relogin_btn.png" alt="로그아웃 후 재로그인 하기"></a>
+        </div>
+        <div class="check">
+            <span class="close"><a href="javascript:$('.pop_appdown').hide();" style="margin-top:0"><img src="http://image.lotte.com/lotte/mobile/mobile_new/mylotte/layerpopup_close.gif" alt="회원정보 변경 안내창 닫기"></a></span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

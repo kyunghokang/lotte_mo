@@ -1,0 +1,451 @@
+@charset "utf-8";
+
+*{padding:0;margin:0}
+html,body{height:100%;margin:0px;padding:0px}
+body{-webkit-text-size-adjust:none;background:#fff;font-size:12px;font-family:"돋움",Dotum,Arial,Helvetica,sans-serif;color:#878787;margin:0px;padding:0px}
+body * {-webkit-tap-highlight-color: rgba(0, 0, 0, 0)}
+div,p,ul,li,table,th,td,textarea,input,span,form,h1,h2,h3,h4,h5,h6,dt,dl,dd {margin:0px;padding:0px;font-size:14px}
+ul,ol,dl,dd,dt,li{list-style-type:none;margin:0;padding:0px}
+img{border:0;vertical-align:top;width:100%}
+a{color:#878787;text-decoration:none} 
+a:hover{color:#878787;text-decoration:none}
+em{font-style:normal}
+.clearfix:after{content:"";display:block;clear:both}
+
+.mgt15{margin-top:15px !important}
+.fr{float:right !important}
+/* 20150303 수정 */
+#smp_nav{overflow:hidden;width:100%}
+#smp_nav li{float:left;width:25%;background:#ed1c24}
+#smp_nav li:first-child{width:50%}
+#smp_nav li a{display:block;height:62px;background:url(http://image.lotte.com/lotte/mobile/smartpick/common/head_nav_line.gif) no-repeat left center;background-size:1px 50px}
+#smp_nav li:first-child a{background:none}
+#smp_nav li.on a{background:#9b1015}
+#smp_nav li span{display:block;width:160px;margin:0 auto;height:62px;background:url(http://image.lotte.com/lotte/mobile/smartpick/common/head_nav.png) no-repeat;background-size:320px 62px;text-indent:-9999em}
+#smp_nav li:nth-child(2) span{width:80px;background-position:-160px 0}
+#smp_nav li:nth-child(3) span{width:80px;background-position:-240px 0}
+.smp_coupon section{padding:0;background:#efefef}/* 20150327 수정 */
+.smp_coupon .smp_tab{position:relative;overflow:hidden;width:100%}
+.smp_coupon .smp_tab li{float:left;width:100%}
+.smp_coupon .smp_tab li a.tit{position:absolute;top:0;left:0;display:inline-block;width:50%;height:40px;line-height:40px;color:#363636;font-weight:bold;text-align: center; background:#fff;border-bottom:2px solid #d7d7d7;box-sizing:border-box;-webkit-box-sizing:border-box}
+.smp_coupon .smp_tab li:nth-child(2) a.tit{left: 50%;background:#fff url(http://image.lotte.com/lotte/mobile/smartpick/common/tab_line.gif) no-repeat left center;background-size:1px 20px}
+.smp_coupon .smp_tab li:nth-child(2) .cont_wrap{display:none; margin:0 10px}/* 20150331 수정 */
+.smp_coupon .smp_tab li.on a.tit{color:#ed1c24;border-bottom:2px solid #ed1c24}
+.smp_coupon .cont_wrap{padding: 40px 0 13px}/* 20150318 수정 */
+.smp_coupon .cont{position:relative;margin:0}/* 20150318 수정 */
+.smp_coupon .cont .day{position:absolute;top:3%;left:6%;width:55px;height:54px}/* 20150331 수정 */
+.smp_coupon .cont.coding .day{position:absolute;top:1%;left:3%;width:55px;height:54px}/* 20150330 수정 */
+/* 20150324 수정 */
+.smp_coupon .cont.none_coupon{margin:12px 10px;padding:95px 0;border:1px solid #d7d6d6;background:#fff;text-align:center}
+.smp_coupon .cont.none_coupon p{display:inline-block;height:32px;line-height:32px;padding-left:40px;margin:0 auto;background:url(http://image.lotte.com/lotte/mobile/smartpick/common/bu_no_coupon.gif) no-repeat;background-size:32px 32px;color:#b8b8b8}
+/* //20150324 수정 */
+.smp_coupon .cont .day p{padding-top:7px;color:#363636;font-size:11px;text-align:center}/* 20150303 수정 */
+.smp_coupon .cont .day p.num{padding-top:2px;margin-top:2px;border-top:1px solid #dedede;color:#ff0c15;font-size:13px; font-weight:bold}/* 20150331 수정 */
+.smp_coupon .cont .day p.num span{font-size:13px;font-weight:bold}/* 20150303 수정 */
+.smp_coupon .cont .btn_detail{position:absolute;top:37%;left:0;width:100%;text-align:center}
+.smp_coupon .cont .btn_detail a{display:inline-block;width:44%;padding:7px 0;border:1px solid #c7c7c7;border-radius:5px;background:#fff;color:#707070;font-weight:bold;font-size:12px}
+.smp_coupon .sbox{position:relative;width:49%;float:left}
+.smp_coupon .sbox select{display:inline-block;width:100%;height:30px;line-height:normal;margin:0;font-size: 13px;font-weight: bold;color:#555;padding:0 28px 0 10px;border:solid 1px #e7e6e6;outline:none;-webkit-appearance:none;-moz-appearance:none;appearance:none;cursor:pointer;border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px;box-sizing:border-box;-webkit-box-sizing:border-box;background:#fff}/* 20150331 수정 */
+/* //20150303 수정 */
+.smp_coupon .sbox:nth-child(2){float:right}
+.smp_coupon .sbox:after {content:"";background:url(http://image.lotte.com/lotte/mobile/smartpick/common/ico_select.gif) no-repeat right center;background-size:16px 12px;position:absolute;top:10px;right:10px;width:16px;height:12px;pointer-events: none}
+.smp_coupon h3{padding:0 0 8px 5px;margin-top:20px;color:#464646}
+.smp_coupon .exhibition li{margin-bottom:10px}
+/* 20150225 수정-s */
+.smp_coupon .cont .other{position:absolute;top:45%;left:0;width:100%;height:45%;min-height:240px; background:url(http://image.lotte.com/lotte/mobile/smartpick/common/bg_other.gif) no-repeat;background-size:100%;text-align:center}/* 20150330 수정 */
+.smp_coupon .cont .other .tit{padding:35% 0 5px; margin:0 auto 15px;width:250px;border-bottom:1px solid #c4c4c4;font-size:15px;color:#464646;letter-spacing:-1px}
+.smp_coupon .cont .other .txt{padding-bottom:0;margin:0 10%; width:80%; word-break:break-all; font-size:13px}/* 20150330 수정 */
+.smp_coupon .no_coupon{position:absolute;top:44%;left:0;width:100%;height:45%;min-height:240px; background:url(http://image.lotte.com/lotte/mobile/smartpick/common/bg_other2.png) no-repeat;background-size:cover;text-align:center}
+.smp_coupon .no_coupon .send{position:absolute;top:60%;left:50%;width:200px;height:46px;line-height:46px;margin-left:-100px;background:#fd2424;border-radius:3px;text-align:center}
+.smp_coupon .no_coupon .send a{display:block;color:#fff;font-size:16px;font-weight:bold}
+.smp_coupon .no_coupon .txt{padding-top:24%;line-height:20px;font-weight:bold;font-size:16px;letter-spacing:-1px}
+.smp_coupon .no_coupon .txt span{display:block;color:#ed1b23;font-size:16px;letter-spacing:-1px}
+/* 20150225 수정-e */
+.smp_coupon .coupon_li{margin-top:15px}/* 20150331 수정 */
+/* 20150303 수정 */
+.smp_coupon .coupon_li li{position:relative;float:none;width:auto;margin-bottom:15px;background:#fff;border:1px solid #e7e6e6;box-sizing:border-box;-webkit-box-sizing:border-box}/* 20150331 수정 */
+.smp_coupon .coupon_li li .img{display: block;float: left;width: 119px; margin:5px 13px 5px 5px}/* 20150331 수정 */
+.smp_coupon .coupon_li li div{position:relative;display: block;float: left;width: 52%;min-height:131px;padding:5% 2% 0 0}/* 20150331 수정 */
+.smp_coupon .coupon_li li a.txt{display:block;font-weight:bold;color:#555;margin-bottom:15px}
+.line-clamp {
+  display: block;/* Fallback for non-webkit */
+  display: -webkit-box;
+  /* max-width: 190px;*/
+  height: 2.8em;/* Fallback for non-webkit */
+  margin: 0 auto;
+  line-height: 1.4em;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.smp_coupon .coupon_li li .btn{display:block;margin-bottom:17px;width:142px;height:33px;line-height:33px;background:#ebebeb;border-radius:3px;text-align:center;font-weight:bold;color:#555}/* 20150331 수정 */
+.smp_coupon .coupon_li li .logo{display:block;width:82px;position:absolute;top:auto;bottom:5%;left:0}/* 20150331 수정 */
+.smp_coupon .coupon_li li .type01{clear:both;padding:8px 10px;border-top:1px solid #e7e6e6;letter-spacing:-1px;color:#252525}/* 20150331 수정 */
+.smp_coupon .coupon_li li .type01 strong{display:inline-block;padding-right:10px;margin-right:15px;background: url(http://image.lotte.com/lotte/mobile/smartpick/common/bu_line02.gif) no-repeat right 1px;background-size:1px 14px; letter-spacing:0}
+.smp_coupon .coupon_li li .img_no_use{position:absolute;top:0;left:0;width:100%;height:100%;background: url(http://image.lotte.com/lotte/mobile/smartpick/common/none_use01.png) no-repeat 50% 50%;background-size:cover}
+.smp_coupon .coupon_li li .img_use_confirm{position:absolute;top:0;left:0;width:100%;height:100%;background: url(http://image.lotte.com/lotte/mobile/smartpick/common/none_use02.png) no-repeat 50% 50%;background-size:cover}
+
+/* 상세보기 화면 */
+.smp_coupon .detail .cont_wrap{padding-top:0}
+.smp_coupon .detail h2.tit{position:relative;height:40px;line-height:40px;background:#fff;border-bottom:2px solid #ed1c24;color:#ed1c24;text-align:center}
+.smp_coupon .detail h2.tit span{position:absolute;top:8px;left:5px;display:block;width:25px;height:25px;background: url(http://image.lotte.com/lotte/mobile/smartpick/common/prev_arrow.gif) no-repeat 0 0;background-size:25px 25px;text-indent:-9999em}
+.smp_coupon .detail .btn_wrap{padding:12px 0 2px;margin:0 -10px 0;background:#ebebeb}
+.smp_coupon .detail .btn_wrap div{padding:0 10px}
+.smp_coupon .detail .btn_wrap a{display:block;float:left;width:49%;height:48px;line-height:48px;margin-bottom:10px;background:#9e9d9d;border-radius:3px;font-size:17px;font-weight:bold;color:#fff;text-align:center;letter-spacing:-1px}
+.smp_coupon .btn_color{background:#f22525 !important}
+.smp_coupon .detail .box_layout_wap{padding-top:30px}/* 20150826 추가 */
+.smp_coupon .detail .box_layout_wap:last-child {padding-bottom:30px}/* 20150826 추가 */
+.smp_coupon .detail .box_layout{padding-bottom:10px;margin:0 3.5% 5px;background:#fff} /* 20150826 수정 */
+.smp_coupon .detail .box_layout dt{padding:15px 0 10px;margin:0 15px 15px;border-bottom:1px solid #707070;color:#252525;font-weight:bold}
+.smp_coupon .detail .box_layout dd {padding-left:10px;margin:0 20px 10px;background:url(http://image.lotte.com/lotte/mobile/smartpick/common/bu_nemo_gray.gif) no-repeat left 5px;background-size:3px 3px}
+.smp_coupon .detail .box_layout dd.dd_btn{background-position:left 11px}
+.smp_coupon .detail .box_layout dd.dd_btn .tit{margin-top:6px}
+.smp_coupon .detail .box_layout dd.btn{padding-left:0;background:none}
+.smp_coupon .detail .box_layout dd.btn a{display:block;width:100%;height:48px;line-height:48px;background:#9e9d9d;border-radius:3px;font-size:17px;font-weight:bold;color:#fff;text-align:center;letter-spacing:-1px}
+.smp_coupon .detail .box_layout dd a.btn_small{display:inline-block;float:right;width:60%;height:28px;line-height:28px;background:#898989;border-radius:3px;font-size:13px;color:#fff;text-align:center;letter-spacing:-1px}
+.smp_coupon .detail .box_layout dd span.btn_small{display:inline-block;margin-left:10px;height:28px;line-height:28px;background:none;border-radius:0;font-size:13px;text-align:center;letter-spacing:-1px}
+.smp_coupon .detail .box_layout dd p{display:inline-block;width: 69%;color:#555;font-size:13px;letter-spacing:-1px;vertical-align:top}
+.smp_coupon .detail .box_layout dd .tit{width:29%;color:#898989;font-size:13px;vertical-align:top}
+.smp_coupon .detail .box_layout dd p span{font-size:13px}
+.smp_coupon .detail .box_layout dd p span.point{display:inline-block;height:33px;line-height:18px;margin-top:6px}
+.smp_coupon .detail .box_layout dd.tel {padding:0;margin:0 15px 20px;background:#f7f7f7;border:1px solid #707070;border-radius:3px}
+.smp_coupon .detail .box_layout dd.tel a{display:block;padding:12px 15px}
+.smp_coupon .detail .box_layout dd.tel p{font-size:15px;font-weight:bold}
+.smp_coupon .detail .box_layout dd.tel p.tit{width:71px;padding-left:20px;background:url(http://image.lotte.com/lotte/mobile/smartpick/common/bu_tel.gif) no-repeat ;background-size:14px 17px;color:#555}
+.smp_coupon .detail .box_layout dd.tel p.num{width:50%;padding-left:20px;background:url(http://image.lotte.com/lotte/mobile/smartpick/common/bu_div_line.gif) no-repeat ;background-size:1px 17px; letter-spacing:0}/* 20150331 수정 */
+.smp_coupon .detail .box_layout dd.place{padding:0;margin:0 0 20px;border:1px solid #959595;background:#959595;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box}
+.smp_coupon .detail .box_layout dd.place .ptit{display:block;width:auto;height:30px;line-height:30px;margin:0 15px;border-bottom:1px solid #878787;color:#fff;text-align:center;cursor:pointer}
+.smp_coupon .detail .box_layout dd.place .ptit span{display:inline-block;margin-left:10px;background:url(http://image.lotte.com/lotte/mobile/smartpick/common/bu_open.gif) no-repeat left 9px;background-size:11px 11px;text-indent:-9999em}
+.smp_coupon .detail .box_layout dd.place .ptit.on span{background:url(http://image.lotte.com/lotte/mobile/smartpick/common/bu_close.gif) no-repeat left 9px;background-size:11px 11px}
+.smp_coupon .detail .box_layout dd.place .wild p{display:block;margin:12px 15px;width:auto;color:#fff}
+.smp_coupon .detail .box_layout dd.place .wild p.map{margin:0}
+
+/* 교환권 설정화면 */
+.point_color{display:inline-block;margin-right:10px;color:#ed1b23}
+.smp_coupon .setting{padding: 15px 10px}
+.smp_coupon .setting .setting_box{padding:10px 10px 15px;margin-bottom:20px;border:1px solid #ebebeb;background:#fff}
+.smp_coupon .setting .setting_box .tit{padding-bottom:9px;margin-bottom:15px;border-bottom:1px solid #e7e7e7;color:#000;font-weight:bold;font-size:15px}/* 20150331 수정 */
+.smp_coupon .setting .setting_box .login{position:relative; overflow:hidden;width:100%}/* 20150331 수정 */
+.smp_coupon .setting .setting_box .login a{display:inline-block;margin-bottom:12px;width:100%;height:40px;line-height:40px;border-radius:3px;background:#ed1c24;text-align:center;color:#fff;font-size:17px;font-weight:bold}
+.smp_coupon .setting .setting_box .login a.out{position:absolute; top:0; right:0; width:40%; margin-bottom:0}/* 20150331 수정 */
+.smp_coupon .setting .setting_box .login span{width:160px;height:40px;line-height:16px; font-size:12px;color:#707070; display:table-cell; vertical-align:middle}/* 20150331 수정 */
+.smp_coupon .setting .setting_box .login span strong{color:#363636}
+.smp_coupon .setting .setting_box .des{text-align:right;color:#707070;font-size:12px}
+.smp_coupon .setting .setting_box .small_tit{color:#707070;font-weight:bold}
+.smp_coupon .setting .setting_box.ver div{position:relative;height:30px;line-height:30px}
+.smp_coupon .setting .setting_box.ver div a{position:absolute;top:0;left:auto;right:0;display:inline-block;width:45%; border-radius:3px;background:#555;text-align:center;color:#fff;font-size:12px}
+.smp_coupon .setting .setting_box.ver .small_tit{display:inline-block;width:40%}
+.smp_coupon .setting .setting_box .txt{color:#acacac;font-size:11px}
+.smp_coupon .setting .setting_box.ver div span, .smp_coupon .setting .setting_box.ver div strong{vertical-align: middle}
+.smp_coupon .setting .setting_box.ver .posi{position:absolute;top:0;left:auto;right:0;width:165px}
+/* //20150303 수정 */
+/* 수신알림 */
+.mgt13{margin-bottom:13px !important}
+.smp_coupon .setting .setting_box .alert{position:relative;margin-bottom:8px}
+.smp_coupon .setting .setting_box .alert .small_tit{display:inline-block;height:30px;line-height:30px}
+/* 설정화면 내 스위치버튼 */
+.onoffswitch {position: absolute;top:0;right:0;width: 40%;-webkit-user-select:none;-moz-user-select:none;-ms-user-select: none}
+.onoffswitch-checkbox {display: none}
+.onoffswitch-label {display: block;overflow: hidden;cursor: pointer}
+.onoffswitch-inner {display: block;width: 200%;margin-left: -100%;-moz-transition: margin 0.3s ease-in 0s;-webkit-transition: margin 0.3s ease-in 0s;-o-transition: margin 0.3s ease-in 0s;transition: margin 0.3s ease-in 0s}
+.onoffswitch-inner > span {display: block;float: left;position: relative;width: 50%;height: 30px;padding: 0;line-height: 30px;font-size: 14px;color: white;font-family: Trebuchet, Arial, sans-serif;font-weight: bold;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box}
+.onoffswitch-inner .onoffswitch-active {background-color: #fff;color: #FFFFFF;border: 1px solid #ED1C24;border-radius: 3px}
+.onoffswitch-inner .onoffswitch-inactive {background-color: #fff;color: #FFFFFF;text-align: right;border: 1px solid #ccc;border-radius: 3px}
+.onoffswitch-switch {display: block;width: 50%;margin: 0px;text-align: center;border: 0px solid #999999;border-radius: 0px;position: absolute;top: 0;bottom: 0}
+.onoffswitch-active .onoffswitch-switch {background: #ED1C24;left: 0}
+.onoffswitch-inactive .onoffswitch-switch {background: #ccc;right: 0}
+.onoffswitch-active .onoffswitch-switch:before {content: "OFF";position: absolute;top: 0;left: 100%;width:100%;color:#c2c2c2}
+.onoffswitch-inactive .onoffswitch-switch:before {content: "ON";position: absolute;top: 0;right: 100%;width:100%;color:#c2c2c2}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {margin-left: 0}
+/* 20150303 교환권 보내기 팝업 */
+.coupon_send_pop.bg{position: fixed;top: 0;left:0;display: block;width: 100%;height: 100%;opacity: 0.6;margin: 0px;border: 0px;background: #000;box-sizing: border-box;-webkit-box-sizing: border-box;z-index: 1000002}
+.pop_layer{position: fixed;top: 10%;left: 0;display: none;width:100%;margin: 0;box-sizing: border-box;-webkit-box-sizing: border-box;z-index: 1000002}
+.pop_layer .tit{position:relative;height:40px;line-height:40px;background:#ed1b24;text-align:center;color:#fff;font-size:17px}
+.pop_layer .tit .close{position:absolute;top:0;left:auto;right:6px;display:block;padding:12px 6px 0;background:url(http://image.lotte.com/lotte/mobile/smartpick/common/ico_close.gif) no-repeat 6px 12px;background-size:16px 16px;text-indent:-9999em}
+.pop_layer .content{background: #fff;padding: 20px 10px}
+.pop_layer .box_mms{margin-bottom:20px;border:1px solid #d5d4d4}
+.pop_layer .box_mms p{height:30px;line-height:30px;border-bottom:1px solid #d5d4d4;text-align:center}
+.pop_layer .box_mms p strong{color:#363636}
+.pop_layer .box_mms ul{overflow:hidden;width:208px;margin:20px auto}
+.pop_layer .box_mms ul li{float:left;margin-right:40px}
+.pop_layer .box_mms ul li:nth-child(2){margin-right:0}
+.pop_layer .box_mms ul li img{width:84px}
+.pop_layer .noti{margin-bottom:20px}
+.pop_layer .noti li{padding-left:10px;margin-bottom:6px;background:url(http://image.lotte.com/lotte/mobile/smartpick/common/bu_nemo.gif) no-repeat left 6px;background-size:2px 2px;color:#555;font-size:13px;letter-spacing:-1px}
+.pop_layer .content .btn{width:30%;margin:0 auto;height:38px;line-height:38px;border-radius:3px;background:#555;text-align:center}
+.pop_layer .content .btn a{color:#fff}
+/* 위로 바로가기 */
+.btn_top {position:fixed;bottom:59px;right:8px;display:none;z-index:3 !important}
+.btn_top a {display:inline-block;background:url(http://image.lotte.com/lotte//mo2015/angular/btn_top.png) no-repeat;background-size:40px 40px;width:40px;height:40px;text-indent:-9999em;color:transparent}
+/* 20150303 로그인 */
+.smp_coupon .login{background:#fff}
+.smp_coupon .login .login_des{margin:20px 30px 0; border-bottom: 1px solid #e7e7e7}/* 20150331 수정 */
+.smp_coupon .login .menu {overflow:hidden;display:table;width:100%}
+.smp_coupon .login .menu li {display:table-cell;border-bottom:solid 1px #d3d4d6;border-left:solid 1px #d3d4d6;background:#dbdee0;text-align:center;width:33%;box-sizing:border-box;-webkit-box-sizing:border-box}
+.smp_coupon .login .menu li:first-child {border-left:none;box-sizing:border-box;-webkit-box-sizing:border-box}
+.smp_coupon .login .menu li.on {border-bottom:none;border-right:none;background:#fff;box-sizing:border-box;-webkit-box-sizing:border-box}
+.smp_coupon .login .menu li a {display:block;height:36px;padding-top:12px;color:#555;font-weight:bold;box-sizing:border-box;-webkit-box-sizing:border-box}
+.smp_coupon .login .menu li.on a {color:#0a5ad5}
+.smp_coupon .login .sub-tab {display:none}
+.smp_coupon .login .member {padding:10px 0 0;box-sizing:border-box;-webkit-box-sizing:border-box}
+.smp_coupon .login .member .keyboard {overflow:hidden;padding:10px 30px;text-align:right;box-sizing:border-box;-webkit-box-sizing:border-box}
+.login .member .keyboard a {color:#6f6f71;font-weight:bold;position:relative;padding-right:17px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.smp_coupon .login .member .keyboard a.on:after {content:"";border:solid 2px #666;border-right:none;border-bottom:none;width:8px;height:8px;display:inline-block;-webkit-transform: rotate(-135deg);position:absolute;top:50%;margin-top:-8px;right:0px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.smp_coupon .login .member .keyboard a:after {content:"";border:solid 2px #666;border-right:none;border-bottom:none;width:8px;height:8px;display:inline-block;-webkit-transform: rotate(45deg);position:absolute;top:50%;margin-top:-2px;right:0px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.smp_coupon .login .member .keyboard_layer {background:#dbdee0;padding:6px 15px;display:none;box-sizing:border-box;-webkit-box-sizing:border-box}
+
+.smp_coupon .login .member .adult_txt {padding:10px 30px}
+.smp_coupon .login .member .adult_txt span {color:#ba1d3a}
+
+.smp_coupon .login .login_input {padding:0 30px;margin-bottom:15px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.smp_coupon .login .login_input li {padding-bottom:8px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.smp_coupon .login .login_input span {display:inline-block;width:49%}
+.smp_coupon .login .login_input input[type="text"], .smp_coupon .login .login_input input[type="password"]{width:100%;font-size:16px;font-weight:bold;height:26px;line-height:26px;border:1px solid #d5d5d5;background:#fafafa;text-indent:10px}
+.smp_coupon .login .login_input input[type="checkbox"]{width:20px;height:20px}
+.smp_coupon .login .login_input input {vertical-align:top}
+.smp_coupon .login .login_input label {display:inline-block;padding-top:3px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.smp_coupon .login .login_btn01 {padding:0 30px 20px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.smp_coupon .login .login_btn01 a {width:100%}
+.smp_coupon .login .login_btn02 {background:#f5f6f7;padding:20px 30px;margin-bottom:0;box-sizing:border-box;-webkit-box-sizing:border-box}
+.smp_coupon .login .login_btn02 .txt {display:block;text-align:center;line-height:150%;letter-spacing:-1px;font-size:13px}
+.smp_coupon .login .login_btn02 div {width:100%;display:table;text-align:center;padding-top:15px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.smp_coupon .login .login_btn02 .btn01 {display:table-cell;width:33%}
+.smp_coupon .login .login_btn02 .btn02 {display:table-cell;width:34%}
+.smp_coupon .login .login_btn02 .btn03 {display:table-cell;width:33%}
+.smp_coupon .login .login_btn02 div span {padding-top:33px;position:relative;box-sizing:border-box;-webkit-box-sizing:border-box}
+.smp_coupon .login .login_btn02 div a {color:#888;font-size:11px}
+.smp_coupon .login .login_btn02 div a:before {content:"";position:absolute;display:inline-block;top:0;left:50%;background:url(http://image.lotte.com/lotte/mobile/mobile_new/common/icon.png) no-repeat;background-size:125px 400px}
+.smp_coupon .login .login_btn02 div .btn01 a:before {width:29px;height:29px;background-position:0 -355px;margin-left:-15px}
+.smp_coupon .login .login_btn02 div .btn02 a:before {width:26px;height:28px;background-position:-38px -355px;margin-left:-13px}
+.smp_coupon .login .login_btn02 div .btn03 a:before {width:27px;height:26px;background-position:-74px -355px;margin-left:-13px}
+.smp_coupon .login_pop {position:absolute;border:solid 1px #0a5ad5;background:#fff;margin:0 8px;padding:21px 23px 15px;text-align:center;display:none;box-sizing:border-box;-webkit-box-sizing:border-box}
+.smp_coupon .login_pop .tl {display:block;font-size:14px;color:#0a5ad5;font-weight:bold}
+.smp_coupon .login_pop .txt {display:block;font-size:10px;line-height:150%;padding:13px 0;box-sizing:border-box;-webkit-box-sizing:border-box}
+.smp_coupon .login_pop dl {border:solid 1px #d1d4d9;background:#f5f6f7;padding:10px 10px;text-align:left;box-sizing:border-box;-webkit-box-sizing:border-box}
+.smp_coupon .login_pop dd {line-height:150%;font-size:10px;color:#666;position:relative;padding:5px 0 5px 10px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.smp_coupon .login_pop dd:before {content:"";border-left:solid 3px #9fa5b5;width:3px;height:3px;position:absolute;top:11px;left:0px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.smp_coupon .login_pop .btn {padding-top:10px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.smp_coupon .login_pop .btn a {width:80px}
+.smp_coupon .login .non_buy {text-align:center;padding:20px 30px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.smp_coupon .login .non_buy .txt {line-height:150%;display:block}
+.smp_coupon .login .non_buy .btn {padding-top:15px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.smp_coupon .login .non_buy .btn a {width:100%}
+.smp_coupon .login .non_login {padding:20px 30px;display:none;box-sizing:border-box;-webkit-box-sizing:border-box}
+.smp_coupon .login .non_login .txt {line-height:150%;text-align:center;display:block}
+.smp_coupon .login .non_login .txt em {color:#0a5ad5}
+.smp_coupon .login .non_login .input {display:block;padding-top:8px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.smp_coupon .login .non_login .input input[type="text"] {width:100%}
+.smp_coupon .login .non_login .input input[type="email"] {width:100%}
+.smp_coupon .login .non_login .btn {padding-top:8px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.smp_coupon .login .non_login .btn a {width:100%}
+.smp_coupon .login .btn_member {background:#f5f6f7;padding:20px 30px;margin-bottom:-25px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.smp_coupon .login .btn_member .txt {display:block;text-align:center;line-height:150%;color:#010101}
+.smp_coupon .login .btn_member .txt em {color:#0a5ad5}
+.smp_coupon .login .btn_member .btn {width:100%;display:table;text-align:center;padding-top:15px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.smp_coupon .login .btn_member .btn a {width:100%}
+.smp_coupon .c_btn.col01{border:0 none !important;border-radius:3px;background:#ed1c24 !important}
+.smp_coupon .c_btn.col01 span{text-shadow:none !important;display: block;text-align: center;font-size: 17px;color: #fff;font-weight: bold;line-height: 48px;height: 48px;padding:0}
+/* 교환권 생성하기 */
+.smp_coupon .coding{margin:12px 10px;min-height:236px;background: url(http://image.lotte.com/lotte/mobile/smartpick/common/bg_product_top.png) no-repeat;
+  background-size: contain}/* 20150318 수정 */
+.smp_coupon .coding .product{margin:0 auto 0;padding:10% 0 18%;width:50%}
+.smp_coupon .coding .p_logo{position:absolute;top:5px;left:auto;right:5px;width:30%}
+.smp_coupon .coding .no_coupon{position: relative;top: 0;left: 0}
+.smp_coupon .no_coupon .send {position: relative;top: 0;left: 0;width: 200px;height: 46px;line-height: 46px;margin:20px auto 20%}
+
+/* 20150316 공지안내 */
+.smp_coupon .guide{padding-bottom:15px;background:#efefef}
+.smp_coupon .guide .noti{position:relative;margin-bottom:8px} /* 20150331 수정 */
+/* .smp_coupon .guide .noti a{display:block;position:absolute;top:auto;bottom:15%;left:39%;width:21%;height:26px;line-height:26px;border:1px solid #fff;border-radius:14px;color:#fff;text-align:center;font-size:12px} 삭제 20150406 */
+.smp_coupon .guide .bell{position:relative;width:100%;background:#000 url(http://image.lotte.com/lotte/mobile/smartpick/common/ico_bell.png) no-repeat 3px 2px;
+  background-size: 35px 35px;cursor:pointer;z-index:1}/* top:6%;left:3%;width:35px;height:35px;border-radius:50%;*/
+.smp_coupon .guide .bell p{padding-left:25px;letter-spacing:-1px}
+.smp_coupon .guide .bell p.tit{margin:0 10px 0 10px;height:40px;line-height:40px;color:#bdbdbd;font-size:14px}
+.smp_coupon .guide .bell p.tit:after{display:inline-block;float:right;margin-top:13px;width:14px;height:14px;background:url(http://image.lotte.com/lotte/mobile/smartpick/common/ico_openclose.png) no-repeat;background-size: 14px 28px;content:''}
+.smp_coupon .guide .bell p.tit.on{border-bottom:1px solid #838383} /* 디자인수정반영_김낙운_20150327 */
+.smp_coupon .guide .bell p.tit.on:after{background-position:0 -14px}
+.smp_coupon .guide .bell p.txt{display:none;position:absolute;top:41px;left:0;margin:0;padding:5px 15px 8px 35px;line-height:1.6;font-size:12px;color:#bbb;box-sizing:border-box;-webkit-box-sizing:border-box;background:#000;z-index:10} /* 디자인수정반영_김낙운_20150327 */
+/* //20150316 공지안내 */
+.smp_coupon .guide .store_layout{margin:0 8px;padding-bottom:8px} /* 20150331 수정 */
+.smp_coupon .guide .store_layout .tit{width:50%;margin:0 auto} /* 20150331 수정 */
+.smp_coupon .guide .store_slider{overflow:hidden;position:relative;width:100%}
+.smp_coupon .guide .store_slider .slider_nav{position:absolute;top:auto;bottom:7%;left:0;width:100%;text-align:center}
+.smp_coupon .guide .store_slider .slider_nav span {display: inline-block;width: 10px;height: 10px;margin: 0 3px;border: 1px solid #dedede;border-radius: 5px;background: #fff;-webkit-border-radius: 10px;-moz-border-radius: 10px}
+.smp_coupon .guide .store_slider .slider_nav span.on {border: 1px solid #d30009;background: #d30009}
+.smp_coupon .guide .move span{display:block;position:absolute;top:44%;background:url(http://image.lotte.com/ellotte/mobile/main/btn_move02.png) no-repeat;background-size:22px 80px;-webkit-background-size:22px 80px}/* 20150406 수정 */
+.smp_coupon .guide .move span.prev{left:0;background-position:0 0}
+.smp_coupon .guide .move span.next{right:0;background-position:18px -40px}
+.smp_coupon .guide .move span a{display:block;width:40px;height:40px;color:transparent;text-indent:-9999em}
+.smp_coupon .guide .slider_cont{overflow:hidden;width:100%}
+.smp_coupon .guide .slider_cont a{display:block;float:left}
+/* 가이드 서브 페이지 */
+.smp_coupon .guide_sub{background:#efefef}
+.smp_coupon .guide_sub_tab{margin:20px 7px 3px}/* 20150319 수정 */
+.smp_coupon .guide_sub_tab ul{position:relative;overflow:hidden;width:100%}
+.smp_coupon .guide_sub_tab li{float:left;width:25%}
+.smp_coupon .guide_sub_tab li a{display:block;margin:0 3px 8px;height:40px;line-height:40px;border:1px solid #c3c3c3;border-radius:5px;text-align:center;box-sizing:border-box;-webkit-box-sizing:border-box;letter-spacing:-1px;font-size:13px}
+.smp_coupon .guide_sub_tab li.on a{border-color:#ed1c24;background:#ed1c24;color:#fff}
+.smp_coupon .tab_cont{margin:0;padding-bottom:40px}/* 20150319 수정 */
+.smp_coupon .tab_cont .btn{display: block;margin:10px auto 0;width: 278px;height:40px;line-height:40px;border-radius:3px;background:#ed1c24;color: #fff;font-weight: bold;font-size: 17px;text-align: center;letter-spacing:-1px}/* 20150319 수정 */
+/* 20150318 앱다운로드 추가 */
+.smp_coupon .setting .appdown{padding:28px 10px}
+.smp_coupon .setting .appdown .txt2{margin-bottom:15px;color:#959595;text-align:center}
+.smp_coupon .setting .appdown a{display:inline-block;width:100%;height:40px;line-height:40px;border:1px solid #555;border-radius:3px;background:#fff;text-align:center;color:#252525;font-size:17px;font-weight:bold;letter-spacing:-1px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.app_update_pop.bg{position: fixed;top: 0;left:0;display: block;width: 100%;height: 100%;opacity: 0.6;margin: 0px;border: 0px;background: #000;box-sizing: border-box;-webkit-box-sizing: border-box;z-index: 1000002}
+.app_update_pop{position: fixed;top: 10%;left: 0;display: none;width:94%;margin: 0 3%;border:1px solid #949494;border-radius:5px;box-sizing: border-box;-webkit-box-sizing: border-box;background:#fff;z-index: 1000002}
+.app_update_pop .content{padding:20px 10% 25px}
+.app_update_pop .logo{padding:0 15px 12px;margin-bottom:20px;border-bottom:1px solid #e1e1e1}
+.app_update_pop .txt{margin-bottom:13px;font-size:13px;color:#555;text-align:center;letter-spacing:-1px}
+.app_update_pop .content a{display: inline-block;width: 90%;height: 49px;line-height: 49px;border-radius: 3px;background: #ed1c24;margin:0 5%;text-align:center;color: #fff;font-size: 15px;font-weight: bold}
+/* 20150319 수정 */
+.smp_coupon .guide_sub .smp_bn{padding:10px 10px 0}
+/* 20150330 추가-s */
+/* footer */
+#footer {padding:0;margin:0;position:relative;text-align:left;height:auto;overflow:hidden; font-family: '나눔고딕',NanumGothic,'맑은고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,Helvetica,sans-serif}
+#footer .banner {width:100%;margin-top:25px;}
+#footer .banner a { display:block;width:100%}
+#footer .banner img {width:100%}
+#footer .menu01 {overflow:hidden;background:#1e2338;height:35px}
+#footer .menu01 li {float:left;width:20%;text-align:center;position:relative}
+#footer .menu01 li:first-child {background:none}
+#footer .menu01 li a {color:#fff;display:block;position:relative;padding:10px 0}
+#footer .menu01 li i:after {content:"";border-left:solid 1px #454958;position:absolute;top:12px;right:0px;width:0px;height:10px;display:inline-block;box-sizing:border-box;-webkit-box-sizing:border-box}
+#footer .info {overflow:hidden;padding:15px 0 0 15px;font-size:0;background-color:#e5e8eb;box-sizing:border-box;-webkit-box-sizing:border-box}
+#footer .info .menu02 {overflow:hidden;margin-left:-6px}
+#footer .info .menu02 li {display:inline-block;background:url(http://image.lotte.com/lotte/mobile/mobile_new/common/layout.png) no-repeat -129px -89px;background-size:130px 100px}
+#footer .info .menu02 li:first-child {background:none;font-size:10px;padding:0 4px 0 0;box-sizing:border-box;-webkit-box-sizing:border-box}
+#footer .info .menu02 li a {color:#333;font-size:10px;padding:0 4px 0 6px;box-sizing:border-box;-webkit-box-sizing:border-box}
+#footer .info .menu02 li strong {color:#0a5ad5}
+#footer .info p {font-size:10px;line-height:135%;color:#666;padding:2px 0px 15px;letter-spacing:-0.05em;box-sizing:border-box;-webkit-box-sizing:border-box}
+#footer .menu03 {text-align:center;font-size:0;background-color:#e5e8eb}
+#footer .menu03 {overflow:hidden;margin-left:-4px}
+#footer .menu03 li {display:inline-block;background:url(http://image.lotte.com/lotte/mobile/mobile_new/common/layout.png) no-repeat -129px -89px;background-size:130px 100px}
+#footer .menu03 li:first-child {background:none}
+#footer .menu03 li a {color:#333;font-size:10px;padding:0 4px 0 6px;box-sizing:border-box;-webkit-box-sizing:border-box}
+#footer .menu03 li a strong {color:#0a5ad5}
+#footer .capyright {overflow:hidden;padding:7px 0 25px 15px;font-size:10px;text-align:center;background-color:#e5e8eb;box-sizing:border-box;-webkit-box-sizing:border-box}
+#footer .smartpick {position:absolute;bottom:110px;right:0px;width:auto;background-color:transparent}
+#footer .smartpick a {display:inline-block;width:93px;height:62px;text-indent:-9999em;color:transparent;background:url(http://image.lotte.com/lotte/mobile/mobile_new/common/footer_banner02.png) no-repeat;background-size:93px 62px}
+/*footer.new2015*/
+#footer.new2015 .menu01{height:40px;background:#222945}
+#footer.new2015 .menu01 li a{padding:0; line-height:40px}
+#footer.new2015 .menu01 li i:after{top:15px}
+/*20150304 메뉴 5개로 가기로 변경되어서 주석처리함
+#footer.new2015 .menu01 li{width:22%}
+#footer.new2015 .menu01 li:nth-child(2){width:31%}*/
+#footer.new2015 .info{padding:0px;background:#e9e9e9;color:#888;text-align:center}
+#footer.new2015 .info .menu02{margin:0 10px;padding:8px 0;border-bottom: 1px solid #d3d3d3}
+#footer.new2015 .info .menu02 li{background:none;width:20%;padding:0}
+#footer.new2015 .info .menu02 li a{color:#888}
+#footer.new2015 .info .menu02 li:nth-child(2){width:18%}
+#footer.new2015 .info .menu02 li:nth-child(3){width:27%}/*20150304*/
+#footer.new2015 .info .menu02 li:nth-child(4){width:30%}
+#footer.new2015 .info p{color:#888;padding:5px 0 6px 0}
+#footer.new2015 .menu03{background:#e9e9e9;text-align:center;margin:0}
+#footer.new2015 .menu03 li{background:none}
+#footer.new2015 .menu03 li a strong{color:#2c2c2c}
+#footer.new2015 .capyright{text-align:center;padding: 6px 0 25px 0}
+/* //20150330 추가-e */
+#footer .info .menu02 li:before{display:none;}
+#smart_pick .btn_c{margin-bottom:15px} /* 교환권 발송 */
+
+/* 20150512 추가 : 스마트픽 예약 변경 레이어 */
+.smp_coupon .detail .box_layout dd p span.point strong {color:#ed1c24;padding-right:5px}
+.smp_coupon .detail .box_layout dd.dd_btn a.reservation_change {display:inline-block;width:60px;padding:7px 0;border:1px solid #c7c7c7;border-radius:5px;background:#fff;color:#707070;font-size:12px;text-align:center;vertical-align:top;margin-top:9px}
+.commonPop{width:100%;height:100%;position:fixed;top:0;z-index:1000003}   
+.commonPop .bg{width:100%;height:100%;background:#000;opacity:0.8}
+.commonPop .box{width:100%;position:absolute;top:10%}   
+.commonPop .box .popBox{position:static;width:288px;background:white;margin:0 auto;border-radius:10px}   
+.commonPop .box .popBox .cont{padding:25px 16px 22px 16px}
+.commonPop .box .popBox .foot{width:100%;height:45px;color:#999;text-align:center;line-height:45px;border-top:1px solid #E3E3E3;font-size:14px}   
+@media all and (orientation:landscape){/*가로모드*/    
+    .commonPop .box .popBox{width:250px}
+    .commonPop .box .popBox .cont{padding:20px 12px 15px 12px}
+    .commonPop .box .popBox .foot{height:40px;line-height:40px}
+}
+.smartpickReservationChange_bg{position:fixed;top:0;left:0;display:none;width:100%;height:100%;opacity: 0.6;margin:0px;border:0px;background:#000;box-sizing:border-box;-webkit-box-sizing: border-box;z-index:1000002}
+#smartpickReservationChange {display:none}
+#smartpickReservationChange .popBox .now_reservation {padding-top:20px;font-size:13px;color:#333}
+#smartpickReservationChange .popBox .now_reservation strong {font-weight:bold;color:#ed1c24}
+#smartpickReservationChange .popBox dl.reservation_selection {overflow:hidden}
+#smartpickReservationChange .popBox dl.reservation_selection dt,
+#smartpickReservationChange .popBox dl.reservation_selection dd {float:left;height:36px;line-height:36px;font-size:13px}
+#smartpickReservationChange .popBox dl.reservation_selection dt {clear:both;width:20%;color:#888}
+#smartpickReservationChange .popBox dl.reservation_selection dd {color:#000;width:80%;font-size:13px}
+#smartpickReservationChange .popBox dl.reservation_selection dd .s_box02 {overflow:hidden;display:inline-block;font-size:12px;vertical-align:middle;background-image:linear-gradient(#fff, #f4f4f4);background-image:-webkit-linear-gradient(#fff, #f4f4f4);background-image:-moz-linear-gradient(#fff, #f4f4f4);position:relative;width:100%}
+#smartpickReservationChange .popBox dl.reservation_selection dd .s_box02 select {display:inline-block;width:100%;height:30px; line-height:normal; margin:0;font-size: 13px; color:#000;padding:0 28px 0 10px;border:solid 1px #ddd;outline:none;-webkit-appearance:none;-moz-appearance:none;appearance:none;cursor:pointer;border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px;box-sizing:border-box; -webkit-box-sizing:border-box; background-image: -webkit-linear-gradient(#fff, #fff); background-image: linear-gradient(#fff, #fff); background:#fff}
+#smartpickReservationChange .popBox dl.reservation_selection dd .s_box02:after {content:"";background: url(http://image.lotte.com/lotte/mobile/mobile_new/common/input_new.png) no-repeat 0 -70px;background-size: 105px 330px;position:absolute;top:8px;right:6px;width:18px;height:20px; pointer-events:none}
+#smartpickReservationChange .popBox ul.blt1 {color:#999;padding-bottom:14px}
+#smartpickReservationChange .popBox ul.blt1 li {font-size:12px;line-height:17px;padding:4px 0 0 7px; background:url(http://image.lotte.com/lotte/mobile/mobile_new/order/bul_list.gif) no-repeat 0 11px;background-size:3px 3px}
+#smartpickReservationChange .popBox ul.blt1 li span.fc04 {font-size:12px;color:#ed1c24}
+@media (orientation: landscape){/*가로모드*/    
+    #smartpickReservationChange.commonPop {position:absolute}
+    #smartpickReservationChange.commonPop .box{top:3%}
+}
+.smp_coupon .coupon_li li.new2015 {padding:10px}
+.smp_coupon .coupon_li li.new2015 .thumbnail {display:inline-block;width:120px;position:absolute;left:10px;top:10px}
+.smp_coupon .coupon_li li.new2015 div.info {float:none;min-height:120px;padding:0;margin-left:132px;width:auto;line-height:17px}
+.smp_coupon .coupon_li li.new2015 div.info .logo{top:4px;bottom:auto;right:0;left:auto;width:auto}
+.smp_coupon .coupon_li li.new2015 div.info .logo img {width:auto;height:12px}
+.smp_coupon .coupon_li li.new2015 div.info .condition {padding:4px 0 10px;color:#ed1c24;font-weight:bold}
+.smp_coupon .coupon_li li.new2015 div.info .title {padding-bottom:10px;color:#000;font-size:12px}/* 20150724 수정 : */
+/*.smp_coupon .coupon_li li.new2015 div.info .title a {color:#000;font-size:12px} 20150724 삭제 */
+.smp_coupon .coupon_li li.new2015 div.info .date {color:#252525;font-size:12px;position:relative}
+.smp_coupon .coupon_li li.new2015 div.info .date span {display:block;font-size:12px;letter-spacing:-1px}
+.smp_coupon .coupon_li li.new2015 div.info .date a.change_btn {position:absolute;right:0;top:0;display:inline-block;width:60px;padding:7px 0;border:1px solid #c7c7c7;border-radius:5px;background:#fff;color:#707070;font-size:12px;text-align:center}
+.smp_coupon .coupon_li li.new2015 .send_btn {margin-top:10px;display: inline-block;width:100%;height:33px;line-height:33px;border-radius: 3px;background:#ed1c24;text-align:center;color:#fff;font-size:15px;font-weight:bold}
+.smp_coupon .coupon_li li.new2015 div.info.impossibility .condition {color:#252525}
+.smp_coupon .coupon_li li.new2015 div.info.impossibility .date {color:#898989}
+.smp_coupon .cont .impossibility{position:absolute;top:45%;left:0;width:100%;height:45%;min-height:240px; background:url(http://image.lotte.com/lotte/mobile/smartpick/common/bg_impossibility.gif) no-repeat;background-size:100%;text-align:center}
+.smp_coupon .cont .impossibility p.txt {padding-top:37%;font-size: 15px;color: #464646}
+
+/* 20150617 간편회원가입 추가 */
+.smp_coupon .easy_login_wrap input:focus{border:solid 1px #ed1c24 !important} /* 20150616 포커스 컬러 수정 */
+.smp_coupon .easy_login_wrap{background-color:#fff;display:block;margin:0;padding:0;overflow:hidden}
+.smp_coupon .easy_login_wrap .login_des{margin:20px 16px 0;border-bottom:1px solid #e7e7e7}
+.smp_coupon .easy_login_wrap .easy_login_box .sub-tab .easyjoin_info .info_txt{font-size:13px;color:#333;line-height:19px;letter-spacing:-0.07em;text-align:center;margin-bottom:20px}
+.smp_coupon .easy_login_wrap .easy_login_box .sub-tab .info_txt span{font-size:12px}
+.smp_coupon .easy_login_wrap .easy_login_box .sub-tab .login_btn01 a span{line-height:19px}
+.smp_coupon .easy_login_wrap .easy_login_box .sub-tab .keyboard a{color:#ed1c24}
+.smp_coupon .easy_login_wrap .easy_login_box .sub-tab .keyboard a.on{color:#888}
+.smp_coupon .easy_login_wrap .easy_login_box .sub-tab .keyboard a:after{border-color:#ed1c24}
+.smp_coupon .easy_login_wrap .easy_login_box .sub-tab .easy_login_input input[type="checkbox"]{background-image:url(http://image.lotte.com/lotte/mobile/mobile_new/footer/icon_login_check_box_smartpick.png)}
+
+
+.smp_coupon #footer {position:relative;padding-bottom:46px;text-align:left;height:auto;overflow:hidden;background:#f1f1f1}
+.smp_coupon #footer .banner {width:100%}
+.smp_coupon #footer .banner a { display:block;width:100%}
+.smp_coupon #footer .banner img {width:100%}
+.smp_coupon #footer .menu01 {overflow:hidden;background:#999;height:40px;}
+.smp_coupon #footer .menu01 li {float:left;width:20%;text-align:center;position:relative}
+.smp_coupon #footer .menu01 li:first-child {background:none}
+.smp_coupon #footer .menu01 li a {color:#fff;font-size:12px;display:block;position:relative;padding:0;line-height: 40px;}
+.smp_coupon #footer .menu01 li i:after{border-left:0 !important;}
+.smp_coupon #footer .info {padding:10px;color:#666;background:#f1f1f1;}
+.smp_coupon #footer .info .menu02{margin:0;padding:0;border:0;text-align:left;}
+.smp_coupon #footer .info .menu02 li {width:auto;display:inline-block;padding:0;line-height:13px;}
+.smp_coupon #footer .info .menu02 li:nth-child(2){width:auto;}
+.smp_coupon #footer .info .menu02 li:nth-child(3){width:auto;}
+.smp_coupon #footer .info .menu02 li:nth-child(4){width:auto;}
+.smp_coupon #footer .info .menu02 li a {color:#333;font-size:11px;padding:0 5px;display:inline-block;}
+.smp_coupon #footer .info .menu02 li strong {color:#333;font-size:11px;padding:0 10px 0 0;}
+.smp_coupon #footer .info .menu02 li:before{content:'';width:1px;height:10px;margin-bottom:1px;background:#d5d5d5;display:inline-block;vertical-align:middle;}
+.smp_coupon #footer .info .menu02 li:first-child:before{width:0;}
+.smp_coupon #footer .info p {padding:10px 0px 0 0;color:#666;font-size:11px;line-height:18px;text-align:left;}
+.smp_coupon #footer .info p.add span{display:inline-block;font-size:11px;white-space:nowrap}
+.smp_coupon #footer .menu03 {background:#f1f1f1;padding-left:10px;text-align:center;}
+.smp_coupon #footer .menu03 li {display:inline-block}
+.smp_coupon #footer .menu03 li a {color:#333;font-size:11px;padding:0 5px;display:inline-block;cursor:pointer}
+.smp_coupon #footer .menu03 li:before{content:'';width:1px;height:10px;margin-bottom:1px;background:#d5d5d5;display:inline-block;vertical-align:middle;}
+.smp_coupon #footer .menu03 li:first-child:before{width:0;}
+.smp_coupon #footer .capyright {padding:10px 0 25px 15px;background:#f1f1f1;color:#666;font-size:11px;text-align:center;}
+.smp_coupon #footer .bookmarListkLayer {display: none;}
+.smp_coupon #storage_layer {display:none;position:absolute;z-index:999;width:100%;height:100%;}
+.smp_coupon #storage_frame {display:none;border:none;background:#fff;width:100%;height:100%;}
+
+/* 20150819   추가 */
+#smartpickReservationChange .popBox dl.reservation_selection dd .smp_s_box02 {overflow:hidden;display:inline-block;font-size:12px;vertical-align:middle;;position:relative;width:100%}
+#smartpickReservationChange .popBox dl.reservation_selection dd .smp_s_box02 select {display:inline-block;width:100%;height:30px; line-height:normal; margin:0;font-size: 13px; color:#000;padding:0 28px 0 10px;border:solid 1px #ddd;outline:none;-webkit-appearance:none;-moz-appearance:none;appearance:none;cursor:pointer;border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px;box-sizing:border-box; -webkit-box-sizing:border-box; background-image: -webkit-linear-gradient(#fff, #fff); background-image: linear-gradient(#fff, #fff); background:#fff}
+#smartpickReservationChange .popBox dl.reservation_selection dd .smp_s_box02:after {content:"";background: url(http://image.lotte.com/lotte/mobile/mobile_new/common/input_new.png) no-repeat 0 -70px;background-size: 105px 330px;position:absolute;top:8px;right:6px;width:18px;height:20px; pointer-events:none}
+

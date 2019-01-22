@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+	<meta charset="utf-8">
+	<title>롯데닷컴</title>
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+
+	<!-- 기존 css -->
+	<link rel="stylesheet" type="text/css" href="common.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/layer/main_popup.css"/>
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/layer/coupon_layer.css"/>
+	<!-- 기존 css -->
+
+	<!--<link rel="stylesheet" type="text/css" href="unit_list_01.css"/>-->
+	<!--<link rel="stylesheet" type="text/css" href="unit_2017.css">-->
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/main/main_2017.css"><!-- 신규 main css-->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script><!-- 코딩용 angular js -->
+
+</head>
+<body ng-controller="MainCtrl">
+	<!-- -->
+	<div id="wrapper">
+		<!-- main_header -->
+		<!--<section id="main_header" class="main_header app_bnr">
+			<div class="header_wrap fixed">
+				<div class="app_bnr_wrap" style="background-color: #405c9e" app-down-bnr="" ng-if="appDownBnrFlag">
+					<a ng-click="appDown();" class="btn_appdown"><img alt="롯데닷컴 앱 다운로드" ng-src="http://image.lotte.com/upload/display/corner/0_55155_47683_30_13010122_5.jpg" src="http://image.lotte.com/upload/display/corner/0_55155_47683_30_13010122_5.jpg"></a>
+					<button ng-click="appDownBnrClose();" class="btn_close">앱다운로드 배너 그만보기</button>
+				</div>
+				<div class="inner_wrap">
+					<div class="header_top_wrap">
+						<h1 class="logo"><button ng-click="gotoMainHeader()" class="btn_main">LOTTE.COM</button></h1>
+						<button ng-click="showSideCtgHeader()" class="btn_ctg">카테고리</button>
+						<button ng-click="gotoCart()" class="btn_cart">장바구니&lt;!&ndash; ngIf: cartCount && cartCount > 0 &ndash;&gt;</button>
+					</div>
+					<div class="header_srh_wrap web">
+						<div class="srh_box">
+							<label ng-click="showSrhLayerHeader()" for="keyword" class="btn_srh ng-binding"></label>
+							&lt;!&ndash; ngIf: appObj.isApp &ndash;&gt;
+						</div>
+					</div>
+					<div id="gnb" class="nav_swipe_wrap">
+						<nav class="main_nav">
+							<ul>
+								<li class="on"><a>이거어때</a></li>
+								<li><a>BIG딜</a></li>
+								<li>
+									<span class="cate_flag ng-binding ng-scope">HOT</span>
+									<a>선물포장</a>
+								</li>
+								<li>
+									<span class="cate_flag ng-binding ng-scope">HOT</span>
+									<a>10%적립</a>
+								</li>
+								<li><a>백화점</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</section>-->
+		<!-- main_header -->
+
+		<!-- container_wrap -->
+		<div class="container_wrap">
+			<section id="container">
+				<div class="cont_wrap tpml_normal">
+
+					<!-- 퍼블리싱 시작, 작업자: 김기용-->
+					<div class="moduleCon">
+
+						<!--판매베스트-->
+						<div class="unit unit_tabmenu best">
+							<ul>
+								<li class="menu1 on"><a><span>판매 베스트</span></a></li>
+								<li class="menu2 "><a><span>실시간 베스트</span></a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="moduleCon">
+						<div class="unit unit_cate best">
+							<div class="cate fillBG">
+								<ul style="overflow-x: scroll;">
+									<li>
+										<a>
+											<span class="img_wrap"><img src="/HTML2017/images/t_cate_03.png" alt=""></span>
+											<span class="tit">전체</span>
+										</a>
+									</li>
+									<li class="on">
+										<a>
+											<span class="img_wrap"><img src="/HTML2017/images/t_cate_05.png" alt=""></span>
+											<span class="tit">화장품</span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="img_wrap"><img src="/HTML2017/images/t_cate_05.png" alt=""></span>
+											<span class="tit">잡화/슈즈/명품</span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="img_wrap"><img src="/HTML2017/images/t_cate_05.png" alt=""></span>
+											<span class="tit">패션의류</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+
+							<div class="subcate">
+								<div class="catenavi">
+									<span class="">명품화장품</span> <span class="on">메이크업</span>
+								</div>
+								<div class="categroupwrap">
+									<ul class="categroup fclear">
+										<li>
+											<ul class="div2 fclear">
+												<li class="on"><a><span>전체</span></a></li>
+												<li><a><span>화장품</span></a></li>
+												<li><a><span>잡회/슈즈/명품</span></a></li>
+												<li><a><span>패션의류</span></a></li>
+												<li><a><span>스포츠/레저</span></a></li>
+												<li><a><span>유아동</span></a></li>
+											</ul>
+										</li>
+										<li>
+											<ul class="div2 fclear">
+												<li><a><span>가전/가구</span></a></li>
+												<li><a><span>생활/식품</span></a></li>
+												<li><a><span></span></a></li>
+												<li><a><span></span></a></li>
+												<li><a><span></span></a></li>
+												<li><a><span></span></a></li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+
+								<div class="pagewrap">
+									<span class="paging"><strong>1</strong> / <span>2</span></span>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="cst_best">
+
+							<div class="filter_wrap" style="">
+								<div class="tit on1">판매 베스트 100<p class="alert_tip">
+									<span class="alert_pop">최근 7일간 롯데닷컴 고객들이<br/><span>가장 많이 구매한 상품</span>을 집계한 랭킹입니다.</span>
+								</p></div>
+
+								<ul class="filter">
+									<li>
+										<div class="custom_select gender">
+											<div class="item_select">
+												<span>성별 전체</span>
+											</div>
+											<div class="item_list">
+												<ul>
+													<li><a>성별</a></li>
+													<li><a>성별 전체</a></li>
+													<li><a class="on">여성</a></li>
+													<li><a>남성</a></li>
+												</ul>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="custom_select age">
+											<div class="item_select">
+												<span>연령 전체</span>
+											</div>
+											<div class="item_list">
+												<ul>
+													<li><a>연령</a></li>
+													<li><a>연령 전체</a></li>
+													<li><a class="on">20대</a></li>
+													<li><a>30대</a></li>
+													<li><a>40대</a></li>
+													<li><a>50대</a></li>
+												</ul>
+											</div>
+										</div>
+									</li>
+
+									<!--<li class="gender figure select_arrow">
+										<select class="" id="" name="rankTypeAge" ng-change="rankAgeChange()">
+											<option value="A" selected="">성별 전체</option>
+											<option value="F" >여성</option>
+											<option value="M">남성</option>
+										</select>
+									</li>
+									<li class="age figure select_arrow on">
+										<select class="" id="" name="">
+											<option value="A" selected="">연령 전체</option>
+											<option value="20" >20대</option>
+											<option value="30">30대</option>
+											<option value="40">40대</option>
+											<option value="50">50대</option>
+										</select>
+									</li>-->
+								</ul>
+							</div>
+						</div>
+
+
+						<div class="tmpl_best">
+
+							<ul class="comp prod_comp type_1 horizon">
+								<li>
+									<div class="thumb">
+										<img src="http://image.lotte.com/goods/35/22/91/57/57912235_1_280.jpg" alt="">
+										<div class="ranking_wrap">
+											<span class="ranking">1</span>
+											<span class="ranking chg new">NEW</span>
+											<!--<span class="ranking chg num up">1</span>-->
+											<!--<span class="ranking chg num down">1</span>-->
+										</div>
+									</div>
+									<div class="info">
+										<div class="flag_wrap">
+											<span class="flag2 depart">롯데백화점</span>
+											<!--<span class="flag2 free_ship">무료배송</span>-->
+											<!--<span class="flag2 gift_pack">선물포장</span>-->
+											<!--<span class="flag2 tv_shopping">TV쇼핑</span>-->
+											<span class="flag2 smartpick">스마트픽</span>
+										</div>
+										<p class="tit">[롯데칠성] 레쓰비 모음전 마일드커 피/모카라떼 10묶음</p>
+										<p class="price"><b>16,000</b>원</p>
+										<div class="user_feedback">
+											<span class="starScoreWrap"><span class="starScoreCnt" style="width:100%"></span></span>
+											<span class="review">(102)</span>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="thumb">
+										<img src="http://image.lotte.com/goods/35/22/91/57/57912235_1_280.jpg" alt="">
+										<div class="ranking_wrap">
+											<span class="ranking">2</span>
+											<!--<span class="ranking chg new">NEW</span>-->
+											<!--<span class="ranking chg num up">1</span>-->
+											<span class="ranking chg num down">1</span>
+										</div>
+									</div>
+									<div class="info">
+										<div class="flag_wrap">
+											<span class="flag2 depart">롯데백화점</span>
+											<!--<span class="flag2 free_ship">무료배송</span>-->
+											<!--<span class="flag2 gift_pack">선물포장</span>-->
+											<!--<span class="flag2 tv_shopping">TV쇼핑</span>-->
+											<span class="flag2 smartpick">스마트픽</span>
+										</div>
+										<p class="tit">[롯데칠성] 레쓰비 모음전 마일드커 피/모카라떼 10묶음</p>
+										<p class="price"><b>16,000</b>원</p>
+										<div class="user_feedback">
+											<span class="starScoreWrap"><span class="starScoreCnt" style="width:80%"></span></span>
+											<span class="review">(102)</span>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="thumb">
+										<img src="http://image.lotte.com/goods/35/22/91/57/57912235_1_280.jpg" alt="">
+										<div class="ranking_wrap">
+											<span class="ranking">3</span>
+											<!--<span class="ranking chg new">NEW</span>-->
+											<span class="ranking chg num up">4</span>
+											<!--<span class="ranking chg num down">1</span>-->
+										</div>
+									</div>
+									<div class="info">
+										<div class="flag_wrap">
+											<span class="flag2 depart">롯데백화점</span>
+											<!--<span class="flag2 free_ship">무료배송</span>-->
+											<!--<span class="flag2 gift_pack">선물포장</span>-->
+											<!--<span class="flag2 tv_shopping">TV쇼핑</span>-->
+											<span class="flag2 smartpick">스마트픽</span>
+										</div>
+										<p class="tit">[롯데칠성] 레쓰비 모음전 마일드커 피/모카라떼 10묶음</p>
+										<p class="price"><b>16,000</b>원</p>
+										<div class="user_feedback">
+											<span class="starScoreWrap"><span class="starScoreCnt" style="width:60%"></span></span>
+											<span class="review">(102)</span>
+										</div>
+									</div>
+								</li>
+							</ul>
+
+							<ul class="comp prod_comp type_1 vertic">
+								<li>
+									<div class="thumb">
+										<img src="http://image.lotte.com/goods/35/22/91/57/57912235_1_280.jpg" alt="">
+										<div class="ranking_wrap">
+											<span class="ranking">4</span>
+											<span class="ranking chg new">NEW</span>
+											<!--<span class="ranking chg num up">4</span>-->
+											<!--<span class="ranking chg num down">1</span>-->
+										</div>
+									</div>
+									<div class="info">
+										<div class="flag_wrap">
+											<span class="flag2 depart">롯데백화점</span>
+											<!--<span class="flag2 free_ship">무료배송</span>-->
+											<!--<span class="flag2 gift_pack">선물포장</span>-->
+											<!--<span class="flag2 tv_shopping">TV쇼핑</span>-->
+											<span class="flag2 smartpick">스마트픽</span>
+										</div>
+										<p class="tit">[롯데칠성] 레쓰비 모음전 마일드커 피/모카라떼 10묶음</p>
+										<p class="price"><b>16,000</b>원</p>
+										<div class="user_feedback">
+											<span class="starScoreWrap"><span class="starScoreCnt" style="width:60%"></span></span>
+											<span class="review">(102)</span>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="thumb soldout">
+										<img src="http://image.lotte.com/goods/35/22/91/57/57912235_1_280.jpg" alt="">
+										<div class="ranking_wrap">
+											<span class="ranking">5</span>
+											<!--<span class="ranking chg new">NEW</span>-->
+											<span class="ranking chg num up">4</span>
+											<!--<span class="ranking chg num down">1</span>-->
+										</div>
+									</div>
+									<div class="info">
+										<div class="flag_wrap">
+											<span class="flag2 depart">롯데백화점</span>
+											<!--<span class="flag2 free_ship">무료배송</span>-->
+											<!--<span class="flag2 gift_pack">선물포장</span>-->
+											<!--<span class="flag2 tv_shopping">TV쇼핑</span>-->
+											<span class="flag2 smartpick">스마트픽</span>
+										</div>
+										<p class="tit">[롯데칠성] 레쓰비 모음전 마일드커 피/모카라떼 </p>
+										<p class="price"><b>16,000</b>원</p>
+										<div class="user_feedback">
+											<span class="starScoreWrap"><span class="starScoreCnt" style="width:60%"></span></span>
+											<span class="review">(102)</span>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="thumb">
+										<img src="http://image.lotte.com/goods/35/22/91/57/57912235_1_280.jpg" alt="">
+										<div class="ranking_wrap">
+											<span class="ranking">4</span>
+											<!--<span class="ranking chg new">NEW</span>-->
+											<!--<span class="ranking chg num up">4</span>-->
+											<span class="ranking chg num down">1</span>
+										</div>
+									</div>
+									<div class="info">
+										<div class="flag_wrap">
+											<span class="flag2 depart">롯데백화점</span>
+											<!--<span class="flag2 free_ship">무료배송</span>-->
+											<!--<span class="flag2 gift_pack">선물포장</span>-->
+											<!--<span class="flag2 tv_shopping">TV쇼핑</span>-->
+											<span class="flag2 smartpick">스마트픽</span>
+										</div>
+										<p class="tit">[롯데칠성] 레쓰비 모음전 마일드커 피/모카라떼 10묶음</p>
+										<p class="price"><b>16,000</b>원</p>
+										<div class="user_feedback">
+											<span class="starScoreWrap"><span class="starScoreCnt" style="width:60%"></span></span>
+											<span class="review">(102)</span>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="thumb">
+										<img src="http://image.lotte.com/goods/35/22/91/57/57912235_1_280.jpg" alt="">
+										<div class="ranking_wrap">
+											<span class="ranking">5</span>
+											<!--<span class="ranking chg new">NEW</span>-->
+											<span class="ranking chg num up">4</span>
+											<!--<span class="ranking chg num down">1</span>-->
+										</div>
+									</div>
+									<div class="info">
+										<div class="flag_wrap">
+											<span class="flag2 depart">롯데백화점</span>
+											<!--<span class="flag2 free_ship">무료배송</span>-->
+											<!--<span class="flag2 gift_pack">선물포장</span>-->
+											<!--<span class="flag2 tv_shopping">TV쇼핑</span>-->
+											<span class="flag2 smartpick">스마트픽</span>
+										</div>
+										<p class="tit">[롯데칠성] 레쓰비 모음전 마일드커 피/모카라떼 10묶음</p>
+										<p class="price"><b>16,000</b>원</p>
+										<div class="user_feedback">
+											<span class="starScoreWrap"><span class="starScoreCnt" style="width:60%"></span></span>
+											<span class="review">(102)</span>
+										</div>
+									</div>
+								</li>
+							</ul>
+
+
+							<ul class="comp prod_comp vertic type_2">
+								<div class="list_tit">
+									<div class="img_wrap"><img src="/HTML2017/images/i_best_rank1_tit.png"></div>
+									<p class="tit">화장품 카테고리에서 1년간 랭킹 1위 54회!</p>
+								</div>
+								<li>
+									<div class="thumb">
+										<img src="http://image.lotte.com/goods/35/22/91/57/57912235_1_280.jpg" alt="">
+									</div>
+									<div class="info">
+										<p class="brand">조르지오 아르마니</p>
+										<p class="tit">립 마그넷 3.9ml</p>
+										<p class="price">
+											<span class="old_price">146,000원</span>
+											<span class="new_price"><b>126,000</b>원</span>
+										</p>
+									</div>
+								</li>
+							</ul>
+						</div>
+
+					</div>
+					<!-- 퍼블리싱 끝-->
+
+				</div>
+			</section>
+		</div>
+		<!-- //container_wrap -->
+
+		<!-- footer -->
+		<footer id="footer">
+			<ul class="menu01">
+				<li><a class="ng-binding">마이롯데</a><i></i>	</li>
+				<li><a ng-click="pcClick()">PC버전</a><i></i></li>
+				<li><a>장바구니</a><i></i></li>
+				<li><a>고객센터</a><i></i></li>
+				<li><a ng-click="loginProc()" ng-bind="(loginInfo.isLogin)?'로그아웃':'로그인'" class="ng-binding">로그아웃</a></li>
+			</ul>
+			<div class="info">
+				<ul class="menu02">
+					<li><strong>(주)롯데닷컴</strong></li>
+					<li><a ng-click="ftcClick()">사업자정보확인</a></li>
+					<li><a ng-click="forwardClick()">채무지급보증안내</a></li>
+				</ul>
+				<p class="add">
+					<span class="addFirst">대표이사 : 김형준</span>
+					<span class="line">서울시 중구 을지로 158 10층(을지로4가, 삼풍빌딩)</span>
+					<span class="line">사업자등록번호 : 101-81-52964 통신판매업신고 : 중구 제00402호</span>
+					<span class="line">고객만족센터 : <a href="tel:1577-1110">1577-1110</a>  webmaster@lotte.com</span>
+					<span class="line">개인정보보호책임자 : 윤상선</span> <span class="line">청소년보호책임자 : 김찬기</span>
+					<span>호스팅 사업자 : (주)롯데닷컴</span>
+				</p>
+			</div>
+			<div class="menu03">
+				<ul>
+					<li><a>이용약관</a></li>
+					<li><a><strong>개인정보처리방침</strong></a></li>
+					<li><a>청소년보호정책</a></li>
+				</ul>
+			</div>
+			<div class="capyright">Copyright © LOTTE.com, Inc. All rights Reserved.</div>
+		</footer>
+		<!-- //footer -->
+
+		<!-- quick_btn -->
+		<div class="quick_btn">
+			<div ng-show="visible" class="">
+				<a class="btn_back ng-hide" ng-click="gotoPrepageSide()" ng-show="quickBackBtn">뒤로</a><a class="btn_top" ng-click="gotoTop()">위로</a>
+			</div>
+			<a class="btn_talk" ng-click="gotoTalk()">톡상담</a>
+		</div>
+		<!-- quick_btn -->
+	</div>
+
+	<!-- lotteActionbar -->
+	<section id="lotteActionbar" class="actionbar" ng-show="!appObj.isApp &amp;&amp; !actionbarHideFlag">
+		<ul class="actionbar_wrap">
+			<li class="home on" ng-class="{on:cur_pageid == 1 &amp;&amp; !isShowSideCtg}"><button ng-click="gotoMainFooter()" class="btn_main">홈</button></li>
+			<li class="ctg" ng-class="{on: isShowSideCtg}"><button ng-click="showSideCtgFooter()" class="btn_ctg">카테고리</button></li>
+			<li class="order" ng-class="{on:cur_pageid == 2}"><button ng-click="gotoOrderLstFooter()" class="btn_order">주문배송</button></li>
+			<li class="mylotte" ng-class="{on:cur_pageid == 3}"><button ng-click="gotoMyPageFooter()" class="btn_mylotte">마이롯데</button></li>
+		</ul>
+	</section>
+	<!-- //lotteActionbar -->
+</body>
+</html>

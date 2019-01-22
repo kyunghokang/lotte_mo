@@ -1,0 +1,74 @@
+<section ng-show="contVisible" class="cont_minheight">
+	<section id="container">
+	    <!-- contents -->
+	    <section class="swag_form rewrite">          
+	        <div class="form_wrap">
+		       	<!-- <div class="area photo">
+		       	    <div ng-if="!(appObj.isApp && !isNewestApp && appObj.isIOS)">
+		                <h3>사진 등록하기</h3>
+		            </div>
+		            
+					<div ng-if="appObj.isApp && isNewestApp" style="height:160px;"></div>
+					<div ng-if="appObj.isApp && !isNewestApp && appObj.isAndroid" style="height:260px;"></div>
+				</div> -->
+				<form id="swagWriteForm" name="swagWriteForm">
+		            <div class="area cont">
+		                <h3>내용 작성하기</h3>
+						<!-- 20170614 뀰팁 작성글자 수 수정 -->
+		                <textarea id="bbc_cont" ng-model="input.bbc_cont" onchange="maxLengthCheck('350', null, this, bbc_cont)" onkeyup="maxLengthCheck('350', null, this)">
+		                	{{input.bbc_cont}}
+		                </textarea>
+						<!-- 20170525 입력가능 크기 노출 -->
+						<p><em id="spn_input_char">0</em>/350byte</p>
+						<!-- //20170525 입력가능 크기 노출 -->
+						<!-- //20170614 뀰팁 작성글자 수 수정 -->
+		            </div>	
+	
+	            <!-- 포토 -->
+	            <div class="photo_del" ng-if="hasImage">
+	                <ul class="photo" id="img_list">
+	                    <li>
+	                        <p class="img"><img ng-src="{{images.img_1}}" alt="사진1"></p>
+	                        <!-- <a href="#" ng-click="deleteAttachedImage(1)" ng-show="input.img_file_1_nm && input.img_path_1_nm">
+	                        	<span class="del">삭제</span>
+	                        </a> -->
+	                    </li>
+	                    <li>
+	                        <p class="img"><img ng-src="{{images.img_2}}" alt="사진2"></p>
+	                        <!-- <a href="#" ng-click="deleteAttachedImage(2)" ng-show="input.img_file_2_nm && input.img_path_2_nm">
+	                        	<span class="del">삭제</span>
+	                        </a> -->
+	                    </li>
+	                    <li>
+	                        <p class="img"><img ng-src="{{images.img_3}}" alt="사진3"></p>
+	                        <!-- <a href="#" ng-click="deleteAttachedImage(3)" ng-show="input.img_file_3_nm && input.img_path_3_nm">
+	                        	<span class="del">삭제</span>
+	                        </a> -->
+	                    </li>
+	                </ul>
+	            </div>
+	            <!--//포토-->
+	                        
+		            <div class="confirm">
+			        	<div class="btn_area">
+					        <a href="#" class="btn" ng-click="cancel()"><span>작성 취소</span></a>
+	                		<!-- <a href="#" class="btn b normal" ng-click="deleteComment()"><span>삭제하기</span></a> -->
+					        <a href="#" class="btn on" ng-click="save()"><span>육아 TIP 수정</span></a>
+			            </div>    
+		            </div>
+				</form>
+			</div>
+			<div class="noti_wrap">
+			    <ul class="noti">
+			        <li>작성 내용은 등록 즉시 바로 사이트에 게재되며, 모두 공개를 원칙으로 합니다.</li>
+					<!-- 20170615 수정 -->
+					<li>등록된 이미지는 PC에서만 수정 및 삭제가 가능하며, 모바일앱에서는 수정 및 삭제가 불가합니다.</li>
+					<!-- //20170615 수정 -->
+			        <li>육아 TIP에 작합하지 않은 내용이나 사진이 포함된 게시물은 통보 없이 삭제 될 수 있습니다.</li>
+			        <li>타인의 홈페이지나 블로그 등에 게재되어 있는 사진과 내용을 무단 도용하여 게시물 작성 시, 해당 게시물은 별도 통보없이 삭제처리 됩니다.</li>
+			    </ul>
+			</div>
+	    </section>
+	    <!-- //contents -->
+	</section>
+</section>

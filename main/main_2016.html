@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+	<meta charset="utf-8">
+	<title>롯데닷컴-롯데닷컴 메인</title>
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+
+	<script>
+	var APP_KEY = "7fa1e44757a94fd89921";
+	var SERVER_TIME = new Date();
+	</script>
+
+	<link rel="stylesheet" type="text/css" href="/lotte/resources/rt20170525_1/common.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/lotte/resources/rt20170525_1/lottemain.min.css"/>
+	<script src="/lotte/resources/rt20170525_1/common.min.js"></script>
+	<script src="/lotte/resources/rt20170525_1/lottemain.min.js"></script>
+	<script src="/lotte/resources/rt20170525_1/lottemain.tpl.js"></script>
+</head>
+<body ng-controller="MainCtrl">
+	<lotte-main-app-info ng-if="appObj.isApp"></lotte-main-app-info>
+	<lotte-coupon-layer></lotte-coupon-layer>
+
+	<div id="wrapper" ng-show="showWrap">
+		<lotte-header></lotte-header><!-- 201603 리뉴얼 버전에서 제거 -->
+		<lotte-header-main></lotte-header-main>
+		<lotte-search></lotte-search>
+		<not-found ng-if="noData"></not-found>
+
+		<lotte-container></lotte-container>
+
+		<lotte-footer></lotte-footer>
+		<lotte-btntop></lotte-btntop>
+
+		<lotte-today-other-alarm></lotte-today-other-alarm>
+		<mycart-news-layer></mycart-news-layer>
+	</div>
+	
+	<lotte-main-popup ppp-tgt-pg-cd="10"></lotte-main-popup>
+	<lotte-smart-message></lotte-smart-message>
+	<lotte-side-category></lotte-side-category>
+	<lotte-side-mylotte></lotte-side-mylotte>
+	<lotte-footer-actionbar></lotte-footer-actionbar>
+
+	<lotte-comm-footer></lotte-comm-footer>
+</body>
+</html>

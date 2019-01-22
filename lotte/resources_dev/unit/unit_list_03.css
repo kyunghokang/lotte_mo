@@ -1,0 +1,123 @@
+@charset "UTF-8";
+
+.prod_list_swipe{position:relative;padding:0 0 20px;}
+.prod_list_swipe .mask{
+	/*height:426px;*/margin:0 10px;
+	background-color:#ffffff;overflow:hidden;
+}
+.prod_list_swipe .total{margin:7px 0 0 0;text-align:center;}
+.prod_list_swipe .total span{
+	display:inline-block;padding:0 10px;
+	background:#a6a6a6;border-radius:20px;
+	color:#fff;font-size:13px;line-height:25px;
+}
+.prod_list_swipe .btn_prev,
+.prod_list_swipe .btn_next{
+	position:absolute;top:180px;
+	display:inline-block;width:20px;height:33px;
+	font-size:0;
+}
+.prod_list_swipe .btn_prev{left:2px;background-position:-38px -76px;z-index:1;}
+.prod_list_swipe .btn_next{right:2px;background-position:-65px -76px;z-index:1;}
+
+.unit_list_03 .unit_zoom{top:240px;left:50%; margin-left:105px; display:none;}
+/* 상품리스트 : 스와이프형 */
+.prod_list_03{white-space:nowrap;}
+.prod_list_03:after{clear:both;display:block;content:'';}
+.prod_list_03 > li{float:left;}
+/*.prod_list_03 li:nth-child(even){border-left:1px solid #d0d0d0}*/
+
+/* 무료배송 플래그 
+.flag.tag{
+	display:inline-block;
+	padding:0 5px;
+	border:1px solid #3874ec;background-color:#fff;
+	color:#3874ec;font-size:11px;line-height:17px;
+}
+*/
+p.flag .flag.tag {border-radius:0;-webkit-border-radius:0;padding:0 5px;}
+/* 공통 유닛 표준 : 일반상품 : 스와이프형 */
+.unit_list_03{
+	position:relative; background-color:#fff;border:1px solid #d0d0d0;
+}
+.unit_list_03 > a{display:block;}
+.unit_list_03 .thumb{position:relative;
+	width:280px;margin:0 auto;
+	text-align:center;
+    background:url(http://image.lotte.com/lotte/mo2017/category/unit_default_02.png) no-repeat;background-size:100%;
+    padding-bottom:280px;box-sizing:border-box;overflow:hidden
+}
+.unit_list_03 .thumb img{width:auto;height:280px;position:absolute;top:0;left:0}
+.unit_list_03 p.flag{height:20px!important;border-top:1px solid #f3f3f3;padding:10px 0 0 10px;}
+.unit_list_03 .info{
+	position:relative;
+	padding:8px 10px;
+	height:85px;
+}
+.unit_list_03 .info .tit{
+	display:block;
+	height:36px;
+	margin:3px 0 3px 0;
+	color:#333;font-size:14px;line-height:18px;
+	overflow:hidden;/*text-overflow:ellipsis;
+	display:-webkit-box;*/white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+}
+.unit_list_03 .info .pr_box{position:absolute;bottom:7px;left:10px;height:42px;}
+.unit_list_03 .info .pr_box .price{display:block;color:#3874ec;letter-spacing:-0.5px;}
+.unit_list_03 .info .pr_box .price em{font-size:19px;font-weight:bold;vertical-align:-1px;margin-right:2px;}
+.unit_list_03 .info .pr_box .price2{display:block;color:#bbbbbb;font-size:12px;text-decoration:line-through;letter-spacing:-0.5px;}
+
+
+.unit_list_03 .info .coupon{
+	position:absolute;bottom:10px;right:10px;width:40px;height:39px;
+	color:#333;font-size:14px;text-align:center;
+}
+.unit_list_03 .info .coupon em.no{font-size:19px;}
+.unit_list_03 .info .coupon em.po{margin:0 0 0 2px;}
+.unit_list_03 .info .coupon span{display:block;color:#bbb;font-size:10px;}
+.unit_list_03 .info .coupon span:first-child {color:#333;}
+.unit_list_03 .info2{
+	position:relative;padding:0 10px;
+	height:30px;
+	background:#fafafa;
+	line-height:28px;
+}
+.unit_list_03 .info2 .review{color:#888;font-size:13px;font-weight:normal;}
+.unit_list_03 .info2 .review em{font-weight:normal;}
+.unit_list_03 .info2 .wish_icon{position:absolute;top:5px;right:10px}
+
+.unit_list_03 .hash_list{border:none;background:#fff;overflow:hidden;width:100%;height:38px;padding:0 2px 0 10px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.unit_list_03 .hash_list a{float:left;padding:0 5px;margin:9px 8px 9px 0;height:20px;line-height:20px;display:block;background:#f5f5f5;color:#999;font-size:12px}
+
+@media screen and (min-width:640px){
+	.prod_list_swipe .mask {border:0;background:#eee;}
+    .prod_list_03 > li {float:left;display:inline-block,;width:50%;margin:0;padding:0;box-sizing:border-box;-webkit-box-sizing:border-box;}
+    .prod_list_03 > li:last-child {float:none;}
+	/*.prod_list_03 li:nth-child(even){margin-right:10px;}*/
+    .prod_list_03 > li .unit_list_03 {box-sizing:border-box;-webkit-box-sizing:border-box;}
+    .prod_list_03 > li .unit_list_03:nth-child(odd) {margin-right:4px;}
+    .prod_list_03 > li .unit_list_03:nth-child(even) {margin-left:4px;}
+}
+
+/* 성별/연령대별 문구 노출 */
+.prod_list_03 .find_much_box{border-width:0}
+
+
+/*2016.08.18*/
+.unit_list_03_v2 .info{ position: relative;padding: 8px 10px 0;height: 62px;}
+.unit_list_03_v2 .info .pr_box .price{display:inline-block;padding-right:7px}
+.unit_list_03_v2 .info .pr_box .price2{display:inline-block}
+.unit_list_03_v2 .info2{ bottom: 1px;background: none;height: 48px;padding-bottom:13px}
+.unit_list_03_v2 .info .pr_box{position: absolute;bottom: -3px;left: 10px;height: 26px;}
+.unit_list_03_v2 .info2 .info_dsc{margin-top: 1px;font-size:11px;color:#fb7155;line-height:18px;position: absolute;bottom: 10px;}
+.unit_list_03_v2 .info2 .info_dsc span{margin-right:7px;display:inline-block}
+.unit_list_03_v2 .wish_icon{bottom: 131px;position: absolute;right: 10px;}
+.srh_result_wrap .unit_list_03_v2 .wish_icon{bottom:initial;top:331px}
+
+/*2016.11.24*/
+.unit_list_03_v2 .info2{padding-bottom:0}
+.unit_list_03_v2 .info2 .user_feedback{height: 17px;margin-top: 6px;}
+.unit_list_03_v2 .info2 .info_dsc .noItr{color: #fff;background: #ff7b62;padding: 0 2px}
+.unit_list_03_v2 .info2{height:56px;line-height:14px}
+.unit_list_03_v2 .info2 .info_dsc{position: initial;display: table-cell;vertical-align: middle;height: 34px;}
+.unit_list_03_v2 .info2 .info_dsc span{display:initial;float:left}

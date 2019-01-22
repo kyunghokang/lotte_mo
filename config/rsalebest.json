@@ -1,0 +1,70 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplRsaleBest" : {
+				"options": {
+					"prefix":"/",
+					"module" : "app"
+				},
+				"src" : [
+					"lotte/resources_dev/rsalebest/rsalebest_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/rsalebest.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsRsaleBest" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/common/lotte_ngswipe.js",
+					"lotte/resources_dev/rsalebest/rsalebest.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/rsalebest.js"
+			}
+		},
+
+		"uglify" : {
+			"jsRsaleBest" : {
+				"src" : "lotte/resources/<%= version %>/rsalebest.js",
+				"dest" : "lotte/resources/<%= version %>/rsalebest.min.js"
+			},
+			"tplRsaleBest" : {
+				"src" : "lotte/resources/<%= version %>/rsalebest.template.js",
+				"dest" : "lotte/resources/<%= version %>/rsalebest.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssRsaleBest" : {
+				"src" : [
+					"lotte/resources_dev/rsalebest/rsalebest.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/rsalebest.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanRsaleBest" : [
+				"lotte/resources/<%= version %>/rsalebest.js",
+				"lotte/resources/<%= version %>/rsalebest.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlRsaleBest" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"rsalebest/rsalebest.html" : "rsalebest/rsalebest_dev.html"
+				}
+			}
+		}
+	}
+}
+

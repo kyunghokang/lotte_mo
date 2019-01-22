@@ -1,0 +1,68 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplcouponBook" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                ],
+                "dest" : "lotte/resources/<%= version %>/couponBook.template.js"
+            }
+        },
+
+        "concat" : {
+            "jscouponBook" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/event/couponBook.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/couponBook.js"
+            }
+        },
+
+        "uglify" : {
+            "jscouponBook" : {
+                "src" : "lotte/resources/<%= version %>/couponBook.js",
+                "dest" : "lotte/resources/<%= version %>/couponBook.min.js"
+            },
+            "tplcouponBook" : {
+                "src" : "lotte/resources/<%= version %>/couponBook.template.js",
+                "dest" : "lotte/resources/<%= version %>/couponBook.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "csscouponBook" : {
+                "src" : [
+                    "lotte/resources_dev/event/couponBook.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/couponBook.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleancouponBook" : [
+                "lotte/resources/<%= version %>/couponBook.js",
+                "lotte/resources/<%= version %>/couponBook.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlcouponBook" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "event/couponBook.html" : "event/couponBook_dev.html"
+                }
+            }
+        }
+    }
+}
+

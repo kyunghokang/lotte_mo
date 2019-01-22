@@ -1,0 +1,1386 @@
+1. 업무명 : 상품상세 > 같은상품 비교하기
+2. 담당자 : 신홍균
+3. URL : http://mrenewdev.lotte.com/json/product/compare_model_product.json?brnd_no=2810&goods_no=39353196&model_no=MRA36111
+4. 파라미터
+	업음
+5. JSON 파라미터(필수:*)
+	- *goods_no : 상품번호
+	- *brnd_no : 브랜드번호
+	- *model_no : 모델번호
+6. JSON
+{
+  "type" : "object",
+  "id" : "urn:jsonschema:com:lotte:mobile2:product:bean:ProductEntity",
+  "properties" : {
+    "img_url" : {
+      "type" : "string",
+      "description" : "60x60 축소이미지"
+    },
+    "genie_sale_cnt" : {
+      "type" : "string",
+      "description" : "지니딜 구매수량"
+    },
+    "dscnt_sale_prc" : {
+      "type" : "string",
+      "description" : "할인가격"
+    },
+    "reserve_plus_card" : {
+      "type" : "string",
+      "description" : "적립금L.PlusCardPoint"
+    },
+    "planshop_yn" : {
+      "type" : "string",
+      "description" : "2013.02.21 기획전 리스트 버튼 노출 여부"
+    },
+    "std_amt" : {
+      "type" : "string",
+      "description" : "무료배송 조건금액"
+    },
+    "smp_only_yn" : {
+      "type" : "string",
+      "description" : "스마트픽 전용 여부"
+    },
+    "mfcp_nm" : {
+      "type" : "string",
+      "description" : "제조사"
+    },
+    "card_sale2" : {
+      "type" : "object",
+      "id" : "urn:jsonschema:com:lotte:mobile2:common:bean:ItemEntity<java:util:List<com:lotte:mobile2:product:bean:ProductCardSale2Entity>>",
+      "description" : "기타카드 혜택",
+      "properties" : {
+        "items" : {
+          "type" : "any",
+          "description" : "items"
+        },
+        "item" : {
+          "type" : "object",
+          "id" : "urn:jsonschema:com:lotte:mobile2:product:bean:ProductCardSale2Entity",
+          "properties" : {
+            "cardDispNm" : {
+              "type" : "string",
+              "description" : "할인 명"
+            },
+            "cardTmpFee" : {
+              "type" : "string",
+              "description" : "할인후금액"
+            },
+            "cardAplyFvrVal" : {
+              "type" : "string",
+              "description" : "할인율"
+            },
+            "cardNm" : {
+              "type" : "object",
+              "id" : "urn:jsonschema:com:lotte:mobile2:common:bean:ItemEntity<java:util:List<com:lotte:mobile2:product:bean:ProductCardNmEntity>>",
+              "description" : "카드명",
+              "properties" : {
+                "items" : {
+                  "type" : "any",
+                  "description" : "items"
+                },
+                "total_count" : {
+                  "type" : "integer",
+                  "description" : "총 갯수: 총 갯수를 리턴하지 않는 경우 -1"
+                }
+              }
+            }
+          }
+        },
+        "total_count" : {
+          "type" : "integer",
+          "description" : "총 갯수: 총 갯수를 리턴하지 않는 경우 -1"
+        }
+      }
+    },
+    "sale_opts" : {
+      "type" : "string",
+      "description" : "판매중인 옵션"
+    },
+    "reserve_plus" : {
+      "type" : "string",
+      "description" : "롯데포인트 플러스 카드 포인트"
+    },
+    "myshop" : {
+      "type" : "string",
+      "description" : "백화점 코드"
+    },
+    "reserve_tp" : {
+      "type" : "string",
+      "description" : "원/율 구분"
+    },
+    "smp_psb_yn" : {
+      "type" : "string",
+      "description" : "스마트픽가능여부"
+    },
+    "inv_qty" : {
+      "type" : "string",
+      "description" : "재고수량"
+    },
+    "inst_cpn_aply_val" : {
+      "type" : "string",
+      "description" : "즉석쿠폰 할인율"
+    },
+    "smp_goods_view_yn" : {
+      "type" : "string",
+      "description" : "스마트픽 재고 화면 표출 여부"
+    },
+    "reserve_end" : {
+      "type" : "string",
+      "description" : "예약기간 종료"
+    },
+    "cpn_sale_amt" : {
+      "type" : "string",
+      "description" : "세일률"
+    },
+    "item_dtl" : {
+      "type" : "object",
+      "id" : "urn:jsonschema:com:lotte:mobile2:common:bean:ItemEntity<java:util:List<com:lotte:mobile2:product:bean:ProductItemDtlEntity>>",
+      "description" : "옵션",
+      "properties" : {
+        "items" : {
+          "type" : "any",
+          "description" : "items"
+        },
+        "item" : {
+          "type" : "object",
+          "id" : "urn:jsonschema:com:lotte:mobile2:product:bean:ProductItemDtlEntity",
+          "properties" : {
+            "value_type" : {
+              "type" : "string",
+              "description" : "옵션타입코드"
+            },
+            "item" : {
+              "type" : "object",
+              "id" : "urn:jsonschema:com:lotte:mobile2:common:bean:ItemEntity<java:util:List<com:lotte:mobile2:product:bean:ProductItemEntity>>",
+              "description" : "단품목록",
+              "properties" : {
+                "items" : {
+                  "type" : "any",
+                  "description" : "items"
+                },
+                "total_count" : {
+                  "type" : "integer",
+                  "description" : "총 갯수: 총 갯수를 리턴하지 않는 경우 -1"
+                }
+              }
+            },
+            "selected_item_no" : {
+              "type" : "string",
+              "description" : "선택된 아이템 번호"
+            },
+            "name" : {
+              "type" : "string",
+              "description" : "단품명"
+            }
+          }
+        },
+        "total_count" : {
+          "type" : "integer",
+          "description" : "총 갯수: 총 갯수를 리턴하지 않는 경우 -1"
+        }
+      }
+    },
+    "reserve_start" : {
+      "type" : "string",
+      "description" : "예약기간 시작"
+    },
+    "smp_vst_shop_nm" : {
+      "type" : "string",
+      "description" : "스마트픽 픽업장소"
+    },
+    "inv_mgmt_yn" : {
+      "type" : "string",
+      "description" : "재고관리여부"
+    },
+    "dlex_free" : {
+      "type" : "string",
+      "description" : "무료배송여부"
+    },
+    "reserve_lpoint" : {
+      "type" : "string",
+      "description" : "적립금L.Point"
+    },
+    "pmg_md_gsgr_no" : {
+      "type" : "string",
+      "description" : "관리카테고리코드"
+    },
+    "dlv_goods_sct_cd" : {
+      "type" : "string",
+      "description" : "배송구분"
+    },
+    "prom_fvr_val" : {
+      "type" : "string",
+      "description" : "카드 청구 할인율"
+    },
+    "usm_goods_no" : {
+      "type" : "string",
+      "description" : "통판 상품번호"
+    },
+    "org_sale_prc" : {
+      "type" : "string",
+      "description" : "판매가격"
+    },
+    "lotte_card_sale_card_nm" : {
+      "type" : "string",
+      "description" : "카드즉시할인가 구분"
+    },
+    "fvr_polc_tp_cd" : {
+      "type" : "string",
+      "description" : "혜택정책유형코드 (10:정액, 20:정율)"
+    },
+    "disp_prio_rnk" : {
+      "type" : "string",
+      "description" : "전시우선순위"
+    },
+    "smp_vst_shop_no" : {
+      "type" : "string",
+      "description" : "스마트픽 픽업장소(있으면 스마트픽 상품)"
+    },
+    "sale_cnt" : {
+      "type" : "string",
+      "description" : "세일가, 쿠폰적용가, 제휴카드 혜택이 1개이상인지 체크"
+    },
+    "md_mbl_goods_pr_cont" : {
+      "type" : "string",
+      "description" : "모바일 md talk"
+    },
+    "genie_today_yn" : {
+      "type" : "string",
+      "description" : "오늘오픈 플래그 노출여부"
+    },
+    "item_dscnt_aply_yn" : {
+      "type" : "string",
+      "description" : "단품할인적용여부"
+    },
+    "entr_contr_no" : {
+      "type" : "string",
+      "description" : "거래처 계약번호"
+    },
+    "ecpn_cret_meth_cd" : {
+      "type" : "string",
+      "description" : "E쿠폰 연동정보"
+    },
+    "mng_time" : {
+      "type" : "string",
+      "description" : "스마트픽 매장픽업 운영시간"
+    },
+    "cou_sale_rate" : {
+      "type" : "string",
+      "description" : "계산 된 즉석쿠폰 세일율(정률일 경우)"
+    },
+    "as_cont" : {
+      "type" : "string",
+      "description" : "AS정보"
+    },
+    "gft_nm" : {
+      "type" : "string",
+      "description" : "사은품명"
+    },
+    "smart_pick_only" : {
+      "type" : "string",
+      "description" : "스마트픽 전영 여부"
+    },
+    "reserve" : {
+      "type" : "string",
+      "description" : "적립금"
+    },
+    "sale_stat_cl_yn" : {
+      "type" : "string",
+      "description" : "상품 판매에 따른 품절 여부"
+    },
+    "prom_aply_lmt_amt" : {
+      "type" : "string",
+      "description" : "카드 청구 제한금액"
+    },
+    "item_dtl_cd" : {
+      "type" : "string",
+      "description" : "단품코드"
+    },
+    "md_ntc_fcont" : {
+      "type" : "string",
+      "description" : "MD공지"
+    },
+    "compare_sale_prc_yn" : {
+      "type" : "string",
+      "description" : "이중가 표기 여부"
+    },
+    "entr_yn" : {
+      "type" : "string",
+      "description" : "업체번호 확인 후 불가 유무 확인"
+    },
+    "immed_pay_dscnt_amt" : {
+      "type" : "string",
+      "description" : "참좋은가격(일시불할인가)"
+    },
+    "pmg_result_msg" : {
+      "type" : "string",
+      "description" : "상품조회 에러 메시지"
+    },
+    "goods_no" : {
+      "type" : "string",
+      "description" : "상품번호"
+    },
+    "memo" : {
+      "type" : "string",
+      "description" : "상품설명"
+    },
+    "prom_card_price" : {
+      "type" : "string",
+      "description" : "카드 청구할인가"
+    },
+    "goods_nm" : {
+      "type" : "string",
+      "description" : "상품명 - 20131024"
+    },
+    "inst_cpn_no" : {
+      "type" : "string",
+      "description" : "즉석쿠폰번호"
+    },
+    "brnd_nm" : {
+      "type" : "string",
+      "description" : "브랜드명"
+    },
+    "bottom_conr" : {
+      "type" : "object",
+      "id" : "urn:jsonschema:com:lotte:mobile2:common:bean:ItemEntity<java:util:List<com:lotte:mobile2:product:bean:BannerEntity>>",
+      "description" : "상품상세 하단배너 정보",
+      "properties" : {
+        "items" : {
+          "type" : "any",
+          "description" : "items"
+        },
+        "item" : {
+          "type" : "object",
+          "id" : "urn:jsonschema:com:lotte:mobile2:product:bean:BannerEntity",
+          "properties" : {
+            "img_url" : {
+              "type" : "string",
+              "description" : "이미지경로명"
+            },
+            "memo" : {
+              "type" : "string",
+              "description" : "비고내용"
+            },
+            "goods_no" : {
+              "type" : "string",
+              "description" : "상품번호"
+            },
+            "mrk_rnk" : {
+              "type" : "string",
+              "description" : "우선순위"
+            },
+            "banner_nm" : {
+              "type" : "string",
+              "description" : "배너명"
+            },
+            "set_rnk" : {
+              "type" : "string",
+              "description" : "순위지정"
+            },
+            "bnr_aas_desc" : {
+              "type" : "string",
+              "description" : "배너보조설명"
+            },
+            "aply_strt_dtime" : {
+              "type" : "string",
+              "description" : "적용시작일시"
+            },
+            "order_no" : {
+              "type" : "string",
+              "description" : "표시순위"
+            },
+            "title" : {
+              "type" : "string",
+              "description" : "태블릿 배너이름"
+            },
+            "aply_exp_sct_cd" : {
+              "type" : "string",
+              "description" : "적용노출구분코드"
+            },
+            "seq_no" : {
+              "type" : "string",
+              "description" : "일련번호"
+            },
+            "img_link2" : {
+              "type" : "string",
+              "description" : "이미지2링크명"
+            },
+            "bnr_html_cont" : {
+              "type" : "string",
+              "description" : "배너html내용"
+            },
+            "img2_path_nm" : {
+              "type" : "string",
+              "description" : "이미지2경로명"
+            },
+            "cnt" : {
+              "type" : "string",
+              "description" : "수량"
+            },
+            "text1" : {
+              "type" : "string",
+              "description" : "입력배너"
+            },
+            "img_url2" : {
+              "type" : "string",
+              "description" : "이미지2경로명"
+            },
+            "lnk_url_tp_cd" : {
+              "type" : "string",
+              "description" : "연결URL유형코드"
+            },
+            "img_link" : {
+              "type" : "string",
+              "description" : "이미지링크명"
+            },
+            "img_alt" : {
+              "type" : "string",
+              "description" : "이미지title"
+            },
+            "aply_exp_tgt_cd" : {
+              "type" : "string",
+              "description" : "적용노출대상코드"
+            },
+            "text1_url" : {
+              "type" : "string",
+              "description" : "입력배너링크URL"
+            },
+            "copy_name" : {
+              "type" : "string",
+              "description" : "카피명"
+            },
+            "mov_frme_cd" : {
+              "type" : "string",
+              "description" : "이동프레임코드"
+            }
+          }
+        },
+        "total_count" : {
+          "type" : "integer",
+          "description" : "총 갯수: 총 갯수를 리턴하지 않는 경우 -1"
+        }
+      }
+    },
+    "md_mbl_goods_pr_tit_nm" : {
+      "type" : "string",
+      "description" : "모바일 md 타이틀"
+    },
+    "install_fee" : {
+      "type" : "string",
+      "description" : "설치비"
+    },
+    "brnd_no" : {
+      "type" : "string",
+      "description" : "브랜드번호"
+    },
+    "mgoods_nm" : {
+      "type" : "string",
+      "description" : "모바일 상품명"
+    },
+    "item_opt_list" : {
+      "type" : "object",
+      "id" : "urn:jsonschema:com:lotte:mobile2:common:bean:ItemEntity<java:util:List<com:lotte:mobile2:product:bean:ProductItemOptEntity>>",
+      "description" : "상품 추가옵션정보",
+      "properties" : {
+        "items" : {
+          "type" : "any",
+          "description" : "items"
+        },
+        "item" : {
+          "type" : "object",
+          "id" : "urn:jsonschema:com:lotte:mobile2:product:bean:ProductItemOptEntity",
+          "properties" : {
+            "item_opt_type" : {
+              "type" : "string",
+              "description" : "입력옵션구분"
+            },
+            "item_opt_value" : {
+              "type" : "string",
+              "description" : "옵션값"
+            },
+            "item_opt_name" : {
+              "type" : "string",
+              "description" : "옵션명"
+            }
+          }
+        },
+        "total_count" : {
+          "type" : "integer",
+          "description" : "총 갯수: 총 갯수를 리턴하지 않는 경우 -1"
+        }
+      }
+    },
+    "pmg_upr_md_gsgr_no" : {
+      "type" : "string",
+      "description" : "상위관리카테고리코드 smartix.mwyoon 2011.05.25"
+    },
+    "delivery_want" : {
+      "type" : "string",
+      "description" : "배송희망일"
+    },
+    "img_url6" : {
+      "type" : "string",
+      "description" : "아이콘이미지6"
+    },
+    "lotte_card_dc_prc" : {
+      "type" : "string",
+      "description" : "즉시할인금액"
+    },
+    "img_url5" : {
+      "type" : "string",
+      "description" : "아이콘이미지5"
+    },
+    "md_ntc_fcont1" : {
+      "type" : "string",
+      "description" : "MD공지 1"
+    },
+    "img_url4" : {
+      "type" : "string",
+      "description" : "아이콘이미지4"
+    },
+    "img_url3" : {
+      "type" : "string",
+      "description" : "아이콘이미지3"
+    },
+    "master_goods_yn" : {
+      "type" : "string",
+      "description" : "대표상품여부"
+    },
+    "img_url12" : {
+      "type" : "string",
+      "description" : "아이콘이미지12"
+    },
+    "is_wine_goods" : {
+      "type" : "string",
+      "description" : "와인상품여부"
+    },
+    "inst_aply_strt_dtime" : {
+      "type" : "string",
+      "description" : "즉석쿠폰 시작일"
+    },
+    "img_url11" : {
+      "type" : "string",
+      "description" : "아이콘이미지11"
+    },
+    "img_url9" : {
+      "type" : "string",
+      "description" : "아이콘이미지9"
+    },
+    "img_url10" : {
+      "type" : "string",
+      "description" : "아이콘이미지10"
+    },
+    "md_ntc_fcont2" : {
+      "type" : "string",
+      "description" : "MD공지 1"
+    },
+    "goods_cmps_cd" : {
+      "type" : "string",
+      "description" : "상품구성유형"
+    },
+    "img_url8" : {
+      "type" : "string",
+      "description" : "아이콘이미지8"
+    },
+    "entr_no" : {
+      "type" : "string",
+      "description" : "업체번호"
+    },
+    "img_url7" : {
+      "type" : "string",
+      "description" : "아이콘이미지7"
+    },
+    "lgf_tgt_yn" : {
+      "type" : "string",
+      "description" : "LG패션 재고 대상여부"
+    },
+    "img_url0" : {
+      "type" : "string",
+      "description" : "대표이미지"
+    },
+    "smp_ecpn_use_date" : {
+      "type" : "string",
+      "description" : "스마트픽 이쿠폰 사용기간"
+    },
+    "img_url1" : {
+      "type" : "string",
+      "description" : "아이콘이미지1"
+    },
+    "img_url2" : {
+      "type" : "string",
+      "description" : "아이콘이미지2"
+    },
+    "event_string" : {
+      "type" : "string",
+      "description" : "이벤트명"
+    },
+    "material" : {
+      "type" : "object",
+      "id" : "urn:jsonschema:com:lotte:mobile2:common:bean:ItemEntity<java:util:List<com:lotte:mobile2:product:bean:ProductMaterialEntity>>",
+      "description" : "원료원산지",
+      "properties" : {
+        "items" : {
+          "type" : "any",
+          "description" : "items"
+        },
+        "item" : {
+          "type" : "object",
+          "id" : "urn:jsonschema:com:lotte:mobile2:product:bean:ProductMaterialEntity",
+          "properties" : {
+            "material_nm" : {
+              "type" : "string",
+              "description" : "원료이름"
+            },
+            "material_org" : {
+              "type" : "string",
+              "description" : "원산지"
+            },
+            "material_rate" : {
+              "type" : "string",
+              "description" : "함량"
+            }
+          }
+        },
+        "total_count" : {
+          "type" : "integer",
+          "description" : "총 갯수: 총 갯수를 리턴하지 않는 경우 -1"
+        }
+      }
+    },
+    "smp_exchange_yn" : {
+      "type" : "string",
+      "description" : "스마트픽 실물교환여부"
+    },
+    "sale_prc" : {
+      "type" : "string",
+      "description" : "세일가격"
+    },
+    "hist_end_dtime" : {
+      "type" : "string",
+      "description" : "세일 종료일"
+    },
+    "logo_img" : {
+      "type" : "string",
+      "description" : "백화점,영플라자,홈쇼핑 아이콘"
+    },
+    "ec_goods_artc_cd" : {
+      "type" : "string",
+      "description" : "전자상거래상품품목코드"
+    },
+    "attd_mtr_cont" : {
+      "type" : "string",
+      "description" : "주의사항"
+    },
+    "min_brch_fvr_val" : {
+      "type" : "string",
+      "description" : "점별쿠폰 할인적용판매가"
+    },
+    "lotte_card_sale" : {
+      "type" : "string",
+      "description" : "카드즉시할인가"
+    },
+    "card_aply_sale_nm" : {
+      "type" : "object",
+      "$ref" : "urn:jsonschema:com:lotte:mobile2:common:bean:ItemEntity<java:util:List<com:lotte:mobile2:product:bean:ProductCardSaleEntity>>",
+      "description" : "카드혜택 통합"
+    },
+    "smp_sale_price" : {
+      "type" : "string",
+      "description" : "스마트픽할인가격"
+    },
+    "tdf_sct_cd" : {
+      "type" : "string",
+      "description" : "면세상품 여부"
+    },
+    "goods_tp_cd" : {
+      "type" : "string",
+      "description" : "상품유형코드"
+    },
+    "orpl_nm" : {
+      "type" : "string",
+      "description" : "원산지"
+    },
+    "dlv_proc_tp_cd" : {
+      "type" : "string",
+      "description" : "배송처리 유형"
+    },
+    "sale_img_url" : {
+      "type" : "string",
+      "description" : "할인 이미지 url"
+    },
+    "hist_strt_dtime" : {
+      "type" : "string",
+      "description" : "세일 시작일"
+    },
+    "goods_prc_tp_cd" : {
+      "type" : "string",
+      "description" : "상품 세일 유형코드 1: 일반 3: 세일"
+    },
+    "min_lmt_qty" : {
+      "type" : "string",
+      "description" : "최수구매수량"
+    },
+    "item_opt_yn" : {
+      "type" : "string",
+      "description" : "품목옵션 여부"
+    },
+    "smp_dscnt_rt" : {
+      "type" : "string",
+      "description" : "스마트픽할인률 "
+    },
+    "gdas_qa_cnt" : {
+      "type" : "string",
+      "description" : "Qna 문의 갯수"
+    },
+    "component" : {
+      "type" : "string",
+      "description" : "기본구성"
+    },
+    "issue_method" : {
+      "type" : "string",
+      "description" : "출력방법"
+    },
+    "prc_dif_view_yn" : {
+      "type" : "string",
+      "description" : "비교가격 노출 여부 2012.01.12 권경원 추가"
+    },
+    "new_yn" : {
+      "type" : "string",
+      "description" : "신규여부"
+    },
+    "smp_tp_cd" : {
+      "type" : "string",
+      "description" : "스마트픽 유형코드"
+    },
+    "brnd_disp_shop_no" : {
+      "type" : "string",
+      "description" : "브랜드샵 매장번호"
+    },
+    "view_sale_rate" : {
+      "type" : "string",
+      "description" : "상품 계산 된 이미지 세일율"
+    },
+    "reserve_value2" : {
+      "type" : "string",
+      "description" : "적립금 상세2"
+    },
+    "sale_stat_cd" : {
+      "type" : "string",
+      "description" : "상품 판매 상태"
+    },
+    "reserve_value1" : {
+      "type" : "string",
+      "description" : "적립금 상세1"
+    },
+    "wish_yn" : {
+      "type" : "string",
+      "description" : "스마트 위시 저장 여부"
+    },
+    "planshop" : {
+      "type" : "object",
+      "id" : "urn:jsonschema:com:lotte:mobile2:common:bean:ItemEntity<java:util:List<com:lotte:mobile2:product:bean:ProductPlanshopEntity>>",
+      "description" : "기획전",
+      "properties" : {
+        "items" : {
+          "type" : "any",
+          "description" : "items"
+        },
+        "item" : {
+          "type" : "object",
+          "id" : "urn:jsonschema:com:lotte:mobile2:product:bean:ProductPlanshopEntity",
+          "properties" : {
+            "planshopNm" : {
+              "type" : "string",
+              "description" : "기획전명"
+            },
+            "bnrImgPathNm" : {
+              "type" : "string",
+              "description" : "이미지경로정보"
+            },
+            "bnrImgPathFile" : {
+              "type" : "string",
+              "description" : "이미지경로파일"
+            },
+            "planshopNo" : {
+              "type" : "string",
+              "description" : "기획전 번호"
+            },
+            "bnrImgFileNm" : {
+              "type" : "string",
+              "description" : "이미지파일명"
+            }
+          }
+        },
+        "total_count" : {
+          "type" : "integer",
+          "description" : "총 갯수: 총 갯수를 리턴하지 않는 경우 -1"
+        }
+      }
+    },
+    "select_goods_list" : {
+      "type" : "object",
+      "id" : "urn:jsonschema:com:lotte:mobile2:common:bean:ItemEntity<java:util:List<com:lotte:mobile2:product:bean:SelectGoodsListEntity>>",
+      "description" : "기획전형 추가구성상품 리스트",
+      "properties" : {
+        "items" : {
+          "type" : "any",
+          "description" : "items"
+        },
+        "item" : {
+          "type" : "object",
+          "id" : "urn:jsonschema:com:lotte:mobile2:product:bean:SelectGoodsListEntity",
+          "properties" : {
+            "img_url" : {
+              "type" : "string",
+              "description" : "이미지경로"
+            },
+            "sale_prc" : {
+              "type" : "string",
+              "description" : "판매가"
+            },
+            "inst_cpn_aply_unit_price" : {
+              "type" : "string",
+              "description" : "즉석쿠폰 할인가"
+            },
+            "goods_no" : {
+              "type" : "string",
+              "description" : "상품번호"
+            },
+            "inv_qty" : {
+              "type" : "string",
+              "description" : "재고수량"
+            },
+            "sale_stat_cd" : {
+              "type" : "string",
+              "description" : "판매상태코드"
+            },
+            "goods_nm" : {
+              "type" : "string",
+              "description" : "상품명"
+            },
+            "usm_goods_no" : {
+              "type" : "string",
+              "description" : "통판 상품번호"
+            },
+            "use_yn" : {
+              "type" : "string",
+              "description" : "사용여부"
+            },
+            "immed_pay_dscnt_amt" : {
+              "type" : "string",
+              "description" : "일시불할인금액"
+            }
+          }
+        },
+        "total_count" : {
+          "type" : "integer",
+          "description" : "총 갯수: 총 갯수를 리턴하지 않는 경우 -1"
+        }
+      }
+    },
+    "euse_loc_desc_cont" : {
+      "type" : "string",
+      "description" : "사용장소"
+    },
+    "etc_card_sale" : {
+      "type" : "string",
+      "description" : "기타 카드즉시할인가"
+    },
+    "lotte_card_sale_per" : {
+      "type" : "string",
+      "description" : "카드즉시할인률"
+    },
+    "card_sale" : {
+      "type" : "object",
+      "id" : "urn:jsonschema:com:lotte:mobile2:common:bean:ItemEntity<java:util:List<com:lotte:mobile2:product:bean:ProductCardSaleEntity>>",
+      "description" : "제휴카드 혜택",
+      "properties" : {
+        "items" : {
+          "type" : "any",
+          "description" : "items"
+        },
+        "item" : {
+          "type" : "object",
+          "id" : "urn:jsonschema:com:lotte:mobile2:product:bean:ProductCardSaleEntity",
+          "properties" : {
+            "cardTmpFee" : {
+              "type" : "string",
+              "description" : "할인후금액"
+            },
+            "cardAplyFvrVal" : {
+              "type" : "string",
+              "description" : "할인율"
+            },
+            "cardNm" : {
+              "type" : "string",
+              "description" : "카드사 이름"
+            }
+          }
+        },
+        "total_count" : {
+          "type" : "integer",
+          "description" : "총 갯수: 총 갯수를 리턴하지 않는 경우 -1"
+        }
+      }
+    },
+    "prom_card_nm" : {
+      "type" : "string",
+      "description" : "청구할인 카드이름"
+    },
+    "free_gift" : {
+      "type" : "string",
+      "description" : "사은품"
+    },
+    "etc_view_yn" : {
+      "type" : "string",
+      "description" : "특이사항 여부"
+    },
+    "delivery_fee" : {
+      "type" : "string",
+      "description" : "배송비"
+    },
+    "smp_dept_yn" : {
+      "type" : "string",
+      "description" : "스마트픽 백화점 "
+    },
+    "spick_app_yn" : {
+      "type" : "string",
+      "description" : "스마트픽 핫 상품 여부"
+    },
+    "smp_vst_shop_list" : {
+      "type" : "object",
+      "id" : "urn:jsonschema:com:lotte:mobile2:common:bean:ItemEntity<java:util:List<com:lotte:mobile2:product:bean:ProductSmpVstShopEntity>>",
+      "description" : "와인 픽업장소 리스트",
+      "properties" : {
+        "items" : {
+          "type" : "any",
+          "description" : "items"
+        },
+        "item" : {
+          "type" : "object",
+          "id" : "urn:jsonschema:com:lotte:mobile2:product:bean:ProductSmpVstShopEntity",
+          "properties" : {
+            "minLmtQty" : {
+              "type" : "string",
+              "description" : "최소제한수량"
+            },
+            "mngStrtTime" : {
+              "type" : "string",
+              "description" : "스마트픽운영시작시간"
+            },
+            "invQty" : {
+              "type" : "string",
+              "description" : "재고"
+            },
+            "entrContrNo" : {
+              "type" : "string",
+              "description" : "거래처계약코드"
+            },
+            "mngEndTime" : {
+              "type" : "string",
+              "description" : "스마트픽운영종료시간"
+            },
+            "lwstEntrNo" : {
+              "type" : "string",
+              "description" : "하위거래처코드"
+            },
+            "pitmNm" : {
+              "type" : "string",
+              "description" : "사용처명"
+            },
+            "entrNo" : {
+              "type" : "string",
+              "description" : "거래처코드"
+            },
+            "maxLmtQty" : {
+              "type" : "string",
+              "description" : "최대제한수량"
+            },
+            "pitmNo" : {
+              "type" : "string",
+              "description" : "사용처번호"
+            },
+            "goodsNo" : {
+              "type" : "string",
+              "description" : "상품번호"
+            }
+          }
+        },
+        "total_count" : {
+          "type" : "integer",
+          "description" : "총 갯수: 총 갯수를 리턴하지 않는 경우 -1"
+        }
+      }
+    },
+    "genie_disp_end_dtime" : {
+      "type" : "string",
+      "description" : "지니딜 종료시간"
+    },
+    "smp_ecoupon_yn" : {
+      "type" : "string",
+      "description" : "스마트픽 일반상품 옵션 사용여부"
+    },
+    "lmt_cnt" : {
+      "type" : "string",
+      "description" : "잔여수량"
+    },
+    "smp_cpn_goods_tp_cd" : {
+      "type" : "string",
+      "description" : "쿠폰상품유형코드"
+    },
+    "nint_card_max_month" : {
+      "type" : "string",
+      "description" : "무이자할부"
+    },
+    "gift_pkg_yn" : {
+      "type" : "string",
+      "description" : "선물포장 가능여부"
+    },
+    "smp_road_yn" : {
+      "type" : "string",
+      "description" : "스마트픽 로드샵"
+    },
+    "max_fvr_val" : {
+      "type" : "string",
+      "description" : "카드 청구할인 최대혜택가"
+    },
+    "pmg_result_cd" : {
+      "type" : "string",
+      "description" : "상품조회 에러 코드"
+    },
+    "smp_cpn_goods_tp_dtl_cd" : {
+      "type" : "string",
+      "description" : "쿠폰상품유형상세코드"
+    },
+    "gdas_total_cnt" : {
+      "type" : "string",
+      "description" : "상품평 수"
+    },
+    "smp_dscnt_tp_cd" : {
+      "type" : "string",
+      "description" : "스마트픽 할인 종류"
+    },
+    "byr_age_lmt_cd" : {
+      "type" : "string",
+      "description" : "성인상품여부"
+    },
+    "fut_msg_yn" : {
+      "type" : "string",
+      "description" : "선물메시지 가능여부"
+    },
+    "mast_disp_no" : {
+      "type" : "string",
+      "description" : "대표전시번호"
+    },
+    "eng_goods_nm" : {
+      "type" : "string",
+      "description" : "영문상품명  sjyoo 20141117"
+    },
+    "min_brch_sale_prc" : {
+      "type" : "string",
+      "description" : "점별쿠폰 할인적용금액"
+    },
+    "max_lmt_qty" : {
+      "type" : "string",
+      "description" : "최대구매수량"
+    },
+    "inst_cpn_sale_price" : {
+      "type" : "string",
+      "description" : "즉석쿠폰적용가"
+    },
+    "healthfood_yn" : {
+      "type" : "string",
+      "description" : "건강식품/다이어트 식품 여부"
+    },
+    "smp_dscnt_end_dtime" : {
+      "type" : "string",
+      "description" : "스마트픽 할인 종료일"
+    },
+    "goods_dtl_cd" : {
+      "type" : "string",
+      "description" : "기본Item번호"
+    },
+    "model_no" : {
+      "type" : "string",
+      "description" : "모델번호"
+    },
+    "item_no" : {
+      "type" : "string",
+      "description" : "품목번호"
+    },
+    "sale_stk_yn" : {
+      "type" : "string",
+      "description" : "품절여부"
+    },
+    "dtl_info_vod" : {
+      "type" : "string",
+      "description" : "상품 상세 동영상"
+    },
+    "inst_aply_end_dtime" : {
+      "type" : "string",
+      "description" : "즉석쿠폰 종료일"
+    },
+    "genie_end_time_yn" : {
+      "type" : "string",
+      "description" : "남은 시간 노출 여부"
+    },
+    "delivery_info" : {
+      "type" : "string",
+      "description" : "배송정보"
+    },
+    "smp_deli_loc_list" : {
+      "type" : "object",
+      "id" : "urn:jsonschema:com:lotte:mobile2:common:bean:ItemEntity<java:util:List<com:lotte:mobile2:product:bean:ProductSmpLocInfoEntity>>",
+      "description" : "스마트픽 픽업유형 사용처 정보 리스트",
+      "properties" : {
+        "items" : {
+          "type" : "any",
+          "description" : "items"
+        },
+        "item" : {
+          "type" : "object",
+          "id" : "urn:jsonschema:com:lotte:mobile2:product:bean:ProductSmpLocInfoEntity",
+          "properties" : {
+            "loc_smp_tp_cd" : {
+              "type" : "string",
+              "description" : "스마트픽유형코드"
+            },
+            "lckr_sn" : {
+              "type" : "string",
+              "description" : "로커일련번호"
+            },
+            "smp_deli_loc_nm" : {
+              "type" : "string",
+              "description" : "스마트픽인도장소명"
+            },
+            "deli_loc_dtl_addr" : {
+              "type" : "string",
+              "description" : "도로명 상세주소"
+            },
+            "deli_loc_stnm_dtl_addr" : {
+              "type" : "string",
+              "description" : "스마트픽인도장소 상세주소"
+            },
+            "smp_deli_loc_sn" : {
+              "type" : "string",
+              "description" : "스마트픽인도장소일련번호"
+            },
+            "smp_mng_time" : {
+              "type" : "string",
+              "description" : "운영시작시간~종료"
+            }
+          }
+        },
+        "total_count" : {
+          "type" : "integer",
+          "description" : "총 갯수: 총 갯수를 리턴하지 않는 경우 -1"
+        }
+      }
+    },
+    "smp_cpn_entr_no" : {
+      "type" : "string",
+      "description" : "스마트픽상품번호"
+    },
+    "dtl_info_fcont" : {
+      "type" : "string",
+      "description" : "상품 상세설명"
+    },
+    "brch_prom_info" : {
+      "type" : "object",
+      "id" : "urn:jsonschema:com:lotte:mobile2:common:bean:ItemEntity<java:util:List<com:lotte:mobile2:product:bean:ProductBrchPromEntity>>",
+      "description" : "점별 쿠폰 정보",
+      "properties" : {
+        "items" : {
+          "type" : "any",
+          "description" : "items"
+        },
+        "item" : {
+          "type" : "object",
+          "id" : "urn:jsonschema:com:lotte:mobile2:product:bean:ProductBrchPromEntity",
+          "properties" : {
+            "brch_fvr_polc_tp_cd_nm" : {
+              "type" : "string",
+              "description" : "점별 쿠폰 정책 이름 "
+            },
+            "brch_entr_nm" : {
+              "type" : "string",
+              "description" : "점별 쿠폰 지점 이름"
+            },
+            "brch_prom_no" : {
+              "type" : "string",
+              "description" : "점별 쿠폰 프로모션 번호"
+            },
+            "brch_fvr_rate" : {
+              "type" : "string",
+              "description" : "점별 쿠폰 할인률"
+            }
+          }
+        },
+        "total_count" : {
+          "type" : "integer",
+          "description" : "총 갯수: 총 갯수를 리턴하지 않는 경우 -1"
+        }
+      }
+    },
+    "em_dscnt_sale_prc" : {
+      "type" : "string",
+      "description" : "개당 이메일할인가"
+    },
+    "genie_flg_txt" : {
+      "type" : "string",
+      "description" : "지니딜 입력형 플래그"
+    },
+    "smp_wine_yn" : {
+      "type" : "string",
+      "description" : "스마트픽 와인여부"
+    },
+    "sale_rate" : {
+      "type" : "string",
+      "description" : "상품목록 계산 된 이미지 세일율"
+    },
+    "disp_no" : {
+      "type" : "string",
+      "description" : "전시번호"
+    },
+    "ori_price" : {
+      "type" : "string",
+      "description" : "기존 판매가"
+    },
+    "inst_cpn_aply_unit_price" : {
+      "type" : "string",
+      "description" : "즉석쿠폰 할인금액"
+    },
+    "inst_fvr_polc_tp_cd" : {
+      "type" : "string",
+      "description" : "즉석쿠폰 적용 정액/정률 구분"
+    },
+    "free_park_psb_yn" : {
+      "type" : "string",
+      "description" : "무료주차여부"
+    },
+    "card_sale_new" : {
+      "type" : "object",
+      "id" : "urn:jsonschema:com:lotte:mobile2:common:bean:ItemEntity<java:util:List<com:lotte:mobile2:product:bean:ProductCardNmNewEntity>>",
+      "description" : "카드통합new",
+      "properties" : {
+        "items" : {
+          "type" : "any",
+          "description" : "items"
+        },
+        "item" : {
+          "type" : "object",
+          "id" : "urn:jsonschema:com:lotte:mobile2:product:bean:ProductCardNmNewEntity",
+          "properties" : {
+            "cardTmpFee" : {
+              "type" : "string",
+              "description" : "할인후금액"
+            },
+            "cardAplySaleCds" : {
+              "type" : "string",
+              "description" : "카드코드"
+            },
+            "cardAplyFvrVal" : {
+              "type" : "string",
+              "description" : "할인율"
+            },
+            "cardAplySaleNm" : {
+              "type" : "string",
+              "description" : "카드명"
+            }
+          }
+        },
+        "total_count" : {
+          "type" : "integer",
+          "description" : "총 갯수: 총 갯수를 리턴하지 않는 경우 -1"
+        }
+      }
+    },
+    "prom_card_yn" : {
+      "type" : "string",
+      "description" : "즉시할인카드와 청구할인카드 비교여부 같으면 Y"
+    },
+    "cou_sale_amt" : {
+      "type" : "string",
+      "description" : "계산 된 즉석쿠폰 할인가격(정액일 경우)"
+    },
+    "cpn_sale_rt" : {
+      "type" : "string",
+      "description" : "즉석쿠폰 적용가"
+    },
+    "item_dtl_stk_list" : {
+      "type" : "object",
+      "id" : "urn:jsonschema:com:lotte:mobile2:common:bean:ItemEntity<java:util:List<com:lotte:mobile2:product:bean:ProductItemBaseEntity>>",
+      "description" : "재고포함 단품목록",
+      "properties" : {
+        "items" : {
+          "type" : "any",
+          "description" : "items"
+        },
+        "item" : {
+          "type" : "object",
+          "id" : "urn:jsonschema:com:lotte:mobile2:product:bean:ProductItemBaseEntity",
+          "properties" : {
+            "value_type" : {
+              "type" : "string"
+            },
+            "item_no" : {
+              "type" : "string",
+              "description" : "단품번호"
+            },
+            "goods_no" : {
+              "type" : "string",
+              "description" : "상품번호"
+            },
+            "mdty_yn" : {
+              "type" : "string"
+            },
+            "tgt_goods_no" : {
+              "type" : "string",
+              "description" : "대상상품번호"
+            },
+            "opt_tval" : {
+              "type" : "string",
+              "description" : "옵션문자값"
+            },
+            "opt_tp_cd" : {
+              "type" : "string",
+              "description" : "옵션유형코드"
+            },
+            "opt_val_cd" : {
+              "type" : "string",
+              "description" : "옵션값코드"
+            },
+            "add_choc_info" : {
+              "type" : "string",
+              "description" : "추가구성옵션"
+            },
+            "opt_nm" : {
+              "type" : "string",
+              "description" : "옵션명"
+            },
+            "opt_stk_yn" : {
+              "type" : "string",
+              "description" : "옵션재고여부"
+            },
+            "inv_qty" : {
+              "type" : "string",
+              "description" : "재고수량"
+            },
+            "mast_goods_yn" : {
+              "type" : "string",
+              "description" : "대표상품여부"
+            },
+            "master_yn" : {
+              "type" : "string",
+              "description" : "대표단품여부"
+            }
+          }
+        },
+        "total_count" : {
+          "type" : "integer",
+          "description" : "총 갯수: 총 갯수를 리턴하지 않는 경우 -1"
+        }
+      }
+    }
+  }
+}

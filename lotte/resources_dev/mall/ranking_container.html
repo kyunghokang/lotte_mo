@@ -1,0 +1,151 @@
+<div class="cont_wrap padding">
+	<!-- 최상단 띠배너 -->
+	<section ng-if="screenData.ban_list[0]" class="top_banner_list">
+		<ul>
+			<li><a ng-click="linkUrl(screenData.ban_list[0].img_link, screenData.ban_list[0].mov_frme_cd, 'm_DC_Ranking_{{ctgDispNo}}_rewardevent')"><img ng-src="{{screenData.ban_list[0].img_url}}" alt="{{screenData.ban_list[0].banner_nm}}" /></a></li>
+
+			<!-- 640 이상일때만 나오는 출석 도장 이벤트 -->
+			<li ng-if="winWidth >= 640"><a ng-click="linkUrl(eventLinkObj.eventAttendUrl, false, 'm_DC_Ranking_{{ctgDispNo}}_tabletbanner')"><img src="http://image.lotte.com/lotte/mo2015/angular/banner_201507_attend.png" alt="출석도짱" /></a></li>
+		</ul>
+	</section>
+
+	<!-- 카테고리 선택 영역 -->
+	<section class="category_ctg_wrap">
+		<!-- 셀렉트 박스 -->
+		<ul ng-class="{
+			depth1: screenData.ranking_ctg_depth_idx == 0,
+			depth2: screenData.ranking_ctg_depth_idx == 1,
+			depth3: screenData.ranking_ctg_depth_idx == 2,
+			open: rankingCtgOpenFlag
+			}">
+			<li ng-class="{on: rankingCtgOpenFlag && screenData.ranking_ui.selectbox_select_idx == 0}">
+				<a class="ctg_tit" ng-click="ctgSelectBoxClick(0)"><span class="depth_tit"><em>{{screenData.ranking_ui.selectbox[0].disp_grp_desc}}</em></span></a>
+			</li>
+			<li ng-if="screenData.ranking_ctg_depth_idx > 0"
+				ng-class="{on: rankingCtgOpenFlag && screenData.ranking_ui.selectbox_select_idx == 1}">
+				<a class="ctg_tit" ng-click="ctgSelectBoxClick(1)"><span class="depth_tit"><em>{{screenData.ranking_ui.selectbox[1].disp_grp_desc}}</em></span></a>
+			</li>
+			<li ng-if="screenData.ranking_ctg_depth_idx > 1"
+				ng-class="{on: rankingCtgOpenFlag && screenData.ranking_ui.selectbox_select_idx == 2}">
+				<a class="ctg_tit" ng-click="ctgSelectBoxClick(2)"><span class="depth_tit"><em>{{screenData.ranking_ui.selectbox[2].disp_grp_desc}}</em></span></a>
+			</li>
+		</ul>
+
+		<!-- 카테고리 스와이프 영역 -->
+		<div ng-show="rankingCtgOpenFlag" class="rangking_ctg_lst_wrap">
+			<ul>
+				<li ng-if="screenData.ranking_ui.selectbox_select_idx == 0" ng-class="{on: screenData.ranking_ui.selectbox_select_idx == 0}">
+					<div id="rankSwipeCtg1" ng-controller="lotteNgSwipeCtrl" class="swipe_wrap">
+						<ul lotte-ng-list-swipe
+							swipe-id="RankingCtgDepth1"
+							swipe-list-model="screenData.ranking_ctg_depth[0]"
+							swipe-slide-item="true"
+							swipe-max-ratio="0.2"
+							swipe-min-distance="40"
+							class="swipe_cont"
+							swipe-end-exec="swipeEndHandler1($event)">
+							<li ng-repeat="page in screenData.ranking_ctg_depth[0]">
+								<p class="ctg_item" ng-repeat="item in page">
+									<a ng-if="item.disp_grp_no || item.disp_grp_no == 0" ng-click="ctgChange(item)"
+										ng-class="{on: screenData.ranking_ui.selectbox[0].disp_grp_no == item.disp_grp_no}">{{item.disp_grp_desc}}</a>
+									<span ng-if="!item.disp_grp_no"></span>
+								</p>
+							</li>
+						</ul>
+						<div class="btn_close_wrap"><span class="page_info"><strong>{{swipeIdx + 1}}</strong> / {{screenData.ranking_ctg_depth[0].length}}</span><button ng-click="toggleCtg()" class="btn_close">닫기</button></div>
+					</div>
+				</li>
+				<li ng-if="screenData.ranking_ui.selectbox_select_idx == 1" ng-class="{on: screenData.ranking_ui.selectbox_select_idx == 1}">
+					<div id="rankSwipeCtg2" ng-controller="lotteNgSwipeCtrl" class="swipe_wrap">
+						<ul lotte-ng-list-swipe
+							swipe-id="RankingCtgDepth2"
+							swipe-list-model="screenData.ranking_ctg_depth[1]"
+							swipe-slide-item="true"
+							swipe-max-ratio="0.2"
+							swipe-min-distance="40"
+							class="swipe_cont"
+							swipe-end-exec="swipeEndHandler2($event)">
+							<li ng-repeat="page in screenData.ranking_ctg_depth[1]">
+								<p class="ctg_item" ng-repeat="item in page">
+									<a ng-if="item.disp_grp_no" ng-click="ctgChange(item)"
+										ng-class="{on: screenData.ranking_ui.selectbox[1].disp_grp_no == item.disp_grp_no}">{{item.disp_grp_desc}}</a>
+									<span ng-if="!item.disp_grp_no"></span>
+								</p>
+							</li>
+						</ul>
+						<div class="btn_close_wrap"><span class="page_info"><strong>{{swipeIdx + 1}}</strong> / {{screenData.ranking_ctg_depth[1].length}}</span><button ng-click="toggleCtg()" class="btn_close">닫기</button></div>
+					</div>
+				</li>
+				<li ng-if="screenData.ranking_ui.selectbox_select_idx == 2" ng-class="{on: screenData.ranking_ui.selectbox_select_idx == 2}">
+					<div id="rankSwipeCtg3" ng-controller="lotteNgSwipeCtrl" class="swipe_wrap">
+						<ul lotte-ng-list-swipe
+							swipe-id="RankingCtgDepth3"
+							swipe-list-model="screenData.ranking_ctg_depth[2]"
+							swipe-slide-item="true"
+							swipe-max-ratio="0.2"
+							swipe-min-distance="40"
+							class="swipe_cont"
+							swipe-end-exec="swipeEndHandler3($event)">
+							<li ng-repeat="page in screenData.ranking_ctg_depth[2]">
+								<p class="ctg_item" ng-repeat="item in page">
+									<a ng-if="item.disp_grp_no" ng-click="ctgChange(item)"
+										ng-class="{on: screenData.ranking_ui.selectbox[2].disp_grp_no == item.disp_grp_no}">{{item.disp_grp_desc}}</a>
+									<span ng-if="!item.disp_grp_no"></span>
+								</p>
+							</li>
+						</ul>
+						<div class="btn_close_wrap"><span class="page_info"><strong>{{swipeIdx + 1}}</strong> / {{screenData.ranking_ctg_depth[2].length}}</span><button ng-click="toggleCtg()" class="btn_close">닫기</button></div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</section>
+
+	<!-- 개인화 영역 -->
+	<section class="bigdata_wrap" ng-if="screenData.ranking_ui.selectbox_select_idx < 2 || (screenData.ranking_ui.selectbox_select_idx == 2 && screenData.ranking_ui.selectbox[2].disp_grp_desc == '전체')">
+		<ul class="rank_type_sex">
+			<li><button ng-click="rankGenderChange('A')" ng-class="{on: screenData.ranking_gender == 'A'}">전체</button></li>
+			<li><button ng-click="rankGenderChange('F')" ng-class="{on: screenData.ranking_gender == 'F'}">여성</button></li>
+			<li><button ng-click="rankGenderChange('M')" ng-class="{on: screenData.ranking_gender == 'M'}">남성</button></li>
+		</ul>
+		<div class="rank_type_age">
+			<label for="rankTypeAge" ng-click="rankAgeLabelClick()">연령 : </label>
+			<div class="selectbox_wrap">
+				<select id="rankTypeAge" name="rankTypeAge" dir="rtl" ng-change="rankAgeChange()" ng-model="screenData.ranking_age">
+					<option value="A">전체</option>
+					<option value="20">20대</option>
+					<option value="30">30대</option>
+					<option value="40">40대</option>
+					<option value="50">50대이상</option>
+				</select>
+			</div>
+		</div>
+	</section>
+	
+	<!-- 집계기준 -->
+	<section class="desc_wrap" ng-class="{on:winWidth >= 640}">
+		<p>최근 7일간 가장 많이 구매한 상품을 집계한 랭킹입니다.</p>
+	</section>
+	
+	<div ng-controller="productCtrl">
+		<!-- 상품 리스트 -->
+		<div product-container
+			template-type="rank"
+			templatetype="templateType"
+			products="screenData.prd_deal_list"
+			win-width="winWidth"
+			more-product-continer="getProductData()"
+			tclick="m_DC_Ranking_{{ctgDispNo}}_item_"
+			tclick-wish="m_DC_Ranking_{{ctgDispNo}}_item_wish"
+			tclick-rank="m_DC_Ranking_{{ctgDispNo}}_search"
+			class="prd_lst_wrap"></div><!-- 20170330 삭제 : rank-keyword="screenData.lank_keyword" -->
+
+		<div class="noData" ng-if="!screenData.prd_deal_list.length && !productListLoading && !pageLoading">해당 상품이 없습니다.</div>
+
+		<!-- Product Load Loading -->
+		<div class="listLoading" ng-if="productListLoading && !pageLoading">
+			<p class="loading half"></p>
+		</div>
+
+	</div>
+</div>

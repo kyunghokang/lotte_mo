@@ -1,0 +1,70 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplChanelMain" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/mall/chanel/chanel_main_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/chanel_main.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsChanelMain" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/common/lotte_ngswipe.js",
+					"lotte/resources_dev/mall/chanel/chanel_main.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/chanel_main.js"
+			}
+		},
+
+		"uglify" : {
+			"jsChanelMain" : {
+				"src" : "lotte/resources/<%= version %>/chanel_main.js",
+				"dest" : "lotte/resources/<%= version %>/chanel_main.min.js"
+			},
+			"tplChanelMain" : {
+				"src" : "lotte/resources/<%= version %>/chanel_main.template.js",
+				"dest" : "lotte/resources/<%= version %>/chanel_main.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssChanelMain" : {
+				"src" : [
+					"lotte/resources_dev/mall/chanel/chanel_main.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/chanel_main.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanChanelMain" : [
+				"lotte/resources/<%= version %>/chanel_main.js",
+				"lotte/resources/<%= version %>/chanel_main.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlChanelMain" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"mall/chanel/chanel_main.html" : "mall/chanel/chanel_main_dev.html"
+				}
+			}
+		}
+	}
+}
+

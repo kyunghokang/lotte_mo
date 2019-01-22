@@ -1,0 +1,68 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplSelectPresent" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                ],
+                "dest" : "lotte/resources/<%= version %>/select_present.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsSelectPresent" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/imall/cart/m/select_present.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/select_present.js"
+            }
+        },
+
+        "uglify" : {
+            "jsSelectPresent" : {
+                "src" : "lotte/resources/<%= version %>/select_present.js",
+                "dest" : "lotte/resources/<%= version %>/select_present.min.js"
+            },
+            "tplSelectPresent" : {
+                "src" : "lotte/resources/<%= version %>/select_present.template.js",
+                "dest" : "lotte/resources/<%= version %>/select_present.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssSelectPresent" : {
+                "src" : [
+                    "lotte/resources_dev/imall/cart/m/select_present.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/select_present.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanSelectPresent" : [
+                "lotte/resources/<%= version %>/select_present.js",
+                "lotte/resources/<%= version %>/select_present.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlSelectPresent" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "imall/cart/m/select_present.html" : "imall/cart/m/select_present_dev.html"
+                }
+            }
+        }
+    }
+}
+

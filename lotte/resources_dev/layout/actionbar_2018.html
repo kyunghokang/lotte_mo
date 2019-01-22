@@ -1,0 +1,9 @@
+<section id="lotteActionbar" class="actionbar" ng-show="!appObj.isApp && !actionbarHideFlag">
+    <ul class="actionbar_wrap">
+        <li class="home" ng-class="{on:cur_pageid == 1 && !isShowSideCtg}"><button ng-click="logGAEvtComm('actionBar','홈');gotoMainFooter()" class="btn_main">홈</button></li>
+        <li class="ctg" ng-class="{on: isShowSideCtg}"><button ng-click="logGAEvtComm('actionBar','카테고리');showSideCtgFooter()" class="btn_ctg"><i ng-if="intTodayDate && intLastCtgFlagDate && intTodayDate < intLastCtgFlagDate" class="reddot"></i>카테고리</button></li>
+        <li class="order" ng-class="{on:cur_pageid == 2}"><button ng-click="logGAEvtComm('actionBar','주문배송');gotoOrderLstFooter()" class="btn_order"><i ng-if="orderStateFlag" class="newOrderState">N</i>주문배송</button></li>
+        <li class="mylotte" ng-class="{on:cur_pageid == 3}"><button ng-click="logGAEvtComm('actionBar','마이롯데');gotoMyPageFooter()" class="btn_mylotte">마이롯데</button></li>
+        <li class="recent" ng-class="{on:cur_pageid == 5,active:latelyGoodsData}"><button class="btn_recent" ng-click="logGAEvtComm('actionBar','최근본상품');gotoLateProdFooter()">최근본상품<img ng-src="{{latelyGoodsData[0].img_url}}" ng-if="latelyGoodsData[0].img_url" /></button></li>
+    </ul>
+</section>

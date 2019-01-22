@@ -1,0 +1,101 @@
+<!-- 일반상품 : 리스트형 --> 
+<ol class="prod_list_01">
+	<li ng-class-even="list_clear" ng-repeat="item in products track by $index" data-curidx="{{$index + 1}}" ng-class="{cate:item.cateflag}">
+	    <div ng-if="!item.cateflag">
+            <div>
+                <div class="unit_list_01 unit_cate_prod" ng-class="{no_feedback:!item.gdasInfo || !item.gdasInfo.gdasCont1}">
+                    <a ng-click="productInfoClick(item)">
+                        <div class="thumb">
+                            <img ng-src="{{getProductImage(item)}}" alt="{{item.goods_nm}}" err-src />
+                            <span class="bestNum" ng-if="templateType=='listrank'">{{$index+1}}</span>
+                            <span ng-if="item.sold_out_cd_yn && item.sold_out_cd_yn == 'Y'" class="sold_out">
+								<span>품절임박</span>
+							</span>
+							<span ng-if="item.tenten_yn && item.tenten_yn == 'Y'" class="tenten">#텐텐</span>
+                            <!-- <span ng-if="(!item.tenten_yn || item.tenten_yn != 'Y') && (!item.sold_out_cd_yn || item.sold_out_cd_yn != 'Y') && item.find_age && item.find_gender && item.find_age != 40 && item.find_age != 50" class="sex_age"
+								ng-class="{sexm:item.find_gender=='M', sexf:item.find_gender=='F'}">
+								<span class="age">{{item.find_age}}대</span>
+								<span ng-if="item.find_gender == 'M'" class="gender">남성</span><span ng-if="item.find_gender == 'F'" class="gender">여성</span> 인기
+							</span> -->
+							<span ng-if="item.mpic_info && item.mpic_info.mpic_url" class="unit_play" ng-click="productInfoClick(item)">재생</span>
+                       	    <!--201804 광고솔루션 딱지 -->
+						    <span ng-if="item.click_url" class="ad_icon">광고</span>
+                        </div>
+                        <div class="info">
+                            <p ng-if="item.is_dept || item.is_tvhome || item.is_himart || item.smartpick_yn=='Y'||item.issmart_pick || item.isDlvQuick || item.isDlvToday" class="flag">
+                                <span class="flag depart" ng-show="item.flag=='D'||item.is_dept">롯데백화점</span>
+                                <span class="flag etv" ng-if="item.is_tvhome && !item.is_dept">롯데홈쇼핑</span>
+                                <span class="flag himart" ng-if="item.is_himart && !item.is_dept && !item.is_etv">하이마트</span>
+                                <span class="flag smart" ng-show="item.smartpick_yn=='Y'||item.issmart_pick">스마트픽</span>
+                                <span ng-if="rScope.showQuick" class="flag normal" ng-show="item.isDlvQuick">퀵</span>
+                                <span class="flag normal" ng-show="item.isDlvToday">오늘도착</span>
+                            </p>
+                            <p class="tit">
+                                <span ng-show="item.brnd_nm">[<span ng-bind-html="item.brnd_nm|titleToHtml"></span>]</span>
+                                <span ng-bind-html="item.goods_nm|titleToHtml"></span>
+                            </p>
+                            <p class="pr_box">
+                                <span class="price"><em>{{item.discounted_price|number}}</em>원<span ng-show="item.is_sale_promotion">~</span></span>
+                                <span class="price2" ng-show="item.original_price<10000000 && item.original_price!=item.discounted_price && item.original_price !=0 && !item.is_sale_promotion">
+                                    <em>{{item.original_price|number}}</em>원
+                                </span>
+                            </p>
+                        </div>
+                    </a>
+
+                    <div class="info2">
+                        <div class="info_dsc">
+                            <span ng-if="item.dlv_fee_tp=='Y'||item.isdlex_free">무료배송</span>
+                            <span ng-if="item.save_lpoint">{{item.save_lpoint|number}}점 적립</span>
+                            <span ng-if="!item.save_lpoint && item.nint_card_flag">{{item.nint_card_flag}}</span>
+							<span ng-if="item.soldout_yn=='Y'">품절임박</span>
+                        </div>
+                        <!-- 별점/상품평 -->
+                        <div class="user_feedback">
+                            <span class="review" ng-if="item.review_count > 0 && item.avg_gdas_stfd_val <= 0" ng-click="productReviewClick(item)">상품평 <em>({{item.review_count|number}})</em></span>
+                            <span class="score" ng-if="item.review_count > 0 && item.avg_gdas_stfd_val > 0" ng-click="productReviewClick(item)">
+                                <span class="starScoreWrap"><span class="starScoreCnt" style="width:{{ ((item.avg_gdas_stfd_val*2)|ceil)*10 }}%"></span></span>
+                                <span class="review"><em>({{item.review_count|number}})</em></span>
+                            </span>
+                        </div>
+                        <!-- //별점/상품평 -->
+                    </div>
+                    <div class="unit_btns_wrap"><a class="detail_btn" ng-click="productDetailInfo(item)"></a></div>
+                </div>
+
+                <!-- 해시태그 -->
+                <div ng-if="item.hash_list.length > 0 && srhKeyword" class="hash_list">
+                    <ul>
+                        <li ng-if="hash != ''" ng-repeat="hash in item.hash_list track by $index"><a ng-click="goSearch(hash, 'M_SEARCH_hash_list')">#{{hash}}</a></li>
+                    </ul>
+                </div>
+                <!-- //해시태그 -->
+                <!-- 리뷰 -->
+				<div ng-if="item.gdasInfo && item.gdasInfo.gdasCont1" class="review_list">
+					<ul class="review_ul">
+						<li>
+							<a ng-bind="item.gdasInfo.gdasCont1" ng-click="productReviewClick(item)"></a>
+						</li>
+						<li ng-if="item.gdasInfo.gdasCont2">
+							<a ng-bind="item.gdasInfo.gdasCont2" ng-click="productReviewClick(item)"></a>
+						</li>
+					</ul>
+				</div>
+				<!-- //리뷰 -->
+            </div>
+            <!-- 연관 검색어 -->
+            <div ng-if="$index == 14 && srhReatedKeyword && srhReatedKeyword.length > 0" class="list_reated_keyword">
+                <h4>'{{srhKeyword}}'연관 검색어</h4>
+                <ul>
+                    <li ng-repeat="rekey in srhReatedKeyword"><a ng-click="goSearch(rekey.keyword, 'M_SEARCH_hash_related')">{{rekey.keyword}}</a></li>
+                </ul>
+            </div>
+            <!-- //연관 검색어 -->
+        </div>            
+        <div ng-if="item.cateflag" class="cate_cell" id="scv_{{item.id}}">
+            <b>{{item.divObjNm}}</b><span>({{item.count}})</span>
+        </div>
+	</li>
+</ol>
+<!-- //일반상품 : 리스트형 -->
+<div class="noData" ng-if="!products.length && !productListLoading">해당하는 상품이 없습니다.</div>

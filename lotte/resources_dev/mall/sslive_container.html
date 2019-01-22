@@ -1,0 +1,47 @@
+<section ng-show="contVisible" class="cont_minheight sstalk">
+    <!--동영상-->
+    <div class="mov_auto_wrap">
+        <div class="video_wrap">
+            <video id="autoVideo" playsinline="true" webkit-playsinline="true" poster="http://image.lotte.com/lotte/mo2015/angular/mall/sslive_poster.jpg" controls="false">
+                <source type="video/mp4" src="http://liveshop.lotte.com/lotteliveshop/livestream.mp4.m3u8">
+                <!--<source type="video/mp4" src="http://image.lotte.com/lotte/mo2015/movie/fcc_0817_JTESORO103_640_360.mp4">                -->
+            </video>
+            <div class="play_cover">&nbsp;</div>
+            <div class="stop_cover">&nbsp;</div>
+            <div class="click_cover">&nbsp;</div>
+            <a class="btn_move_start" onclick="appTclick('m_DC_SangShop_Clk_Live_play_idx0'); return false;" href="#" style="display: inline;">비디오 재생</a>
+            <a class="btn_move_stop btn_text" onclick="appTclick('m_DC_SangShop_Clk_Live_pause_idx0'); return false;" href="#">일시정지</a>
+            <a class="btn_move_goods btn_text" ng-href="/product/m/product_view.do?goods_no={{goods_info.goods_no}}&amp;tclick=m_DC_SangShop_Clk_Live_lnk_idx0&amp;{{baseParam}}">상품보기</a>
+        </div>  
+        <div class="plan_wrap"> 
+           <a href="/product/m/product_view.do?goods_no={{goods_info.goods_no}}&amp;tclick=m_DC_SangShop_Clk_Live_lnk_idx0&amp;{{baseParam}}">    
+                <div class="ss_txt">{{goods_info.goods_nm}}</div>
+                <div class="ss_price" ng-show="goods_info.price != 0">
+                    <span class="price"><b>{{goods_info.price|number}}</b>원<span ng-if="goods_info.is_plan_prod">~</span></span> 
+                    <span class="buy_icon">구매하기</span>
+                </div>
+            </a>
+        </div>     
+        <div class="top_cover">
+            <img ng-src="http://image.lotte.com/lotte/mo2015/angular/mall/sslive_time.png" class="limg">
+            <img ng-src="http://image.lotte.com/lotte/mo2015/angular/mall/sslive_logo.png" class="rimg">
+        </div>
+    </div>
+    <div class="talkbox">
+        <ul>
+            <li ng-repeat="item in talklist" ng-class="{staff:item.staff == 'Y'}">
+                <div ng-if="item.staff == 'Y'" class="idcan">롯데닷컴</div> 
+                <div ng-if="item.staff != 'Y'" class="idcan">{{item.id}}</div> 
+                {{item.cont}}
+            </li>
+        </ul>
+    </div>
+    <div class="time" ng-click="reloadTalk()">
+        <span id="timebox">15</span>초후
+    </div>    
+    <div class="talk_input">
+        <input type="text" placeholder="실시간 LIVE TALK 하세요!" name="talk" id="talk" ng-if="loginInfo.isLogin">
+        <div ng-if="!loginInfo.isLogin" ng-click="ss_login()" class="inputdiv">실시간 LIVE TALK 하세요!</div>
+        <div class="btn" ng-click="saveTalk()">전송</div>
+    </div>
+</section>

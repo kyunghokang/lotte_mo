@@ -1,0 +1,11 @@
+<form id="write_box_form" >	
+	<div id="write_box">
+		<div class="input_wrap camera" ng-click="attachImage()"></div>
+		<div class="input_wrap">
+			<textarea type="text" id="accp_cont" name="accp_cont" ng-model="accp_cont" class="textarea" ng-change="byteCheck()"
+					placeholder="문의 내용을 입력해 주세요."></textarea>
+			<div class="byte">{{bytes || 0}} /2000</div>
+		</div>
+		<button type="submit" ng-click="save()">등록</button>
+	</div>
+</form>

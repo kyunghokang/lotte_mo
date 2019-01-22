@@ -1,0 +1,17 @@
+<section ng-show="contVisible" class="cont_minheight">
+    <section class="container">
+        <section class="mylotte" id="oftenBuy">
+            <section class="top_notice">
+                <p>자주 구매한 상품이력은 당일부터 최근 3개월까지의 구매한
+                   상품 중 동일 상품을 2회 이상 구매한 경우 제공됩니다.
+                </p>
+            </section>
+            <!-- 자주구매상품 리스트 -->
+            <often-buy-list></often-buy-list>
+             <!--추천상품 영역-->
+             <recomm-product ng-if="oftenItemTotalCount <= 0"></recomm-product>
+            <!-- 자주구매상품 품절/판매종료 리스트-->
+            <sold-out-list ng-if="soldOutProductTotalCount > 0"></sold-out-list>
+        </section>   
+    </section>
+</section>

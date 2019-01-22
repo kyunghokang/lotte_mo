@@ -1,0 +1,106 @@
+<section id="feSrhLayer" ng-show="showSrh" ng-class="{on:showSrh}">
+    <form id="searchForm" novalidate name="searchForm" action="{{srhUrl}}" ng-submit="submitSearch($event)">
+    <fieldset>
+        <legend class="blind">키워드 검색</legend>
+        <input type="hidden" ng-model="c" name="c" value="{{fnSrhParam('c')}}" />
+        <input type="hidden" ng-model="udid" name="udid" value="{{fnSrhParam('udid')}}" />
+        <input type="hidden" ng-model="v" name="v" value="{{fnSrhParam('v')}}" />
+        <input type="hidden" ng-model="cn" name="cn" value="{{fnSrhParam('cn')}}" />
+        <input type="hidden" ng-model="cdn" name="cdn" value="{{fnSrhParam('cdn')}}" />
+        <input type="hidden" ng-model="schema" name="schema" value="{{fnSrhParam('schema')}}" />
+        <input type="hidden" ng-model="dpml_no" name="dpml_no" value="1"/>
+        <input type="hidden" ng-model="type" name="type" value=""/>
+        <input type="hidden" ng-model="dispCnt" name="dispCnt" value="30"/>
+        <input type="hidden" ng-model="reqType" name="reqType" value="N"/>
+        <input type="hidden" ng-model="reqKind" name="reqKind" value="C"/>
+        <input type="hidden" ng-model="tclick" name="tclick" value="{{tclick}}"/>
+            <section class="srh_layer">
+                <div class="srh_wrap">
+                    <div class="srh_ipt">
+                        <input type="search" srh-focus="showSrh" ng-model="keyword" name="keyword" id="keyword" placeholder="검색어를 입력하세요." autocomplete="off" autocapitalize="off" autocorrect="off" required  ng-keyup="showAutoSrh($event)" speech x-webkit-speech />
+                        <a href="" ng-click="delSrhText()" ng-show="isAutoSrhing" class="btn_del">검색어 삭제</a>
+                    </div>
+                    <div class="srh_btn">
+                        <a ng-click="submitSearch($event)">
+                            <img src="http://image.lotte.com/lotte/mobile/mobile_new/search/btn_search.png" alt=""/>
+                        </a>
+                    </div>
+                </div>
+                
+               <!--검색어 탭-->
+                <div class="nsh_tab" ng-show="!isAutoSrhing">
+                    <a ng-click="sendTclick(tClickBase + 'SrhLayer_Clk_tap_1');searchLayerTabIdx = 0" class="nsh_tab_a" ng-class="{on:searchLayerTabIdx==0}">최근검색어</a>
+                    <a ng-click="sendTclick(tClickBase + 'SrhLayer_Clk_tap_2');searchLayerTabIdx = 1" class="nsh_tab_a" ng-class="{on:searchLayerTabIdx==1}">인기</a>
+                    <a ng-click="sendTclick(tClickBase + 'SrhLayer_Clk_tap_3');searchLayerTabIdx = 2" class="nsh_tab_a" ng-class="{on:searchLayerTabIdx==2}">급상승</a>
+                </div>
+                
+                <div class="nsh_cont" ng-show="!isAutoSrhing">
+                       <div class="brlistBox">
+                           <ul class="brlist nsh_ang" rn-carousel rn-carousel-index="searchLayerTabIdx" rn-carousel-duration="100">
+                               <li class="nsh_li">
+                                    <!-- 최근 검색어 목록 -->
+                                    <div class="srh_recent">
+                                        <ol>
+                                            <li ng-repeat="(key, item) in recentKwData" ng-if="recentKwData">
+                                                <a href="" ng-click="fn_goSearch('{{item.keytxt}}', 'm_DC_SrhLayer_ClkW_Rst_A')" class="word">{{item.keytxt}}</a>
+                                                <a href="" ng-click="delRecentOneKeyword(key)" class="del">최근 검색어 삭제</a>
+                                            </li>
+                                            <li ng-show="recentKwData==undefined" class="none">최근 검색한 기록이 없습니다.</li>                                    
+                                        </ol>
+                                    </div>               
+                               </li>
+                                <li class="nsh_li">
+                                    <!-- 인기 검색어 목록 -->
+                                    <div class="nsh_list" id="nsh_best">
+                                        <ol>
+                                            <li ng-repeat="item in srhBestData.result_best.items">                                           
+                                                <a href="" ng-click="fn_goSearch('{{item.hkeyword}}', 'm_DC_SrhLayer_ClkW_Rst_B')" class="word"><span class="pre"> {{$index + 1}}</span> {{item.hkeyword}}</a>
+                                            </li>
+                                                                                
+                                        </ol>
+                                    </div>                                    
+                                </li>
+                                <li class="nsh_li">
+                                    <!-- 급상승 검색어 목록 -->
+                                    <div class="nsh_list" id="nsh_speed">
+                                        <ol>
+                                            <li ng-repeat="item in srhBestData.result_speed.items">
+                                                <a href="" ng-click="fn_goSearch('{{item.hkeyword}}', 'm_DC_SrhLayer_ClkW_Rst_C')" class="word"><span class="pre"> {{$index + 1}}</span> {{item.hkeyword}} 
+                                                    <span class="lank up" ng-if="item.rate_type == 1">{{item.rate}}</span>
+                                                    <span class="lank down" ng-if="item.rate_type == 2">{{item.rate}}</span>
+                                                    <span class="lank" ng-if="item.rate_type == 3">new</span>
+                                                </a>
+                                            </li>                                        
+                                                                            
+                                        </ol>                                
+                                    </div>
+                                </li>              
+                           </ul>                      
+                        </div>
+                </div>
+              
+               <!-- 자동완성 -->                
+                <div class="srh_auto" ng-show="isAutoSrhing">
+                    <ol >                        
+                        <li ng-repeat="item in srhAutoData">
+                            <a href=""  ng-click="goAutoSrh('{{item.keyword}}', '&tclick=M_Search_Autocomplete_Web')" class="kword" ng-if="item.type" ng-bind-html="item.keyword"></a>
+                            <div ng-click="searchSet('{{item.keyword}}');" class="arrowkey" ng-if="item.type"></div>
+                            <a href="" ng-click="goAutoSrh('{{item.keyword}}', '&tclick=M_Search_Autocomplete_Web&cateNo={{item.cateNum}}')" class="categoryWord"  ng-if="!item.type">{{item.cateStr}}</a>
+                        </li>
+                    </ol>
+                </div>                
+                
+                <div class="srh_bar">
+                    <!--20150930-1 하단 문구 태그추가-->
+                    <div class="barInfo" ng-show="searchLayerTabIdx != 0 || isAutoSrhing">
+                        <div class="dateInfo" ng-show="!isAutoSrhing">{{srhBestData.date}} 기준</div>
+                        <div class="bestInfo"  ng-show="isAutoSrhing"><img src="http://image.lotte.com/lotte/mobile/mobile_new/search/searchLayer_icon0930.png">버튼 터치하면 검색어를 수정할 수 있습니다.</div>
+                    </div>                  
+                    <a ng-click="delRecentAllKeyword()" ng-show="recentKwData && !isAutoSrhing && searchLayerTabIdx == 0" class="del">전체삭제</a>
+                    <a ng-click="closeSrhLayor()" class="close">닫기</a>
+                </div>
+            </section>
+            <!--<section ly-cover class="srh_cover" ng-click="closeSrhLayor()"></section>-->
+    </fieldset>
+</form>
+</section>

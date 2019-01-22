@@ -1,0 +1,33 @@
+{
+	"tasks" : {
+		"uglify" : {
+			"jsEventComment20th" : {
+				"src" : "lotte/resources_dev/event/comment20th.js",
+				"dest" : "lotte/resources/<%= version %>/comment20th.min.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssEventComment20th" : {
+				"src" : [
+					"lotte/resources_dev/event/comment20th.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/comment20th.min.css"
+			}
+		},
+
+		"processhtml" : {
+			"htmlEventComment20th" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"event/comment20th.html" : "event/comment20th_dev.html"
+				}
+			}
+		}
+	}
+}
+

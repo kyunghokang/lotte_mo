@@ -1,0 +1,117 @@
+<section ng-show="contVisible" class="cont_minheight" ng-class="{pad:screenType > 1}">
+	<section class="pageLoading" ng-show="pageLoading"><p class="loading half"></p></section>
+	<section ng-show="!pageLoading">
+		<header id="head_sub" sub-header-each>
+			<h2><a ng-click="mallMainClick('m_DC_SpeDisp_Dearpet_Clk_logo')"><span>L.Dear Pet</span></a></h2>
+		</header>
+		<!-- 카테고리 -->	
+		
+		<div class="">
+			<pet-mall-ctg></pet-mall-ctg>
+		</div>
+		<!-- //카테고리 -->
+		<!-- container -->
+		<!-- {{ctgData}} -->
+		<!-- 중카{{screenData.curSCtgName}} -->
+        <!-- 카테고리 나열형 일반형 -->
+        
+		<section ng-if="screenData.ssCtgList && screenData.ssCtgList.length > 0 && screenType==1" class="recommond_wrap sca_list">
+			<ul class="recommond_swipe" lotte-ng-list-swipe swipe-id="ssCtgListSwipe" swipe-list-model="screenData.ssCtgList" swipe-responsive="true" swipe-autoheight="true" swipe-responsive320="1" swipe-responsive640="1" swipe-responsive900="1" swipe-slide-item="true" swipe-max-ratio="0.2" swipe-min-distance="40" swipe-list-model="products">
+	            <li ng-repeat="item in screenData.ssCtgList track by $index">
+	                <ul class="float_ul">
+	                    <li style="float:left;padding:0" ng-repeat="items in item">
+	                        <a ng-click="menuCategory3Click(items);">
+	                         <span ng-class="{on:screenData.curDispNo==items.disp_no}">{{items.disp_nm}}</span>   
+	                        </a>
+	                    </li>
+	                </ul>
+	            </li>
+	        </ul>
+	        <ul class="indicator" ng-if="screenData.ssCtgList.length > 1">
+	            <li ng-repeat="indicator in screenData.ssCtgList" ng-class="{on: swipeIdx == $index}"><span>{{$index}}</span></li>
+	        </ul>
+		</section>	
+        <!-- 카테고리 나열형 타블릿형 -->
+		<section ng-if="screenData.ssCtgList && screenData.ssCtgList.length > 0 && screenType>1" class="recommond_wrap sca_list">
+			<ul class="recommond_swipe" lotte-ng-list-swipe swipe-id="ssCtgListSwipe" swipe-list-model="screenData.ssCtgList" swipe-responsive="true" swipe-autoheight="true" swipe-responsive320="1" swipe-responsive640="1" swipe-responsive900="1" swipe-slide-item="true" swipe-max-ratio="0.2" swipe-min-distance="40" swipe-list-model="products">
+	            <li ng-repeat="item in screenData.ssCtgList track by $index">
+	                <ul class="float_ul">
+	                    <li style="float:left;padding:0" ng-repeat="items in item">
+	                        <a ng-click="menuCategory3Click(items);">
+	                         <span ng-class="{on:screenData.curDispNo==items.disp_no}">{{items.disp_nm}}</span>   
+	                        </a>
+	                    </li>
+	                </ul>
+	            </li>
+	        </ul>
+	        <ul class="indicator" ng-if="screenData.ssCtgList.length > 1">
+	            <li ng-repeat="indicator in screenData.ssCtgList" ng-class="{on: swipeIdx == $index}"><span>{{$index}}</span></li>
+	        </ul>
+		</section>	
+		<!-- 
+		<section class="ctg_depth_wrap">
+			<p>
+				<span ng-if="!screenData.isComm">{{screenData.cateNodeName[0]}}</span>
+				<span ng-class="{last_location:screenData.cateNodeName[2]==''}" ng-if="!screenData.isComm">{{screenData.cateNodeName[1]}}</span>
+				<span ng-class="{last_location:screenData.cateNodeName[2]!=''}" ng-if="screenData.cateNodeName[2] != ''" && !screenData.isComm>{{screenData.cateNodeName[2]}}</span>
+			</p>
+			<p>
+				<span ng-if="!screenData.isComm">{{screenData.cateNodeName[0]}}</span>
+				<span ng-class="{last_location:screenData.cateNodeName[2]==''}" ng-if="!screenData.isComm">{{screenData.cateNodeName[1]}}</span>
+				<span ng-class="{last_location:screenData.cateNodeName[2]!=''}" ng-if="screenData.cateNodeName[2] != ''" && !screenData.isComm>{{screenData.cateNodeName[2]}}</span>
+			</p>
+		</section>
+		-->
+		<section class="prd_lst n_prd_list">
+			<ul class="sh-unit">
+				<li ng-repeat="item in screenData.dispGoodsList">
+					<div class="comm-unit">
+						<a href="#" ng-click="productClick(item)">
+							<span class="thumb">
+					            <img ng-src="{{imgPath+item.sImgUrl}}" alt="{{item.goods_no}}" ng-if="srhObj.imgListGbn!='lv-unit'"/>
+					            <img ng-src="{{imgPath+item.bImgUrl}}" alt="{{item.goods_nm}}" ng-if="srhObj.imgListGbn=='lv-unit'"/>
+								
+					            <span class="unit_zoom">크게보기</span>
+					        </span>
+							<span class="cont01">
+								<p class="flag">
+	                                <span class="flag depart flag.depart">롯데백화점</span>
+	                                <!-- ngIf: item.is_tvhome && !item.is_dept -->
+	                                <!--<span class="flag tag" ng-show="item.dlv_fee_tp=='Y'||item.isdlex_free">무료배송</span> 2016.08.18 주석처리 -->
+	                                <span class="flag smart">스마트픽</span>
+	                            </p>
+					            <p class="tl">
+					            	<span ng-if="item.brnd_nm">[{{item.brnd_nm}}]</span> {{item.goods_nm}}
+					            </p>
+					            <!--p class="icon">
+					                <span ng-repeat="flag in item.flag" class="{{flag}}"></span>
+					            </p-->
+					            <p class="money ntype">
+					                <!-- del class="small" ng-if="item.price1"><span>{{item.price1}}</span>원</del-->
+					                <span class="price" ng-class="{plan_type_unit : item.goodsCmpsCd == '30'}" ng-if="item.price2"><span>{{item.price2}}</span></span>
+					            </p>
+					            <p class="money">
+					                <span class="noItr">무이자6</span>
+					                <span class="tag">무료배송</span>
+					                <span class="tag">편의점픽업</span>
+					                <span class="tag">백화점픽업</span>
+					            </p>
+					        </span>
+					        <!--
+					        상품상세 할인율과 상이하여 주석처리(추후 상품상세 할인율 로직을 적용해야함, 현재는 들어오느 데이터중 정상가 데이터가 없어, 계산이 불가.)
+					        현업 : ux기획 이종봉팀장님
+					        작업 : IT운영팀 김낙운
+					        -->
+					        <!-- <div class="sale" ng-if="item.saleRate">
+					            <p><span>{{item.saleRate}}</span>%</p>
+					        </div> -->
+						</a>
+						<span class="wish_icon ntype" ng-class="{on:item.has_wish}">위시리스트</span>
+					</div>
+				</li>
+			</ul>
+			<div class="noData" ng-if="!screenData.dispGoodsList.length && !productListLoading">해당하는 상품이 없습니다.</div>
+		</section>
+		<!-- //container -->
+	</section>	
+</section>

@@ -1,0 +1,36 @@
+<div class="unit_deal_01" dom-load-directive2>
+    <a ng-click="clickUnit(item.reIdx)">
+        <div class="mdTip" ng-class="{none:item.copy_nm == ''}">
+            <p class="txtBox" ng-if="item.copy_nm">{{item.copy_nm}}</p>
+        </div>
+        <div class="thumb" ng-class="{normal:item.default_img == true}">
+        	<div class="soldoutp" ng-if="item.sold_out">
+				<span class="shadow"></span>
+				<span class="txt">
+					<img src="http://image.lotte.com/lotte/mobile/mobile_new/main/txt_soldout01.png" alt="sold out">
+				</span>
+			</div>
+            <img ng-src="{{item.img_url}}" alt="{{item.goods_nm}}" />
+            <p class="flag" ng-if="item.is_dept || item.is_tvhome">
+                <span class="flag_01" ng-if="item.is_dept">롯데백화점</span>
+                <span class="flag_02" ng-if="item.is_tvhome && !item.is_dept">롯데홈쇼핑</span>
+            </p>
+        </div>
+        <div class="info" ng-class="{true:item.plan_prod_yn != true && item.sale_rate && item.sale_rate != 0}">
+            <div class="line1">
+                <p class="coupon" ng-if="item.plan_prod_yn != true && item.sale_rate && item.sale_rate != 0">{{item.sale_rate}}<span>%</span></p>
+                <div class="txtBox">
+                    <p class="tit elli" ng-bind="item.goods_nm"></p>
+                    <p class="price"><strong ng-bind="item.price2"></strong>원<span ng-if="item.plan_prod_yn == true">~</span></p>
+                </div>
+            </div>
+            <div class="line2">
+                <span class="sale" ng-if="item.sale_cnt && item.sale_cnt != '0' "><strong ng-bind="item.sale_cnt"></strong>개 구매중</span>
+                <span class="tag" ng-if="item.flag">
+                    <span ng-repeat="flag in item.flag track by $index">{{flag}}</span>
+                </span>
+            </div>
+        </div>
+    </a>
+
+</div>

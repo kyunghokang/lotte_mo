@@ -1,0 +1,652 @@
+<div tpml-recom ng-if="pageUI.curMenuDispNo == '5553631'" class="cont_wrap tpml_recom padding">
+
+	<!-- 임직원 & 플래티넘 배너 20161115 	-->
+	<div ng-hide="screenType > 1" ng-if="bannerBox.recomm_banner2 != undefined && bannerBox.recomm_banner2 != null" class="recomStaffBanner" style="background:{{bannerBox.recomm_banner2.items[0].img_desc}}">
+		<a href="#" ng-click="goBannerLink('{{bannerBox.recomm_banner2.items[0].link_url}}&tclick={{getRbTclick(5553631)}}')"><img ng-src="{{bannerBox.recomm_banner2.items[0].img_url}}" alt="" /></a>
+	</div>
+	<!--20160818 코너화 배너 && !loginInfo.isStaff -->
+	<div ng-hide="screenType > 1" ng-if="bannerBox.recomm_banner != null && (bannerBox.recomm_banner2 == undefined || bannerBox.recomm_banner2 == null)" class="recomStaffBanner" style="background:{{bannerBox.recomm_banner.items[0].bg_color}}">
+		<a href="#" ng-click="goBannerLink('{{bannerBox.recomm_banner.items[0].link_url}}&tclick=m_DC_menu_5553631_Clk_Ban_F01')"><img ng-src="{{bannerBox.recomm_banner.items[0].img_url}}" alt="" /></a>
+	</div>
+	
+	<!-- 20160818 코너화 배너
+	<div ng-if="aboutData.recomm_banner != undefined && aboutData.recomm_banner != null" class="recomStaffBanner" style="background:{{aboutData.recomm_banner.items[0].bg_color}}">
+		<a href="#" ng-click="goBannerLink('{{aboutData.recomm_banner.items[0].link_url}}&tclick=m_DC_menu_5553631_Clk_Ban_F01')"><img ng-src="{{aboutData.recomm_banner.items[0].img_url}}" alt="" /></a>
+	</div>
+    -->
+    <!-- 대형행사배너 -->
+    <!--무한롤링스와이프 적용  endfnc="endFnc" interval="3000" -->
+    <div class="mBoxCon first mb10 min260 first_bnr_wrap" id="recom"  interval="3000" roll-swipe-banner rolling="true" width320="1" width640="1" width900="1" info="randomTopBann" ng-if="randomTopBann">
+        <ul class="prd_type2 swipeBox">
+            <li ng-repeat="item in bn_order" class="view_{{randomTopBann[item].big_plan_type}}">
+                <a href="#" ng-click="towwayLink(randomTopBann[item].target, randomTopBann[item].title, randomTopBann[item].link_url,'Clk_Ban_{{randomTopBann[item].big_plan_type==null || aboutData.big_plan_bnr.items[item].big_plan_type==undefined?'type1':randomTopBann[item].big_plan_type}}_idx', item, 0, null)">
+                    <div class="mTop_title">
+                        <p class="m3F26B">{{randomTopBann[item].title}}</p>
+                        <p class="m6F14 mgm3">{{randomTopBann[item].sub_title}}</p>
+                    </div>
+                    <div class="imageCon">
+                        <div class="dim"></div>
+                        <img ng-src="{{randomTopBann[item].img_url}}">
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <ul class="indicator">
+            <li ng-repeat="indicator in randomTopBann"><span>{{$index}}</span></li>
+        </ul>
+    </div>
+
+    <!--무한롤링스와이프 적용  endfnc="endFnc" interval="3000"
+    <div class="mBoxCon first mb10 min260 first_bnr_wrap" id="recom" interval="3000" roll-swipe-banner rolling="true" width320="1" width640="2" width900="2" info="aboutData.big_plan_bnr.items">
+        <ul class="prd_type2 swipeBox">
+            <li ng-repeat="item in aboutData.big_plan_bnr.items" class="view_{{item.big_plan_type}}">
+                <a href="#" ng-click="towwayLink(item.target,item.title, item.link_url,'Clk_Ban_{{item.big_plan_type==null || item.big_plan_type==undefined?'type1':item.big_plan_type}}_idx', $index, 0, null)">
+                    <div class="mTop_title">
+                        <p class="m3F26B">{{item.title}}</p>
+                        <p class="m6F14 mgm3">{{item.sub_title}}</p>
+                    </div>
+                    <div class="imageCon">
+                        <div class="dim"></div>
+                        <img ng-src="{{item.img_url}}">
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <ul class="indicator">
+            <li ng-repeat="indicator in aboutData.big_plan_bnr.items"><span>{{$index}}</span></li>
+        </ul>
+    </div>
+    -->
+    <!-- 서브 메뉴 리스트 -->
+    <div class="mBoxCon sub_menu_list" ng-if="aboutData.sub_menu_list != null">
+        <ul class="prd_type12">
+            <li ng-repeat="item in aboutData.sub_menu_list.items">
+                <a ng-click="gotoLinkM(item.link_url,'Clk_Quick_idx', $index, 0, null,item.menu_nm)">
+                    <div class="image_wrap">
+                        <div class="imageCon radius" style="background:url({{item.img_url}}) no-repeat center center;background-size:cover;"></div>
+                    </div>
+                    <div class="brand_name">
+                        <div class="m6F12 elli2 ellih16">{{item.menu_nm}}</div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!--
+    20170425 인프라 요청으로 미사용 영역 삭제
+    20160825 생생샵 동영상
+    <div class="mov_auto_wrap sslive" ng-if="sslive_flag">
+       <div class="sslive_title">
+           {{goods_info.title}}
+       </div>
+        <div class="video_wrap">
+            <video id="autoVideo" playsinline="true" webkit-playsinline="true" poster="http://image.lotte.com/lotte/mo2015/angular/mall/sslive_poster.jpg" controls="false">
+                <source type="video/mp4" src="http://liveshop.lotte.com/lotteliveshop/livestream.mp4.m3u8">
+            </video>
+            <div class="play_cover">&nbsp;</div>
+            <div class="stop_cover">&nbsp;</div>
+            <div class="click_cover">&nbsp;</div>
+            <a class="btn_move_start" onclick="appTclick('m_DC_Main_SangShop_Clk_Live_play_idx0'); return false;" href="#" style="display: inline;">비디오 재생</a>
+            <a class="btn_move_stop btn_text" onclick="appTclick('m_DC_Main_SangShop_Clk_Live_pause_idx0'); return false;" href="#">일시정지</a>
+            <a class="btn_move_goods btn_text" ng-href="/mall/sslive.do?tclick=m_DC_Main_SangShop_Clk_Live_lnk_idx0&{{baseParam}}">상품보기</a>
+        </div>
+        <div class="plan_wrap">
+            <a ng-href="/mall/sslive.do?tclick=m_DC_Main_SangShop_Clk_Live_lnk_idx0&{{baseParam}}&{{previewstr}}">
+                <div class="ss_txt"><b ng-if="goods_info.brand_nm">[{{goods_info.brand_nm}}]</b> {{goods_info.goods_nm}}</div>
+                <div class="ss_price">
+                    <span><b>{{goods_info.price|number}}</b>원<span ng-if="goods_info.is_plan_prod">~</span></span>
+                </div>
+            </a>
+        </div>
+    </div> -->
+
+    <!-- 브랜드상품  : 제거
+    <div class="mBoxCon min260" ng-if="aboutData.brand_prd.female && aboutData.brand_prd.male != null">
+        <div class="btn_list">
+            <ul class="gender_btn">
+                <li ng-class="{on : bndGen == 'F'}"><button class="m6F14" ng-click="changeGender('F')">우먼</button></li>
+                <li ng-class="{on : bndGen == 'M'}"><button class="m6F14" ng-click="changeGender('M')">맨즈</button></li>
+            </ul>
+        </div>
+        <div ng-show="bndGen == 'F'" ng-controller="lotteNgSwipeCtrl">
+            <ul lotte-ng-list-swipe="" swipe-id="BndGenderSwipe_0" swipe-list-model="aboutData.brand_prd.female.items" swipe-responsive="true" swipe-responsive320="1" swipe-responsive640="2" swipe-responsive900="2" swipe-slide-item="true" swipe-max-ratio="0.2" swipe-min-distance="40" swipe-inactive="true" class="prd_type1">
+                <li ng-repeat="item in aboutData.brand_prd.female.items">
+                    <a href="#" ng-click="gotoLinkM(item.link_url,'Clk_W_Prd_', $index, 2, null)">
+                        <div class="imageCon"><img ng-src="{{item.img_url}}"></div>
+                        <div class="mTop_title">
+                            <p class="m3F20B mgm3">{{item.title}}</p>
+                        </div>
+                        <div class="m3F14 t1"><b>{{item.brand_nm}}</b>{{item.goods_nm}}</div>
+                        <div><span class="mBF11u" ng-if="item.price != 0">{{item.price | number}}원</span><span class="m38F10"><b  class="m38F19">{{item.sale_price | number}}</b>원<em ng-if="item.is_plan_prod" class="plan_prod_limit">~</em></span></div>
+                    </a>
+                </li>
+            </ul>
+            <div class="page_list m6F13">
+                <span><span class="now">{{swipeBulletIdx+1}}</span> / {{swipeBullet.length}}</span>
+            </div>
+        </div>
+        <div ng-show="bndGen == 'M'" ng-controller="lotteNgSwipeCtrl">
+            <ul lotte-ng-list-swipe="" swipe-id="BndGenderSwipe_1" swipe-list-model="aboutData.brand_prd.male.items" swipe-responsive="true" swipe-responsive320="1" swipe-responsive640="2" swipe-responsive900="2" swipe-slide-item="true" swipe-max-ratio="0.2" swipe-min-distance="40" swipe-inactive="true" class="prd_type1">
+                <li ng-repeat="item in aboutData.brand_prd.male.items">
+                    <a href="#" ng-click="gotoLinkM(item.link_url,'Clk_M_Prd_', $index, 2, null)">
+                        <div class="imageCon"><img ng-src="{{item.img_url}}"></div>
+                        <div class="mTop_title">
+                            <p class="m3F20B mgm3">{{item.title}}</p>
+                        </div>
+                        <div class="m3F14 t1"><b>{{item.brand_nm}}</b>{{item.goods_nm}}</div>
+                        <div><span class="mBF11u" ng-if="item.price != 0">{{item.price | number}}원</span><span class="m38F10"><b  class="m38F19">{{item.sale_price | number}}</b>원<em ng-if="item.is_plan_prod" class="plan_prod_limit">~</em></span></div>
+                    </a>
+                </li>
+            </ul>
+            <div class="page_list m6F13">
+                <span><span class="now">{{swipeBulletIdx+1}}</span> / {{swipeBullet.length}}</span>
+            </div>
+        </div>
+    </div>
+    -->
+    <!-- 서프라이즈-->
+    <!-- 모바일 화면 -->
+    <div class="mBoxCon min260 suprise" ng-if="aboutData.surprise != null">
+	   <div class="mTop_title">
+            <p class="m3F20B mgm3"><span>브랜드는 서프라이즈</span></p>
+        </div>
+        <ul class="prd_type5">
+            <li class="big">
+                <a href="#" ng-click="gotoLinkM(hsupriseArr1[0].link_url,'Clk_Suprise_idx', 0, 0, null)" class="mainp">
+                    <div class="imageCon"><img ng-src="{{hsupriseArr1[0].img_url}}"></div>
+                    <div class="titleCon">
+                        <div class="m3F14B elli2 ellih18 f1">{{hsupriseArr1[0].title}}</div>
+                        <div class="m6F12 elli2 mgm3 ellih18">{{hsupriseArr1[0].sub_title}}</div>
+                    </div>
+                </a>
+            </li>
+            <li ng-repeat="item in hsupriseArr2">
+                <a href="#" ng-click="gotoLinkM(item.link_url,'Clk_Suprise_idx', $index + 1, 0, null)" class="subp">
+                    <div class="imageCon"><img ng-src="{{item.img_url}}"></div>
+                    <div class="titleCon">
+                        <div class="m3F14B elli2 ellih18">{{item.title}}</div>
+                        <div class="m6F12 elli2 mgm3 ellih16">{{item.sub_title}}</div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+		
+		<!-- 동영상 영역 -->
+		<section 
+			class="mov_auto_wrap type2" 
+			ng-if="tpmlData.contData.mov_plan != null">
+			<ul>
+				<li ng-repeat="item in ::tpmlData.contData.mov_plan.items track by $index">
+					<div class="video_wrap">
+					    <video 
+					    	controls="controls" 
+					    	video-poster="{{::item.poster_img | trustUrl}}" 
+					    	id="autoVideo1" 
+					    	playsinline="true" 
+					    	webkit-playsinline="true">
+					    	<source video-source="{{::item.mov_url | trustUrl}}" type="video/mp4">
+					    </video>
+					    <div class="play_cover">
+					    	<span class="move_title">영상제보#</span>
+					    </div>
+					    <div class="stop_cover">
+					    	<span class="move_title">영상제보#</span>
+					    </div>
+					    <div class="click_cover"></div>
+					    <a ng-click="movMuteTclick('Clk_mute', 'Clk_vol');" class="btn_move_volume btn_text">음소거</a>
+					    <a ng-click="movPlayTclick();" class="btn_move_start">비디오 재생</a>
+					    <a ng-click="movStopTclick();" class="btn_move_stop btn_text">일시정지</a>
+					    <!-- a ng-click="processTclick('/product/product_list.do?curDispNo=' + item.cur_disp_no, {prefix:'Clk_Video_lnk'})" class="btn_move_goods btn_text">상품보기</a -->
+					    <a ng-click="movProdLink(item.goods_no, 'm_DC_menu_5553631_Clk_Video_goods')" class="btn_move_goods btn_text">상품보기</a>
+					</div>
+					<script type="text/javascript">
+					setTimeout(function(){
+						autoVideoPlay('autoVideo1', '#autoVideo1');
+					}, 1500);
+					</script>
+					<div class="plan_wrap">
+						<a ng-click="movProdLink(item.goods_no, 'm_DC_menu_5553631_Clk_Video_goods')">
+							<span class="plan_img"><img ng-src="{{::item.designer_img}}" /></span>
+							<span class="plan_txt">
+								<span class="plan_title">
+									<span class="plan_name no_line" ng-bind-html="::item.designer_nm" ng-class="{'line': tpmlData.contData.mov_plan.items[0].brand_nm}"></span>
+									<span class="plan_brand" ng-bind-html="::item.brand_nm"></span>
+								</span>
+								<p class="plan_subtitle"><span ng-bind-html="::item.plan_txt"></span></p>
+							</span>
+						</a>
+						<a ng-click="processTclick('/product/product_list.do?curDispNo=' + item.cur_disp_no, {prefix:'Clk_Video_Btn', useIndex:true, index:$index+1})" class="btn_goods_detail">영상제보 더보기</a>
+					</div>
+
+				</li>
+			</ul>
+		</section>
+
+   <!-- 최근 본 상품 데이터 분리 전 -->
+   <!--
+    <div class="mBoxCon min200" ng-if="aboutData.latest_prod.items != null">
+        <div class="mTop_title">
+            <p class="m6F14">본 상품도 한번 더</p>
+            <p class="m3F20B mgm3">뒤돌아 봐주는 센스</p>
+            <a href="#" ng-click="gotoLinkM(goToPage(4),'Clk_Btn_C', 0, 0, null)" class="sideBtn">더보기</a>
+        </div>
+        <ul class="prd_type11 float_ul">
+            <li ng-repeat="item in aboutData.latest_prod.items">
+                <a href="#" ng-click="gotoLinkM('','Clk_Prd_A', $index, 0, item)">
+                    <div class="imageCon">
+                        <img ng-src="{{item.img_url}}">
+                    </div>
+                    <div class="titleCon">
+                        <div class="name elli2 ellih18">{{item.brand_nm}}</div>
+                        <div class="t1"><b>{{item.sale_price | number}}</b>원<em ng-if="item.is_plan_prod" class="plan_prod_limit">~</em></div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    -->
+    <!-- 최근 본 상품 데이터 분리 후 -->
+       <div class="recommond_wrap latest_prodlst_wrap">
+        <div class="mBoxCon min260" ng-if="recomRBData.latestData.length > 0">
+            <div class="mTop_title">
+                <p class="m6F14">본 상품도 한번 더</p>
+                <p class="m3F20B mgm3">뒤돌아 봐주는 센스</p>
+                <a href="#" ng-click="gotoLinkM(goToPage(4),'Clk_Btn_C', 0, 0, null)" class="sideBtn">더보기</a>
+            </div>
+            <div><!-- || (screenType>1 && aboutData.search_keyword != null)-->
+                <ul  class="prd_type2 recommond_swipe latest_swipe" lotte-ng-list-swipe="" swipe-id="lastestSwipe_0" swipe-list-model="recomRBData.latestData" swipe-responsive="true" swipe-responsive320="1" swipe-responsive640="1" swipe-responsive900="1" swipe-slide-item="true" swipe-max-ratio="0.2" swipe-min-distance="40">
+                    <li ng-repeat="item in recomRBData.latestData">
+                        <ul class="prd_type13 float_ul">
+                            <li ng-repeat="items in item">
+                                <a href="#" ng-click="gotoLinkM('','Clk_Prd_A', ($parent.$index * 3 + ($index)), 0, items)">
+                                    <div class="imageCon">
+                                        <img ng-src="{{items.img_url}}">
+                                    </div>
+                                    <div class="titleCon">
+                                        <div class="name elli2 ellih36">{{items.goods_nm}}</div>
+                                        <div class="t1"><b>{{items.sale_price | number}}</b>원<em ng-if="item.is_plan_prod" class="plan_prod_limit">~</em></div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="indicator" ng-if="recomRBData.latestData.length > 1">
+                    <li ng-repeat="indicator in recomRBData.latestData" ng-class="{on: swipeIdx == $index}"><span>{{$index}} {{recomRBData.latestData.length}}</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 카드 청구할인 안내-->
+    <div class="mBoxCon card" ng-if="aboutData.card_reward.items != null">
+        <ul class="prd_type4 float_ul">
+            <li ng-repeat="item in aboutData.card_reward.items" ng-hide="screenType > 1 && $index > 1">
+                <a href="#" ng-click="gotoLinkM(item.link_url,'Clk_Ban_A', $index, 0, null)">
+                    <b>{{item.benefit}}</b>{{item.title}}
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 신규서비스 홍보-->
+    <div class="mBoxCon min150" ng-if="aboutData.new_service != null">
+        <div class="mTop_title">
+            <p class="m6F14">{{aboutData.new_service.sub_title}}</p>
+            <p class="m3F20B mgm3">{{aboutData.new_service.title}}</p>
+        </div>
+        <ul class="prd_type3 service type2">
+            <li ng-repeat="item in aboutData.new_service.brnd_list.items">
+                <a href="#" ng-click="gotoLinkM(item.link_url,'Clk_Ban_B', $index, 0, null)">
+                    <div class="imageCon"><img ng-src="{{item.img_url}}"></div>
+                    <div class="m3F14B elli2 ellih18" style="text-align:center">{{item.banner_nm}}</div>
+                    <div class="m6F14 desc" ng-bind-html="item.desc" style="text-align:center"></div>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 빅딜-->
+    <div class="mBoxCon min260" ng-if="aboutData.big_deal != null">
+        <!-- 기본 빅딜 타이틀 이미지 -->
+        <div class="mTop_title">
+            <p class="m6F14">혜택이 큰 상품만 모아모아</p>
+            <p class="m3F20B mgm3">오늘의 BIG딜</p>
+            <a ng-click="bigdealMore()" class="sideBtn">BIG딜</a>
+        </div>
+	
+        <ul class="prd_type7" ng-class="{float_ul:screenType != 1}">
+            <li ng-repeat="item in aboutData.big_deal.items" ng-hide="(screenType == 2 && $index > 1) || (screenType == 3 && $index > 2)">
+                <a href="#" ng-click="gotoLinkM('','Clk_Bigdeal_Prd_idx', $index, 1, item)">
+                    <!--
+                    <div class="md_talk elli2" ng-if="item.ipt_flags">
+                        {{item.ipt_flags}}
+                    </div>
+                    -->
+                    <div class="imageCon">
+                        <!-- 엘포인트백 플레그 -->
+                        <span ng-if="item.goods_nm.indexOf('[포인트백]') > -1" class="lpointBack_flag">엘포인트백</span>
+                        <img ng-src="{{item.img_url}}">
+                        <div class="flag_wrap">
+                            <span class="flag depart" ng-if="item.mall_flag.is_dept">롯데백화점</span>
+                            <span class="flag etv" ng-if="item.mall_flag.is_tvhome">롯데홈쇼핑</span>
+                            <span class="flag smart" ng-show="item.mall_flag.is_smartpick">스마트픽</span>
+                        </div>
+                    </div>
+                    <div class="titleCon">
+                        <div class="prod" ng-if="item.sale_rate && item.sale_rate != 0">
+                            <span class="sale_rate">{{item.sale_rate}}</span>
+                            <span class="sale_limit">%</span>
+                            <em class="sale_desc">쿠폰포함</em>
+                        </div>
+                        <div class="info">
+                            <div class="m3F14 elli2 ellih18">{{item.goods_nm}}</div>
+                            <div class="price">
+                                <span class="m38F10"><b  class="m38F19">{{item.sale_price | number}}</b>원<em ng-if="item.is_plan_prod" class="plan_prod_limit">~</em></span>
+                                <div class="sale_con">
+                                    <span class="no" ng-show="item.sale_cnt > 0"><em>{{item.sale_cnt|number}}</em>개 구매 중</span>
+                                    <!--
+                                    <span ng-if="item.flags.is_free_deli" class="flag_tag">무료배송</span>
+                                    <span ng-if="item.flags.is_coupon" class="flag_tag">쿠폰포함</span>
+                                    -->
+                                    <span ng-if="item.ipt_flags.length > 0" class="flag_tag">{{item.ipt_flags}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+     <!-- 랭킹데이터-->
+    <div class="mBoxCon" ng-if="aboutData.ranking != null">
+        <div class="mTop_title">
+            <p class="m6F14">{{lank_titlA}}</p>
+            <p class="m3F20B">{{lank_titlB}}</p>
+            <a href="#" ng-click="gotoLinkM(goToPage(1),'Clk_btn', 0, 2, null)" class="sideBtn">랭킹존</a>
+        </div>
+        <div lotte-slider ng-if="aboutData.ranking.items.length > 0" class="swipe_wrap prd_type6_wrap">
+            <ul class="prd_type6">
+                <li ng-repeat="item in aboutData.ranking.items">
+                    <a href="#" ng-click="gotoLinkM('','Swp_Prd_idx', $index, 2, item)">
+                        <div class="imageCon">
+                            <img ng-src="{{item.img_url}}">
+                        </div>
+                        <div class="titleCon">
+                            <!--
+                              <div class="flag">
+                                <span class="flag depart" ng-show="item.mall_flag.is_dept">롯데백화점</span>
+                                <span class="flag smart" ng-show="item.mall_flag.is_smartpick">스마트픽</span>
+                            </div>-->
+                            <div class="m3F14B elli2 ellih18">{{item.brnd_nm}}</div>
+                            <div class="m6F14 elli2 ellih18">{{item.goods_nm}}</div>
+                            <div class="t1"><span class="m38F10"><b  class="m38F19">{{item.sale_price | number}}</b>원</span></div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--테마기획전 묶음-->
+    <div class="mtable">
+        <div class="mcell">
+            <!-- 테마기획전1-->
+            <div class="mBoxCon min260 themeBox1" ng-if="aboutData.theme_plan1 != null">
+                <div class="mTop_title">
+                    <p class="m6F14">{{aboutData.theme_plan1.sub_title}}</p>
+                    <p class="m3F20B mgm3">{{aboutData.theme_plan1.title}}</p>
+                </div>
+                <ul class="prd_type5 theme">
+                    <li ng-repeat="item in theme1" ng-class="{big:$index == 0}">
+                        <a href="#"  ng-if="$index == 0" class="mainp">
+                            <div class="imageCon" ng-click="gotoLinkM(item.link_url,'Clk_Ban_T01_banner', null, 1, null)"><img ng-src="{{item.img_url}}"></div>
+                            <div class="titleCon">
+                                <div class="m3F16B elli2 ellih21">{{item.title}}</div>
+                                <div class="mBF13 tagList">
+                                    <span ng-repeat="hash in aboutData.theme_plan1.hash_list" ng-click="gotoLinkM(hash,'Clk_Hashtag_T01', $index, 1, 'search')">#{{hash}}  </span>
+                                </div>
+                            </div>
+                        </a>
+                        <a ng-click="gotoLinkM('','Clk_Prd_T01_prd', $index-1, 1, item)" ng-if="$index > 0" class="subp">
+                            <div class="imageCon">
+                                <img ng-src="{{item.img_url}}">
+                            </div>
+                            <div class="titleCon">
+                                <div class="name elli2">{{item.goods_nm}}</div>
+                                <div class="t1"><b>{{item.sale_price | number}}</b>원<em ng-if="item.is_plan_prod" class="plan_prod_limit">~</em></div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="mcell">
+            <!-- 테마기획전2-->
+            <div class="mBoxCon min260" ng-if="aboutData.theme_plan2 != null">
+                <div class="mTop_title">
+                    <p class="m6F14">{{aboutData.theme_plan2.sub_title}}</p>
+                    <p class="m3F20B mgm3">{{aboutData.theme_plan2.title}}</p>
+                </div>
+                <ul class="prd_type5 theme">
+                    <li ng-repeat="item in theme2" ng-class="{big:$index == 0}">
+                        <a href="#" ng-if="$index == 0" class="mainp">
+                            <div class="imageCon" ng-click="gotoLinkM(item.link_url,'Clk_Ban_T02_banner', null, 1, null)"><img ng-src="{{item.img_url}}"></div>
+                            <div class="titleCon">
+                                <div class="m3F16B elli2 ellih21">{{item.title}}</div>
+                                <div class="mBF13 tagList">
+                                    <span ng-repeat="hash in aboutData.theme_plan2.hash_list" ng-click="gotoLinkM(hash,'Clk_Hashtag_T02', $index, 1, 'search')">#{{hash}}  </span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#"  ng-click="gotoLinkM('','Clk_Prd_T02_prd', $index-1, 1, item)" ng-if="$index > 0" class="subp">
+                            <div class="imageCon">
+                                <img ng-src="{{item.img_url}}">
+                            </div>
+                            <div class="titleCon">
+                                <div class="name elli2">{{item.goods_nm}}</div>
+                                <div class="t1"><b>{{item.sale_price | number}}</b>원<em ng-if="item.is_plan_prod" class="plan_prod_limit">~</em></div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 스마트픽-->
+    <div class="mBoxCon min260" ng-if="aboutData.smp_prod != null && aboutData.smp_prod.items.length != 0">
+        <div class="mTop_title">
+           <!-- 2016.12.22 수정 -->
+            <p class="m3F14"><span class="smp_icon" >스마트픽</span>{{h_branch_nm}}</p>
+            <p class="m3F20B mgm3">바로 픽! 스마트픽</p>
+            <a href="#" ng-click="gotoLinkM(goToPage(2),'Clk_Smartpick_Btn', 0, 0, null)" class="sideBtn">스마트픽</a>
+        </div>
+        <ul class="prd_type8" ng-class="{wide:screenType==3}">
+            <li ng-repeat="item in aboutData.smp_prod.items">
+                <a href="#" ng-click="gotoLinkM('','Clk_Smartpick_Prd_idx', $index, 0, item)">
+                    <!-- 2017.02.15 플래그 추가-->
+					<div class="prod_flag_wrap">
+					  <span class="flag depart ng-scope" >롯데백화점</span>
+					  <span class="flag smart" >스마트픽</span>
+					</div>
+                    <div class="imageCon"><img ng-src="{{item.img_url}}"></div>
+                    <div class="titleCon">
+                        <div class="m3F14B elli2 ellih18">{{item.brnd_nm}}</div>
+                        <div class="m6F14 elli2 ellih18">{{item.goods_nm}}</div>
+                        <div class="t1"><span class="m38F10"><b  class="m38F19">{{item.sale_price | number}}</b>원<em ng-if="item.is_plan_prod" class="plan_prod_limit">~</em></span></div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mtable">
+        <div class="mcell">
+            <!-- TV상품-->
+            <div class="mBoxCon tv min260" ng-if="aboutData.tv_prod != null">
+                <div class="mTop_title">
+                    <div class="tvtitle" ng-class="{noTime:aboutData.tv_prod.end_date == ''}">
+                        <p class="left">TV상품</p>
+                        <p class="right" id="tvTime"></p>
+                    </div>
+                    <p class="m3F20B">지금 이순간, TV상품</p>
+                    <!--<a href="#" ng-click="gotoLinkM(goToPage(3),'Clk_TV_Btn_idx', 0, 0, null)" class="sideBtn">TV쇼핑</a> 2016.06.17 주석처리-->
+                </div>
+                <div class="imageCon">
+                    <img ng-src="{{aboutData.tv_prod.img_url}}" ng-click="gotoLinkM('','Clk_TV_Prd_', 0, 0, aboutData.tv_prod)">
+                </div>
+                <div class="titleCon">
+                    <div ng-click="gotoLinkM('','Clk_TV_Prd_', 0, 0, aboutData.tv_prod)" class="tvLeft">
+                        <!--<div class="name"><b>{{aboutData.tv_prod.brnd_nm}}</b></div>-->
+                        <div class="name elli2 ellih18" ng-class="{pad:screenType != 1}">{{aboutData.tv_prod.goods_nm}}</div>
+                        <div class="t1"><b>{{aboutData.tv_prod.sale_price | number}}</b>원</div>
+                    </div>
+                    <div  class="tvRight " ng-click="gotoLinkM(goToPage(3),'Clk_TV_Btn_idx', 0, 0, null);"><!-- 2016.06.17-->
+                        <div class="tvIcon"></div>
+                        <div class="tvText">TV쇼핑<br/>더보기</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="mcell">
+            <!-- 전문매장-->
+            <div class="mBoxCon min260" ng-if="aboutData.specialshop != null">
+                <div class="mTop_title">
+                    <p class="m6F14">{{aboutData.specialshop.sub_title}}</p>
+                    <p class="m3F20B mgm3">{{aboutData.specialshop.title}}</p>
+                </div>
+                <ul class="prd_type9 float_ul">
+                    <li ng-repeat="item in aboutData.specialshop.theme_list.items">
+                        <a ng-click="gotoLinkM(item.link_url,'Clk_Ban_E', $index, 0, null)">
+                            <div class="imageCon">
+                                <div class="titleCon">
+                                    <p class="t1 elli2">{{item.title}}</p>
+                                    <p class="t2 elli2 ellih18">{{item.sub_title}}</p>
+                                </div>
+                                <img ng-src="{{item.img_url}}">
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 반짝 뜨는 검색어-->
+    <div class="mBoxCon min200 themeBox1" ng-class="{only:recomRBData.latestData.length == 0}" ng-if="aboutData.search_keyword != null">
+        <div class="mTop_title">
+            <p class="m6F14">{{kewyord_time}}</p>
+            <p class="m3F20B mgm3">지금 반짝! 뜨는 검색어</p>
+        </div>
+        <ul class="prd_type10 float_ul">
+            <li ng-repeat="item in skeywodArr1">
+                <a href="#" ng-click="gotoLinkM(item.keyword,'Clk_Search_idx', $index, 0, 'search')">
+                    <div class="imageCon">
+                        <div class="dim"></div>
+                        <img ng-src="{{item.img_url}}">
+                        <p class="t1 elli2 ellih18">#{{item.keyword}}</p>
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="key_tagList">
+            <span  ng-repeat="item in skeywodArr2"><a href="#" ng-click="gotoLinkM(item.keyword,'Clk_Search_idx', $index + 3, 0, 'search')">#{{item.keyword}}</a></span>
+        </div>
+    </div>
+
+    <!--추천상품 나를 잊지 말아요 : 로그인한 회원에게만 노출-->
+		<div class="mBoxCon min150" ng-if="loginInfo.isLogin && smartAlramList.items != null">
+        <div class="mTop_title">
+            <p class="m6F14">{{loginInfo.name}}님</p>
+            <p class="m3F20B mgm3">나를 잊지 말아요</p>
+        </div>
+        <ul class="prd_type3" ng-class="{wide:screenType==3}">
+            <li ng-repeat="item in smartAlramList.items" ng-click="gotoLinkM('','Clk_Prd_idx', $index, 0, item)" ng-class="{one:aboutData.smart_alarm.items.length == 1}">
+                <a href="#">
+                    <div class="imageCon"><img ng-src="{{item.img_url}}"></div>
+                    <div class="flag">
+                        <span class="flag depart" ng-show="item.mall_flag.is_dept">롯데백화점</span>
+                        <span class="flag smart" ng-show="item.mall_flag.is_smartpick">스마트픽</span>
+                    </div>
+                    <div class="m3F14B elli2 ellih18">{{item.brnd_nm}}</div>
+                    <div class="m3F14 elli2 ellih18">{{item.goods_nm}}</div>
+
+                    <!-- 재입고가 아닐경우 price와 sale_price 두개 존재 -->
+                    <div class="t1" ng-if="item.alarm_info.type != 'NTC_CART' && item.alarm_info.type != 'NTC_ETC'"><span class="mBF11u" ng-if="item.alarm_info.type.length > 1">{{item.price | number}}원</span><span class="m38F10"><b  class="m38F19">{{item.sale_price | number}}</b>원<em ng-if="item.is_plan_prod" class="plan_prod_limit">~</em></span></div>
+
+                    <!-- 재입고일경우 price만 존재 -->
+                    <div class="t1" ng-if="item.alarm_info.type == 'NTC_CART' || item.alarm_info.type == 'NTC_ETC'"><span class="m38F10"><b  class="m38F19">{{item.price | number}}</b>원</span></div>
+
+                    <div ng-if="item.alarm_info.type == 'CART'" class="mBF12">장바구니 할인 알림일 : {{item.alarm_info.date}}</div>
+                    <div ng-if="item.alarm_info.type == 'WISH'" class="mBF12">위시리스트 할인 알림일 : {{item.alarm_info.date}}</div>
+                    <div ng-if="item.alarm_info.type == 'NTC_CART'" class="mBF12">재입고 알림일 : {{item.alarm_info.date}}</div>
+                    <div ng-if="item.alarm_info.type == 'NTC_ETC'" class="mBF12">재입고 알림일 : {{item.alarm_info.date}}</div>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 실시간 맞춤 추천 상품 데이터 -->
+    <div class="mBoxCon recommond_wrap min260" ng-if="recomRBData.recommondData != null">
+        <div class="mTop_title">
+            <p class="m6F14">최근 본 상품으로 알아본</p>
+            <p class="m3F20B mgm3">눈길 가는 상품</p>
+        </div>
+        <ul class="recommond_swipe" lotte-ng-list-swipe swipe-id="recommondSwipe_0" swipe-list-model="recomRBData.recommondData" swipe-responsive="true" swipe-autoheight="true" swipe-responsive320="1" swipe-responsive640="1" swipe-responsive900="1" swipe-slide-item="true" swipe-max-ratio="0.2" swipe-min-distance="40" swipe-list-model="products">
+            <li ng-repeat="item in recomRBData.recommondData">
+                <ul class="prd_type13 float_ul">
+                    <li ng-repeat="items in item">
+                        <a href="#" ng-click="gotoLinkM('&_reco=M_main','Swp_Clk_reco_Prd', ($parent.$index * 6 + ($index)), 0, items)">
+                            <div class="imageCon">
+                                <img ng-src="{{items.img_url}}">
+                            </div>
+                            <div class="titleCon">
+                                <div class="name elli2 ellih36">{{items.goods_nm}}</div>
+                                <div class="t1"><b>{{items.sale_price | number}}</b>원<em ng-if="item.is_plan_prod" class="plan_prod_limit">~</em></div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="indicator" ng-if="recomRBData.recommondData.length > 1">
+            <li ng-repeat="indicator in recomRBData.recommondData" ng-class="{on: swipeIdx == $index}"><span>{{$index}}</span></li>
+        </ul>
+    </div>
+    <!--20161027 추천기획전-->
+        <div class="peopleView prsn" ng-if="recomRBData.prsnData.length > 1">
+            <div class="mTop_title">
+                <p class="m6F14">최근 본 상품으로 알아본</p>
+                <p class="m3F20B mgm3">함께 볼만한 기획전</p>
+            </div>
+            <div class="swipe3type" >
+                <div class="swipeWrap" ng-controller="lotteNgSwipeCtrl">
+                    <ul  lotte-ng-list-swipe swipe-slide-item="true" swipe-list-model="recomRBData.prsnData" swipe-disp-count="1" swipe-max-ratio="0.2" swipe-min-distance="40" >
+                        <li class="bli" ng-repeat="item in recomRBData.prsnData" ng-if="$index%2 == 0 && !($index == recomRBData.prsnData.length - 1 && recomRBData.prsnData.length%2 == 1)">
+                           <a href="{{baseLink(item.img_link)}}">
+                                <span class="imgWrap">
+                                    <img ng-src="{{item.img_url}}" alt="" />
+                                </span>
+                               <!-- <span class="sPrdTit"> {{item.banner_nm}}</span>-->
+                            </a>
+                           <a class="prsn_seond" ng-href="{{baseLink(recomRBData.prsnData[$index + 1].img_link)}}">
+                                <span class="imgWrap">
+                                    <img ng-src="{{recomRBData.prsnData[$index + 1].img_url}}" alt="" />
+                                </span>
+                               <!-- <span class="sPrdTit"> {{recomRBData.prsnData[$index + 1].banner_nm}}</span>-->
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="indicator prsn">
+                        <li ng-repeat="indicator in swipeBullet" ng-class="{on: swipeIdx == $index}"><span>{{$index + 1}}</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+</div>

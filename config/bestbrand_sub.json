@@ -1,0 +1,70 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplBestBrandSub" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/brandshop/bestbrand_sub_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/bestbrand_sub.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsBestBrandSub" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/common/lotte_ngswipe.js",
+					"lotte/resources_dev/brandshop/bestbrand_sub.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/bestbrand_sub.js"
+			}
+		},
+
+		"uglify" : {
+			"jsBestBrandSub" : {
+				"src" : "lotte/resources/<%= version %>/bestbrand_sub.js",
+				"dest" : "lotte/resources/<%= version %>/bestbrand_sub.min.js"
+			},
+			"tplBestBrandSub" : {
+				"src" : "lotte/resources/<%= version %>/bestbrand_sub.template.js",
+				"dest" : "lotte/resources/<%= version %>/bestbrand_sub.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssBestBrandSub" : {
+				"src" : [
+					"lotte/resources_dev/brandshop/bestbrand_common.css",
+					"lotte/resources_dev/brandshop/bestbrand_sub.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/bestbrand_sub.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanBestBrandSub" : [
+				"lotte/resources/<%= version %>/bestbrand_sub.js",
+				"lotte/resources/<%= version %>/bestbrand_sub.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlBestBrandSub" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"category/m/bestbrand_sub.html" : "category/m/bestbrand_sub_dev.html"
+				}
+			}
+		}
+	}
+}

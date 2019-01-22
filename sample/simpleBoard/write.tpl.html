@@ -1,0 +1,50 @@
+<H3>등록화면</H3>
+
+
+<div>
+이름: <input type="text" name="name" ng-model="simpleBoardEntity.name" required><br>
+제목 : <input type="text" name="subject" ng-model="simpleBoardEntity.subject" required><br>
+내용:
+<textarea name="content" ng-model="simpleBoardEntity.content"></textarea>
+<hr>
+<div ng-repeat="file in simpleBoardEntity.attachedFiles">
+  <img class="thumb" ng-src="./data/downloadFile?file_no={{file.no}}" alt="{{file.filename}}" />
+  <a ng-click="removeAttachedFile(file)">제거</a>
+</div>
+<hr>
+<fieldset>
+<form name="frm">
+파일첨부 : 
+<button ng-model="picFiles" ngf-select="addInputFile()" ngf-multiple="true" ngf-keep="true" ngf-capture="" ngf-max-height="1000" ngf-max-size="1MB" 
+  accept="image/*" >파일 선택</button>
+<br>
+<div ng-repeat="file in picFiles">
+  <img ngf-src="file" class="thumb">
+  <span class="progress" ng-show="file.progress >= 0">
+    <div style="width:{{file.progress}}%" ng-bind="file.progress + '%'"></div>
+  </span>
+  <a ng-click="removeFile(file)">제거</a>
+</div>
+<button ng-disabled="!picFiles || picFiles.length == 0" ng-click="uploadFile(picFiles)">업로드</button>
+<!--
+<input type="file" ngf-select="" ngf-multiple="" ngf-capture="" ng-model="picFile" name="file" accept="image/*" ngf-max-size="2MB" required>
+<i ng-show="frm.file.$error.required">*required</i><br>
+<i ng-show="frm.file.$error.maxSize">File too large  {{picFile.size / 1000000|number:1}}MB: max {{picFile.$errorParam}}</i>
+<img ng-show="frm.file.$valid" ngf-src="!picFile.$error && picFile" class="thumb">
+<a ng-show="picFile" ng-click="removeFile(picFile)">제거</a>
+<br>
+<button ng-disabled="!frm.$valid" ng-click="uploadFile(picFile)">업로드</button>
+<span class="progress" ng-show="picFile.progress >= 0">
+  <div style="width:{{picFile.progress}}%" ng-bind="picFile.progress + '%'"></div>
+</span>
+<span ng-show="picFile.result">Upload Successful</span>
+<span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+-->
+</form>
+<fieldset>
+
+<input type="hidden" name="no" ng-model="simpleBoardEntity.no">
+</div>
+<div>
+<button ng-click="execute()">확인</button>
+<button ng-click="cancel()">취소</button>

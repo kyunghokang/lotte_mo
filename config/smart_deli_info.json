@@ -1,0 +1,69 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplsmart_deli_info" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/mylotte/purchase/m/smart_deli_info_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/smart_deli_info.template.js"
+			}
+		},
+
+		"concat" : {
+			"jssmart_deli_info" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/mylotte/purchase/m/smart_deli_info.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/smart_deli_info.js"
+			}
+		},
+
+		"uglify" : {
+			"jssmart_deli_info" : {
+				"src" : "lotte/resources/<%= version %>/smart_deli_info.js",
+				"dest" : "lotte/resources/<%= version %>/smart_deli_info.min.js"
+			},
+			"tplsmart_deli_info" : {
+				"src" : "lotte/resources/<%= version %>/smart_deli_info.template.js",
+				"dest" : "lotte/resources/<%= version %>/smart_deli_info.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"csssmart_deli_info" : {
+				"src" : [
+					"lotte/resources_dev/mylotte/purchase/m/smart_deli_info.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/smart_deli_info.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleansmart_deli_info" : [
+				"lotte/resources/<%= version %>/smart_deli_info.js",
+				"lotte/resources/<%= version %>/smart_deli_info.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlsmart_deli_info" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"mylotte/purchase/m/smart_deli_info.html" : "mylotte/purchase/m/smart_deli_info_dev.html"
+				}
+			}
+		}
+	}
+}
+

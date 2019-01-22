@@ -1,0 +1,14 @@
+/lotte/lib/jquery/jquery-1.11.2.min.js
+/lotte/lib/jquery/LottePub.js
+/lotte/lib/jquery/cnt_interface.js
+/lotte/lib/jquery/app_interface.js
+/lotte/lib/angular/angular.min.js
+/lotte/lib/angular/angular-sanitize.min.js
+../resources_dev/common/lotte_comm.js
+../resources_dev/common/lotte_util.js
+../resources_dev/common/lotte_filter.js
+../resources_dev/common/lotte_svc.js
+../resources_dev/common/lotte_search.js
+../resources_dev/layout/lotte_sidectg.js
+../resources_dev/layout/lotte_sidemylotte.js
+../resources_dev/common/lotte_comm_footer.js

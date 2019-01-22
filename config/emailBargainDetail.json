@@ -1,0 +1,68 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplemailBargainDetail" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                ],
+                "dest" : "lotte/resources/<%= version %>/emailBargainDetail.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsemailBargainDetail" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/planshop/m/emailBargainDetail.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/emailBargainDetail.js"
+            }
+        },
+
+        "uglify" : {
+            "jsemailBargainDetail" : {
+                "src" : "lotte/resources/<%= version %>/emailBargainDetail.js",
+                "dest" : "lotte/resources/<%= version %>/emailBargainDetail.min.js"
+            },
+            "tplemailBargainDetail" : {
+                "src" : "lotte/resources/<%= version %>/emailBargainDetail.template.js",
+                "dest" : "lotte/resources/<%= version %>/emailBargainDetail.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssemailBargainDetail" : {
+                "src" : [
+                    "lotte/resources_dev/planshop/m/emailBargainDetail.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/emailBargainDetail.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanemailBargainDetail" : [
+                "lotte/resources/<%= version %>/emailBargainDetail.js",
+                "lotte/resources/<%= version %>/emailBargainDetail.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlemailBargainDetail" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "planshop/m/emailBargainDetail.html" : "planshop/m/emailBargainDetail_dev.html"
+                }
+            }
+        }
+    }
+}
+

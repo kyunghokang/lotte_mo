@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+	<meta charset="utf-8">
+	<title>롯데닷컴-order_complete</title>
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+
+	<script>
+	var APP_KEY = "7fa1e44757a94fd89921";
+	var SERVER_TIME = new Date();
+	</script>
+	<!-- JSP 영역 -->
+	<!-- 
+	<%@ page language="java" contentType="text/html;charset=utf-8"  %>
+	
+	<%@include file="/common3/angular_common_include.jsp"%>
+	<% if (LOTTE_DEVEL_MODE) { %>
+	<%@include file="/angular_common/lotte_common_css.jsp"%>
+	<%@include file="/angular_common/lotte_common_js.jsp"%>
+	
+	<!-- 이 화면에서 쓰이는 CSS -->
+	
+	<!-- 이 화면에서 쓰이는 JS -->
+	
+	<!-- 
+	<% } else {  %>
+		<%@include file="/common3/html_meta_angular.jsp"%>
+		<link rel="stylesheet" type="text/css" href="/lotte/resources/<%= pubVersion %>/order_complete.min.css"/>
+		<script src="/lotte/resources/<%= pubVersion %>/order_complete.min.js"></script>
+		<script src="/lotte/resources/<%= pubVersion %>/order_complete.tpl.js"></script>
+	<% } %>
+	 -->
+	<!-- // JSP 영역 -->
+	 
+	<!-- build:template
+	<link rel="stylesheet" type="text/css" href="/lotte/resources/<%= version %>/common.min.css"/>
+	/build -->
+	<!-- build:remove -->
+	<script src="/lotte/resources_dev/common/common_load.js"></script>
+	<!-- /build -->
+
+	<!-- build:template
+	<link rel="stylesheet" type="text/css" href="/lotte/resources/<%= version %>/order_complete.min.css"/>
+	/build -->
+	<!-- build:remove -->
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/sns/sns.css"/>
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/event/katalk.css"/>
+	<!-- /build -->
+
+	<!-- build:template
+	<script src="/lotte/resources/<%= version %>/common.min.js"></script>
+	/build -->
+	<!-- build:remove -->
+	<!-- /build -->
+
+	<!-- build:template
+	<script src="/lotte/resources/<%= version %>/order_complete.min.js"></script>
+	/build -->
+	<!-- build:remove -->
+	<script src="/lotte/resources_dev/sns/lotte_sns.js"></script>
+	<script src="/lotte/lib/kakao/kakao.js"></script>
+	<script src="/lotte/resources_dev/event/katalk.js"></script>
+	<script src="/common3/js/tablets.js"></script>
+	<!-- /build -->
+	
+	<!-- build:template
+	<script src="/lotte/resources/<%= version %>/order_complete.tpl.js"></script>
+	/build -->
+
+	<script>
+	var orderSubTitle = "주문완료";
+	</script>
+</head>
+<body ng-controller="katalkCtrl">
+	<div id="wrapper" ng-show="showWrap">
+		<lotte-header></lotte-header>
+		<lotte-search></lotte-search>
+		<sub-header></sub-header>
+		<share-pop></share-pop>
+		
+		<%@ include file="/WEB-INF/view/event/katalk_for_angular.jsp"%>
+
+		<lotte-footer></lotte-footer>
+		<lotte-btntop></lotte-btntop>
+	</div>
+
+	<lotte-side-category></lotte-side-category>
+	<lotte-side-mylotte></lotte-side-mylotte>
+	<lotte-footer-actionbar></lotte-footer-actionbar>
+
+	<lotte-comm-footer></lotte-comm-footer>
+</body>
+</html>

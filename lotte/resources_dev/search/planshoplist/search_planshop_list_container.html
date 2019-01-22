@@ -1,0 +1,80 @@
+<section ng-show="contVisible" class="cont_minheight">
+    <div class="unitWrap"
+         ng-class="{result_wrap:moreType==1,cate_prod:moreType==1}"
+         ng-if="products.length"
+         ng-controller="productCtrl">
+
+        <div product-container
+             template-type="search_image_2017"
+             templatetype="templateType"
+             total-count="total_count"
+             products="products" ng-if="moreType==0"></div>
+
+        <div product-container
+             template-type="cate_prod_double"
+             templatetype="templateType"
+             total-count="total_count"
+             products="products" ng-if="moreType==1"></div>
+
+        <span class="here">여기까지 봤어요.</span>
+    </div>
+
+    <div class="pageLoading"
+         ng-show="pageLoading || productListLoading">
+        <p class="loading half"></p>
+    </div>
+
+    <!-- 팝업 추가 ckh -->
+    <div class="unit-pop" ng-if="srhPrdDetailInfo.show">
+        <div class="popWrap">
+            <div class="pInnder">
+                <div class="thumb-wrap">
+                    <div class="thumb-list" ng-if="srhPrdDetailInfo.data.imgList.items.length <= 1">
+                        <ul class="swipeBox">
+                            <li ng-repeat="item in srhPrdDetailInfo.data.imgList.items">
+                                <a ng-click="productInfoProc(srhPrdDetailInfo.item,'normal',srhPrdDetailInfo.idx)"><img ng-src="{{item.img_url}}" alt="" /></a></li>
+                        </ul>
+                    </div>
+                    <div class="thumb-list" ng-if="srhPrdDetailInfo.data.imgList.items.length > 1" roll-swipe-banner="" rolling="true" width320="1" width640="1" width900="1" interval="300000" endfnc="setImageSwipeInfo" getcontrol="getImageSwipeControl">
+                        <ul class="swipeBox">
+                            <li ng-repeat="item in srhPrdDetailInfo.data.imgList.items"><a ng-click="productInfoProc(srhPrdDetailInfo.item,'normal','m_RDC_SrhResult_PopLayer_Clk_prd')"><img ng-src="{{item.img_url}}" alt="" /></a></li>
+                        </ul>
+                    </div>
+                    <div class="paging-nav" id="srhPrdDetailInfoArrow" ng-if="srhPrdDetailInfo.data.imgList.items.length > 1 && srhPrdDetailInfo.showArrow">
+                        <a class="prev" ng-click="setImageSwipePos(-1)">이전</a>
+                        <a class="next" ng-click="setImageSwipePos(1)">다음</a>
+                    </div>
+                    <div class="paging-num" ng-if="srhPrdDetailInfo.data.imgList.items.length > 1">
+                        <span class="numWrap"><span class="currentNum">{{srhPrdDetailInfo.imageSwipeIdx}}</span>/<span class="totalNum">{{srhPrdDetailInfo.data.imgList.items.length}}</span></span>
+                    </div>
+                    <div class="btn-wish" ng-click="addWishClick()">
+                        <a ng-class="{on:srhPrdDetailInfo.data.saveWishYn}">위시리스트</a><!-- //활성화 클래스: on -->
+                    </div>
+                    <div class="prod-info">
+                        <div class="tit-top" ng-if="(srhPrdDetailInfo.item.flag=='D'||srhPrdDetailInfo.item.is_dept) || (srhPrdDetailInfo.item.is_tvhome && !srhPrdDetailInfo.item.is_dept) || srhPrdDetailInfo.item.is_super || (srhPrdDetailInfo.item.smartpick_yn=='Y'||srhPrdDetailInfo.item.issmart_pick)">
+                            <span class="prd-flag depart" ng-if="srhPrdDetailInfo.item.flag=='D'||srhPrdDetailInfo.item.is_dept">롯데백화점</span>
+                            <span class="prd-flag depart etv" ng-if="srhPrdDetailInfo.item.is_tvhome && !srhPrdDetailInfo.item.is_dept">롯데홈쇼핑</span><!-- //depart 클래스 추가 ckh -->
+                            <span class="prd-flag depart super" ng-if="srhPrdDetailInfo.item.is_super && !srhPrdDetailInfo.item.is_dept">롯데슈퍼</span>
+                            <span class="prd-flag depart himart" ng-if="srhPrdDetailInfo.item.is_himart">하이마트</span><!-- //하이마트 몰태그 추가 ckh -->
+                        </div>
+                        <div class="tit-text">
+                            <p>
+                                <em ng-show="srhPrdDetailInfo.item.brnd_nm">[<span ng-bind-html="srhPrdDetailInfo.item.brnd_nm|titleToHtml"></span>]</em>
+                                <span ng-bind-html="srhPrdDetailInfo.item.goods_nm|titleToHtml"></span>
+                            </p>
+                        </div>
+                        <div class="tit-price">
+                            <p><em>{{srhPrdDetailInfo.item.discounted_price|number}}</em><span>원</span></p>
+                            <span ng-show="srhPrdDetailInfo.item.is_sale_promotion">~</span>
+                            <span class="origin-prc" ng-if="!srhPrdDetailInfo.item.is_sale_promotion && srhPrdDetailInfo.item.original_price > 0">{{srhPrdDetailInfo.item.original_price|number}}원</span><!-- //이전가 추가 ckh -->
+                        </div>
+                    </div>
+                    <p class="add-msg" ng-if="false">이미 등록된 상품입니다.</p>
+                </div>
+            </div>
+            <a ng-click="productDetailInfoClose(true)" class="pClose">닫기</a>
+        </div>
+    </div>
+    <!-- //팝업 추가 ckh -->
+
+</section>

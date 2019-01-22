@@ -1,0 +1,26 @@
+<div class="comm-unit">
+    <a href="" ng-click="clickUnit()">
+        <span class="thumb">
+            <img ng-src="{{imgPath+item.sImgUrl}}" alt="{{item.goodsNm}}" ng-if="srhObj.imgListGbn!='lv-unit'"/>
+            <img ng-src="{{imgPath+item.bImgUrl}}" alt="{{item.goodsNm}}" ng-if="srhObj.imgListGbn=='lv-unit'"/>
+        </span>
+        <span class="cont01">
+            <p class="tl">{{item.goodsNm}}</p>
+            <p class="icon">
+                <span ng-repeat="flag in item.flag" class="{{flag}}"></span>
+            </p>
+            <p class="money">
+                <del class="small" ng-if="item.price1"><span>{{item.price1}}</span>원</del>
+                <span class="price" ng-class="{plan_type_unit : item.goodsCmpsCd == '30'}" ng-if="item.price2"><span>{{item.price2}}</span></span>
+            </p>
+        </span>
+        <!--
+        상품상세 할인율과 상이하여 주석처리(추후 상품상세 할인율 로직을 적용해야함, 현재는 들어오느 데이터중 정상가 데이터가 없어, 계산이 불가.)
+        현업 : ux기획 이종봉팀장님
+        작업 : IT운영팀 김낙운
+        -->
+        <!-- <div class="sale" ng-if="item.saleRate">
+            <p><span>{{item.saleRate}}</span>%</p>
+        </div> -->
+    </a>
+</div>

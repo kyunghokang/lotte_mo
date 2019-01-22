@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">	
+<!----------------- current css ----------------->
+	
+<link rel="stylesheet" href="/lotte/resources_dev/custcenter/dotcomStaffBoard.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<div class="dotcomStaffBoard">
+	<div id="mbbs">
+		<img src="http://image.lotte.com/lotte/mobile/common/mbbs_topBann_275960.png" alt="다고쳐! 모바일은 롯데닷컴 직원 전용 오류 신고 게시판입니다.">
+	    <form class="ng-pristine ng-valid">
+	    	<div class="formBox">
+	        	<textarea class="bbs_text" cols="0" rows="0" name="rcvmessage" id="bbsmessage" onclick="if(this.value== '롯데닷컴 모바일의 오류 및 개선 사항을 입력해주세요.')this.value = '';">롯데닷컴 모바일의 오류 및 개선 사항을 입력해주세요.</textarea>
+	            <a id="bbs_ok" onclick="regEvent()">등록</a>
+	        </div>
+	    </form>
+	    <div class="bbsList">
+	    	
+	    	<div class="bbsDetail">
+	        	<div class="ba">96</div>
+	            <div class="bb">
+	            	<div>계속 장바구니를 클릭하면 오류발생이라 뜨면서 열리지 않아요.</div>
+	            	<div>
+	            		방연숙&nbsp;&nbsp;2015.12.02
+						<a href="javascript:replyChk('0','102422235');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102422235','0');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+	            	</div>
+	            </div>
+	        </div>
+	    	<div class="bbsDetail">
+	        	<div class="ba">95</div>
+	            <div class="bb">
+	            	<div>오늘 새벽부터 장바구니를 클릭하면 오류메세지가 뜨면 열리지를 않네요</div>
+	            	<div>
+	            		윤경미&nbsp;&nbsp;2015.12.02
+						<a href="javascript:replyChk('1','102422151');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102422151','1');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+	            	</div>
+	            </div>
+	        </div>
+	    	<div class="bbsDetail">
+	        	<div class="ba">94</div>
+	            <div class="bb">
+	            	<div>아이 패드 사용자인데요 얼마전부터 쇼핑메일로 들어가도 계속 쇼핑메일로 들어와서 출석체크하라고 뜸</div>
+	            	<div>
+	            	양운모&nbsp;&nbsp;2015.12.02
+						<a href="javascript:replyChk('2','102422033');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102422033','2');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+	            	</div>
+	            </div>
+	        </div>
+	    	<div class="bbsDetail">
+	        	<div class="ba">93</div>
+	            <div class="bb">
+	            	<div>아이폰5 언제까지 이미지만 나오나요? ㅠㅠ  답답해서 다른 사이트에서 주문 하게 되잖아요..</div>
+	            	<div>
+	            		김지영&nbsp;&nbsp;2015.12.02
+						<a href="javascript:replyChk('3','102421993');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102421993','3');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+	            	</div>
+	            </div>
+	        </div>
+	    	<div class="bbsDetail">
+	        	<div class="ba">92</div>
+	            <div class="bb">
+	            	<div>남들은 모샀지?에서 여러페이지가 있는데  화면이동이 안넘어갑니다</div>
+	            	<div>
+	            		송정희&nbsp;&nbsp;2015.12.01
+						<a href="javascript:replyChk('4','102421944');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102421944','4');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+	            	</div>
+	            </div>
+	        </div>
+	        
+	    	<div class="bbsDetail">
+	        	<div class="ba">91</div>
+	            <div class="bb">
+	            	<div>문의하기는 되는데 상품평 작성이 안됩니다. pc버전도 안되구요.</div>
+	            	<div>
+	            	이영희&nbsp;&nbsp;2015.12.01
+	            	
+						<a href="javascript:replyChk('5','102421837');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102421837','5');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+					
+	            	</div>
+	            </div>
+	           	
+	        </div>
+	        
+	    	<div class="bbsDetail">
+	        	<div class="ba">90</div>
+	            <div class="bb">
+	            	<div>이미지만떠요 몇일내 그러네요.</div>
+	            	<div>
+	            	조현우&nbsp;&nbsp;2015.12.01
+	            	
+						<a href="javascript:replyChk('6','102421700');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102421700','6');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+					
+	            	</div>
+	            </div>
+	           	
+	    			
+						
+						
+							
+						
+					
+	           	<div class="subbbs">
+	            	<img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_reply_0617.png" class="rep">
+	                아이폰 5에서 해당 오류 확인하였습니다. 수정 조치중입니다. 신고주셔서 감사합니다.(UX기획팀 박지혜)
+	                <div class="writer">
+	                
+						
+						
+							노혜민 &nbsp;&nbsp;2015.12.01
+						
+					
+	                
+					<a href="javascript:delComment('102421711')"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+					
+	            	</div>
+	            </div>	
+	           	
+	        </div>
+	        
+	    	<div class="bbsDetail">
+	        	<div class="ba">89</div>
+	            <div class="bb">
+	            	<div>이미지만 떠요. 구매할 수가 없어요.</div>
+	            	<div>
+	            	김효진&nbsp;&nbsp;2015.12.01
+	            	
+						<a href="javascript:replyChk('7','102421682');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102421682','7');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+					
+	            	</div>
+	            </div>
+	           	
+	    			
+						
+						
+							
+						
+					
+	           	<div class="subbbs">
+	            	<img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_reply_0617.png" class="rep">
+	                아이폰 5에서 해당 오류 확인하였습니다. 수정 조치중입니다. 신고주셔서 감사합니다.(UX기획팀 박지혜)
+	                <div class="writer">
+	                
+						
+						
+							노혜민 &nbsp;&nbsp;2015.12.01
+						
+					
+	                
+					<a href="javascript:delComment('102421712')"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+					
+	            	</div>
+	            </div>	
+	           	
+	        </div>
+	        
+	    	<div class="bbsDetail">
+	        	<div class="ba">88</div>
+	            <div class="bb">
+	            	<div>모바일 앱  장바구니에서 처리중 오류가 발생했다는 창 나와 확인 버튼 눌러도 로딩이 안됩니다 로그아웃 시키고 다시 로그인해도 마찬가지입니다 장바구니 찜한 상품 담아볼수도 볼수도 없어 답답하고 불편해요 빠른 조치 개선 부탁드립니다 수고 하세요</div>
+	            	<div>
+	            	최영주&nbsp;&nbsp;2015.12.01
+	            	
+						<a href="javascript:replyChk('8','102421462');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102421462','8');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+					
+	            	</div>
+	            </div>
+	           	
+	        </div>
+	        
+	    	<div class="bbsDetail">
+	        	<div class="ba">87</div>
+	            <div class="bb">
+	            	<div>할인쿠폰 오늘까지적용인데 결제오류가 뜨네요. 주문금액과 결제금액이 다르다고요.백화점 상품20프로 쿠폰 3만원 할인적용 되어야하는데 뭐죠. 12시지나면 쿠폰도 사라질텐데..ㅠㅠ</div>
+	            	<div>
+	            	정대권&nbsp;&nbsp;2015.11.30
+	            	
+						<a href="javascript:replyChk('9','102421432');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102421432','9');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+					
+	            	</div>
+	            </div>
+	           	
+	        </div>
+	        
+	    	<div class="bbsDetail">
+	        	<div class="ba">86</div>
+	            <div class="bb">
+	            	<div>며칠전부터 계속 상품이미지만 뜨고 다른 버튼은 나오지 않습니다 다른고객들도 같은 이유로 계속 글 올리고 있는데 상담원은 다 모르겠다고 하고 빠른 개선바랍니다</div>
+	            	<div>
+	            	추고은&nbsp;&nbsp;2015.11.30
+	            	
+						<a href="javascript:replyChk('10','102421286');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102421286','10');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+					
+	            	</div>
+	            </div>
+	           	
+	    			
+						
+						
+							
+						
+					
+	           	<div class="subbbs">
+	            	<img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_reply_0617.png" class="rep">
+	                아이폰 5에서 해당 오류 확인하였습니다. 수정 조치중입니다. 신고주셔서 감사합니다.(UX기획팀 박지혜)
+	                <div class="writer">
+	                
+						
+						
+							노혜민 &nbsp;&nbsp;2015.12.01
+						
+					
+	                
+					<a href="javascript:delComment('102421715')"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+					
+	            	</div>
+	            </div>	
+	           	
+	        </div>
+	        
+	    	<div class="bbsDetail">
+	        	<div class="ba">85</div>
+	            <div class="bb">
+	            	<div>84</div>
+	            	<div>
+	            	조문주&nbsp;&nbsp;2015.11.30
+	            	
+						<a href="javascript:replyChk('11','102421262');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102421262','11');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+					
+	            	</div>
+	            </div>
+	           	
+	        </div>
+	        
+	    	<div class="bbsDetail">
+	        	<div class="ba">84</div>
+	            <div class="bb">
+	            	<div>장바구니에서 결제화면으로 넘어가질 않습니다. 계속 빈 흰 화면만..장바구니로 가는것도 자주 같은 현상이 나네요. 전체적으로 로딩지연현상도 큽니다.계속 어플 종료하고 새로 시작해도 같네요</div>
+	            	<div>
+	            	양윤석&nbsp;&nbsp;2015.11.30
+	            	
+						<a href="javascript:replyChk('12','102421219');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102421219','12');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+					
+	            	</div>
+	            </div>
+	           	
+	        </div>
+	        
+	    	<div class="bbsDetail">
+	        	<div class="ba">83</div>
+	            <div class="bb">
+	            	<div>상세페이지를 누르면 이미지만 떠서 주문을 할 수 없어요 위시리시트를 누르면 리스트 쭉나오고 리스트 중 하나 눌러 페이지가 열려도 이미지만 뜸 주문과 같은 다른 버튼이 없음</div>
+	            	<div>
+	            	정수형&nbsp;&nbsp;2015.11.29
+	            	
+						<a href="javascript:replyChk('13','102421202');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102421202','13');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+					
+	            	</div>
+	            </div>
+	           	
+	    			
+						
+						
+							
+						
+					
+	           	<div class="subbbs">
+	            	<img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_reply_0617.png" class="rep">
+	                아이폰 5에서 해당 오류 확인하였습니다. 수정 조치중입니다. 신고주셔서 감사합니다.(UX기획팀 박지혜)
+	                <div class="writer">
+	                
+						
+						
+							노혜민 &nbsp;&nbsp;2015.12.01
+						
+					
+	                
+					<a href="javascript:delComment('102421713')"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+					
+	            	</div>
+	            </div>	
+	           	
+	        </div>
+	        
+	    	<div class="bbsDetail">
+	        	<div class="ba">82</div>
+	            <div class="bb">
+	            	<div>무료배송쿠폰이 있는데 결재화면에서 사용할수 있는 카테고리?체크박스?가 않뜨네요</div>
+	            	<div>
+	            	양미선&nbsp;&nbsp;2015.11.29
+	            	
+						<a href="javascript:replyChk('14','102421197');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102421197','14');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+					
+	            	</div>
+	            </div>
+	           	
+	    			
+						
+						
+							
+						
+					
+	           	<div class="subbbs">
+	            	<img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_reply_0617.png" class="rep">
+	                확인결과, 주문페이지 참좋은 혜택 영역에 '무료배송권(-2500원) 적용/적용안함 선택' 정상 노출됩니다. 다시 한번 확인 부탁 드립니다. 동일한 현상이 발생할 경우, 모바일 기종 알려주시면 다시한번 확인하겠습니다.  *무료배송권 이용조건이 충족되지 않을 경우, 무료배송권 비노출됨
+	                <div class="writer">
+	                
+						
+						
+							노혜민 &nbsp;&nbsp;2015.12.01
+						
+					
+	                
+					<a href="javascript:delComment('102421755')"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+					
+	            	</div>
+	            </div>	
+	           	
+	        </div>
+	        
+	    	<div class="bbsDetail">
+	        	<div class="ba">81</div>
+	            <div class="bb">
+	            	<div>주문하려는 상품정보가 전달이 안됐다면서 주문이 안되네요~뭐가 문제인거죠?</div>
+	            	<div>
+	            	김순희&nbsp;&nbsp;2015.11.29
+	            	
+						<a href="javascript:replyChk('15','102421136');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102421136','15');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+					
+	            	</div>
+	            </div>
+	           	
+	    			
+						
+						
+							
+						
+					
+	           	<div class="subbbs">
+	            	<img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_reply_0617.png" class="rep">
+	                해당 사항 확인하였습니다. 수정 조치 예정입니다. 신고해주셔서 감사합니다.(UX기획팀 박지혜)
+	                <div class="writer">
+	                
+						
+						
+							노혜민 &nbsp;&nbsp;2015.12.01
+						
+					
+	                
+					<a href="javascript:delComment('102421762')"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+					
+	            	</div>
+	            </div>	
+	           	
+	        </div>
+	        
+	    	<div class="bbsDetail">
+	        	<div class="ba">80</div>
+	            <div class="bb">
+	            	<div>주문이 안되네요~~~</div>
+	            	<div>
+	            	김순희&nbsp;&nbsp;2015.11.29
+	            	
+						<a href="javascript:replyChk('16','102421134');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102421134','16');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+					
+	            	</div>
+	            </div>
+	           	
+	    			
+						
+						
+							
+						
+					
+	           	<div class="subbbs">
+	            	<img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_reply_0617.png" class="rep">
+	                해당 사항 확인하였습니다. 수정 조치 예정입니다. 신고해주셔서 감사합니다.(UX기획팀 박지혜)
+	                <div class="writer">
+	                
+						
+						
+							노혜민 &nbsp;&nbsp;2015.12.01
+						
+					
+	                
+					<a href="javascript:delComment('102421759')"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+					
+	            	</div>
+	            </div>	
+	           	
+	        </div>
+	        
+	    	<div class="bbsDetail">
+	        	<div class="ba">79</div>
+	            <div class="bb">
+	            	<div>포인트 쓰려고하는데 계속 -가떠서 결재가 않되네요</div>
+	            	<div>
+	            	양미선&nbsp;&nbsp;2015.11.26
+	            	
+						<a href="javascript:replyChk('17','102420968');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102420968','17');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+					
+	            	</div>
+	            </div>
+	           	
+	        </div>
+	        
+	    	<div class="bbsDetail">
+	        	<div class="ba">78</div>
+	            <div class="bb">
+	            	<div>마이페이지가 없습니다..노트2 t롯데닷컴 어플입니다.</div>
+	            	<div>
+	            	김현민&nbsp;&nbsp;2015.09.17
+	            	
+						<a href="javascript:replyChk('18','102412567');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102412567','18');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+					
+	            	</div>
+	            </div>
+	           	
+	        </div>
+	        
+	    	<div class="bbsDetail">
+	        	<div class="ba">77</div>
+	            <div class="bb">
+	            	<div>검색해서 낮은가격으로 정리 후 몇개만 보이고 더 내려가지 않음 아이폰 5</div>
+	            	<div>
+	            	하미경&nbsp;&nbsp;2015.08.26
+	            	
+						<a href="javascript:replyChk('19','102409740');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102409740','19');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+					
+	            	</div>
+	            </div>
+	           	
+	        </div>
+	        
+	    	<div class="bbsDetail">
+	        	<div class="ba">76</div>
+	            <div class="bb">
+	            	<div>오랜만이에요~앱에서 주문서 작성 후 롯데카드스마트페이 결제시 오류입니다앱카드결제까진 완료되었고 '결제완료'버튼 누른 후 리프레쉬되는 주문서에 '주문진행중 오류가 발생했습니다' 라고 뜹니다3번진행했는데 3번 모두 오류에요~</div>
+	            	<div>
+	            	이승영&nbsp;&nbsp;2015.08.22
+	            	
+						<a href="javascript:replyChk('20','102409352');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102409352','20');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+					
+	            	</div>
+	            </div>
+	        </div>
+	    	<div class="bbsDetail">
+	        	<div class="ba">75</div>
+	            <div class="bb">
+	            	<div>업데이트 된 후 아이폰은  딜 상품 업데이트 되는 속도가 늦어졌습니다. 아이폰만 그런건지요? 반영 후 검수가 수월치 않습니다 속도 개선 바랍니다.</div>
+	            	<div>
+	            	홍순화&nbsp;&nbsp;2015.08.18
+						<a href="javascript:replyChk('21','102408970');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102408970','21');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+	            	</div>
+	            </div>
+	        </div>
+	    	<div class="bbsDetail">
+	        	<div class="ba">74</div>
+	            <div class="bb">
+	            	<div>모바일 이용시 현재 마이롯데 메뉴가 보이지 않습니다  수정 부탁드립니다</div>
+	            	<div>
+	            	한효정&nbsp;&nbsp;2015.08.12
+						<a href="javascript:replyChk('22','102407936');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102407936','22');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+	            	</div>
+	            </div>
+	        </div>
+	    	<div class="bbsDetail">
+	        	<div class="ba">73</div>
+	            <div class="bb">
+	            	<div>어떤검색어로 검색하든 검색해서 낮은가격순으로 다시 검색하면 몇개 안보이고 계속 내려가질 않아요 아이폰 입니다</div>
+	            	<div>
+	            	하미경&nbsp;&nbsp;2015.07.13
+						<a href="javascript:replyChk('23','102404533');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102404533','23');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+	            	</div>
+	            </div>
+	        </div>
+	    	<div class="bbsDetail">
+	        	<div class="ba">72</div>
+	            <div class="bb">
+	            	<div>도대체 왜 제대로 검색이 되지 않나요 ㅠㅠ 쇼핑을 하지 말라는건가요 ㅠㅠ  1000개 넘는 상품이라고 나오는데  고작  50개  보이다니</div>
+	            	<div>
+	            	최은선&nbsp;&nbsp;2015.06.17
+						<a href="javascript:replyChk('24','102400232');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102400232','24');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+	            	</div>
+	            </div>
+	           	<div class="subbbs">
+	            	<img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_reply_0617.png" class="rep">
+	                해당내용 검색오류로 6/18일 수정되었습니다. 불편을 드려서 죄송합니다.
+	                <div class="writer">
+							노혜민 &nbsp;&nbsp;2015.06.22
+					<a href="javascript:delComment('102400869')"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+	            	</div>
+	            </div>	
+	        </div>
+	    	<div class="bbsDetail">
+	        	<div class="ba">71</div>
+	            <div class="bb">
+	            	<div>최근검색어  삭제가 안됩니다. 아이폰 5s사용 중입니다.</div>
+	            	<div>
+	            	홍순화&nbsp;&nbsp;2015.02.11
+						<a href="javascript:replyChk('25','102377423');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102377423','25');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+	            	</div>
+	            </div>
+	           	<div class="subbbs">
+	            	<img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_reply_0617.png" class="rep">
+	                안녕하세요. iOS 최근검색어 전체 삭제 오류 수정하여 앱 업데이트 예정입니다. 감사합니다.
+	                <div class="writer">
+							UX기획팀 &nbsp;&nbsp;2015.02.11
+					<a href="javascript:delComment('102377447')"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+	            	</div>
+	            </div>	
+	        </div>
+	    	<div class="bbsDetail">
+	        	<div class="ba">70</div>
+	            <div class="bb">
+	            	<div>현금영수증 전화번호 입력이 안됩니다..</div>
+	            	<div>
+	            	김현민&nbsp;&nbsp;2014.12.17
+						<a href="javascript:replyChk('26','102366248');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102366248','26');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+	            	</div>
+	            </div>
+	           	<div class="subbbs">
+	            	<img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_reply_0617.png" class="rep">
+	                안녕하세요.해당 내용 주문서 개편 시 정상 적용될 수 있도록 진행중입니다. 신고해 주셔서 감사합니다.
+	                <div class="writer">
+							UX기획팀 &nbsp;&nbsp;2015.01.07
+					<a href="javascript:delComment('102370515')"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+	            	</div>
+	            </div>	
+	        </div>
+	    	<div class="bbsDetail">
+	        	<div class="ba">69</div>
+	            <div class="bb">
+	            	<div>HD버전에서 카테고리 클릭시 내요미 뒤틀리게 보여집니다.</div>
+	            	<div>
+	            	김원경&nbsp;&nbsp;2014.12.15
+						<a href="javascript:replyChk('27','102365981');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102365981','27');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+	            	</div>
+	            </div>
+	           	<div class="subbbs">
+	            	<img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_reply_0617.png" class="rep">
+	                안녕하세요. 태블릿앱에서의 카테고리 팝업창 디자인이 깨지고 있음을 확인했습니다. 현재 수정하여 앱배포를 준비중에 있습니다. 신고 감사합니다.
+	                <div class="writer">
+							UX기획팀 &nbsp;&nbsp;2014.12.17
+					<a href="javascript:delComment('102366198')"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+					
+	            	</div>
+	            </div>	
+	        </div>
+	    	<div class="bbsDetail">
+	        	<div class="ba">68</div>
+	            <div class="bb">
+	            	<div>회사소개내 출자회사 목록 중 대흥기획이 아닌 대홍기획입니다.</div>
+	            	<div>
+	            	김원경&nbsp;&nbsp;2014.11.20
+	            	
+						<a href="javascript:replyChk('28','102361170');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102361170','28');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+					
+	            	</div>
+	            </div>
+	           	<div class="subbbs">
+	            	<img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_reply_0617.png" class="rep">
+	                이런 오타가 있었는지 몰랐네요. 사이트UX팀에서 확인 후 수정 요청중입니다. 신고 감사하여요 ^^
+	                <div class="writer">
+							UX기획팀 &nbsp;&nbsp;2014.11.25
+	                
+					<a href="javascript:delComment('102361869')"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+	            	</div>
+	            </div>	
+					
+	           	<div class="subbbs">
+	            	<img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_reply_0617.png" class="rep">
+	                처리되었습니다.감사합니다~
+	                <div class="writer">
+							UX기획팀 &nbsp;&nbsp;2014.12.02
+					<a href="javascript:delComment('102363540')"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+	            	</div>
+	            </div>	
+	            
+	            <div id="reply_write">
+					<div class="subbbs write" id="write_div">
+				       	<div>댓글달기</div>
+				        <textarea id="writeTxt" class="bbs_text2" cols="0" rows="0" onclick="if(this.value== '내용을 입력해주세요.')this.value = '';">내용을 입력해주세요.</textarea>
+				        <div class="subbbs_btn"><a href="javascript:writeReply($('input[name=bbc_sn]:hidden').val());"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn2_0617.png" alt="등록"></a>
+				        <a href="javascript:hideWriteComment();"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn3_0617.png" alt="취소"></a></div>
+				        <input type="hidden" name="bbc_sn">
+				    </div>
+				</div>
+				<div id="msg"></div>
+	            
+	            
+	        </div>
+	        
+	    	<div class="bbsDetail">
+	        	<div class="ba">67</div>
+	            <div class="bb">
+	            	<div>안녕하세요 이 게시판은 모바일에서 발생하는 오류를 편리하게 신고, 개선하고자 만들어진 임직원 전용 오류 게시판 입니다. 적극적인 참여를 부탁드립니다.</div>
+	            	<div>
+	            		송민석&nbsp;&nbsp;2014.11.12
+						<a href="javascript:replyChk('29','102359795');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_x_0617.png" alt="삭제하기" class="del"></a>
+						<a href="javascript:showWriteComment('102359795','29');"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn_0617.png" alt="댓글달기" class="recomm"></a>
+	            	</div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+		   	
+		   	
+	<div class="bnt_more"><p><span>더보기</span></p></div>	   	
+		   	
+	<!-- <section id="paging" style="margin:10px 0 10px 0;">
+		<a href="#none">	
+			<span class="pagingNum now">1</span>
+		</a>	
+		<a href="?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;evt_no=275960&amp;page=2">	
+			<span class="pagingNum ">2</span>
+		</a>	
+		<a href="?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;evt_no=275960&amp;page=3">	
+			<span class="pagingNum ">3</span>
+		</a>	
+		<a href="?c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=&amp;evt_no=275960&amp;page=4">	
+			<span class="pagingNum ">4</span>
+		</a>	
+	</section> -->	
+	
+	<!-- <div id="reply_write">
+		<div class="subbbs write" id="write_div">
+	       	<div>댓글달기</div>
+	        <textarea id="writeTxt" class="bbs_text2" cols="0" rows="0" onclick="if(this.value== '내용을 입력해주세요.')this.value = '';">내용을 입력해주세요.</textarea>
+	        <div class="subbbs_btn"><a href="javascript:writeReply($('input[name=bbc_sn]:hidden').val());"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn2_0617.png" alt="등록"></a>
+	        <a href="javascript:hideWriteComment();"><img src="http://image.lotte.com/lotte/mobile/common/fixmobile_btn3_0617.png" alt="취소"></a></div>
+	        <input type="hidden" name="bbc_sn">
+	    </div>
+	</div>
+	<div id="msg"></div> -->
+</div>  
+<!-- footer -->
+<section ng-include src="'/HTML/include/footer.html'"></section>
+
+</body>
+</html>

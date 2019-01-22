@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">	
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">	
+<!----------------- current css ----------------->
+
+<link rel="stylesheet" href="/lotte/resources_dev/product/m/detail.css">
+<link rel="stylesheet" href="/lotte/resources_dev/product/m/detail_datepicker.css">
+<link rel="stylesheet" href="/lotte/resources_dev/product/m/detail_popup.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+</head>
+<body>
+
+<!-- layer popup -->
+<!--s: 미리계산-->
+<div class="layerPop calcLayerWrap">
+	<div id="head_sub">
+		<h2>미리계산</h2>
+		<p class="close"><a href="#none">닫기</a></p>
+	</div>
+	<div class="calcLayer">
+		<div class="choiceArea">
+			<table>
+				<tbody>
+					<tr>
+						<th>배송비</th>
+						<td>
+							<div class="selWrap">
+								<select>
+									<option value="">배송비 무료</option>
+								</select>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>할인</th>
+						<td>
+							<div class="selWrap">
+								<select>
+									<option value="">즉석쿠폰 0% 할인 (6,500원 할인)</option>
+								</select>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>추가할인</th>
+						<td>
+							<div class="selWrap">
+								<select>
+									<option value="">일시불 할인(2,300원 할인)</option>
+								</select>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>사용가능 포인트</th>
+						<td>
+							<span class="checkWrap">
+								<input type="checkbox" id="c01" />
+								<label for="c01">L-money <em><strong>100</strong>점</em></label>
+							</span>
+							<span class="checkWrap">
+								<input type="checkbox" id="c02" />
+								<label for="c02">L-POINT <em><strong>2,300</strong>점</em></label>
+							</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="discountArea">
+			<ul>
+				<li class="defaultPrice">
+					<span class="priceTit">판매금액</span>
+					<span class="priceValue"><em>100,000,000</em>원</span>
+				</li>
+				<li class="delyPrice">
+					<span class="priceTit">배송비</span>
+					<span class="priceValue"><span class="addPrice">(+)</span><em>2,500</em>원</span>
+				</li>
+				<li class="discountPrice">
+					<span class="priceTit">할인금액</span>
+					<span class="priceValue"><span class="addPrice">(-)</span><em>8,800</em>원</span>
+				</li>
+				<li class="pointValue">
+					<span class="priceTit">L.POINT</span>
+					<span class="priceValue"><span class="addPrice">(-)</span><em>2,300</em>원</span>
+				</li>
+			</ul>
+		</div>
+		<div class="totalPrice">
+			<span class="priceTit">총 결제 금액</span>
+			<span class="priceValue"><em>100,013,600</em>원</span>
+		</div>
+	</div>
+</div>
+<!--e: 미리계산-->
+<!-- //layer popup -->
+</body>
+</html>

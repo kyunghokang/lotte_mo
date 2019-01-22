@@ -1,0 +1,68 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplssoDropGate" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/login/sso_drop_gate/sso_drop_gate_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/sso_drop_gate.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsssoDropGate" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/login/sso_drop_gate/sso_drop_gate.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/sso_drop_gate.js"
+            }
+        },
+
+        "uglify" : {
+            "jsssoDropGate" : {
+                "src" : "lotte/resources/<%= version %>/sso_drop_gate.js",
+                "dest" : "lotte/resources/<%= version %>/sso_drop_gate.min.js"
+            },
+            "tplssoDropGate" : {
+                "src" : "lotte/resources/<%= version %>/sso_drop_gate.template.js",
+                "dest" : "lotte/resources/<%= version %>/sso_drop_gate.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssssoDropGate" : {
+                "src" : [
+                    "lotte/resources_dev/login/sso_drop_gate/sso_drop_gate.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/sso_drop_gate.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanssoDropGate" : [
+                "lotte/resources/<%= version %>/sso_drop_gate.js",
+                "lotte/resources/<%= version %>/sso_drop_gate.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlssoDropGate" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "login/sso_drop_gate/sso_drop_gate.html" : "login/sso_drop_gate/sso_drop_gate_dev.html"
+                }
+            }
+        }
+    }
+}

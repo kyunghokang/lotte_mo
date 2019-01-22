@@ -1,0 +1,70 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplbestSamsungSub" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mall/samsung/bestsamsung_sub_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/bestsamsung_sub.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsbestSamsungSub" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/common/lotte_ngswipe.js",
+                    "lotte/resources_dev/mall/samsung/bestsamsung_sub.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/bestsamsung_sub.js"
+            }
+        },
+
+        "uglify" : {
+            "jsbestSamsungSub" : {
+                "src" : "lotte/resources/<%= version %>/bestsamsung_sub.js",
+                "dest" : "lotte/resources/<%= version %>/bestsamsung_sub.min.js"
+            },
+            "tplbestSamsungSub" : {
+                "src" : "lotte/resources/<%= version %>/bestsamsung_sub.template.js",
+                "dest" : "lotte/resources/<%= version %>/bestsamsung_sub.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssbestSamsungSub" : {
+                "src" : [
+                    "lotte/resources_dev/brandshop/bestbrand_common.css",
+                    "lotte/resources_dev/mall/samsung/bestsamsung_sub.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/bestsamsung_sub.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanbestSamsungSub" : [
+                "lotte/resources/<%= version %>/bestsamsung_sub.js",
+                "lotte/resources/<%= version %>/bestsamsung_sub.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlbestSamsungSub" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mall/samsung/bestsamsung_sub.html" : "mall/samsung/bestsamsung_sub_dev.html"
+                }
+            }
+        }
+    }
+}

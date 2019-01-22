@@ -1,0 +1,154 @@
+<section ng-show="contVisible" class="cont_minheight">
+    <section class="pageLoading ng-hide" ng-show="pageLoading"><p class="loading half"></p></section>
+    <!-- 기본정보 데이터 실패 -->
+    <div class="loadingFail" ng-if="loadingFail">
+        <div>
+            <p>판매종료된 상품입니다.</p>
+        </div>
+    </div>
+        
+    <header id="mallSubHeader" mall-sub-header></header>
+    <section ng-if="isBasicData" id="burberry_product_wrap">
+        <div class="swiper-wrapper" ng-controller="lotteNgSwipeCtrl">
+            <ul class="slid_wrap" lotte-ng-list-swipe swipe-slide-item="true" swipe-list-model="BasicData.imgList" swipe-max-ratio="0.2" swipe-min-distance="40">
+                <li ng-repeat="img in BasicData.imgList"><img ng-src="{{img}}"err-src="550" ng-click="prodImgDeatilView($index)" alt="상품이미지" /></li>
+            </ul>
+            <div class="burberry_page" ng-if="BasicData.imgList.length > 1">
+                <span ng-class="{on:swipeIdx == $index}" ng-repeat="indi in BasicData.imgList">{{$index}}</span>
+            </div>
+        </div>
+        <div class="burberry_prod_title">
+            <div class="prod_title_wrap">
+                <p class="brd_nm"><span ng-if="BasicData.product.brnd_nm == '버버리'">BURBERRY</span>({{BasicData.product.brnd_nm}})</p>
+                <p class="goods_nm" ng-bind='BasicData.product.goods_nm'>상품명</p>
+                <p class="goods_price" ng-bind="BasicData.product.burberry_sale_prc | number:0"></p>
+            </div>
+            <p class="share_sns"><a ng-click="showSharePop({shareImg:share_img,goodsNo:BasicData.goods_no,goodsNm:BasicData.product.goods_nm});" >공유하기</a></p>
+        </div>
+        <section class="burberry_product_option">
+            <form name="frm_input" id="frm_input" style="display:block"  onsubmit="return false;">
+                <input type="hidden"  name="invMgmtYn" value="{{BasicData.product.inv_mgmt_yn}}" />
+                <input type="hidden"  name="mdl_no" value="{{BasicData.product.model_no}}" />
+                <div style="display:none">
+                <dl ng-repeat="itemDtl in BasicData.product.item_dtl.items" >
+                    <dt><label for="option1">{{itemDtl.name }}</label></dt>
+                    <dd>
+                        <input type="hidden" name="opt_name{{$index+1}}" value="{{itemDtl.name }}" />
+                        <div class="s_box02">
+                            <select id="opt_value{{$index+1}}" name="opt_value{{$index+1}}" ng-model="item_no" ng-change="optionChange({{$index+1}}, this)">
+                                <option value="">선택하세요</option>
+                                <option ng-repeat="item in itemDtl.item.items" ng-model="item_no"  ng-selected="selectedItem == item.item_no" ng-disabled="item.opt_stk_yn=='Y' && item.opt_cnt=='0'" value="{{item.opt_value }}^{{item.item_no}}^{{item.opt_stk_yn}}^{{item.opt_cnt}}">{{(item.opt_stk_yn=='Y' && item.opt_cnt=='0')?'(품절)':''}}{{item.opt_value }}</option>
+                            </select>
+                        </div>
+                    </dd>
+                </dl>
+                <dl ng-if="btnDispTp == '00'">
+                    <dt><label for="option2">수량</label></dt>
+                    <dd>
+                        <button class="qty_minus" onclick="setOptsQty(-1)"><span>-</span></button>
+                        <span class="qty_number">
+                            <input class="qty_input" type="number" id="optQty" name="opt_qty" value="{{BasicData.product.min_lmt_qty}}">
+                        </span>
+                        <button class="qty_plus" onclick="setOptsQty(1)"><span>+</span></button>
+                    </dd>
+                </dl>
+            </form>
+            </div>
+        </section>
+            <!-- //burberry product option -->
+        <div class="burberry_prod_detail">
+            <!-- 카드혜택 안내 -->
+            <div class="card_benefit_dsc">
+                <ul>
+                  <li id="caution_01"><!-- (D) 활성화시 class="on" 추가 -->
+                    <button class="toggle_button"><h4 class="title">카드 혜택안내</h4></button>
+                    <div class="content">
+                        <div class="prom_wrap" ng-if="dispPromInfo && dispPromInfo.length > 0">
+                          <h5 class="detail_title">청구할인 안내</h5>
+                          <a id="prom_pop" class="btn_detail" href="javascript:$('#prom_msg_layer').css('top', ($('#prom_pop').offset().top - 26) + 'px');$('#prom_msg_layer').show();">자세히</a>
+                          <ul class="txt_line">
+                            <li ng-repeat="item in dispPromInfo | orderBy:sort">
+                                <div ng-if="item.prom_dscnt_prc == 0 || item.prom_dscnt_prc == '0'">
+                                    <span ng-style="{ 'visibility' : $index > 0 ? 'hidden' : 'visible' }" class="prom_sale">카드청구할인</span>
+                                    <span class="prom_sale_info">{{item.info}}</span>
+                                </div>
+                                <div ng-if="item.prom_dscnt_prc != 0 && item.prom_dscnt_prc != '0'">
+                                    <span ng-style="{ 'visibility' : $index > 0 ? 'hidden' : 'visible' }" class="prom_sale">카드청구할인</span>
+                                    <strong class="prom_prc" ng-bind="item.prom_dscnt_prc | number:0"></strong>
+                                    <span class="prom_sale_info">{{item.info}}</span>
+                                </div>
+                            </li>
+                          </ul>
+                      </div>
+                      <h5 class="detail_title">무이자 할부 안내</h5>
+                      <ul class="txt_line">
+                        <li>카드사와 결제금액에 따라 최대 2~10개월 무이자 할부</li>
+                        <li class="card_installment"><img ng-src="{{BasicData.product.nint_card_img_url}}" alt="#"></li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>			
+            </div>
+            <!-- // 카드혜택 안내-->
+            <!-- 상품 상세 내용 -->
+            <div class="burberry_prod_detail_cont">
+                <dl>
+                    <dt class="noshow">상품코드</dt>
+                    <dd><span class="de_title">상품코드</span>{{reqParam.goods_no }}</dd>
+                </dl>
+                <dl>
+                    <dt class="noshow">모델번호</dt>
+                    <dd><span class="de_title">모델번호</span>{{BasicData.product.model_no}}</dd>
+                </dl>
+                <!--MD 공지-->
+                <div class="md_notice_wrap" ng-if="mdNtcFcont" ng-bind-html="mdNtcFcont"></div>
+                <!-- // MD 공지-->
+                <dl>
+                    <dt class="de_title md_detail" >상품 상세정보</dt>
+                    <dd ng-bind-html="BasicData.product.dtl_info_fcont" class="prd_detail">
+                    </dd>
+                </dl>
+            </div>
+            <!-- //상품 상세 내용 -->
+            <!-- burberry product info -->
+            <burberry-product-info></burberry-product-info>
+
+            <!-- categoryrecomm-->
+            <div class="cate_new_prod_wrap" ng-if="BasicData.cateNewData.items.length > 3">
+                <p class="cate_new_title">해당 카테고리 신상품</p>
+                <div  lotte-slider class="swipe_wrap">
+                    <ul class="cate_new_prod">
+                        <li ng-repeat="item in BasicData.cateNewData.items">
+                            <a ng-click="goBurberryProd(item.goodsNo)">
+                                <div class="imageCon">
+                                    <img ng-src="{{item.imgUrl}}" alt="" />
+                                </div>
+                                <div class="titleCon">
+                                    <div class="name">{{item.goodsNm}}</div>
+                                    <div class="price">{{item.price | number:0}}<span>원</span></div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="quick_tooltip" id="prom_msg_layer">
+        <div class="tt_box">
+	        <a class="tt_close" href="javascript:$('#tt_layer,#prom_msg_layer').hide();$('#prom_pop,#qt_pop_v2').removeClass('on')"><img src="http://image.lotte.com/lotte/mo2017/product/ic_close.png"></a>
+            <p class="tt_t1">청구할인 안내</p>
+           	<ul class="list_wrap">
+           		<li ng-repeat="items in totalPromInfo | toArray | orderBy:'sort'">
+           			<p class="tt_t2">{{items.arr[0].card_knd_nm}}카드</p>
+           			<ul class="prom_list">
+           				<li ng-repeat="item in items.arr">{{item.lmt_amt_kr}} 이상 {{item.fvr_val}}% 청구할인</li>
+           			</ul>
+           			<p class="lmt_info">1일 할인한도 최대 {{items.arr[0].max_fvr_kr}}</p>
+           		</li>
+           	</ul>
+        </div>   
+    </div>	
+    <burberry-footer></burberry-footer>
+    <lotte-footer-product-optionbar ng-if="!loadingFail"></lotte-footer-product-optionbar>
+</section>

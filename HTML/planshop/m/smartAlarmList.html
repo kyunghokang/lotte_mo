@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">
+<!----------------- current css ----------------->
+<link rel="stylesheet" href="/lotte/resources_dev/planshop/m/smartAlarmList.css">
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+</head>
+<body id="smart_alarm_body">
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+
+
+	
+	<!-- 20141205 스마트알림 -->	
+	<section id="container" class="smart_alarm">
+		<ul class="tab app"><!-- D: app진입시 클래스 app 추가 -->
+			<!-- D:20150925 현재카테고리 클래스on, 새알림카테고리 클래스 new -->
+			<li class="on"><a href="javascript:void(0)" name="alarmTab1"><span>깜짝알림</span></a></li><!-- D: app only -->
+			<li class="new"><a href="javascript:void(0)" name="alarmTab2"><span>스마트알림</span></a></li>
+			<li><a href="javascript:void(0)" name="alarmTab3"><span>쇼핑사서함</span></a></li>
+		</ul>
+		
+		<!-- 깜짝알림 app only -->
+		<div class="product_list01 smart_alarm_tab01">
+			<p class="notice"><span>홍길동</span> 고객님께 제공되는 특별한 쇼핑혜택 정보를 확인하세요.</p><!-- D;20150925 html추가 -->
+			<!-- content area -->
+			<div id="appContainer"><!-- D:20150925 id 수정 -->
+				<div class="noData">알림 리스트가 없습니다.</div>
+				<div class="onPlz">
+					<div>Push 알림 설정을 'ON'으로 바꿔주세요. <br>특별한 쇼핑 혜택 정보를 보내 드립니다.</div>
+					<a href="#none" class="btnOn">지금 설정하기</a>
+				</div>
+				<a href="#none" class="off">
+					<span class="appIcon"><span class="pushIcon01">여성</span></span><!-- D:20150925 아이콘형태는 class로 구분
+					iconS01~icon23
+					iconS01 여성
+					iconS02 캐주얼
+					iconS03 남성
+					iconS04 화장품
+					iconS05 유아동
+					iconS06 스포츠
+					iconS07 패션잡화
+					iconS08 백화점
+					iconS09 생활
+					iconS10 홈쇼핑
+					iconS11 식품
+					iconS12 이벤트
+					iconS13 모바일우수고객
+					iconS14 쿠폰
+					iconS15 gift
+					iconS16 포인트
+					iconS17 위시/장바구니
+					iconS18 서프라이즈
+					iconS19 플래티넘
+					iconS20 참좋은혜택
+					iconS21 바로방문
+					iconS22 랭킹존
+					iconS23 재입고알림
+					-->
+					<!--<img src="http://image.lotte.com/lotte/email/mobile_push_bn.jpg" > D:20150925 삭제-->
+					<!-- D:20150925 html 추가-->
+					<span class="pushList">
+						<span class="pushTit">유혹되는군..!</span>
+						<span class="pushCont">(광고) 오늘 마지막 20% 무적쿠폰 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+					<!-- //D:20150925 html 추가-->
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon02">캐주얼</span></span>
+					<span class="pushList">
+						<span class="pushTit">쉿! 우리끼리</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon03">남성</span></span>
+					<span class="pushList">
+						<span class="pushTit">쉿! 우리끼리</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon04">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon05">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon06">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a><a href="#none">
+					<span class="appIcon"><span class="pushIcon07">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon08">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon09">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon10">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon11">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon12">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon13">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon14">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon15">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon16">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon17">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon18">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon19">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon20">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon21">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon22">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon23">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon24">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon25">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon26">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon27">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon0010">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon0011">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon001">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon002">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon003">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+				<a href="#none">
+					<span class="appIcon"><span class="pushIcon004">바로방문</span></span>
+					<span class="pushList">
+						<span class="pushTit">빅딜은 성사되었소</span>
+						<span class="pushCont">(광고) 오늘 24시까지만 [수신거부 : MY > 설정]</span>
+						<span class="basic">발송일 : 2015년 09월 22일</span>
+					</span>
+				</a>
+			
+				<!-- 푸쉬메시지 리스트  아이콘의 형태는 class 로 구분 : iconA ~ iconE
+				  메시지 읽었을때 class 에 off 를 추가 함. : sendDate off
+				<div class="pushList"></div>
+				<div id="tmp_img" style="display:none"></div> D:20150925 삭제-->
+			</div>
+		
+			<div id="html_contents" style="display:none;"></div>
+		</div>
+		
+		<!-- 스마트알림 -->
+		<div class="product_list01 smart_alarm_tab02" style="display:none;">
+			<p class="notice">관심상품 할인, 품절상품 재입고 정보를 확인하세요.</p><!-- D;20150925 텍스트수정 -->
+			<ul>
+				<!-- 장바구니알림 -->
+				<li>
+					<a href="/product/product_view.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNoSctCd=22&goods_no=77374158">
+						<span class="thumb">
+							<img src="http://image.lotte.com/goods/58/41/37/77/77374158_1_550.jpg" alt="상품이미지" />
+						</span>
+						<span class="cont01">
+							<p class="tl">장바구니에 담으신 <strong>[노프세이프 남성용..]</strong> 의 <span class="tColor1">가격이 할인</span>되었습니다.</p>
+							<p class="money">
+								<del class="small"><span>20,000원</span></del>
+								<span class="price"><span>10,000</span>원</span><!-- D;20150925 텍스트추가 -->
+							</p>
+							<span class="basic">알림일 : 2015년 09월 22일</span><!-- D;20150925 html추가 -->
+						</span>
+					</a>
+				</li>
+				<!-- 위시리스트알림 -->
+				<li>
+					<a href="#none">
+						<span class="thumb">
+							<img src="/images/lotte2015/temp/img_prd_01.jpg" alt="상품이미지">
+						</span>
+						<span class="cont01">
+							<p class="tl">위시리스트에 담으신 <strong>[노프세이프 남성..]</strong> 의 <span class="tColor1">가격이 할인</span>되었습니다.</p>
+							<p class="money">
+								<del class="small"><span>20,000원</span></del>
+								<span class="price"><span>10,000</span>원</span><!-- D;20150925 텍스트추가 -->
+							</p>
+							<span class="basic">알림일 : 2015년 09월 22일</span><!-- D;20150925 html추가 -->
+						</span>
+					</a>
+				</li>
+				<!-- 재입고알림 -->
+				<li>
+					<a href="#none">
+						<span class="thumb">
+							<img src="/images/lotte2015/temp/img_prd_01.jpg" alt="상품이미지">
+						</span>
+						<span class="cont01">
+							<p class="tl"><strong>[노프세이프 남성용 자켓..]</strong> 이/가 <span class="tColor1">재입고</span> 되었습니다.</p>
+							<p class="money">
+								<!--
+								<del class="small"><span>20,000원</span></del>
+								-->
+								<span class="price"><span>10,000</span>원</span><!-- D;20150925 텍스트추가  -->
+							</p>
+							<span class="basic">알림일 : 2015년 09월 22일</span><!-- D;20150925 html추가 -->
+						</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	
+		<!-- 쇼핑사서함 -->
+		<div class="product_list01 smart_alarm_tab03" style="display:none;">
+			<p class="notice">쇼핑 메일을 한 눈에 확인하세요.</p><!-- D;20150925 텍스트수정 -->
+			<ul>
+				<li>
+					<a href="javascript:goDetail('334037', '7');">
+						<p class="tl">(광고) 롯데백화점▶[에고이스트] 항공점퍼 15%OFF! [스위트숲] 원피스.블라우스 외 1만원대...</p>
+						<p class="send">
+							<span class="basic">발송일 : 2015-09-29 (화) 12:00:00</span>
+						</p>
+					</a>
+				</li>
+				<li>
+					<a href="#none">
+						<p class="tl">[오늘 24시! 배송마감] 롯데백화점 정관장 7%OFF</p>
+						<p class="send">
+							<span class="basic">발송일 : 2015-09-29 (화) 12:00:00</span>
+						</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</section>
+	<!-- //container -->
+
+<!-- footer -->
+<section ng-include src="'/HTML/include/footer.html'"></section>
+
+</body>
+</html>

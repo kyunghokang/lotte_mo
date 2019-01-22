@@ -1,0 +1,42 @@
+<section id="main_header" class="main_header" ng-class="{app_bnr: appDownBnrFlag}">
+	<!-- Main Header -->
+	<div class="header_wrap">
+		<div app-down-bnr ng-if="appDownBnrFlag"></div>
+		<div class="inner_wrap" ng-class="{fixed: isMainHeaderFixed}">
+			<!-- 햄버거 메뉴/ 로고/ 장바구니 -->
+			<div class="header_top_wrap">
+				<h1 class="logo"><button ng-click="gotoMainHeader();" class="btn_main">LOTTE.COM</button></h1>
+				<button ng-click="showSideCtgHeader()" class="btn_ctg">카테고리<i ng-if="intTodayDate && intLastCtgFlagDate && intTodayDate < intLastCtgFlagDate" class="reddot"></i></button>
+				<button ng-click="gotoCart()" class="btn_cart">장바구니<i ng-if="cartCount && cartCount > 0" class="cnt">{{cartCount}}</i></button>
+			</div>
+
+			<!-- 검색창 (음성검색/스타일 추천) -->
+			<div class="header_srh_wrap" ng-class="{
+				web: !appObj.isApp, 
+				app: appObj.isApp, 
+				app_speech_only: speechSrhFlag && !stylePushFlag, 
+				app_stylesrh_only: !speechSrhFlag && stylePushFlag}">
+				<div class="srh_box">
+					<label ng-click="showSrhLayerHeader()" for="keyword" class="btn_srh">{{srhPromotKeyword}}</label>
+					<a class="btn_srh_promo" ng-click="showSrhLayerHeaderPromo()"></a>
+					<!--  div ng-if="appObj.isApp" class="app_btn_area">
+						<button ng-if="speechSrhFlag" ng-click="speechSrhLink()" class="btn_mic">음성검색</button>
+						<button ng-if="stylePushFlag" ng-click="stylePushLink()" class="btn_stylesrh" ng-class="{after_line: speechSrhFlag}">스타일 추천</button>
+					</div -->
+				</div>
+			</div>
+			<!-- GNB -->
+			<div id="gnb" ng-if="pageUI.rootMenu.length > 0" class="nav_swipe_wrap">
+				<nav main-menu lotte-slider class="main_nav" swipe-end-func="$scope.menuSwipEndFunc">
+					<ul>
+						<li ng-repeat="item in pageUI.rootMenu" class="dispno_{{item.dispNo}}" ng-class="{on : $index == pageUI.curMenuIdx}">
+							<span class="cate_flag" ng-if="item.txtFlag">{{item.txtFlag}}</span>
+							<a ng-click="headerMenuClick(item.dispNo)">{{item.dispNm}}</a>
+						</li>
+					</ul>
+					<div class="gradation" ng-class="{before: menuLeftChk, after: menuRightChk}"></div>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>

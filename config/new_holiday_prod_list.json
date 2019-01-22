@@ -1,0 +1,71 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplCateHolidayProdList" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/category/m/new_holiday_prod_list_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/new_holiday_prod_list.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsCateHolidayProdList" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/category/m/new_holiday_prod_list.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/new_holiday_prod_list.js"
+            }
+        },
+
+        "uglify" : {
+            "jsCateHolidayProdList" : {
+                "src" : "lotte/resources/<%= version %>/new_holiday_prod_list.js",
+                "dest" : "lotte/resources/<%= version %>/new_holiday_prod_list.min.js"
+            },
+            "tplCateHolidayProdList" : {
+                "src" : "lotte/resources/<%= version %>/new_holiday_prod_list.template.js",
+                "dest" : "lotte/resources/<%= version %>/new_holiday_prod_list.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssCateHolidayProdList" : {
+                "src" : [
+                	"lotte/resources_dev/search/search_list.css",
+                	"lotte/resources_dev/category/category.css",
+					"lotte/resources_dev/category/m/new_holiday_prod_list.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/new_holiday_prod_list.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanCateHolidayProdList" : [
+                "lotte/resources/<%= version %>/new_holiday_prod_list.js",
+                "lotte/resources/<%= version %>/new_holiday_prod_list.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlCateHolidayProdList" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "category/m/new_holiday_prod_list.html" : "category/m/new_holiday_prod_list_dev.html"
+                }
+            }
+        }
+    }
+}
+

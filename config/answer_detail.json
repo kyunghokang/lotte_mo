@@ -1,0 +1,69 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplanswerDetail" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/custcenter/m/answer_detail_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/answer_detail.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsanswerDetail" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/custcenter/m/answer_detail.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/answer_detail.js"
+            }
+        },
+
+        "uglify" : {
+            "jsanswerDetail" : {
+                "src" : "lotte/resources/<%= version %>/answer_detail.js",
+                "dest" : "lotte/resources/<%= version %>/answer_detail.min.js"
+            },
+            "tplanswerDetail" : {
+                "src" : "lotte/resources/<%= version %>/answer_detail.template.js",
+                "dest" : "lotte/resources/<%= version %>/answer_detail.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssanswerDetail" : {
+                "src" : [
+                    "lotte/resources_dev/custcenter/m/question.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/answer_detail.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleananswerDetail" : [
+                "lotte/resources/<%= version %>/answer_detail.js",
+                "lotte/resources/<%= version %>/answer_detail.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlanswerDetail" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "custcenter/m/answer_detail.html" : "custcenter/m/answer_detail_dev.html"
+                }
+            }
+        }
+    }
+}
+

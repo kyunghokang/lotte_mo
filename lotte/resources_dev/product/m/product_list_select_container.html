@@ -1,0 +1,41 @@
+<section class="allProductFlag">
+    <!-- 전체보기 열렸을때(class 'on'추가) -->
+    <div class="prdAllView" ng-class="{on:allProductOpenFlag}" >
+        <!--버튼-->
+        <div class="btnWrap"  ng-click="allProductClick()" >
+            <span class="btnArea">
+                <a class="btn_prdView">{{divName}}<span class="btnIcon"></span></a>
+            </span>
+        </div>
+
+	<!-- 스크롤 -->
+        <div ng-show="allProductOpenFlag" ng-class="{true: 'prdAllViewList on', false: 'prdAllViewList'}[allProductOpenFlag]"  ng-controller="lotteNgSwipeCtrl">
+            <div class="list">
+                <ul lotte-ng-list-swipe swipe-slide-item="true" swipe-list-model="itemCateDataList" swipe-max-ratio="0.2" swipe-min-distance="40" style="height:223px;">
+                    <li ng-repeat="i in getPlanSwipeSize() track by $index">
+                    	<div ng-repeat="items in itemCateDataList|pageRange:$index:5">
+                    		<a ng-click="sortCateClick(items.divObjNo, items.divObjNm, $index)" ng-class="{on : items.divObjNo == divObjNoParam}">{{items.divObjNm}}<span ng-if="items.divObjNo != ''">({{items.goodsCnt}})</span></a>
+                    	</div>
+                    </li>
+                    
+		            <!-- 스와이프 화살표
+					<p class="btn_prev" ng-click="beforeSlide()" ng-show="swipeIdx > 0">이전</p>
+					<p class="btn_next" ng-click="nextSlide()" ng-show="swipeIdx+1 < getPlanSwipeSize().length">다음</p>
+					 -->
+				</ul>
+				<div class="paging">
+					<ol>
+						<li ng-repeat="item in swipeBullet" ng-class="{on:$index==swipeBulletIdx}">{{$index}}</li>
+					</ol>
+				</div>
+			</div>
+            
+            <!-- 페이징 -->
+            <div class="paging">
+                <span>{{swipeBulletIdx+1}} / {{getPlanSwipeSize().length}} </span>
+                <a ng-click="closeProClick()" class="btn_close"><span>닫기</span></a>
+            </div>
+        </div>
+        <!-- //스크롤 -->
+    </div>
+</section>

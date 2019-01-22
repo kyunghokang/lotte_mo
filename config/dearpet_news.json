@@ -1,0 +1,72 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplDearpetNewsCtrl" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mall/pet/dearpet_news_container.html",
+                    "lotte/resources_dev/mall/pet/dearpet_mall_sub_category.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/dearpet_news.template.js"
+            }
+        },
+	
+        "concat" : {
+            "jsDearpetNewsCtrl" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mall/pet/dearpet_news.js",
+                    "lotte/resources_dev/mall/pet/dearpet_mall_sub_category.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/dearpet_news.js"
+            }
+        },
+
+        "uglify" : {
+            "jsDearpetNewsCtrl" : {
+                "src" : "lotte/resources/<%= version %>/dearpet_news.js",
+                "dest" : "lotte/resources/<%= version %>/dearpet_news.min.js"
+            },
+            "tplDearpetNewsCtrl" : {
+                "src" : "lotte/resources/<%= version %>/dearpet_news.template.js",
+                "dest" : "lotte/resources/<%= version %>/dearpet_news.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssDearpetNewsCtrl" : {
+                "src" : [
+                 	"lotte/resources_dev/mall/pet/dearpet.css",
+                    "lotte/resources_dev/mall/pet/dearpet_news.css",
+                    "lotte/resources_dev/mall/pet/dearpet_mall_sub_category.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/dearpet_news.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanDearpetNewsCtrl" : [
+                "lotte/resources/<%= version %>/dearpet_news.js",
+                "lotte/resources/<%= version %>/dearpet_news.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlDearpetNewsCtrl" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "/mall/pet/dearpet_news.html" : "/mall/pet/dearpet_news_dev.html"
+                }
+            }
+        }
+    }
+}

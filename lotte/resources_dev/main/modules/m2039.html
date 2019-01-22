@@ -1,0 +1,227 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!--M39 판매베스트(베스트)..-->
+	<div class="moduleCon">
+
+		<div class="unit unit_cate fillbg best_store">
+			<div class="cate" lotte-slider>
+				<ul>
+					<li ng-repeat="item in moduleData.dep1CtgList.items" ng-class="{on:$index == moduleData.uiData.selectbox_idx[0]}">
+						<a ng-click="logGAEvtModuleEach($index + 1, item.dispNm, '카테고리탭','탭');ctgChange(item,0)">
+							<span class="img_wrap"><img ng-src="{{item.imgUrl}}"></span>
+							<span class="tit">{{item.dispNm}}</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="unit unit_cate best_store">
+			<!-- 카테고리 선택 영역 -->
+			<div class="category_ctg_wrap" ng-show="moduleData.uiData.rankingCtgBoxShow">
+				<!-- 셀렉트 박스 -->
+				<ul ng-class="{
+					depth1: moduleData.uiData.depth_idx == 0,
+					depth2: moduleData.uiData.depth_idx == 1,
+					depth3: moduleData.uiData.depth_idx == 2,
+					open: moduleData.uiData.rankingCtgOpenFlag
+					}">
+					<li ng-show="moduleData.uiData.depth_idx >= 0" ng-class="{arrow:moduleData.uiData.depth_idx == 0 || moduleData.uiData.depth_idx == 1}">
+						<a class="ctg_tit" ng-click="ctgSelectBoxClick(1)"><span class="depth_tit" ng-class="{on: moduleData.uiData.selectbox_select_idx == 1}"><em>{{moduleData.dep2CtgList.items[moduleData.uiData.selectbox_idx[1]].dispNm}}</em>&nbsp;</span></a>
+					</li><li ng-show="moduleData.uiData.depth_idx > 1" ng-class="{arrow:moduleData.uiData.depth_idx == 2}">
+						<a class="ctg_tit" ng-click="ctgSelectBoxClick(2)"><span class="depth_tit" ng-class="{on: moduleData.uiData.selectbox_select_idx == 2}"><em>{{moduleData.dep3CtgList.items[moduleData.uiData.selectbox_idx[2]].dispNm}}</em>&nbsp;</span></a>
+					</li>
+				</ul>
+
+				<!-- 카테고리 스와이프 영역 -->
+				<div ng-class="{show:moduleData.uiData.rankingCtgOpenFlag}" class="rangking_ctg_lst_wrap">
+					<ul>
+						<li ng-show="moduleData.uiData.selectbox_select_idx == 1" ng-class="{on: moduleData.uiData.selectbox_select_idx == 1}">
+							<div id="rankSwipeCtg2" ng-controller="lotteNgSwipeCtrl" class="swipe_wrap">
+								<ul lotte-ng-list-swipe
+									swipe-id="RankingCtgDepth2"
+									swipe-list-model="moduleData.cateData[1]"
+									swipe-slide-item="true"
+									swipe-max-ratio="0.2"
+									swipe-min-distance="40"
+									class="swipe_cont">
+									<li ng-repeat="page in moduleData.cateData[1]">
+										<p class="ctg_item" ng-repeat="item in page">
+											<a ng-click="logGAEvtModuleEach($index + 1, item.dispNm, item.dispNm,'탭',  moduleData.dep1CtgList.items[moduleData.uiData.selectbox_idx[0]].dispNm);ctgChange(item,1)" ng-class="{on: item.isSelect}">{{item.dispNm}}</a>
+											<span ng-if="!item.dispNm"></span>
+										</p>
+									</li>
+								</ul>
+								<div class="btn_close_wrap"><span class="page_info"><strong>{{swipeIdx + 1}}</strong> / {{moduleData.cateData[1].length}}</span></div>
+							</div>
+						</li>
+						<li ng-if="moduleData.uiData.selectbox_select_idx == 2" ng-class="{on: moduleData.moduleData.uiData.selectbox_select_idx == 2}">
+							<div id="rankSwipeCtg3" ng-controller="lotteNgSwipeCtrl" class="swipe_wrap">
+								<ul lotte-ng-list-swipe
+									swipe-id="RankingCtgDepth3"
+									swipe-list-model="moduleData.cateData[2]"
+									swipe-slide-item="true"
+									swipe-max-ratio="0.2"
+									swipe-min-distance="40"
+									class="swipe_cont">
+									<li ng-repeat="page in moduleData.cateData[2]">
+										<p class="ctg_item" ng-repeat="item in page">
+											<a ng-click="logGAEvtModuleEach($index + 1, item.dispNm, moduleData.dep2CtgList.items[moduleData.uiData.selectbox_idx[1]].dispNm +'_' + item.dispNm,'탭',  moduleData.dep1CtgList.items[moduleData.uiData.selectbox_idx[0]].dispNm);ctgChange(item,2)" ng-class="{on: item.isSelect}">{{item.dispNm}}</a>
+											<span ng-if="!item.dispNm"></span>
+										</p>
+									</li>
+								</ul>
+								<div class="btn_close_wrap"><span class="page_info"><strong>{{swipeIdx + 1}}</strong> / {{moduleData.cateData[2].length}}</span></div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<!--성별 연령-->
+			<div class="cst_best">
+				<div class="filter_wrap">
+					<div class="tit" ng-class="{on:moduleData.uiData.showAlert}" ng-click="logGAEvtModuleEach('도움말', '도움말', (moduleData.uiData.depth_idx >= 1 ? (moduleData.dep2CtgList.items[moduleData.uiData.selectbox_idx[1]].dispNm ? moduleData.dep2CtgList.items[moduleData.uiData.selectbox_idx[1]].dispNm : '') : '') + (moduleData.uiData.depth_idx == 2 ? (moduleData.dep3CtgList.items[moduleData.uiData.selectbox_idx[2]].dispNm ? '_' + moduleData.dep3CtgList.items[moduleData.uiData.selectbox_idx[2]].dispNm : '') : ''),'도움말',moduleData.dep1CtgList.items[moduleData.uiData.selectbox_idx[0]].dispNm);bestTipClick()">판매 베스트 100<p class="alert_tip">
+						<span class="alert_pop">최근 7일간 롯데닷컴 고객들이<br/><span>가장 많이 구매한 상품</span>을 집계한 랭킹입니다.</span>
+					</p></div>
+
+					<ul class="filter">
+						<li>
+							<div class="custom_select gender">
+								<div class="item_select" ng-click="logGAEvtModuleEach('성별', '', (moduleData.uiData.depth_idx >= 1 ? (moduleData.dep2CtgList.items[moduleData.uiData.selectbox_idx[1]].dispNm ? moduleData.dep2CtgList.items[moduleData.uiData.selectbox_idx[1]].dispNm : '') : '') + (moduleData.uiData.depth_idx == 2 ? (moduleData.dep3CtgList.items[moduleData.uiData.selectbox_idx[2]].dispNm ? '_' + moduleData.dep3CtgList.items[moduleData.uiData.selectbox_idx[2]].dispNm : '') : ''),'소팅',moduleData.dep1CtgList.items[moduleData.uiData.selectbox_idx[0]].dispNm);genderClick()">
+									<span>{{genderNames[moduleData.uiData.userSexIdx].txt}}</span>
+								</div>
+								<div class="item_list" ng-show="genderOpened">
+									<ul>
+										<li ng-repeat="item in genderNames" ng-click="logGAEvtModuleEach('성별', item.txt, (moduleData.uiData.depth_idx >= 1 ? (moduleData.dep2CtgList.items[moduleData.uiData.selectbox_idx[1]].dispNm ? moduleData.dep2CtgList.items[moduleData.uiData.selectbox_idx[1]].dispNm : '') : '') + (moduleData.uiData.depth_idx == 2 ? (moduleData.dep3CtgList.items[moduleData.uiData.selectbox_idx[2]].dispNm ? '_' + moduleData.dep3CtgList.items[moduleData.uiData.selectbox_idx[2]].dispNm : '') : ''),'소팅',moduleData.dep1CtgList.items[moduleData.uiData.selectbox_idx[0]].dispNm);genderItemClick($index, $event)" ng-class="{on: moduleData.uiData.userSexIdx == $index}"><a>{{item.txt}}</a></li>
+										<!--<li><a>성별 전체</a></li>-->
+										<!--<li><a class="on">여성</a></li>-->
+										<!--<li><a>남성</a></li>-->
+									</ul>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="custom_select age">
+								<div class="item_select" ng-click="logGAEvtModuleEach('연령', '', (moduleData.uiData.depth_idx >= 1 ? (moduleData.dep2CtgList.items[moduleData.uiData.selectbox_idx[1]].dispNm ? '_' + moduleData.dep2CtgList.items[moduleData.uiData.selectbox_idx[1]].dispNm : '') : '') + (moduleData.uiData.depth_idx == 2 ? (moduleData.dep3CtgList.items[moduleData.uiData.selectbox_idx[2]].dispNm ? '_' + moduleData.dep3CtgList.items[moduleData.uiData.selectbox_idx[2]].dispNm : '') : '') ,'소팅',moduleData.dep1CtgList.items[moduleData.uiData.selectbox_idx[0]].dispNm);ageClick()">
+									<span>{{ageNames[moduleData.uiData.userAgeIdx].txt}}</span>
+								</div>
+								<div class="item_list" ng-show="ageOpened">
+									<ul>
+										<li ng-repeat="item in ageNames" ng-click="logGAEvtModuleEach('연령', item.txt,(moduleData.uiData.depth_idx >= 1 ? (moduleData.dep2CtgList.items[moduleData.uiData.selectbox_idx[1]].dispNm ? '_' + moduleData.dep2CtgList.items[moduleData.uiData.selectbox_idx[1]].dispNm : '') : '') + (moduleData.uiData.depth_idx == 2 ? (moduleData.dep3CtgList.items[moduleData.uiData.selectbox_idx[2]].dispNm ? '_' + moduleData.dep3CtgList.items[moduleData.uiData.selectbox_idx[2]].dispNm : '') : ''),'소팅',moduleData.dep1CtgList.items[moduleData.uiData.selectbox_idx[0]].dispNm);ageItemClick($index, $event)" ng-class="{on: moduleData.uiData.userAgeIdx == $index}"><a>{{item.txt}}</a></li>
+									</ul>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!--//성별 연령-->
+		</div>
+
+		<!-- 20170803 박해원 -->
+		<div class='tmpl_m39 not_data' ng-if="( !moduleData.prdList.items.length || !moduleData.prdList.items )">
+			<p>해당 카테고리에 베스트 상품이 없습니다.</p>
+		</div>
+		
+		<div class="tmpl_best">
+
+			<ul class="comp prod_comp type_1 horizon">
+				<li ng-repeat="item in moduleData.prdList.items | limitTo:4" ng-click="logGAEvtModuleEach($index+1, item.goodsNo, (moduleData.uiData.depth_idx >= 1 ? (moduleData.dep2CtgList.items[moduleData.uiData.selectbox_idx[1]].dispNm ? moduleData.dep2CtgList.items[moduleData.uiData.selectbox_idx[1]].dispNm : '') : '') + (moduleData.uiData.depth_idx == 2 ? (moduleData.dep3CtgList.items[moduleData.uiData.selectbox_idx[2]].dispNm && moduleData.dep3CtgList.items[moduleData.uiData.selectbox_idx[2]].dispNm != '전체' ? '_' + moduleData.dep3CtgList.items[moduleData.uiData.selectbox_idx[2]].dispNm : '') : ''), '상품',moduleData.dep1CtgList.items[moduleData.uiData.selectbox_idx[0]].dispNm);mainProductClick(item.goodsNo, moduleData.tclick + '_'+ moduleData.uiData.dispNo +'_Prd'+numberFill(($index+1),3))">
+					<div class="ranking_wrap">
+						<span class="ranking">{{$index + 1}}</span>
+						<span class="ranking chg" ng-class="{new:item.rateType == 'n', cur:item.rateType == 'c', 'num up':item.rateType == 'u', 'num down':item.rateType == 'd'}">{{item.rateType | rateTypeTxt:item.rate}}</span>
+						<!--<span class="ranking chg new">NEW</span>-->
+						<!--<span class="ranking chg num up">4</span>-->
+						<!--<span class="ranking chg num down">1</span>-->
+					</div>
+					<div class="thumb"><img ng-src="{{item.imgUrl}}"></div>
+					<div class="info">
+						<div class="flag_wrap">
+							<span class="flag2" ng-repeat="(k,v) in item.flag | limitTo:2" ng-if="v != 'smartpick'" ng-class="{depart:v == 'dept', himart:v == 'himart', 'tv_shopping':v == 'tvhome', 'smartpick':v == 'smartpick', 'free_ship':v == 'freeDlv', 'gift_pack':v == 'present'}">{{v | dealFlagName}}</span>
+							<span class="flag2" ng-repeat="(k,v) in item.flag" ng-if="v == 'smartpick'" ng-class="{depart:v == 'dept', himart:v == 'himart', 'tv_shopping':v == 'tvhome', 'smartpick':v == 'smartpick', 'free_ship':v == 'freeDlv', 'gift_pack':v == 'present'}">{{v | dealFlagName}}</span>
+							<!--<span class="flag2 depart">롯데백화점</span>-->
+							<!--<span class="flag2 himart">하이마트</span>-->
+							<!--<span class="flag2 free_ship">무료배송</span>-->
+							<!--<span class="flag2 gift_pack">선물포장</span>-->
+							<!--<span class="flag2 tv_shopping">TV쇼핑</span>-->
+							<!--<span class="flag2 smartpick">스마트픽</span>-->
+
+						</div>
+						<p class="tit">{{item.goodsNm}}</p>
+						<p class="price"><b>{{item.price | currency: '':0}}</b>원</p>
+						<div class="user_feedback"  ng-if="item.gdasStfdVal > 0">
+							<span class="starScoreWrap"><span class="starScoreCnt" style="width:{{item.gdasStfdVal / 5 * 100}}%"></span></span>
+							<span class="review">({{item.gdasCnt}})</span>
+						</div>
+					</div>
+				</li>
+			</ul>
+
+			<ul class="comp prod_comp type_1 vertic">
+				<li ng-repeat="item in moduleData.prdList.items | limitTo:10" ng-if="$index >= 4" ng-click="logGAEvtModuleEach($index+1, item.goodsNo, (moduleData.uiData.depth_idx >= 1 ? (moduleData.dep2CtgList.items[moduleData.uiData.selectbox_idx[1]].dispNm ? moduleData.dep2CtgList.items[moduleData.uiData.selectbox_idx[1]].dispNm : '') : '') + (moduleData.uiData.depth_idx == 2 ? (moduleData.dep3CtgList.items[moduleData.uiData.selectbox_idx[2]].dispNm  && moduleData.dep3CtgList.items[moduleData.uiData.selectbox_idx[2]].dispNm != '전체' ? '_' + moduleData.dep3CtgList.items[moduleData.uiData.selectbox_idx[2]].dispNm : '') : ''), '상품', moduleData.dep1CtgList.items[moduleData.uiData.selectbox_idx[0]].dispNm);mainProductClick(item.goodsNo, moduleData.tclick + '_'+ moduleData.uiData.dispNo  + '_Prd'+numberFill(($index+1),3))"><!-- tclick 작업 필요 -->
+					<div class="ranking_wrap">
+						<span class="ranking">{{$index + 1}}</span>
+						<span class="ranking chg" ng-class="{new:item.rateType == 'n', cur:item.rateType == 'c', 'num up':item.rateType == 'u', 'num down':item.rateType == 'd'}">{{item.rateType | rateTypeTxt:item.rate}}</span>
+					</div>
+					<div class="thumb"><img ng-src="{{item.imgUrl}}"></div>
+					<div class="info">
+						<div class="flag_wrap">
+							<span class="flag2" ng-repeat="(k,v) in item.flag | limitTo:2" ng-if="v != 'smartpick'" ng-class="{depart:v == 'dept', himart:v == 'himart', 'tv_shopping':v == 'tvhome', 'smartpick':v == 'smartpick', 'free_ship':v == 'freeDlv', 'gift_pack':v == 'present'}">{{v | dealFlagName}}</span>
+							<span class="flag2" ng-repeat="(k,v) in item.flag" ng-if="v == 'smartpick'" ng-class="{depart:v == 'dept', himart:v == 'himart', 'tv_shopping':v == 'tvhome', 'smartpick':v == 'smartpick', 'free_ship':v == 'freeDlv', 'gift_pack':v == 'present'}">{{v | dealFlagName}}</span>
+						</div>
+						<p class="tit">{{item.goodsNm}}</p>
+						<p class="price"><b>{{item.price | currency: '':0}}</b>원</p>
+						<div class="user_feedback"  ng-if="item.gdasStfdVal > 0">
+							<span class="starScoreWrap"><span class="starScoreCnt" style="width:{{item.gdasStfdVal / 5 * 100}}%"></span></span>
+							<span class="review">({{item.gdasCnt}})</span>
+						</div>
+					</div>
+				</li>
+			</ul>
+
+			<div class="gap_top gap_btm" ng-if="moduleData.uiData.depth_idx < 2 && moduleData.firstRank.prdInfo.price > 0">
+				<ul class="comp prod_comp vertic type_2">
+					<div class="list_tit">
+						<div class="img_wrap"><img src="http://image.lotte.com/lotte/mo2017/main/i_best_rank1_tit.png"></div>
+						<p class="tit">{{moduleData.firstRank.dispNm}} 카테고리에서 1년간 랭킹 1위 {{moduleData.firstRank.rankCnt}}회!</p>
+					</div>
+					<li ng-click="logGAEvtModuleEach('이기적랭킹', moduleData.firstRank.prdInfo.goodsNo, (moduleData.uiData.depth_idx >= 1 ? (moduleData.dep2CtgList.items[moduleData.uiData.selectbox_idx[1]].dispNm ? moduleData.dep2CtgList.items[moduleData.uiData.selectbox_idx[1]].dispNm : '') : '') + (moduleData.uiData.depth_idx == 2 ? (moduleData.dep3CtgList.items[moduleData.uiData.selectbox_idx[2]].dispNm ? '_' + moduleData.dep3CtgList.items[moduleData.uiData.selectbox_idx[2]].dispNm : '') : ''), '이기적랭킹',moduleData.dep1CtgList.items[moduleData.uiData.selectbox_idx[0]].dispNm);mainProductClick(moduleData.firstRank.prdInfo.goodsNo, moduleData.tclick  + '_'+ moduleData.uiData.dispNo + '_No1item')"><!-- tclick 작업 필요 -->
+						<div class="thumb">
+							<img ng-src="{{moduleData.firstRank.prdInfo.imgUrl}}">
+						</div>
+						<div class="info">
+							<p class="brand">{{moduleData.firstRank.prdInfo.brdNm}}</p>
+							<p class="tit">{{moduleData.firstRank.prdInfo.goodsNm}}</p>
+							<p class="price">
+								<span class="old_price">{{moduleData.firstRank.prdInfo.orgPrice | currency:'':0}}원</span>
+								<span class="new_price"><b>{{moduleData.firstRank.prdInfo.price | currency:'':0}}</b>원</span>
+							</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+			<ul class="comp prod_comp type_1 vertic">
+				<li ng-repeat="item in moduleData.prdList.items" ng-if="$index >= 10" ng-click="logGAEvtModuleEach($index+1, item.goodsNo, (moduleData.uiData.depth_idx >= 1 ? (moduleData.dep2CtgList.items[moduleData.uiData.selectbox_idx[1]].dispNm ?  moduleData.dep2CtgList.items[moduleData.uiData.selectbox_idx[1]].dispNm : '') : '') + (moduleData.uiData.depth_idx == 2 ? (moduleData.dep3CtgList.items[moduleData.uiData.selectbox_idx[2]].dispNm  && moduleData.dep3CtgList.items[moduleData.uiData.selectbox_idx[2]].dispNm != '전체' ? '_' + moduleData.dep3CtgList.items[moduleData.uiData.selectbox_idx[2]].dispNm : '') : ''), '상품', moduleData.dep1CtgList.items[moduleData.uiData.selectbox_idx[0]].dispNm );mainProductClick(item.goodsNo, moduleData.tclick + '_'+ moduleData.uiData.dispNo  + '_Prd'+numberFill(($index+1),3))">
+					<div class="ranking_wrap">
+						<span class="ranking">{{$index + 1}}</span>
+						<span class="ranking chg" ng-class="{new:item.rateType == 'n', cur:item.rateType == 'c', 'num up':item.rateType == 'u', 'num down':item.rateType == 'd'}">{{item.rateType | rateTypeTxt:item.rate}}</span>
+					</div>
+					<div class="thumb"><img ng-src="{{item.imgUrl}}"></div>
+					<div class="info">
+						<div class="flag_wrap">
+							<span class="flag2" ng-repeat="(k,v) in item.flag | limitTo:2" ng-if="v != 'smartpick'" ng-class="{depart:v == 'dept', himart:v == 'himart', 'tv_shopping':v == 'tvhome', 'smartpick':v == 'smartpick', 'free_ship':v == 'freeDlv', 'gift_pack':v == 'present'}">{{v | dealFlagName}}</span>
+							<span class="flag2" ng-repeat="(k,v) in item.flag" ng-if="v == 'smartpick'" ng-class="{depart:v == 'dept', himart:v == 'himart', 'tv_shopping':v == 'tvhome', 'smartpick':v == 'smartpick', 'free_ship':v == 'freeDlv', 'gift_pack':v == 'present'}">{{v | dealFlagName}}</span>
+						</div>
+						<p class="tit">{{item.goodsNm}}</p>
+						<p class="price"><b>{{item.price | currency: '':0}}</b>원</p>
+						<div class="user_feedback"  ng-if="item.gdasStfdVal > 0">
+							<span class="starScoreWrap"><span class="starScoreCnt" style="width:{{item.gdasStfdVal / 5 * 100}}%"></span></span>
+							<span class="review">({{item.gdasCnt}})</span>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>

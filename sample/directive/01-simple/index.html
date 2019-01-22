@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>AngularJS Sample App</title>
+<link rel="stylesheet" href="../../css/bootstrap.css"/> 
+<script src="../../../lib/angular/angular.js"></script>
+<script src="../../common/logger.js"></script>
+<script src="app.js"></script>
+</head>
+<body ng-app="app">
+<pre>
+Hello World 수준의 샘플
+url parameter를 통해 다음의 기능을 제공한다.
+./index.html?type=1&delay=1000
+type : data.$type.json 파일을 찾아서 출력한다.
+delay : 지정된 값 만큼 지연시켜서 출력한다. (단위 ms)
+</pre>
+<div ng-controller="appCtrl">
+  <div my-customer type="name"></div>
+  <div my-customer type="address"></div>
+  
+  <button ng-click="update()">클릭!</button>
+</div>
+</body>
+</html>

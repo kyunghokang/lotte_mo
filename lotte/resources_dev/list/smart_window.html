@@ -1,0 +1,87 @@
+<div id="smartWindowWrap" ng-show="showSmartWin" ng-if="showSmartWin">
+    <header>
+        <h3 class="logo">스마트 윈도우</h3>
+        <a class="close" href="" ng-click="hideSmartWindow()">닫기</a>
+    </header>
+    <section shopping-window>
+        <div id="productFlick" class="viewport">
+            <ul id="prdCont" class="product-container">
+                <li class="product-ct">
+                    <div class="product">                                                                                               
+                        <div class="thumb">
+                            <a href="" ng-click="clickUnit(0)">
+                                <img ng-src="{{imgPath + swItems[0].bImgUrl}}" alt="{{swItems[0].goodsNm}}"/>
+                            </a>
+                        </div>
+                        <div class="prd_info_wrap">
+                            <div class="prd_info">
+                                <h3>
+                                    <a href="" ng-click="clickUnit(0)">{{swItems[0].goodsNm}}</a>
+                                </h3>
+                                <p class="price">
+                                    <span class="price02" ng-if="swItems[0].price2" ng-class="{plan_type_unit : swItems[0].goodsCmpsCd == 30}">{{swItems[0].price2}}</span>
+                                    <span class="price01" ng-if="swItems[0].price1">{{swItems[0].price1}}원</span>
+                                </p>
+                                <div class="icons">
+                                <span  ng-repeat="flag in swItems[0].flag" class="{{flag}}"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="product-ct">
+                    <div class="product">                                                                                               
+                        <div class="thumb">
+                            <a href="" ng-click="clickUnit(1)">
+                                <img ng-src="{{imgPath + swItems[1].bImgUrl}}" alt="{{swItems[1].goodsNm}}"/>
+                            </a>
+                        </div>
+                        <div class="prd_info_wrap">
+                            <div class="prd_info">
+                                <h3>
+                                    <a href="" ng-click="clickUnit(1)">{{swItems[1].goodsNm}}</a>
+                                </h3>
+                                <p class="price">
+                                    <span class="price02" ng-if="swItems[1].price2" ng-class="{plan_type_unit : swItems[1].goodsCmpsCd == 30}">{{swItems[1].price2}}</span>
+                                    <span class="price01" ng-if="swItems[1].price1">{{swItems[1].price1}}원</span>
+                                </p>
+                                <div class="icons">
+                                <span  ng-repeat="flag in swItems[1].flag" class="{{flag}}"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="product-ct" ng-show="showNextBtn">
+                    <div class="product">                                                                                               
+                        <div class="thumb">
+                            <a href="" ng-click="clickUnit(2)">
+                                <img ng-src="{{imgPath + swItems[2].bImgUrl}}" alt="{{swItems[2].goodsNm}}"/>
+                            </a>
+                        </div>
+                        <div class="prd_info_wrap">
+                            <div class="prd_info">
+                                <h3>
+                                    <a href="" ng-click="clickUnit(2)">{{swItems[2].goodsNm}}</a>
+                                </h3>
+                                <p class="price">
+                                    <span class="price02" ng-if="swItems[2].price2" ng-class="{plan_type_unit : swItems[2].goodsCmpsCd == 30}">{{swItems[2].price2}}</span>
+                                    <span class="price01" ng-if="swItems[2].price1">{{swItems[2].price1}}원</span>
+                                </p>
+                                <div class="icons">
+                                    <span  ng-repeat="flag in swItems[2].flag" class="{{flag}}"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <nav class="nav">
+            <span class="prev">
+                <a href="" ng-click="prevPrd()" ng-show="cntIdx">prev</a>
+            </span>
+            <span class="next"><a href="" ng-click="nextPrd()" ng-show="showNextBtn">next</a></span>
+        </nav>
+    </section>
+</div>

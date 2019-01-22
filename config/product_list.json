@@ -1,0 +1,76 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplPlanshop" : {
+				"options": {
+					"prefix":"/",
+					"module" : "app"
+				},
+				"src" : [
+					"lotte/resources_dev/layer/main_popup.html",
+					"lotte/resources_dev/layer/app_down_bnr.html",
+					"lotte/resources_dev/product/m/product_list_container.html",
+					"lotte/resources_dev/product/m/product_list_select_container2.html",
+					"lotte/resources_dev/product/m/product_list_comment.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/product_list.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsPlanshop" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/product/m/product_list.js",
+					"lotte/resources_dev/common/lotte_unit.js",
+					"lotte/resources_dev/layer/main_popup.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/product_list.js"
+			}
+		},
+
+		"uglify" : {
+			"jsPlanshop" : {
+				"src" : "lotte/resources/<%= version %>/product_list.js",
+				"dest" : "lotte/resources/<%= version %>/product_list.min.js"
+			},
+			"tplPlanshop" : {
+				"src" : "lotte/resources/<%= version %>/product_list.template.js",
+				"dest" : "lotte/resources/<%= version %>/product_list.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssPlanshop" : {
+				"src" : [
+					"lotte/resources_dev/product/m/product_list.css",
+					"lotte/resources_dev/layer/main_popup.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/product_list.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanPlanshop" : [
+				"lotte/resources/<%= version %>/product_list.js",
+				"lotte/resources/<%= version %>/product_list.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlPlanshop" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"product/m/product_list.html" : "product/m/product_list_dev.html"
+				}
+			}
+		}
+	}
+}
+

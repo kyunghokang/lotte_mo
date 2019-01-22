@@ -1,0 +1,70 @@
+<section>	
+	<div class="detail_vod">
+		<div class="vodBox" youtubeID="{{BasicData.product.dtl_info_vod}}" style="width:100%">                
+			<div id="player"></div>	
+			<div class="sktMsg" ng-if="baseParam.schema == 'sklotte001'">
+				동영상은 외부 호스팅 사용으로 <br>SKT 데이터 프리가 적용되지 않으니 유의하시기 바랍니다.
+				<a href="javascript:$('.sktMsg').remove()"><img ng-src="http://image.lotte.com/lotte/mobile/mobile_new/main/maintv_close.png" alt="닫기" /></a>
+			</div>									
+			<script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>		
+			<script>
+				if ( $( '.vodBox' ).length > 0 ) {
+					isLoop =false;
+					//20150421 예외처리 추가 , 리뉴얼 버전에서는 if 문 제거 예정임 		
+					var player = null;						 
+					//20150429 수정
+					function onYouTubeIframeAPIReady() {
+						player = new YT.Player('player', {
+						videoId: $(".vodBox").attr("youtubeID"),
+						playerVars: { 'rel' : 0},  // 20150513 추가
+						events: {
+							'onReady': onPlayerReady,
+                            'onStateChange': onPlayerStateChange
+						}                      
+					  });
+					}
+
+					var pauseVideo = function () {
+						player.pauseVideo();
+					};
+                    function onPlayerStateChange(event){ 
+                        if(event.data == 1){
+                            //20170706 재생시 스타일추천 아이콘 비노출
+                            $(".recomm_style2").hide(); 
+                        }else if(event.data == 2){
+                            $(".recomm_style2").show();
+                        }
+                    }
+					function onPlayerReady(event) {
+						//멈춤 관련 페이지별 정의 ===========================    
+						//스크롤
+						$(window).scroll(function () {
+							pauseVideo();    
+						}) ;
+
+						//메뉴 열렸을 때 
+						$("#wrapper").on("touchend", function () {
+							if ($("#main_mylotte").hasClass("on") || $("#s_category").hasClass("on") || !$(".pape span").hasClass("swiper-slide-active")) {
+								pauseVideo();
+							}                        
+						});
+					}    
+				}
+			</script>										
+		</div>
+	</div>
+	<style>
+		/* 20150508 수정*/
+		.detail_vod {position:relative;height:100%;background:black; padding:60px 0;}
+		.detail_vod .vodBox{position:relative;top:18.4%;bottom:18.4%;left:0;right:0;height:63.2%} /*20150429 수정*/
+		.detail_vod iframe{width:100%;height:100%;border:0}
+		.detail_vod .info{position:relative;display:block;width:100%;padding:12px 93px 12px 13px;height:60px;box-sizing:border-box}
+		.detail_vod .info .txt_point{color:#333;font-size:12px;height:17px;line-height:13px}
+		.detail_vod .info .tprice .price{color:#275acd;font-size:16px;display:inline-block;font-weight:bold}
+		.detail_vod .info .tprice .txt_count{color:#888;font-size:9px;display:inline-block;padding-left:4px}
+		.detail_vod .info .viewBtn{top:16px;right:13px;position:absolute}
+		.detail_vod .vodBox .sktMsg{width:100%;height:38px;position:absolute;bottom:0;background:url(http://image.lotte.com/lotte/mobile/mobile_new/main/maintv_bg.png);font-size:9px;color:#fff;padding:8px 0 6px 13px;box-sizing:border-box}
+		.detail_vod .vodBox .sktMsg img{position:absolute;right:0;top:0;width:43px !important;margin-top:0 !important}
+		
+	</style>
+</section>	

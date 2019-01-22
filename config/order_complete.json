@@ -1,0 +1,68 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplOrderComplete" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                ],
+                "dest" : "lotte/resources/<%= version %>/order_complete.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsOrderComplete" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/order/m/order_complete.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/order_complete.js"
+            }
+        },
+
+        "uglify" : {
+            "jsOrderComplete" : {
+                "src" : "lotte/resources/<%= version %>/order_complete.js",
+                "dest" : "lotte/resources/<%= version %>/order_complete.min.js"
+            },
+            "tplOrderComplete" : {
+                "src" : "lotte/resources/<%= version %>/order_complete.template.js",
+                "dest" : "lotte/resources/<%= version %>/order_complete.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssOrderComplete" : {
+                "src" : [
+                    "lotte/resources_dev/order/m/order_complete.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/order_complete.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanOrderComplete" : [
+                "lotte/resources/<%= version %>/order_complete.js",
+                "lotte/resources/<%= version %>/order_complete.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlOrderComplete" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "order/m/order_complete.html" : "order/m/order_complete_dev.html"
+                }
+            }
+        }
+    }
+}
+

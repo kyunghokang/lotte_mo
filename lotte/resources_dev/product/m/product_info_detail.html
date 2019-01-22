@@ -1,0 +1,133 @@
+<section id="productDetailSelect">
+    <div class="detailLayout" id="detailLayout" >
+        <section ng-show="PrdExplainData.uptn_sumr_fcont != null" class='htmlSection'  id="uptn_sumr_c"></section> <!--ng-bind-html="PrdExplainData.uptn_sumr_fcont"-->
+        <!-- case1 정보입력형 모아보기 상세정보 복합형goods_nm
+        spdp_shp_goods_tmpl_cd" : A는 정보입력형, B는 이미지제작형
+        spdp_shp_goods_brws_tp_cd : 1 - 1단형, 2 - 2단형
+        -->
+        <div class="lPrdTop"><!-- 모아상품 -->
+           <!--1단인경우-->
+            <ul class="amassPrd new" ng-if="PrdExplainData.spdp_shp_goods_brws_tp_cd =='1'">
+                <li ng-repeat="item in PrdExplainData.select_products.items" class="prdEa1">                    
+                    <span class="flagNum" ng-if="PrdExplainData.goods_no_auto_set_yn == 'Y'" ng-class="{str:BasicData.product.select_goods_list.items.length>=10 && $index < 4}"> 
+                        <span class="str" ng-class="{nostr:BasicData.product.select_goods_list.items[$index].ec_goods_artc_cd == '22'}">추천</span>
+                        <strong>{{$index+1}}</strong>
+                    </span> 
+                    <!--정보입력형은 없음  -->
+                    <a ng-click="productLayer(item.tgt_goods_no, $index)" ng-class="{styleB:PrdExplainData.spdp_shp_goods_tmpl_cd == 'B'}">
+                        <span class="imgWrap" ng-class="{video:item.mpic_url_addr}"> <!-- v-com : ng-class 추가 -->
+                            <img ng-src="{{item.spdp_shp_img_file_path_nm}}{{item.spdp_shp_img_file_nm}}" alt="{{item.tgt_goods_nm}}"/>
+                        </span>
+                        <span class="prdTit" ng-if="PrdExplainData.spdp_shp_goods_tmpl_cd == 'A'" ><span ng-if="item.brnd_nm">[{{item.brnd_nm}}]</span>{{item.tgt_goods_nm}}</span>
+                        <span class="priceWrap" ng-if="PrdExplainData.spdp_shp_goods_tmpl_cd == 'A'">
+                            <span class="price"><strong>{{Fnproductview.getNumberFormat(item.sale_prc - item.inst_cpn_aply_unit_price - item.immed_pay_dscnt_amt)}} </strong>원</span>
+                            <span class="discount" ng-if="item.sale_rate != '0'"><strong>{{item.sale_rate}}</strong>%</span>
+                        </span>
+                        <span class="p_soldout" ng-if="BasicData.product.select_goods_list.items[$index].inv_qty == '0' || BasicData.product.select_goods_list.items[$index].sale_stat_cd != '10'">SOLD OUT</span>
+                    </a>
+                    <!--20161004 버튼추가-->
+                    <div class="moa_btn">
+                        <a ng-click="productLayer(item.tgt_goods_no, $index)" class="view"><span></span>자세히</a>
+                        <a ng-click="moa_add_cart(item)" class="addcart"><span></span>장바구니</a>                        
+                    </div>
+                </li>
+            </ul>
+            <!--2단인경우-->
+            <ul class="amassPrd prdEa2 new" ng-if="PrdExplainData.spdp_shp_goods_brws_tp_cd !='1'">
+                <li ng-repeat="item in PrdExplainData.select_products.items" ng-class="{nb:$index >= PrdExplainData.select_products.items.length - (2 - PrdExplainData.select_products.items.length%2) && !(PrdExplainData.lwnd_sumr_fcont != null && PrdExplainData.lwnd_sumr_fcont != '')}">
+                    <span class="flagNum" ng-if="PrdExplainData.goods_no_auto_set_yn == 'Y'" ng-class="{str:BasicData.product.select_goods_list.items.length>=10 && $index < 4}">
+                        <span class="str" ng-class="{nostr:BasicData.product.select_goods_list.items[$index].ec_goods_artc_cd == '22'}">추천</span>
+                        <strong>{{$index+1}}</strong>
+                    </span> <!--정보입력형은 없음  -->
+                    <a ng-click="productLayer(item.tgt_goods_no, $index)" ng-class="{styleB:PrdExplainData.spdp_shp_goods_tmpl_cd == 'B'}">
+                        <span class="imgWrap" ng-if="$index%2 == 0" id="span_{{$index}}" ng-class="{video:item.mpic_url_addr}"> <!-- v-com : ng-class 추가 -->
+                            <img ng-src="{{item.spdp_shp_img_file_path_nm}}{{item.spdp_shp_img_file_nm}}" alt="{{item.tgt_goods_nm}}" id="moa_{{$index}}"/>
+                        </span>
+                        <span class="imgWrap" ng-if="$index%2 == 1" style="height:{{moa_height($index - 1)}}" ng-class="{video:item.mpic_url_addr}"> <!-- v-com : ng-class 추가 -->
+                            <img ng-src="{{item.spdp_shp_img_file_path_nm}}{{item.spdp_shp_img_file_nm}}" alt="{{item.tgt_goods_nm}}"/>
+                        </span>
+                        
+                        <span class="prdTit" ng-if="PrdExplainData.spdp_shp_goods_tmpl_cd == 'A'" ><span ng-if="item.brnd_nm">[{{item.brnd_nm}}]</span>{{item.tgt_goods_nm}}</span>
+                        <span class="priceWrap" ng-if="PrdExplainData.spdp_shp_goods_tmpl_cd == 'A'">
+                            <span class="price"><strong>{{Fnproductview.getNumberFormat(item.sale_prc - item.inst_cpn_aply_unit_price - item.immed_pay_dscnt_amt)}} </strong>원</span>
+                            <span class="discount" ng-if="item.sale_rate != '0'"><strong>{{item.sale_rate}}</strong>%</span>
+                        </span>
+                        <span class="p_soldout" ng-if="BasicData.product.select_goods_list.items[$index].inv_qty == '0' || BasicData.product.select_goods_list.items[$index].sale_stat_cd != '10'">SOLD OUT</span>
+                    </a>
+                    <!--20161004 버튼추가-->
+                    <div class="moa_btn">
+                        <a ng-click="productLayer(item.tgt_goods_no, $index)" class="view"><span></span>자세히</a>
+                        <a ng-click="moa_add_cart(item)" class="addcart"><span></span>장바구니</a>
+                    </div>
+                    <div class="prod_null" ng-if="$index == PrdExplainData.select_products.items.length - 1 && $index%2 == 0">
+                        lotte.com
+                    </div>
+                </li>
+            </ul>
+            
+            
+        </div>
+
+        <section ng-show="PrdExplainData.lwnd_sumr_fcont != null && PrdExplainData.lwnd_sumr_fcont != ''" class='htmlSection' id="lwnd_sumr_c"></section>
+
+    </div>
+    <div class="layerPop detailInfoPop" ng-if="isShowproductDetailLayer" productIndex="{{productDetailLayer.disp_prio_rnk - 1}}">
+            <!--20161004 모아보기 수정-->
+            <div id="head_sub" class="select_head" ng-class="{on:layer_goodsList}" ng-init="layer_goodsList = false">
+                <h2 ng-click="layer_goodsList = !layer_goodsList"><b ng-if="BasicData.product.select_goods_list.items[productDetailLayer.disp_prio_rnk-1].inv_qty == '0'">(품절) </b>[선택{{productDetailLayer.disp_prio_rnk}}] <b ng-if="PrdExplainData.select_products.items[productDetailLayer.disp_prio_rnk-1].brnd_nm">[{{PrdExplainData.select_products.items[productDetailLayer.disp_prio_rnk-1].brnd_nm}}]</b>{{PrdExplainData.select_products.items[productDetailLayer.disp_prio_rnk-1].tgt_goods_nm}}</h2>                
+                <div class="layerpop_list" style="max-height:{{winH - 200}}px">
+                    <ul ng-click="layer_goodsList=!layer_goodsList">
+                        <li ng-repeat="item in PrdExplainData.select_products.items" ng-click="productLayer(item.tgt_goods_no, $index)" ng-class="{soldout:BasicData.product.select_goods_list.items[$index].inv_qty == '0'}">
+                            <span ng-if="BasicData.product.select_goods_list.items[$index].inv_qty == '0'">(품절) </span>[선택{{$index + 1}}] <span ng-if="item.brnd_nm">[{{item.brnd_nm}}]</span>{{item.tgt_goods_nm}}
+                        </li>
+                    </ul>                    
+                </div>
+                <p class="close" ><a ng-click="closeProductDetailLayer()">닫기</a></p>                
+            </div>
+            <!--20160120 이전, 다음 보기 버튼 추가 -->
+            <div class="sideBtn prev" ng-click="popPrev()">이전보기</div>
+            <div class="sideBtn next" ng-click="popNext()">다음보기</div>
+            <div  class="lPrdList preview detail">
+                <div class="detailLayout">
+                    <div class="lPrdTop">
+                        <!--<h3 class="title1" ng-if="PrdExplainData.goods_no_auto_set_yn == 'Y'">선택{{productDetailLayer.disp_prio_rnk}}</h3>-->
+                        <div class="giftBtn" ng-if="productDetailLayer.fut_msg_yn=='Y' || productDetailLayer.gift_pkg_yn=='Y'">
+                          <span class="btnGiftBrand" ng-if="productDetailLayer.gift_pkg_yn=='Y'" ng-click="popGift('brand',productDetailLayer.brnd_gift_logo,productDetailLayer.brnd_nm)">무료포장 보기</span>
+                          <span class="btnGiftCard" ng-if="productDetailLayer.fut_msg_yn=='Y'" ng-click="popGift('card')">종이카드 보기</span>
+                        </div>
+                        <div class="title2 lPrdTit" ng-if="PrdExplainData.goods_info_auto_prt_yn == 'Y' " ><span ng-if="productDetailLayer.brnd_nm">[{{productDetailLayer.brnd_nm}}]</span>{{productDetailLayer.tgt_goods_nm}}</div>
+                        <div class="title3 lPrdPriceWrap" ng-if="PrdExplainData.goods_info_auto_prt_yn == 'Y' " >
+                            <span class="discount" ng-if="productDetailLayer.sale_rate != '0'"><strong>{{productDetailLayer.sale_rate}}</strong>%</span>
+                            <span class="price"><strong>{{Fnproductview.getNumberFormat(productDetailLayer.sale_prc - productDetailLayer.inst_cpn_aply_unit_price - productDetailLayer.immed_pay_dscnt_amt) }}</strong>원</span>
+                        </div>
+                        <section ng-show="productDetailLayer.uptn_desc_yn == 'Y'" class='htmlSection' id="pop_html_up" ></section><!--ng-bind-html="productDetailLayer.uptn_desc_fcont"-->
+						<!-- v-com : 동영상 -->
+						<div class="video_wrap prod_vdo" ng-if="productDetailLayer.mpic_url_addr">
+							<video controls="controls" video-poster="{{::productDetailLayer.img_url_addr | trustUrl}}" id="autoVideo2" playsinline="true" webkit-playsinline="true">
+								<source video-source="{{::productDetailLayer.mpic_url_addr | trustUrl}}" type="video/mp4">
+							</video>
+							<div class="play_cover"></div>
+							<div class="stop_cover"></div>
+							<div class="click_cover"></div>
+							<a ng-click="moviePopTclick('Clk_mute', 'Clk_vol');" class="btn_move_volume btn_text">음소거</a>
+							<a ng-click="moviePopTclick('Clk_play');" class="btn_move_start">비디오 재생</a>
+							<a ng-click="moviePopTclick('Clk_pause');" class="btn_move_stop btn_text">일시정지</a>
+							<a ng-if="!appObj.isApp" ng-click="moviePopTclick('Clk_full');" class="btn_move_full btn_text">전체화면보기</a>
+						</div>
+						<!-- v-com : 동영상 -->
+                        <ul class="lst_detail">
+                            <li ng-class="(sitem.img_disp_type=='1') ? 'prdEa1' : ''"  ng-repeat="sitem in productDetailLayer.img_conts_list">
+                                <div class="lPrdImg" ng-class="{noBorder:PrdExplainData.spdp_shp_goods_tmpl_cd == 'B'}">
+                                    <img ng-src="{{sitem.img_file_path_nm}}{{sitem.img_file_nm}}" alt="" />
+                                </div>
+                                <div class="lPrdExplain">
+                                    {{sitem.img_file_desc}}
+                                </div>
+                            </li>
+                        </ul>
+                        <section ng-show="productDetailLayer.lwnd_desc_yn == 'Y'" class='htmlSection' id="pop_html_down"></section><!--ng-bind-html="productDetailLayer.lwnd_desc_fcont" -->
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>

@@ -1,0 +1,179 @@
+<section id="s_category" class="side_cate">
+    <div class="close">
+        <a ng-click="categoryClose()"><i>닫기</i></a>
+    </div> 
+    
+    
+    <div class="categoryWrap">   
+    	<nav class="mainTop" ng-show="!isCtgSubView">
+	        <a ng-click="changeCtgTab(0)" ng-class="{on:ctgTabIdx == 0}">카테고리</a>
+	        <a ng-click="changeCtgTab(1)" ng-class="{on:ctgTabIdx == 1}">브랜드</a>
+	        <a ng-click="changeCtgTab(2)" ng-class="{on:ctgTabIdx == 2}">기획전</a>
+	    </nav>
+		<div class="categoryBox">
+	   		<!-- 카테고리 -->
+	        <div class="categorySet"  ng-if="ctgTabIdx == 0" ng-show="ctgTabIdx == 0">
+	        	<nav class="navi">
+		            <a ng-click="sideCateTab(0)" class="all" ng-class="{on:ctgSubTabIdx == 0}"><span>전체상품</span></a>
+		            <a ng-click="sideCateTab(1)" class="depart" ng-class="{on:ctgSubTabIdx == 1}"><span>롯데백화점</span></a>
+		        </nav>
+		        <div class="scroll_wrap">
+			        <section class="all_section">
+			            <dl class="menu all" ng-repeat="menu in sideCtgData.ctgAll" side-category-slide>
+			               	<dt class="icon_{{menu.ctg_no}}" ng-click="depthSet($index , menu.ctg_no )"><span ng-bind="menu.name"></span></dt>
+			                <dd class="sub" class="icon_{{menu.ctg_no}}">
+			                    <ol>
+			                        <li ng-repeat="submenu in menu.lctgs"><a ng-click="goCategory('ctgAll', $index, submenu.name)">{{submenu.name}}</a></li>
+			                    </ol>
+			                </dd>
+			            </dl>
+			        </section>
+		            <section class="depart_section">
+			            <dl class="menu depart" ng-repeat="menu in sideCtgData.ctgDepart">
+			               	<dt class="icon_{{menu.ctg_no}}" ng-click="depthSet($index , menu.ctg_no )"><span ng-bind="menu.name"></span></dt>
+			                <dd class="sub" ng-class="icon_{{menu.ctg_no}}">
+			                    <ol>
+			                        <li ng-repeat="submenu in menu.lctgs"><a ng-click="goCategory('ctgDepart', $index, submenu.name)">{{submenu.name}}</a></li>
+			                    </ol>
+			                </dd>
+			            </dl>  
+		           </section>         
+		           <dl class="spShop">
+		                <dt class="iconPlan">전문관</dt>
+		                <dd>
+		                    <ol>
+		                        <li ng-repeat="menu in sideCtgData.spShops" ng-class="menu.listClass"><a ng-click="goMPage('spShop', $index, menu.outLink)"><span ng-class="menu.iconClass">{{menu.name}}</span></a></li>
+		                    </ol>
+		                </dd>
+		            </dl>
+		            <!-- 
+		            <dl class="spShop">
+		                <dt class="iconPlan">전문몰</dt>
+		                <dd>
+		                    <ol class="line">
+		                        <li ng-repeat="menu in sideCtgData.mallShops"><a ng-click="goMPage('spShop', $index)">{{menu.name}}</a></li>
+		                    </ol>
+		                </dd>
+		            </dl>
+	                 -->
+		            <div class="lotteApp">
+		                <ul>
+		                    <li ng-repeat="menu in sideCtgData.lotteApp">
+			                    <a ng-click="sendTclick(menu.tclick);lotteApp.exec(menu.appName,menu.linkUrl);">
+			                    <span ng-class="menu.iconClass">{{menu.name}}</span>
+			                    </a>
+		                    </li>
+		                </ul>
+		            </div>
+		    	</div>
+	        </div>
+	    	<!-- 브랜드 -->
+	        <div class="brandSet" id="brand_menu" ng-if="ctgTabIdx == 1" ng-show="ctgTabIdx == 1" lotte-brandkey>
+				<form>
+					<fieldset>
+		                <legend>검색</legend>
+		                <span><input type="text" placeholder="브랜드를 검색하세요"></span>
+		                <button type="submit" ng-click="searchBrand()">검색</button>
+		            </fieldset>
+	            </form>	            
+				<div class="searchList result">
+					<span class="cnt" ng-show="!isBrdLoadSrc">총 <strong>{{sideCtgBrandSearch.length}}</strong> 건</span>
+					<span class="cnt ing" ng-show="isBrdLoadSrc"></span>
+					
+					<div class="loading_wrap" ng-if="isBrdLoadSrc">
+						<p class="loading half"></p>
+					</div>
+					<div class="loading_wrap" ng-show="!isBrdLoadSrc && sideCtgBrandSearch.length == 0">
+						<p class="noList">브랜드 검색결과가 없습니다.</p>
+					</div>
+					<ul>
+	                    <li ng-repeat="i in sideCtgBrandSearch"><a ng-click="goBrand('search',$index)"><span class="name" ng-bind-html="i.brnd_nm"></span> <span class="icon" ng-if="i.dpts_nm">{{i.dpts_nm}}</span><p class="cate">{{i.disp_lrg_nm}}</p></a></li>
+	                </ul>
+					<a class="btn_close" ng-show="!isBrdLoadSrc" href="#">닫기</a>
+				</div>  
+	            <nav class="brandTab">
+	                <a ng-click="brandTab(0);sendTclick('m_side_brand_kor')" ng-class="{on:tabIndex == '0'}"><span>ㄱㄴㄷ</span></a>
+	                <a ng-click="brandTab(1);sendTclick('m_side_brand_eng')" ng-class="{on:tabIndex == '1'}"><span>ABC</span></a>
+	            </nav>
+	            <nav class="tabSub kor" ng-show="tabIndex == '0'">
+	                <a ng-click="brandBtn($index);sendTclick('m_side_brand_kor_idx'+$index)" ng-repeat="val in ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ', '기타']" ng-class="{on:(brdKeyTpIdx=='0'&&selKeyTpIdx==$index)}">{{val}}</a>
+	            </nav>
+	            <nav class="tabSub eng" ng-show="tabIndex == '1'">
+	                <a ng-click="brandBtn($index);sendTclick('m_side_brand_eng_idx'+$index)" ng-repeat="val in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '기타']" ng-class="{on:(brdKeyTpIdx=='1'&&selKeyTpIdx==$index)}">{{val}}</a>
+	            </nav>
+	            
+	            <div class="loading_wrap" ng-if="isBrdLoadCst">
+						<p class="loading half"></p>
+					</div>
+	            <div class="searchList" ng-show="btnIndex != null">
+	            	<span class="cnt" ng-show="sideCtgBrandData.length != 0 && sideCtgBrandData.length != null">총 <strong>{{sideCtgBrandData.length|number}}</strong> 건</span>
+	          					
+					
+					<div class="loading_wrap" ng-show="!isBrdLoadCst && sideCtgBrandData.length == 0">
+						<p class="noList">브랜드 검색결과가 없습니다.</p>
+					</div>
+					<!-- 검색 결과 -->
+	                <ul id="searchUL">
+	                    <li ng-repeat="i in sideCtgBrandData"><a ng-click="goBrand('list',$index)"><span class="name" ng-bind-html="i.brnd_nm"></span> <span class="icon" ng-if="i.dpts_nm">{{i.dpts_nm}}</span><p class="cate">{{i.disp_lrg_nm}}</p></a></li>
+	                </ul>
+	            </div>
+	        </div>
+	    <!-- //브랜드 -->
+	    <!-- 기획전 -->
+	        <div class="specialSet" id="special_menu" ng-if="ctgTabIdx == 2" ng-show="ctgTabIdx == 2" lotte-specialkey>
+	            <div class="wrap">
+	            	<form>
+		                <fieldset>
+		                    <legend>검색</legend>
+		                    <span><input type="text" placeholder="기획전을 검색하세요"></span>
+		                    <button type="submit" ng-click="searchSpecial()">검색</button>  
+		                </fieldset> 
+	                </form> 
+	                <div class="searchList result">
+	                    <span class="cnt" ng-show="!isSpdpLoadSrc">총 <strong>{{sideCtgSpecialSearch.length}}</strong> 건</span>
+	                    <span class="cnt ing" ng-show="isSpdpLoadSrc"></span>
+	                   	               
+	                    <div class="loading_wrap" ng-if="isSpdpLoadSrc">
+							<p class="loading half"></p>
+						</div>
+						<div class="loading_wrap" ng-show="!isSpdpLoadSrc && sideCtgSpecialSearch.length == 0">
+							<p class="noList">검색된 기획전이 없습니다.</p>
+						</div>
+	                    
+	                    <ul ng-show="!isSpdpLoadSrc">
+	                    	<li ng-repeat="i in sideCtgSpecialSearch">
+		                        <a ng-click="specialSearchLink($index,i.spdp_no)">
+		                            <dd><span class="name" ng-bind-html="changeKeyword(i.spdp_nm)"></span><p class="cate" ng-bind="i.disp_nm"></p></dd>
+		                        </a>
+		                    </li>
+	                    </ul>
+	                    <a class="btn_close" ng-show="!isSpdpLoadSrc" href="#">닫기</a>
+	                </div>
+	                <nav>
+	                	<span ng-repeat="i in sideCtgSpecial">
+	                		<a ng-class="{on:specialTab == $index}" ng-click="selectSpecialKey($index,i.disp_no)" ng-bind-html="changeKeyword(i.disp_nm)"></a>
+	                	</span>
+	               	</nav>
+	            </div>
+	            
+				<p class="loading half" ng-if="isSpdpLoadCtg"></p>
+	            <div class="wrap" ng-show="!isSpdpLoadCtg" ng-if="sideCtgSpecialBannerData.length !== 0 ">
+	                <div class="specialList">
+	                    <dl ng-repeat="i in sideCtgSpecialBannerData">
+	                        <dt><a ng-click="specialBannerLink($index,i.disp_no,i.lnk_url_addr)"><img ng-src="{{i.conts_file}}" alt="{{i.conr_tgt_no}}"></a></dt>
+	                        <dd>{{i.conts_desc_cont}}</dd>
+	                    </dl>
+	                </div>
+	            </div>
+	            <div class="searchList" ng-show="!isSpdpLoadCtg">
+	                <ul>
+	                    <li ng-repeat="i in sideCtgSpecialListData">
+	                       <a ng-click="specialLink($index,i.spdp_no)"><span class="name" ng-bind-html="changeKeyword(i.spdp_nm)"></span><p class="cate" ng-bind="i.disp_nm"></p></a>
+	                    </li>
+	                </ul>
+	            </div>
+	        </div>
+	    <!-- //기획전 -->
+	    </div>
+	</div>
+</section>

@@ -1,0 +1,118 @@
+<section class="oftenBuy_exist_list">
+<div class="loadding_list" ng-if="pageLoad"><p class="loading half"></p></div>
+    <div class="oftenBuy_list_head" ng-if="oftenItemTotalCount > 0">
+        <p>전체 <span class="oftenBuy_cnt" ng-bind-html="oftenItemTotalCount"></span>개</p>
+    </div>
+    <div class="often_list_conts">
+        <ul>
+            <li ng-repeat="item in oftenBuyProductList | limitTo:currentCnt">
+                <div class="often_item_wrap">
+                    <div class="item_thumb">
+                        <a href="javascript:void(0);" ng-click="goProductDetail(item,getTclickCode(true,null,null,null,true,numberFill(($index+1),3)))">
+                            <img ng-src="{{item.imgUrl}}" >
+                        </a>
+                    </div>
+                    <div class="item_detail">
+                        <p class="item_flags" ng-if="item.mall_flags.length > 0">
+                            <span class="flag {{flag.class}}" ng-repeat="flag in item.mall_flags">{{flag.name}}</span>
+                        </p>
+                        <p class="item_title"><a href="javascript:void(0);" ng-click="goProductDetail(item,getTclickCode(true,null,null,null,true,numberFill(($index+1),3)))">{{getFormattedGoodsNm(item)}}</a></p>
+                        <p class="basic_option" ng-if="item.goodsOption" ng-bind="item.goodsOption"></p>
+                        <p class="basic_option" ng-if="item.goodsInputOption" ng-bind-html="item.goodsInputOption"></p>
+                        <p class="item_price">{{item.basic_price | number:0}}원 X {{item.qty | number:0 }}개 =<span><strong>{{(item.basic_price * item.qty) | number:0}}</strong>원</span></p>
+                    </div>
+                </div>
+                <div class="often_btn_wrap">
+                    <span class="buy_count" ng-class="{overCnt:item.pur_cnt >= 3}"><em ng-bind-html="item.pur_cnt"></em>회 구매</span>
+                    <a class="btn_basic btn_opt" ng-class="{openArrow:item.openOption}" ng-click="getOftenItemOpt(item);">옵션/수량</a>
+                    <a class="btn_basic btn_cart" ng-click="orderCart(item)">장바구니</a>
+                    <a class="btn_basic btn_buy" ng-click="orderBuy(item)">바로주문</a>
+                </div>
+                <div class="item_option_wrap" ng-class="{optAreaOn:item.openOption}">
+                    <div class="option_inner">
+                        <dl ng-repeat="selectOpt in item.itemSelectOpt" ng-if="item.itemSelectOpt">
+                            <dt>{{selectOpt.name}}</dt>
+                            <dd>
+                                <div class="selWrap">
+                                    <select
+                                        ng-model="selectOpt.selected_item_no"
+                                        ng-change="changeSelectOpt(item,item.itemSelectOpt, $index);" >
+                                        <option value="">선택하세요</value>
+                                        <option 
+                                            ng-repeat="optSelect in selectOpt.item.items"
+                                            ng-selected="selectOpt.selected_item_no == optSelect.item_no"
+                                            ng-disabled="isSoldOption(optSelect,item.quick_deli_yn)"
+                                            value="{{optSelect.item_no}}">{{getSoldOptionText(optSelect,item.quick_deli_yn)}} {{optSelect.opt_value}}</option>
+                                    </select>
+                                </div>
+                            </dd>
+                        </dl>
+                         <dl ng-repeat="inputOpt in item.itemInputOpt" ng-if="item.itemInputOpt">
+                            <dt>{{inputOpt.item_opt_name}}</dt>
+                            <dd>
+                                <div class="inputInfo"  ng-if="'10' == inputOpt.item_opt_type">
+                                    <input type="text" 
+                                        ng-model="inputOpt.item_opt_value"
+                                        ng-init="inputOpt.ori_item_opt_value = inputOpt.item_opt_value"/>
+                                </div>
+                                <div class="dateInfo" ng-if="'10' != inputOpt.item_opt_type">
+                                    <input type="text" class="calendar-input" readonly="readonly"
+                                        ng-model="inputOpt.item_opt_formatted_value"
+                                        ng-init="inputOpt.ori_item_opt_value = inputOpt.item_opt_value"/>
+                                    <a href="javascript:void(0);" class="wa-datechooser-btn"
+                                        ng-init="inputOpt.item_opt_formatted_value = inputOpt.item_opt_value"
+                                        ng-click="datePickerOpen(inputOpt)">달력</a>
+                                </div>
+                            </dd>
+                        </dl>
+                       <dl>
+                            <dt>수량</dt>
+                            <dd>
+                                <div class="quantity">
+                                    <button class="btnMinus" ng-click="minusQuantity(item)"><span>-</span></button>
+                                    <span class="ipt_num"><input type="number" pattern="[0-9]*" name="orderQuantity" min="0" ng-init="item.qty_user = item.qty" ng-model="item.qty_user"></span>
+                                    <button class="btnPlus" ng-click="plusQuantity(item)"><span>+</span></button>
+                                </div>
+                                <a href="javascript:void(0);" ng-click="buyOptionUpdate(item,item.itemSelectOpt,item.itemInputOpt)" class="btnBl">변경</a>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </li>
+            <li ng-if="noListView" class="noList_wrap">
+                <p class="notitle">
+                    <strong>자주 구매한 상품이 없습니다.</strong>
+                    지금 쇼핑하고, 다음 구매 시 추천을 받아보세요!!
+                </p>
+            </li>
+        </ul>
+        <div class="more_btn_wrap" ng-if="currentCnt != oftenItemTotalCount">
+            <a ng-click ="moreShowOftenItem();"  ng-if="oftenItemTotalCount > 10"><span><strong>더보기</strong> (<span id="currentCnt">{{currentCnt}}</span>/<span id="totalCnt" ng-bind-html="oftenItemTotalCount"></span>)</a></span>
+        </div>
+    </div>
+    <!-- 달력 -->
+    <section id="datepicker" ng-show="datePickerYn" date-picker style="z-index:9999;">
+        <span class="close" ng-click="datePickerClose()"></span>
+        <div class="head">
+            <span class="prev" ng-click="datePrev()">Prev</span>
+            <span class="next" ng-click="dateNext()">Next</span>
+            <h5>
+               <strong ng-bind="date | date:'yyyy'"></strong> 년
+               <strong ng-bind="date | date:'MM'"></strong> 월
+            </h5>
+        </div>
+        <section class="calendar">
+            <div class="week" ng-repeat="val in dateHead" ng-class="{sun:($index == 0)}">{{val}}</div>
+            <div ng-repeat="i in day">
+                <!--
+                <span ng-class="{today:($index == today + 1)}" ng-click="pick(i)" ng-if="i > 0">
+                    <strong ng-class="{on:(cdate.getDate() == i)}">{{i}}</strong>
+                </span>
+                -->
+                <span ng-class="{today:isActiveDate(i), past:isPastDate(i)}" ng-click="pick(i)" ng-if="i > 0">
+                    <strong ng-class="{on:(cdate.getDate() == i)}">{{i}}</strong>
+                </span>
+            </div>
+        </section>
+    </section>
+</section>

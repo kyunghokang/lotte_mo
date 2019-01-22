@@ -1,0 +1,68 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplmylotteReinquiryList" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mylotte/product/m/mylotte_reinquiry_list_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/mylotte_reinquiry_list.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsmylotteReinquiryList" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mylotte/product/m/mylotte_reinquiry_list.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/mylotte_reinquiry_list.js"
+            }
+        },
+
+        "uglify" : {
+            "jsmylotteReinquiryList" : {
+                "src" : "lotte/resources/<%= version %>/mylotte_reinquiry_list.js",
+                "dest" : "lotte/resources/<%= version %>/mylotte_reinquiry_list.min.js"
+            },
+            "tplmylotteReinquiryList" : {
+                "src" : "lotte/resources/<%= version %>/mylotte_reinquiry_list.template.js",
+                "dest" : "lotte/resources/<%= version %>/mylotte_reinquiry_list.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssmylotteReinquiryList" : {
+                "src" : [
+                    "lotte/resources_dev/mylotte/product/m/mylotte_reinquiry_list.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/mylotte_reinquiry_list.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanmylotteReinquiryList" : [
+                "lotte/resources/<%= version %>/mylotte_reinquiry_list.js",
+                "lotte/resources/<%= version %>/mylotte_reinquiry_list.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlmylotteReinquiryList" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mylotte/product/m/mylotte_reinquiry_list.html" : "mylotte/product/m/mylotte_reinquiry_list_dev.html"
+                }
+            }
+        }
+    }
+}

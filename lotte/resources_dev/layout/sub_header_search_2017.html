@@ -1,0 +1,27 @@
+<header id="head_sub" class="subTitleSearch" ng-class="{wine: screenData.isWine && !screenData.isComm, fixed: subHeaderFixed}"><!--  ng-show="subTitle" -->
+
+	<!-- <h2 ng-class="{search:searchCntTxt}" class="{{addCls}}">
+		<span>
+			<span class="title" ng-bind="subTitle" ></span>
+			<em ng-if="searchCntTxt" class="fixed_txt" ng-bind="searchCntTxt"></em>
+		</span>
+	</h2> -->
+	<div class="search_area">
+		<label for="keyword" ng-click="showSrhLayerHeader()">
+			<div lotte-slider class="keywords" id="searchKeywordSlider">
+				<div onclick="event.stopPropagation()">
+					<span ng-bind-html="getSearchKeyword()"></span>
+					<span class="include" ng-repeat="item in postParams.reQuery track by $index" ng-click="deleteRequeryKeyword(item)">{{item}}</span>
+				</div>
+			</div>
+		</label>
+		<label for="keyword" class="clearAll" ng-click="showSrhLayerHeader(true)">삭제</label>
+	</div>
+	<p class="prev {{addCls}}">
+		<a ng-click="gotoPrepage()">이전</a>
+	</p>
+	<p class="camera">
+		<!-- <a ng-click="showSharePop()">공유</a> -->
+		<a ng-click="goStyleIntro()"></a>
+	</p>
+</header>

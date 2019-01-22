@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">	
+<!----------------- current css ----------------->
+
+<link rel="stylesheet" href="/lotte/resources_dev/product/m/detail.css">
+<link rel="stylesheet" href="/lotte/resources_dev/product/m/detail_datepicker.css">
+<link rel="stylesheet" href="/lotte/resources_dev/product/m/detail_popup.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<!-- <section ng-include src="'/HTML/include/head_sub.html'"></section> -->
+<header id="head_sub" class="ng-scope">
+	<h2>
+		<span>상품상세</span>
+		<!-- 클릭될 경우 a 클래스 on -->
+		<a href="#" class="btn_sel">화살표</a>
+		<span class="titLocation">
+			<a href="#none">패션잡화</a>
+			<a href="#none">가방/지갑/벨트</a>
+			<a href="#none">여성가방</a>
+		</span>
+	</h2>
+	<p class="prev">
+		<a href="#">이전</a>
+	</p>
+	<p class="this">
+		<a href="#none">공유</a>
+	</p>
+</header>
+
+<!-- container -->
+<div id="container">
+    <ul>
+        <li style="border:1px solid #ccc; background:#fff; margin:10px; padding:5px;" ng-click="brieflyPop({target:'imgZoomPop'})">확대안내</li>
+        <li style="border:1px solid #ccc; background:#fff; margin:10px; padding:5px;" ng-click="brieflyPop({target:'alarmPop'})">재입고 알림 신청</li>
+        <li style="border:1px solid #ccc; background:#fff; margin:10px; padding:5px;" ng-click="brieflyPop({target:'cartPop'})">장바구니</li>
+        <li style="border:1px solid #ccc; background:#fff; margin:10px; padding:5px;" ng-click="brieflyPop({target:'wishPop'})">위시리스트</li>
+        <li style="border:1px solid #ccc; background:#fff; margin:10px; padding:5px;" ng-click="brieflyPop({target:'optionPop'})">상세 옵션이미지 설명</li>
+    </ul>
+</div>
+
+<div class="brieflyPop" briefly-pop>
+    <div class="popCnt">
+        <div class="popImg"></div>
+        <section ng-bind-html="brieflyHtml"></section>
+    </div>
+</div>
+
+<!-- footer -->
+<section ng-include src="'/HTML/include/footer.html'"></section>
+
+</body>
+</html>

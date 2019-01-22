@@ -1,0 +1,72 @@
+<div class="event_list_wrap blankCd{{moduleData.blankCd}}">
+    <!-- M2158 대표이벤트형(2018) -->
+    <ul>
+        <li class="coupon_list" ng-repeat="item in moduleData.items">
+            <a ng-click="linkClick(item.linkUrl, '');">
+                <div class="img_wrap"><img ng-src="{{item.imgUrl}}" alt=""></div>
+                <div class="txt_wrap">
+                    <p class="txt" ng-if="item.txt">{{item.txt}}</p> <!-- 쿠폰데이터 없을경우 노출 -->
+                    <p class="txt" ng-if="item.cardTxt">{{item.cardTxt}}</p>
+                    <p class="date" ng-if="item.eventTime">{{item.eventTime}}</p>
+                </div>
+            </a>
+        </li>
+
+        <!-- 로그인전 -->
+        <li ng-if="!loginInfo.isLogin">
+            <div class="img_wrap">
+                <img ng-src="{{moduleData.items[0].defImgUrl}}">
+            </div>
+            <div class="txt_wrap">
+                <p class="txt">
+                    <span ng-if="!newVer">고객님! 로그인하고 참 좋은 혜택을 확인하세요!</span>
+                    <span ng-if="newVer">고객님! 로그인하고 멤버십혜택을 확인하세요.</span>
+                </p>
+                <div class="btn_wrap">
+                    <a class="btn_down" ng-click="logGAEvtModuleEach('06', '로그인하기');loginFromThis(moduleData.tclick + '_Clk_Login_Btn')"><em class="ico_login"></em>로그인</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- 로그인후 -->
+        <li ng-if="loginInfo.isLogin && !newVer">
+            <div class="img_wrap" ng-switch="callBackData.mbrCpnDownYn">
+                <img ng-switch-when="false" ng-src="{{callBackData.cpnImgUrl}}">
+                <img ng-switch-when="true" ng-src="{{callBackData.cpnCompleteImgUrl}}">
+            </div>
+            <div class="txt_wrap">
+                <p class="txt">{{loginInfo.name | limitTo:5}} 고객님의 참 좋은 쿠폰</p>
+                <div class="btn_wrap">
+                    <a class="btn_down" ng-if="!callBackData.mbrCpnDownYn" ng-click="logGAEvtModuleEach('05', '쿠폰다운로드');couponDown(moduleData.tclick + '_Clk_Coupon_Btn')">쿠폰받기<em class="ico_coupon"></em></a>
+                    <a class="btn_down" ng-if="callBackData.mbrCpnDownYn" ng-click="logGAEvtModuleEach('07', '쿠폰확인하기');linkClick(callBackData.cpnInfoUrl, moduleData.tclick + '_Clk_Check_Btn')">쿠폰확인하기</a>
+                </div>
+            </div>
+        </li>
+
+        <li ng-if="loginInfo.isLogin && newVer">
+            <div class="img_wrap" ng-switch="callBackData.mbrCpnDownYn" ng-if="!(loginInfo.gradeCd == '60' || loginInfo.gradeCd == '70' || loginInfo.gradeCd == '80')">
+                <img ng-switch-when="false" ng-src="{{callBackData.cpnImgUrl}}">
+                <img ng-switch-when="true" ng-src="{{callBackData.cpnCompleteImgUrl}}">
+            </div>
+            <div class="txt_wrap" ng-switch="callBackData.mbrCpnDownYn" ng-if="!(loginInfo.gradeCd == '60' || loginInfo.gradeCd == '70' || loginInfo.gradeCd == '80')">
+                <p class="txt" ng-switch-when="false">{{loginInfo.name | limitTo:5}} 고객님의 멤버십 쿠폰 지금 받아가세요!</p>
+                <p class="txt" ng-switch-when="true">{{loginInfo.name | limitTo:5}} 고객님의 멤버십 쿠폰 지금 확인하세요!</p>
+                <div class="btn_wrap">
+                    <a class="btn_down" ng-if="!callBackData.mbrCpnDownYn" ng-click="logGAEvtModuleEach('05', '쿠폰다운로드');couponDown(moduleData.tclick + '_Clk_Coupon_Btn')">쿠폰받기<em class="ico_coupon"></em></a>
+                    <a class="btn_down confirm" ng-if="callBackData.mbrCpnDownYn" ng-click="logGAEvtModuleEach('07', '쿠폰확인하기');linkClick(callBackData.cpnInfoUrl, moduleData.tclick + '_Clk_Check_Btn')">쿠폰확인하기</a>
+                </div>
+            </div>
+
+            <!-- 60~80 -->
+            <div class="img_wrap" ng-if="(loginInfo.gradeCd == '60' || loginInfo.gradeCd == '70' || loginInfo.gradeCd == '80')">
+                <img ng-src="{{moduleData.items[0].defImgUrl}}">
+            </div>
+            <div class="txt_wrap" ng-if="(loginInfo.gradeCd == '60' || loginInfo.gradeCd == '70' || loginInfo.gradeCd == '80')">
+                <p class="txt">{{loginInfo.name | limitTo:5}} 고객님의 첫구매 쿠폰 지금 받아가세요!</p>
+                <div class="btn_wrap">
+                    <a class="btn_down confirm" ng-if="callBackData.mbrCpnDownYn" ng-click="logGAEvtModuleEach('07', '혜택확인하기');linkClick(callBackData.cpnInfoUrl, moduleData.tclick + '_Clk_Check_Btn')">쿠폰확인하기</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">	
+<!----------------- current css ----------------->
+
+<link rel="stylesheet" href="/lotte/resources_dev/product/m/detail.css">
+<link rel="stylesheet" href="/lotte/resources_dev/product/m/detail_datepicker.css">
+<link rel="stylesheet" href="/lotte/resources_dev/product/m/detail_popup.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+</head>
+<body>
+
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<!-- container -->
+<div id="container">
+	<section id="smartPickInfo">
+		<ul class="smartPrdList">
+			<!-- 매장 선택 되어있는 경우 -->
+			<li>
+				<div class="prdInfo">
+					<div class="thumb">
+						<img src="http://image.lotte.com/goods/93/64/10/05/1/105106493_1_280.jpg" alt="" />
+					</div>
+					<div class="info">
+						<p class="tit">[Vine Wine] 루안 화이트 모스카텔</p>
+						<div class="pr_box">
+							<span class="pr_txt">권장소비자가</span>
+							<span class="price"><em>1,279,000</em>원</span>
+						</div>
+					</div>
+				</div>
+				<dl>
+					<dt>픽업정보</dt>
+					<dd>
+						<a href="#none" class="mapInfo">위치안내</a>
+						<p class="pickupStore">청량리점 3층 픽업데스크 <span>10:30 ~ 20:00</span></p>
+					</dd>
+					<dt>방문 예정일</dt>
+					<dd>
+						<div class="selWrap">
+							<select class="">
+								<option value="">방문 예정일 선택</option>
+							</select>
+						</div>
+					</dd>
+				</dl>
+			</li>
+			<!-- 매장선택 안되어있을 경우 -->
+			<li>
+				<div class="prdInfo">
+					<div class="thumb">
+						<img src="http://image.lotte.com/goods/93/64/10/05/1/105106493_1_280.jpg" alt="" />
+					</div>
+					<div class="info">
+						<p class="tit">[Vine Wine] 루안 화이트 모스카텔</p>
+						<div class="pr_box">
+							<span class="pr_txt">권장소비자가</span>
+							<span class="price"><em>1,279,000</em>원</span>
+						</div>
+					</div>
+				</div>
+				<dl>
+					<dt>픽업정보</dt>
+					<dd>
+						<a href="#none" class="mapInfo">위치안내</a>
+						<div class="selWrap">
+							<select class="">
+								<option value="">예약 매장 선택</option>
+							</select>
+						</div>
+					</dd>
+					<dt>방문 예정일</dt>
+					<dd>
+						<div class="selWrap">
+							<select class="">
+								<option value="">방문 예정일 선택</option>
+							</select>
+						</div>
+					</dd>
+				</dl>
+				<div class="pickTxt">오전 10시 이전 주문은 당일에도 픽업 가능합니다.</div>
+			</li>
+
+			<div class="smartBtn">
+				<!-- 픽업일 경우 -->
+				<a href="#none" class="btn_l">확인</a>
+				<!-- vine일 경우 -->
+				<!--<a href="#none" class="btn_l">방문예약</a>-->
+			</div>
+
+			<!-- vine일 경우 -->
+			<li class="vinePick">
+				<div class="prdInfo">
+					<div class="thumb">
+						<img src="http://image.lotte.com/goods/93/64/10/05/1/105106493_1_280.jpg" alt="" />
+					</div>
+					<div class="info">
+						<p class="tit">[Vine Wine] 루안 화이트 모스카텔</p>
+						<div class="pr_box">
+							<span class="pr_txt">권장소비자가</span>
+							<span class="price"><em>1,279,000</em>원</span>
+						</div>
+					</div>
+				</div>
+				<dl>
+					<dt>수량</dt>
+					<dd>
+						<div class="quantity">
+							<button class="btnMinus" qty="1"><span>-</span></button>
+							<span class="ipt_num"><input type="number" pattern="[0-9]*" name="orderQuantity" min="0" value="1"></span>
+							<button class="btnPlus" qty="3"><span>+</span></button>
+						</div>
+					</dd>
+					<dt>예약 매장</dt>
+					<dd>
+						<a href="#none" class="mapInfo">위치안내</a>
+						<div class="selWrap">
+							<select class="">
+								<option value="">예약 매장 선택</option>
+							</select>
+						</div>
+					</dd>
+					<dt>방문 예정일</dt>
+					<dd>
+						<div class="selWrap">
+							<select class="">
+								<option value="">방문 예정일 선택</option>
+							</select>
+						</div>
+					</dd>
+					<dt>방문자</dt>
+					<dd>
+						<div class="ipWrap">
+							<input type="text" placeholder="이름" />
+						</div>
+						<span class="checkWrap">
+							<input type="checkbox" id="c01">
+							<label for="c01">본인 방문</label>
+						</span>
+					</dd>
+					<dt>연락처</dt>
+					<dd>
+						<div class="phoneWrap">
+							<div class="selWrap">
+								<select>
+									<option value="">010</option>
+									<option value="">011</option>
+								</select>
+							</div>
+							<div class="ipWrap">
+								<input type="text" />
+							</div>
+							<div class="ipWrap">
+								<input type="text" />
+							</div>
+						</div>
+					</dd>
+				</dl>
+				<div class="pickTxt"><em>주류 상품은 온라인 구매</em>가 불가하며, 방문 시 오프라인 매장에서만<em>결제</em> 가능합니다.</div>
+			</li>
+		</ul>
+		<div class="smartBtn">
+			<!-- 픽업일 경우 -->
+			<!--<a href="#none" class="btn_l">확인</a>-->
+			<!-- vine일 경우 -->
+			 <a href="#none" class="btn_l">방문예약</a>
+		</div>
+	</section>
+</div>
+<!-- //container -->
+<!-- 스마트픽 위치 팝업 -->
+<div class="smpick_lst location" style="display:none">
+	<header><span class="tit">스마트픽 픽업 데스크 위치</span></header>
+	<div class="branch_wrap">
+		<div class="storePic">
+			<img src="/images/lotte2015/temp/pickupStore.gif" alt="" />
+		</div>
+		<ul class="storeInfo">
+			<li>
+				<span class="infoTit">픽업 위치 안내 : 청량이점 3층 픽업데스크</span>
+				<p>롯데백화점 청량리점 3층 지오다노 매장 우측 계단 출입구 쪽에서 만나실 수 있습니다.</p>
+			</li>
+			<li>
+				<span class="infoTit">픽업 가능 시간 : 10:30 ~ 20:00</span>
+				<p>(상품준비 완료 알람 후)</p>
+			</li>
+		</ul>
+	</div>
+	<div class="btn_wrap"><button class="btn_close">닫기</button></div>
+</div>
+<!-- 스마트핍 접수 팝업 -->
+<div class="smpick_lst reverve">
+	<header><span class="tit">예약이 정상적으로 접수되었습니다.</span></header>
+	<div class="branch_wrap">
+		<p>방문하시는 분의 휴대폰으로 예약증을 <br />발송해드렸으니, 상품준비 SNS 알림을<br />드리면 예약증을 지참하신 후 매장으로<br />방문해주십시오.</p>
+	</div>
+	<div class="btn_wrap"><button class="btn_close">확인</button></div>
+</div>
+<!-- footer -->
+<section ng-include src="'/HTML/include/footer.html'"></section>
+
+</body>
+</html>

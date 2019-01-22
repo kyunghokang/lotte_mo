@@ -1,0 +1,90 @@
+<div>
+	<div ng-if="pageUI.loadData.chanel_relation_info.chanelRelList.items.length > 0 || pageUI.loadData.chanel_relation_info.chanelBestItemList.items.length > 0">
+		<div ng-if="pageUI.loadData.chanel_relation_info.chanelRelList.items.length > 0">
+			<div class="prd_title mt10">
+				<p>관련상품보기</p>
+			</div>
+			<div  lotte-slider class="swipe_wrap bg_white">
+				<ul class="unit_prod_customer" ng-class="{unit_prod_customer_channel:pageUI.data.commonInfo.chanelYn}">
+					<li ng-repeat="item in pageUI.loadData.chanel_relation_info.chanelRelList.items track by $index">
+						<a ng-click="gotoProductPage(
+							item.goodsNo, 
+							item.curDispNo, 
+							item.curDispNoSctCd, 
+							'm_RDC_ProdDetail_Swp_RelChanel1_Prd' + idxSetDigit($index + 1) 
+							)">
+							<div class="thumb">
+								<img ng-src="{{item.imgUrl}}" alt="" />
+							</div>
+							<div class="info">
+								<div class="brand"><strong>CHANEL</strong></div>
+								<div class="nameEng">{{item.engGoodsNm}}</div>
+								<div class="name">{{item.goodsNm}}</div>
+								<div class="price"><strong>{{item.price | currency:'':0}}</strong>원</div>
+								<div class="score_wrap">
+									<span class="starScoreWrap" ng-if="item.gdasCnt > 0"><span class="starScoreCnt" style="width:{{item.gdasStfdVal|starScorePolicy:100}}%"></span></span>
+									<span class="review" ng-if="item.gdasCnt > 0">({{item.gdasCnt|number}})</span>
+								</div>
+								<div class="btnArea">
+									<a class="btn_sty1" ng-if="!item.rentalYn" ng-click="addCartOptionSelect(item, 'm_RDC_ProdDetail_Swp_RelChanel1_Cart')">장바구니 담기</a>
+									<a class="btn_sty1" ng-if="item.rentalYn" ng-click="productViewAlert({
+										type: 'rent',
+										goodsNo: item.goodsNo,
+										curDispNo: item.curDispNo,
+										curDispNoSctCd: item.curDispNoSctCd,
+										tclick: 'm_RDC_ProdDetail_Swp_RelChanel1_Cart',
+										time: 2500
+									})">장바구니 담기</a>
+								</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		<div ng-if="pageUI.loadData.chanel_relation_info.chanelBestItemList.items.length > 0">
+			<div class="prd_title mt10">
+				<p>BEST LOVED ITEM</p>
+			</div>
+			<div  lotte-slider class="swipe_wrap bg_white">
+				<ul class="unit_prod_customer" ng-class="{unit_prod_customer_channel:pageUI.data.commonInfo.chanelYn}">
+					<li ng-repeat="item in pageUI.loadData.chanel_relation_info.chanelBestItemList.items track by $index">
+						<a ng-click="gotoProductPage(
+							item.goodsNo, 
+							item.curDispNo, 
+							item.curDispNoSctCd, 
+							'm_RDC_ProdDetail_Swp_RelChanel2_Prd' + idxSetDigit($index + 1), 
+							''
+							)">
+							<div class="thumb">
+								<img ng-src="{{item.imgUrl}}" alt="" />
+							</div>
+							<div class="info">
+								<div class="brand"><strong>CHANEL</strong></div>
+								<div class="nameEng">{{item.engGoodsNm}}</div>
+								<div class="name">{{item.goodsNm}}</div>
+								<div class="price"><strong>{{item.price | currency:'':0}}</strong>원</div>
+								<div class="score_wrap">
+									<span class="starScoreWrap" ng-if="item.gdasCnt > 0"><span class="starScoreCnt" style="width:{{item.gdasStfdVal|starScorePolicy:100}}%"></span></span>
+									<span class="review" ng-if="item.gdasCnt > 0">({{item.gdasCnt|number}})</span>
+								</div>
+								<div class="btnArea">
+									<a class="btn_sty1" ng-if="!item.rentalYn" ng-click="addCartOptionSelect(item, 'm_RDC_ProdDetail_Swp_RelChanel2_Cart')">장바구니 담기</a>
+									<a class="btn_sty1" ng-if="item.rentalYn" ng-click="productViewAlert({
+										type: 'rent',
+										goodsNo: item.goodsNo,
+										curDispNo: item.curDispNo,
+										curDispNoSctCd: item.curDispNoSctCd,
+										tclick: 'm_RDC_ProdDetail_Swp_RelChanel2_Cart',
+										time: 2500
+									})">장바구니 담기</a>
+								</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>	
+</div>

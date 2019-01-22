@@ -1,0 +1,131 @@
+<div>
+    <div class="myinfo_side_wrap" ng-class="{open: pageUI.sideNavOpenFlag}">
+        <div id="myinfoWrap" class="myinfo_wrap">
+            <!-- 헤더 -->
+            <div class="header_wrap">
+                <a ng-click="toggleSideNav(false)" class="btn_close">닫기</a>
+            </div>
+            <!-- //헤더 -->	
+            
+            <!-- 내 정보 -->
+            <div class="myinfo_box">
+                <div class="greeting_box" ng-class="{open: pageUI.sideNavOpenFlag}" ng-if="basicInfo.greeting_info.greeting_img_url && basicInfo.greeting_info.greeting_txt">
+                    <span class="txt_greeting">
+                        <em><i class="img"><img ng-src="{{basicInfo.greeting_info.greeting_img_url}}" alt="아이콘 이미지" /></i>{{basicInfo.greeting_info.greeting_txt}}</em>
+                    </span>
+                </div>
+                <div class="info_detail_box">
+                    <!-- 비로그인 상태일 때 -->
+                    <h3 class="title" ng-if="!loginInfo.isLogin || !loginInfo.name"><a ng-click="execCommand('goLogin')">로그인</a>하고 내정보 확인</h3>
+                    <!-- // 비로그인 상태일 때 -->
+                    <!-- 로그인 상태일 때 -->
+                    <h3 class="title" ng-if="loginInfo.isLogin && loginInfo.name"><span ng-bind="loginInfo.name">선경</span>님의 정보</h3>
+                    <!-- // 로그인 상태일 때 -->
+                    
+                    <!-- 음성주문 안내 레이어 -->
+                    <div class="box">				
+                        <a ng-click="toggleVoiceInfoLayer($event)" class="btn_guide">음성주문 가이드</a>
+                        <div ng-show="voiceInfoLayer" ng-click="infoLayerClick($event)" class="txt_message">배송지, 결제수단을 등록하시면 편하게 말로 주문이 가능하며, 등록된 정보는 변경 가능합니다. (일부 상품은 음성주문이 제한될 수 있습니다.)</div>
+                    </div>
+                    
+                    <!-- 배송지/결제수단 -->
+                    <div class="info_register">
+                        <div class="pay_box">
+                            <div ng-if="!basicInfo.member_info.base_op_pay_chk" class="tit_default">
+                                <a ng-click="voiceNavVCPageMove('goChangePayment')"><strong>결제수단 등록하기</strong></a>
+                            </div>
+                            <div ng-if="basicInfo.member_info.base_op_pay_chk" class="info">
+                                <span class="txt">
+                                    <span ng-if="basicInfo.member_info.pay_mean_cd == '40'">
+                                        <em>{{basicInfo.member_info.pay_mean_nm}}</em>
+                                        <em ng-if="basicInfo.member_info.fnCoNm">{{basicInfo.member_info.fnCoNm}}</em>
+                                        <em ng-if="basicInfo.member_info.pmtMthdAlias">{{basicInfo.member_info.pmtMthdAlias}}</em>
+                                    </span>
+                                    <span ng-if="basicInfo.member_info.pay_mean_cd != '40'">
+                                        <em>{{basicInfo.member_info.pay_nm}}</em>
+                                        <em>{{basicInfo.member_info.card_pay_meth_nm}}</em>
+                                    </span>
+                                </span>
+                                <a ng-click="voiceNavVCPageMove('goChangePayment')" class="btn_change">변경</a>
+                            </div>
+                        </div>
+                        <div class="delivery_box">
+                            <div ng-if="!basicInfo.member_info.et_mbr_dlvp_chk" class="tit_default">
+                                <a ng-click="voiceNavVCPageMove('actionChangeDelivery')"><strong>배송지 등록하기</strong></a>
+                            </div>
+                            <div ng-if="basicInfo.member_info.et_mbr_dlvp_chk" class="info">
+                                <span class="txt">{{basicInfo.member_info.rmit_nm}}({{basicInfo.member_info.dlvp_nm}}) {{basicInfo.member_info.stnm_post_addr ? basicInfo.member_info.stnm_post_addr : basicInfo.member_info.post_addr}}</span>
+                                <a ng-click="voiceNavVCPageMove('actionChangeDelivery')" class="btn_change">변경</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="!basicInfo.member_info.et_mbr_dlvp_chk || !basicInfo.member_info.base_op_pay_chk" class="txt_info"><span>배송지/결제수단 모두 등록 시 주문이 가능해요</span></div>
+                </div>
+            </div>
+            <!-- //내 정보 -->
+        
+            <!-- 발화가이드 -->
+            <div class="speech_box" ng-if="basicInfo.samanda_list">
+                <div class="box">
+                    <h3 class="title">이렇게 말해보세요</h3>
+                    <a ng-click="toggleSideNavGuide(true)" class="btn_guide_view">가이드 전체보기</a>
+                </div>		
+                <div class="tab_speech">
+                    <ul class="list">
+                        <li ng-class="{off:speechBoxTabIdx!=$index}" ng-repeat="item in basicInfo.samanda_list.items track by $index" class="idx0{{$index + 1}}">
+                            <a style="color:{{item.list_cate_bg}};border-bottom-color:{{item.list_cate_bg}}" ng-click="speechBoxTabSelect($index)" ng-bind="item.list_cate"></a>
+                        </li>
+                    </ul>		
+                </div>	
+                <div class="tab_speech_content">
+                    <div id="samadaList" roll-swipe-banner rolling="false" width320="1"  width640="1" width900="1" info="basicInfo.samanda_list.items" widthpercent="100" endfnc="samadaListSwiperEnd" getcontrol="getSamadaListControl">
+                        <ul class="swipeBox speech_cotent_wrap">
+                            <li ng-repeat="item in basicInfo.samanda_list.items track by $index">
+                                <ol>
+                                    <li ng-repeat="items in item.cont_list.items | limitTo:4"><a href="javascript:void(0)" >{{items.list_txt}}</a></li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- // 발화가이드 --> 
+        
+            <!-- 히스토리 -->
+            <div class="history_box" ng-if="SemanticHistory && SemanticHistory.length > 0">
+                <h3 class="title">히스토리</h3> 
+                <ul class="history_list">
+                    <li ng-repeat="item in SemanticHistory">
+                        <span class="txt" ng-bind="item.keyword" ng-click="sendHistory(item.keyword)"></span>
+                        <span class="date" ng-bind="item.date | timeChange"></span>
+                    </li>
+                </ul>
+            </div>
+            <!-- // 히스토리 -->
+        </div>
+    </div>
+
+    <div class="myinfo_side_wrap" ng-class="{open: pageUI.sideNavGuideOpenFlag}">
+        <!-- 가이드 전체 보기 -->
+        <div id="guideWrap" class="guide_wrap" ng-class="{open: pageUI.sideNavGuideOpenFlag}">
+            <!-- 헤더 -->
+            <div class="header_wrap">
+                <a ng-click="toggleSideNavGuide(false, 'back')" class="btn_side_back">뒤로가기</a>
+                <a ng-click="toggleSideNavGuide(false, 'close')" class="btn_close">닫기</a>
+            </div>
+            <!-- //헤더 -->
+            
+            <!-- 20180426 텍스트 수정 -->
+            <h3 class="title">이렇게 말해보세요</h3>
+            <!-- //20180426 텍스트 수정 -->
+            <ul>
+                <li  style="border-color:{{item.list_cate_bg}}" ng-repeat="item in basicInfo.samanda_list.items track by $index" class="idx0{{$index + 1}}">
+                    <h4 style="color:{{item.list_cate_bg}};" class="tit" ng-bind="item.list_cate"></h4>
+                    <ul class="guide_list">
+                        <li ng-repeat="items in item.cont_list.items" ng-bind="items.list_txt"></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

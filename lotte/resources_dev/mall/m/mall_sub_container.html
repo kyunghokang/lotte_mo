@@ -1,0 +1,39 @@
+<section ng-show="contVisible" class="cont_minheight" id="container">
+	<!-- 카테고리 -->
+	<div class="result_wrap categoryWrap">
+		<!-- 검색 필터 /-->
+		<div class="srh_terms_wrap" search-filter-layer ng-class="{show:uiStateObj.initFlag==false}">
+			<div class="result_cnt">전체<em>{{srhResultData.tCnt|number}}</em>개</div>
+        	<div class="right">
+				<ul>
+					<li>
+						<span class="unit_listType type1" ng-click="changeTemplate('list');" ng-show="templateType=='swipe'"></span>
+						<span class="unit_listType type2" ng-click="changeTemplate('image');" ng-show="templateType=='list'"></span>
+						<span class="unit_listType type3" ng-click="changeTemplate('swipe');" ng-show="templateType=='image'"></span>
+					</li>
+				</ul>
+        		<a href="#" class="detail" ng-click="showHideSideSearch()" ng-class="{disabled:!uiStateObj.detailSearchDataLoaded}">상세검색</a>
+        		<a href="#" class="sort" ng-click="showHideSideSearch('SORT')">{{uiStateObj.sortTypeArr[uiStateObj.sortTypeIdx].shortLabel}}</a>
+        	</div>
+		</div>
+		<!--/ 검색 필터 -->
+
+		<!-- 검색 결과 / -->
+		<div class="listWrap" ng-controller="productCtrl" ng-if="!uiStateObj.emptyResult">
+			<!-- s: unit list area -->
+			<div class="unitWrap">
+			<!-- //상품리스트 유형 선택 -->
+				<div product-container template-type="list" total-count="srhResultData.tCnt" templatetype="templateType"
+					products="srhResultData.prdLst.items" more-product-continer="loadMoreData()"></div>
+			</div>
+			<!-- e: unit list area -->
+		</div>
+		<!-- /검색 결과 -->
+		<section class="noData" ng-if="uiStateObj.emptyResult">
+			해당하는 상품이 없습니다.
+		</section>
+	</div>
+	<!-- //카테고리 -->
+    <loading-bar></loading-bar>
+	<cate-side-search></cate-side-search>
+</section>

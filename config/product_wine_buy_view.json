@@ -1,0 +1,71 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplProductWindSmartpic" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/product/m/product_wine_buy_view_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/product_wine_buy_view.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsProductWindSmartpic" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/product/m/product_wine_buy_view.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/product_wine_buy_view.js"
+            }
+        },
+
+        "uglify" : {
+            "jsProductWindSmartpic" : {
+                "src" : "lotte/resources/<%= version %>/product_wine_buy_view.js",
+                "dest" : "lotte/resources/<%= version %>/product_wine_buy_view.min.js"
+            },
+            "tplProductWindSmartpic" : {
+                "src" : "lotte/resources/<%= version %>/product_wine_buy_view.template.js",
+                "dest" : "lotte/resources/<%= version %>/product_wine_buy_view.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssProductWindSmartpic" : {
+                "src" : [
+                    "lotte/resources_dev/product/m/detail.css",
+                    "lotte/resources_dev/product/m/detail_datepicker.css",
+                    "lotte/resources_dev/product/m/detail_popup.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/product_wine_buy_view.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanProductWindSmartpic" : [
+                "lotte/resources/<%= version %>/product_wine_buy_view.js",
+                "lotte/resources/<%= version %>/product_wine_buy_view.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlProductWindSmartpic" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "product/m/product_wine_buy_view.html" : "product/m/product_wine_buy_view_dev.html"
+                }
+            }
+        }
+    }
+}
+

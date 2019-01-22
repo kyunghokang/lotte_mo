@@ -1,0 +1,82 @@
+<section id="addressInfoCtrlContainer">
+    <!-- 2017.12.27 주소 주문 시작 (배송지가 있는 경우) -->
+    <div class="user_addrdata" ng-show="has_address">
+        <div class="utable">
+            <div class="ucell ls">배송지</div>
+            <div class="ucell rs">
+                <p>
+                    <b ng-if='oinfo.inprmitnm != undefined'>{{oinfo.inprmitnm}}({{oinfo.inpdlvpnm}})</b>
+                    <b ng-if='oinfo.inprmitnm == undefined'>{{oinfo.inpdlvpnm}}</b>
+                </p>
+                <!--도로명주소가 없으면-->
+                <p ng-show="oinfo.stnm_inp_zip1 == ''">[{{oinfo.inpzip1}}-{{oinfo.inpzip2}}] {{oinfo.inpaddr1}} {{oinfo.inpaddr2}} | {{oinfo.incellsctno}}-{{oinfo.incelltxnono}}-{{oinfo.incellendno}}</p>              
+                <!--도로명주소가 있으면-->
+                <p ng-show="oinfo.stnm_inp_zip1 != ''">[{{oinfo.stnm_inp_zip1}}-{{oinfo.stnm_inp_zip2}}] {{oinfo.stnm_inp_addr1}} {{oinfo.stnm_inp_addr2}} | {{oinfo.incellsctno}}-{{oinfo.incelltxnono}}-{{oinfo.incellendno}}</p>              
+                <span class="arrow" onClick="searchOrdDeliveryListPop('','GIFT3')">변경</span>  
+            </div>
+        </div>
+    </div>        
+    <!-- 2017.12.27 주소 주문 끝 -->   
+    <!-- 2017.12.27 주소 주문 시작 (배송지가 없는 경우)-->
+    <div class="user_addrdata order_section" ng-show="!has_address">
+        <p class="nodata" onClick="searchOrdDeliveryListPop('','GIFT3')">배송지를 입력해주세요.</p>               
+    </div>        
+    
+    <div class="user_addrdata tline">
+        <div class="utable">
+            <div class="ucell ls">배송메시지</div>
+            <div class="ucell rs">
+                <select name="deli_msg" class="gift" id="message" ng-show="!writeMessage" ng-change="messageChange()" ng-model="user_msg">
+                    <option value="배송메시지">배송메시지 선택하기</option>												
+                    <option value="부재시 경비실에 맡겨주세요.">부재시 경비실에 맡겨주세요.</option>
+                    <option value="빠른 배송 부탁드립니다.">빠른 배송 부탁드립니다.</option>
+                    <option value="부재시 핸드폰으로 연락바랍니다.">부재시 핸드폰으로 연락바랍니다.</option>
+                    <option value="배송 전 연락바랍니다.">배송 전 연락바랍니다.</option>
+                    <option value="">직접 입력하기 (20자 이내)</option>
+                </select>
+                <input type="text" ng-model="user_msg" id="message2" maxlength="20" ng-show="writeMessage">
+            </div>
+        </div>
+        <div id="ordSearchDeliInfo" class="hideDiv">
+            <!--input[name=indlvpsn]                배송지시리얼넘버
+            input[name=inpbasedlvpyn]         기본배송지여부
+            input[name=inprmitnm]              수신자명
+            input[name=inpdlvpnm]             배송지명
+            input[name=inpzip1]                 지번우편번호 앞
+            input[name=inpzip2]                 지번우편번호 뒤
+            input[name=inpaddr1]               지번 기본주소
+            input[name=inpaddr2]               지번 상세주소
+            input[name=stnm_inp_zip1]         도로명우편번호 앞
+            input[name=stnm_inp_zip2]         도로명우편번호 뒤
+            input[name=stnm_inp_addr1        도로명 기본주소
+            input[name=stnm_inp_addr2        도로명 상세주소
+            input[name=incellsctno]             폰번호 앞
+            input[name=incelltxnono]            폰번호 중간
+            input[name=incellendno]            폰번호 뒤
+            -->
+            <input type="text" name="indlvpsn" ng-model="oinfo.indlvpsn">
+            <input type="text" name="inpbasedlvpyn" ng-model="oinfo.inpbasedlvpyn">
+            <input type="text" name="inprmitnm" ng-model="oinfo.inprmitnm">
+            <input type="text" name="inpdlvpnm" ng-model="oinfo.inpdlvpnm">
+            <input type="text" name="inpzip1" ng-model="oinfo.inpzip1">
+            <input type="text" name="inpzip2" ng-model="oinfo.inpzip2">
+            <input type="text" name="inpaddr1" ng-model="oinfo.inpaddr1">
+            <input type="text" name="inpaddr2" ng-model="oinfo.inpaddr2">
+            <input type="text" name="stnm_inp_zip1" ng-model="oinfo.stnm_inp_zip1">
+            <input type="text" name="stnm_inp_zip2" ng-model="oinfo.stnm_inp_zip2">
+            <input type="text" name="stnm_inp_addr1" ng-model="oinfo.stnm_inp_addr1">
+            <input type="text" name="stnm_inp_addr2" ng-model="oinfo.stnm_inp_addr2">
+            <input type="text" name="incellsctno" ng-model="oinfo.incellsctno">
+            <input type="text" name="incelltxnono" ng-model="oinfo.incelltxnono">
+            <input type="text" name="incellendno" ng-model="oinfo.incellendno">
+            <input type="hidden" id="change_mode" ng-click="myAddrChange(true)">
+        </div>        
+    </div>        
+    
+        
+    <!-- 배송지 조회 팝업--> 
+    <div id="ordSearchDeliPop">
+    </div>
+                                                                                    
+</section>
+

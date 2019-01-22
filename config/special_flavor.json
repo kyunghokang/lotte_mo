@@ -1,0 +1,70 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplspecialFlavor" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/mall/special_flavor/special_flavor_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/special_flavor.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsspecialFlavor" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/mall/special_flavor/special_flavor.js",
+                    "lotte/resources_dev/common/lotte_ngswipe.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/special_flavor.js"
+			}
+		},
+
+		"uglify" : {
+			"jsspecialFlavor" : {
+				"src" : "lotte/resources/<%= version %>/special_flavor.js",
+				"dest" : "lotte/resources/<%= version %>/special_flavor.min.js"
+			},
+			"tplspecialFlavor" : {
+				"src" : "lotte/resources/<%= version %>/special_flavor.template.js",
+				"dest" : "lotte/resources/<%= version %>/special_flavor.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssspecialFlavor" : {
+				"src" : [
+					"lotte/resources_dev/mall/special_flavor/special_flavor.css",
+					"lotte/resources_dev/product_unit/product_unit.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/special_flavor.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanspecialFlavor" : [
+				"lotte/resources/<%= version %>/special_flavor.js",
+				"lotte/resources/<%= version %>/special_flavor.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlspecialFlavor" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"mall/special_flavor/special_flavor.html" : "mall/special_flavor/special_flavor_dev.html"
+				}
+			}
+		}
+	}
+}

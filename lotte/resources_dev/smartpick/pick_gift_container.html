@@ -1,0 +1,102 @@
+<section ng-show="contVisible" class="cont_minheight">
+	<ul id="smp_nav" ng-if="smp_yn">
+	    <li><a ng-click="promotionUrl()"><span>LOTTE smart pick</span></a></li>
+	    <li class="on"><a ng-click="pickListUrl()"><span>my 교환권</span></a></li>
+	    <li><a ng-click="setupUrl()"><span>설정</span></a></li>
+	</ul>
+<!-- 스마트픽상품교환권_전송 -->
+	<div class="smp_coupon">
+		<section class="detail">
+			<div class="cont_wrap">
+				<div class="smpSendWrap">
+					<dl>
+						<dt>보내시는 분</dt>
+						<dd>
+							<ul>
+								<li>
+									<div class="sendTit"><label for="userName1">이름</label></div>
+									<div class="sendCont"><input type="text" id="userName1" ng-value="userName" ng-model="userName" ng-change="byteCheckName()"></div>
+								</li>
+								<li>
+									<div class="sendTit"><label for="userNum1">휴대폰번호</label></div>
+									<div class="sendCont">
+										<select name="" id="sendUserNum1" ng-model="sendUserNum1">
+											<option value="010">010</option>
+											<option value="011">011</option>
+											<option value="016">016</option>
+											<option value="017">017</option>
+											<option value="019">019</option>
+										</select>										
+										<input type="tel" title="보내시는분 핸드폰 두번째 4자리" class="userNum" id="sendUserNum2" ng-value="sendUserNum2" ng-model="sendUserNum2" maxlength="4" numeric-only>
+										<input type="tel" title="보내시는분 핸드폰 마지막 4자리" class="userNum" id="sendUserNum3" ng-value="sendUserNum3" ng-model="sendUserNum3" maxlength="4" numeric-only>
+									</div> 
+								</li>
+							</ul>
+						</dd>
+						<dt>
+							받으시는 분
+							<div class="sendGift">
+								<input type="checkbox" id="sendGift" ng-model="sendGiftCheck" ng-click="giftClick()">
+								<label for="sendGift">수정</label><!-- 20160620 문구 교체 -->
+							</div>
+						</dt>
+						<dd ng-show="sendGiftCheck">
+							<ul>
+								<li>
+									<div class="sendTit"><label for="userName2">이름</label></div>
+									<div class="sendCont"><input type="text" id="recieveUserName" ng-model="recieveUserName"></div>
+								</li>
+								<li>
+									<div class="sendTit"><label for="userNum2">휴대폰번호</label></div>
+									<div class="sendCont">
+										<select name="" id="userNum2" ng-model="recieveUserNum1">
+											<option value="010" selected="selected">010</option>
+											<option value="011">011</option>
+											<option value="016">016</option>
+											<option value="017">017</option>
+											<option value="019">019</option>
+										</select>
+										<input type="tel" id="userNum22" title="받으시는분 핸드폰 두번째 4자리" class="userNum" ng-model="recieveUserNum2" maxlength="4" numeric-only>
+										<input type="tel" id="userNum23" title="받으시는분 핸드폰 마지막 4자리" class="userNum" ng-model="recieveUserNum3" maxlength="4" numeric-only>
+										<a ng-show="appObj.isApp" ng-click="contactFind()" class="btn_findP">휴대폰 주소록에서 찾기</a>
+									</div>
+								</li>
+							</ul>
+						</dd>
+						<dd ng-show="!sendGiftCheck" class="readonly">
+							<ul>
+								<li>
+									<div class="sendTit"><label for="userName2">이름</label></div> 
+									<div class="sendCont"><input type="text" placeholder="USER_NAME" ng-value="recieveUserName" ng-model="recieveUserName" readonly></div>
+								</li>
+								<li>
+									<div class="sendTit"><label for="userNum1">휴대폰번호</label></div>
+									<div class="sendCont">
+										<select name="" id="recieveUserNum1" ng-model="recieveUserNum1" ng-value="recieveUserNum1" disabled>
+											<option ng-value="recieveUserNum1">{{recieveUserNum1}}</option>
+										</select>
+										<input type="tel" title="보내시는분 핸드폰 두번째 4자리" class="userNum" ng-value="recieveUserName" ng-model="recieveUserNum2" maxlength="4" numeric-only readonly>
+										<input type="tel" title="보내시는분 핸드폰 마지막 4자리" class="userNum" ng-value="recieveUserNum3" ng-model="recieveUserNum3" maxlength="4" numeric-only readonly>
+									</div> 
+								</li>
+							</ul>
+						</dd>
+						<dt>메시지</dt>
+						<dd ng-show="sendGiftCheck">
+							<div class="textbox"><textarea  ng-change="byteCheck()" maxlength="50" ng-model="recieveUserMgs"  id="recieveUserMgs" name="recieveUserMgs" cols="" rows="" placeholder="메시지 (한글25자이내)"></textarea></div>
+							<div class="count">{{bytes || 0}} / 50byte</div>
+							<div class="sendComment">교환권 문자 전송은 총 3회까지 재전송이 가능하며, 현재 <span>{{smartPickDetail.mms_trns_rmnd_cnt}}회</span> 남았습니다.</div>
+						</dd>
+						<dd ng-show="!sendGiftCheck">
+							<div class="textbox"><textarea  ng-change="byteCheck()" maxlength="50" ng-model="recieveUserMgs"  id="recieveUserMgs" name="recieveUserMgs" cols="" rows="" placeholder="메시지 (한글25자이내)"></textarea></div>
+							<div class="count">{{bytes || 0}} / 50byte</div>
+							<div class="sendComment">교환권 문자 전송은 총 3회까지 재전송이 가능하며, 현재 <span>{{smartPickDetail.mms_trns_rmnd_cnt}}회</span> 남았습니다.</div>
+						</dd>
+					</dl>
+					<div class="btnArea" ng-click="sendSmartPick()"><a href="#" class="btnSend">교환권 보내기</a></div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<!-- //스마트픽상품교환권_전송 -->
+</section>

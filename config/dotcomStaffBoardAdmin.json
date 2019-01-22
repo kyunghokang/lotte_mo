@@ -1,0 +1,69 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tpldotcomStaffBoardAdmin" : {
+				"options": {
+					"prefix":"/",
+					"module" : "app"
+				},
+				"src" : [
+					"lotte/resources_dev/custcenter/dotcomStaffBoardAdmin_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/dotcomStaffBoardAdmin.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsdotcomStaffBoardAdmin" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/custcenter/dotcomStaffBoardAdmin.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/dotcomStaffBoardAdmin.js"
+			}
+		},
+
+		"uglify" : {
+			"jsdotcomStaffBoardAdmin" : {
+				"src" : "lotte/resources/<%= version %>/dotcomStaffBoardAdmin.js",
+				"dest" : "lotte/resources/<%= version %>/dotcomStaffBoardAdmin.min.js"
+			},
+			"tpldotcomStaffBoardAdmin" : {
+				"src" : "lotte/resources/<%= version %>/dotcomStaffBoardAdmin.template.js",
+				"dest" : "lotte/resources/<%= version %>/dotcomStaffBoardAdmin.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssdotcomStaffBoardAdmin" : {
+				"src" : [
+					"lotte/resources_dev/custcenter/dotcomStaffBoardAdmin.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/dotcomStaffBoardAdmin.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleandotcomStaffBoardAdmin" : [
+				"lotte/resources/<%= version %>/dotcomStaffBoardAdmin.js",
+				"lotte/resources/<%= version %>/dotcomStaffBoardAdmin.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmldotcomStaffBoardAdmin" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"custcenter/dotcomStaffBoardAdmin.html" : "custcenter/dotcomStaffBoardAdmin_dev.html"
+				}
+			}
+		}
+	}
+}
+

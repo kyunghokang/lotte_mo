@@ -1,0 +1,182 @@
+<section class="blankCd{{moduleData.blankCd}}">
+    <!-- M71 TV쇼핑 v2 -->
+    <div class="M2064" ng-if="(unitShow&&moduleData.onAirProd.items.length)||(!unitShow&&moduleData.recommProd.items.length)">
+        <div class="M2064_in_cont">
+            <!-- header -->
+            <div class="M2064_header w100 vm cr_pink">
+                <!-- 방송중 -->
+                <div class="table" ng-if="!(moduleData.recommProd.items.length&&!unitShow&&!onAir)">
+                    <div class="cell in_title vm tc cr_pink">
+                        <!-- Animation 효과용 sp 추가 -->
+                        <span><sp>T</sp><sp>V</sp><sp>쇼</sp><sp>핑</sp></span>
+                    </div>
+                    <div class="cell in_time vm">
+                        <div class="table tc vm txt_onair">
+                            <div class="cell vm state cr_pink"><span>ON AIR</span></div>
+                            <div class="cell vm time cr_white fb"><span>{{liveTime}}</span></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 방송종료 인기상품 -->
+                <div class="table" ng-if="(moduleData.recommProd.items.length&&!unitShow&&!onAir)">
+                    <div class="cell in_title timeover vm tc_cr_pink"><span>TV쇼핑 인기 방송상품</span></div>
+                </div>
+            </div><!--// header -->
+            <!-- 비디오 -->
+            <div class="M2064_video" ng-class="{showVideo:onAir&&unitShow}">
+                <div class="videoWrap">
+                    <!-- class : showTxt 추가시 버튼에 텍스트 표시 -->
+                    <div hw-video
+                         play-Ticlick=""
+                         stop-Ticlick=""
+                         end-Ticlick=""
+                         scroll-leave-stop="true"
+                         scroll-view-play=""
+                         class="showTxt">
+                        <video controls webkitEnterFullscreen poster="" ng-class="{fullscreen:state.fullscreen}">
+                            <source ng-src="{{tvShoppingStreamURL | trustUrl}}" type='video/mp4'/>
+                        </video>
+                        <div class="video_controller" ng-class="{showVctrl:vctr}">
+                            <div class="control_in_wrap">
+                                <em class="ctr_btn btn_play" ng-class="{btn_pause:state.play}" ng-click="video.play()"></em>
+                                <!--em ng-if="state.play" class="ctr_btn btn_volume" ng-class="{btn_volume:!state.mute,mute:state.mute}" ng-click="video.mute()"></em-->
+                                <em ng-if="state.play" class="ctr_btn btn_arrow" ng-click="logGAEvtModuleEach('자세히보기', '자세히보기');mainProductClick(moduleData.onAirProd.items[0].goodsNo,moduleData.tclick+'_Clk_video01')"></em>
+                            </div>
+                            <em class="btn_fullscreen" ng-click="video.fullscreen()"></em>
+                        </div>
+                        <loading ng-if="waiting"></loading>
+                    </div>
+                </div>
+            </div><!--// 비디오 -->
+            <div class="M2064_items">
+                <!-- 기본 -->
+                <div class="def" ng-if="moduleData.onAirProd.items.length&&unitShow&&!onAir">
+                    <!-- swipe container -->
+                    <div class="swipe_container">
+                        <ul class="swipeBox"
+                            hw-swipe
+                            swipe-controller="swpCtrl"
+                            swipe-index="swpIndex"
+                            swipe-total="swpTotal"
+                            infinity="true"
+                            auto-play="false"
+                            interval="3000"
+                            easing="easeOutQuint"
+                            duration="500">
+                            <li ng-repeat="item in moduleData.onAirProd.items">
+                                <div class="in_siwpe_content">
+                                    <figure class="thumb01">
+                                        <img ng-src="{{item.imgUrl}}" alt=""/>
+                                    </figure>
+                                    <div class="in_info table w100" ng-click="logGAEvtModuleEach($index + 1,item.goodsNo,'상품_');mainProductClick(item.goodsNo,moduleData.tclick+'_Clk_Prd0'+($index+1))">
+                                        <div class="cell">
+                                            <p class="cr_back">{{item.goodsNm}}</p>
+                                            <span class="block in_price fb cr_black" ng-class="{isPromotion:item.isPlanPrd}">{{item.price | number}}</span>
+                                        </div>
+                                        <div class="cell buy cr_white tc vm fb"><span>구매하기</span></div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <!-- 아이템 페이징 -->
+                        <div class="swp_page tc" ng-if="moduleData.onAirProd.items.length>1">
+                            <span class="table">
+                                <em class='cell vm tc'>
+                                    <page><b>{{swpIndex+1}}</b>/{{swpTotal}}</page>
+                                </em>
+                            </span>
+                        </div>
+                        <!-- 좌,우 버튼 -->
+                        <div class="arrow_wrap" ng-if="moduleData.onAirProd.items.length>1">
+                            <a class="arrow block left" ng-click="swpCtrl('prev')"></a>
+                            <a class="arrow block right" ng-click="swpCtrl('next')"></a>
+                        </div>
+                    </div><!--//swipe container -->
+                </div><!--//M2064_def-->
+                <!-- 인기상품 ( 대체상품 ) -->
+                <div class="def recomms" ng-if="moduleData.recommProd.items.length&&!unitShow&&!onAir">
+                    <!-- swipe container -->
+                    <div class="swipe_container">
+                        <ul class="swipeBox"
+                            hw-swipe
+                            swipe-controller="swpCtrl2"
+                            swipe-index="swpIndex2"
+                            swipe-total="swpTotal2"
+                            infinity="true"
+                            auto-play="false"
+                            easing="easnOutCirc"
+                            duration="500">
+                            <li ng-repeat="item in moduleData.recommProd.items">
+                                <div class="in_siwpe_content" ng-click="logGAEvtModuleEach($index + 1,item.goodsNo,'대체상품_');mainProductClick(item.goodsNo,moduleData.tclick+'_Clk_Best_Prd0'+($index+1))">
+                                    <figure class="thumb01">
+                                        <img ng-src="{{item.imgUrl}}" alt=""/>
+                                    </figure>
+                                    <div class="in_info table w100">
+                                        <div class="cell">
+                                            <p class="cr_back">{{item.goodsNm}}</p>
+                                            <span class="block in_price fb cr_black" ng-class="{isPromotion:item.isPlanPrd}">{{item.price | number}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <!-- 아이템 페이징 -->
+                        <div class="swp_page tc" ng-if="moduleData.recommProd.items.length>1">
+                            <span class="table">
+                                <em class='cell vm tc'>
+                                    <page><b>{{swpIndex2+1}}</b>/{{swpTotal2}}</page>
+                                </em>
+                            </span>
+                        </div>
+                        <!-- 좌,우 버튼 -->
+                        <div class="arrow_wrap" ng-if="moduleData.recommProd.items.length>1">
+                            <a href="#;" class="arrow block left" ng-click="swpCtrl2('prev')"></a>
+                            <a href="#;" class="arrow block right" ng-click="swpCtrl2('next')"></a>
+                        </div>
+                    </div><!--//swipe container -->
+                </div><!--//M2064_def recomms-->
+                <!-- 재생시 -->
+                <div class="in_list_play" ng-if="onAir&&unitShow">
+                    <h5 class="cr_pink fb">
+                        ONAIR<span class="cr_black">방송상품 ({{moduleData.onAirProd.items.length}}개)</span>
+                    </h5>
+                    <!-- onair_prod_list -->
+                    <div
+                        class="onair_prod_list"
+                        ng-class="{multiple:moduleData.onAirProd.items.length>1}">
+                        <ul class="swipeBox"
+                            hw-swipe
+                            swipe-controller="swpCtrl2"
+                            swipe-index="swpIndex2"
+                            swipe-total="swpTotal2"
+                            infinity="true"
+                            auto-play="false"
+                            easing="easeOutQuint"
+                            duration="400">
+                            <li ng-repeat="item in moduleData.onAirProd.items">
+                                <div class="table" ng-click="logGAEvtModuleEach($index + 1,item.goodsNo,'동영상_');mainProductClick(item.goodsNo,moduleData.tclick+'_Clk_Prd0'+($index+1))">
+                                    <div class="cell">
+                                        <figure>
+                                            <img ng-src="{{item.imgUrl}}" alt=""/>
+                                        </figure>
+                                    </div>
+                                    <div class="cell prod_info">
+                                        <p class="cr_darkgray prod_title">{{item.goodsNm}}</p>
+                                        <span class="block fb cr_black in_price" ng-class="{isPromotion:item.isPlanPrd}">{{item.price | number}}</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div><!--//in_list_play-->
+            </div><!--//in_list_play-->
+            <!-- 재생버튼 -->
+            <a href="#;" ng-if="unitShow" class="floating_play block transform_cener_center" ng-click="logGAEvtModuleEach(02, '생방송보기');onLivePlay()"></a>
+        </div><!--//M2064_in_cont-->
+        <!-- in_foot -->
+        <div class="in_foot table w100 cr_pink">
+            <div class="cell w50 tc vm" ng-click="logGAEvtModuleEach(03, 'TV쇼핑 더보기');goTvShopping('tvhome',moduleData.tclick + '_Clk_Btn01')">TV쇼핑 더보기</div>
+            <div class="cell w50 tc vm" ng-click="logGAEvtModuleEach(04, '편성표보기');goTvShopping('schedule',moduleData.tclick + '_Clk_Btn02')">편성표보기</div>
+        </div><!--//in_foot-->
+    </div>
+</section>

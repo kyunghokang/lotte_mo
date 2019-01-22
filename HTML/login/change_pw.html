@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">	
+<!----------------- current css ----------------->
+	
+<link rel="stylesheet" href="/lotte/resources_dev/login/login.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<!-- container -->
+<section id="container">
+	<!--------------- current html --------------->
+	
+	<form name="changePwMemberForm" id="changePwMemberForm">
+		<input type="hidden" name="cert_key1" id="cert_key1" value="25809">
+		<input type="hidden" name="cert_key2" id="cert_key2" value="3038777274">
+		<section class="easy_login_wrap">
+			<fieldset>
+				<legend>비밀번호 재설정</legend><!-- 20150515 수정 -->
+				<div class="password_change_box">
+					<h3 class="password_change_title">새로운 비밀번호를 입력해주세요.</h3>
+					<ul class="order_id_input">
+						<li><input type="password" class="txt01" name="passwd" id="passwd" placeholder="새로운 비밀번호 입력" title="새로운 비밀번호 입력" maxlength="15" oninput="maxLengthCheck(this)"></li>
+						<li><input type="password" class="txt01" name="passwd_re" id="passwd_re" placeholder="비밀번호 재입력" title="비밀번호 재입력" maxlength="15" oninput="maxLengthCheck(this)"></li>
+					</ul>
+					<div class="password_change_info">
+						<h4>비밀번호 설정 안내</h4>
+						<ul>
+							<li>8~15자 영문, 숫자, 특수문자를 혼합하여 사용하세요.</li>
+							<li>아이디와 동일하거나 연속된 문자/숫자는 사용할 수 없습니다.</li>
+							<li>특수문자 중  &amp;, &lt;, &gt;, “, ‘  는 사용할 수 없습니다.</li>
+							<li>연속된 문자는 사용할 수 없습니다.</li>
+							<li>다른 사람이 알기 쉬운 생일/아이디/전화번호 등은<br>보안에 취약하여 비밀번호로 적합하지 않습니다.</li>
+						</ul>
+					</div>
+					<div class="view_order_btn">
+						<a href="javascript:fn_SendPW();" class="c_btn col01"><span>확인</span></a>
+					</div>
+				</div>
+			</fieldset>
+		</section>
+	</form>
+		
+	<!-------------// current html --------------->
+</section>
+<!-- footer -->
+<section ng-include src="'/HTML/include/footer.html'"></section>
+</body>
+</html>

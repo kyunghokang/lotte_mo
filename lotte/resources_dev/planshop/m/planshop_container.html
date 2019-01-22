@@ -1,0 +1,75 @@
+<section ng-show="contVisible" class="cont_minheight">
+	<div id="container" ng-if="!noData">
+        <!--20161201 앱푸쉬배너-->
+        <div ng-if="param_cn == '133224'" style="background:#4074c7;text-align:center">
+					<!-- 11월 배너 -->
+           <a href="#" ng-click="goApppush_Event2()" ng-if="appPushFlag && appPushFlag == '11'">
+	           <img src="http://image.lotte.com/lotte/mo2015/angular/mall/app_push_banner_1801001.jpg" style="width:320px"/>
+           </a>
+           <!-- 10월 배너 -->
+           <a href="#" ng-click="goApppush_Event3()" ng-if="appPushFlag && appPushFlag == '10'">
+						<img src="http://image.lotte.com/lotte/mo2015/angular/mall/app_push_banner_1801001.jpg" style="width:320px"/>
+           </a>
+        </div>
+
+
+		<div class="planshop_detail">
+            <div>
+	            <div class="plan_bannerWrap">
+					<p ng-bind-html="topHtml | toTrustedHtml"></p>
+	            </div>
+				<div class="card_banner" ng-if="bottomFlag">
+					<a ng-click="bottomBannerClick()"><p ng-bind-html="bottomBanner"></p></a>
+	            </div>
+            </div>
+            <div ng-if="benefitFlag">
+            	<a ng-click="benefitBnrClick()"><img ng-src="http://image.lotte.com{{benefitBnr.imgUrl}}"></a>
+            </div>
+
+
+             <!--productList.length	추가				-->
+			<sort-cate ng-if="allProductFlag && productList.length> 0" ng-class="{fixtype:fixflag}"></sort-cate>
+
+			<!-- s: unit list area -->
+			<div class="unitWrap" style="min-height:550px;" ng-if="productList.length> 0">
+				<!-- 상품리스트 유형 선택 -->
+				<div>
+					<div class="unit_type" >
+				  	    <p class="unit_tlt" ng-class="{sub:firstcate_flag}"><b>{{cate_first}}</b><em> ({{cate_count}})</em><p>
+						<ul>
+							<li class="r1"><a href="#" ng-class="{on:templateType=='list'}" ng-click="changeTemplate('list')">리스트형</a></li>
+							<li class="r2"><a href="#" ng-class="{on:templateType=='image'}" ng-click="changeTemplate('image')">이미지형</a></li>
+							<li class="r3"><a href="#" ng-class="{on:templateType=='swipe'}" ng-click="changeTemplate('swipe')">스와이프형</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- //상품리스트 유형 선택 -->
+				<div ng-controller="productCtrl" ng-if="templateType == 'list' && isProductLoading == true">
+					<div ng-show="dataLoadingFinish" product-container template-type="list" total-count="maxitemData" templatetype="templateType" products="productList"  more-product-continer="getProductDataLoad()"></div>
+				</div>
+				<div ng-controller="productCtrl" ng-if="templateType == 'image' && isProductLoading == true">
+					<div ng-show="dataLoadingFinish" product-container template-type="image" total-count="maxitemData" templatetype="templateType" products="productList"  more-product-continer="getProductDataLoad()"></div>
+				</div>
+				<div ng-controller="productCtrl" ng-if="templateType == 'swipe' && isProductLoading == true">
+					<div ng-show="dataLoadingFinish" product-container template-type="swipe" total-count="maxitemData" templatetype="templateType" products="productList"  more-product-continer="getProductDataLoad()" swipe-move="swipefnc()"></div>
+				</div>
+			</div>
+		</div>
+
+	    <!-- e: 기획전 상세 -->
+
+
+
+	</div>
+
+	<!-- //container -->
+    <div ng-if="noData" >
+    	<p class="noData"> 등록된 이벤트가 없습니다.</p>
+    </div>
+    <div class="listLoading" ng-if="isLoading">
+    	<p class="loading half"></p>
+    </div>
+    <div ng-if="spdp_no == '5405052' ">
+        <dungdung id="ddpop" start="201702101000" end="201702110000"></dungdung>
+    </div>
+</section>

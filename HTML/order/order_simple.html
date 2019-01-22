@@ -1,0 +1,483 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="../../lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="../../lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="../../lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="../../lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="../../lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="../../lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="../../lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="../../lotte/resources_dev/search/layer_srh.css">	
+<!----------------- current css ----------------->
+
+<!-- link rel="stylesheet" href="../../lotte/resources/r20160303_1/order_complete.min.css" -->
+<link rel="stylesheet" href="../../lotte/resources_dev/order/m/order_complete.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="../../lotte/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="../../lotte/lib/angular/angular.min.js"></script>
+<script src="../../lotte/lib/angular/angular-route.min.js"></script>
+<script src="../../lotte/lib/jquery/EGSlider.js"></script><!-- 2016-06-28 슬라이드 추가 -->
+<script src="../js/testPub.js"></script>
+</head>
+<body>
+
+<!-- common -->
+<section ng-include="'../include/common.html'"></section>
+<!-- header -->
+<section ng-include="'../include/header.html'"></section>
+<section ng-include="'../include/head_sub.html'"></section>
+
+<!-- container -->
+<section id="container">
+
+	<section class="order_complete">
+		<section class="tx_order_complete">
+			<p class="txt"><span>주문이 완료</span>되었습니다.<br />감사합니다.</p>
+			<!-- //20160513 선물하기 주문 완료 문구 추가 -->
+			<div class="gift_txt">
+				<p><span>주문이 완료</span>되었습니다.</p>
+				고객님의 마음까지 담아<br />선물을 안전하게 배송해드리겠습니다.<br />감사합니다.
+			</div>
+			<!-- 20160603 선물주문서 주문 완료 문구 추가 -->
+			<!-- 기본, e쿠폰 -->
+			<div class="gift_order_txt">
+				<!-- 기본 -->
+				<p>김지혜님에게<br /><span>선물메시지가 전달</span>됩니다.</p>
+				<!-- e쿠폰 -->
+				<!-- <p>김지혜님에게<br /><span>메시지와 교환권이 전달</span>됩니다.</p> -->
+			</div>
+			<!-- 선물 대량주문 전용 주문 2016.12.20 -->
+			<div class="gift_bulk_order_txt">
+				<!-- 기본 -->
+				<p><strong>선물 주문완료되었습니다.</strong></p>
+				<p>주소 입력을 도와드리기 위해<br />고객센터(1577-1110)에서 전화드릴 예정입니다.</p>
+			</div>			
+			<!-- 무통장, 예약전송 -->
+			<div class="gift_order_txt type2">
+				선물메시지가 대기중입니다.
+				<!-- 무통장 -->
+				<p><span>무통장 입금을 완료하시면</span><br />김지혜님에게 전송됩니다.</p>
+				<!-- 예약전송 -->
+				<!-- <p><span>2016-06-05일</span>에<br />김지혜님에게 전송됩니다.</p> -->
+			</div>
+			<!-- //20160603 선물주문서 주문 완료 문구 추가 -->
+			<!-- //20160119 명절 배송마감일 안내 문구 추가 -->
+			<div class="holiday_txt">
+				주문하신 상품은 2월 2일 24시까지 결제완료 시<br />명절 전 수령하실 수 있습니다.<br />
+				<p>주문에 착오 없으시길 바랍니다.</p>
+				<!-- 배송마감일 이후 주문건 -->
+				<!-- 주문하신 상품은 택배 배송 마감으로 인해<br />명절 이후에 배송되오니, 양해 부탁드립니다. -->
+			</div>
+			<!-- 스마트픽 -->
+			<div class="status_smartPick">
+				<p>스마트픽 상품은 주문완료 후 교환권 번호를 MMS로 발송 또는 출력한 후 픽업장소(또는 매장)에 직접 방문하셔야 상품 수령이 가능합니다.</p>
+				<span>
+					지인이나 친구에게 선물하기
+					<a href="#" class="btn_style1 bi-sp">스마트픽 교환권</a>
+				</span>
+			</div>
+			<!-- // 스마트픽 -->
+		</section>
+		<section class="order_banner">
+			<article class="order_bnr" id="order_bnr"><a href="http://m.lotte.com/event/m/eventSaunList.do?tclick=m_DC_order_Clk_Ban_1&amp;c=mlotte&amp;udid=&amp;v=&amp;cn=&amp;cdn=">
+				<img src="http://image.lotte.com/upload/display/mobile_banner/62512.png" alt="">
+			</a></article>
+		</section>
+
+		<!-- 주문완료 금액확인 -->
+		<section class="order_confirm">
+			<div class="tbl_style01">
+				<table summary="주문완료 금액확인에 관한 표로써, 총 주문금액, 총 할인금액, 최종 결제금액을 제공한다.">
+					<caption>주문완료 금액확인</caption>
+					<colgroup><col width="40%" /><col width="60%" /></colgroup>
+					<tbody>
+						<tr>
+							<th scope="row">총 주문금액</th>
+							<td class="money"><span>2,330,000</span>원</td>
+						</tr>
+						<tr>
+							<th scope="row">총 할인금액</th>
+							<td class="money"><span>-229,550</span>원</td>
+						</tr>
+						<tr>
+							<th scope="row"><strong class="tot_money">최종 결제금액</strong></th>
+							<td class="money"><strong class="tot_money">2,002,350원</strong></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="btn_areaC">
+				<a href="#" class="btn_style2">주문/배송조회</a>
+				<a href="#" class="btn_style3">계속 쇼핑하기</a>
+			</div>
+			<!-- 20160304 구매사은 메세지 추가 -->
+			<div class="OrderMessage">
+				<a href="#" class="area">
+					<span></span>
+					<span>
+						<b>신한카드</b>로 결제하셨네요!<br />
+							00만원 더 결제시 <b>L.POINT 00000만원</b>이 손안에!<br />
+							현재 <b>L.POINT 00000점</b> 적립가능 (~02/24, 수)
+							<!-- 
+							지금 주문하셨나요?<br />
+								<b>포인트 적립혜택</b>을 놓치지 마세요! (~02/24, 수)
+					 
+						 <b>신한카드</v>로 결제하셨네요!<br />
+								00만원 더 결제시 <b>L.POINT 00000만원</b>이 손안에!
+								(~02/24, 수)
+									 
+						 <b>신한카드</b>로 결제하셨네요!<br />
+								00만원 더 결제시 <b>L.POINT 00000만원</b>이 손안에!
+								현재 <em>L.POINT 00000점</em> 적립가능(~02/24, 수)
+									
+						 <b>신한카드</b>로 결제하셨네요!<br />
+								현재 <b>L.POINT 00000점</b> 적립가능하세요!
+								(~02/24, 수)
+							-->
+					</span>
+				 </a>
+			</div>
+			<div class="OrderMessage">
+				<a href="#" class="area">
+					<span></span>
+					<span>
+						지금 주문하셨나요?<br />
+						<b>포인트 적립혜택</b>을 놓치지 마세요!  (~02/24, 수)
+					</span>
+				 </a>
+			</div>
+			
+			<div class="OrderMessage">
+				<a href="#" class="area">
+					<span></span>
+					<span>	  
+						<b>신한카드</b>로 결제하셨네요!<br />
+						00만원 더 결제시 <b>L.POINT 00000만원</b>이 손안에!
+						(~02/24, 수)
+										 
+					</span>
+				 </a>   
+			</div>
+			<div class="OrderMessage">
+				<a href="#" class="area">
+					<span></span>
+					<span>
+								 
+						<b>신한카드</b>로 결제하셨네요!<br />
+						00만원 더 결제시 <b>L.POINT 00000만원</b>이 손안에!
+						현재 <em>L.POINT 00000점</em> 적립가능 (~02/24, 수)
+					</span>
+				 </a>   
+			</div>
+			<div class="OrderMessage">
+				<a href="#" class="area">
+					<span></span>
+					<span>
+						<b>신한카드</b>로 결제하셨네요!<br />
+						현재 <b>L.POINT 00000점</b> 적립가능하세요!
+						(~02/24, 수)
+					</span>
+				 </a>   
+			</div>
+			<!-- //20160304 추가 -->
+		</section>
+		<!-- //주문완료 금액확인 -->
+
+		<section class="order_banner">
+			<img src="http://image.lotte.com/lotte/mo2015/angular/banner_20150904_holiday.jpg" alt="" />
+		</section>
+
+		<!-- 무통장입금 안내 -->
+		<section class="order-confirm">
+			<section class="order_header">무통장입금</section>
+			<div class="tbl_style00">
+				<table summary="주문완료 금액확인에 관한 표로써, 총 주문금액, 총 할인금액, 최종 결제금액을 제공한다.">
+					<caption>주문완료 금액확인</caption>
+					<colgroup><col width="20%" /><col width="55%" /><col width="25%" /></colgroup>
+					<tbody>
+						<tr>
+							<th scope="row">입금기한</th>
+							<td colspan="2">2015.08.07(토)</td>
+						</tr>
+						<tr>
+							<th scope="row">입금계좌</th>
+							<td><span>국민은행 000-0000-0000-00</span><br />(주)롯데닷컴</td>
+							<td class="right"><a href="#" class="btn_style1">복사하기</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+		<!-- // 무통장입금 안내 -->
+
+		<!-- 주문상품 -->
+		<section class="order_header">주문번호  2015-00-00-1234567</section>
+		<section class="order_list" id="order_list">
+			<ul class="product_list_02">
+				<li>
+					<div class="group">
+						<span class="thumb">
+							<a href="#">
+								<img src="http://image.lotte.com/goods/62/45/03/76/1/176034562_1_550.jpg" alt="" />
+							</a>
+						</span>
+						<span class="cont01">
+							<a href="#">
+								<p class="tl">[브랜드명] 상품명이 노출됩니다. 2줄이상 말줄임표사용....</p>
+							</a>
+							<div class="color_size">
+								색상:화이트(WH) | 사이즈:45(55)
+							</div>
+							<div class="btn_list">
+								<a href="#" class="message ">메시지카드</a>
+								<a href="#" class="packing">선물포장</a>
+							</div>
+						</span>
+					</div>
+					<!-- 2016.08.12 Enhanced message delivery emsgd-->
+					<div class="emsgd">
+						<div class="arrived_today">
+							<strong class="l_block">오늘 도착</strong><span><strong>12시간 58분</strong>이내 주문하면 오늘 도착</span>
+						</div>
+						<div class="fast_shipping">
+							<strong class="l_block">빠른 배송</strong><span>지금 주문하면 내일<strong>(8/4)</strong>도착</span>
+						</div>
+						<div class="quick_delivery">
+							<strong class="l_block">퀵배송</strong><span>지금 주문하면<strong>19시 23분 전</strong>도착</span>
+						</div>
+					</div>
+					<!-- //2016.08.12 Enhanced message delivery-->						
+				</li>
+				<li>
+					<div class="group">
+						<span class="thumb">
+							<a href="#">
+								<img src="http://image.lotte.com/goods/62/45/03/76/1/176034562_1_550.jpg" alt="" />
+							</a>
+						</span>
+						<span class="cont01">
+							<a href="#">
+								<p class="tl">[브랜드명] 상품명이 노출됩니다. 2줄이상 말줄임표사용....</p>
+							</a>
+							<div class="color_size">색상:화이트(WH) | 사이즈:45(55)</div>
+							<div class="btn_list">
+								<a href="#" class="message ">메시지카드</a>
+								<a href="#" class="packing">선물포장</a>
+							</div>
+						</span>
+					</div>
+				</li>
+			</ul>
+		</section>
+	
+		<!-- // 주문상품 -->
+		<!-- 20160223 추가 -->
+		<section class="cart_keep">
+			<p>
+				<span class="txt">주문하신 상품을 장바구니에서 계속 보관하실 수 있습니다.</span>
+				<span class="btn"><a href="#" class="btn_keep btn_style1">장바구니담기</a></span>
+			</p>
+		</section>
+		<!-- 상품선택 레이어 -->
+		<section id="cover"></section>
+		<div id="cartKeepPop" class="ansimPop">
+		    <header id="head_sub">
+		        <h2>상품 선택</h2>	        
+		    </header>
+		    <p class="txt">장바구니에 계속 보관하실 상품을 선택해주세요.</p>
+		    <p class="order_number">주문번호  2015 - 07 - 02 - 3222620</p>
+		    <section class="order_list">
+				<ul class="product_list_02">
+					<li>
+						<div class="box"><span></span><var></var></div>
+						<div class="group">
+							<span class="thumb">
+								<a href="#">
+									<img src="http://image.lotte.com/goods/62/45/03/76/1/176034562_1_550.jpg" alt="" />
+								</a>
+							</span>
+							<span class="cont01">
+								<a href="#">
+									<p class="tl">[레이첼콕스] Pumps_Avril 여성 토오픈 플랫 슈즈 여성 토오픈 플랫 슈즈</p>
+								</a>
+								<p class="option"><span>옵션명 최대 1줄 노출 옵션명 최대 1줄 노출</span></p>
+							</span>
+						</div>
+					</li>
+					<li>
+						<div class="box"><span></span><var></var></div>
+						<div class="group">
+							<span class="thumb">
+								<a href="#">
+									<img src="http://image.lotte.com/goods/62/45/03/76/1/176034562_1_550.jpg" alt="" />
+								</a>
+							</span>
+							<span class="cont01">
+								<a href="#">
+									<p class="tl">[브랜드명] 상품명이 노출됩니다. 2줄이상 말줄임표사용</p>
+								</a>
+								<p class="option"><span>옵션명 최대 1줄 노출 옵션명 최대 1줄 노출옵션명 최대 1줄 노출 옵션명 최대 1줄 노출</span></p>
+							</span>
+						</div>
+					</li>
+					<li>
+						<div class="box"><span></span><var></var></div>
+						<div class="group">
+							<span class="thumb">
+								<a href="#">
+									<img src="http://image.lotte.com/goods/62/45/03/76/1/176034562_1_550.jpg" alt="" />
+								</a>
+							</span>
+							<span class="cont01">
+								<a href="#">
+									<p class="tl">[브랜드명] 상품명이 노출됩니다. 2줄이상 말줄임표사용</p>
+								</a>
+								<p class="option"><span>옵션명 최대 1줄 노출 옵션명 최대 1줄 노출옵션명 최대 1줄 노출 옵션명 최대 1줄 노출</span></p>
+							</span>
+						</div>
+					</li>
+					<li>
+						<div class="box"><span></span><var></var></div>
+						<div class="group">
+							<span class="thumb">
+								<a href="#">
+									<img src="http://image.lotte.com/goods/62/45/03/76/1/176034562_1_550.jpg" alt="" />
+								</a>
+							</span>
+							<span class="cont01">
+								<a href="#">
+									<p class="tl">[브랜드명] 상품명이 노출됩니다. 2줄이상 말줄임표사용</p>
+								</a>
+								<p class="option">옵션명 최대 1줄 노출 옵션명 최대 1줄 노출옵션명 최대 1줄 노출 옵션명 최대 1줄 노출</p>
+							</span>
+						</div>
+					</li>
+				</ul>
+			</section>
+			<p class="btn_area"><a href="##">선택완료</a></p>	
+			<p class="close"><a href="#">완료</a></p>	
+		</div>
+		<!-- //20160223 추가 -->
+		<section class="order_info">
+			<ul>
+				<li>이 주문의 할인내역/결제정보/배송지는 주문/배송조회에서 확인 가능합니다.</li>
+				<li>주문번호와 주문 시 입력하신 이메일 주소로 로그인하여 주문내역을 조회 하실 수 있습니다.</li>
+			</ul>
+		</section>
+		<!-- 20160628 주문완료 추천상품 -->
+		<section class="order_recom_wrap">
+			<h3>다른 고객들이 함께 구매한 상품</h3>
+			<div class="mask">
+				<div id="order_recom">
+					<ul>
+						<li>
+							<a href="#none">
+								<span class="imgWrap">
+									<img alt="" src="http://image.lotte.com/goods/58/49/16/42/42164958_1_60.jpg">
+								</span>
+								<span class="sPrdTit">[진도끌레베] 11휘메일 스탠드카라 밍크코트(KWW2EJ49BKMH)</span>
+								<span class="sPrice"><strong>43,800</strong>원</span>
+							</a>
+						</li>
+						<li>
+							<a href="#none">
+								<span class="imgWrap">
+									<img alt="" src="http://image.lotte.com/goods/58/49/16/42/42164958_1_60.jpg">
+								</span>
+								<span class="sPrdTit">[진도끌레베] 휘메일 스탠드카라 밍크코트(KWW2EJ49BKMH)</span>
+								<span class="sPrice"><strong>43,800</strong>원</span>
+							</a>
+						</li>
+						<li>
+							<a href="#none">
+								<span class="imgWrap">
+									<img alt="" src="http://image.lotte.com/goods/58/49/16/42/42164958_1_60.jpg">
+								</span>
+								<span class="sPrdTit">[진도끌레베] 휘메일 스탠드카라 밍크코트(KWW2EJ49BKMH)</span>
+								<span class="sPrice"><strong>43,800</strong>원</span>
+							</a>
+						</li>
+					</ul>
+					<ul>
+						<li>
+							<a href="#none">
+								<span class="imgWrap">
+									<img alt="" src="http://image.lotte.com/goods/58/49/16/42/42164958_1_60.jpg">
+								</span>
+								<span class="sPrdTit">[진도끌레베] 222휘메일 스탠드카라 밍크코트(KWW2EJ49BKMH)</span>
+								<span class="sPrice"><strong>43,800</strong>원</span>
+							</a>
+						</li>
+						<li>
+							<a href="#none">
+								<span class="imgWrap">
+									<img alt="" src="http://image.lotte.com/goods/58/49/16/42/42164958_1_60.jpg">
+								</span>
+								<span class="sPrdTit">[진도끌레베] 휘메일 스탠드카라 밍크코트(KWW2EJ49BKMH)</span>
+								<span class="sPrice"><strong>43,800</strong>원</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="indicator">
+					<span>1</span><span>2</span>
+				</div>
+			</div>
+		</section>
+		<!-- //20160628 주문완료 추천상품 -->
+	</section>
+	<!-- 20160223 추가 -->
+	<script>
+	$(function(){
+		$(document).ready(function(){
+			$( '.cart_keep a.btn_keep' ).on( 'click', function (e) {
+				$("#cover").css("display", "block");
+				$(".ansimPop").show();
+				return false;
+			});	
+			$(".ansimPop > p.close > a").on( 'click', function (e) {
+				$(".ansimPop").hide();
+				$("#cover").css("display", "none");
+				return false;
+			});
+			$('#cartKeepPop .product_list_02 li').on( 'click', function(){
+				if ($(this).hasClass('on')){
+					$(this).removeClass('on');
+				}else {
+					$(this).addClass('on');
+				};
+				return false;
+			});
+			/* 20160628 주문완료 추천상품 */
+			if($('#order_recom').length){
+				var recomSwipe=setEGSlide('#order_recom',rcSwipeEnd,true);
+				rcSwipeEnd(1);
+			}
+			function rcSwipeEnd(idx){
+				$('.order_recom_wrap .indicator span').eq(idx-1).addClass('on').siblings().removeClass('on');
+			}
+			/* //20160628 주문완료 추천상품 */
+		});
+	});
+	</script>
+	<!-- //20160223 추가 -->
+</section>
+<!--// container -->
+
+<!-- footer -->
+<section ng-include="'../include/footer.html'"></section>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplOrderReturnReg1" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                ],
+                "dest" : "lotte/resources/<%= version %>/order_return_reg_step1.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsOrderReturnReg1" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mylotte/orderclaim/order_return_reg.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/order_return_reg_step1.js"
+            }
+        },
+
+        "uglify" : {
+            "jsOrderReturnReg1" : {
+                "src" : "lotte/resources/<%= version %>/order_return_reg_step1.js",
+                "dest" : "lotte/resources/<%= version %>/order_return_reg_step1.min.js"
+            },
+            "tplOrderReturnReg1" : {
+                "src" : "lotte/resources/<%= version %>/order_return_reg_step1.template.js",
+                "dest" : "lotte/resources/<%= version %>/order_return_reg_step1.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssOrderReturnReg1" : {
+                "src" : [
+                    "lotte/resources_dev/mylotte/purchase/m/order_return_reg.css",
+                    "lotte/resources_dev/mylotte/purchase/m/purchase.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/order_return_reg_step1.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanOrderReturnReg1" : [
+                "lotte/resources/<%= version %>/order_return_reg_step1.js",
+                "lotte/resources/<%= version %>/order_return_reg_step1.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlOrderReturnReg1" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                }
+            }
+        }
+    }
+}
+

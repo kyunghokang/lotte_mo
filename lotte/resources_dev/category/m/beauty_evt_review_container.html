@@ -1,0 +1,71 @@
+<section ng-show="contVisible" class="cont_minheight">
+	<section class="pageLoading" ng-show="pageLoading">
+		<p class="loading half"></p>
+	</section>
+	<section ng-show="!pageLoading" class="evt_review_wrap">
+		<div class="evt_top">
+			<div class="evt_img">
+				<img ng-src="{{evtData.evtImgUrl}}" alt="{{evtData.title}}" />
+			</div>
+			<div class="evt_info">
+				<h2>{{evtData.title}}</h2>
+				<ul>
+					<li>
+						<strong>증정상품</strong>{{evtData.evtPrdNm}}
+					</li>
+					<li class="floatL">
+						<strong>행사기간</strong>{{evtData.evtStrDate}} ~ {{evtData.evtEndDate}}
+					</li>	
+					<li class="floatR">
+						<strong>응모조건</strong>구매회원
+					</li>
+					<li class="floatL">
+						<strong>당첨발표</strong>{{evtData.winDate}}
+					</li>
+					<li class="floatR">
+						<strong>당첨인원</strong>{{evtData.winNum}}명 추첨
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="evt_etc">
+			<div class="evt_method">
+				<h3>상품평 이벤트 신청 방법</h3>
+				<ul>
+					<li>
+						<span class="no">Step1</span>
+						<span class="txt">이벤트를 진행중인 상품을 구매하거나 사용.</span>
+					</li>
+					<li>
+						<span class="no">Step2</span>
+						<span class="txt">직접 사용한 경험을 바탕으로 상품평 작성.</span>
+					</li>
+				</ul>
+				<a ng-click="myReviewClk()" class="btn_rvw_write">상품평 작성하기</a>
+			</div>
+			<div class="evt_faq">
+				<h3>이벤트 당첨자 확인사항</h3>
+				<ul id="faq_list">
+					<li ng-repeat="x in evtData.evtFaq.items" ng-click="faqAccordion($index)" ng-class="{on:faqIdx==$index}">
+						<div class="qst">{{x.q}}</div>
+						<div class="asw" ng-bind-html="::x.a"></div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="list_wrap" ng-controller="productCtrl">
+			<div class="prd_list">
+				<!-- 상품리스트 유형 선택 -->
+				<div class="unit_type" >
+					<p class="unit_tit">전체<em> {{evtData.prdList.items.length|number}}</em>개</p>
+					<ul>
+						<li class="r1"><a href="#" ng-class="{on:templateType=='list'}" ng-click="changeTemplate('list')">리스트형</a></li>
+						<li class="r2"><a href="#" ng-class="{on:templateType=='image'}" ng-click="changeTemplate('image')">이미지형</a></li>
+						<li class="r3"><a href="#" ng-class="{on:templateType=='swipe'}" ng-click="changeTemplate('swipe')">스와이프형</a></li>
+					</ul>
+				</div>
+				<div product-container template-type="image" templatetype="templateType"  total-count="evtData.prdList.items.length" products="evtData.prdList.items" class="prd_list"></div>
+			</div>
+		</div>
+	</section>
+</section>

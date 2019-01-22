@@ -1,0 +1,93 @@
+<section id="shop_location" class="" ng-if="isOpenedMap">
+	<div class="cover"></div>
+	<section id="smartpick" class="map">
+		<!-- sub header -->
+		<header id="head_sub">
+			<h2>매장위치</h2>
+			<p class="close"><a href="javascript:void(0);" ng-click="$emit('closeStoreMap')">닫기</a></p>
+		</header>
+		<!-- //sub header -->
+
+
+
+		<section ng-if="naverStoreMapData.smartpick_store_addr.items.length == 1 " class="map_head">
+			<dl>
+				<dt>매장명</dt>
+				<dd id="spanTopShopName">{{naverStoreName}}</dd>
+				<dt>매장주소</dt>
+				<dd id="spanTopShopAddress">{{naverStoreAddr}}</dd>
+			</dl>
+		</section>
+
+
+
+		<section ng-if="naverStoreMapData.smartpick_store_addr.items.length > 1 && naverStoreMapData.smartpick_store_addr.items.length <= 10" class="map_head">
+			<div class="s_box04">
+				<select ng-model="shop_no" ng-change="getMapselected(shop_no)" class="ono_selectBox">
+							<option ng-repeat="item in naverStoreMapData.smartpick_store_addr.items"
+									ng-model="shop_no"
+									ng-selected="selectedItem == item.shop_no"
+									value="{{item.shop_no }}^{{item.entr_no}}^{{item.entr_contr_no}}^{{item.post_addr}}^{{item.dtl_addr}}^{{item.shop_nm}}" >{{item.shop_nm}}</option>
+				</select>
+			</div>
+			<dl>
+				<dt>매장명</dt>
+				<dd id="spanTopShopName">{{naverStoreName}}</dd>
+				<dt>매장주소</dt>
+				<dd id="spanTopShopAddress">{{naverStoreAddr}}</dd>
+			</dl>
+		</section>
+
+
+
+		<section ng-if="naverStoreMapData.smartpick_store_addr.items.length > 10 " class="map_head">
+			<div class="s_box04 region">
+				<select  ng-model="region" ng-change="getRegionName1stSelected(region,0)" class="ono_selectBox" >
+							<option ng-repeat="item in regionName0st track by $index"
+											ng-model="region"
+											value="{{item}}" >{{item}}</option>
+				</select>
+				<select  ng-model="region" ng-change="getRegionName1stSelected(region,1)" class="ono_selectBox" >
+							<option ng-repeat="item in regionName1st track by $index"
+											ng-model="region"
+											value="{{item}}" >{{item}}</option>
+				</select>
+				<select  ng-model="region" ng-change="getRegionName1stSelected(region,2)" class="ono_selectBox" >
+							<option ng-repeat="item in regionName2st track by $index"
+											ng-model="region"
+											value="{{item}}" >{{item}}</option>
+				</select>
+			</div>
+			<div class="s_box04">
+				<select ng-model="shop_no" ng-change="getMapselected(shop_no)" class="ono_selectBox" >
+								<option ng-repeat="item in regionStoreList"
+										ng-model="shop_no"
+										ng-selected="selectedItem == item.shop_no"
+										value="{{item.shop_no }}^{{item.entr_no}}^{{item.entr_contr_no}}^{{item.post_addr}}^{{item.dtl_addr}}^{{item.shop_nm}}" >{{item.shop_nm}}</option>
+				</select>
+			</div>
+			<dl>
+				<dt>매장명</dt>
+				<dd id="spanTopShopName">{{naverStoreName}}</dd>
+				<dt>매장주소</dt>
+				<dd id="spanTopShopAddress">{{naverStoreAddr}}</dd>
+			</dl>
+		</section>
+
+
+
+		<!-- 지도 영역 Naver --
+		<section id="mapContainer" ng-if="naverStoreMapData.smartpick_store_addr.total_count > 0" class="mapCont">
+
+		</section> -->
+		<!--google map-->
+        <div id="map-canvas" style="width:100%;height:82%" ng-if="naverStoreMapData.smartpick_store_addr.total_count > 0">
+
+
+        </div>
+
+		<section ng-if="naverStoreMapData.smartpick_store_addr.total_count == 0" style="height:100%; background-color:white;">
+			<!-- 지도 없을때 -->
+			<div class="empty">죄송합니다. 본 상품의 매장정보는 제공하고 있지 않습니다.해당 브랜드의 홈페이지나 고객센터를 통하여 문의 부탁드립니다.</div>
+		</section>
+</section>

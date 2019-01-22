@@ -1,0 +1,145 @@
+<section>
+	<!-- ■■■ 일반 상품 섹션 -->
+	<!--
+	-->
+	<cart-group
+		ng-if="getNormalGroupInfo().products.length"
+		group-info="getNormalGroupInfo()"
+		toggle-check-all-items="toggleCheckAllItems(groupInfo, isDeselectAll)"
+		change-each-checkbox="changeEachCheckbox(product, groupInfo)"
+		go-goods-detail="goGoodsDetail(product, isSoldout, idx)"
+		go-order="goOrder(product, groupInfo)"
+		toggle-goods-option="toggleGoodsOption(product)"
+		delete-multi-product="deleteMultiProduct(groupInfo)"
+		add-wish="addWish(groupInfo)"
+		change-select-option-item="changeSelectOptionItem(product, changedOptionIdx)"
+		get-formatted-goods-nm="getFormattedGoodsNm(product)"
+		is-not-print-group="false"
+		is-smartpic="false"
+		reload-fnc = "reloadProduct()"
+		open-hope-pop="openHopePop"
+		is-class="GROUP_KEY_NORMAL"
+	></cart-group>
+
+
+
+	<!-- ■■■ 도서 상품 섹션 -->
+	<!--
+	-->
+	<cart-group
+		ng-if="getBookGroupInfo().products.length"
+		group-info="getBookGroupInfo()"
+		toggle-check-all-items="toggleCheckAllItems(groupInfo, isDeselectAll)"
+		change-each-checkbox="changeEachCheckbox(product, groupInfo)"
+		go-goods-detail="goGoodsDetail(product, isSoldout, idx)"
+		go-order="goOrder(product, groupInfo)"
+		toggle-goods-option="toggleGoodsOption(product)"
+		delete-multi-product="deleteMultiProduct(groupInfo)"
+		add-wish="addWish(groupInfo)"
+		change-select-option-item="changeSelectOptionItem(product, changedOptionIdx)"
+		get-formatted-goods-nm="getFormattedGoodsNm(product)"
+		ng-if="!isEllotte"
+		is-not-print-group="isNotPrintGroup()"
+		is-smartpic="false"
+		open-hope-pop="openHopePop"
+		is-class="GROUP_KEY_BOOK"
+	></cart-group>
+
+
+
+	<!-- ■■■ 망고 상품 섹션 -->
+	<!--
+	-->
+	<cart-group
+		ng-if="getManggoGroupInfo().products.length"
+		group-info="getManggoGroupInfo()"
+		toggle-check-all-items="toggleCheckAllItems(groupInfo, isDeselectAll)"
+		change-each-checkbox="changeEachCheckbox(product, groupInfo)"
+		go-goods-detail="goGoodsDetail(product, isSoldout, idx)"
+		go-order="goOrder(product, groupInfo)"
+		toggle-goods-option="toggleGoodsOption(product)"
+		delete-multi-product="deleteMultiProduct(groupInfo)"
+		add-wish="addWish(groupInfo)"
+		change-select-option-item="changeSelectOptionItem(product, changedOptionIdx)"
+		get-formatted-goods-nm="getFormattedGoodsNm(product)"
+		ng-if="!isEllotte"
+		is-not-print-group="isNotPrintGroup()"
+		is-smartpic="false"
+		open-hope-pop="openHopePop"
+		is-class="GROUP_KEY_MANGGO"
+	></cart-group>
+
+
+
+	<!-- ■■■ 스마트픽 상품 섹션 -->
+	<cart-group
+		ng-if="getSmartpicGroupInfo().products.length"
+		group-info="getSmartpicGroupInfo()"
+		toggle-check-all-items="toggleCheckAllItems(groupInfo, isDeselectAll)"
+		change-each-checkbox="changeEachCheckbox(product, groupInfo)"
+		go-goods-detail="goGoodsDetail(product, isSoldout, idx)"
+		go-order="goOrder(product, groupInfo)"
+		toggle-goods-option="toggleGoodsOption(product)"
+		delete-multi-product="deleteMultiProduct(groupInfo)"
+		add-wish="addWish(groupInfo)"
+		change-select-option-item="changeSelectOptionItem(product, changedOptionIdx)"
+		get-formatted-goods-nm="getFormattedGoodsNm(product)"
+		open-smartpic-location="openSmartpicLocation(isNaverShow, product, event)"
+		is-not-print-group="false"
+		is-smartpic="true"
+		delete-one-product="deleteOneProduct(seq)"
+		reload-fnc = "reloadProduct()"
+		open-hope-pop="openHopePop"
+		is-class="GROUP_KEY_SMARTPIC"
+	></cart-group>
+
+
+
+	<!-- ■■■ 홈쇼핑 상품 섹션 -->
+	<!--
+	-->
+	<cart-group
+		ng-if="getHomeshoppingGroupInfo().products.length"
+		group-info="getHomeshoppingGroupInfo()"
+		toggle-check-all-items="toggleCheckAllItems(groupInfo, isDeselectAll)"
+		change-each-checkbox="changeEachCheckbox(product, groupInfo)"
+		go-goods-detail="goGoodsDetail(product, isSoldout, idx)"
+		go-order="goOrder(product, groupInfo)"
+		toggle-goods-option="toggleGoodsOption(product)"
+		delete-multi-product="deleteMultiProduct(groupInfo)"
+		add-wish="addWish(groupInfo)"
+		change-select-option-item="changeSelectOptionItem(product, changedOptionIdx)"
+		get-formatted-goods-nm="getFormattedGoodsNm(product)"
+		ng-if="!isEllotte"
+		is-not-print-group="isNotPrintGroup()"
+		is-smartpic="false"
+		open-hope-pop="openHopePop"
+		is-class="GROUP_KEY_HOMESHOPPING"
+	></cart-group>
+
+    <!--201607 크로스픽 편의점 팝업-->
+    <div id="searchMartPop" class="martPopup">
+       <iframe></iframe>
+    </div>
+	<!-- 퀵 배송 안내 팝업 -->
+	<div class="commonPop quick_layer">
+		<div class="bg" ng-click="close_quickPop()"></div>
+		<div class="box">
+			<div class="popBox">
+				<h2>퀵 배송 안내</h2>
+				<div class="cont">
+					<ul>
+						<li>이용시간 : 09:00~16:30<br />(롯데백화점 본점 휴무, 공휴일 제외)</li>
+						<li>가능 지역 : 서울지역</li>
+						<li>퀵 배송비 : 10만원 미만 주문 시 <em>10,000원</em><br />10만원 이상 주문 시 <em>5,000원</em></li>
+						<li>배송 소요 시간 : 결제완료 후 4시간 이내<br />(마포구,서대문구,용산구,은평구,종로구,중구: 결제 완료 후 2시간 이내)</li>
+						<li>교환/반품 : 교환 불가/택배로 반품만 가능</li>
+					</ul>
+				 </div>
+				<div class="foot" ng-click="close_quickPop()">
+					닫기
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

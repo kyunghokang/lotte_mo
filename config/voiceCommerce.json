@@ -1,0 +1,75 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplVoiceCommerce" : {
+				"options": {
+					"prefix":"/",
+					"module" : "app"
+				},
+				"src" : [
+					"lotte/resources_dev/talk/voiceCommerce_header.html",
+					"lotte/resources_dev/talk/voiceCommerce_sidenav.html",
+					"lotte/resources_dev/talk/voiceCommerce_container.html",
+					"lotte/resources_dev/talk/voiceCommerce_dtl_info.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/voiceCommerce.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsVoiceCommerce" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/common/style_recom.js",
+					"lotte/resources_dev/common/lotte_slider.js",
+					"lotte/resources_dev/talk/voiceCommerce_service.js",
+					"lotte/resources_dev/talk/voiceCommerce.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/voiceCommerce.js"
+			}
+		},
+
+		"uglify" : {
+			"jsVoiceCommerce" : {
+				"src" : "lotte/resources/<%= version %>/voiceCommerce.js",
+				"dest" : "lotte/resources/<%= version %>/voiceCommerce.min.js"
+			},
+			"tplVoiceCommerce" : {
+				"src" : "lotte/resources/<%= version %>/voiceCommerce.template.js",
+				"dest" : "lotte/resources/<%= version %>/voiceCommerce.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssVoiceCommerce" : {
+				"src" : [
+					"lotte/resources_dev/talk/voiceCommerce_sidenav.css",
+					"lotte/resources_dev/talk/voiceCommerce.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/voiceCommerce.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanVoiceCommerce" : [
+				"lotte/resources/<%= version %>/voiceCommerce.js",
+				"lotte/resources/<%= version %>/voiceCommerce.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlVoiceCommerce" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"talk/voiceCommerce.html" : "talk/voiceCommerce_dev.html"
+				}
+			}
+		}
+	}
+}

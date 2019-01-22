@@ -1,0 +1,23 @@
+<section class="allSubCateFlag" ng-if="allSubCateFlag">
+    <!-- 전체보기 열렸을때(class 'on'추가) -->
+    <div class="subCateAllView" ng-class="{on:allSubCateOpenFlag}" >
+        <!--버튼-->
+        <div class="btnWrap"  ng-click="allSubCateClick()" >
+            <span class="btnArea">
+                <a class="btn_prdView"><span id="curcatenm_top">{{screenData.cateName}}</span><span class="btnIcon"></span></a>
+            </span>
+        </div>
+
+		<!-- 스크롤 -->
+        <div ng-show="allSubCateOpenFlag" ng-class="{true: 'subCateAllViewList on', false: 'subCateAllViewList'}[allSubCateOpenFlag]">
+            <div class="list scrolltype">
+                <ul>
+					 <li ng-repeat="items in screenData.cate_list[inFantUi.d_cate].sub_cate_list">
+                		<a ng-click="subCateClick(items.disp_no, $index)" ng-class="{on : $index == inFantUi.m_cate}">{{items.disp_nm}}</a>
+                    </li>
+				</ul>
+			</div>
+        </div>
+        <!-- //스크롤 -->
+    </div>
+</section>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴-TalkShopping</title>
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<style>
+html, body{margin:0;padding:0;}
+div{padding:20px;}
+div > div{padding:5px 0;font-size:18px;}
+a{display:inline-block;width:100px;height:40px;line-height:40px;border:1px solid #ccc;border-radius:20px;text-align:center;}
+</style>
+<script src="/lotte/lib/jquery/jquery-1.11.2.min.js"></script>
+<script>
+function orderComp(suc){
+	switch(suc){
+	case 0:
+		// success
+		parent.talkOrderCallBack("0000", "", "2017110212345");
+		break;
+	case 1:
+		// fail
+		parent.talkOrderCallBack("9999", "결제 에러 메시지", "");
+		break;
+	case 2:
+		// ISP success
+		parent.location.href = "/talk/talkShopping_dev.html?c=&udid=&v=&cn=&cdn=&schema=&dev_mode=Y&isp=Y&resCode=0000&resMsg=&ord_no=12345678";
+		break;
+	case 3:
+		// ISP fail
+		parent.location.href = "/talk/talkShopping_dev.html?c=&udid=&v=&cn=&cdn=&schema=&dev_mode=Y&isp=Y&resCode=1111&resMsg=ISP 실패";
+		break;
+	case 4:
+		// 보이스 커머스 ISP success
+		parent.location.href = "/talk/voiceCommerce_dev.html?c=&udid=&v=&cn=&cdn=&schema=&dev_mode=Y&isp=Y&resCode=0000&resMsg=&ord_no=12345678";
+		break;
+	case 5:
+		// 보이스 커머스 ISP fail
+		parent.location.href = "/talk/voiceCommerce_dev.html?c=&udid=&v=&cn=&cdn=&schema=&dev_mode=Y&isp=Y&resCode=1111&resMsg=ISP 실패";
+		break;
+	}
+}
+
+function getUrlParams() {
+	var params = {};
+
+	if (location.search) {
+		var parts = location.search.substring(1).split('&');
+
+		for (var i = 0; i < parts.length; i++) {
+			var nv = parts[i].split('=');
+			if (!nv[0]) continue;
+			params[nv[0]] = nv[1] || null;
+		}
+	}
+	return params;
+}
+
+$(function(){
+	var q = getUrlParams();
+	console.log(q)
+	var str = '';
+	str += '<div>cart_sn: ' + q.cart_sn + '</div>';
+	str += '<div>goods_no: ' + q.goods_no + '</div>';
+	$("#tf").html(str);
+});
+
+</script>
+</head>
+<body>
+<div>
+	<div>
+		<a onclick="orderComp(0);">주문 완료</a>
+		<a onclick="orderComp(1);">주문 실패</a>
+	</div>
+	<div id="tf"></div>
+	<div>
+		<a onclick="orderComp(2);">ISP 완료</a>
+		<a onclick="orderComp(3);">ISP 실패</a>
+	</div>
+	<div>
+		<a onclick="orderComp(4);">ISP 완료 - 보이스커머스</a>
+		<a onclick="orderComp(5);">ISP 실패 - 보이스커머스</a>
+	</div>
+</div>
+</body>
+</html>

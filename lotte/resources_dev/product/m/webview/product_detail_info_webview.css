@@ -1,0 +1,95 @@
+@charset "UTF-8";
+
+a,li,form {-webkit-tap-highlight-color:transparent;}
+/* common */
+* {margin:0;padding:0;}
+html, body {width:100%;height:100%;left:0;font-size:13px;font-family:'나눔고딕',NanumGothic,'맑은고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,Helvetica,sans-serif;color: #333;-webkit-text-size-adjust: none;box-sizing: border-box;-webkit-box-sizing: border-box}
+input,button,select{font-family:'나눔고딕',NanumGothic,'맑은고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,Helvetica,sans-serif;}
+fieldset,img {border:0 none;box-sizing:border-box;-webkit-box-sizing:border-box}
+ol, ul {list-style:none;margin:0;padding:0}
+table {width:100%;border-collapse:collapse;border-spacing:0;border:0 none}
+hr {display:none}
+a {text-decoration:none;color:#333}
+img{width: 100%;height:auto;vertical-align: top}
+em{font-style: normal}
+caption {text-indent:-9999em;color:transparent;height:0}
+i{display:inline-block}
+slelct{font-size:12px;font-family:'나눔고딕',NanumGothic,'맑은고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,Helvetica,sans-serif;color: #333;}
+
+.detailLayout{position:relative;line-height:150%;padding:15px;}
+.detailLayout img {max-width:100% !important;height:auto !important;width:auto !important}
+.detailLayou table, .detailLayou tr, .detailLayou tbody, .detailLayou tfoot, .detailLayou thead,
+.detailLayou p, .detailLayou div, .detailLayou address, .detailLayou dl, .detailLayou filedset,
+.detailLayou h1, .detailLayou h2, .detailLayou h3, .detailLayou h4, .detailLayou h5, .detailLayou h6,
+.detailLayou hr, .detailLayou ol, .detailLayou pre, .detailLayou ul,
+.detailLayou dd, .detailLayou dt {width:100% !important;height:auto !important}
+.detailLayout *{/*margin-left:0 !important;margin-right:0 !important;*/word-break:break-all;
+-webkit-box-sizing:border-box;
+-moz-box-sizing:border-box;
+box-sizing:border-box;
+max-width:100%!important;
+/* height:auto!important;
+width:auto!important; */
+}
+.detailLayout  p, .detailLayout  table, .detailLayout  tr, .detailLayout  tbody, .detailLayout tfoot, .detailLayout  thead, .detailLayout  div, .detailLayout  address, .detailLayout  dl, .detailLayout  filedset, .detailLayout  h1, .detailLayout  h2, .detailLayout  h3, .detailLayout  h4, .detailLayout  h5, .detailLayout  h6, .detailLayout  hr, .detailLayout  ol, .detailLayout  pre, .detailLayout  ul, .detailLayout  dd, .detailLayout  dt{max-width:100% !important;height:auto !important;width:auto !important}
+.detailLayout table td, .detailLayout tr td, .detailLayout tbody td, .detailLayout tfoot td, .detailLayout thead td {text-align:left;height:auto !important;}
+
+/* Iframe 처리 */
+.detailLayout .prddetail_scrollwrap{position:relative;}
+.detailLayout .prddetail_scrollwrap.left_scroll:before{content:"";display:block;position:absolute;top:0;left:0;width:10px;height:100%;background:transparent url(http://image.lotte.com/lotte/mobile/mobile_new/product/bg_prd_detail_scroll.png) repeat-y 0 0;background-size:20px 1px;z-index:1}
+.detailLayout .prddetail_scrollwrap.right_scroll:after{content:"";display:block;position:absolute;top:0;right:0;width:10px;height:100%;background:transparent url(http://image.lotte.com/lotte/mobile/mobile_new/product/bg_prd_detail_scroll.png) repeat-y -10px 0;background-size:20px 1px;z-index:1}
+.detailLayout .prddetail_scrollwrap span.scroll_arrow{display:block;overflow:hidden;position:absolute;top:0;width:25px;height:25px;color:#fff;text-align:center;text-indent:-9999px;background:transparent url(http://image.lotte.com/lotte/mobile/mobile_new/product/ico_prd_detail_scroll.png) no-repeat 0 0;background-size:45px 20px;z-index:2}
+.detailLayout .prddetail_scrollwrap span.scroll_arrow.left{left:0;background-position:0 0}
+.detailLayout .prddetail_scrollwrap span.scroll_arrow.right{right:0;background-position:-25px 0}
+.detailLayout .prddetail_scrollbox{max-width:100%;overflow-x:scroll;-webkit-overflow-scrolling:touch}
+
+/* 사이즈 조견표 처리 */
+.size_guide_wrap{width:816px;padding:29px 22px;border:5px solid #e9e9e9;background:#fff;text-align:left;font-size:11px;font-family:"dotum";padding-top:20px;}
+.size_guide_wrap h3{margin:0;padding:0}
+.size_guide_wrap ul li{list-style:none;padding:0;margin:0}
+.size_guide_wrap .size_title_wrap{width:814px;height:25px;margin:30px 0 10px 0;*zoom:1}
+.size_guide_wrap .size_title_wrap:after{content:"";display:block;clear:both}
+.size_guide_wrap .size_title_wrap h3.tamplete_title{float:left;color:#000;font-size:14px;margin-right:10px}
+.size_guide_wrap .size_title_wrap select.size_selector{float:left;vertical-align:middle;margin-right:5px}
+.size_guide_wrap .size_title_wrap input{float:left;vertical-align:middle}
+.size_guide_wrap .title_idx_1{margin-top:0}
+
+.size_guide_wrap .size_tabel{border-collapse:separate;border-spacing:0;border:0;text-align:center;width:auto}
+.size_guide_wrap .size_tabel caption{display:none}
+.size_guide_wrap .size_tabel th,#sizeGuide .size_tabel td{padding:0;border:0}
+.size_guide_wrap .size_tabel input{padding:0;margin:0}
+.size_guide_wrap .size_tabel input.txt{width:30px}
+.size_guide_wrap .size_tabel input.txt_wide{width:73px;color:#777}
+.size_guide_wrap .size_tabel input.txt,
+.size_guide_wrap .size_tabel input.txt_wide{height:14px;line-height:14px;border:1px solid #b3b3b3;text-align:center}
+.size_guide_wrap .size_tabel thead tr th{color:#565656}
+.size_guide_wrap .size_tabel thead tr th.label{width:126px}
+.size_guide_wrap .size_tabel thead tr.default_size th{height:27px;line-height:27px;border-width:0 0 1px 1px;border-style:solid;border-color:#a9a9a9 #efefef;background:#c2c2c2}
+.size_guide_wrap .size_tabel thead tr.default_size th.label{border-left:0}
+.size_guide_wrap .size_tabel thead tr.brand_size th{height:27px;line-height:27px;border-width:1px 0 1px 1px;border-style:solid;border-color:#e3e3e3 #fff #a9a9a9 #efefef;background:#c2c2c2}
+.size_guide_wrap .size_tabel thead tr.brand_size th.label{border-left:0}
+.size_guide_wrap .size_tabel thead tr.delete_btn th{border-width:0 0 1px 1px;border-style:solid;border-color:#fff #fff #a9a9a9 #efefef;vertical-align:top;height:16px;line-height:16px;background:#c2c2c2}
+.size_guide_wrap .size_tabel tbody tr th,
+.size_guide_wrap .size_tabel tbody tr td{border-width:0 0 0 1px;border-style:solid;border-color:#f5f5f5;background:#e2e2e2}
+.size_guide_wrap .size_tabel tbody tr.odd th,
+.size_guide_wrap .size_tabel tbody tr.odd td{background:#ededed}
+.size_guide_wrap .size_tabel tbody .cell{width:42px;height:30px}
+.size_guide_wrap .size_tabel tbody .cell_wide{width:85px;height:30px}
+.size_guide_wrap .size_tabel tbody .label{width:126px;border-left:0;color:#535353;font-weight:normal}
+
+.size_guide_wrap .size_guide_tip_wrap{padding:30px 0 0 0;*zoom:1}
+.size_guide_wrap .size_guide_tip_wrap:after{content:"";display:block;clear:both}
+.size_guide_wrap .size_guide_tip_wrap .guide_img_wrap{float:left;width:360px}
+.size_guide_wrap .size_guide_tip_wrap .guide_img_wrap img{max-width:100% !important}
+.size_guide_wrap .size_guide_tip_wrap .guide_tip_wrap{float:none;padding:17px 0 0 0}
+.size_guide_wrap .size_guide_tip_wrap .guide_tip_wrap h3{color:#555;font-size:12px}
+.size_guide_wrap .size_guide_tip_wrap .guide_tip_wrap ul{margin-top:15px}
+.size_guide_wrap .size_guide_tip_wrap .guide_tip_wrap ul.tamplete_1{margin-top:15px}
+.size_guide_wrap .size_guide_tip_wrap .guide_tip_wrap ul li{position:relative;margin-bottom:9px;line-height:17px;color:#666;padding-left:25px;text-align:left;}
+.size_guide_wrap .size_guide_tip_wrap .guide_tip_wrap ul li span.no{display:block;position:absolute;top:1px;left:0;overflow:hidden;width:15px;height:12px;line-height:11px;color:#fff;font-size:10px;font-family:"verdana";font-weight:bold;text-align:center;background:#666}
+.size_guide_wrap.sizePad{width:816px;padding:29px 22px;border:5px solid #e9e9e9;background:#fff;text-align:left;font-size:11px;font-family:"dotum";padding-top:20px;box-sizing:border-box;}
+.size_guide_wrap.sizePad .size_guide_tip_wrap .guide_tip_wrap{float:left;padding:17px 0 0 0;}
+
+.size_guide_wrap{padding:20px 10px !important;border:1px solid #e9e9e9 !important;box-sizing:border-box !important}
+.size_guide_wrap .size_tabel th,
+.size_guide_wrap .size_tabel td{white-space:nowrap !important;text-align:center !important;min-width:40px !important}

@@ -1,0 +1,83 @@
+<div class="search2017 prd_srh_curationAlist_container">
+	<!-- 큐레이션 상품 6개까지표시, 일반상품 : 큐레이션형 -->
+	<div class="prd_srh_curationAlist">
+		<ul>
+			<li class="list0">
+				<a ng-href="{{getProductInfoUrl(products[0], 'normal', 1)}}" onclick="return false;" ng-click="productInfoClick(products[0], null, 0)">
+					<div class="thumb" style="background-image:url({{getProductImage(products[0])}})">
+						<span class="icon_ranking" ng-if="templateType=='imagerank'">1</span>
+						<span class="favor">인기</span>
+					</div>
+					<p class="info"><span>{{products[0].discounted_price|number}}</span>원<em ng-show="products[0].is_sale_promotion">~</em></p>
+				</a>
+			</li>
+			<li class="list1">
+				<a ng-href="{{getProductInfoUrl(products[1], 'normal', 2)}}" onclick="return false;" ng-click="productInfoClick(products[1], null, 1)">
+					<div class="thumb" style="background-image:url({{getProductImage(products[1])}})">
+						<span class="icon_ranking" ng-if="templateType=='imagerank'">2</span>
+						<p class="flag">
+							<span class="flag depart" ng-show="products[1].flag=='D'||products[1].is_dept">롯데백화점</span>
+							<span class="flag etv" ng-if="products[1].is_tvhome && !products[1].is_dept">롯데홈쇼핑</span>
+							<span class="flag depart super" ng-if="products[1].is_super && !products[1].is_dept">롯데슈퍼</span>
+							<span class="flag depart himart" ng-if="products[1].is_himart">하이마트</span>
+						</p>
+					</div>
+					<p class="info"><span>{{products[1].discounted_price|number}}</span>원<em ng-show="products[1].is_sale_promotion">~</em></p>
+				</a>
+			</li>
+			<li class="list2">
+				<a ng-href="{{getProductInfoUrl(products[2], 'normal', 3)}}" onclick="return false;" ng-click="productInfoClick(products[2], null, 2)">
+					<div class="thumb" style="background-image:url({{getProductImage(products[2])}})">
+						<span class="icon_ranking" ng-if="templateType=='imagerank'">3</span>
+						<p class="flag">
+							<span class="flag depart" ng-show="products[2].flag=='D'||products[2].is_dept">롯데백화점</span>
+							<span class="flag etv" ng-if="products[2].is_tvhome && !products[2].is_dept">롯데홈쇼핑</span>
+							<span class="flag depart super" ng-if="products[2].is_super && !products[2].is_dept">롯데슈퍼</span>
+						</p>
+					</div>
+					<p class="info"><span>{{products[2].discounted_price|number}}</span>원<em ng-show="products[2].is_sale_promotion">~</em></p>
+				</a>
+			</li>
+			<li class="clear"></li>
+			<li class="list3">
+				<a ng-href="{{getProductInfoUrl(products[3], 'normal', 4)}}" onclick="return false;" ng-click="productInfoClick(products[3], null, 3)">
+					<div class="thumb" style="background-image:url({{getProductImage(products[3])}})">
+						<span class="icon_ranking" ng-if="templateType=='imagerank'">4</span>
+						<p class="flag">
+							<span class="flag depart" ng-show="products[3].flag=='D'||products[3].is_dept">롯데백화점</span>
+							<span class="flag etv" ng-if="products[3].is_tvhome && !products[3].is_dept">롯데홈쇼핑</span>
+							<span class="flag depart super" ng-if="products[3].is_super && !products[3].is_dept">롯데슈퍼</span>
+						</p>
+					</div>
+					<p class="info"><span>{{products[3].discounted_price|number}}</span>원<em ng-show="products[3].is_sale_promotion">~</em></p>
+				</a>
+			</li>
+			<li class="list4">
+				<a ng-href="{{getProductInfoUrl(products[4], 'normal', 5)}}" onclick="return false;" ng-click="productInfoClick(products[4], null, 4)">
+					<div class="thumb" style="background-image:url({{getProductImage(products[4])}})">
+						<span class="icon_ranking" ng-if="templateType=='imagerank'">5</span>
+						<p class="flag">
+							<span class="flag depart" ng-show="products[4].flag=='D'||products[4].is_dept">롯데백화점</span>
+							<span class="flag etv" ng-if="products[4].is_tvhome && !products[4].is_dept">롯데홈쇼핑</span>
+							<span class="flag depart super" ng-if="products[4].is_super && !products[4].is_dept">롯데슈퍼</span>
+						</p>
+					</div>
+					<p class="info"><span>{{products[4].discounted_price|number}}</span>원<em ng-show="products[4].is_sale_promotion">~</em></p>
+				</a>
+			</li>
+			<li class="list5">
+				<a ng-href="{{getProductInfoUrl(products[5], 'normal', (6))}}" onclick="return false;" ng-click="productInfoClick(products[5], null, 5)">
+					<div class="thumb" style="background-image:url({{getProductImage(products[5])}})">
+						<span class="icon_ranking" ng-if="templateType=='imagerank'">6</span>
+						<p class="flag">
+							<span class="flag depart" ng-show="products[5].flag=='D'||products[5].is_dept">롯데백화점</span>
+							<span class="flag etv" ng-if="products[5].is_tvhome && !products[5].is_dept">롯데홈쇼핑</span>
+							<span class="flag depart super" ng-if="products[5].is_super && !products[5].is_dept">롯데슈퍼</span>
+						</p>
+					</div>
+					<p class="info"><span>{{products[5].discounted_price|number}}</span>원<em ng-show="products[5].is_sale_promotion">~</em></p>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>

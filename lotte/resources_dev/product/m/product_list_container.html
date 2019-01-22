@@ -1,0 +1,445 @@
+<section ng-show="contVisible" class="cont_minheight">
+	<!-- 기획전 전용 서브 헤더 (카테고리 선택영역 때문에) -->
+	<!-- subhead 수정해야함 <header id="head_sub" sub-header> -->
+	<!--  20151115 임수경<header id="head_sub" class="each" ng-if="!noData && !isLoading" sub-header-each style="transform:none;">-->
+	<div class="sub_header_wrap">
+		<header id="head_sub" class="each" ng-if="!noData && !isLoading" sub-header-each>
+			<h2 cate-navi>
+				<span ng-click="cateViewClick()" ng-class="{super:planKindData == 'superchance',surprise:planKindData == '11',story:storyParam == 'Y'}">
+					<span ng-if="planKindData == 'superchance'" class="super">슈퍼찬스<em class="count"  ng-if="categoryData.total_count != '0'">({{categoryData.total_count}})</em></span>
+					<span ng-if="planKindData == '11'" class="surprise">서프라이즈<em class="count"  ng-if="categoryData.total_count != '0'">(5)</em></span>
+					<span ng-if="planKindData == '24'">쇼핑홀릭<em class="count"  ng-if="categoryData.total_count != '0'">({{categoryData.total_count}})</em></span>
+					<span ng-if="storyParam == 'Y'" class="story">{{stCate}}<em class="count"  ng-if="stroyShopData.total_count != '0'">({{stroyShopData.length}})</em></span>
+			<!--기획전 외 헤더 타이틀 적용-->
+			<span ng-if="planKindData == '10'" class="planSubTitleText"
+				ng-class="{
+					saengsaeng:	dispNoParam == '5400745',
+					stylecodi:	dispNoParam == '5397045',
+					playshop:	dispNoParam == '5398466',
+					stylerecom:	dispNoParam == '5407118',
+					stylecollection:	dispNoParam == '5408550'
+				}"></span>
+
+						<!-- <span ng-if="false && planKindData == '10' && dispNoParam == '5408550'">2017 S/S LOTTE.COM STYLLE collection</span>
+						<span ng-if="false && planKindData == '10' && dispNoParam == '5400745'">생생#</span>
+						<span ng-if="false && planKindData == '10' && dispNoParam == '5397045'">스타일코디</span>
+						<span ng-if="false && planKindData == '10' && dispNoParam == '5398466'">PLAY#</span>
+						<span ng-if="false && planKindData == '10' && dispNoParam != '5397045' && dispNoParam != '5398466' && dispNoParam != '5400745'">기획전</span> -->
+
+					<a ng-if="planKindData != '10' && categoryData.total_count != '0'" ng-if="categoryData" ng-class="{true: 'btn_sel on', false: 'btn_sel'}[cateViewFlag]">화살표</a>
+					<a ng-if="stroyShopData.length != '0'" ng-if="stroyShopData" ng-class="{true: 'btn_sel on', false: 'btn_sel'}[cateViewFlag]">화살표</a>
+				</span>
+				<!-- 스와이프가 아닌 경우 : 일반-->
+				<span class="tlt_selBox" ng-class="{on:cateViewFlag}" ng-if="categoryData.total_count != '0' && planKindData != '10' && storyParam != 'Y' && planKindData != '11'">
+					<span ng-repeat="items in categoryData.items"><a ng-click="goPlanshopClick(items.conts_desc_cont)"  ng-class="{on : items.conts_desc_cont == dispNoParam}" >{{items.conts_tit_nm}}</a></span>
+				</span>
+				<!-- 스와이프가 아닌 경우 : 서프라이즈-->
+				<span class="tlt_selBox" ng-class="{on:cateViewFlag}" ng-if="categoryData.total_count != '0' && planKindData != '10' && storyParam != 'Y' && planKindData == '11'">
+					<span ng-repeat="items in categoryData.items" ng-show="$index < 5"><a ng-click="goPlanshopClick(items.conts_desc_cont)"  ng-class="{on : items.conts_desc_cont == dispNoParam}" >{{items.conts_tit_nm}}</a></span>
+				</span>
+
+				<!-- 스토리샵일 경우 -->
+				<div class="prdAllViewList" ng-class="{on:cateViewFlag}" ng-if="storyParam == 'Y' && cateViewFlag == true" ng-controller="lotteNgSwipeCtrl">
+					<div class="list">
+						<ul lotte-ng-list-swipe swipe-slide-item="true" swipe-list-model="stroyShopData" swipe-max-ratio="0.2" swipe-min-distance="40" style="height:223px;">
+							<li ng-repeat="i in getStorySwipeSize() track by $index">
+								<div ng-repeat="items in stroyShopData|pageRange:$index:5">
+									<a ng-click="storyshopMove(items, $index + 1)">{{brRemove(items.title_nm)}}<span>{{items.start_date}}~</span></a>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="paging">
+						<span class=""> {{swipeIdx+1}} / {{getStorySwipeSize().length}}</span>
+						<a ng-click="closeCateClick()" class="btn_close"><span>닫기</span></a>
+					</div>
+				</div>
+				<!-- //스토리샵일 경우 -->
+			</h2>
+			<p class="this" ng-if="isShowThisSns">
+				<a ng-click="showSharePop({shareImg:autoBannerData.img_url_550})">공유</a>
+			</p>
+		</header>
+		<!-- //서브 헤더 -->
+		<header id="head_sub" ng-if="noData || isLoading"  sub-header-each>
+			<h2>
+				<span>
+					<span ng-if ="shoppingholicParam == 'Y'">쇼핑홀릭</span>
+					<span ng-if ="storyParam == 'Y'">스토리샵</span>
+					<span ng-if ="shoppingholicParam != 'Y' && storyParam != 'Y'"></span><!-- 기획전 -->
+				</span>
+			</h2>
+			<p class="this" ng-if="isShowThisSns">
+				<a ng-click="">공유</a>
+			</p>
+		</header>
+	</div>
+	<!-- //서브 헤더 -->
+	<!--<section id="subHeaderSpace" style="padding-top:48px;"></section>-->
+	<!-- container -->
+	<div id="container" ng-if="!noData && !isLoading">
+
+        <!--20161201 앱푸쉬배너-->
+       <div ng-if="param_cn == '133224'" style="background:#4074c7;text-align:center">
+				<!-- 11월 배너 -->
+				<a href="#" ng-click="goApppush_Event2()" ng-if="appPushFlag && appPushFlag == '11'">
+					<img src="http://image.lotte.com/lotte/mo2015/angular/mall/app_push_banner_1801001.jpg" style="width:320px"/>
+				</a>
+				<!-- 10월 배너 -->
+				<a href="#" ng-click="goApppush_Event3()" ng-if="appPushFlag && appPushFlag == '10'">
+					<img src="http://image.lotte.com/lotte/mo2015/angular/mall/app_push_banner_1801001.jpg" style="width:320px"/>
+				</a>
+    	</div>
+
+        <!--20160503 스토리샵-->
+        <section ng-if="storyParam == 'Y' && stTitle != ''" class="storyShop_head">
+            <span class="st_title">{{stTitle}}</span>
+            <span class="st_date">{{stDate}}</span>
+        </section>
+	    <!--201601115 -->
+        <div class="sur_wrap" ng-if="isSurprise">
+            <div class="sur_bannerWrap" ng-if="surpriseTopInfo.bannerImageUrl != ''">
+                <img ng-src="{{surpriseTopInfo.bannerImageUrl}}">
+            </div>
+            <div class="sur_detail" ng-if="surpriseTopInfo.bannerBrand != '' || surpriseTopInfo.bannerDesc != ''">
+                <div class="sur_mark"></div>
+                <p class="sur_detail1">{{surpriseTopInfo.bannerBrand}}</p>
+                <p class="sur_detail2">{{surpriseTopInfo.bannerDesc}}</p>
+            </div>
+            <div class="sur_eventbannerWrap" ng-if="surpriseEventBanner.imgUrl != undefined && surpriseEventBanner.imgUrl != ''">
+                <img ng-src="{{surpriseEventBanner.imgUrl}}" alt="" ng-click="surpriseEventBannerClick()">
+            </div>
+            <div class="sur_list">
+                <ul>
+                    <li class="sur_list1 r_b" ng-class="{on : categoryData.items[0].conts_desc_cont == dispNoParam}"><a ng-click="goPlanshopClick(categoryData.items[0].conts_desc_cont)">{{categoryData.items[0].conts_tit_nm}}</a></li>
+                    <li class="sur_list1" ng-class="{on : categoryData.items[1].conts_desc_cont == dispNoParam}"><a ng-click="goPlanshopClick(categoryData.items[1].conts_desc_cont)">{{categoryData.items[1].conts_tit_nm}}</a></li>
+                    <li class="sur_list2 r_b" ng-class="{on : categoryData.items[2].conts_desc_cont == dispNoParam}"><a ng-click="goPlanshopClick(categoryData.items[2].conts_desc_cont)">{{categoryData.items[2].conts_tit_nm}}</a></li>
+                    <li class="sur_list2 r_b" ng-class="{on : categoryData.items[3].conts_desc_cont == dispNoParam}"><a ng-click="goPlanshopClick(categoryData.items[3].conts_desc_cont)">{{categoryData.items[3].conts_tit_nm}}</a></li>
+                    <li class="sur_list2" ng-class="{on : categoryData.items[4].conts_desc_cont == dispNoParam}"><a ng-click="goPlanshopClick(categoryData.items[4].conts_desc_cont)">{{categoryData.items[4].conts_tit_nm}}</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!--생생샵 20160825 sslive_flag-->
+        <div ng-if="sslive_vod_flag">
+            <!--<img ng-src="http://image.lotte.com/lotte/mo2015/angular/mall/sslive_planshop_01.jpg">-->
+            <a ng-href="/mall/sslive.do?{{baseParam}}" ng-if="sslive_vod_flag">
+                <img ng-src="http://image.lotte.com/lotte/mo2015/angular/mall/sslive_planshop_02.jpg">
+            </a>
+        </div>
+
+		<!-- s: 기획전 상세 -->
+		<div class="planshop_detail">
+			<div ng-if="autoBanner == 'N'">
+				<div class="plan_bannerWrap" ng-if="topHtml!=''">
+					<!--p id="mobile_html" ng-bind-html="topHtml | toTrustedHtml"></p-->
+					<p id="mobile_html"></p>
+					<!-- 20181001 카드배너 위치 변경 -->
+					<div class="plan_bannerWrap"
+						ng-if="(commentType != '01' && commentType != '02' && commentType != '03'
+								&& benefitData.imgUrl && dispNoParam != '5397045')
+								|| (comment == 'Y' && commentType == '01' && benefitData.imgUrl)">
+						<img ng-src="http://image.lotte.com{{benefitData.imgUrl}}" alt="" ng-click="benefitClick()"/>
+					</div>
+					<!-- //20181001 카드배너 위치 변경 -->
+				</div>
+			</div>
+			<!-- 댓글 -->
+			<comment-Module ng-if="comment == 'Y' && commentType == '02'"></comment-Module>
+			<!-- //댓글 -->
+			<!-- 20181001 카드배너 위치 변경 -->
+			<div class="plan_bannerWrap" ng-if="commentType == '02' && benefitData.imgUrl && dispNoParam != '5397045'">
+				<img ng-src="http://image.lotte.com{{benefitData.imgUrl}}" alt="" ng-click="benefitClick()"/>
+			</div>
+			<!-- //20181001 카드배너 위치 변경 -->
+
+			<div class="plan_bannerWrap" ng-if="autoBanner == 'Y'">
+				<div>
+					<!-- 상품이 있는 경우 -->
+					<div class="plan_bannerWrap specialExhibi" ng-if="autoBannerData">
+						<div class="dimmed"></div>
+						<img class="banner" ng-src="{{autoBannerData.img_url_550}}" alt="" />
+						<div class="bannerTlt">
+							<span>{{bannerNameData}}</span>
+						</div>
+					</div>
+
+					<!-- 상품이 품절인 경우 -->
+					<div class="plan_bannerWrap specialExhibi" ng-if="!autoBannerData">
+						<div class="dimmed"></div>
+						<img class="banner" src="http://image.lotte.com/lotte/mo2015/angular/brandshop/planshop_banner_blank.jpg" alt="" ng-if="!bannerImgData"/>
+						<div class="bannerTlt">
+							<span>{{bannerNameData}}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--e: 상단 배너-->
+
+			<!--s: 방금 그상품-->
+			<div class="plan_justPrd" ng-if="lastProData" scroll-if="lastProData">
+				<div class="justPrd">
+					<a ng-click="goGoodsDetail(lastProData.items[0], 'recent', '0')">
+						<div class="thumb">
+							<div class="flag just"><span>방금 그상품</span></spn></div>
+							<img ng-src="{{lastProData.items[0].img_url}}" ng-alt="{{lastProData.items[0].goods_nm}}" />
+						</div>
+						<div class="info">
+							<p class="flag">
+								<span ng-if="lastProData.items[0].is_dept == true" class="flag depart">롯데백화점</span>
+								<span ng-if="lastProData.items[0].is_tvhome == true" class="flag etv">롯데홈쇼핑</span>
+								<span ng-if="lastProData.items[0].has_coupon == true" class="flag free">무료배송</span>
+								<span ng-if="lastProData.items[0].smartpick_yn == 'Y'" class="flag smart">스마트픽</span>
+							</p>
+							<span class="tit">[{{lastProData.items[0].brnd_nm}}] {{lastProData.items[0].goods_nm}}</span>
+							<p class="pr_box" ng-if="!lastProData.items[0].price2">
+								<span class="price"><em>{{lastProData.items[0].discounted_price | number}}</em>원</span>
+								<span class="price2" ng-show="lastProData.items[0].original_price != lastProData.items[0].discounted_price && lastProData.items[0].original_price !=0 "><em>{{lastProData.items[0].original_price | number}}</em>원</span>
+							</p>
+							<p class="coupon"><em class="no" ng-if="lastProData.items[0].sale_rate > 0">{{lastProData.items[0].sale_rate}}</em><em class="po" ng-if="lastProData.items[0].sale_rate > 0">%</em><span ng-if="lastProData.items[0].has_coupon">쿠폰포함</span></p>
+						</div>
+					</a>
+				</div>
+			</div>
+			<!--e: 방금 그상품-->
+
+			<!--s: 대표상품 전시영역 - swipe형-->
+			<div class="banner_slide" ng-controller="lotteNgSwipeCtrl" ng-if="planKindData == '10'" ng-show="upplanshopMainData != '0'">
+				<div class="plan_prdThumb">
+					<ul lotte-ng-list-swipe swipe-slide-item="true" swipe-list-model="upplanshopMainData.items" swipe-disp-count="3" swipe-max-ratio="0.2" swipe-min-distance="40" style="overflow:visible;">
+						<li ng-repeat="items in upplanshopMainData.items">
+							<div class="item">
+								<a ng-click="goGoodsDetail(items, 'norUp', $index)">
+									<img ng-src="{{items.img_url}}" ng-alt="{{items.goods_nm}}"/>
+									<p class="prd_price"><em>{{items.discounted_price}}</em>원</p>
+									<p class="prd_name">{{items.goods_nm}}</p>
+								</a>
+							</div>
+						</li>
+					</ul>
+					<p class="btn_prev" ng-click="beforeSlide()" ng-show="swipeBulletIdx > 0">이전</p>
+					<p class="btn_next" ng-click="nextSlide()" ng-if="swipeBulletIdx<=(swipeBullet.length-2)">다음</p>
+				</div>
+			</div>
+			<!--e: 상단구분자 상품 - swipe형 -->
+
+			<!-- 대표상품 전시영역  topcor 없을 경우 auto 표기 -->
+			<!-- 전시영역 있는 경우 -->
+			<div ng-if="upplanshopMainData != '0' && planKindData != '11'">
+				<div class="banner_slide"  ng-controller="lotteNgSwipeCtrl"  ng-if="planKindData != '10'"  ng-show="upplanshopMainData.items">
+					<div class="plan_prdThumb">
+						<ul class="prdList" lotte-ng-list-swipe swipe-slide-item="true" swipe-list-model="upplanshopMainData.items" swipe-disp-count="3" swipe-max-ratio="0.2" swipe-min-distance="40" style="overflow:visible;">
+							<li ng-repeat="items in upplanshopMainData.items">
+								<!-- 일반상품 : 스와이프형 -->
+								<div class="item">
+									<a ng-click="goGoodsDetail(items, 'spUp', $index)">
+										<!--<span class="tlt">{{items.title_nm}}</span>  -->
+										<img ng-src="{{items.img_url}}" ng-alt="{{items.goods_nm}}" />
+										<p class="prd_price">
+											<em>{{items.discounted_price}}</em>원
+										</p>
+										<div class="prd_name">
+											[{{items.brnd_nm}}] {{items.goods_nm}}
+										</div>
+									</a>
+								</div>
+								<!-- //일반상품 : 스와이프형 -->
+							</li>
+						</ul>
+						<p class="btn_prev" ng-click="beforeSlide()" ng-show="swipeIdx > 0">이전</p>
+						<p class="btn_next" ng-click="nextSlide()" ng-if="swipeIdx<=(swipeBullet.length-2)">다음</p>
+					</div>
+					<!-- <div class="paging">
+						<ol>
+							<li ng-repeat="item in swipeBullet" ng-class="{on:$index==swipeIdx}">{{$index}}</li>
+						</ol>
+					</div> -->
+				</div>
+			</div>
+
+			<!-- 전시영역 있는 경우 -->
+			<div ng-if="upplanshopMainData != '0' && planKindData == '11'">
+				<div class="prd_swipe"  ng-controller="lotteNgSwipeCtrl"  ng-if="planKindData != '10'"  ng-show="upplanshopMainData.items">
+					<div class="mask">
+						<ol class="prdList" lotte-ng-list-swipe swipe-responsive="true" swipe-responsive320="1"  swipe-responsive640="2"  swipe-responsive900="2" swipe-slide-item="true" swipe-list-model="upplanshopMainData.items" swipe-max-ratio="0.2" swipe-id="prdList" swipe-min-distance="40">
+							<li ng-repeat="items in upplanshopMainData.items">
+								<!-- 일반상품 : 스와이프형 -->
+								<div class="prd_item">
+									<a ng-click="goGoodsDetail(items, 'spUp', $index)">
+										<div class="thumb">
+											<span class="tlt">{{items.title_nm}}</span>
+											<img ng-src="{{items.img_url}}" ng-alt="{{items.goods_nm}}" />
+											<span class="thumb_price">
+												<!-- 1. 가격, 할인율, 쿠폰포함 있을때 -->
+												<span ng-if="items.sale_rate != '0' && items.use_cpn == 'coupon' && items.good_tp_cd != '30' && items.is_sale_promotion == false">
+													<span class="price"><em>{{items.discounted_price}}</em>원</span>
+													<span class="coupon">
+														<em class="no">{{items.sale_rate}}</em><em class="po">%</em>
+														<span>쿠폰포함</span>
+													</span>
+												</span>
+												<!-- 2. 가격만 있을때 -->
+												<span ng-if="items.sale_rate == '0' && items.good_tp_cd != '30' && items.is_sale_promotion == false">
+													<span class="price only">
+														<em>{{items.discounted_price}}</em>원
+													</span>
+												</span>
+												<!-- 3. 가격, 할인율만 있을때 -->
+												<span ng-if="items.sale_rate != '0' && items.use_cpn != 'coupon' && items.good_tp_cd != '30' && items.is_sale_promotion == false">
+													<span class="price"><em>{{items.discounted_price}}</em>원</span>
+													<span class="coupon not_include">
+														<em class="no">{{items.sale_rate}}</em><em class="po">%</em>
+													</span>
+												</span>
+												<!-- 4. 기획전형 상품 -->
+												<span ng-if="items.is_sale_promotion">
+													<span class="price only">
+														<em>{{items.discounted_price}}</em>원<span ng-if="items.is_sale_promotion">~</span>
+													</span>
+												</span>
+											</span>
+                                            <!--텐텐 플래그 20180510 -->
+                                            <div class="tt_flag banner" ng-if="items.tenten_url">
+                                                <img ng-src="{{items.tenten_url}}">
+                                            </div>
+
+										</div>
+										<div class="info">
+											<span ng-if="items.is_dept == true" class="flag depart">롯데백화점</span>
+											<span ng-if="items.is_tvhome == true" class="flag etv">롯데홈쇼핑</span>
+											<span ng-if="items.smartpick_yn == 'Y'" class="flag smart">스마트픽</span>
+											<span ng-if="items.use_cpn == 'coupon'" class="flag free">무료배송</span>
+											<span class="tit">[{{items.brnd_nm}}] {{items.goods_nm}}</span>
+										</div>
+									</a>
+								</div>
+								<!-- //일반상품 : 스와이프형 -->
+							</li>
+						</ol>
+					</div>
+					<p class="btn_prev" ng-click="beforeSlide()" ng-show="swipeBulletIdx > 0">이전</p>
+					<p class="btn_next" ng-click="nextSlide()" ng-if="swipeBulletIdx<=(swipeBullet.length-2)">다음</p>
+					<div class="paging">
+						<ol>
+							<li ng-repeat="item in swipeBullet" ng-class="{on:$index==swipeBulletIdx}">{{$index}}</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+
+			<!-- 댓글 -->
+			<comment-Module ng-if="comment == 'Y' && commentType == '03'"></comment-Module>
+			<!-- //댓글 -->
+			<!-- 20181001 카드배너 위치 변경 -->
+			<div class="plan_bannerWrap" ng-if="commentType == '03' && benefitData.imgUrl && dispNoParam != '5397045'">
+				<img ng-src="http://image.lotte.com{{benefitData.imgUrl}}" alt="" ng-click="benefitClick()"/>
+			</div>
+			<!-- //20181001 카드배너 위치 변경 -->
+            <!--20160115 서프라이즈 사은혜택 및 Notice-->
+            <div class="sur_giftWrap"  ng-if="isSurprise">
+                <div class="sur_gift" ng-if="spromotion != undefined">
+                    <h3>서프라이즈 사은혜택</h3>
+                    <a ng-href="{{spromotion.link_url}}">
+                        <img ng-src="{{spromotion.img_url}}" alt="{{spromotion.alt}}">
+                    </a>
+                </div>
+                <div class="sur_notice" ng-if="surpriseNotice.length > 0">
+                    <h3 class="on noticeDetail" onClick="$('.noticeDetail').toggleClass('on')">Notice</h3>
+                    <ul>
+                        <li ng-repeat="item in surpriseNotice">{{item.noticeText}}</li>
+                    </ul>
+                </div>
+            </div>
+			<!-- 서프라이즈 홍보문구 안내
+			<div ng-if="upplanshopMainData != '0'">
+				<img ng-src="{{promotionData.img_url}}" ng-alt="{{promotionData.alt}}">
+			</div>
+ 			-->
+			<!-- 20170627기획전페이지상품없을시 -->
+			<div class="sort_cate_wrap planshop_sub_cate" ng-if="productList.length && (dispNoParam != '5397045')">
+				<sort-cate ng-if="productList.length && (dispNoParam != '5397045')" ng-class="{fixtype:fixflag}"></sort-cate>
+			</div>
+
+			<!-- s: unit list area -->
+			<div class="unitWrap" style="min-height:550px;" ng-if="dispNoParam != '5397045' && productList.length" ng-class="{gucciproduct: gucciproduct}">
+				<!-- 상품리스트 유형 선택 -->
+				<div>
+					<div class="unit_type" >
+				  	    <!--<p class="unit_tlt">전체<em> {{maxitemData}}</em>개<p>-->
+				  	    <!--20170309-->
+				  	    <p class="unit_tlt" ng-class="{sub:firstcate_flag}"><b>{{cate_first}}</b><em> ({{cate_count}})</em><p>
+						<ul>
+							<li class="r1"><a href="#" ng-class="{on:templateType=='list'}" ng-click="changeTemplate('list')">리스트형</a></li>
+							<li class="r2"><a href="#" ng-class="{on:templateType=='image'}" ng-click="changeTemplate('image')">이미지형</a></li>
+							<li class="r3"><a href="#" ng-class="{on:templateType=='swipe'}" ng-click="changeTemplate('swipe')">스와이프형</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- //상품리스트 유형 선택 -->
+				<!-- 처리전까지 임시 -->
+				<div ng-controller="productCtrl" ng-if="templateType == 'list' && isProductLoading == true">
+					<div ng-show="dataLoadingFinish" product-container template-type="list" total-count="maxitemData" templatetype="templateType" products="productList"  more-product-continer="getProductDataLoad()"></div>
+				</div>
+				<div ng-controller="productCtrl" ng-if="templateType == 'image' && isProductLoading == true">
+					<div ng-show="dataLoadingFinish" product-container template-type="image" total-count="maxitemData" templatetype="templateType" products="productList"  more-product-continer="getProductDataLoad()"></div>
+				</div>
+				<div ng-controller="productCtrl" ng-if="templateType == 'swipe' && isProductLoading == true">
+					<div ng-show="dataLoadingFinish" product-container template-type="swipe" total-count="maxitemData" templatetype="templateType" products="productList"  more-product-continer="getProductDataLoad()" swipe-move="swipefnc()"></div>
+				</div>
+			</div>
+
+			<!-- 댓글 -->
+			<comment-Module ng-if="comment == 'Y' && commentType == '01'"></comment-Module>
+			<!-- //댓글 -->
+		</div>
+		<!-- e: 기획전 상세 -->
+
+        <!--20160503 지난컨텐츠 더보기-->
+        <section ng-if="prv_banner_list" class="storyShop_prvList">
+            <h2>인기 스토리</h2>
+            <ul>
+                <li ng-repeat="item in prv_banner_list.items">
+                     <a ng-click="storyLink(item, 'm_DC_PlanShop_Clk_Story_Ban_idx', $index + 1)">
+                        <div class="storyPrvBox" >
+                            <div class="imgBox">
+                                <img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}" />
+                            </div>
+                            <div class="info">
+                                <p class="banTitle" ng-bind-html="brReplace(item.banner_nm)"></p>
+                                <p class="banCate">{{item.category_nm}}</p>
+                            </div>
+                        </div>
+
+                    </a>
+                </li>
+            </ul>
+        </section>
+	</div>
+	<!-- //container -->
+	<div ng-if="noData" >
+		<p class="noData"> 등록된 기획전이 없습니다.</p>
+	</div>
+	<div class="listLoading" ng-if="isLoading" style="height:300px">
+		<p class="noData"><p class="loading half"></p>
+	</div>
+	<div class="listLoading" ng-if="productListLoading && !isLoading && templateType != 'swipe'">
+		<p class="loading half"></p>
+	</div>
+
+    <!--20160516 제휴팝업	-->
+    <div id="event0516" style="position:fixed;top:0;width:100%;height:100%;text-align:center;z-index:1000" ng-if="event0516Flag">
+        <div style="background:#000;opacity:0.5;width:100%;height:100%"></div>
+        <div style="display:block;position:absolute;top:30%;width:100%">
+            <!--앱으로 Go-->
+            <a ng-click="goToApp()" style="display:block;width:100%"><img src="http://image.lotte.com/lotte/mo2015/angular/detail/popBann_20160516.png" style="width:293px"></a>
+            <!--닫기-->
+            <a href="javascript:$('#event0516').hide()" style="display:block;width:100%"><img src="http://image.lotte.com/lotte/mo2015/angular/detail/popBann_close_20160512.png" style="width:45px"></a>
+        </div>
+    </div>
+
+    <!--20161121 둥둥이배너 chasu : 1 ~ 3 -->
+    <div ng-if="dispNoParam == '5405246'">
+        <dungdung id="ddpop" start="201702171000" end="201702180000"></dungdung>
+    </div>
+
+</section>

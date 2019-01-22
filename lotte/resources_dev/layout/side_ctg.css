@@ -1,0 +1,225 @@
+@charset "UTF-8";
+.motion{-webkit-transition-duration:300ms; transition-duration:300ms}
+.side_cate{
+	position:fixed;
+	height:100%;
+	top:0;
+	left:-350px;
+	z-index:1000;
+	width:280px;
+	box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+}
+.side_cate strong.icnt {color:#aaa; font-size:11px; font-weight:normal; line-height:18px; vertical-align:middle;position:relative;top:0;}
+.side_cate.isApp {}
+.side_cate i,
+.categorySet dl.menu dt span:before,
+.categorySet dl.menu dt span:after,
+.categorySet dl.spShop ol li span,
+.categorySet .lotteApp span{display:inline-block;color:transparent;font-size:0;background:url('http://image.lotte.com/lotte/mo2015/angular/common/side_cate.png') no-repeat; background-size:300px 300px;vertical-align:middle;}
+
+.categorySet .scroll_wrap {width:100%; overflow:hidden; clear:both; position:relative;}
+html.category_act .side_cate {left:0;}
+
+.side_cate .setTitle{text-align:center;font-size: 15px;height:43px;line-height:43px}
+.side_cate .setTitle2{text-align:center;font-size: 15px;height:56px;line-height:56px;color:#686868}
+
+.side_cate .close{position:absolute;top:0;right:-10px; margin-right:-30px; z-index:5000}
+.side_cate .close a{padding:0 10px;line-height:42px;color:transparent;}
+
+.side_cate .close i{width:17px;height:17px;background-position:-117px 0;}
+.side_cate .mainTop{background:#719cff;overflow:hidden; width:100%;}
+.side_cate .mainTop{height:45px;}
+.side_cate .mainTop a{position:relative;z-index:300;display:block;float:left;width:33.3%;height:45px;color:#fff;font-size:15px;line-height:45px;text-align:center;cursor:pointer}
+.side_cate .mainTop a.on{background:#5386fa;}
+.side_cate .mainTop a.on:after{width:6px;height:6px;content:'';position:absolute;bottom:-3px;left:50%;margin-right:3px;background:#fff;-webkit-transform:rotate(45deg);transform:rotate(45deg);}
+
+
+.categoryWrap {overflow:hidden; height:100%;}
+.categoryBox {overflow:hidden; height:100%; clear:both; width:100%;background:#fff;position:relative;}
+.categorySet {background:#f6f6f7; padding-top:41px; clear:both; width:100%; overflow:auto; height:100%; border-bottom-right-radius:15px;}
+.categorySet .navi{height:40px; width:100%; z-index:2; background:#fff; position:absolute; left:0; top:0;}
+.categorySet .navi a{width:50%;display:block;float:left;color:#333;font-size:15px;line-height:40px;text-align:center;}
+.categorySet .navi a span{display:inline-block;width:105px;}
+.categorySet .navi a.on span{position:relative;color:#5386fa;font-weight:bold}
+.categorySet .navi a.on span:after{position:absolute;bottom:-1px;left:0;display:block;content:'';width:100%;height:2px;background:#719cff}
+.categorySet .navi a.on.depart span:after{background:#9e8363}
+.categorySet .navi a.on.depart span{color:#9e8363}
+
+.categorySet dl.menu{background:#fff;}
+.categorySet dl.menu dt{border-top:1px solid #dfdfdf;line-height:45px; height:45px; overflow:hidden;}
+.categorySet dl.menu dt span{position:relative;display:block;padding:0 0 0 20px;font-size:15px;cursor:pointer}
+.categorySet dl.menu dt span:before{height:21px;content:'';vertical-align:middle}
+.categorySet dl.menu dt span:after{position:absolute;top:18px;right:20px;width:18px;height:11px;content:'';background-position:-139px 0;vertical-align:middle}
+.categorySet dl.all.active dt span:after{background-position:-161px 0}
+.categorySet dl.depart.active dt span:after{background-position:-184px 0}
+/*
+화장품			2			icon_5537261	
+잡화/슈즈/명품	 	3			icon_5537262	
+패션의류 			1			icon_5537263	
+스포츠/레저		4			icon_5537264	
+유아동 			5			icon_5537265	
+가전/가구			6			icon_5537266
+생활/식품 		8			icon_5537267
+롯데백화점		iconDep		icon_5537951
+*/
+.categorySet dl.menu dt.icon_5537263 span:before{width:14px;margin:0 20px 2px 6px;background-position:0 -22px}
+.categorySet dl.menu.active dt.icon_5537263 span:before{background-position:0 -48px}
+
+.categorySet dl.menu dt.icon_5537261 span:before{width:11px;margin:0 21px 2px 8px;background-position:-19px -22px}
+.categorySet dl.menu.active dt.icon_5537261 span:before{background-position:-19px -48px}
+
+.categorySet dl.menu dt.icon_5537262 span:before{width:20px;margin:0 17px 2px 3px;background-position:-34px -22px}
+.categorySet dl.menu.active dt.icon_5537262 span:before{background-position:-34px -48px}
+
+.categorySet dl.menu dt.icon_5537264 span:before{width:20px;margin:0 17px 2px 3px;background-position:-58px -22px}
+.categorySet dl.menu.active dt.icon_5537264 span:before{background-position:-58px -48px}
+
+.categorySet dl.menu dt.icon_5537265 span:before{width:21px;margin:0 16px 2px 3px;background-position:-82px -22px}
+.categorySet dl.menu.active dt.icon_5537265 span:before{background-position:-82px -48px}
+
+.categorySet dl.menu dt.icon_5537266 span:before{width:20px;margin:0 17px 2px 3px;background-position:-107px -22px}
+.categorySet dl.menu.active dt.icon_5537266 span:before{background-position:-107px -48px}
+
+.categorySet dl.menu dt.icon_5537267 span:before{width:17px;margin:0 18px 2px 5px;background-position:-132px -22px}
+.categorySet dl.menu.active dt.icon_5537267 span:before{background-position:-132px -48px}
+
+
+.categorySet dl.menu ol{background:#f5f5f5;border-top:1px solid #dfdfdf;padding:0 20px}
+.categorySet dl.menu dd.icon_5537951 ol li{border-top:1px solid #e8e7e6}
+.categorySet dl.menu ol li{white-space:nowrap; border-top:1px solid #e7e7e7;padding:0 0 0 40px;font-size:15px;line-height:45px;}
+.categorySet dl.menu ol li a { display: block; }
+.categorySet dl.menu ol li:first-child, .categorySet dl.menu dd.icon_5537951 ol li:first-child{border-top:0;}
+
+.categorySet dl.all.active dt span{color:#6699ff}
+.categorySet dl.depart.active dt span{color:#9e8363}
+
+.categorySet dl.menu dt.icon_5537958 span:before{width:19px;margin:0 17px 2px 4px;background-position:-154px -22px}
+.categorySet dl.menu dt.icon_5537959 span:before{width:19px;margin:0 17px 2px 4px;background-position:-178px -22px}
+.categorySet dl.menu dt.icon_5537960 span:before{width:12px;margin:0 20px 2px 8px;background-position:-202px -22px}
+.categorySet dl.menu dt.icon_5537963 span:before{width:20px;margin:0 17px 2px 3px;background-position:-218px -22px}
+.categorySet dl.menu dt.icon_5537964 span:before{width:20px;margin:0 17px 2px 3px;background-position:-243px -22px}
+.categorySet dl.menu.active dt.icon_5537958 span:before{background-position:-154px -48px}
+.categorySet dl.menu.active dt.icon_5537959 span:before{background-position:-178px -48px}
+.categorySet dl.menu.active dt.icon_5537960 span:before{background-position:-202px -48px}
+.categorySet dl.menu.active dt.icon_5537963 span:before{background-position:-218px -48px}
+.categorySet dl.menu.active dt.icon_5537964 span:before{background-position:-243px -48px}
+.categorySet dl > dd { overflow: hidden;}
+/* 20150729 박형윤 Android 4.3 Webview에서 동작되지 않아 오픈을 위해 주석처리
+transition:height 0.2s linear;
+-o-transition:height 0.2s linear;
+-moz-transition:height 0.2s linear;
+-webkit-transition:height 0.2s linear;
+*/
+.categorySet dl > dd.hiding { height: 0px; }
+.categorySet dl.depart{visibility:hidden;position:absolute;}
+.categorySet dl.spShop{background:#fff;border-bottom:1px solid #dfdfdf;}
+.categorySet dl.spShop dt{padding:0 0 0 25px;border-top:1px solid #dfdfdf;background:#f6f6f7;color:#999;font-size:13px;line-height:30px;cursor:pointer}
+.categorySet dl.spShop dd{border-top:1px solid #dfdfdf}
+.categorySet dl.spShop dd ol{margin:-1px 20px 0 20px;}
+.categorySet dl.spShop dd ol:after{display:block;content:'';clear:both;}
+.categorySet dl.spShop dd ol li{float:left;width:50%;padding-bottom:1px;margin-bottom:-1px;font-size:15px;line-height:55px;border-bottom:1px solid #e0e0e0;}
+.categorySet dl.spShop dd a{display:block;padding:0 0 0 7px;cursor:pointer;}
+.categorySet dl.spShop .iconGucci	{width:88px;height:35px;background-position:0 -114px;}
+.categorySet dl.spShop .iconVine	{width:88px;height:35px;background-position:-89px -114px;}
+.categorySet dl.spShop .iconKshop	{width:88px;height:35px;background-position:0 -150px;}
+.categorySet dl.spShop .iconInsu	{width:88px;height:35px;background-position:-89px -150px;}
+
+.categorySet dl.mallShop{background:#fff;border-bottom:1px solid #dfdfdf;}
+.categorySet dl.mallShop dt{padding:0 0 0 25px;background:#f6f6f7;color:#999;font-size:13px;line-height:30px;cursor:pointer}
+.categorySet dl.mallShop dd{border-top:1px solid #dfdfdf}
+.categorySet dl.mallShop dd ol{margin:-1px 20px 0 20px;}
+.categorySet dl.mallShop dd ol:after{display:block;content:'';clear:both;}
+.categorySet dl.mallShop dd ol li{float:left;width:50%;padding-bottom:1px;margin-bottom:-1px;line-height:44px;border-bottom:1px solid #e0e0e0;box-sizing: border-box;}
+.categorySet dl.mallShop dd a{display:block;padding:0 0 0 5px;cursor:pointer; font-size:14px; color:#666;}
+.categorySet dl.mallShop dd ol li:nth-child(odd) {width:48%; border-right:1px solid #e0e0e0;}
+.categorySet dl.mallShop dd ol li:nth-child(even) {padding-left:5px;}
+
+.categorySet .lotteApp{padding:10px 20px 20px 20px;border-top:1px solid #fff; background:transparent}
+.categorySet .lotteApp ul:after{display:block;content:'';clear:both;}
+.categorySet .lotteApp ul li{width:50%;float:left}
+.categorySet .lotteApp ul li a{display:block;padding:0 0 0 10px;cursor:pointer;line-height:50px;}
+.categorySet .lotteApp .iconEllotte{width:71px;height:18px;background-position:-87px -81px; margin-left:8px;}
+.categorySet .lotteApp .iconSmart{width:76px;height:33px;background-position:-3px -73px; margin-left:9px;}
+.categorySet .lotteApp .iconDfs{width:89px;height:23px;background-position:-194px -111px;}
+.categorySet .lotteApp .iconSuper{width:88px;height:13px;background-position:-173px -83px; margin-top:7px;}
+
+.side_cate .brandSet:after{clear:both;display:block;content:''}
+.side_cate .brandSet {padding:0 10px; clear:both; overflow:auto; height:100%;}
+.side_cate .brandTab {height:32px; margin:10px auto 20px auto; width:100%;}
+.side_cate .brandTab a {font-size:15px;display:block; color:#aaa; overflow:hidden; font-size:0; line-height:0; background:#f2f2f2;width:50%;height:32px;float:left; text-align:center;}
+.side_cate .brandTab a.on {background:#fff; color:#719cff;}
+.side_cate .brandTab a span {display:block; border:1px solid #f2f2f2; line-height:30px; font-size:15px;}
+.side_cate .brandTab a.on span {border-color:#e9e9e9;}
+.side_cate .tabSub {width:224px;margin:0 auto}
+.side_cate .tabSub:after{clear:both;display:block;content:''}
+.side_cate .tabSub.eng{}
+.side_cate .tabSub.eng a{font-size: 14px}
+.side_cate .tabSub a:last-child{font-size: 14px}
+.side_cate .tabSub a{font-size: 17px;display:block;color:#252525;background:#f2f2f2;width:46px;height:46px;float:left;line-height:46px;text-align:center;box-sizing: border-box;border-radius:23px;margin:5px}
+.side_cate .tabSub a.on{background:#719cff;color:#fff}
+
+.side_cate .searchList{padding-top:22px; clear:both;}
+.side_cate .searchList .loading_wrap{/*margin-top:30px;*/}
+.side_cate .searchList ul li{margin:0 20px;line-height:20px;border-bottom: 1px solid #EBEBEB;/*border-bottom: 1px solid #EBEBEB;*/}
+.side_cate .searchList ul li a{display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.side_cate .searchList ul li a span.brand{font-size: 14px;font-weight: bold;word-break:break-all}
+.side_cate .searchList ul li a span.category{color: #959595;padding-left: 5px}
+.side_cate .searchList ul li a em{float: right;color: #959595}
+.side_cate .searchList ul li:last-child{border:0}
+.side_cate .searchList ul li a .ico_dep{background:url(http://image.lotte.com/lotte/mobile/mobile_new/category/category_ico_dep.png) no-repeat 0 16px;background-size:42px 11px;text-indent:-9999px;width:42px;height: 44px;color:#959595;margin-left:5px;display: inline-block}
+.side_cate .searchList div.loading {position:relative;top:0;text-align:center}
+.side_cate .searchList div.loading img{width:51px}
+.side_cate .searchList .noList{padding:30px 0 ; line-height:20px; border-bottom: 1px solid #ebebeb; text-align:center;font-size:12px;color:#acacac;}
+.side_cate .searchList.result {clear:both; display:none; position:relative; background:#f6f6f6; padding-top:0; padding-bottom:30px;}
+.side_cate .searchList .cnt {margin:0 10px; display:none; clear:both; height:29px; display:block; line-height:29px; border-bottom: 1px solid #ebebeb; overflow:hidden}
+.side_cate .searchList .cnt.ing {height:30px; border:0;}
+.side_cate .searchList .cnt strong {color:#588bff;}
+.side_cate .searchList .btn_close {position:absolute; right:10px; bottom:7px; display:block; padding-right:17px;color:#666;}
+.side_cate .searchList .btn_close:after {position: absolute;width: 15px;height: 15px;content: '';right: -3px;top: 6px;background: url(http://image.lotte.com/lotte/mo2015/angular/common/side_cate_srh_close.png) no-repeat;background-size: 10px 9px;}
+.side_cate .searchList ul li {margin:0 10px;}
+.side_cate .searchList ul li:last-child {/*border-bottom: 1px solid #ebebeb;*/}
+.side_cate .searchList ul li a {padding:8px 0 9px;position:relative;top:2px;}
+.side_cate .searchList ul li span.icon {display:inline-block; padding:0 5px 0 5px; background:#77675d;color:#fff;line-height:18px; font-size:10px;vertical-align:middle}
+.side_cate .searchList ul li p.cate {margin-top:2px;color:#aaa;font-size:13px;}
+.side_cate fieldset {position:relative; padding:20px 64px 10px 0;}
+.side_cate fieldset legend {display:none;}
+.side_cate fieldset span {display:block;}
+.side_cate fieldset span input {width:100%;font-size:14px; padding:0 5px; border:1px solid #ddd; height:28px; line-height:28px; border-radius:3px;outline:none;}
+.side_cate fieldset span input:focus {border:solid 1px #588bff !important;}
+.side_cate fieldset button {position:absolute; right:0; top:20px; border:1px solid #ccc; font-size:14px;color:#666; background:#f3f3f3; border-radius:3px; width:45px; height:30px; line-height:30px; white-space:nowrap;}
+.side_cate .searchList ul li span {color:#588bff;}
+.side_cate .searchList ul li span.name{display:inline-block;vertical-align:middle;color:#333;font-size:13px;overflow:hidden;word-break:break-all;white-space:nowrap;text-overflow:ellipsis;}
+.side_cate .searchList ul li u {text-decoration:none;}
+.side_cate .searchList ul li strong {font-weight:normal;}
+.brandList{background:#fff;padding-bottom:40px;}
+.brandList .shoplist a{font-weight:bold;display:block;color:#686868;font-size:13px;height:45px;line-height:45px;border-top:1px solid #f5f5f5;box-sizing:border-box;padding-left:30px;position:relative}
+.brandList .shoplist a span{font-weight:normal;padding-left:5px;color:#acacac;font-size:12px}
+.brandList .shoplist a img{width:17px;margin: 14px 7px 0 0}
+.brandList .shoplist a:after{content:"";display:block;position:absolute;top:50%;right:30px;margin-top:-6px;width:7px;height:14px;background:url(http://image.lotte.com/lotte/mobile/mobile_new/category/icon_category_shoplist_arrow.png) no-repeat 0 0;background-size:7px 11px}
+
+.specialSet {background:#fff; clear:both; width:100%; overflow:auto; height:100%;}
+.specialSet .wrap {padding:0 10px 0 10px; overflow:hidden; border-bottom: 1px solid #ebebeb;}
+.specialSet .searchList {clear:both; padding:0;}
+.specialSet .searchList ul li {margin:0;}
+.specialSet .searchList ul li a {display:block;margin:0 15px;padding:12px 0;font-size:15px;}
+.specialSet .searchList.result ul li a {border-bottom: 1px solid #EBEBEB;}
+.specialSet .searchList.result ul li {border-bottom:none;}
+.specialSet .specialList {clear:both; padding-bottom:20px; overflow:hidden;}
+.specialSet .specialList dl {width:50%; float:left; padding:20px 0 0 3px; box-sizing:border-box;-webkit-box-sizing:border-box;}
+.specialSet .specialList dl dt img {width:95%; border:1px solid #eaeaea;}
+.specialSet .specialList dl dd {padding:10px 15px 0 5px; height:36px;font-size:15px; line-height:18px; overflow:hidden;}
+.specialSet .specialList dl dd span {color:#588bff;}
+.specialSet nav {width:100%; clear:both; margin-top:10px;}
+.specialSet nav a {display:block; height:45px; color:#333; width:20%; float:left; text-align:center; font-size:15px; line-height:18px;}
+.specialSet nav a.on {color:#5386fa;font-weight:bold; border-bottom:2px solid #6e99fa;}
+
+.brandSet .loading_wrap {min-height:83px; position:relative;}
+.specialSet .loading_wrap {min-height:83px; position:relative;}
+
+.categorySet:after,
+.brandSet:after,
+.specialSet:after {display:block; width:100%; clear:both; height:90px; content:''; padding-top:50px;}
+
+/*20160223 전문관 : 롯데그룹관*/
+.categorySet dl.spShop .iconLotteG{width:88px;height: 35px; background: url(http://image.lotte.com/lotte/mo2015/angular/common/category_lottegroup.png) no-repeat; background-size:77px 34px}

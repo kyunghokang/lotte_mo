@@ -1,0 +1,43 @@
+<section ng-show="contVisible" class="cont_minheight">
+    <product-sub-header></product-sub-header>
+    <!--상품 상세 서브 page 기본 wrapper(한번만 사용할 것): prod_detail_page_wrap-->
+	<div class="prod_detail_page_wrap p_comment_image">
+        <nav class="tabs">
+            <ul>
+                <li ng-class="{on:pageUI.selectTab === 1}">
+                    <a ng-click="clickTab(1)" >사진 <span ng-if="pageUI.loadData && pageUI.loadData.photoItems && pageUI.loadData.photoItems.length">({{pageUI.loadData.photoItems.length}})</span></a>
+                </li>
+                <li ng-class="{on:pageUI.selectTab === 2}">
+                    <a ng-click="clickTab(2)" >영상 <span ng-if="pageUI.loadData && pageUI.loadData.videoItems && pageUI.loadData.videoItems.length">({{pageUI.loadData.videoItems.length}})</span></a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="grid_wrap img" ng-if="pageUI.selectTab === 1">
+            <ul>
+                <li ng-repeat="item in pageUI.loadData.photoItems track by $index" ng-style="{'height': picHeight + 'px'}">
+                    <a ng-click="linkClick(item.contsUrl, $index + 1)">
+                        <span class="image" ng-style="{'background':'url(' + item.imgUrl + ') center center / cover no-repeat', 'height': (picHeight - 2) + 'px'}"></span>
+                    </a>
+                </li>
+            </ul>
+            <p class="nolist" ng-if="!jsonLoading && ( !pageUI.loadData.photoItems || !pageUI.loadData.photoItems.length )">등록된 사진이 없습니다.</p>
+        </div>
+
+        <div class="grid_wrap video" ng-if="pageUI.selectTab === 2">
+            <ul>
+                <li ng-repeat="item in pageUI.loadData.videoItems track by $index" ng-style="{'height': picHeight + 'px'}">
+                    <a ng-click="linkClick(item.contsUrl, $index + 1)">
+                        <span class="image" ng-style="{'background':'url(' + item.imgMain + ') center center / cover no-repeat', 'height': (picHeight - 2) + 'px'}"></span>
+                    </a>
+                </li>
+            </ul>
+            <p class="nolist" ng-if="!jsonLoading && ( !pageUI.loadData.videoItems || !pageUI.loadData.videoItems.length )">등록된 영상이 없습니다.</p>
+        </div>
+    </div>
+    
+    <!--공통 로딩커버-->
+	<div class="loading_cover" ng-if="jsonLoading">
+		<div class="loading"></div>
+	</div>
+</section>

@@ -1,0 +1,72 @@
+<div class='dearpet_mall_sub_category' ng-controller='petMallSubCtgCtrl'>
+    <ul class='line_map'>
+        <li
+            ng-repeat='item in pet_cate_linemap'
+            ng-class='{
+                active:pet_cate_linemap[$index].active,
+                currentCate:!currentCateList&&$index==chkNo,
+                noneArrow:item.hideArrow,
+                bleatHidden:pet_cate_linemap[$index].active&&!currentCateList
+            }'
+            ng-click='subcateClick($index)' ng-init='curName=(item.cut_name||item.disp_nm)'>
+            <text ng-bind-html='curName'></text>
+            <span></span>
+        </li>
+    </ul>
+    <div class='sub_list_group' ng-if="currentCateList">
+        <div
+            ng-if="currentCateList.length>1"
+            class='mask'
+            roll-swipe-banner
+            endFnc="swipeSlideFinish"
+            getcontrol='swipeObj.getCtrl'
+            width320="1"
+            width640="1"
+            width900="1"
+            id="swipeIDCategoryList">
+            <ul
+                class='swipeBox clear'
+                style='width:{{100*currentCateList.length}}%'>
+                <li
+                    style='width:{{swipe_item_width}}px'
+                    ng-repeat="group in currentCateList" ng-init="gindex=$index">
+                    <div class='sub_cate_list'>
+                        <div class=' group clear'>
+                            <div
+                                ng-repeat='item in group'
+                                ng-class='{single:($index%2==0)&&($index==group.length-1), active:select_disp_no==item.disp_no}'
+                                ng-init="select_disp_no==item.disp_no?currentSwipeCategory(gindex):null">
+                                <span ng-click='subcateLink(item,$index)' ng-bind-html='item.disp_nm'></span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div ng-if="currentCateList.length<2">
+            <div
+                ng-repeat="group in currentCateList">
+                <div class='sub_cate_list'>
+                    <div class=' group clear'>
+                        <div
+                            ng-repeat='item in group'
+                            ng-class='{single:($index%2==0)&&($index==group.length-1), active:select_disp_no==item.disp_no}'>
+                            <span ng-click='subcateLink(item,$index)' ng-bind-html='item.disp_nm'></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class='sub_cate_close'>
+            <div class='indicator' ng-if="currentCateList.length>1">
+                <ul ng-if='currentCateList&&currentCateList.length'>
+                    <li ng-repeat='item in currentCateList' ng-class='{active:swipeIndex==$index}'>{{$index}}</li>
+                </ul>
+            </div>
+            <a ng-click="subcateClose()">닫기</a>
+        </div>
+
+    </div>
+</div>

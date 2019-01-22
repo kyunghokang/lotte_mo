@@ -1,0 +1,154 @@
+<div tpml-shopnshop ng-if="pageUI.curMenuDispNo == '5563220'" class="cont_wrap tpml_shopnshop padding">
+	<!-- 동영상 -->
+	<section class="movie_shop">
+		<h2>동영상으로 즐기는 <strong>쇼핑의 재미</strong></h2>
+		<div class="mov_good_wrap">
+			<div class="video_wrap" id="vodWrap">
+				<video id="autoVideo" playsinline="true" webkit-playsinline="true" poster="http://image.lotte.com/lotte/mo2015/angular/main/main_sslive_poster_resize.jpg" controls="true">
+						<source type="video/mp4" video-source="{{::tpmlData.playVod.vod_url | trustUrl}}">
+				</video>
+				<div class="play_cover"></div>
+				<div class="stop_cover"></div>
+				<div class="click_cover"></div>
+				<a class="btn_move_start" ng-click="movClk('play')">비디오 재생</a>
+				<a class="btn_move_stop btn_text" ng-click="movClk('pause')">일시정지</a>
+				<a class="btn_move_goods btn_text" ng-click="movPrd('lnk')">상품보기</a>
+			</div>
+			<div class="info_wrap">
+				<p class="tit">{{tpmlData.playVod.goods_nm}}</p>
+				<p class="price"><strong>{{tpmlData.playVod.price|number}}</strong>원<em ng-if="tpmlData.playVod.is_plan_prod" class="plan_prod_limit">~</em></p>
+				<a ng-click="movPrd('prd')" class="btn_buy">구매하기</a>
+			</div>
+			<div class="rerunWrap" ng-if="rerunFlag">
+				<div class="live_icon">
+					<span class="time_icon">재방송 14:00 ~ 15:00</span>
+					<span class="lotte_icon">LOTTE.COM by PIG LIVE</span>
+				</div>
+				<div class="chat_wrap">
+					<div>
+						<strong class="chat_id">공지사항</strong>
+						<p>생방송과 혜택이 다를 수 있습니다.</p>
+					</div>
+				</div>
+			</div>
+			<div class="live_wrap" ng-if="chatFlag">
+				<div class="chat_wrap">
+					<div ng-repeat="x in chatList" ng-class="{staff:x.staff=='Y'}" ng-if="$index<2">
+						<span class="chat_id" ng-if="x.staff=='Y'">롯데닷컴</span>
+						<span class="chat_id" ng-if="x.staff!='Y'">{{x.id}}</span>
+						<p>{{x.cont}}</p>
+					</div>
+				</div>
+				<a ng-click="goChat()" class="btn_goChat">채팅창 입장하기</a>
+			</div>
+		</div>
+	</section>
+	<!-- 방송예정상품 -->
+	<section class="live_next" ng-if="tpmlData.contData.live_next">
+		<h3>생생# 방송예정상품</h3>
+		<div class="next_prd" lotte-slider>
+			<ul>
+				<li ng-repeat="x in tpmlData.contData.live_next.items">
+					<div class="img_wrap">
+						<img ng-src="{{x.img_url}}" alt="{{x.goods_nm}}" />
+					</div>
+					<div class="prd_tit">
+						<strong>{{x.live_date[1]}}</strong><!-- {{x.goods_nm}} -->
+					</div>
+					<div class="prd_date">{{x.live_date[0]}}</div>
+				</li>
+			</ul>
+			<div class="live_next_desc">
+				<strong>방송당일 오후 4시</strong> 상품정보와 혜택이 공개됩니다.
+			</div>
+		</div>
+	</section>
+	<!-- 생생샵 배너 -->
+	<section class="live_banner" ng-if="tpmlData.contData.live_banner.img_url">
+		<a ng-click="bannerClk(tpmlData.contData.live_banner.link_url,'Ban_event')">
+			<img ng-src="{{tpmlData.contData.live_banner.img_url}}" alt="" />
+		</a>
+	</section>
+	<!-- 지난방송 -->
+	<section class="live_prev" ng-if="tpmlData.contData.live_prev">
+		<h3>생생# 추천아이템<a ng-click="goPlanshop('5400745',tBase+'Btn_A01')" class="btn_more">더보기</a></h3>
+		<div class="prev_prd">
+			<ul>
+				<li ng-repeat="x in tpmlData.contData.live_prev.items" ng-if="$index < 4">
+					<a ng-click="goPrd(x.goods_no,tBase+'Prd_idx'+($index+1))">
+						<div class="img_wrap">
+							<img ng-src="{{x.img_url}}" alt="{{x.goods_nm}}" />
+						</div>
+						<div class="prd_info">
+							<p class="prd_desc">{{x.desc}}</p>
+							<p class="prd_tit">{{x.goods_nm}}</p>
+							<p class="prd_price"><strong>{{x.price|number}}</strong>원<em ng-if="x.is_plan_prod" class="plan_prod_limit">~</em></p>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</section>
+	<!-- 스토리샵 -->
+	<section class="storyList" ng-if="tpmlData.contData.stsp_banner_list.items">
+		<h3><span>이야기가 있는 </span>스토리샵</h3>
+		<ul id="fbanner">
+			<li ng-repeat="item in tpmlData.contData.stsp_banner_list.items" id="ban{{$index}}">
+				<a ng-click="storyLink(item, tBase + 'Ban_idx', '#ban' + $index, 0)">
+					<div class="storyBanBox">
+						<img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}" />
+						<div class="dim"></div>
+						<div class="info">
+							<span class="cateName">{{item.category_nm}}</span>
+							<p class="banTitle" ng-bind-html="brReplace(item.banner_nm)"></p>
+						</div>
+					</div>
+				</a>
+			</li>
+		</ul>
+		<!-- 모바일 버전 -->
+		<div ng-if="screenType == 1 && tpmlData.contData.prvList">
+			<div class="prvMoreBtn type_a">지난 스토리</div>
+			<ul class="storyShop_prvList">
+				<li ng-repeat="item in tpmlData.contData.prvList" class="boxType{{$index%4}}" id="card{{$index}}" ng-if="$index<tpmlData.prvListNum">
+					<a ng-click="storyLink(item, tBase + 'Ban_idx', '#card' + $index, 1)">
+						<div class="storyPrvBox" >
+							<div class="imgBox">
+								<img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}" />
+							</div>
+							<div class="info">
+								<p class="banTitle" ng-bind-html="brReplace(item.banner_nm)"></p>
+								<p class="banCate">{{item.category_nm}}</p>
+							</div>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<div class="btn_more_story" ng-if="tpmlData.contData.prvList.length > tpmlData.prvListNum">
+				<a ng-click="moreStory()">스토리 더보기</a>
+			</div>
+		</div>
+		<!-- 테블릿 버전 -->
+		<div ng-if="screenType > 1 && tpmlData.contData.prvList.length > 1">
+			<div class="prvMoreBtn type_a">지난 스토리</div>
+			<ul class="storyShop_prvList">
+				<li ng-repeat="item in tpmlData.contData.prvList" class="boxType{{$index%4}}" id="card{{$index}}" ng-if="$index<tpmlData.prvListNum && !(tpmlData.contData.prvList.length%2==1 && $index==tpmlData.contData.prvList.length-1 && tpmlData.contData.prvList.length>2)">
+					<a ng-click="storyLink(item, tBase + 'Ban_idx', '#card' + $index, 1)">
+						<div class="storyPrvBox" >
+							<div class="imgBox">
+								<img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}" />
+							</div>
+							<div class="info">
+								<p class="banTitle" ng-bind-html="brReplace(item.banner_nm)"></p>
+								<p class="banCate">{{item.category_nm}}</p>
+							</div>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<div class="btn_more_story" ng-if="tpmlData.contData.prvList.length > tpmlData.prvListNum">
+				<a ng-click="moreStory()">스토리 더보기</a>
+			</div>
+		</div>
+	</section>
+</div>

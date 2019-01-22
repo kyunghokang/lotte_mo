@@ -1,0 +1,72 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplMitouAdvice" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+				    "lotte/resources_dev/mall/pet/dearpet_mall_sub_category.html",
+					"lotte/resources_dev/mall/pet/mitou_advice_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/mitou_advice.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsMitouAdvice" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+				    "lotte/resources_dev/mall/pet/dearpet_mall_sub_category.js",
+					"lotte/resources_dev/mall/pet/mitou_advice.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/mitou_advice.js"
+			}
+		},
+
+		"uglify" : {
+			"jsMitouAdvice" : {
+				"src" : "lotte/resources/<%= version %>/mitou_advice.js",
+				"dest" : "lotte/resources/<%= version %>/mitou_advice.min.js"
+			},
+			"tplMitouAdvice" : {
+				"src" : "lotte/resources/<%= version %>/mitou_advice.template.js",
+				"dest" : "lotte/resources/<%= version %>/mitou_advice.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssMitouAdvice" : {
+				"src" : [
+				    "lotte/resources_dev/mall/pet/dearpet_mall_sub_category.css",
+				    "lotte/resources_dev/mall/pet/dearpet.css",
+					"lotte/resources_dev/mall/pet/mitou_advice.css"					
+				],
+				"dest" : "lotte/resources/<%= version %>/mitou_advice.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanMitouAdvice" : [
+				"lotte/resources/<%= version %>/mitou_advice.js",
+				"lotte/resources/<%= version %>/mitou_advice.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlMitouAdvice" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"mall/pet/mitou_advice.html" : "mall/pet/mitou_advice_dev.html"
+				}
+			}
+		}
+	}
+}

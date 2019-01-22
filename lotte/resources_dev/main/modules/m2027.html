@@ -1,0 +1,45 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<div class="moduleCon">
+		<div class="gTop_title">
+			<span>{{moduleData.topTxt}}</span>
+			<p><b>{{moduleData.btmTxt}}</b></p>
+		</div>
+
+		<div class="mov_wrap">
+			<ul>
+				<li>
+					<div class="mov_cnt">
+						<video controls="controls" video-poster="{{moduleData.imgUrl}}" id="autoVideo2" playsinline="true" webkit-playsinline="true">
+							<source type="video/mp4"  ng-src="{{moduleData.mvUrl | trusted}}">
+						</video>
+						<div class="play_cover"></div>
+						<div class="stop_cover"></div>
+						<div class="click_cover"></div>
+						<a ng-click="movMute();" class="btn_move_volume btn_text">음소거</a>
+						<a ng-click="logGAEvtModuleEach('01', '재생');movPlayTclick()" class="btn_move_start">비디오 재생</a>
+						<a ng-click="movPlayTclick()" class="btn_move_stop btn_text">일시정지</a>
+						<a ng-click="mainProductClick(moduleData.prdInfo.goodsNo, moduleData.tclick + '_Clk_video01')" class="btn_move_goods btn_text">자세히보기</a>
+					</div>
+				</li>
+			</ul>
+			<ul class="prd_unit_type03">
+				<li>
+					<a ng-click="logGAEvtModuleEach('02', moduleData.prdInfo.goodsNo);mainProductClick(moduleData.prdInfo.goodsNo, moduleData.tclick + '_Clk_Prd01')">
+						<div class="thumb">
+							<img ng-src="{{moduleData.prdInfo.imgUrl}}" alt="" />
+						</div>
+						<div class="info">
+							<!--<div class="bland">{{moduleData.prdInfo.brdNm}}</div>--> <!--삭제 요청함, 상품명에 브랜드명 추가되어 오기로함 -->
+							<div class="name">{{moduleData.prdInfo.goodsNm}}</div>
+							<div class="price"><strong>{{moduleData.prdInfo.price | number}}</strong>원<em ng-if="moduleData.prdInfo.isPlanPrd">~</em></div>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="btnMore">
+			<span class="btnArea"><a ng-click="logGAEvtModuleEach('03', '동영상 더보기');moreClick(moduleData.moreBtn.linkUrl, moduleData.tclick + '_Clk_Btn01')"><span>{{moduleData.moreBtn.txt}}</span></a></span>
+			<span class="btnArea"><a ng-click="logGAEvtModuleEach('04', '구매하기');mainProductClick(moduleData.prdInfo.goodsNo, moduleData.tclick + '_Clk_Btn02')"><span>구매하기</span></a></span>
+		</div>
+	</div>
+</section>

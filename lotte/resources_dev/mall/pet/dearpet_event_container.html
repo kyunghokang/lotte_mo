@@ -1,0 +1,33 @@
+<section ng-show="contVisible" class="cont_minheight">
+	<section class="pageLoading" ng-show="pageLoading"><p class="loading half"></p></section>
+	<section ng-show="!pageLoading">
+		<header id="head_sub" sub-header-each>
+			<h2><a ng-click="mallMainClick('m_DC_SpeDisp_Dearpet_Clk_logo')"><span>L.Dear Pet</span></a></h2>
+		</header>
+		<section id="container">
+
+			<!-- 카테고리 -->	
+			<div class="">
+				<pet-mall-ctg></pet-mall-ctg>
+			</div>
+			<!-- //카테고리 -->		
+			
+			<!-- 이미지 배너 : img_banner_list -->
+			<section class='pet_event_items' ng-if="screenData.event_list.length > 0" class="img_banner_wrap">
+				<ul>
+					<li ng-repeat="item in screenData.event_list track by $index">
+						<a ng-click='eventClick({{item}},"")'>
+							<img ng-src="{{item.imgUrl}}" alt="{{item.title}}" />
+						</a>
+						<div class='pet_event_item_footer'>
+							<p class="bnr_nm ng-binding">{{item.title}}</p>
+							<p class="bnr_note ng-binding">{{item.period}}</p>
+							<p ng-if="item.announcement" class="bnr_note ng-binding">{{item.announcement}}</p>
+						</div>
+					</li>
+				</ul>
+			</section>	
+			
+		</section>	
+	</section>
+</section>

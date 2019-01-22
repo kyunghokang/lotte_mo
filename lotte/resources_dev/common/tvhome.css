@@ -1,0 +1,154 @@
+@charset "utf-8";
+.clearfix:after {display:block;visibility:hidden;clear:both;height:0;content:'';}
+.hid {visibility:hidden;overflow:hidden;width:0;height:0;font-size:0;line-height:0;}
+
+.main_event01 a:before,
+.main_event02 a:after,
+.main_slide .btn,
+.main_eventbox .blank{display:inline-block;background:url('http://image.lotte.com/lotte/mo2015/angular/main_1.png') no-repeat;background-size:150px 150px;color:transparent;font-size:0;}
+
+/* banner slide */
+.main_slide{overflow:hidden;position:relative;background:#e9e9e9;padding-bottom:13px;margin:0 5px 0 5px;}
+.main_slide .mask{height:100%;overflow:hidden}
+.main_slide .mask .list{}
+.main_slide .mask .list li{width:100%;float:left}
+.main_slide .mask .list li img{width:100%;}
+.main_slide .btn{width:18px;height:27px;position:absolute;top:50%;z-index:9;border:0;font-size:0;opacity:0.6;cursor:pointer}
+.main_slide .btn.hide {visibility:hidden;}
+.main_slide .btn.prev {left:10px;background-position:0 -81px;margin-top:-29px}
+.main_slide .btn.next {right:10px;background-position:-21px -81px;margin-top:-29px}
+.main_slide .bullet{text-align:center;margin-top:-1px;}
+.main_slide .bullet li{display:inline-block;width:6px;height:6px;margin:0 2px;border-radius:100%;background:#b7b7b7;font-size:0}
+.main_slide .bullet li.active{background:#3c599e;}
+.main_slide .thumb{background:#fff;padding:12px 0;margin:0 auto;text-align:center}
+.main_slide .thumb span{width:32%;display:inline-block;}
+.main_slide .thumb span a{width:90%;display:inline-block;}
+.main_slide .thumb a img{border-radius:100%;}
+
+/* 공통
+.ul_list_1 li a, .ul_list_1 li a .icon_sale_1, .ul_plan_list_2_1 li a, .ul_list_recent li a .icon_sale_2:before, .btn_col_1 a:after, .btn_col_1 button:after, .ul_list_homeshop_1 li .icon_first:after {-webkit-box-sizing:border-box;box-sizing:border-box;}
+.ul_list_1 li a .icon_logo, .box_oneday_2 h2, .ul_list_recent li a .favorite button, .ul_list_1 li a .icon_loc button {overflow:hidden;height:0;font-size:0;line-height:100px;text-indent:-10000px;color:transparent;}
+.ul_event_tag_1 li a:before, .ul_list_recent li a .favorite button, .ul_list_1 li a .icon_loc button, .txt_alarm_1:before, .ul_list_alarm li .mail:before, .txt_homeshop_1:before {background-image:url(http://image.lotte.com/lotte/mobile/mobile_new/main/sp_main.png);background-repeat:no-repeat;background-size:110px 150px;}
+.ul_list_1 li a .icon_logo {background-image:url(http://image.lotte.com/lotte/mobile/mobile_new/main/sp_logo.png);background-repeat:no-repeat;background-size:110px 60px;}
+.ul_list_1 li a .icon_lotte {background-position:0 -20px;}
+.ul_list_1 li a .icon_lottehome {background-position:0 0;}
+.ul_list_1 li a .icon_logo.icon_lottedep_cr {width:106px;background-position:0 -40px;}
+.ul_list_1 li a .icon_loc {width:19px;height:18px;}
+.ul_list_1 li a .icon_loc button {width:19px;padding-top:18px;border:none;background-position:0 -120px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.ul_favor_1 > li > a, .ul_favor_1 > li > a > div, .ul_plan_tit li a, .ul_plan_list_2 li a, .box_oneday_2 .dl_timer_1 dd span, .ul_event_list_1 a, .ul_favor_2 li a, .txt_alarm_1, .ul_list_homeshop_1 li a, .ul_homeshop > li > a, .ul_homeshop > li > a > div {display:-webkit-box;display:-moz-box;display:box;-webkit-box-orient:vertical;-moz-box-orient:vertical;box-orient:vertical;-webkit-box-pack:center;-moz-box-pack:center;box-pack:center;width:100%;}
+.ul_plan_tit, .ul_favor_2 li, .box_homeshop_1_1, .ul_plan_list_2 li a:after {-webkit-transition:all 0.2s ease-out;-moz-transition:all 0.2s ease-out;transition:all 0.2s ease-out;}
+.ul_list_recent li a .tit, .ul_list_alarm li .tit_2, .ul_list_alarm li .tit_1, .ul_list_homeshop_2 li a .tit {display:-webkit-box;display:-moz-box;display:box;-webkit-box-orient:vertical;-moz-box-orient:vertical;box-orient:vertical;overflow:hidden;text-overflow:ellipsis;-webkit-line-clamp:2;-moz-line-clamp:2;line-clamp:2;word-break:break-all;}
+ */
+/* 홈쇼핑 */
+.main_slide {margin:0;background:#eee;}
+.main_slide .mask {border-bottom:1px solid #d0d0d0;}
+.main_slide .bullet li.active {background:#333;}
+.result_tlt{position:relative;padding:10px;}
+.result_tlt:after{clear:both;display:block;content:'';}
+.result_cnt{ float:left;font-size:12px;color:#333;letter-spacing:-.7px;line-height:27px;}
+.result_filter {position:relative;float:right;height:25px;}
+.result_filter ul:after{clear:both;display:block;content:'';}
+.result_filter ul li {float:left;line-height:25px;}
+.result_filter .unit_listType{margin-left:5px;display:inline-block;width:13px;height:13px;padding:6px;border:1px solid #bbb;background:url(http://image.lotte.com/lotte/mo2015/angular/common/spr_search_result_20160226.png) -5px -126px no-repeat #f8f8f8;background-size:200px 150px;}
+.result_filter .unit_listType.type2{background-position:-30px -126px}
+.result_filter .unit_listType.type3{background-position:-55px -126px}
+.selectArea {height:27px;text-align:right;}
+.selectArea select {height:27px;padding:0 26px 0 6px;border:1px solid #ddd;background:#fff url(http://image.lotte.com/lotte/mo2015/angular/mylotte/arr_select.png) 90% center no-repeat;background-size:10px 6px;-webkit-appearance:none;appearance:none;cursor:pointer;color:#888;font-size:12px;}
+.wish_icon.wishOn {background-position:0 -49px;}
+
+.home_shopping_wrap {background:#eee;box-sizing:border-box;-webkit-box-sizing:border-box;}
+.ul_homeshop {position:relative;padding-top:34px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.ul_homeshop > li > a {position:absolute;top:0;width:50%;height:35px;text-align:center;box-sizing:border-box;-webkit-box-sizing:border-box}
+.ul_homeshop > li:nth-child(2) > a:before {content:"";width:1px;height:10px;position:absolute;top:50%;left:0;margin-top:-5px;background:#ccc;}
+.ul_homeshop > li:first-child > a {left:0;box-sizing:border-box;-webkit-box-sizing:border-box}
+.ul_homeshop > li:nth-child(2) > a {left:50%;}
+.ul_homeshop > li > a > div {width:80%;box-sizing:border-box;-webkit-box-sizing:border-box;height:35px;padding-top:3px;line-height:35px;margin:0 auto;border-bottom:1px solid #d0d0d0;color:#666;font-size:14px;}
+.ul_homeshop > li.on > a > div {border-color:#3874ec;color:#3874ec;}
+.ul_homeshop > li > div {display:none;border-top:1px solid #d0d0d0;}
+.ul_homeshop > li.on > div {display:block;}
+
+.tvDate {position:relative;width:100%;white-space:nowrap;border-bottom:1px solid #d3d3d3;background:#fff;}
+.tvDate ul {padding:2px 0 6px 0;}/*padding:6px 20px;*/
+.tvDate li {display:inline-block;width:20%;}
+.tvDate li a,
+.tvDate li a span {display:block;text-align:center;font-size:11px;color:#666;padding:2px 0 0 0;}
+.tvDate li a span:first-child {padding:13px 0 0 0;font-size:14px;}
+.tvDate li a {width:50px;height:50px;background:#fff;margin:0 auto;}
+.tvDate li.today a {background:#588bff;color:#fff;
+border-top-left-radius:50px;
+border-top-right-radius:50px;
+border-bottom-left-radius:50px;
+border-bottom-right-radius:50px;
+}
+.tvDate>a {display:block;width:6px;height:10px;position:absolute;top:50%;margin-top:-5px;background:url(/images/lotte2015/common/btnTv.png) no-repeat;background-size:6px 20px;color:transparent;font-size:0;text-indent:-9999px;}
+.tvDate>a.tvPrev {left:10px;background-position:0 0;}
+.tvDate>a.tvNext {right:10px;background-position:0 -10px;}
+.tvDate li.today a span {color:#fff;font-size:12px;}
+.tvDate li.today a span:first-child {padding:8px 0 0 0;margin-bottom:-2px;font-size:15px;font-weight:bold;}
+.tvDate+.selectArea {padding:8px 10px;}
+
+.tvDate li.on a span {color:#fff; font-weight:bold;}
+.tvDate li.on a {background:#aaa;
+border-top-left-radius:50px;
+border-top-right-radius:50px;
+border-bottom-left-radius:50px;
+border-bottom-right-radius:50px;
+}
+
+.txt_homeshop_1 {height:33px;font-weight:bold;background-color:#ca0121;font-size:12px;color:#fffd76;line-height:33px;text-align:center;}
+.txt_homeshop_1 span {font-weight:bold}
+.txt_homeshop_1:before {display:inline-block;position:relative;top:3px;width:17px;height:15px;margin-right:5px;background-position:-65px 0;content:'';}
+.area_homeshop_2 {padding-bottom:6px;}
+.area_homeshop_2 .prod_list_01 li {height:121px;padding:0;}
+.area_homeshop_2 .prod_list_01 li .unit_list_01 {border:0;border-top:1px solid #eee;}
+.area_homeshop_2 .prod_list_01 li:first-child {height:120px;}
+.area_homeshop_2 .prod_list_01 li:first-child .unit_list_01 {border-top:0;}
+.area_homeshop_2 .prod_list_01 li .thumb {width:120px;height:120px;}
+.area_homeshop_2 .prod_list_01 li .info {margin-left:120px;}
+.area_homeshop_2 .prod_list_01 li .unit_list_01 .info .coupon {bottom:10px !important;}
+.area_homeshop_2 .prod_list_01 li .unit_list_01 .info .coupon em.po{margin:0 !important;}
+.area_homeshop_2 .prod_list_02 {border-top:0;}
+.area_homeshop_2 .prod_list_02 li .unit_list_02 {border-top:0;padding:10px 10px 0 10px;}
+.area_homeshop_2 .prod_list_02 li .unit_list_02:after {display:none;}
+.area_homeshop_2 .prod_list_02 li .thumb img {}
+.area_homeshop_2 .prod_list_02 li .thumb .icon_ranking {position:absolute;top:0;left:0;display:block;width:25px;height:25px;background:rgba(0,0,0,.4);font-size:13px;color:#fff;font-weight:bold;text-align:center;line-height:24px;}
+.area_homeshop_2 .prod_list_02 li .unit_list_02 .info {width:140px;}
+.box_homeshop_3 {border-top:1px solid #d0d0d0;border-bottom:1px solid #d0d0d0;margin-top:6px;}
+.ul_homeshop > li:nth-child(2) .box_homeshop_3 {border:0;margin-top:0;}
+.box_homeshop_3_1 {padding:10px;height:15px;background-color:#fafafa;}
+.box_homeshop_3_1 .txt_homeshop_2 {position:relative;padding-left:24px;font-size:13px;color:#333;line-height:15px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.box_homeshop_3_1 .txt_homeshop_2 span {float:right;font-size:12px;color:#999;line-height:15px;}
+.box_homeshop_3_1 .txt_homeshop_2:before,
+.box_homeshop_3_1 .txt_homeshop_2:after {display:block;position:absolute;content:'';}
+.box_homeshop_3_1 .txt_homeshop_2:before {top:0;left:0;width:15px;height:15px;border:1px solid #333;;box-sizing:border-box;-webkit-box-sizing:border-box;
+border-top-left-radius:100%;
+border-top-right-radius:100%;
+border-bottom-left-radius:100%;
+border-bottom-right-radius:100%;
+}
+.box_homeshop_3_1 .txt_homeshop_2:after {top:3px;left:6px;width:4px;height:6px;border-left:1px solid #565656;border-bottom:1px solid #565656;box-sizing:border-box;-webkit-box-sizing:border-box}
+/*온에어*/
+.txt_homeshop_12 {position:relative;padding:11px 10px 11px 30px;margin-top:7px;background:#e00001;font-size:12px;color:#fff;}
+.txt_homeshop_12:before {position:absolute;top:11px;left:10px;content:'';width:18px;height:19px;background:url(http://image.lotte.com/lotte/mo2015/angular/mylotte/bg_common.png) -175px 0 no-repeat;background-size:300px;}
+.txt_homeshop_12 strong {font-weight:normal;}
+.txt_homeshop_12 .broadCate {font-size:10px;color:#e5a0a5;float:right;}
+/*히트상품*/
+.txt_homeshop_13 {position:relative;padding:11px 10px 11px 30px;margin-top:7px;background:#719cff;font-size:12px;color:#fff;}
+.txt_homeshop_13:before {position:absolute;top:11px;left:10px;content:'';width:18px;height:19px;background:url(http://image.lotte.com/lotte/mo2015/angular/mylotte/bg_common.png) -175px -25px no-repeat;background-size:300px;}
+.txt_homeshop_13 .broadCate {font-size:10px;color:#e5a0a5;float:right;}
+.lastBroad {margin:0 0 7px 0;}
+.lastBroad dt a {position:relative;display:block;padding:12px 10px;border-top:1px solid #d3d3d3;border-bottom:1px solid #d3d3d3;background:#fff;font-size:13px;color:#333;}
+.lastBroad dt a:after {position:absolute;top:16px;right:10px;content:"";width:16px;height:9px;background:url(http://image.lotte.com/lotte/mo2015/angular/mylotte/bg_common.png) -75px -25px no-repeat;background-size:300px;}
+.lastBroad dt.opened a {border-bottom:0;}
+.lastBroad dt.opened a:after {background-position:-75px 0;background-size:300px;}
+
+.box_homeshop_3.on {border:2px solid #e00001;margin:0;}
+.box_homeshop_3.hit {border:2px solid #719cff;margin:0;}
+.box_homeshop_3 .prod_list_02 li .info2 {display:none !important;}
+@media screen and (min-width:640px){
+	.area_homeshop_2 .prod_list_01 li {width:100% !important;}
+	.area_homeshop_2 .prod_list_01 li:nth-child(odd) {padding-right:0 !important;}
+	.area_homeshop_2 .prod_list_01 li:nth-child(odd) .unit_list_01 {border-right:0 !important;}
+	.area_homeshop_2 .prod_list_01 li:nth-child(3n-1) {padding:0 !important;}
+}
+.area_homeshop_2 .prod_list_01 li .unit_list_02 .info .coupon {right:0 !important;}

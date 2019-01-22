@@ -1,0 +1,77 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplgiftcheck" : {
+                "options": {
+	            	"prefix":"/",
+                    "module":"app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mylotte/address_info.html",
+                    "lotte/resources_dev/mylotte/giftcheck_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/giftcheck.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsgiftcheck" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mylotte/address_info.js",
+                    "lotte/resources_dev/mylotte/giftcheck.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/giftcheck.js"
+            }
+        },
+
+        "uglify" : {
+            "jsgiftcheck" : {
+                "options" : {
+                    "sourceMap" : true,
+                    "sourceMapIncludeSources" : true,
+                    "sourceMapRoot" : "<%= sourceMapRootURL %>/"
+                },
+                "src" : "lotte/resources/<%= version %>/giftcheck.js",
+                "dest" : "lotte/resources/<%= version %>/giftcheck.min.js"
+            },
+            "tplgiftcheck" : {
+                "src" : "lotte/resources/<%= version %>/giftcheck.template.js",
+                "dest" : "lotte/resources/<%= version %>/giftcheck.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssgiftcheck" : {
+                "src" : [
+                    "lotte/resources_dev/mylotte/address_info.css",
+                    "lotte/resources_dev/mylotte/giftcheck.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/giftcheck.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleangiftcheck" : [
+                "lotte/resources/<%= version %>/giftcheck.js",
+                "lotte/resources/<%= version %>/giftcheck.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlgiftcheck" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mylotte/giftcheck.html" : "mylotte/giftcheck_dev.html"
+                }
+            }
+        }
+    }
+}
+

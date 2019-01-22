@@ -1,0 +1,69 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplCustPrivacy" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/agreement/cust_privacy_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/custPrivacy.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsCustPrivacy" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/agreement/cust_privacy.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/custPrivacy.js"
+            }
+        },
+
+        "uglify" : {
+            "jsCustPrivacy" : {
+                "src" : "lotte/resources/<%= version %>/custPrivacy.js",
+                "dest" : "lotte/resources/<%= version %>/custPrivacy.min.js"
+            },
+            "tplCustPrivacy" : {
+                "src" : "lotte/resources/<%= version %>/custPrivacy.template.js",
+                "dest" : "lotte/resources/<%= version %>/custPrivacy.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssCustPrivacy" : {
+                "src" : [
+                    "lotte/resources_dev/agreement/cust_privacy.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/custPrivacy.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanCustPrivacy" : [
+                "lotte/resources/<%= version %>/custPrivacy.js",
+                "lotte/resources/<%= version %>/custPrivacy.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlCustPrivacy" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "agreement/custPrivacy.html" : "agreement/custPrivacy_dev.html"
+                }
+            }
+        }
+    }
+}
+

@@ -1,0 +1,32 @@
+<section>
+    <!-- main visual -->
+    <div class="kshop_spot" ng-if="swipeBanner">
+        <ul rn-carousel rn-carousel-controls rn-carousel-controls-allow-loop rn-carousel-index="swipeBnrIdx">
+            <li ng-repeat="banner in swipeBanner">
+                <a ng-click="goSwipeBnrLink(banner.linkUrl);"><img ng-src="{{banner.imgUrl}}" alt="{{banner.alt}}" /></a>
+            </li>
+        </ul>
+        <ul rn-carousel-indicator custom-indicator class="swipe_indicator" ng-if="swipeBanner && swipeBanner.length > 1">
+            <li ng-repeat="slide in swipeBanner" ng-class="{on: $index==$parent.swipeBnrIdx}" ng-click="$parent.swipeBnrIdx = $index"></li>
+        </ul>
+    </div>
+    <!-- //main visual -->
+
+    <!-- main content -->
+    <div class="kshop_con">
+        <div class="con" ng-repeat="prdList in mainData.prdList">
+            <h3>{{prdList.ctgName}}</h3>
+            <section class="prd_lst">
+                <ul class="sv-unit">
+                    <li ng-repeat="item in prdList.items">
+                        <comm-unit tclick="{{mainPdtTclickIdx($parent.$index, $index)}}"></comm-unit>
+                    </li>
+                </ul>
+            </section>
+        </div> 
+    </div>        
+    <!-- //main content -->
+    <!-- main link -->
+    <div class="kshop_s_banner" ng-bind-html="mainData.topHtml"></div>
+    <!-- //main link -->
+</section>

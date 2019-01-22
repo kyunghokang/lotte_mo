@@ -1,0 +1,16 @@
+<section class="cscenter_main">
+
+    <div class="list notice">
+        <div class="slide_list">
+            <dl ng-repeat="items in csNoticeData" ng-click="noticeDetail(items)">
+                <dt name="items.bbc_no" ng-bind="items.bbc_tit_nm" ng-class="{emergOn:items.emerg_yn == true}"></dt>
+                <dd name="items.bbc_no" ng-bind-html="items.bbc_fcont" ng-class="{show:noticeDeatailView[items.bbc_no] === true}" ng-if="noticeDeatailView[items.bbc_no]"></dd>
+            </dl>
+        </div>
+        <div class="list_more" ng-if="csNoticeData.length != noticeList_tot_cnt">
+			<a href="#" ng-click="moreListClick()"><span>더보기 (<label id="currentCnt">{{csNoticeData.length}}</label>/<label id="totalCnt">{{noticeList_tot_cnt}}</label>)</a></span>
+        </div>
+        
+    </div>
+
+</section>

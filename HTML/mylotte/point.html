@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">	
+<!----------------- current css ----------------->
+
+<link rel="stylesheet" href="/lotte/resources_dev/mylotte/pointcoupon/m/point_info.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+<script>
+$(function(){
+	$(".tab_nav li").click(function(){
+		$(".tab_nav li").removeClass("on");
+		$(this).addClass("on");
+		
+		$(".tab_con").removeClass("on");
+		$(".tab_con").eq($(this).index()).addClass("on")
+	});
+});
+</script>
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<!-- container -->
+<section id="container">
+	
+	<section class="mylotte_point">
+		<!-- 탭메뉴 -->
+		<nav class="tab_nav">
+			<ul>
+				<li>L.POINT <span><strong>5,529</strong>점</span></li>
+				<li class="on">L-money <span><strong>111,529</strong>점</span></li>
+				<li>보관금 <span><strong>270</strong>원</span></li>
+			</ul>
+		</nav>
+		<div class="tab_con">
+			
+			<!-- L.POINT -->
+			<section class="pay_box">
+				<p>3일 이내 소멸 예정 L.POINT <span class="num">0</span>점</p>
+			</section>
+
+			<!-- 적립대기 포인트 -->
+			<section class="point_list waiting_point">
+				<h3>적립대기 포인트</h3>
+				<table id="tb_point_list" class="tbl_list_01" summary="적립대기 포인트가 나와있는 표">
+					<caption>L.POINT 적립/사용 내역 상세 테이블</caption>
+					<colgroup>
+						<col width="35%">
+						<col width="65%">
+					</colgroup>
+					<thead>
+					<tr>
+						<th scope="col" colspan="2" class="order_num"><strong>주문번호</strong> 2015-05-05-579335</th>
+					</tr>
+					</thead>
+					<tbody class="add_point">
+					<tr>
+						<th>상품명</th>
+						<td>[올리브데올리브]깔끄미 차이나카라 동글</td>
+					</tr>
+					<tr>
+						<th>적립대기포인트</th>
+						<td>
+							<strong>+1,320</strong>
+							<span class="btn on">적립하기</span>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<table id="tb_point_list" class="tbl_list_01" summary="적립대기 포인트가 나와있는 표">
+					<caption>L.POINT 적립/사용 내역 상세 테이블</caption>
+					<colgroup>
+						<col width="35%">
+						<col width="65%">
+					</colgroup>
+					<thead>
+					<tr>
+						<th scope="col" colspan="2" class="order_num"><strong>주문번호</strong> 2015-05-05-579335</th>
+					</tr>
+					</thead>
+					<tbody class="add_point">
+					<tr>
+						<th>상품명</th>
+						<td>[올리브데올리브]깔끄미 차이나카라 동글</td>
+					</tr>
+					<tr>
+						<th>적립대기포인트</th>
+						<td>
+							<strong>+1,320</strong>
+							<span class="btn">적립하기</span>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="desc">L.POINT는 2AM~4AM시까지 시스템 점검 시에는 적립이 불가능합니다.</p>
+			</section>
+			<!-- // 포인트 적립.사용 내역 -->
+
+			<section class="point_list">
+				<h3>L.POINT 적립/사용 내역 <span>(최근 3개월간)</span></h3>
+				<p class="cont_no">적립/사용 내역이 없습니다.</p>
+			</section>
+			<!--// L.POINT -->
+			
+			<!-- 포인트 적립.사용 내역 -->
+			<section class="point_list">
+				<h3>L-money 적립/사용 내역 <span>(최근 3개월간)</span></h3>
+				<table id="tb_point_list" class="tbl_list_01" summary="상세내용, 적립/사용 포인트가 나와있는 표">
+					<caption>L.POINT 적립/사용 내역 상세 테이블</caption>
+					<colgroup>
+						<col width="65%">
+						<col width="35%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">상세내용</th>
+							<th scope="col">적립/사용</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- <tr>
+							<td colspan="2" class="cont_no">
+								적립/사용 내역이 없습니다.
+							</td>
+						</tr> -->
+						<tr>
+							<td>
+								<span class="date">2015.07.18</span>
+								<p>추첨 이벤트포인트 : [전사] 0623 롯데카드 포인트 대축제 적립</p>
+							</td>
+							<td class="point plus"><strong>+320</strong></td>
+						</tr>
+						<tr>
+							<td>
+								<span class="date">2015.07.18</span>
+								<p>주문사용포인트 차감</p>
+								<p>주문번호 2015-03-05-579335</p>
+							</td>
+							<td class="point minus"><strong>-320</strong></td>
+						</tr>
+						<tr>
+							<td>
+								<span class="date">2015.07.18</span>
+								<p>추첨 이벤트포인트 : [전사] 0623 롯데카드 포인트 대축제 적립</p>
+								<p>주문번호 2015-03-05-579335</p>
+							</td>
+							<td class="point plus"><strong>+1,320</strong></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+			<!-- // 포인트 적립.사용 내역 -->
+
+			
+		</div>
+		<div class="tab_con on">
+			<!-- L-money -->
+			<section class="pay_box">
+				<p>3일 이내 소멸 예정 L-money <span class="num">123,000</span>점</p>
+				<p class="desc">적립 잔여 L-money 중 사용하고 남은 잔여만 소멸됩니다.</p>
+			</section>
+	
+			<!-- 포인트 적립.사용 내역 -->
+			<section class="point_list">
+				<table id="tb_point_list" class="tbl_list_01" summary="상세내용, 소멸예정 포인트가 나와있는 표">
+					<caption>소멸예정 내역 상세 테이블</caption>
+					<colgroup>
+						<col width="65%">
+						<col width="35%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">상세내용</th>
+							<th scope="col">소멸예정</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<span class="date">2015.07.18</span>
+								<p>주문사용포인트 차감</p>
+								<p>주문번호 2015-03-05-579335</p>
+							</td>
+							<td class="point minus"><strong>-320</strong></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+			<!-- // 포인트 적립.사용 내역 -->
+	
+			<!-- 포인트 적립.사용 내역 -->
+			<section class="point_list">
+				<h3>L-money 적립/사용 내역 <span>(최근 3개월간)</span></h3>
+				<table id="tb_point_list" class="tbl_list_01" summary="상세내용, 적립/사용 포인트가 나와있는 표">
+					<caption>L.POINT 적립/사용 내역 상세 테이블</caption>
+					<colgroup>
+						<col width="65%">
+						<col width="35%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">상세내용</th>
+							<th scope="col">적립/사용</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- <tr>
+							<td colspan="2" class="cont_no">
+								적립/사용 내역이 없습니다.
+							</td>
+						</tr> -->
+						<tr>
+							<td>
+								<span class="date">2015.07.18</span>
+								<p>추첨 이벤트포인트 : [전사] 0623 롯데카드 포인트 대축제 적립</p>
+							</td>
+							<td class="point plus"><strong>+320</strong></td>
+						</tr>
+						<tr>
+							<td>
+								<span class="date">2015.07.18</span>
+								<p>주문사용포인트 차감</p>
+								<p>주문번호 2015-03-05-579335</p>
+							</td>
+							<td class="point minus"><strong>-320</strong></td>
+						</tr>
+						<tr>
+							<td>
+								<span class="date">2015.07.18</span>
+								<p>추첨 이벤트포인트 : [전사] 0623 롯데카드 포인트 대축제 적립</p>
+								<p>주문번호 2015-03-05-579335</p>
+							</td>
+							<td class="point plus"><strong>+1,320</strong></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+			<!-- // 포인트 적립.사용 내역 -->			
+			
+			<!-- 더보기 버튼 -->
+			<section class="more_view">
+				<div><a href="#"><span>더보기 (<label id="currentCnt">10</label>/<label id="totalCnt">50</label>)</a></span></div>
+			</section>
+			<!--// 더보기 버튼 -->
+	
+			<section class="point_info">
+				<ul>
+					<li>신용카드, 인터넷뱅킹, 계좌이체, 포인트와 함께 사용하실 수 있습니다.</li>
+					<li>지급 시 유효기간을 별도 고지한 경우를 제외하고 L-money의 유효기간은 발행일로부터 5년입니다.</li>
+					<li>결제 시 10원 단위 이상으로 원하는 금액만큼 사용하실 수 있습니다.</li>
+					<li>전환한 포인트는 현금영수증 및 세금계산서 발행이 가능합니다.</li>
+					<li>백화점상품권으로 전환한 L-money의 유효기간은 발행일로부터 5년이며, 경과 또는 회원탈퇴시 자동소멸 됩니다.</li>
+					<li>이벤트 당첨 L-money의 경우 이벤트마다 별도의 유효기간이 적용되며, 현금환불이 불가합니다.</li>
+				</ul>
+			</section>
+			<!--// L-money -->
+			
+			<dl class="slideGuide">
+				<dt>선물전자지급수단 주요사항</dt>
+				<dd>
+					<h6>항목</h6>
+					<p>선물전자지급수단 주요사항 고지</p>					
+					<h6>회사정보</h6>
+					<ul>
+					   <li>주식회사 롯데닷컴/대표이사 김형준</li>
+					   <li>서울시 중구 을지로 158(을지로4가 삼풍빌딩) 10층</li>
+					   <li>고객만족센터 : 1577-1110</li>
+					   <li>전자우편 : webmaster@lotte.com</li>
+					   <li>자본금 : 232억원</li>
+					   <li>자본금현황 : 422억</li>
+					</ul>
+					<h6>소비자피해보상 보험계약 등 관련 정보</h6>
+					<p>L- money는 전자상거래등에서 소비자보호에 관한 법률 제24조 및 금융 위원회설치등에 관한법률 제38조에 의하여 금융기관에 예치중임.</p>
+					<h6>남은금액 현금 환불과 관련된 사항</h6>
+					<ul>
+					   <li>이벤트 등으로 적립된 비현금성 L- money는 현금 환불 불가</li>
+					   <li>롯데상품권(지류/모바일)으로 전환된 L-money</li>
+					   <li>1만원 초과 시 : 발생액의 60%이상 사용시 잔액 환불 가능</li>
+					   <li>1만원 이상 시 : 발생액의 80%이상 사용시 잔액 환불 가능</li>
+					</ul>
+					<h6>반품시 처리기준 및 현금화 관련 사항</h6>
+					<p>L- money 결제건 취소시 L- money로 재적립</p>
+					<h6>해당 결제수단을 사용할 수 있는 사이버몰 현황</h6>
+					<p>롯데닷컴, 엘롯데, 롯데슈퍼, 무지, 유니클로, 푸마등</p>
+					<h6>해당 결제수단의 사용상 제한 및 주의사항</h6>
+					<ul>
+					   <li>이벤트 등으로 적립된 비현금성 L- money는 현금환불 불가</li>
+					   <li>회원 탈퇴 시 자동 소멸</li>
+					</ul>
+				</dd>
+			</dl>			
+		</div>
+		<div class="tab_con">
+			<!-- 보관금 -->
+			<section class="pay_box">
+				<p>사용/환불 가능한 보관금 <span class="num">0</span>원</p>
+				<a class="btn_style5 ptr">환불요청</a>
+			</section>
+			<!-- 포인트 적립.사용 내역 -->
+			<section class="point_list">
+				<h3>보관금 적립/사용 내역 <span>(최근 3개월간)</span></h3>
+				<p class="cont_no">적립/사용 내역이 없습니다.</p>
+			</section>
+			<!-- // 포인트 적립.사용 내역 -->
+			<!--// 보관금 -->
+			
+			<!-- 보관금 적립.사용 내역 -->
+			<section class="point_list">
+				<table id="tb_point_list" class="tbl_list_01" summary="보관금 적립.사용 내역이 나와있는 표">
+					<caption>소멸예정 내역 상세 테이블</caption>
+					<colgroup>
+						<col width="65%">
+						<col width="35%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">상세내용</th>
+							<th scope="col">적립/사용</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<span class="date">2015.07.18</span>
+								<p>주문사용포인트 차감</p>
+								<p>주문번호 2015-03-05-579335</p>
+							</td>
+							<td class="point plus"><strong>+320</strong></td>
+						</tr>
+						<tr>
+							<td>
+								<span class="date">2015.07.18</span>
+								<p>주문사용포인트 차감</p>
+								<p>주문번호 2015-03-05-579335</p>
+							</td>
+							<td class="point minus"><strong>-320</strong></td>
+						</tr>
+						<tr>
+							<td>
+								<span class="date">2015.07.18</span>
+								<p>주문사용포인트 차감</p>
+								<p>주문번호 2015-03-05-579335</p>
+							</td>
+							<td class="point minus"><strong>-320</strong></td>
+						</tr>
+						
+					</tbody>
+				</table>
+			</section>
+			<!-- // 보관금 적립.사용 내역 -->
+			
+			
+		</div>
+	</section>
+	
+</section>
+<!-- //container -->
+
+<!-- footer -->
+<section ng-include src="'/HTML/include/footer.html'"></section>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<div>
+	<div class="title">
+		<h3><b>이런 상품</b> 어떠세요?</h3>
+	</div>
+	<!-- <div lotte-slider class="swipe_warp" style="overflow-x:scroll;"> -->
+	<div lotte-slider class="swipe_warp" ng-if="tpmlData.recommondData.items.length > 0">
+		<ul>
+			<li ng-repeat="item in tpmlData.recommondData.items track by $index">
+				<a ng-click="gotoLinkM('&_reco=M_search',{{$index + 1}}, 0, item)">
+					<div class="imageCon">
+						<img ng-src="{{item.img_url}}">
+					</div>
+					<div class="titleCon">
+						<div class="name">{{item.goods_nm}}</div>
+						<div class="ti"><strong>{{item.sale_price | number}}</strong>원<em ng-if="item.is_plan_prod" class="plan_prod_limit">~</em></div>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+	<title>롯데닷컴</title>
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+
+	<!-- 기존 css -->
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/common/lotte.css" />
+	<link rel="stylesheet" type="text/css" href="../header_2018.css" /> <!-- 롯데슈퍼관련 헤더 수정 -->
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/layout/sub_header_2017.css" />
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/layout/footer.css" />
+	<link rel="stylesheet" type="text/css" href="../actionbar_2018.css" /> <!-- 롯데슈퍼관련 액션바 수정 -->
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/common/lotte_sidectg_2017_1.css" />
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/search/layer_srh_2017.css" />
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/sns/sns.css" />
+
+	<!-- <link rel="stylesheet" href="../../lotte/resources_dev/mylotte/cart/m/cart.css" /> -->
+	<link rel="stylesheet" href="/lotte/resources/r20171017_1/cart_list.min.css">
+    <script src="/lotte/resources/r20171017_1/cart_list.min.js"></script>
+    <script src="/lotte/resources/r20171017_1/cart_list.tpl.js"></script>
+	<link rel="stylesheet" type="text/css" href="cart_2018.css" /> <!-- 장바구니 장보기몰 추가 -->
+</head>
+<body ng-controller="ProductCtrl">
+
+	<div id="wrapper">
+
+		<section>
+			<header class="sub_header_top_wrap" id="lotteHeader">
+				<div class="inner_wrap headerFixed">
+					<h1 class="logo"><button class="btn_main">LOTTE.COM</button></h1>
+					<button class="btn_prev">이전</button>
+					<div class="header_srh_wrap web">
+						<div class="srh_box">
+							<label for="keyword" class="btn_srh"></label>
+						</div>
+					</div>
+					<button class="btn_ctg">카테고리</button>
+					<button class="btn_cart">장바구니<i class="cnt">5</i></button>
+					<div class="btn_super"><img src="http://image.lotte.com/lotte/mo2018/common/DotcomText.png" alt="" /></div>
+				</div>
+			</header>
+		</section>
+
+		<section>
+			<div class="sub_header_wrap">
+				<header id="head_sub" class="fixedSubHeader fixedHeader">
+					<h2>
+						<span>
+							<span class="title ng-binding">장바구니</span>
+						</span>
+					</h2>
+				</header>
+			</div>
+		</section>
+
+		<section class="cont_minheight">
+
+			<section id="container">
+				<!--s: 장바구니-->
+				<div class="mylotte" id="cart">
+					
+					<!--s: 일반상품-->
+					<div class="listWrap">
+						<div class="cart_header">
+							<!--
+							<span>전체 4개</span>
+							<div class="btn_list">
+								<a href="#none" class="btn_cnt">위시리스트<em>10</em></a>
+								<a href="#none" class="btn_cnt">최근본상품<em>10</em></a>
+							</div>
+							-->
+							<div class="loginPlz">
+								로그인 후 상품을 보관하세요.
+								<a href="#none" class="btn_style3">로그인</a>
+							</div>
+						</div>
+						<!--s: 상단 count-->
+						<div class="cart_header">
+							<label for="freeDeliYN">
+								<input type="checkbox" id="freeDeliYN" name="freeDeliYN" class="check01">일반상품 (2)
+							</label>
+							<div class="btn_list">
+								<a href="#" name="selectAll" class="btn_style1 check_all">위시담기</a>
+								<a href="#" name="deleteSelected" class="btn_style1 check_del">선택삭제</a>
+							</div>
+						</div>
+						<!--e: 상단 count-->
+
+						<!--s: 장바구니 리스트-->
+						<div class="cart_list">
+							<ul class="product_list_01">
+								<li>
+									<div class="group">
+										<div class="chk"><input type="checkbox" title="선택" class="check01"></div>
+										<div class="thumb">
+											<a href="javascript:;"><img src="http://image.lotte.com/goods/87/00/30/47/1/147300087_1_150.jpg" alt=""></a>
+										</div>
+										<div class="cont01">
+											<p class="flag">
+												<span class="flag depart">롯데백화점</span>
+												<span class="flag etv">롯데홈쇼핑</span>
+												<span class="flag tag">무료배송</span>
+												<span class="flag smart">스마트픽</span>
+											</p>
+											<a href="javascript:;">
+												<span class="tl">[쿠기] 여기서만 골라도 여신~ 블라우스/원피스/스커트</span>
+											</a>
+											<p class="money">55,520원 X <input type="hidden" id="ord_qty" name="ord_qty" value="1"> 1개 = <span class="price"><span>55,520</span>원</span></p>
+
+										</div>
+									</div>
+									<div class="btn_list btn_list_v2"><!--  20160226 r_area_v2 추가 -->
+										<!--  20160226 추가 -->
+										<div class="cartKeep">
+											<div class="area">
+												<a href="#" class="btn">보관하기/보관취소</a>
+												<div class="layer_cartKeep">
+													<p>
+														상품을 장바구니에<br />계속 보관할 수 있습니다.
+													</p>
+													<a href="#none" class="close">보관하기 레이어 닫기</a>									
+												</div>
+											</div>	
+										</div>
+										<!--  //20160226 추가 -->
+										<div class="r_area">	
+											<!-- 옵션/수량 버튼클릭시 addClass optOn-->
+											<a href="#" class="btn_style2 option optOn">옵션/수량</a>
+											<a href="#" class="btn_style3">바로주문</a>
+										</div>
+									</div>
+									<!-- 옵션/수량 버튼클릭시 addClass optAreaOn-->
+									<div class="optionArea optAreaOn">
+										<div class="optionInner">
+											<dl>
+												<dt>수량</dt>
+												<dd>
+													<div class="quantity">
+														<button class="btnMinus" qty="1"><span>-</span></button>
+														<span class="ipt_num"><input type="number" pattern="[0-9]*" name="orderQuantity" min="0" value="1"></span>
+														<button class="btnPlus" qty="3"><span>+</span></button>
+													</div>
+													<a href="javascript:;" class="btnBl">변경</a>
+												</dd>
+											</dl>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="group">
+										<div class="chk"><input type="checkbox" title="선택" class="check01"></div>
+										<div class="thumb">
+											<a href="javascript:;"><img src="http://image.lotte.com/goods/87/00/30/47/1/147300087_1_150.jpg" alt=""></a>
+										</div>
+										<div class="cont01">
+											<p class="flag">
+												<span class="flag depart">롯데백화점</span>
+												<span class="flag tag">무료배송</span>
+												<!--<span class="flag smart">스마트픽</span>-->
+											</p>
+											<a href="javascript:;">
+												<span class="tl">[쿠기] 여기서만 골라도 여신~ 블라우스/원피스/스커트</span>
+											</a>
+											<p class="money">55,520원 X <input type="hidden" id="ord_qty" name="ord_qty" value="1"> 1개 = <span class="price"><span>55,520</span>원</span></p>
+
+										</div>
+									</div>
+									<div class="btn_list">
+										<div class="r_area">
+											<!-- 옵션/수량 버튼클릭시 addClass optOn-->
+											<a href="#" class="btn_style2 option">옵션/수량</a>
+											<a href="#" class="btn_style3">바로주문</a>
+										</div>
+									</div>
+									<!-- 옵션/수량 버튼클릭시 addClass optAreaOn-->
+									<div class="optionArea">
+										<div class="optionInner">
+											<dl>
+												<dt>스타일</dt>
+												<dd>
+													<div class="selWrap">
+														<select>
+															<option value="">100(XXL)</option>
+															<option value="">95(XL)</option>
+															<option value="">90(L)</option>
+														</select>
+													</div>
+												</dd>
+											</dl>
+											<dl>
+												<dt>색상</dt>
+												<dd>
+													<div class="selWrap">
+														<select>
+															<option value="">SUP(수퍼핑크)</option>
+														</select>
+													</div>
+												</dd>
+											</dl>
+											<dl>
+												<dt>사이즈</dt>
+												<dd>
+													<div class="selWrap">
+														<select>
+															<option value="">90</option>
+														</select>
+													</div>
+												</dd>
+											</dl>
+											<dl>
+												<dt>수량</dt>
+												<dd>
+													<div class="quantity">
+														<button class="btnMinus" qty="1"><span>-</span></button>
+														<span class="ipt_num"><input type="number" pattern="[0-9]*" name="orderQuantity" min="0" value="1"></span>
+														<button class="btnPlus" qty="3"><span>+</span></button>
+													</div>
+													<a href="javascript:;" class="btnBl">변경</a>
+												</dd>
+											</dl>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="group">
+										<div class="chk"><input type="checkbox" title="선택" class="check01"></div>
+										<div class="thumb">
+											<a href="javascript:;"><img src="http://image.lotte.com/goods/87/00/30/47/1/147300087_1_150.jpg" alt=""></a>
+										</div>
+										<div class="cont01">
+											<p class="flag">
+												<span class="flag depart">롯데백화점</span>
+												<span class="flag tag">무료배송</span>
+												<!--<span class="flag smart">스마트픽</span>-->
+											</p>
+											<a href="javascript:;">
+												<span class="tl">[쿠기] 여기서만 골라도 여신~ 블라우스/원피스/스커트</span>
+											</a>
+											<p class="money">55,520원 X <input type="hidden" id="ord_qty" name="ord_qty" value="1"> 1개 = <span class="price"><span>55,520</span>원</span></p>
+
+										</div>
+									</div>
+									<div class="btn_list">
+										<div class="r_area">
+											<!-- 옵션/수량 버튼클릭시 addClass optOn-->
+											<a href="#" class="btn_style2 option">옵션/수량</a>
+											<a href="#" class="btn_style3">바로주문</a>
+										</div>
+									</div>
+									<!-- 옵션/수량 버튼클릭시 addClass optAreaOn-->
+									<div class="optionArea">
+										<div class="optionInner">
+											<dl>
+												<dt>이용권</dt>
+												<dd>
+													<div class="selWrap">
+														<select>
+															<option value="">08월 19일</option>
+														</select>
+													</div>
+												</dd>
+											</dl>
+											<dl>
+												<dt>이용권</dt>
+												<dd>
+													<div class="selWrap">
+														<select>
+															<option value="">SUP(수퍼핑크)</option>
+														</select>
+													</div>
+												</dd>
+											</dl>
+											<dl>
+												<dt>MMS수신연락처</dt>
+												<dd>
+													<div class="addInfoInput">
+														<input type="text" placeholder="01012345678" />
+													</div>
+												</dd>
+											</dl>
+											<dl>
+												<dt>수량</dt>
+												<dd>
+													<div class="quantity">
+														<button class="btnMinus" qty="1"><span>-</span></button>
+														<span class="ipt_num"><input type="number" pattern="[0-9]*" name="orderQuantity" min="0" value="1"></span>
+														<button class="btnPlus" qty="3"><span>+</span></button>
+													</div>
+													<a href="javascript:;" class="btnBl">변경</a>
+												</dd>
+											</dl>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="group">
+										<div class="chk"><input type="checkbox" title="선택" class="check01"></div>
+										<div class="thumb">
+											<a href="javascript:;"><img src="http://image.lotte.com/goods/87/00/30/47/1/147300087_1_150.jpg" alt=""></a>
+										</div>
+										<div class="cont01">
+											<p class="flag">
+												<span class="flag depart">롯데백화점</span>
+												<!-- <span class="flag etv">롯데홈쇼핑</span>
+												<span class="flag tag">무료배송</span>
+												<span class="flag smart">스마트픽</span> -->
+											</p>
+											<a href="javascript:;">
+												<span class="tl">[쿠기] 여기서만 골라도 여신~ 블라우스/원피스/스커트</span>
+											</a>
+											<p class="pdOption">배송희망일:20150909</p>
+											<p class="pdOption">카드or리본 메시지:생일축하합니다.</p>
+											<p class="pdOption">보내는분 성함 : 김철수</p>
+											<p class="pdOption">주문자연락처:01012345678</p>
+											<p class="money">55,520원 X <input type="hidden" id="ord_qty" name="ord_qty" value="1"> 1개 = <span class="price"><span>55,520</span>원</span></p>
+
+										</div>
+									</div>
+									<div class="btn_list">
+										<div class="r_area">
+											<!-- 옵션/수량 버튼클릭시 addClass optOn-->
+											<a href="#" class="btn_style2 option">옵션/수량</a>
+											<a href="#" class="btn_style3">바로주문</a>
+										</div>
+									</div>
+									<!-- 옵션/수량 버튼클릭시 addClass optAreaOn-->
+									<div class="optionArea">
+										<div class="optionInner">
+											<dl>
+												<dt>배송희망일</dt>
+												<dd>
+													<div class="addInfoDate">
+														<input type="text" class="calendar-input" name="opt_input_value" value="" readonly="" placeholder="2015-09-09">
+														<a href="#" class="wa-datechooser-btn"><span>달력</span></a>
+													</div>
+												</dd>
+											</dl>
+											<dl>
+												<dt>카드/리본메시지</dt>
+												<dd>
+													<div class="addInfoInput">
+														<input type="text" placeholder="생일축하합니다." />
+													</div>
+												</dd>
+											</dl>
+											<dl>
+												<dt>보내는분</dt>
+												<dd>
+													<div class="addInfoInput">
+														<input type="text" placeholder="김철수" />
+													</div>
+												</dd>
+											</dl>
+											<dl>
+												<dt>주문자연락처</dt>
+												<dd>
+													<div class="addInfoInput">
+														<input type="text" placeholder="01012345678" />
+													</div>
+												</dd>
+											</dl>
+											<dl>
+												<dt>수량</dt>
+												<dd>
+													<div class="quantity">
+														<button class="btnMinus" qty="1"><span>-</span></button>
+														<span class="ipt_num"><input type="number" pattern="[0-9]*" name="orderQuantity" min="0" value="1"></span>
+														<button class="btnPlus" qty="3"><span>+</span></button>
+													</div>
+													<a href="javascript:;" class="btnBl">변경</a>
+												</dd>
+											</dl>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="group">
+										<div class="chk"><input type="checkbox" title="선택" class="check01"></div>
+										<div class="thumb">
+											<a href="javascript:;"><img src="http://image.lotte.com/goods/87/00/30/47/1/147300087_1_150.jpg" alt=""></a>
+										</div>
+										<div class="cont01">
+											<p class="flag">
+												<span class="flag depart">롯데백화점</span>
+												<span class="flag tag">무료배송</span>
+												<!--<span class="flag smart">스마트픽</span>-->
+											</p>
+											<a href="javascript:;">
+												<span class="tl">[쿠기] 여기서만 골라도 여신~ 블라우스/원피스/스커트</span>
+											</a>
+											<p class="money">55,520원 X <input type="hidden" id="ord_qty" name="ord_qty" value="1"> 1개 = <span class="price"><span>55,520</span>원</span></p>
+
+										</div>
+									</div>
+									<div class="btn_list">
+										<div class="r_area">
+											<!-- 옵션/수량 버튼클릭시 addClass optOn-->
+											<a href="#" class="btn_style2 option">옵션/수량</a>
+											<a href="#" class="btn_style3">바로주문</a>
+										</div>
+									</div>
+									<!-- 옵션/수량 버튼클릭시 addClass optAreaOn-->
+									<div class="optionArea">
+										<div class="optionInner">
+											<dl>
+												<dt>봉투수량</dt>
+												<dd>
+													<div class="addInfoInput">
+														<input type="text" placeholder="텍스트/숫자 입력가능" />
+													</div>
+												</dd>
+											</dl>
+											<dl>
+												<dt>수량</dt>
+												<dd>
+													<div class="quantity">
+														<button class="btnMinus" qty="1"><span>-</span></button>
+														<span class="ipt_num"><input type="number" pattern="[0-9]*" name="orderQuantity" min="0" value="1"></span>
+														<button class="btnPlus" qty="3"><span>+</span></button>
+													</div>
+													<a href="javascript:;" class="btnBl">변경</a>
+												</dd>
+											</dl>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="group">
+										<div class="chk"><input type="checkbox" title="선택" class="check01"></div>
+										<div class="thumb">
+											<a href="javascript:;"><img src="http://image.lotte.com/goods/00/68/81/68/1/168816800_1_150.jpg" alt=""></a>
+										</div>
+										<div class="cont01">
+											<p class="flag">
+												<span class="flag depart">롯데백화점</span>
+												<span class="flag tag">무료배송</span>
+												<!--<span class="flag smart">스마트픽</span>-->
+											</p>
+											<a href="javascript:;">
+												<span class="tl">[게스(구두)] 게스슈즈 BEST 부티 4종 택1</span>
+											</a>
+											<p class="pdOption">색상:브라운,사이즈:FREE</p>
+											<p class="money">28,540원 X <input type="hidden" id="ord_qty" name="ord_qty" value="1"> 1개 = <span class="price"><span>28,540</span>원</span></p>
+										</div>
+									</div>
+									<div class="btn_list">
+										<div class="r_area">
+											<!-- 옵션/수량 버튼클릭시 addClass optOn-->
+											<a href="#" class="btn_style2 option">옵션/수량</a>
+											<a href="#" class="btn_style3">바로주문</a>
+										</div>
+									</div>
+									<!-- 옵션/수량 버튼클릭시 addClass optAreaOn-->
+									<div class="optionArea">
+										<div class="optionInner">
+											<dl>
+												<dt>수량</dt>
+												<dd>
+													<div class="quantity">
+														<button class="btnMinus" qty="1"><span>-</span></button>
+														<span class="ipt_num"><input type="number" pattern="[0-9]*" name="orderQuantity" min="0" value="1"></span>
+														<button class="btnPlus" qty="3"><span>+</span></button>
+													</div>
+													<a href="javascript:;" class="btnBl">변경</a>
+												</dd>
+											</dl>
+										</div>
+									</div>
+								</li>
+								<li class="cart_prod_sum">
+									<p>
+										<label>28,540</label>원 + 
+										<label>2,500</label>원(배송비) = 
+										<strong><label>31,040</label></strong>원
+									</p>
+									<p class="point">
+										<span>LPOINT <em>1,000,000</em>점</span>
+									</p>
+								</li>
+							</ul>
+						</div>
+						<!--e: 장바구니 리스트-->
+					</div>            
+					<!--e: 일반상품-->
+
+					<!--s: 스마트픽상품-->
+					<div class="listWrap">
+						<!--s: 상단 count-->
+						<div class="cart_header">
+							<label for="freeDeliYN">
+								<input type="checkbox" id="freeDeliYN" name="freeDeliYN" class="check01">스마트픽 (2)
+							</label>
+							<div class="btn_list">
+								<a href="#" name="selectAll" class="btn_style1 check_all">위시담기</a>
+								<a href="#" name="deleteSelected" class="btn_style1 check_del">선택삭제</a>
+							</div>
+						</div>
+						<!--e: 상단 count-->
+
+						<!--s: 장바구니 리스트-->
+						<div class="cart_list">
+							<ul class="product_list_01">
+								<li>
+									<div class="group">
+										<div class="chk"><input type="checkbox" title="선택" class="check01"></div>
+										<div class="thumb">
+											<a href="javascript:;"><img src="http://image.lotte.com/goods/87/00/30/47/1/147300087_1_150.jpg" alt=""></a>
+										</div>
+										<div class="cont01">
+											<p class="flag">
+												<span class="flag depart">롯데백화점</span>
+												<span class="flag tag">무료배송</span>
+												<span class="flag smart">스마트픽</span>
+											</p>
+											<a href="javascript:;">
+												<span class="tl">[쿠기] 여기서만 골라도 여신~ 블라우스/원피스/스커트</span>
+											</a>
+											<p class="pdOption">이용일:08월19일,이용권:소인권</p>
+											<p class="money">1,158,000원 X <input type="hidden" id="ord_qty" name="ord_qty" value="1"> 1개 = <span class="price"><span>1,158,000</span>원</span></p>
+
+										</div>
+									</div>
+									<div class="btn_list">
+										<div class="r_area">								
+											<!-- 옵션/수량 버튼클릭시 addClass optOn-->
+											<a href="#" class="btn_style2 option">옵션/수량</a>
+											<a href="#" class="btn_style3 end">바로주문</a>
+										</div>
+									</div>
+									<!-- 옵션/수량 버튼클릭시 addClass optAreaOn-->
+									<div class="optionArea optAreaOn">
+										<div class="optionInner">
+											<dl>
+												<dt>스타일</dt>
+												<dd>
+													<div class="selWrap">
+														<select>
+															<option value="">100(XXL)</option>
+															<option value="">95(XL)</option>
+															<option value="">90(L)</option>
+														</select>
+													</div>
+												</dd>
+											</dl>
+											<dl>
+												<dt>색상</dt>
+												<dd>
+													<div class="selWrap">
+														<select>
+															<option value="">SUP(수퍼핑크)</option>
+														</select>
+													</div>
+												</dd>
+											</dl>
+											<dl>
+												<dt>사이즈</dt>
+												<dd>
+													<div class="selWrap">
+														<select>
+															<option value="">90</option>
+														</select>
+													</div>
+												</dd>
+											</dl>
+											<dl>
+												<dt>수량</dt>
+												<dd>
+													<div class="quantity">
+														<button class="btnMinus" qty="1"><span>-</span></button>
+														<span class="ipt_num"><input type="number" pattern="[0-9]*" name="orderQuantity" min="0" value="1"></span>
+														<button class="btnPlus" qty="3"><span>+</span></button>
+													</div>
+													<a href="javascript:;" class="btnBl">변경</a>
+												</dd>
+											</dl>
+										</div>
+										<div class="smpArea">
+											<div class="smpInner">
+												<div class="smpTit">배송방법을 <span>스마트픽</span>으로 선택하신 상품입니다.</div>
+												<div class="smpError">선택하신 방문예정일이 지났습니다.</div>
+												<div class="smpTb">
+													<table>
+														<caption class="blind">픽업장소 및 방문예정일을 선택할 수 있는 스마트픽상품 옵션영역</caption>
+														<colgroup>
+															<col width="85px" />
+															<col width="*" />
+															<col width="80px" />
+														</colgroup>
+														<tbody>
+															<tr>
+																<th scope="row">픽업장소</th>
+																<td>
+																	<div class="selWrap">
+																		<select>
+																			<option value="">본점 지하1층 출입구라커</option>
+																			<option value="">본점 주차장</option>
+																		</select>
+																	</div>
+																</td>
+																<td><a href="javascript:;" class="smpLoc">위치보기</a></td>
+															</tr>
+															<tr>
+																<th scope="row">픽업장소</th>
+																<td>
+																	<div class="smpVisit">매장 직접 방문(교환권지참)</div>
+																</td>
+																<td><a href="javascript:;" class="smpLoc">위치보기</a></td>
+															</tr>
+															<tr>
+																<th scope="row">방문예정일</th>
+																<td>
+																	<div class="selWrap">
+																		<select>
+																			<option value="">본점 지하1층 출입구라커</option>
+																			<option value="">본점 주차장</option>
+																		</select>
+																	</div>
+																</td>
+																<td><div class="btnSmp"><a href="javascript:;" class="btnBl">변경</a></div></td>
+															</tr>
+															<tr>
+																<td colspan="2"><div class="smpSoldout">[본점] 스마트픽 재고 품절로 구매 불가합니다.</div></th>
+																<td><div class="btnSmp"><a href="javascript:;" class="btn_style1">삭제</a></div></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="group">
+										<div class="chk"><input type="checkbox" title="선택" class="check01"></div>
+										<div class="thumb">
+											<a href="javascript:;"><img src="http://image.lotte.com/goods/00/68/81/68/1/168816800_1_150.jpg" alt=""></a>
+										</div>
+										<div class="cont01">
+											<p class="flag">
+												<span class="flag depart">롯데백화점</span>
+												<span class="flag tag">무료배송</span>
+												<span class="flag smart">스마트픽</span>
+											</p>
+											<a href="javascript:;">
+												<span class="tl">[게스(구두)] 게스슈즈 BEST 부티 4종 택1</span>
+											</a>
+											<p class="pdOption">색상:브라운,사이즈:FREE</p>
+											<p class="money">28,540원 X <input type="hidden" id="ord_qty" name="ord_qty" value="1"> 1개 = <span class="price"><span>28,540</span>원</span></p>
+
+										</div>
+									</div>
+									<div class="btn_list">
+										<div class="r_area">
+											<!-- 옵션/수량 버튼클릭시 addClass optOn-->
+											<a href="#" class="btn_style2 option">옵션/수량</a>
+											<a href="#" class="btn_style3">바로주문</a>
+										</div>
+									</div>
+									<!-- 옵션/수량 버튼클릭시 addClass optAreaOn-->
+									<div class="optionArea optAreaOn">
+										<div class="smpArea">
+											<div class="smpInner">
+												<div class="smpTit">배송방법을 <span>스마트픽</span>으로 선택하신 상품입니다.</div>
+												<div class="smpError">선택하신 방문예정일이 지났습니다.</div>
+												<div class="smpTb">
+													<table>
+														<caption class="blind">픽업장소 및 방문예정일을 선택할 수 있는 스마트픽상품 옵션영역</caption>
+														<colgroup>
+															<col width="85px" />
+															<col width="*" />
+															<col width="80px" />
+														</colgroup>
+														<tbody>
+															<tr>
+																<th scope="row">픽업장소</th>
+																<td>
+																	<div class="selWrap">
+																		<select>
+																			<option value="">본점 지하1층 출입구라커</option>
+																			<option value="">본점 주차장</option>
+																		</select>
+																	</div>
+																</td>
+																<td><a href="javascript:;" class="smpLoc">위치보기</a></td>
+															</tr>
+															<tr>
+																<th scope="row">픽업장소</th>
+																<td>
+																	<div class="smpVisit">매장 직접 방문(교환권지참)</div>
+																</td>
+																<td><a href="javascript:;" class="smpLoc">위치보기</a></td>
+															</tr>
+															<tr>
+																<th scope="row">방문예정일</th>
+																<td>
+																	<div class="selWrap">
+																		<select>
+																			<option value="">본점 지하1층 출입구라커</option>
+																			<option value="">본점 주차장</option>
+																		</select>
+																	</div>
+																</td>
+																<td><div class="btnSmp"><a href="javascript:;" class="btnBl">변경</a></div></td>
+															</tr>
+															<tr>
+																<td colspan="2"><div class="smpSoldout">[본점] 스마트픽 재고 품절로 구매 불가합니다.</div></th>
+																<td><div class="btnSmp"><a href="javascript:;" class="btn_style1">삭제</a></div></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</li>
+								<li class="cart_prod_sum">
+									<p>
+										<label>28,540</label>원 + 
+										<label>2,500</label>원(배송비) = 
+										<strong><label>31,040</label></strong>원
+									</p>
+									<p class="point">
+										<span>LPOINT <em>1,000,000</em>점</span>
+									</p>
+								</li>
+							</ul>
+						</div>
+						<!--e: 장바구니 리스트-->
+					</div>            
+					<!--e: 스마트픽상품-->
+					
+					<!--s: 도서상품-->
+					<div class="listWrap">
+						<!--s: 상단 count-->
+						<div class="cart_header">
+							<!--<span>전체 00개</span>-->
+							<!--<div class="chk"><input type="checkbox" title="선택" class="check01"></div>-->
+							<label for="freeDeliYN">
+								<input type="checkbox" id="freeDeliYN" name="freeDeliYN" class="check01">도서 (1)
+							</label>
+							<div class="btn_list">
+								<a href="#" name="selectAll" class="btn_style1 check_all">위시담기</a>
+								<a href="#" name="deleteSelected" class="btn_style1 check_del">선택삭제</a>
+							</div>
+						</div>
+						<!--e: 상단 count-->
+
+						<!--s: 장바구니 리스트-->
+						<div class="cart_list">
+							<ul class="product_list_01">
+								<li>
+									<div class="group">
+										<div class="chk"><input type="checkbox" title="선택" class="check01"></div>
+										<div class="thumb">
+											<a href="javascript:;"><img src="http://image.lotte.com/goods/87/00/30/47/1/147300087_1_150.jpg" alt=""></a>
+										</div>
+										<div class="cont01">
+											<p class="flag">
+												<span class="flag depart">롯데백화점</span>
+												<span class="flag tag">무료배송</span>
+												<span class="flag smart">스마트픽</span>
+											</p>
+											<a href="javascript:;">
+												<span class="tl">[쿠기] 여기서만 골라도 여신~ 블라우스/원피스/스커트</span>
+											</a>
+											<p class="money">55,520원 X <input type="hidden" id="ord_qty" name="ord_qty" value="1"> 1개 = <span class="price"><span>55,520</span>원</span></p>
+
+										</div>
+									</div>
+									<div class="btn_list">
+										<div class="r_area">
+											<!-- 옵션/수량 버튼클릭시 addClass optOn-->
+											<a href="#" class="btn_style2 option optOn">옵션/수량</a>
+											<a href="#" class="btn_style3">바로주문</a>
+										</div>
+									</div>
+									<!-- 옵션/수량 버튼클릭시 addClass optAreaOn-->
+									<div class="optionArea optAreaOn">
+										<div class="optionInner">
+											<dl>
+												<dt>수량</dt>
+												<dd>
+													<div class="quantity">
+														<button class="btnMinus" qty="1"><span>-</span></button>
+														<span class="ipt_num"><input type="number" pattern="[0-9]*" name="orderQuantity" min="0" value="1"></span>
+														<button class="btnPlus" qty="3"><span>+</span></button>
+													</div>
+													<a href="javascript:;" class="btnBl">변경</a>
+												</dd>
+											</dl>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="group">
+										<div class="chk"><input type="checkbox" title="선택" class="check01"></div>
+										<div class="thumb">
+											<a href="javascript:;"><img src="http://image.lotte.com/goods/00/68/81/68/1/168816800_1_150.jpg" alt=""></a>
+										</div>
+										<div class="cont01">
+											<p class="flag">
+												<span class="flag depart">롯데백화점</span>
+												<span class="flag tag">무료배송</span>
+												<span class="flag smart">스마트픽</span>
+											</p>
+											<a href="javascript:;">
+												<span class="tl">[게스(구두)] 게스슈즈 BEST 부티 4종 택1</span>
+											</a>
+											<p class="pdOption">색상:브라운,사이즈:FREE</p>
+											<p class="money">28,540원 X <input type="hidden" id="ord_qty" name="ord_qty" value="1"> 1개 = <span class="price"><span>28,540</span>원</span></p>
+
+										</div>
+									</div>
+									<div class="btn_list">
+										<div class="r_area">
+											<!-- 옵션/수량 버튼클릭시 addClass optOn-->
+											<a href="#" class="btn_style2 option">옵션/수량</a>
+											<a href="#" class="btn_style3">바로주문</a>
+										</div>
+									</div>
+									<!-- 옵션/수량 버튼클릭시 addClass optAreaOn-->
+									<div class="optionArea">
+										<div class="optionInner">
+											<dl>
+												<dt>수량</dt>
+												<dd>
+													<div class="quantity">
+														<button class="btnMinus" qty="1"><span>-</span></button>
+														<span class="ipt_num"><input type="number" pattern="[0-9]*" name="orderQuantity" min="0" value="1"></span>
+														<button class="btnPlus" qty="3"><span>+</span></button>
+													</div>
+													<a href="javascript:;" class="btnBl">변경</a>
+												</dd>
+											</dl>
+										</div>
+									</div>
+								</li>
+								<li class="cart_prod_sum">
+									<p>
+										<label>28,540</label>원 + 
+										<label>2,500</label>원(배송비) = 
+										<strong><label>31,040</label></strong>원
+									</p>
+									<p class="point">
+										<span>LPOINT <em>1,000,000</em>점</span>
+									</p>
+								</li>
+							</ul>
+						</div>
+						<!--e: 장바구니 리스트-->
+					</div>            
+					<!--e: 도서상품-->
+
+
+					
+					
+					<!-- 장보기몰 영역 추가 -->
+					<section class="shopping_list">
+						<!-- 20171227 장보기몰 버튼 추가 -->
+						<div class="btnArea">
+							<a href="#" class="viewBtn">장보기몰 장바구니</a>
+						</div>
+						<!-- //20171227 장보기몰 버튼 추가 -->
+						<ul class="prd_list">
+							<li>
+								<div class="prd_header">
+									<p><span class="mall_name">장보기몰</span> <span>일반배송</span> <span class="num">(6)</span></p>
+								</div>
+								<div class="prd_cont">
+									<div class="prd_thumb">
+										<a href="#">
+											<img src="/images/lotte2015/temp/img_prd_03.jpg" alt="">
+										</a>
+									</div>
+									<div class="prd_info">
+										<div class="prd_flag">
+											<span class="flag super">롯데슈퍼</span>
+										</div>
+										<div class="prd_name"><a href="#">슈퍼스타 오뚜기 마일드참치 (150g*5dlq)</a></div>
+										<div class="prd_bot">
+											<p class="num">외 8건</p>
+											<p class="price"><strong>35,460</strong>원</p>
+										</div>
+										<div class="btn_view"><a href="#">상세보기</a></div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="prd_header">
+									<p><span class="mall_name">장보기몰</span> <span>일반배송</span> <span class="num">(6)</span></p>
+								</div>
+								<div class="prd_cont">
+									<div class="prd_thumb">
+										<a href="#">
+											<img src="/images/lotte2015/temp/img_prd_03.jpg" alt="">
+										</a>
+									</div>
+									<div class="prd_info">
+										<div class="prd_flag">
+											<span class="flag super">롯데슈퍼</span>
+										</div>
+										<div class="prd_name"><a href="#">슈퍼스타 오뚜기 마일드참치 (150g*5dlq)</a></div>
+										<div class="prd_bot">
+											<p class="num">외 8건</p>
+											<p class="price"><strong>35,460</strong>원</p>
+										</div>
+										<div class="btn_view"><a href="#">상세보기</a></div>
+									</div>
+								</div>
+								<!-- 20171227 상품이 없을경우 추가 -->
+								<div class="prd_cont">
+									<p class="no_data">장보기몰에 담은 상품이 없습니다.</p>
+								</div>
+								<!-- //20171227 상품이 없을경우 추가 -->
+							</li>
+						</ul>
+					</section>
+					<!-- //장보기몰 영역 추가 -->
+
+
+
+
+
+
+
+					<!-- 장바구니 안내 -->
+					<div class="cartInfo">
+						<div class="cartInfoTit">장바구니 안내</div>
+						<ul>
+							<li>장바구니 상품은 <span>30일간</span> 보관됩니다.</li>
+							<li>일반상품, 도서, 망고, 스마트픽, 홈쇼핑으로 함께 묶여 있는 상품끼리만 한꺼번에 주문하실 수 있습니다.</li>
+							<li>실 결제금액은 주문서 내 쿠폰/할인적용에 따라 달라질 수 있습니다.</li>
+						</ul>
+					</div>
+					<!-- //장바구니 안내 -->
+
+					<!-- 품절/판매종료상품 -->
+					<div class="listWrap">
+						<!--s: 상단 count-->
+						<section class="wish_header discontinue">
+							<a href="#" class="btn_open">
+								<span>
+									품절/판매종료 상품 (2)
+								</span>
+								<span class="btnArrow">열기</span>
+							</a>
+							<div class="btn_list">
+								<a href="#" name="selectAll" class="btn_style1 check_all_del">전체삭제</a>
+							</div>
+						</section>
+						<!--//상단 count-->
+
+						<!-- 품절/판매종료 상품 -->
+						<section class="discontinue_list"  id="discontinue_list">
+							<ul class="product_list_01">
+								<li>
+									<div class="group">
+										<div class="thumb">
+											<a href="javascript:;">
+												<img src="/images/lotte2015/temp/img_prd_03.jpg" alt="" />
+												<em></em><span>품절</span>
+											</a>
+										</div>
+										<div class="cont01">
+											<p class="flag">
+												<span class="flag depart">롯데백화점</span>
+											</p>
+											<a href="javascript:;">
+												<span class="tl">[빈폴] 스카이블루 헤릿 미니토드백 여(BE4AA2301Q)</span>
+											</a>
+											<div class="money_coupon">
+												<p class="money">
+													<span class="price"><strong>398,900</strong></span>
+												</p>
+											</div>
+										</div>
+									</div>
+									<div class="btn_list">
+										<a href="#" class="wish_del">삭제</a>
+										<a href="#" class="btn_style2 bi-nt">재입고알림</a>
+									</div>
+								</li>
+								<li>
+									<div class="group">
+										<div class="thumb">
+											<a href="javascript:;">
+												<img src="/images/lotte2015/temp/img_prd_03.jpg" alt="" />
+												<em></em><span>판매종료</span>
+											</a>
+										</div>
+										<div class="cont01">
+											<p class="flag">
+												<span class="flag depart">롯데백화점</span>
+											</p>
+											<a href="javascript:;">
+												<span class="tl">[빈폴] 스카이블루 헤릿 미니토드백 여(BE4AA2301Q)</span>
+											</a>
+											<div class="money_coupon">
+												<p class="money">
+													<span class="price"><strong>398,900</strong></span>
+												</p>
+											</div>
+										</div>
+									</div>
+									<div class="btn_list">
+										<a href="#" class="wish_del">삭제</a>
+										<a href="#" class="btn_style2 bi-nt">재입고알림</a>
+									</div>
+								</li>
+								<!-- 20171206 품절상품 목록 추가 -->
+							<li>
+								<div class="group soldOut">
+									<span class="thumb">
+										<a href="#">
+											<img src="/images/lotte2015/temp/img_prd_03.jpg" alt="" />
+											<em></em><span>판매종료</span>
+										</a>
+									</span>
+									<span class="cont01">
+										<a href="#">
+											<p class="tl">[빈폴] 스카이블루 헤릿 미니토드백 여(BE4AA2301Q)</p>
+										</a>
+										<div class="money_coupon">
+											<p class="money">
+												<span class="price"><strong>35,460</strong></span>
+											</p>
+										</div>
+									</span>
+								</div>
+								<div class="btn_list">
+									<a href="#" class="btn_style2 bi-nt">재입고알림</a>
+								</div>
+							</li>
+							<!-- //20171206 품절상품 목록 추가 -->
+							</ul>
+						</section>
+						<!-- // 품절/판매종료 상품 -->
+					</div>
+					<!-- //품절/판매종료상품 -->
+				</div>
+				<!--e: 장바구니-->
+				
+			</section>
+
+			<!-- dim //D:임시dim, 공통dim적용시 삭제-->
+			<div class="dimTemp" style="display:none;"></div>
+
+			<!-- 선택주문 -->
+			<div class="cartTool">
+				<div class="toolInner">
+					<div class="toolPrice">
+						<div class="price">3개 상품 1,120,000원 + 3,000원 (배송비)</div>
+						<div class="ttPrice">
+							총 결제 금액
+							<span class="ttPriceIn"><span>1,123,000<span></span>
+						</div>
+					</div>
+					<a href="javascript:;" class="btnOrder">선택 상품 주문</a>
+				</div>
+			</div>
+
+			<!-- 달력 레이어 ASIS랑 같음 -->
+			<section id="calendar" style="display:none"><div class="wa-datechooser-date-box"><div class="close"><a href="javascript:;">닫기</a></div><div class="wa-datechooser-date-head"><a href="#none" class="wa-datechooser-month-btn">&lt;</a><span class="">2015년 08월</span><a href="#none" class="wa-datechooser-month-btn">&gt;</a></div><table class="wa-datechooser-date-body"><thead><tr><th>SUN</th><th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th>SAT</th></tr></thead><tbody><tr><td class="before">26</td><td class="before">27</td><td class="before">28</td><td class="before">29</td><td class="before">30</td><td class="before">31</td><td class="before">1</td></tr><tr><td class="before">2</td><td class="before">3</td><td class="before">4</td><td class="before">5</td><td class="before">6</td><td class="before">7</td><td class="before">8</td></tr><tr><td class="before">9</td><td class="before">10</td><td class="before">11</td><td class="before">12</td><td class="before">13</td><td class="before">14</td><td class="before">15</td></tr><tr><td class="before">16</td><td class="before">17</td><td class="before">18</td><td class="before">19</td><td class="before">20</td><td class="before">21</td><td class="before">22</td></tr><tr><td class="before">23</td><td class="before">24</td><td class="after today"><a href="javascript:;">25</a></td><td class="after"><a href="javascript:;">26</a></td><td class="after"><a href="javascript:;">27</a></td><td class="after"><a href="javascript:;">28</a></td><td class="after"><a href="javascript:;">29</a></td></tr><tr><td class="after"><a href="javascript:;">30</a></td><td class="after"><a href="javascript:;">31</a></td><td class="next-month">1</td><td class="next-month">2</td><td class="next-month">3</td><td class="next-month">4</td><td class="next-month">5</td></tr></tbody></table></div></section>
+
+			<!-- 팝업:스마트픽 픽업 데스크 위치 //D:데스크없을때 addClass deskPopNo -->
+			<div class="smartPop deskPop" style="display:none;">
+				<div class="smartPopTit">스마트픽 픽업 데스크 위치</div>
+				<div class="smartPopCont">
+					<!-- 데스크있음 -->
+					<div class="smartDesk">
+						<div class="popImg"><img src="../../images/lotte2015/temp/cart_dummy1.jpg" alt="스마트픽픽업데스크위치" /></div>
+						<dl>
+							<dt>픽업 위치 안내 : 청량리점 3층 픽업데스크</dt>
+							<dd>롯데백화점 청량리점 3층 지오다노 매장 우측 계단 출입구 쪽에서 만나실 수 있습니다. </dd>
+							<dt>픽업 가능 시간 : 10:30 ~ 20:00</dt>
+							<dd>(상품준비 완료 알람 후)</dd>
+						</dl>
+					</div>
+					<!-- 데스크없음 -->
+					<div class="noDesk">
+						죄송합니다. 본 상품의 매장정보는 제공하고 있지 않습니다. 해당 브랜드의 홈페이지나 고객센터를 통하여 문의 부탁 드립니다.
+					</div>
+				</div>
+				<a href="javascript:;" class="smartClose">닫기</a>
+			</div>
+
+			<!-- 팝업: 앱종료 -->
+			<div class="smartPop alertClose" style="display:none;">
+				<div class="smartPopCont">롯데닷컴 앱을 종료하시겠습니까?</div>
+				<div class="smartClose">
+					<a href="javascript:;">취소</a>
+					<a href="javascript:;">닫기</a>
+				</div>
+			</div>
+			<!-- //20160226 스크립트 추가 -->
+			<script>
+			$(function(){
+				$(document).ready(function(){
+					$( '.cartKeep a.btn' ).on( 'click', function (e) {
+						var par=$(this).parent();
+						if(par.hasClass('on')){
+							par.removeClass('on');
+							par.children('.layer_cartKeep').removeClass('on');
+						}else{
+							par.addClass('on');
+							par.children('.layer_cartKeep').addClass('on');
+						}
+						return false;
+					});
+
+					$('.layer_cartKeep .close').on( 'click', function (e) {
+						$(this).parent().removeClass('on');
+						return false;
+					});
+
+				});
+			});
+
+			</script>
+			<!-- //20160226 스크립트 추가 -->
+		</section>
+		<!-- footer -->
+		<footer id="footer">
+			<ul class="menu01">
+				<li><a class="ng-binding" href="#">마이롯데</a><i></i>	</li>
+				<li><a ng-click="pcClick()">PC버전</a><i></i></li>
+				<li><a href="#">장바구니</a><i></i></li>
+				<li><a href="#">고객센터</a><i></i></li>
+				<li><a href="#" ng-click="loginProc()" ng-bind="(loginInfo.isLogin)?'로그아웃':'로그인'" class="ng-binding">로그아웃</a></li>
+			</ul>
+			<div class="info">
+				<ul class="menu02">
+					<li><strong>(주)롯데닷컴</strong></li>
+					<li><a ng-click="ftcClick()">사업자정보확인</a></li>
+					<li><a ng-click="forwardClick()">채무지급보증안내</a></li>
+				</ul>
+				<p class="add">
+					<span class="addFirst">대표이사 : 김형준</span>
+					<span class="line">서울시 중구 을지로 158 10층(을지로4가, 삼풍빌딩)</span>
+					<span class="line">사업자등록번호 : 101-81-52964 통신판매업신고 : 중구 제00402호</span>
+					<span class="line">고객만족센터 : <a href="tel:1577-1110">1577-1110</a>  webmaster@lotte.com</span>
+					<span class="line">개인정보보호책임자 : 윤상선</span> <span class="line">청소년보호책임자 : 김찬기</span>
+					<span>호스팅 사업자 : (주)롯데닷컴</span>
+				</p>
+			</div>
+			<div class="menu03">
+				<ul>
+					<li><a href="#">이용약관</a></li>
+					<li><a href="#"><strong>개인정보처리방침</strong></a></li>
+					<li><a href="#">청소년보호정책</a></li>
+				</ul>
+			</div>
+			<div class="capyright">Copyright © LOTTE.com, Inc. All rights Reserved.</div>
+		</footer>
+		<!-- //footer -->
+	</div>
+
+	<!-- lotteActionbar -->
+	<section id="lotteActionbar" class="actionbar">
+		<ul class="actionbar_wrap">
+			<li class="ctg"><button class="btn_ctg">카테고리</button></li>
+			<li class="order"><button class="btn_order">배송주문</button></li>
+			<li class="home on"><button class="btn_main">홈</button></li>
+			<li class="mylotte"><button class="btn_mylotte">마이롯데</button></li>
+			<li class="recent active"><!-- //최근 본 상품이 있을때 클래스 추가:active -->
+				<button class="btn_recent">최근본상품
+					<span class="img" style="background-image: url(http://image.lotte.com/goods/56/56/59/51/4/451595656_1_280.jpg);"></span>
+				</button>
+			</li>
+		</ul>
+	</section>
+	<!-- //lotteActionbar -->
+</body>
+</html>

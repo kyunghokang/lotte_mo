@@ -1,0 +1,69 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplcscenterMain" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/custcenter/cscenter_main_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/cscenter_main.template.js"
+            }
+        },
+
+        "concat" : {
+            "jscscenterMain" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/custcenter/cscenter_main.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/cscenter_main.js"
+            }
+        },
+
+        "uglify" : {
+            "jscscenterMain" : {
+                "src" : "lotte/resources/<%= version %>/cscenter_main.js",
+                "dest" : "lotte/resources/<%= version %>/cscenter_main.min.js"
+            },
+            "tplcscenterMain" : {
+                "src" : "lotte/resources/<%= version %>/cscenter_main.template.js",
+                "dest" : "lotte/resources/<%= version %>/cscenter_main.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "csscscenterMain" : {
+                "src" : [
+                    "lotte/resources_dev/custcenter/cscenter_main.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/cscenter_main.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleancscenterMain" : [
+                "lotte/resources/<%= version %>/cscenter_main.js",
+                "lotte/resources/<%= version %>/cscenter_main.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlcscenterMain" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "custcenter/cscenter_main.html" : "custcenter/cscenter_main_dev.html"
+                }
+            }
+        }
+    }
+}
+

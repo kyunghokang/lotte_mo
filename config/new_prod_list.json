@@ -1,0 +1,80 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplCateProdList" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/category/m/new_prod_list_container.html",
+                    "lotte/resources_dev/category/m/cate_side_filter.html",
+                    "lotte/resources_dev/search/products/planshop/planshop_list.html",
+					"lotte/resources_dev/search/search_detail_popup.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/new_prod_list.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsCateProdList" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/category/m/new_prod_list.js",
+                    "lotte/resources_dev/category/m/cate_side_filter.js",
+                    "lotte/resources_dev/search/products/planshop/planshop_list.js",
+                    "lotte/resources_dev/common/HWSwipe.js",
+					"lotte/resources_dev/search/search_detail_popup.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/new_prod_list.js"
+            }
+        },
+
+        "uglify" : {
+            "jsCateProdList" : {
+                "src" : "lotte/resources/<%= version %>/new_prod_list.js",
+                "dest" : "lotte/resources/<%= version %>/new_prod_list.min.js"
+            },
+            "tplCateProdList" : {
+                "src" : "lotte/resources/<%= version %>/new_prod_list.template.js",
+                "dest" : "lotte/resources/<%= version %>/new_prod_list.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssCateProdList" : {
+                "src" : [
+                	"lotte/resources_dev/category/category.css",
+					"lotte/resources_dev/category/m/new_prod_list.css",
+					"lotte/resources_dev/category/m/cate_side_filter.css",
+                    "lotte/resources_dev/search/products/planshop/planshop_list.css",
+					"lotte/resources_dev/search/search_detail_popup.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/new_prod_list.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanCateProdList" : [
+                "lotte/resources/<%= version %>/new_prod_list.js",
+                "lotte/resources/<%= version %>/new_prod_list.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlCateProdList" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "category/m/new_prod_list.html" : "category/m/new_prod_list_dev.html"
+                }
+            }
+        }
+    }
+}
+

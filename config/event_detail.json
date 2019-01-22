@@ -1,0 +1,69 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplEventDetail" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mylotte/pointcoupon/m/event_detail_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/event_detail.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsEventDetail" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mylotte/pointcoupon/m/event_detail.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/event_detail.js"
+            }
+        },
+
+        "uglify" : {
+            "jsEventDetail" : {
+                "src" : "lotte/resources/<%= version %>/event_detail.js",
+                "dest" : "lotte/resources/<%= version %>/event_detail.min.js"
+            },
+            "tplEventDetail" : {
+                "src" : "lotte/resources/<%= version %>/event_detail.template.js",
+                "dest" : "lotte/resources/<%= version %>/event_detail.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssEventDetail" : {
+                "src" : [
+                    "lotte/resources_dev/mylotte/pointcoupon/m/mylotte_event.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/event_detail.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanEventDetail" : [
+                "lotte/resources/<%= version %>/event_detail.js",
+                "lotte/resources/<%= version %>/event_detail.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlEventDetail" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mylotte/pointcoupon/m/event_detail.html" : "mylotte/pointcoupon/m/event_detail_dev.html"
+                }
+            }
+        }
+    }
+}
+

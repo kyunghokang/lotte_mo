@@ -1,0 +1,1 @@
+angular.module("app").run(["$templateCache",function(a){"use strict";a.put("/lotte/resources_dev/product/m/webview/product_plan_detail_info_bottom_container.html",'<section ng-show="contVisible">\r\n	<div id="planPrdBottomHtml" class="detailLayout webview_plan_detail"></div>\r\n</section>')}]);

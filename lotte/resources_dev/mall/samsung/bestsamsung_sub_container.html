@@ -1,0 +1,108 @@
+<section ng-show="contVisible" class="cont_minheight">
+<div class="best_header_wrap">
+		<div class="fixed_header" sub-header-each>
+			<header id="bestbrandSubHead">
+				<h2>
+				<a ng-click="goSamsungBrandMain()">
+					<span>samsung</span>
+				</a>
+				</h2>
+				<p class="share">
+					<a ng-click="showSharePop()">공유</a>
+				</p>
+			</header>
+			<!-- GNB -->
+			<div id="gnb" ng-if="screenData.gnbMenu.length > 0" class="nav_swipe_wrap">
+				<nav main-menu lotte-slider class="main_nav" swipe-end-func="$scope.menuSwipEndFunc">
+					<ul>
+						<li ng-repeat="item in screenData.gnbMenu" class="dispno_{{item.disp_no}}">
+							<span class="cate_flag" ng-if="item.flag_txt">{{item.flag_txt}}</span>
+							<a ng-click="headerMenuClick(item.disp_no)" >{{item.disp_nm}}</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+    </div>
+    <div class="category_swipe">
+		<section class="sorting_fav">
+			<div class="location" ng-click="categorySelectClick(0)">
+				<span ng-class="{on:pageOptions.cateShow[0]}">{{pageOptions.cate1nm}}</span>
+				<div class="img_box"></div>
+			</div>
+			<div class="location last" ng-click="categorySelectClick(1)">
+				<span ng-class="{on:pageOptions.cateShow[1]}">{{pageOptions.cate2nm}}</span>
+				<div class="img_box"></div>
+			</div>
+		</section>
+		<div class="cate_sub" ng-show="pageOptions.cateShow[0]">
+			<div class="cate_margin" ng-controller="lotteNgSwipeCtrl">
+				<ul lotte-ng-list-swipe swipe-slide-item="true" swipe-list-model="screenData.category_1depth_list" swipe-max-ratio="0.2" swipe-min-distance="40" swipe-autoheight='true' swipe-id="cateSwipe0">
+					<li ng-repeat="i in getCatRange(screenData.category_1depth_list.length) track by $index" >
+						<div>
+						<a href="#" ng-repeat="citem in screenData.category_1depth_list|pageRange:$index:10" ng-click="categoryChoiceClick(0, citem, $index)"><span class="total" ng-class="{on:citem.disp_no==pageOptions.cate1}">{{citem.disp_nm}}</span></a>
+						</div>
+					</li>
+				</ul>
+				<ol class="bullet">
+					<li ng-repeat="item in getCatRange(screenData.category_1depth_list.length) track by $index" ng-class="{active:$index==swipeIdx}" ng-show="getCatRange(screenData.category_1depth_list.length).length > 1">{{$index}}</li>
+				</ol>
+				<a class="close" ng-click="closeCate()">닫기</a>
+			</div>
+		</div>
+		<div class="cate_sub" ng-show="pageOptions.cateShow[1]">
+			<div class="cate_margin" ng-controller="lotteNgSwipeCtrl">
+				<ul lotte-ng-list-swipe swipe-slide-item="true" swipe-list-model="screenData.category_2depth_list" swipe-max-ratio="0.2" swipe-min-distance="40" swipe-autoheight='true' swipe-id="cateSwipe1">
+					<li ng-repeat="i in getCatRange(screenData.category_2depth_list.length) track by $index" >
+						<div>
+							<a href="#" ng-repeat="citem in screenData.category_2depth_list|pageRange:$index:10" ng-click="categoryChoiceClick(1, citem)"><span class="total" ng-class="{on:citem.disp_no==pageOptions.cate2}">{{citem.disp_nm}}</span></a>
+						</div>
+					</li>
+				</ul>
+				<ol class="bullet">
+					<li ng-repeat="item in getCatRange(screenData.category_2depth_list.length) track by $index" ng-class="{active:$index==swipeIdx}" ng-show="getCatRange(screenData.category_2depth_list.length).length > 1">{{$index}}</li>
+				</ol>
+				<a class="close" ng-click="closeCate()">닫기</a>
+			</div>
+		</div>
+    </div>
+    <section class="unit_wrap">
+		<div class="unit_area">
+			<div class="result_cnt">
+				<b>{{pageOptions.cateName}}</b> 전체 <em>{{pageOptions.totalCnt}}</em>개
+			</div>
+			<div class="ctg_select_wrap sort">
+				<select name="sortSelect" id="sortSelect" ng-model="pageOptions.sortSelect" ng-change="sortClick()">
+					<option value="11">판매순</option>
+					<option value="10">최근등록순</option>
+					<option value="12">낮은가격순</option>
+					<option value="13">높은가격순</option>
+					<option value="14">상품평많은순</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="new_arrival_wrap" more-goods-container="moreLoadData();" ng-if="!screenData.noproduct">
+			<ul>
+				<li ng-repeat="item in screenData.products">
+					<a ng-click="goGoodsPage(item.goods_no, $index)">
+						<div class="image_wrap">
+							<img ng-src="{{item.img_url_550}}" alt="{{item.goods_nm}}" />
+						</div>
+						<div class="info_wrap">
+							<span class="goods_nm" ng-bind-html="item.title_nm"></span>
+							<span class="price"><strong>{{item.discounted_price | number}}</strong><em>원</em><var ng-if="item.is_plan_prod" class="plan_prod_limit">~</var></span>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<p class="noprodlist" ng-if="screenData.noproduct">상품 준비중입니다.</p>
+	</section>
+	<!--BENEFIT BANNER-->
+	<section class="benefit_ban" ng-if="screenData.benefit && screenData.benefit.img_url">
+		<a ng-click="goBenefitProd(screenData.benefit.img_link)">
+			<img ng-src="{{screenData.benefit.img_url}}">
+		</a>
+	</section>
+</section>

@@ -1,0 +1,30 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!--M09 프로모션배너 D형..-->
+	<div class="moduleCon" ng-if="moduleData.items.length > 2">
+		<div class="unit unit_bn_promo typeD" id="slideM09_01"
+			 roll-swipe-banner
+			 rolling="true"
+			 width320="1" width640="1"
+			 width900="1"
+			 interval="300000"
+			 info="randomItems"
+			 endfnc="swipeEnd">
+			<ul class="fclear swipeBox">
+				<li class="shop3" ng-repeat="item in randomItems" ng-click="logGAEvtModuleEach(item, $index + 1);mainBannerClick(item.linkUrl, item.isOutLink, moduleData.tclick + '_Clk_Ban'+ numberFill(($index+1),2))">
+					<p class="imgwrap cover_img"><img ng-src="{{item.imgUrl}}"></p>
+					<div class="titwrap">
+						<!--<span class="subtit" ng-if="item.topTxt">{{item.topTxt}}</span>-->
+						<div class="maintitwrap">
+							<span class="maintit txt1">{{item.btmTxt.split('\n')[0]}}</span><br/>
+							<span class="maintit txt2" ng-if="item.btmTxt.split('\n')[1] != null">{{item.btmTxt.split('\n')[1]}}</span>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="bn_pagewrap dim30">
+			<span class="paging"><strong>{{sb_index}}</strong> / <span>{{moduleData.items.length}}</span></span>
+		</div>
+
+	</div>
+</section>

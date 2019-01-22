@@ -1,0 +1,39 @@
+{
+    "tasks" : {
+        "concat" : {
+            "jsseed" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/sci/pcc_V3_seed.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/pcc_V3_seed.js"
+            }
+        },
+
+        "uglify" : {
+            "jsseed" : {
+                "src" : "lotte/resources/<%= version %>/pcc_V3_seed.js",
+                "dest" : "lotte/resources/<%= version %>/pcc_V3_seed.min.js"
+            }
+        },
+
+		"cssmin" : {
+            "cssseed" : {
+                "src" : [
+                    "lotte/resources_dev/sci/pcc_V3_seed.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/pcc_V3_seed.min.css"
+            }
+        },
+        
+        "clean" : {
+            "cleanseed" : [
+                "lotte/resources/<%= version %>/pcc_V3_seed.js",
+                "lotte/resources/<%= version %>/pcc_V3_seed.template.js"
+            ]
+        }
+    }
+}
+

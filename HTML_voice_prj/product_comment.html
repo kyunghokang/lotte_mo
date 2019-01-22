@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/push/common.css"/>
+
+<link rel="stylesheet" type="text/css" href="/HTML_voice_prj/voice.css" />
+
+<!-- 상품평 -->
+<link rel="stylesheet" type="text/css" href="/lotte/resources/r20180419_1/product_comment.min.css">
+<script src="/lotte/resources/r20180419_1/product_comment.min.js"></script>
+<script src="/lotte/resources/r20180419_1/product_comment.tpl.js"></script>
+
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script>
+</script>
+
+</head>
+<body>
+
+<section class="opt_layer_wrap on option" id="optionWrap"><!-- 옵션레이어 열림:on, 옵션레이어 선택시 opt_layer_wrap:option -->	
+	<section class="opt_toggle_layer">
+		<div class="opt_layer on">
+			<div class="dim2">
+				<div class="bg">Dim</div>
+			</div>			
+			<!-- 옵션 레이어 -->
+			<section class="opt_layer_box">
+				<a class="opt_layer_close">닫기</a>
+				
+				<div class="opt_popup_wrap" id="optPopupWrap">
+				
+					<!-- 2018.05.02 실제 상품평 들어가는 영역
+						\lotte\resources_dev\product\m\sub\product_comment_container.html
+						
+						기존상품평의 내용을 그대로 들고 왔습니다.
+					-->
+					<section ng-show="contVisible" class="cont_minheight"> <!--상품상세 서브페이지: 전체 상품평 보기-->
+						<div class="sub_page_header">
+						<button class="btn_prev" ng-click="gotoPrepage()">이전</button>
+						<h2 class="ng-binding">전체 상품평보기</h2>
+					</div>
+						
+						<!--상품 상세 서브 page 기본 wrapper(한번만 사용할 것): prod_detail_page_wrap-->
+						<div class="prod_detail_page_wrap p_comment_all">
+					
+							<!--전체상품평-->
+							<div class="detail_base_wrap prod_comment comment_all fold">
+					
+								<!-- 전체상품평 : 별점, 열기/접기 -->
+								<p class="detail_tit fold_tap" ng-click="pageUI.starScoreOpen = !pageUI.starScoreOpen">전체상품평 <span class="starScoreWrap big"><span class="starScoreCnt" style="width:100%"></span></span> <em>(<var class="ng-binding">9</var>)</em>
+									<span class="fold_btn shape_triangle ng-binding up" ng-class="{up:pageUI.starScoreOpen,down:!pageUI.starScoreOpen}">접기</span><!--상태변화 클래스: up -> down-->
+								</p>
+								
+								<!-- 전체상품평 : 별점 -->
+								<dl class="score_list" ng-show="pageUI.starScoreOpen">
+									<!-- 전체상품평 : 별점 5개 -->
+									<dt>
+										<span class="starScoreWrap"><span class="starScoreCnt" style="width:100%"></span></span> <em ng-class="{disable:pageUI.loadData.stat.scr5Cnt == 0}">(<var class="ng-binding">7</var>)</em>
+									</dt>
+									<dd>
+										<span class="barScoreWrap"><span class="barScoreCnt" style="width:78%"></span></span><span class="percent ng-binding">78%</span>
+									</dd>
+									<!-- 전체상품평 : 별점 4개 -->
+									<dt>
+										<span class="starScoreWrap"><span class="starScoreCnt" style="width:80%"></span></span> <em ng-class="{disable:pageUI.loadData.stat.scr4Cnt == 0}">(<var class="ng-binding">1</var>)</em>
+									</dt>
+									<dd>
+										<span class="barScoreWrap"><span class="barScoreCnt" style="width:11%"></span></span><span class="percent ng-binding">11%</span>
+									</dd>
+									<!-- 전체상품평 : 별점 3개 -->
+									<dt>
+										<span class="starScoreWrap"><span class="starScoreCnt" style="width:60%"></span></span> <em ng-class="{disable:pageUI.loadData.stat.scr3Cnt == 0}">(<var class="ng-binding">1</var>)</em>
+									</dt>
+									<dd>
+										<span class="barScoreWrap"><span class="barScoreCnt" style="width:11%"></span></span><span class="percent ng-binding">11%</span>
+									</dd>
+									<!-- 전체상품평 : 별점 2개 -->
+									<dt>
+										<span class="starScoreWrap"><span class="starScoreCnt" style="width:40%"></span></span> <em ng-class="{disable:pageUI.loadData.stat.scr2Cnt == 0}" class="disable">(<var class="ng-binding">0</var>)</em>
+									</dt>
+									<dd>
+										<span class="barScoreWrap"><span class="barScoreCnt" style="width:0%"></span></span><span class="percent ng-binding">0%</span>
+									</dd>
+									<!-- 전체상품평 : 별점 1개 -->
+									<dt>
+										<span class="starScoreWrap"><span class="starScoreCnt" style="width:20%"></span></span> <em ng-class="{disable:pageUI.loadData.stat.scr1Cnt == 0}" class="disable">(<var class="ng-binding">0</var>)</em>
+									</dt>
+									<dd>
+										<span class="barScoreWrap"><span class="barScoreCnt" style="width:0%"></span></span><span class="percent ng-binding">0%</span>
+									</dd>
+								</dl>
+							</div>
+					
+							<!-- 전체상품평 : 고객 만족도 열기/접기 -->
+							<div class="detail_base_wrap prod_comment comment_all fold div_line_t line_full_w" ng-class="{div_line_b10:!pageUI.loadData.photoList.items}">
+								<p class="detail_tit sub_tit fold_tap" ng-click="pageUI.customerSatisOpen = !pageUI.customerSatisOpen">고객 만족도
+									<span class="fold_btn shape_triangle ng-binding up" ng-class="{up:pageUI.customerSatisOpen,down:!pageUI.customerSatisOpen}">접기</span><!--상태변화 클래스: up -> down-->
+								</p>
+					
+								<!-- 전체상품평 : 고객 만족도 내용 -->
+								<div class="cus_info" ng-show="pageUI.customerSatisOpen">
+									<!-- 전체상품평 : 고객 만족도 종합 -->
+									<div class="total">
+										<ul class="starlist ng-scope">
+											<li>
+												<p class="txt3">가격</p>
+												<span class="starScoreWrap small"><span class="starScoreCnt" style="width:90%"></span></span>
+											</li>
+											<li>
+												<p class="txt3">품질</p>
+												<span class="starScoreWrap small"><span class="starScoreCnt" style="width:100%"></span></span>
+											</li>
+											<li>
+												<p class="txt3 ng-binding">디자인</p>
+												<span class="starScoreWrap small"><span class="starScoreCnt" style="width:100%"></span></span>
+											</li>
+											<li>
+												<p class="txt3 ng-binding">배송</p>
+												<span class="starScoreWrap small"><span class="starScoreCnt" style="width:100%"></span></span>
+											</li>
+										</ul>
+									</div>
+					
+									<!-- 전체상품평 : 사이즈 / 색상 -->
+									<!-- ngIf: pageUI.loadData.size && pageUI.loadData.color --><div class="size_color bod ng-scope" ng-if="pageUI.loadData.size &amp;&amp; pageUI.loadData.color">
+										<div class="sc_cell size">
+											<p>사이즈</p>
+											<div class="sc_unit" ng-class="{on:pageUI.loadData.size.small >= 50}">
+												<div class="bar_percent ng-binding">0<span class="symbol">%</span></div>
+												<div class="bar_con ls"></div>
+												<div class="bar_name">작다</div>
+											</div>
+											<div class="sc_unit on" ng-class="{on:pageUI.loadData.size.good >= 50}">
+												<div class="bar_percent ng-binding">89<span class="symbol">%</span></div>
+												<div class="bar_con"></div>
+												<div class="bar_name">딱 맞다</div>
+											</div>
+											<div class="sc_unit" ng-class="{on:pageUI.loadData.size.big >= 50}">
+												<div class="bar_percent ng-binding">11<span class="symbol">%</span></div>
+												<div class="bar_con rs"></div>
+												<div class="bar_name">크다</div>
+											</div>
+										</div>
+										<div class="sc_cell">
+											<p>색상</p>
+											<div class="sc_unit" ng-class="{on:pageUI.loadData.color.bright >= 50}">
+												<div class="bar_percent ng-binding">0<span class="symbol">%</span></div>
+												<div class="bar_con ls"></div>
+												<div class="bar_name">밝다</div>
+											</div>
+											<div class="sc_unit on" ng-class="{on:pageUI.loadData.color.good >= 50}">
+												<div class="bar_percent ng-binding">100<span class="symbol">%</span></div>
+												<div class="bar_con"></div>
+												<div class="bar_name">화면과같다</div>
+											</div>
+											<div class="sc_unit" ng-class="{on:pageUI.loadData.color.dark >= 50}">
+												<div class="bar_percent ng-binding">0<span class="symbol">%</span></div>
+												<div class="bar_con rs"></div>
+												<div class="bar_name">어둡다</div>
+											</div>
+										</div>
+									</div><!-- end ngIf: pageUI.loadData.size && pageUI.loadData.color -->
+								</div>
+							</div>
+					
+							<!-- 전체상품평 : 고객 등록 사진 -->
+							<!-- ngIf: !pageUI.loadData.dispNtcTxt && pageUI.loadData.photoList.items.length > 0 --><div class="detail_base_wrap prod_comment comment_all div_line_b10 div_line_t line_full_w ng-scope" ng-if="!pageUI.loadData.dispNtcTxt &amp;&amp; pageUI.loadData.photoList.items.length > 0">
+								<p class="detail_tit sub_tit no_pb">고객 등록 사진</p>
+								<!--썸네일 이미지-->
+								<div class="thumb_list_wrap">
+									<ul class="thumb_list">
+										<!--<li ng-repeat="item in pageUI.loadData.photoList.items | limitTo:5" ng-class="{play_btn:item.videoYn, 'dim_cont dim50':$index == 4 && pageUI.loadData.photoMoreCnt > 0}">
+											<span class="thumb cover"><img ng-src="{{item.imgUrl}}" alt="" /></span>
+											<span class="more_cnt verti_align" ng-if="$index == 4 && pageUI.loadData.photoMoreCnt > 0">+<var>{{pageUI.loadData.photoMoreCnt}}</var></span>
+										</li>-->
+										<!-- ngRepeat: n in [].constructor(5) track by $index --><li ng-repeat="n in [].constructor(5) track by $index" ng-class="{play_btn:pageUI.loadData.photoList.items[$index].videoYn, 'dim_cont dim50':pageUI.loadData.photoList.items[$index] &amp;&amp; $index == 4 &amp;&amp; pageUI.loadData.photoMoreCnt > 0}" ng-click="pageUI.loadData.photoList.items[$index] &amp;&amp; linkClick(pageUI.loadData.photoList.items[$index].contsUrl, 'm_RDC_ProdDetail_Clk_Rvw02_photo')" class="ng-scope">
+											<!-- ngIf: pageUI.loadData.photoList.items[$index] --><span class="thumb cover ng-scope" ng-if="pageUI.loadData.photoList.items[$index]"><img ng-src="http://image.lotte.com/upload/crit/20180427182435181_353773.jpg" alt="" src="http://image.lotte.com/upload/crit/20180427182435181_353773.jpg"></span><!-- end ngIf: pageUI.loadData.photoList.items[$index] -->
+											<!-- ngIf: pageUI.loadData.photoList.items[$index] && $index == 4 && pageUI.loadData.photoMoreCnt > 0 -->
+										</li><!-- end ngRepeat: n in [].constructor(5) track by $index --><li ng-repeat="n in [].constructor(5) track by $index" ng-class="{play_btn:pageUI.loadData.photoList.items[$index].videoYn, 'dim_cont dim50':pageUI.loadData.photoList.items[$index] &amp;&amp; $index == 4 &amp;&amp; pageUI.loadData.photoMoreCnt > 0}" ng-click="pageUI.loadData.photoList.items[$index] &amp;&amp; linkClick(pageUI.loadData.photoList.items[$index].contsUrl, 'm_RDC_ProdDetail_Clk_Rvw02_photo')" class="ng-scope">
+											<!-- ngIf: pageUI.loadData.photoList.items[$index] -->
+											<!-- ngIf: pageUI.loadData.photoList.items[$index] && $index == 4 && pageUI.loadData.photoMoreCnt > 0 -->
+										</li><!-- end ngRepeat: n in [].constructor(5) track by $index --><li ng-repeat="n in [].constructor(5) track by $index" ng-class="{play_btn:pageUI.loadData.photoList.items[$index].videoYn, 'dim_cont dim50':pageUI.loadData.photoList.items[$index] &amp;&amp; $index == 4 &amp;&amp; pageUI.loadData.photoMoreCnt > 0}" ng-click="pageUI.loadData.photoList.items[$index] &amp;&amp; linkClick(pageUI.loadData.photoList.items[$index].contsUrl, 'm_RDC_ProdDetail_Clk_Rvw02_photo')" class="ng-scope">
+											<!-- ngIf: pageUI.loadData.photoList.items[$index] -->
+											<!-- ngIf: pageUI.loadData.photoList.items[$index] && $index == 4 && pageUI.loadData.photoMoreCnt > 0 -->
+										</li><!-- end ngRepeat: n in [].constructor(5) track by $index --><li ng-repeat="n in [].constructor(5) track by $index" ng-class="{play_btn:pageUI.loadData.photoList.items[$index].videoYn, 'dim_cont dim50':pageUI.loadData.photoList.items[$index] &amp;&amp; $index == 4 &amp;&amp; pageUI.loadData.photoMoreCnt > 0}" ng-click="pageUI.loadData.photoList.items[$index] &amp;&amp; linkClick(pageUI.loadData.photoList.items[$index].contsUrl, 'm_RDC_ProdDetail_Clk_Rvw02_photo')" class="ng-scope">
+											<!-- ngIf: pageUI.loadData.photoList.items[$index] -->
+											<!-- ngIf: pageUI.loadData.photoList.items[$index] && $index == 4 && pageUI.loadData.photoMoreCnt > 0 -->
+										</li><!-- end ngRepeat: n in [].constructor(5) track by $index --><li ng-repeat="n in [].constructor(5) track by $index" ng-class="{play_btn:pageUI.loadData.photoList.items[$index].videoYn, 'dim_cont dim50':pageUI.loadData.photoList.items[$index] &amp;&amp; $index == 4 &amp;&amp; pageUI.loadData.photoMoreCnt > 0}" ng-click="pageUI.loadData.photoList.items[$index] &amp;&amp; linkClick(pageUI.loadData.photoList.items[$index].contsUrl, 'm_RDC_ProdDetail_Clk_Rvw02_photo')" class="ng-scope">
+											<!-- ngIf: pageUI.loadData.photoList.items[$index] -->
+											<!-- ngIf: pageUI.loadData.photoList.items[$index] && $index == 4 && pageUI.loadData.photoMoreCnt > 0 -->
+										</li><!-- end ngRepeat: n in [].constructor(5) track by $index -->
+									</ul>
+								</div>
+					
+							</div><!-- end ngIf: !pageUI.loadData.dispNtcTxt && pageUI.loadData.photoList.items.length > 0 -->
+					
+							<!-- 전체상품평 : 상품평 리스트 -->
+							<div class="detail_base_wrap prod_comment comment_all">
+								
+								<!-- 전체상품평 : 필터 -->
+								<div class="filter_wrap" ng-click="showHideFilterSlider('m_RDC_ProdDetail_allRvw_Clk_Flt')">
+									<p class="filter_info"><span class="ng-binding">최근상품평순</span><span class="div_line_v_s ng-binding">별점전체</span> <!-- ngIf: pageUI.filterOption.filter1SelVal > 0 || pageUI.filterOption.filter2SelVal < 6 --></p>
+					
+									<!-- 전체상품평 : 필터 아이콘 -->
+									<span class="filter" ng-class="{on:pageUI.filterOption.filter1SelVal > 0 || pageUI.filterOption.filter2SelVal < 6}">필터</span> <!--상태변화 클래스 on: 필터 적용-->
+					
+									<!-- ngIf: pageUI.loadData.dispNtcTxt -->
+								</div>
+					
+								<!-- 전체상품평 : 상품평 리스트 -->
+								<ul class="cmt_list">
+									<!-- ngRepeat: item in pageUI.loadData.critList.items --><li class="ng-scope div_line_t div_line_b" ng-repeat="item in pageUI.loadData.critList.items" ng-class="{'div_line_t':$index == 0, div_line_b:$index < pageUI.loadData.critList.items.length-1}">
+					
+										<!-- 전체상품평 : 상품평 리스트 : 별점 -->
+										<div class="item_top">
+											<span class="starScoreWrap"><span class="starScoreCnt" style="width:100%"></span></span>
+											<span class="date ng-binding">2018.04.29</span>
+											<!--<span class="recom">{{item.recommCnt}}</span>-->
+										</div>
+										
+										<!-- 전체상품평 : 상품평 리스트 : 상품옵션 -->
+										<!-- ngIf: item.optDesc --><p class="option_nm ng-binding ng-scope" ng-if="item.optDesc"><!--<em>옵션명</em>: -->색상:베이지,사이즈:M</p><!-- end ngIf: item.optDesc -->
+					
+										<!-- 전체상품평 : 상품평 리스트 : 상품평 내용 -->
+										<!-- ngIf: !pageUI.loadData.dispNtcTxt --><p class="cmt_cont ellipsis_custom spread ng-binding ng-scope" ng-if="!pageUI.loadData.dispNtcTxt">마음에 쏙 들어요. 기장이 짧을까봐 m사이즈 구매했는데 무릎선으로 와서 좋아요. 무엇보다 무늬가 넘 예뻐요. 특히 나비 무늬가요. 하늘하늘하고 가벼워서 여름에 정말 잘 입을 것 같아요.
+					배송도 빠르고 저렴하게 잘 구입했습니다.</p><!-- end ngIf: !pageUI.loadData.dispNtcTxt -->
+					
+										<!-- 전체상품평 : 상품평 리스트 : 등록 썸네일 -->
+										<!-- ngIf: !pageUI.loadData.dispNtcTxt && item.photoList.items.length > 0 -->
+					
+										<!-- 전체상품평 : 상품평 리스트 : 등록자|고객특성Flag -->
+										<p class="cmt_writer"><em class="ng-binding">cha*********님의 상품평</em><!-- ngIf: item.wrtrTpNm --></p>
+					
+										<!-- 전체상품평 : 상품평 리스트 : 추천/공유 -->
+										<div class="cmt_btn_wrap">
+											<div class="cmt_btn">
+												<!-- 전체상품평 : 상품평 리스트 : 추천/공유 : 추천 -->
+												<!-- ngIf: !pageUI.loadData.healthfoodYn --><span class="recom div_line_v_s2 ng-binding ng-scope" ng-if="!pageUI.loadData.healthfoodYn" ng-class="{on:item.myRecomm}" ng-click="recommClick(item)">3</span><!-- end ngIf: !pageUI.loadData.healthfoodYn --><!--상태변화 클래스: on-->
+					
+												<!-- 전체상품평 : 상품평 리스트 : 추천/공유 : 공유 -->
+												<span class="share" ng-class="{only:pageUI.loadData.healthfoodYn, on:item.recommYn}" ng-click="showSharePop({goodsNm:pageUI.loadData.goodsNm,goodsNo:pageUI.loadData.goodsNo,prdComment:item.critCont,shareImg:pageUI.loadData.goodsImgUrl, healthfood_yn:(pageUI.loadData.healthfoodYn ? 'Y':'N')},'crit')">공유</span>
+					
+											</div>
+										</div>
+									</li><!-- end ngRepeat: item in pageUI.loadData.critList.items --><li class="ng-scope div_line_b" ng-repeat="item in pageUI.loadData.critList.items" ng-class="{'div_line_t':$index == 0, div_line_b:$index < pageUI.loadData.critList.items.length-1}">
+					
+										<!-- 전체상품평 : 상품평 리스트 : 별점 -->
+										<div class="item_top">
+											<span class="starScoreWrap"><span class="starScoreCnt" style="width:80%"></span></span>
+											<span class="date ng-binding">2018.04.27</span>
+											<!--<span class="recom">{{item.recommCnt}}</span>-->
+										</div>
+										
+										<!-- 전체상품평 : 상품평 리스트 : 상품옵션 -->
+										<!-- ngIf: item.optDesc --><p class="option_nm ng-binding ng-scope" ng-if="item.optDesc"><!--<em>옵션명</em>: -->색상:베이지,사이즈:S</p><!-- end ngIf: item.optDesc -->
+					
+										<!-- 전체상품평 : 상품평 리스트 : 상품평 내용 -->
+										<!-- ngIf: !pageUI.loadData.dispNtcTxt --><p class="cmt_cont ellipsis_custom spread ng-binding ng-scope" ng-if="!pageUI.loadData.dispNtcTxt">21일날 구매했는데
+					입고가 늦어져서 27일날 받았어요.
+					어차피 입기엔 이른 시기라서 넉넉히 기다리니 오긴 오네요.
+					
+					펼쳤을때
+					우선 냄새가 안나서 좋아요.
+					
+					사이즈도 넉넉해서 입기 편할 것 같구요.
+					보들보들 시원한 것 같아요.
+					속치마도 있어서 속옷 잘만 챙겨입으면 괜찮을 듯.
+					
+					기장도
+					163인데 무릎 살짝 위로 올라와서 딱 좋아요.
+					
+					반듯이 드라이를 하라고 되어 있어서,,
+					그게 좀 그렇군요.
+					
+					가격도 조금만 더 저렴했으면 좋겠어요.</p><!-- end ngIf: !pageUI.loadData.dispNtcTxt -->
+					
+										<!-- 전체상품평 : 상품평 리스트 : 등록 썸네일 -->
+										<!-- ngIf: !pageUI.loadData.dispNtcTxt && item.photoList.items.length > 0 --><div class="thumb_list_wrap ng-scope" ng-if="!pageUI.loadData.dispNtcTxt &amp;&amp; item.photoList.items.length > 0">
+											<ul class="thumb_list">
+												<!--<li ng-repeat="photoItem in item.photoList.items" ng-click="linkClick(photoItem.contsUrl,'m_RDC_ProdDetail_Clk_Rvw02_photo')"
+													ng-class="{play_btn:item.critTpCd == 'V'}" ng-if="item.critTpCd == 'P' || item.critTpCd == 'V'">
+													<span class="thumb cover"><img ng-src="{{photoItem.imgUrl}}" alt="" /></span>
+												</li>-->
+												<!-- ngRepeat: n in [].constructor(5) track by $index --><!-- ngIf: item.critTpCd == 'P' || item.critTpCd == 'V' --><li ng-repeat="n in [].constructor(5) track by $index" ng-class="{play_btn:item.photoList.items[$index].videoYn}" ng-if="item.critTpCd == 'P' || item.critTpCd == 'V'" ng-click="item.photoList.items[$index] &amp;&amp; linkClick(item.photoList.items[$index].contsUrl,'m_RDC_ProdDetail_Clk_Rvw02_photo')" class="ng-scope">
+													<!-- ngIf: item.photoList.items[$index] --><span class="thumb cover ng-scope" ng-if="item.photoList.items[$index]"><img ng-src="http://image.lotte.com/upload/crit/20180427182435181_353773.jpg" alt="" src="http://image.lotte.com/upload/crit/20180427182435181_353773.jpg"></span><!-- end ngIf: item.photoList.items[$index] -->
+												</li><!-- end ngIf: item.critTpCd == 'P' || item.critTpCd == 'V' --><!-- end ngRepeat: n in [].constructor(5) track by $index --><!-- ngIf: item.critTpCd == 'P' || item.critTpCd == 'V' --><li ng-repeat="n in [].constructor(5) track by $index" ng-class="{play_btn:item.photoList.items[$index].videoYn}" ng-if="item.critTpCd == 'P' || item.critTpCd == 'V'" ng-click="item.photoList.items[$index] &amp;&amp; linkClick(item.photoList.items[$index].contsUrl,'m_RDC_ProdDetail_Clk_Rvw02_photo')" class="ng-scope">
+													<!-- ngIf: item.photoList.items[$index] -->
+												</li><!-- end ngIf: item.critTpCd == 'P' || item.critTpCd == 'V' --><!-- end ngRepeat: n in [].constructor(5) track by $index --><!-- ngIf: item.critTpCd == 'P' || item.critTpCd == 'V' --><li ng-repeat="n in [].constructor(5) track by $index" ng-class="{play_btn:item.photoList.items[$index].videoYn}" ng-if="item.critTpCd == 'P' || item.critTpCd == 'V'" ng-click="item.photoList.items[$index] &amp;&amp; linkClick(item.photoList.items[$index].contsUrl,'m_RDC_ProdDetail_Clk_Rvw02_photo')" class="ng-scope">
+													<!-- ngIf: item.photoList.items[$index] -->
+												</li><!-- end ngIf: item.critTpCd == 'P' || item.critTpCd == 'V' --><!-- end ngRepeat: n in [].constructor(5) track by $index --><!-- ngIf: item.critTpCd == 'P' || item.critTpCd == 'V' --><li ng-repeat="n in [].constructor(5) track by $index" ng-class="{play_btn:item.photoList.items[$index].videoYn}" ng-if="item.critTpCd == 'P' || item.critTpCd == 'V'" ng-click="item.photoList.items[$index] &amp;&amp; linkClick(item.photoList.items[$index].contsUrl,'m_RDC_ProdDetail_Clk_Rvw02_photo')" class="ng-scope">
+													<!-- ngIf: item.photoList.items[$index] -->
+												</li><!-- end ngIf: item.critTpCd == 'P' || item.critTpCd == 'V' --><!-- end ngRepeat: n in [].constructor(5) track by $index --><!-- ngIf: item.critTpCd == 'P' || item.critTpCd == 'V' --><li ng-repeat="n in [].constructor(5) track by $index" ng-class="{play_btn:item.photoList.items[$index].videoYn}" ng-if="item.critTpCd == 'P' || item.critTpCd == 'V'" ng-click="item.photoList.items[$index] &amp;&amp; linkClick(item.photoList.items[$index].contsUrl,'m_RDC_ProdDetail_Clk_Rvw02_photo')" class="ng-scope">
+													<!-- ngIf: item.photoList.items[$index] -->
+												</li><!-- end ngIf: item.critTpCd == 'P' || item.critTpCd == 'V' --><!-- end ngRepeat: n in [].constructor(5) track by $index -->
+											</ul>
+										</div><!-- end ngIf: !pageUI.loadData.dispNtcTxt && item.photoList.items.length > 0 -->
+					
+										<!-- 전체상품평 : 상품평 리스트 : 등록자|고객특성Flag -->
+										<p class="cmt_writer"><em class="ng-binding">hon****님의 상품평</em><!-- ngIf: item.wrtrTpNm --></p>
+					
+										<!-- 전체상품평 : 상품평 리스트 : 추천/공유 -->
+										<div class="cmt_btn_wrap">
+											<div class="cmt_btn">
+												<!-- 전체상품평 : 상품평 리스트 : 추천/공유 : 추천 -->
+												<!-- ngIf: !pageUI.loadData.healthfoodYn --><span class="recom div_line_v_s2 ng-binding ng-scope" ng-if="!pageUI.loadData.healthfoodYn" ng-class="{on:item.myRecomm}" ng-click="recommClick(item)">3</span><!-- end ngIf: !pageUI.loadData.healthfoodYn --><!--상태변화 클래스: on-->
+					
+												<!-- 전체상품평 : 상품평 리스트 : 추천/공유 : 공유 -->
+												<span class="share" ng-class="{only:pageUI.loadData.healthfoodYn, on:item.recommYn}" ng-click="showSharePop({goodsNm:pageUI.loadData.goodsNm,goodsNo:pageUI.loadData.goodsNo,prdComment:item.critCont,shareImg:pageUI.loadData.goodsImgUrl, healthfood_yn:(pageUI.loadData.healthfoodYn ? 'Y':'N')},'crit')">공유</span>
+					
+											</div>
+										</div>
+									</li><!-- end ngRepeat: item in pageUI.loadData.critList.items --><li class="ng-scope div_line_b" ng-repeat="item in pageUI.loadData.critList.items" ng-class="{'div_line_t':$index == 0, div_line_b:$index < pageUI.loadData.critList.items.length-1}">
+					
+										<!-- 전체상품평 : 상품평 리스트 : 별점 -->
+										<div class="item_top">
+											<span class="starScoreWrap"><span class="starScoreCnt" style="width:100%"></span></span>
+											<span class="date ng-binding">2018.04.27</span>
+											<!--<span class="recom">{{item.recommCnt}}</span>-->
+										</div>
+										
+										<!-- 전체상품평 : 상품평 리스트 : 상품옵션 -->
+										<!-- ngIf: item.optDesc --><p class="option_nm ng-binding ng-scope" ng-if="item.optDesc"><!--<em>옵션명</em>: -->색상:베이지,사이즈:S</p><!-- end ngIf: item.optDesc -->
+					
+										<!-- 전체상품평 : 상품평 리스트 : 상품평 내용 -->
+										<!-- ngIf: !pageUI.loadData.dispNtcTxt --><p class="cmt_cont ellipsis_custom spread ng-binding ng-scope" ng-if="!pageUI.loadData.dispNtcTxt">소녀스러운 디자인의 원피스입니다. 레이온 소재라 가벼워요.</p><!-- end ngIf: !pageUI.loadData.dispNtcTxt -->
+					
+										<!-- 전체상품평 : 상품평 리스트 : 등록 썸네일 -->
+										<!-- ngIf: !pageUI.loadData.dispNtcTxt && item.photoList.items.length > 0 -->
+					
+										<!-- 전체상품평 : 상품평 리스트 : 등록자|고객특성Flag -->
+										<p class="cmt_writer"><em class="ng-binding">70a****님의 상품평</em><!-- ngIf: item.wrtrTpNm --></p>
+					
+										<!-- 전체상품평 : 상품평 리스트 : 추천/공유 -->
+										<div class="cmt_btn_wrap">
+											<div class="cmt_btn">
+												<!-- 전체상품평 : 상품평 리스트 : 추천/공유 : 추천 -->
+												<!-- ngIf: !pageUI.loadData.healthfoodYn --><span class="recom div_line_v_s2 ng-binding ng-scope" ng-if="!pageUI.loadData.healthfoodYn" ng-class="{on:item.myRecomm}" ng-click="recommClick(item)">2</span><!-- end ngIf: !pageUI.loadData.healthfoodYn --><!--상태변화 클래스: on-->
+					
+												<!-- 전체상품평 : 상품평 리스트 : 추천/공유 : 공유 -->
+												<span class="share" ng-class="{only:pageUI.loadData.healthfoodYn, on:item.recommYn}" ng-click="showSharePop({goodsNm:pageUI.loadData.goodsNm,goodsNo:pageUI.loadData.goodsNo,prdComment:item.critCont,shareImg:pageUI.loadData.goodsImgUrl, healthfood_yn:(pageUI.loadData.healthfoodYn ? 'Y':'N')},'crit')">공유</span>
+					
+											</div>
+										</div>
+									</li><!-- end ngRepeat: item in pageUI.loadData.critList.items --><li class="ng-scope div_line_b" ng-repeat="item in pageUI.loadData.critList.items" ng-class="{'div_line_t':$index == 0, div_line_b:$index < pageUI.loadData.critList.items.length-1}">
+					
+										<!-- 전체상품평 : 상품평 리스트 : 별점 -->
+										<div class="item_top">
+											<span class="starScoreWrap"><span class="starScoreCnt" style="width:100%"></span></span>
+											<span class="date ng-binding">2018.04.26</span>
+											<!--<span class="recom">{{item.recommCnt}}</span>-->
+										</div>
+										
+										<!-- 전체상품평 : 상품평 리스트 : 상품옵션 -->
+										<!-- ngIf: item.optDesc --><p class="option_nm ng-binding ng-scope" ng-if="item.optDesc"><!--<em>옵션명</em>: -->색상:베이지,사이즈:M</p><!-- end ngIf: item.optDesc -->
+					
+										<!-- 전체상품평 : 상품평 리스트 : 상품평 내용 -->
+										<!-- ngIf: !pageUI.loadData.dispNtcTxt --><p class="cmt_cont ellipsis_custom spread ng-binding ng-scope" ng-if="!pageUI.loadData.dispNtcTxt">마음에 쏙 들어요.</p><!-- end ngIf: !pageUI.loadData.dispNtcTxt -->
+					
+										<!-- 전체상품평 : 상품평 리스트 : 등록 썸네일 -->
+										<!-- ngIf: !pageUI.loadData.dispNtcTxt && item.photoList.items.length > 0 -->
+					
+										<!-- 전체상품평 : 상품평 리스트 : 등록자|고객특성Flag -->
+										<p class="cmt_writer"><em class="ng-binding">hmo***************님의 상품평</em><!-- ngIf: item.wrtrTpNm --></p>
+					
+										<!-- 전체상품평 : 상품평 리스트 : 추천/공유 -->
+										<div class="cmt_btn_wrap">
+											<div class="cmt_btn">
+												<!-- 전체상품평 : 상품평 리스트 : 추천/공유 : 추천 -->
+												<!-- ngIf: !pageUI.loadData.healthfoodYn --><span class="recom div_line_v_s2 ng-binding ng-scope" ng-if="!pageUI.loadData.healthfoodYn" ng-class="{on:item.myRecomm}" ng-click="recommClick(item)">0</span><!-- end ngIf: !pageUI.loadData.healthfoodYn --><!--상태변화 클래스: on-->
+					
+												<!-- 전체상품평 : 상품평 리스트 : 추천/공유 : 공유 -->
+												<span class="share" ng-class="{only:pageUI.loadData.healthfoodYn, on:item.recommYn}" ng-click="showSharePop({goodsNm:pageUI.loadData.goodsNm,goodsNo:pageUI.loadData.goodsNo,prdComment:item.critCont,shareImg:pageUI.loadData.goodsImgUrl, healthfood_yn:(pageUI.loadData.healthfoodYn ? 'Y':'N')},'crit')">공유</span>
+					
+											</div>
+										</div>
+									</li><!-- end ngRepeat: item in pageUI.loadData.critList.items --><li class="ng-scope div_line_b" ng-repeat="item in pageUI.loadData.critList.items" ng-class="{'div_line_t':$index == 0, div_line_b:$index < pageUI.loadData.critList.items.length-1}">
+					
+										<!-- 전체상품평 : 상품평 리스트 : 별점 -->
+										<div class="item_top">
+											<span class="starScoreWrap"><span class="starScoreCnt" style="width:100%"></span></span>
+											<span class="date ng-binding">2018.04.26</span>
+											<!--<span class="recom">{{item.recommCnt}}</span>-->
+										</div>
+										
+										<!-- 전체상품평 : 상품평 리스트 : 상품옵션 -->
+										<!-- ngIf: item.optDesc --><p class="option_nm ng-binding ng-scope" ng-if="item.optDesc"><!--<em>옵션명</em>: -->색상:베이지,사이즈:M</p><!-- end ngIf: item.optDesc -->
+					
+										<!-- 전체상품평 : 상품평 리스트 : 상품평 내용 -->
+										<!-- ngIf: !pageUI.loadData.dispNtcTxt --><p class="cmt_cont ellipsis_custom spread ng-binding ng-scope" ng-if="!pageUI.loadData.dispNtcTxt">은은하니 맘에드네요
+					빠른배송도 감사합니다</p><!-- end ngIf: !pageUI.loadData.dispNtcTxt -->
+					
+										<!-- 전체상품평 : 상품평 리스트 : 등록 썸네일 -->
+										<!-- ngIf: !pageUI.loadData.dispNtcTxt && item.photoList.items.length > 0 -->
+					
+										<!-- 전체상품평 : 상품평 리스트 : 등록자|고객특성Flag -->
+										<p class="cmt_writer"><em class="ng-binding">gsj***님의 상품평</em><!-- ngIf: item.wrtrTpNm --></p>
+					
+										<!-- 전체상품평 : 상품평 리스트 : 추천/공유 -->
+										<div class="cmt_btn_wrap">
+											<div class="cmt_btn">
+												<!-- 전체상품평 : 상품평 리스트 : 추천/공유 : 추천 -->
+												<!-- ngIf: !pageUI.loadData.healthfoodYn --><span class="recom div_line_v_s2 ng-binding ng-scope" ng-if="!pageUI.loadData.healthfoodYn" ng-class="{on:item.myRecomm}" ng-click="recommClick(item)">0</span><!-- end ngIf: !pageUI.loadData.healthfoodYn --><!--상태변화 클래스: on-->
+					
+												<!-- 전체상품평 : 상품평 리스트 : 추천/공유 : 공유 -->
+												<span class="share" ng-class="{only:pageUI.loadData.healthfoodYn, on:item.recommYn}" ng-click="showSharePop({goodsNm:pageUI.loadData.goodsNm,goodsNo:pageUI.loadData.goodsNo,prdComment:item.critCont,shareImg:pageUI.loadData.goodsImgUrl, healthfood_yn:(pageUI.loadData.healthfoodYn ? 'Y':'N')},'crit')">공유</span>
+					
+											</div>
+										</div>
+									</li><!-- end ngRepeat: item in pageUI.loadData.critList.items --><li class="ng-scope div_line_b" ng-repeat="item in pageUI.loadData.critList.items" ng-class="{'div_line_t':$index == 0, div_line_b:$index < pageUI.loadData.critList.items.length-1}">
+					
+										<!-- 전체상품평 : 상품평 리스트 : 별점 -->
+										<div class="item_top">
+											<span class="starScoreWrap"><span class="starScoreCnt" style="width:100%"></span></span>
+											<span class="date ng-binding">2018.04.24</span>
+											<!--<span class="recom">{{item.recommCnt}}</span>-->
+										</div>
+										
+										<!-- 전체상품평 : 상품평 리스트 : 상품옵션 -->
+										<!-- ngIf: item.optDesc --><p class="option_nm ng-binding ng-scope" ng-if="item.optDesc"><!--<em>옵션명</em>: -->색상:베이지,사이즈:S</p><!-- end ngIf: item.optDesc -->
+					
+										<!-- 전체상품평 : 상품평 리스트 : 상품평 내용 -->
+										<!-- ngIf: !pageUI.loadData.dispNtcTxt --><p class="cmt_cont ellipsis_custom spread ng-binding ng-scope" ng-if="!pageUI.loadData.dispNtcTxt">마음에 쏙 들어요.</p><!-- end ngIf: !pageUI.loadData.dispNtcTxt -->
+					
+										<!-- 전체상품평 : 상품평 리스트 : 등록 썸네일 -->
+										<!-- ngIf: !pageUI.loadData.dispNtcTxt && item.photoList.items.length > 0 -->
+					
+										<!-- 전체상품평 : 상품평 리스트 : 등록자|고객특성Flag -->
+										<p class="cmt_writer"><em class="ng-binding">jsp*****님의 상품평</em><!-- ngIf: item.wrtrTpNm --></p>
+					
+										<!-- 전체상품평 : 상품평 리스트 : 추천/공유 -->
+										<div class="cmt_btn_wrap">
+											<div class="cmt_btn">
+												<!-- 전체상품평 : 상품평 리스트 : 추천/공유 : 추천 -->
+												<!-- ngIf: !pageUI.loadData.healthfoodYn --><span class="recom div_line_v_s2 ng-binding ng-scope" ng-if="!pageUI.loadData.healthfoodYn" ng-class="{on:item.myRecomm}" ng-click="recommClick(item)">1</span><!-- end ngIf: !pageUI.loadData.healthfoodYn --><!--상태변화 클래스: on-->
+					
+												<!-- 전체상품평 : 상품평 리스트 : 추천/공유 : 공유 -->
+												<span class="share" ng-class="{only:pageUI.loadData.healthfoodYn, on:item.recommYn}" ng-click="showSharePop({goodsNm:pageUI.loadData.goodsNm,goodsNo:pageUI.loadData.goodsNo,prdComment:item.critCont,shareImg:pageUI.loadData.goodsImgUrl, healthfood_yn:(pageUI.loadData.healthfoodYn ? 'Y':'N')},'crit')">공유</span>
+					
+											</div>
+										</div>
+									</li><!-- end ngRepeat: item in pageUI.loadData.critList.items --><li class="ng-scope div_line_b" ng-repeat="item in pageUI.loadData.critList.items" ng-class="{'div_line_t':$index == 0, div_line_b:$index < pageUI.loadData.critList.items.length-1}">
+					
+										<!-- 전체상품평 : 상품평 리스트 : 별점 -->
+										<div class="item_top">
+											<span class="starScoreWrap"><span class="starScoreCnt" style="width:60%"></span></span>
+											<span class="date ng-binding">2018.04.22</span>
+											<!--<span class="recom">{{item.recommCnt}}</span>-->
+										</div>
+										
+										<!-- 전체상품평 : 상품평 리스트 : 상품옵션 -->
+										<!-- ngIf: item.optDesc --><p class="option_nm ng-binding ng-scope" ng-if="item.optDesc"><!--<em>옵션명</em>: -->색상:베이지,사이즈:S</p><!-- end ngIf: item.optDesc -->
+					
+										<!-- 전체상품평 : 상품평 리스트 : 상품평 내용 -->
+										<!-- ngIf: !pageUI.loadData.dispNtcTxt --><p class="cmt_cont ellipsis_custom spread ng-binding ng-scope" ng-if="!pageUI.loadData.dispNtcTxt">예뻐요. 확실히. 질도 좋고. 평소 55~66인데 사이즈 넉넉해서 웬만하면 s사도 될거 같아요.</p><!-- end ngIf: !pageUI.loadData.dispNtcTxt -->
+					
+										<!-- 전체상품평 : 상품평 리스트 : 등록 썸네일 -->
+										<!-- ngIf: !pageUI.loadData.dispNtcTxt && item.photoList.items.length > 0 -->
+					
+										<!-- 전체상품평 : 상품평 리스트 : 등록자|고객특성Flag -->
+										<p class="cmt_writer"><em class="ng-binding">cja*****님의 상품평</em><!-- ngIf: item.wrtrTpNm --></p>
+					
+										<!-- 전체상품평 : 상품평 리스트 : 추천/공유 -->
+										<div class="cmt_btn_wrap">
+											<div class="cmt_btn">
+												<!-- 전체상품평 : 상품평 리스트 : 추천/공유 : 추천 -->
+												<!-- ngIf: !pageUI.loadData.healthfoodYn --><span class="recom div_line_v_s2 ng-binding ng-scope" ng-if="!pageUI.loadData.healthfoodYn" ng-class="{on:item.myRecomm}" ng-click="recommClick(item)">5</span><!-- end ngIf: !pageUI.loadData.healthfoodYn --><!--상태변화 클래스: on-->
+					
+												<!-- 전체상품평 : 상품평 리스트 : 추천/공유 : 공유 -->
+												<span class="share" ng-class="{only:pageUI.loadData.healthfoodYn, on:item.recommYn}" ng-click="showSharePop({goodsNm:pageUI.loadData.goodsNm,goodsNo:pageUI.loadData.goodsNo,prdComment:item.critCont,shareImg:pageUI.loadData.goodsImgUrl, healthfood_yn:(pageUI.loadData.healthfoodYn ? 'Y':'N')},'crit')">공유</span>
+					
+											</div>
+										</div>
+									</li><!-- end ngRepeat: item in pageUI.loadData.critList.items --><li class="ng-scope div_line_b" ng-repeat="item in pageUI.loadData.critList.items" ng-class="{'div_line_t':$index == 0, div_line_b:$index < pageUI.loadData.critList.items.length-1}">
+					
+										<!-- 전체상품평 : 상품평 리스트 : 별점 -->
+										<div class="item_top">
+											<span class="starScoreWrap"><span class="starScoreCnt" style="width:100%"></span></span>
+											<span class="date ng-binding">2018.04.21</span>
+											<!--<span class="recom">{{item.recommCnt}}</span>-->
+										</div>
+										
+										<!-- 전체상품평 : 상품평 리스트 : 상품옵션 -->
+										<!-- ngIf: item.optDesc --><p class="option_nm ng-binding ng-scope" ng-if="item.optDesc"><!--<em>옵션명</em>: -->색상:베이지,사이즈:S</p><!-- end ngIf: item.optDesc -->
+					
+										<!-- 전체상품평 : 상품평 리스트 : 상품평 내용 -->
+										<!-- ngIf: !pageUI.loadData.dispNtcTxt --><p class="cmt_cont ellipsis_custom spread ng-binding ng-scope" ng-if="!pageUI.loadData.dispNtcTxt">핏이 생각보다 예뻐요 색감이 별로 였는데 상품평이 좋아서 입어보니 핏이 예쁘고 시원한 소재여서 구매결정하네요</p><!-- end ngIf: !pageUI.loadData.dispNtcTxt -->
+					
+										<!-- 전체상품평 : 상품평 리스트 : 등록 썸네일 -->
+										<!-- ngIf: !pageUI.loadData.dispNtcTxt && item.photoList.items.length > 0 -->
+					
+										<!-- 전체상품평 : 상품평 리스트 : 등록자|고객특성Flag -->
+										<p class="cmt_writer"><em class="ng-binding">a94****님의 상품평</em><!-- ngIf: item.wrtrTpNm --></p>
+					
+										<!-- 전체상품평 : 상품평 리스트 : 추천/공유 -->
+										<div class="cmt_btn_wrap">
+											<div class="cmt_btn">
+												<!-- 전체상품평 : 상품평 리스트 : 추천/공유 : 추천 -->
+												<!-- ngIf: !pageUI.loadData.healthfoodYn --><span class="recom div_line_v_s2 ng-binding ng-scope" ng-if="!pageUI.loadData.healthfoodYn" ng-class="{on:item.myRecomm}" ng-click="recommClick(item)">5</span><!-- end ngIf: !pageUI.loadData.healthfoodYn --><!--상태변화 클래스: on-->
+					
+												<!-- 전체상품평 : 상품평 리스트 : 추천/공유 : 공유 -->
+												<span class="share" ng-class="{only:pageUI.loadData.healthfoodYn, on:item.recommYn}" ng-click="showSharePop({goodsNm:pageUI.loadData.goodsNm,goodsNo:pageUI.loadData.goodsNo,prdComment:item.critCont,shareImg:pageUI.loadData.goodsImgUrl, healthfood_yn:(pageUI.loadData.healthfoodYn ? 'Y':'N')},'crit')">공유</span>
+					
+											</div>
+										</div>
+									</li><!-- end ngRepeat: item in pageUI.loadData.critList.items --><li class="ng-scope" ng-repeat="item in pageUI.loadData.critList.items" ng-class="{'div_line_t':$index == 0, div_line_b:$index < pageUI.loadData.critList.items.length-1}">
+					
+										<!-- 전체상품평 : 상품평 리스트 : 별점 -->
+										<div class="item_top">
+											<span class="starScoreWrap"><span class="starScoreCnt" style="width:100%"></span></span>
+											<span class="date ng-binding">2018.04.06</span>
+											<!--<span class="recom">{{item.recommCnt}}</span>-->
+										</div>
+										
+										<!-- 전체상품평 : 상품평 리스트 : 상품옵션 -->
+										<!-- ngIf: item.optDesc --><p class="option_nm ng-binding ng-scope" ng-if="item.optDesc"><!--<em>옵션명</em>: -->색상:베이지,사이즈:S</p><!-- end ngIf: item.optDesc -->
+					
+										<!-- 전체상품평 : 상품평 리스트 : 상품평 내용 -->
+										<!-- ngIf: !pageUI.loadData.dispNtcTxt --><p class="cmt_cont ellipsis_custom spread ng-binding ng-scope" ng-if="!pageUI.loadData.dispNtcTxt">한눈에 보고 반해서 구입했는데 실물이 더 예쁩니다...</p><!-- end ngIf: !pageUI.loadData.dispNtcTxt -->
+					
+										<!-- 전체상품평 : 상품평 리스트 : 등록 썸네일 -->
+										<!-- ngIf: !pageUI.loadData.dispNtcTxt && item.photoList.items.length > 0 -->
+					
+										<!-- 전체상품평 : 상품평 리스트 : 등록자|고객특성Flag -->
+										<p class="cmt_writer"><em class="ng-binding">952*****님의 상품평</em><!-- ngIf: item.wrtrTpNm --></p>
+					
+										<!-- 전체상품평 : 상품평 리스트 : 추천/공유 -->
+										<div class="cmt_btn_wrap">
+											<div class="cmt_btn">
+												<!-- 전체상품평 : 상품평 리스트 : 추천/공유 : 추천 -->
+												<!-- ngIf: !pageUI.loadData.healthfoodYn --><span class="recom div_line_v_s2 ng-binding ng-scope" ng-if="!pageUI.loadData.healthfoodYn" ng-class="{on:item.myRecomm}" ng-click="recommClick(item)">11</span><!-- end ngIf: !pageUI.loadData.healthfoodYn --><!--상태변화 클래스: on-->
+					
+												<!-- 전체상품평 : 상품평 리스트 : 추천/공유 : 공유 -->
+												<span class="share" ng-class="{only:pageUI.loadData.healthfoodYn, on:item.recommYn}" ng-click="showSharePop({goodsNm:pageUI.loadData.goodsNm,goodsNo:pageUI.loadData.goodsNo,prdComment:item.critCont,shareImg:pageUI.loadData.goodsImgUrl, healthfood_yn:(pageUI.loadData.healthfoodYn ? 'Y':'N')},'crit')">공유</span>
+					
+											</div>
+										</div>
+									</li><!-- end ngRepeat: item in pageUI.loadData.critList.items -->
+								</ul>
+							</div>
+							<!--필터 레이어(좌측 슬라이드 메뉴)-->
+							<div class="side_filter_wrap" ng-class="{on:pageUI.filterOption.sliderOpen}"><!--상태변화 클래스: 보이기 on-->
+								<div class="side_filter_header">
+									필터 <a ng-click="hideFilterSlider('m_RDC_ProdDetail_RvwFlt_Clk_Close')" class="filter_close">닫기</a>
+								</div>
+								<div class="slide_cont">
+									<ul class="menu_depth1">
+										<li class="sort" ng-class="{open:pageUI.filterOption.filter1Open}">
+											<a ng-click="sortByOpen('m_RDC_ProdDetail_RvwFlt_Clk_Sort')"><span class="filter_tit">정렬</span><span class="filter_val shape_triangle ng-binding down" ng-class="pageUI.filterOption.filter1Open? 'blue up': 'down'">최근상품평순</span><!--상태변화 클래스: 열림닫힘 blue up -> down--></a>
+											<!--정렬 sub depth-->
+											<ul class="menu_depth2">
+												<!-- ngRepeat: (key,value) in pageUI.filterOption.filter1Names | limitTo:(pageUI.loadData.dispNtcTxt && pageUI.filterOption.filter1Names[pageUI.filterOption.filter1SelVal] != '추천순')? 4:5 --><li ng-repeat="(key,value) in pageUI.filterOption.filter1Names | limitTo:(pageUI.loadData.dispNtcTxt &amp;&amp; pageUI.filterOption.filter1Names[pageUI.filterOption.filter1SelVal] != '추천순')? 4:5" ng-class="{on:$index == pageUI.filterOption.filter1SelVal}" class="ng-scope on"><!--상태변화 클래스: 선택 on--><label for="cmtSort0" class="ng-binding">최근상품평순</label><input type="radio" id="cmtSort0" name="cmtSort" value="0" ng-model="pageUI.filterOption.filter1SelVal" ng-change="sortBy('m_RDC_ProdDetail_RvwFlt_Clk_Sort_0'+($index+1))" integer="" class="ng-pristine ng-untouched ng-valid"></li><!-- end ngRepeat: (key,value) in pageUI.filterOption.filter1Names | limitTo:(pageUI.loadData.dispNtcTxt && pageUI.filterOption.filter1Names[pageUI.filterOption.filter1SelVal] != '추천순')? 4:5 --><li ng-repeat="(key,value) in pageUI.filterOption.filter1Names | limitTo:(pageUI.loadData.dispNtcTxt &amp;&amp; pageUI.filterOption.filter1Names[pageUI.filterOption.filter1SelVal] != '추천순')? 4:5" ng-class="{on:$index == pageUI.filterOption.filter1SelVal}" class="ng-scope"><!--상태변화 클래스: 선택 on--><label for="cmtSort1" class="ng-binding">사진상품평순</label><input type="radio" id="cmtSort1" name="cmtSort" value="1" ng-model="pageUI.filterOption.filter1SelVal" ng-change="sortBy('m_RDC_ProdDetail_RvwFlt_Clk_Sort_0'+($index+1))" integer="" class="ng-pristine ng-untouched ng-valid"></li><!-- end ngRepeat: (key,value) in pageUI.filterOption.filter1Names | limitTo:(pageUI.loadData.dispNtcTxt && pageUI.filterOption.filter1Names[pageUI.filterOption.filter1SelVal] != '추천순')? 4:5 --><li ng-repeat="(key,value) in pageUI.filterOption.filter1Names | limitTo:(pageUI.loadData.dispNtcTxt &amp;&amp; pageUI.filterOption.filter1Names[pageUI.filterOption.filter1SelVal] != '추천순')? 4:5" ng-class="{on:$index == pageUI.filterOption.filter1SelVal}" class="ng-scope"><!--상태변화 클래스: 선택 on--><label for="cmtSort2" class="ng-binding">높은평점순</label><input type="radio" id="cmtSort2" name="cmtSort" value="2" ng-model="pageUI.filterOption.filter1SelVal" ng-change="sortBy('m_RDC_ProdDetail_RvwFlt_Clk_Sort_0'+($index+1))" integer="" class="ng-pristine ng-untouched ng-valid"></li><!-- end ngRepeat: (key,value) in pageUI.filterOption.filter1Names | limitTo:(pageUI.loadData.dispNtcTxt && pageUI.filterOption.filter1Names[pageUI.filterOption.filter1SelVal] != '추천순')? 4:5 --><li ng-repeat="(key,value) in pageUI.filterOption.filter1Names | limitTo:(pageUI.loadData.dispNtcTxt &amp;&amp; pageUI.filterOption.filter1Names[pageUI.filterOption.filter1SelVal] != '추천순')? 4:5" ng-class="{on:$index == pageUI.filterOption.filter1SelVal}" class="ng-scope"><!--상태변화 클래스: 선택 on--><label for="cmtSort3" class="ng-binding">낮은평점순</label><input type="radio" id="cmtSort3" name="cmtSort" value="3" ng-model="pageUI.filterOption.filter1SelVal" ng-change="sortBy('m_RDC_ProdDetail_RvwFlt_Clk_Sort_0'+($index+1))" integer="" class="ng-pristine ng-untouched ng-valid"></li><!-- end ngRepeat: (key,value) in pageUI.filterOption.filter1Names | limitTo:(pageUI.loadData.dispNtcTxt && pageUI.filterOption.filter1Names[pageUI.filterOption.filter1SelVal] != '추천순')? 4:5 --><li ng-repeat="(key,value) in pageUI.filterOption.filter1Names | limitTo:(pageUI.loadData.dispNtcTxt &amp;&amp; pageUI.filterOption.filter1Names[pageUI.filterOption.filter1SelVal] != '추천순')? 4:5" ng-class="{on:$index == pageUI.filterOption.filter1SelVal}" class="ng-scope"><!--상태변화 클래스: 선택 on--><label for="cmtSort4" class="ng-binding">추천순</label><input type="radio" id="cmtSort4" name="cmtSort" value="4" ng-model="pageUI.filterOption.filter1SelVal" ng-change="sortBy('m_RDC_ProdDetail_RvwFlt_Clk_Sort_0'+($index+1))" integer="" class="ng-pristine ng-untouched ng-valid"></li><!-- end ngRepeat: (key,value) in pageUI.filterOption.filter1Names | limitTo:(pageUI.loadData.dispNtcTxt && pageUI.filterOption.filter1Names[pageUI.filterOption.filter1SelVal] != '추천순')? 4:5 -->
+											</ul>
+											<!---->
+										</li>
+										<li class="starScore open" ng-class="{open:pageUI.filterOption.filter2Open}"><!--상태변화 클래스: 열림 open-->
+											<a ng-click="filterByOpen('m_RDC_ProdDetail_RvwFlt_Clk_star')"><span class="filter_tit">별점순</span><span class="filter_val shape_triangle ng-binding blue up" ng-class="pageUI.filterOption.filter2Open? 'blue up': 'down'">별점전체</span></a>
+											<!--별점순 서브 depth-->
+											<ul class="menu_depth2">
+												<!-- ngRepeat: (key,value) in pageUI.filterOption.filter2Names --><li ng-repeat="(key,value) in pageUI.filterOption.filter2Names" ng-class="{on:$index == pageUI.filterOption.filter2SelVal}" class="ng-scope"><!--상태변화 클래스: 선택 on--><label for="starScore0" class="ng-binding">별점전체<!-- ngIf: $index > 0 --></label> <input type="radio" id="starScore0" name="starScoreSort" value="6" ng-model="pageUI.filterOption.filter2SelVal" ng-change="filterBy('m_RDC_ProdDetail_RvwFlt_Clk_star_0'+(6-$index))" integer="" class="ng-pristine ng-untouched ng-valid"></li><!-- end ngRepeat: (key,value) in pageUI.filterOption.filter2Names --><li ng-repeat="(key,value) in pageUI.filterOption.filter2Names" ng-class="{on:$index == pageUI.filterOption.filter2SelVal}" class="ng-scope"><!--상태변화 클래스: 선택 on--><label for="starScore1" class="ng-binding">5점<!-- ngIf: $index > 0 --><span class="starScoreWrap ng-scope" ng-if="$index > 0"><span class="starScoreCnt" style="width:100%"></span></span><!-- end ngIf: $index > 0 --></label> <input type="radio" id="starScore1" name="starScoreSort" value="5" ng-model="pageUI.filterOption.filter2SelVal" ng-change="filterBy('m_RDC_ProdDetail_RvwFlt_Clk_star_0'+(6-$index))" integer="" class="ng-pristine ng-untouched ng-valid"></li><!-- end ngRepeat: (key,value) in pageUI.filterOption.filter2Names --><li ng-repeat="(key,value) in pageUI.filterOption.filter2Names" ng-class="{on:$index == pageUI.filterOption.filter2SelVal}" class="ng-scope"><!--상태변화 클래스: 선택 on--><label for="starScore2" class="ng-binding">4점<!-- ngIf: $index > 0 --><span class="starScoreWrap ng-scope" ng-if="$index > 0"><span class="starScoreCnt" style="width:80%"></span></span><!-- end ngIf: $index > 0 --></label> <input type="radio" id="starScore2" name="starScoreSort" value="4" ng-model="pageUI.filterOption.filter2SelVal" ng-change="filterBy('m_RDC_ProdDetail_RvwFlt_Clk_star_0'+(6-$index))" integer="" class="ng-pristine ng-untouched ng-valid"></li><!-- end ngRepeat: (key,value) in pageUI.filterOption.filter2Names --><li ng-repeat="(key,value) in pageUI.filterOption.filter2Names" ng-class="{on:$index == pageUI.filterOption.filter2SelVal}" class="ng-scope"><!--상태변화 클래스: 선택 on--><label for="starScore3" class="ng-binding">3점<!-- ngIf: $index > 0 --><span class="starScoreWrap ng-scope" ng-if="$index > 0"><span class="starScoreCnt" style="width:60%"></span></span><!-- end ngIf: $index > 0 --></label> <input type="radio" id="starScore3" name="starScoreSort" value="3" ng-model="pageUI.filterOption.filter2SelVal" ng-change="filterBy('m_RDC_ProdDetail_RvwFlt_Clk_star_0'+(6-$index))" integer="" class="ng-pristine ng-untouched ng-valid"></li><!-- end ngRepeat: (key,value) in pageUI.filterOption.filter2Names --><li ng-repeat="(key,value) in pageUI.filterOption.filter2Names" ng-class="{on:$index == pageUI.filterOption.filter2SelVal}" class="ng-scope"><!--상태변화 클래스: 선택 on--><label for="starScore4" class="ng-binding">2점<!-- ngIf: $index > 0 --><span class="starScoreWrap ng-scope" ng-if="$index > 0"><span class="starScoreCnt" style="width:40%"></span></span><!-- end ngIf: $index > 0 --></label> <input type="radio" id="starScore4" name="starScoreSort" value="2" ng-model="pageUI.filterOption.filter2SelVal" ng-change="filterBy('m_RDC_ProdDetail_RvwFlt_Clk_star_0'+(6-$index))" integer="" class="ng-pristine ng-untouched ng-valid"></li><!-- end ngRepeat: (key,value) in pageUI.filterOption.filter2Names --><li ng-repeat="(key,value) in pageUI.filterOption.filter2Names" ng-class="{on:$index == pageUI.filterOption.filter2SelVal}" class="ng-scope"><!--상태변화 클래스: 선택 on--><label for="starScore5" class="ng-binding">1점<!-- ngIf: $index > 0 --><span class="starScoreWrap ng-scope" ng-if="$index > 0"><span class="starScoreCnt" style="width:20%"></span></span><!-- end ngIf: $index > 0 --></label> <input type="radio" id="starScore5" name="starScoreSort" value="1" ng-model="pageUI.filterOption.filter2SelVal" ng-change="filterBy('m_RDC_ProdDetail_RvwFlt_Clk_star_0'+(6-$index))" integer="" class="ng-pristine ng-untouched ng-valid"></li><!-- end ngRepeat: (key,value) in pageUI.filterOption.filter2Names -->
+											</ul>
+											<!---->
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					
+						<!--공통 로딩커버-->
+						<!-- ngIf: jsonLoading -->
+					</section>
+						
+					<!-- //2018.05.02  실제 상품평 들어가는 영역 -->
+				</div>
+			</section>
+			<!-- //옵션 레이어 -->
+		</div>
+	</section>
+</section>	
+
+
+</body>
+</html>

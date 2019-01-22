@@ -1,0 +1,33 @@
+<div ng-if="pageUI.loadData.product_similarStyle.length >= 1">
+	<div class="prd_title mt10">
+		<p>비슷한 스타일 추천</p>
+		<div class="prdCnt" ng-if="pageUI.loadData.product_similarStyle.length >= 2"><strong>{{similarSwipeIdx + 1}}</strong>/{{pageUI.loadData.product_similarStyle.length}}</div>
+	</div>
+	<div class="similar_list" roll-swipe-banner id="similarStyleRecom" rolling="{{pageUI.loadData.product_similarStyle.length >= 2}}" width320="1" width640="1" width900="1" info="similar_style_recom" endfnc="similarStyleSwipeEndHandler">
+		<ul class="swipeBox">
+			<li class="swipe_cont_wrap" ng-repeat="groupItem in pageUI.loadData.product_similarStyle track by $index">
+				<div class="prod_item" ng-repeat="item in groupItem track by $index">
+					<a ng-click="gotoProductPage(
+						item.goodsNo, 
+						item.curDispNo, 
+						item.curDispNoSctCd, 
+						'm_RDC_ProdDetail_Clk_RelSty_Prd' + idxSetDigit($parent.$index * 6 + $index + 1), 
+						''
+						);logGAEvtPrdView('비슷한스타일추천',idxSetDigit($parent.$index * 6 + $index + 1),item.goodsNo);">
+						<div class="imageCon">
+							<img ng-src="{{item.imgUrl}}" alt="" />
+						</div>
+						<div class="titleCon">
+							<div class="name">{{item.brandNm}} {{item.goodsNm}}</div>
+							<div class="ti"><strong>{{item.price2 | currency:'':0}}</strong>원</div>
+						</div>
+					</a>
+				</div>
+			</li>
+		</ul>
+	</div>
+	
+	<div class="btnMore">
+		<span class="btnArea"><a ng-click="goStyleRecomMore()"><span>비슷한 스타일 더보기</span></a></span>
+	</div>
+</div>

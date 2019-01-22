@@ -1,0 +1,76 @@
+<section id="shop_location" class="">
+	<section id="smartpick" class="map">
+		<!-- sub header -->
+		<header id="head_sub">
+			<h2>매장위치</h2>
+			<p class="close"><a href="javascript:;" onclick="closeNaverMap(this)">닫기</a></p>
+		</header>
+		<!-- //sub header -->
+		<section ng-if="naverStoreMapData.smartpick_store_addr.items.length == 1 " class="map_head" style="position:static;" >
+			<dl>
+				<dt>매장명</dt>
+				<dd id="spanTopShopName">{{naverStoreName}}</dd>
+				<dt>매장주소</dt>
+				<dd id="spanTopShopAddress">{{naverStoreAddr}}</dd>
+			</dl>
+		</section>
+		<section ng-if="naverStoreMapData.smartpick_store_addr.items.length>1 && naverStoreMapData.smartpick_store_addr.items.length < 10 " class="map_head" style="position:static;" >
+			<div class="s_box04">
+				<select ng-model="shop_no" ng-change="getMapselected(shop_no)" class="ono_selectBox"> 
+							<option ng-repeat="item in naverStoreMapData.smartpick_store_addr.items"   
+									ng-model="shop_no" 
+									ng-selected="selectedItem == item.shop_no" 
+									value="{{item.shop_no }}^{{item.entr_no}}^{{item.entr_contr_no}}^{{item.post_addr}}^{{item.dtl_addr}}^{{item.shop_nm}}" >{{item.shop_nm}}</option>
+				</select>	
+			</div>
+			<dl>
+				<dt>매장명</dt>
+				<dd id="spanTopShopName">{{naverStoreName}}</dd>
+				<dt>매장주소</dt>
+				<dd id="spanTopShopAddress">{{naverStoreAddr}}</dd>
+			</dl>
+		</section>
+		<section ng-if="naverStoreMapData.smartpick_store_addr.items.length > 10 " class="map_head" style="position:static;" >
+			<div class="s_box04 region">
+				<select  ng-model="region" ng-change="getRegionName1stSelected(region,0)" class="ono_selectBox" > 
+							<option ng-repeat="item in regionName0st track by $index"   
+											ng-model="region" 
+											value="{{item}}" >{{item}}</option>
+				</select>
+				<select  ng-model="region" ng-change="getRegionName1stSelected(region,1)" class="ono_selectBox" > 
+							<option ng-repeat="item in regionName1st track by $index"   
+											ng-model="region" 
+											value="{{item}}" >{{item}}</option>
+				</select>
+				<select  ng-model="region" ng-change="getRegionName1stSelected(region,2)" class="ono_selectBox" > 
+							<option ng-repeat="item in regionName2st track by $index"   
+											ng-model="region" 
+											value="{{item}}" >{{item}}</option>
+				</select>
+			</div>
+			<div class="s_box04">
+				<select ng-model="shop_no" ng-change="getMapselected(shop_no)" class="ono_selectBox" > 
+								<option ng-repeat="item in regionStoreList"   
+										ng-model="shop_no" 
+										ng-selected="selectedItem == item.shop_no" 
+										value="{{item.shop_no }}^{{item.entr_no}}^{{item.entr_contr_no}}^{{item.post_addr}}^{{item.dtl_addr}}^{{item.shop_nm}}" >{{item.shop_nm}}</option>
+				</select>
+			</div>
+			<dl>
+				<dt>매장명</dt>
+				<dd id="spanTopShopName">{{naverStoreName}}</dd>
+				<dt>매장주소</dt>
+				<dd id="spanTopShopAddress">{{naverStoreAddr}}</dd>
+			</dl>
+		</section>
+		
+		<section ng-if="naverStoreMapData.smartpick_store_addr.items.length == 0 " class="map_head" style="position:static;" >
+			<div class="empty"><i></i>죄송합니다. 본 상품의 매장정보는 제공하고 있지 않습니다.해당 브랜드의 홈페이지나 고객센터를 통하여 문의 부탁드립니다.</div>
+		</section>
+		<!-- 지도 영역 -->
+		<section id="mapContainer" style="height: 290px; overflow: hidden; position: relative; background-color: rgb(255, 255, 255);">
+			<div style="position: absolute; top: -142px; left: -96.5px; z-index: 0; cursor: default;"><div style="position: absolute; top: 0px; left: 0px; z-index: 10;"><img src="http://image.map.naver.com/eclipse/image/2.62/11/00001-00001/00026-00023/01699-01472.png" width="256" height="256" style="position: absolute; z-index: 0; width: 256px; height: 256px; left: -281px; top: -367px;"><img src="http://image.map.naver.com/eclipse/image/2.62/11/00001-00001/00026-00022/01699-01471.png" width="256" height="256" style="position: absolute; z-index: 0; width: 256px; height: 256px; left: -281px; top: -111px;"><img src="http://image.map.naver.com/eclipse/image/2.62/11/00001-00001/00026-00022/01699-01470.png" width="256" height="256" style="position: absolute; z-index: 0; width: 256px; height: 256px; left: -281px; top: 145px;"><img src="http://image.map.naver.com/eclipse/image/2.62/11/00001-00001/00026-00022/01699-01469.png" width="256" height="256" style="position: absolute; z-index: 0; width: 256px; height: 256px; left: -281px; top: 401px;"><img src="http://image.map.naver.com/eclipse/image/2.62/11/00001-00001/00026-00023/01700-01472.png" width="256" height="256" style="position: absolute; z-index: 0; width: 256px; height: 256px; left: -25px; top: -367px;"><img src="http://image.map.naver.com/eclipse/image/2.62/11/00001-00001/00026-00022/01700-01471.png" width="256" height="256" style="position: absolute; z-index: 0; width: 256px; height: 256px; left: -25px; top: -111px;"><img src="http://image.map.naver.com/eclipse/image/2.62/11/00001-00001/00026-00022/01700-01470.png" width="256" height="256" style="position: absolute; z-index: 0; width: 256px; height: 256px; left: -25px; top: 145px;"><img src="http://image.map.naver.com/eclipse/image/2.62/11/00001-00001/00026-00022/01700-01469.png" width="256" height="256" style="position: absolute; z-index: 0; width: 256px; height: 256px; left: -25px; top: 401px;"><img src="http://image.map.naver.com/eclipse/image/2.62/11/00001-00001/00026-00023/01701-01472.png" width="256" height="256" style="position: absolute; z-index: 0; width: 256px; height: 256px; left: 231px; top: -367px;"><img src="http://image.map.naver.com/eclipse/image/2.62/11/00001-00001/00026-00022/01701-01471.png" width="256" height="256" style="position: absolute; z-index: 0; width: 256px; height: 256px; left: 231px; top: -111px;"><img src="http://image.map.naver.com/eclipse/image/2.62/11/00001-00001/00026-00022/01701-01470.png" width="256" height="256" style="position: absolute; z-index: 0; width: 256px; height: 256px; left: 231px; top: 145px;"><img src="http://image.map.naver.com/eclipse/image/2.62/11/00001-00001/00026-00022/01701-01469.png" width="256" height="256" style="position: absolute; z-index: 0; width: 256px; height: 256px; left: 231px; top: 401px;"><img src="http://image.map.naver.com/eclipse/image/2.62/11/00001-00001/00026-00023/01702-01472.png" width="256" height="256" style="position: absolute; z-index: 0; width: 256px; height: 256px; left: 487px; top: -367px;"><img src="http://image.map.naver.com/eclipse/image/2.62/11/00001-00001/00026-00022/01702-01471.png" width="256" height="256" style="position: absolute; z-index: 0; width: 256px; height: 256px; left: 487px; top: -111px;"><img src="http://image.map.naver.com/eclipse/image/2.62/11/00001-00001/00026-00022/01702-01470.png" width="256" height="256" style="position: absolute; z-index: 0; width: 256px; height: 256px; left: 487px; top: 145px;"><img src="http://image.map.naver.com/eclipse/image/2.62/11/00001-00001/00026-00022/01702-01469.png" width="256" height="256" style="position: absolute; z-index: 0; width: 256px; height: 256px; left: 487px; top: 401px;"></div><div style="position: absolute; top: 0px; left: 0px; z-index: 15;"></div><div style="position: absolute; top: 0px; left: 0px; z-index: 20;"></div><div style="position: absolute; top: 0px; left: 0px; z-index: 30;"></div><div style="position: absolute; top: 0px; left: 0px; z-index: 40;"><img src="http://static.naver.com/maps/ic_spot.png" width="52" height="41" style="position: absolute; z-index: 0; width: 52px; height: 41px; left: 314px; top: 247px; cursor: pointer;"></div><div style="position: absolute; top: 0px; left: 0px; z-index: 50;"><div style="position: absolute; top: 0px; left: 0px; z-index: 0; padding: 0px; display: none;"><div style="position: relative; top: 0px; left: 0px; z-index: 0;"></div></div></div><div style="position: absolute; top: 0px; left: 0px; z-index: 100;"></div></div><div style="position: absolute; top: 0px; left: 0px; z-index: 10;"><div class="noprint" style="position: absolute; top: 275px; left: 7px; z-index: 0; overflow: hidden; opacity: 1; width: 46px; height: 8px;"><img src="http://static.naver.com/maps/naver.png" width="46" height="8" class="noprint" style="position: absolute; z-index: 0; width: 46px; height: 8px; left: 0px; top: 0px; cursor: pointer;"></div><div class="noprint" style="position: absolute; top: 15px; left: 402px; z-index: 0; overflow: hidden; opacity: 0.5; width: 55px; height: 169px;"><img src="http://static.naver.com/maps/zoomControl/board.png" width="26" height="169" style="position: absolute; z-index: 0; width: 26px; height: 169px; left: 29px; top: 0px;"><img src="http://static.naver.com/maps/zoomControl/btn_level.png" width="18" height="12" style="position: absolute; z-index: 0; width: 18px; height: 12px; left: 33px; top: 42px; cursor: pointer;"><img src="http://static.naver.com/maps/zoomControl/btn_plus.png" width="20" height="17" style="position: absolute; z-index: 0; width: 20px; height: 17px; left: 32px; top: 3px; cursor: pointer;"><img src="http://static.naver.com/maps/zoomControl/btn_minus.png" width="20" height="17" style="position: absolute; z-index: 0; width: 20px; height: 17px; left: 32px; top: 150px; cursor: pointer;"><img src="http://static.naver.com/maps/zoomControl/ballon1_l.png" width="27" height="13" style="position: absolute; z-index: 0; width: 27px; height: 13px; left: 0px; top: 131px; display: none;"><img src="http://static.naver.com/maps/zoomControl/ballon2_l.png" width="27" height="13" style="position: absolute; z-index: 0; width: 27px; height: 13px; left: 0px; top: 113px; display: none;"><img src="http://static.naver.com/maps/zoomControl/ballon3_l.png" width="27" height="13" style="position: absolute; z-index: 0; width: 27px; height: 13px; left: 0px; top: 86px; display: none;"><img src="http://static.naver.com/maps/zoomControl/ballon4_l.png" width="27" height="13" style="position: absolute; z-index: 0; width: 27px; height: 13px; left: 0px; top: 59px; display: none;"><img src="http://static.naver.com/maps/zoomControl/ballon5_l.png" width="27" height="13" style="position: absolute; z-index: 0; width: 27px; height: 13px; left: 0px; top: 41px; display: none;"></div></div><div style="position: absolute; top: -10000px; left: -10000px; z-index: -1000; width: 10000px; height: 10000px;"><div style="position: absolute; top: 0px; left: 0px; z-index: 0;"></div></div></section>
+			<!-- 지도 없을때
+			<div class="empty"><i></i>죄송합니다. 본 상품의 매장정보는 제공하고 있지 않습니다.해당 브랜드의 홈페이지나 고객센터를 통하여 문의 부탁드립니다.</div>-->
+		</section>
+</section>

@@ -1,0 +1,68 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplshoppingMail" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                ],
+                "dest" : "lotte/resources/<%= version %>/shoppingMail.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsshoppingMail" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/event/shoppingMail.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/shoppingMail.js"
+            }
+        },
+
+        "uglify" : {
+            "jsshoppingMail" : {
+                "src" : "lotte/resources/<%= version %>/shoppingMail.js",
+                "dest" : "lotte/resources/<%= version %>/shoppingMail.min.js"
+            },
+            "tplshoppingMail" : {
+                "src" : "lotte/resources/<%= version %>/shoppingMail.template.js",
+                "dest" : "lotte/resources/<%= version %>/shoppingMail.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssshoppingMail" : {
+                "src" : [
+                    "lotte/resources_dev/event/shoppingMail.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/shoppingMail.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanshoppingMail" : [
+                "lotte/resources/<%= version %>/shoppingMail.js",
+                "lotte/resources/<%= version %>/shoppingMail.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlshoppingMail" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "event/shoppingMail.html" : "event/shoppingMail_dev.html"
+                }
+            }
+        }
+    }
+}
+

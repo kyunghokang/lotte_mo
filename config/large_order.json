@@ -1,0 +1,69 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tpllargeOrder" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/category/m/large_order_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/large_order.template.js"
+			}
+		},
+
+		"concat" : {
+			"jslargeOrder" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/category/m/large_order.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/large_order.js"
+			}
+		},
+
+		"uglify" : {
+			"jslargeOrder" : {
+				"src" : "lotte/resources/<%= version %>/large_order.js",
+				"dest" : "lotte/resources/<%= version %>/large_order.min.js"
+			},
+			"tpllargeOrder" : {
+				"src" : "lotte/resources/<%= version %>/large_order.template.js",
+				"dest" : "lotte/resources/<%= version %>/large_order.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"csslargeOrder" : {
+				"src" : [
+					"lotte/resources_dev/category/m/large_order.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/large_order.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanlargeOrder" : [
+				"lotte/resources/<%= version %>/large_order.js",
+				"lotte/resources/<%= version %>/large_order.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmllargeOrder" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"category/m/large_order.html" : "category/m/large_order_dev.html"
+				}
+			}
+		}
+	}
+}
+

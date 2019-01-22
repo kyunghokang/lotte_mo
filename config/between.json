@@ -1,0 +1,37 @@
+{
+    "tasks" : {
+        "concat" : {
+            "jsbetween" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/event/between.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/between.js"
+            }
+        },
+
+        "uglify" : {
+            "jsbetween" : {
+                "src" : "lotte/resources/<%= version %>/between.js",
+                "dest" : "lotte/resources/<%= version %>/between.min.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssbetween" : {
+                "src" : [
+                    "lotte/resources_dev/event/between.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/between.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanbetween" : [
+                "lotte/resources/<%= version %>/between.js"
+            ]
+        }
+    }
+}

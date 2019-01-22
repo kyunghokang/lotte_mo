@@ -1,0 +1,30 @@
+<div class="share_this">
+        <div class="save">
+            <img src="http://image.lotte.com/lotte/mo2015/angular/product_img_this.png" alt="친구에게 공유하기! 나누면 배가 되는 행복 쇼핑"/>
+        </div>
+        <div class="sns">      
+            <ul class="list"> 
+                <li>
+                    <a ng-click="shareSNS('kakaotalk')" class="sns_icon01">카카오톡</a>
+                </li>
+                <li>
+                    <a ng-click="shareSNS('facebook')" class="sns_icon02">페이스북</a>
+                </li>
+                <li>
+                    <a ng-click="shareSNS('sms')" class="sns_icon03">문자</a>
+                </li>
+                <li>
+                    <a ng-click="shareSNS('kakaostory')" class="sns_icon04">카카오스토리</a>
+                </li>                                
+                <li>
+                    <a ng-click="shareSNS('twitter')" class="sns_icon06">트위터</a>
+                </li>
+                <li ng-if="appObj.isApp">
+                    <a ng-click="shareSNS('mail')" class="sns_icon08">메일</a>
+                </li>
+                <li ng-if="appObj.isApp && appObj.isAndroid" class="more_app">
+                    <a ng-click="shareSNS('moreapp')" class="sns_icon09">다른 앱으로 공유</a>
+                </li>
+            </ul>
+        </div>
+</div>

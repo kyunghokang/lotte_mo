@@ -1,0 +1,32 @@
+<section class="blankCd{{moduleData.blankCd}}">
+    <div ng-if="loginInfo.isLogin">
+        <!--개인화배너 -->
+        <div ng-if="pbanner == 1">
+            <div class="unit unit_bn_ad">
+                <img ng-src="{{pbann.imgUrl}}" ng-click="logGAEvtModuleEach('special');mainBannerClick(pbann.linkUrl, pbann.isOutLink, 'm_rdc_main_5570109_m2062_clk_spcf')"/>
+            </div>
+        </div>
+
+        <!--임직원 및 일반배너  -->
+        <div ng-if="pbanner == 2">
+            <!--M62 임직원 배너..-->
+            <div class="moduleCon" ng-if="(loginInfo.isStaff || loginInfo.isDotStaff)">
+                <div class="unit unit_bn_ad" ng-repeat="item in moduleData.staffBannerList.items" ng-if="item.grade == loginInfo.gradeCd">
+                    <img ng-src="{{item.imgUrl}}" ng-click="logGAEvtModuleEach('staff', item.grade);mainBannerClick(item.linkUrl, item.isOutLink, moduleData.tclick + '_Clk_staff'+item.grade)" />
+                </div>
+            </div>
+
+            <!-- 일반 -->
+            <div class="moduleCon" ng-if="!(loginInfo.isStaff || loginInfo.isDotStaff)">
+                <div class="unit unit_bn_ad" ng-repeat="item in moduleData.normalBannerList.items" ng-if="item.grade == loginInfo.gradeCd">
+                    <img ng-src="{{item.imgUrl}}" ng-click="logGAEvtModuleEach('normal', item.grade);mainBannerClick(item.linkUrl, item.isOutLink, moduleData.tclick + '_Clk_LV'+item.grade)" />
+                </div>
+            </div>  
+        </div>       
+    </div>
+
+    <!--20170914 비로그인시 데이타 추가 -->
+	<div ng-if="!loginInfo.isLogin && moduleData.beLoginBannerList">
+	    <img ng-src="{{moduleData.beLoginBannerList.items[0].imgUrl}}" ng-click="logGAEvtModuleEach('notLogin');mainBannerClick(moduleData.beLoginBannerList.items[0].linkUrl, moduleData.beLoginBannerList.items[0].isOutLink, moduleData.tclick + '_Clk_LV')" />
+	</div>
+</section>

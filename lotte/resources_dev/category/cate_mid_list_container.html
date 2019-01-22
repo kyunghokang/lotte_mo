@@ -1,0 +1,15 @@
+<section class="menu_smallcate" ng-show="contVisible">
+    <loading-bar></loading-bar>
+    <ul>
+        <li ng-repeat="menu in smallCategoryList"><a ng-click="categoryView(menu.disp_no, menu.disp_nm, ''+menu.disp_no, '&cateDiv=MIDDLE&idx='+menu.idx)">{{menu.disp_nm}}</a></li>
+    </ul>
+    
+    <div class="bestList" ng-show="mCateMenu.prd_best_list.total_count > 0">
+        <h5>추천상품</h5>
+        <ol class="list">
+            <li ng-repeat="item in prdBestList">
+            <comm-unit-deal01></comm-unit-deal01>
+            </li>
+        </ol>
+    </div>
+</section>

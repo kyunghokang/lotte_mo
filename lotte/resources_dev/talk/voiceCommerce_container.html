@@ -1,0 +1,1065 @@
+<section ng-show="contVisible" class="voice_cont cont_minheight state_{{pageUI.state}}">
+    <!-- 페이지 로딩바 -->
+	<section class="pageLoading" ng-show="pageLoading">
+		<p class="loading half"></p>
+	</section>
+
+    <!-- 2018-05-30 :  bg데코 -->
+    <div class="bg_deco" ng-if="pageUI.bgDecoStyle && (pageUI.state=='home')" style="{{pageUI.bgDecoStyle}}"></div>
+    
+    <section id="voiceMain" class="voice_main"
+    		ng-class="{noshow:pageUI.showOrder, hideOnPop : (pageUI.showPrdComment || pageUI.showPrdImgDetail)}">
+
+        <!-- 상단 발화 -->
+        <p ng-show="pageUI.showMsg.top" class="top_message" ng-bind-html="pageUI.msg.top"></p>
+        <!-- <p class="tit">3,700원이 할인된 14,500원에 결제 하실 수 있어요. 결제를 진행할까요?</p> -->
+        
+        <!-- 추천/장바구니/위시/자주구매/최근본 상품리스트 -->
+		<div ng-show="checkListState(pageUI.state)" class="prod_list_wrap" >
+            <div class="prod_box prod_list_swipe" ng-class="{singleProd: pageUI.prdList.length == 1}" ng-shw="pageUI.prdList && pageUI.prdList.length > 0">
+                <div class="q_list" id="prdListSwiper" roll-swipe-banner swipe-has-number="{{pageUI.prdList.length}}" rolling="false" width320="1"  width640="1" width900="1" info="pageUI.prdList" startfnc="prdSwiperStart" endfnc="prdSwiperEnd" getcontrol="getPrdSwiperControl">
+                    <ul class="swipeBox">
+                        <li ng-repeat="item in pageUI.prdList">
+                            <div class="prod_item">
+                                   <!-- 상품 정보 -->
+                                   <div class="info">
+                                       <p class="prod_num"><span ng-bind="$index + 1"></span></p>
+                                       <p class="prod_flag" ng-if="pageUI.state == 'cart' && item.discount_yn && item.discount_yn == 'Y'"><span>가격 인하</span></p>
+                                       <p class="prod_flag" ng-if="pageUI.state == 'secret_event' && pageUI.prdSecretTextList && pageUI.prdSecretTextList[$index].title"><span ng-bind-html="pageUI.prdSecretTextList[$index].title"></span></p>
+                                       <div class="img_area">
+                                           <div class="img"><img ng-src="{{item.img_url}}" alt="{{item.goods_nm}}" /></div>
+                                           <p class="flag_wrap" >
+                                               <span ng-if="item.m_sale_possible_yn && item.m_sale_possible_yn == 'N'">PC 주문 전용</span>
+                                               <span ng-if="item.min_lmt_qty > 1">최소 주문수량 {{item.min_lmt_qty}}개</span>
+                                               <span class="smart" ng-if="pageUI.state == 'cart' && item.smpick_yn && item.smpick_yn == 'Y'">스마트픽 픽업</span>
+                                               <span class="smart" ng-if="pageUI.state != 'cart' && item.smp_only_yn && item.smp_only_yn == 'Y'">스마트픽 픽업</span>
+                                               <span ng-if="item.rlor_fcst_dtime && item.rlor_fcst_dtime != ''">{{item.rlor_fcst_dtime}} 배송시작</span>
+                                           </p>
+                                           <span class="btn_style_recom" ng-if="item.style_recomm_yn == 'Y'" ng-click="actionStyleClick(item)">스타일추천</span>
+                                       </div>
+                                       <div class="tit_area">
+                                           <span class="brand" ng-if="item.brnd_nm">[{{item.brnd_nm}}]</span>
+                                           <span class="tit" ng-bind="item.goods_nm"></span>
+                                       </div>
+                                       <!-- 상품 가격, 무료배송, 상품평 영역 -->
+                                       <div class="prod" ng-if="pageUI.state != 'cart' && pageUI.state != 'purchase_frequently'">
+                                           <div class="price_wrap">
+                                               <span class="prod_price"><em ng-bind="item.discounted_price"></em>원</span>
+                                               <span class="old_price_wrap" ng-if="item.original_price != 0">
+                                                   <span class="orign_price"><span ng-bind="item.original_price"></span>원</span>
+                                               </span>
+                                               <p ng-if="item.dlex_free_yn == 'Y'" class="deli_free">무료배송</p>
+                                           </div>
+                                           <div class="score_wrap" ng-if="item.pmg_gdas_cnt">
+                                               <span class="starScoreWrap">
+                                                   <em class="starScoreCnt" ng-style="::prdStarBG(item.avg_gdas_stfd_val)"></em>
+                                               </span>
+                                               <span class="review">({{item.pmg_gdas_cnt|number}})</span>
+                                           </div>
+                                       </div>
+
+                                        <!-- 장바구니,자주구매 일때만 현재 장바구니에 담은 정보 노출 -->
+                                        <div class="cart_info" ng-if="pageUI.state == 'cart' || pageUI.state == 'purchase_frequently' ">
+                                            <div class="opt_info" ng-if="(item.goods_option && item.goods_option != '') || (item.input_option_yn == 'Y' && item.goods_input_option != '')">
+                                                <span ng-bind="item.goods_option" ng-if="item.goods_option != ''"></span>
+                                                <span ng-if="item.goods_option != '' && item.goods_input_option">, </span>
+                                                <span ng-bind="item.goods_input_option | brToComma" ng-if="item.goods_input_option != ''"></span>
+                                            </div> 
+                                            <div class="price_info" ng-if="item.m_sale_possible_yn == 'Y'">
+                                                {{item.discounted_price | number}}원 X {{item.ord_qty | number}}개 = <strong>{{item.discounted_price * item.ord_qty | number}}원</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="menu_list" ng-class="{cart: pageUI.state == 'cart', wish: pageUI.state == 'wish', order_disabled: item.m_sale_possible_yn != 'Y'}">
+                                    <a ng-click="prdShare($index)" class="share">공유</a>
+                                    <a ng-click="prdCart($index)" class="cart">찜</a>
+                                    <a ng-click="prdOrder($index)" class="order">주문해줘</a>
+                                    <a ng-click="prdDetail($index)" class="detail">자세히</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <!-- 2018-05-14 : 이전 다음 추가 -->
+                    <div class="ctrl_area" ng-if="pageUI.state == 'cart' || pageUI.state == 'wish' || pageUI.state == 'purchase_frequently'">
+                        <a ng-click="swipeListPrev('pervClick')" class="btn_prev" ng-if="prevBtnShow()"><span>이전</span></a>
+                        <a ng-click="swipeListNext('nextClick')" class="btn_next" ng-if="nextBtnShow()"><span>다음</span></a>
+                    </div>
+                    <!-- //2018-05-14 : 이전 다음 추가 -->
+                    <!-- 스타일 추천 전용 -->
+                    <div class="ctrl_area" ng-if="pageUI.state == 'style_recommendation' && pageUI.curPrdSwiperIdx == pageUI.prdList.length-1">
+                        <a ng-click="goStyleMore('clk')" class="btn_next"><span>다음</span></a>
+                    </div>
+                    <!-- //스타일 추천 전용 -->
+                </div>
+            </div>
+            <!-- 상황관리아이템 -->
+            <div class="keyword_wrap" ng-if="pageUI.prdList.length == 0 && 
+            pageUI.situationData.question && (pageUI.state == 'situation_recommendation' || pageUI.state =='management_item_recommendation')">
+                <p class="title_keyword">{{pageUI.situationData.question}}</p>
+                <p class="keyword_guide">아래와 같이 말해보세요</p>
+                <ul class="keyword_list">
+                    <li ng-repeat="items in pageUI.situationData.answer"><a ng-click="keywordSendSemantic(items)">"{{items}}"</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- 상품 상세 -->
+        <div ng-if="pageUI.state == 'prod_detail'" class="prod_detail">
+            <div class="image_swipe">
+                <div class="q_list" id="roll" roll-swipe-banner rolling="false" width320="1"  width640="1" width900="1" info="pageUI.curPrdDetailInfo.imgInfo.imgList" endfnc="setInfo" getcontrol="getPrdDetailSwiperControl">
+                    <ul class="swipeBox" >
+                        <li ng-repeat="item in pageUI.curPrdDetailInfo.imgInfo.imgList" ng-click="goProdImgLayer()"><div class="img_area"><img ng-src="{{item}}" alt="" /></div></li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="prod_item">
+                <!-- 상품 정보 -->
+                <div class="info">
+                    <div class="tit_area">
+                        <span class="tit" ng-bind="pageUI.curPrdDetailInfo.prdInfo.goodsNm"></span>
+                    </div>
+                    <div ng-click="goCommentLayer(pageUI.curPrdDetailInfo.callUrlInfo.commentInfoUrl)" class="score_wrap" ng-if="pageUI.curPrdDetailInfo.prdInfo.gdasStfdVal">
+                        <span class="starScoreWrap">
+                            <em class="starScoreCnt" ng-style="::prdStarBG(pageUI.curPrdDetailInfo.prdInfo.gdasStfdVal)"></em>
+                        </span>
+                        <span class="review">({{pageUI.curPrdDetailInfo.prdInfo.gdasCnt}})</span>
+                    </div>
+                    <div class="prod">
+                        <div class="price_wrap">
+                            <span class="prod_price"><em>{{pageUI.curPrdDetailInfo.prdPriceInfo.price | number}}원</em></span>
+                            <span class="old_price_wrap" ng-if="pageUI.curPrdDetailInfo.prdPriceInfo.orgPrice != null">
+                                <span class="orign_price"><span>{{pageUI.curPrdDetailInfo.prdPriceInfo.orgPrice | number}}원</span></span>
+                            </span>
+                            <p class="deli_free" ng-if="pageUI.curPrdDetailInfo.prdPriceInfo.dlvFreeYn">무료배송</p>
+                        </div>
+                        <p class="deli_price" ng-if="pageUI.curPrdDetailInfo.prdPriceInfo.dlvFee">배송비 {{pageUI.curPrdDetailInfo.prdPriceInfo.dlvFee | number}}원 <span class="free_condition" ng-if="pageUI.curPrdDetailInfo.prdPriceInfo.price <= 100000 && pageUI.curPrdDetailInfo.prdPriceInfo.stdAmt > 0">({{pageUI.curPrdDetailInfo.prdPriceInfo.stdAmt / pageUI.curPrdDetailInfo.prdPriceInfo.price | number | ceil}}개 이상 무료배송)</span></p>
+                    </div>
+                </div>
+                <!-- //상품 정보 -->
+    
+                <!--  옵션 -->
+                <div class="option_wrap" ng-if="pageUI.optInfo.prdOptInfo && pageUI.optInfo.prdOptInfo.length > 0">
+                    <div class="option_val" ng-click="changeProdOpt()">
+                        <ul>
+                            <li ng-repeat="item in pageUI.optInfo.prdOptInfo">
+                                <strong ng-bind="item.optNm"></strong>
+                                <span ng-bind="pageUI.optInfo.curOptValArr[$index].item.optValue"></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a ng-click="changeProdOpt()" class="change_btn"><span>변경</span></a>
+                </div>
+                <!--  //옵션 -->
+    
+                <div class="btn_area">
+                    <a class="cart_btn" ng-click="addCart();"><span>찜해줘</span></a>
+                    <a class="order_btn" ng-click="order();"><span><em ng-if="pageUI.curPrdDetailInfo.prdInfo.minLmtQty > 1 || prodListQuantity > 1">{{prodListQuantity > 0 ? prodListQuantity : pageUI.curPrdDetailInfo.prdInfo.minLmtQty}}개</em> 주문해줘</span></a>
+                </div>
+            </div>
+            <!-- 상품기술서 -->
+            <vc-prd-detail-info cur-prd-html-info="pageUI.curPrdHtmlInfo"></vc-prd-detail-info>
+            <!-- //상품기술서 -->
+    
+        </div>
+
+        <!-- 추천상품 없을 때 -->
+        <section ng-if="pageUI.showHotKeyword && pageUI.hotKeyword.length > 0 && !pageUI.showMsg.home" class="search_no_data">
+            <div class="voice_keyword">
+                <ul>
+                    <li ng-repeat="item in pageUI.hotKeyword">
+                        <div class="keyword">
+                            <a ng-click="sendHistory(item.hkeyword)">
+                                <span class="count">{{$index + 1}}위</span>
+                                "{{item.hkeyword}} 추천해줘"
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 주문확정 -->
+	    <section ng-if="pageUI.state == 'order'" class="voice_order_check">
+            <div class="item_box">
+                <figure>
+                    <img ng-src="{{pageUI.orderInfo.goods_list.img_url}}" alt="{{pageUI.orderInfo.goods_list.goods_nm}}" />
+                    <figcaption>
+                        <h2 class="product_name"><span ng-if="pageUI.orderInfo.goods_list.brand_nm">[{{pageUI.orderInfo.goods_list.brand_nm}}] </span>{{pageUI.orderInfo.goods_list.goods_nm}}</h2>
+                        <p class="product_option">
+                            <span ng-if="pageUI.optInfo.curOptValArr && pageUI.optInfo.curOptValArr.length > 0" class="opt" ng-repeat="item in pageUI.optInfo.curOptValArr track by $index">{{$index != 0 ? ', ' : ''}}{{item.name + ' : '}}{{item.item.optValue}}</span> 
+                            {{pageUI.optInfo.curOptValArr && pageUI.optInfo.curOptValArr.length > 0 ? ' / ' : ''}}{{pageUI.orderInfo.goods_list.ord_qty}}개
+                        </p>
+                    </figcaption>
+                </figure>
+                
+                <div class="casy_box">
+                    <dl class="discount" ng-if="pageUI.orderInfo.discount_amt">
+                        <dt>총 할인금액</dt>
+                        <dd>-{{pageUI.orderInfo.discount_amt | number}}원</dd>
+                    </dl>
+                    <dl class="payment">
+                        <dt>최종 결제금액</dt>
+                        <dd>
+                            <span class="casy">{{pageUI.orderInfo.total_price | number}}</span>원
+                            <span class="small" ng-if="pageUI.orderInfo.total_deli_amt > 0">배송비 {{pageUI.orderInfo.total_deli_amt | number}}원 포함</span>
+                        </dd>
+                    </dl>
+                </div>
+                
+                <div class="other_info">
+                    <dl>
+                        <dt>결제수단</dt>
+                        <dd>
+                            <span ng-if="basicInfo.member_info.pay_mean_cd == '40'">
+                                <em>{{basicInfo.member_info.pay_mean_nm}}</em>
+                                <em ng-if="basicInfo.member_info.fnCoNm">{{basicInfo.member_info.fnCoNm}}</em>
+                                <em ng-if="basicInfo.member_info.pmtMthdAlias">{{basicInfo.member_info.pmtMthdAlias}}</em>
+                            </span>
+                            <span ng-if="basicInfo.member_info.pay_mean_cd != '40'">
+                                <em>{{basicInfo.member_info.pay_nm}}</em>
+                                <em>{{basicInfo.member_info.card_pay_meth_nm}}</em>
+                            </span>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>배송지</dt>
+                        <dd>
+                            <strong>{{basicInfo.member_info.rmit_nm}}({{basicInfo.member_info.dlvp_nm}})</strong>
+                            {{basicInfo.member_info.post_addr}}<br />{{basicInfo.member_info.dtl_addr}}
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            
+            <div class="agree_check_box" ng-class="{on:pageUI.orderInfo.termLayerFlag}">
+                <button ng-click="toggleOrderTermLayer()">주문내역 확인 및 결제서비스 이용약관에 모두 동의합니다.<span></span></button>
+                <ul ng-show="pageUI.orderInfo.termLayerFlag">
+                    <li>주문할 상품의 상품명, 상품가격, 배송정보를 확인하였습니다. (전자상거래법 제8조 제2항)</li>
+                    <li>결제서비스 이용 약관에 동의합니다.<a ng-click="showHideClause(true)">약관보기</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 주문완료 -->
+        <section ng-if="pageUI.state == 'order_complete'" class="voice_order_success active">
+            <div class="item_box">
+                <div class="order_check">
+                    <h1>주문완료</h1>
+                    <p class="data" ng-bind="pageUI.orderCompleteInfo.ord_no"></p>
+                    <div class="bg"><span></span><span></span></div>
+                </div>
+                <figure>
+                	<img src="{{pageUI.orderCompleteInfo.goods_list.img_url}}" alt="{{pageUI.orderCompleteInfo.goods_list.goods_nm}}" />
+                    <figcaption>
+                        <h2 class="product_name">{{ pageUI.orderCompleteInfo.goods_list.brand_nm ? '[' + pageUI.orderCompleteInfo.goods_list.brand_nm + '] ' : ''}}{{pageUI.orderCompleteInfo.goods_list.goods_nm}}</h2>
+                        <p class="product_option">{{pageUI.orderCompleteInfo.goods_list.item_nm ? pageUI.orderCompleteInfo.goods_list.item_nm + ' / ' : ''}}{{pageUI.orderCompleteInfo.goods_list.ord_qty | number}}개</p>
+                    </figcaption>
+                </figure>
+                
+                <p class="total_casy">최종 결제금액 <span>{{pageUI.orderCompleteInfo.total_price | number}}</span><em>원</em></p>
+            </div>
+            <!-- 구매사은 이벤트 정보 -->
+            <div class="event_message_box" ng-if="pageUI.orderCompleteInfo.saun_info.areadyEnter == 'N'">
+                <p class="txt" ng-if="pageUI.orderCompleteInfo.saun_info.evt_txt_gbn == '1'">지금 주문하셨나요? 포인트 적립혜택을 놓치지 마세요!</p>
+                <p class="txt" ng-if="pageUI.orderCompleteInfo.saun_info.evt_txt_gbn == '2' || pageUI.orderCompleteInfo.saun_info.evt_txt_gbn == '3'">{{pageUI.orderCompleteInfo.saun_info.evt_card_nm}}로 {{pageUI.orderCompleteInfo.saun_info.evt_add_pay_amt}}원 더 결제하면 <span>{{pageUI.orderCompleteInfo.saun_info.evt_add_pay_pnt}}</span><br>적립 가능{{pageUI.orderCompleteInfo.saun_info.evt_end_dt}} 일부상품제외</p>
+                <p class="txt" ng-if="pageUI.orderCompleteInfo.saun_info.evt_txt_gbn == '4'">{{pageUI.orderCompleteInfo.saun_info.evt_card_nm}}로 결제하셨네요! 현재 <span>{{pageUI.orderCompleteInfo.saun_info.evt_as_pay_pnt}}</span><br>적립 가능하세요{{pageUI.orderCompleteInfo.saun_info.evt_end_dt}} 일부상품제외</p>
+                <p class="txt_guide" ng-if="pageUI.orderCompleteInfo.saun_info.evt_txt_gbn == '1' || pageUI.orderCompleteInfo.saun_info.evt_txt_gbn == '2'"><span>“구매사은 보여줘”</span>라고 말해보세요</p>
+                <p class="txt_guide" ng-if="pageUI.orderCompleteInfo.saun_info.evt_txt_gbn == '3' || pageUI.orderCompleteInfo.saun_info.evt_txt_gbn == '4'"><span>“구매사은 신청해줘”</span>라고 말해서 바로 신청해보세요</p>
+            </div>
+            <div class="event_message_box" ng-if="pageUI.orderCompleteInfo.saun_info.areadyEnter == 'Y' && pageUI.orderCompleteInfo.saun_info.evt_txt_gbn != '4'">
+                <p class="txt" ng-if="pageUI.orderCompleteInfo.saun_info.evt_txt_gbn == '1'">지금 주문하셨나요? 포인트 적립혜택을 놓치지 마세요!</p>
+                <p class="txt" ng-if="pageUI.orderCompleteInfo.saun_info.evt_txt_gbn == '2'">{{pageUI.orderCompleteInfo.saun_info.evt_card_nm}}로 {{pageUI.orderCompleteInfo.saun_info.evt_add_pay_amt}}원 더 결제하면 <span>{{pageUI.orderCompleteInfo.saun_info.evt_add_pay_pnt}}</span><br>적립 가능{{pageUI.orderCompleteInfo.saun_info.evt_end_dt}} 일부상품제외</p>
+                <p class="txt" ng-if="pageUI.orderCompleteInfo.saun_info.evt_txt_gbn == '3'">{{pageUI.orderCompleteInfo.saun_info.evt_card_nm}}로 {{pageUI.orderCompleteInfo.saun_info.evt_add_pay_amt}}원 더 결제하면 <span>{{pageUI.orderCompleteInfo.saun_info.evt_add_pay_pnt}}</span><br>적립 가능{{pageUI.orderCompleteInfo.saun_info.evt_end_dt}} 일부상품제외</p>
+                <p class="txt_guide" ng-if="pageUI.orderCompleteInfo.saun_info.evt_txt_gbn == '1' || pageUI.orderCompleteInfo.saun_info.evt_txt_gbn == '2'"><span>“구매사은 보여줘”</span>라고 말해보세요</p>
+            </div>
+        </section>
+
+        <!-- 쿠폰 -->
+        <section ng-if="pageUI.state == 'coupon'">
+            <div class="coupon_wrap">
+                <ul class="coupon_list">
+                    <li ng-repeat="item in pageUI.couponListInfo" ng-class="{'sale': '','plusSale': 'add', 'freeDlv': 'free'}[item.couponKind]"> 
+	                     <div class="coupon_info_box">
+	                         <div class="discount_box">
+	                             <p class="txt_rate" ng-if="item.couponKind != 'freeDlv'"><span>{{item.fvrValStr}}</span>{{item.unitName}}</p>
+	                             <p class="txt_rate" ng-if="item.couponKind == 'freeDlv'"><img src="http://image.lotte.com/lotte/mo2018/voice/icon_free_delivery.png" alt="무료배송권 아이콘" /></p>
+	                             <p class="txt" ng-if="item.couponKind == 'sale' && ( item.fvrPolcTpCd == '03' || item.fvrPolcTpCd == '04' ) ">할인</p>
+	                             <p class="txt" ng-if="item.couponKind == 'plusSale'">추가할인</p>
+	                             <p class="txt" ng-if="item.couponKind == 'save' && ( item.fvrPolcTpCd == '05' || item.fvrPolcTpCd == '06' || item.fvrPolcTpCd == '07' ) ">적립</p>
+	                             <p class="txt" ng-if="item.couponKind == 'freeDlv'">무료배송권</p>
+	                         </div>
+	                         <div class="cont">
+	                             <dl>
+	                                 <dt>사용조건</dt>
+	                                 <dd>{{item.useCondition}}</dd>
+	                             </dl>
+	                             <dl>
+	                                 <dt>사용기간</dt>
+	                                 <dd>~{{item.avalEndDtime}} <span class="txt">{{item.endDtime}}</span></dd>
+	                             </dl>
+	                         </div>
+	                     </div>
+	                     <div class="tit_coupon">
+	                         <p class="tit">{{item.promNm}}</p>
+	                     </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        
+        
+       <!-- 포인트 -->
+       <section ng-if="pageUI.state == 'point'">
+			<div class="point_wrap">
+				<ul class="point_list">
+					<li ng-repeat="item in pageUI.pointCloverListInfo" ng-class="{'lpoint': 'lpoint', 'lmoney': 'lmoney', 'deposit': 'deposit', 'clover': 'clover'}[item.pointType]">
+						<a  ng-click="pointDetail(item.pointType)">
+							<p class="title">{{item.name}}</p>
+							<p class="point">{{item.pointcount | number}}</p>
+						</a>
+						<a ng-if="item.pointType == 'clover'"  ng-click="cloverGuide()"  class="txt_notice">이용안내</a>
+					</li>
+				</ul>
+			</div>
+        </section>
+        
+		<!-- 출석체크 -->
+		<section ng-if="pageUI.state == 'chulcheck'">
+			<div class="chulcheck_wrap" ng-click="gotoDirectAttend('touch', true)">
+				<div class="clover">
+					<span>{{pageUI.chulcheck.todayClover}}</span>
+				</div>
+				<div class="done">출석체크 완료</div>
+				<div class="benefit">
+					<div>클로버 1000개, 10000개 이상 적립 시<br><em>무료배송, 10%추가할인 등</em> 혜택 교환 가능</div>
+					<div class="link">
+						<a>혜택 <span ng-if="pageUI.chulcheck.availBenefit">교환</span><span ng-if="!pageUI.chulcheck.availBenefit">확인</span>하기</a>
+					</div>
+				</div>
+			</div>
+			<div class="point_wrap">
+				<ul class="point_list">
+					<li class="clover">
+						<a ng-click="pointDetail('clover', 'chulcheck')">
+							<p class="title">클로버</p>
+							<p class="point">{{pageUI.chulcheck.intClover | number}}</p>
+						</a>
+						<a ng-click="cloverGuide('chulcheck')" class="txt_notice">이용안내</a>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+        <!-- 이벤트 -->
+       <section ng-if="pageUI.state == 'event' || pageUI.state == 'event_application_details'">
+           <!-- 리스트 -->
+           <div class="event_wrap" ng-if="pageUI.state == 'event'">
+               <ul class="event_list">
+                   <li ng-repeat="items in pageUI.eventListInfo">
+                       <a ng-click="eventDetail('click', items.linkUrl, items.isOutLink)">
+                           <div class="box">
+                                <div class="img_event">
+                                    <img src="{{items.imgUrl}}" alt="" />
+                                </div>
+                                <div class="event_date">{{items.eventTime}}<span class="txt">{{items.endTime}}</span> 
+                                </div>
+                                <p class="num"><span>{{$index +1}}</span></p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- //리스트 -->
+            <!-- 이벤트응모내역 -->
+            <div class="event_enter_wrap" ng-if="pageUI.state == 'event_application_details'">
+                <ul class="event_enter_list">
+                    <li ng-repeat="items in pageUI.eventApplyInfo">
+                        <div class="title_event">
+                            <span class="state end" ng-if="items.eventStatus == '마감' || items.eventStatus == '당첨결과보기'">마감</span>
+							<span class="state" ng-if="items.eventStatus != '마감' && items.eventStatus != '당첨결과보기' ">{{items.eventStatus}}</span>
+                            {{items.evtNm}}</div>
+                        <div class="info_box">
+                            <ul>
+                                <li>
+                                    <span class="tit">기간</span><span class="period">{{items.evtStrtDtime | strToDate3}} ~ {{items.evtEndDtime | strToDate3}}</span>
+                                </li>
+                                <li ng-if="items.winAncmDt">
+                                    <span class="tit">발표</span><span class="period">{{items.winAncmDt | strToDate3}}</span>
+                                </li>
+                            </ul>
+                            <a ng-click="eventResult(items.evtNo)" class="btn_result" ng-if="items.winnerStatus == 'Y' && items.winAncmDispYn == 'Y'"><span>당첨 결과보기</span></a>
+                            <p class="txt_fail" ng-if="(items.eventStatus == '당첨결과보기' || items.eventStatus == '지급완료' || items.eventStatus == '마감') && items.winnerStatus != 'Y'">다음 기회에</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- //이벤트응모내역 -->
+        </section>
+        
+        <!-- 구매사은 이벤트 -->
+        <section ng-if="pageUI.state == 'purchase_gift'">
+            <div class="saun_event_wrap">
+                <ul class="saun_event_list">
+                    <li ng-repeat="items in pageUI.saunListInfo">
+                        <a ng-click="saunDetail('click', items.evtNo)">
+                            <div class="saun_event_box">
+                                <p class="num"><span>{{$index + 1}}</span></p>			
+                                <div class="img_box"><img src="{{items.evtDtlImg1PathNm + items.evtDtlImg1FileNm}}" alt="" /></div>
+                                <ul class="period_box">
+                                    <li>
+                                        <span class="tit">구매기간</span>
+                                        <span class="period">{{items.purStrtDtime | strToDate}} ~ {{items.purEndDtime | strToDate}}</span>
+                                    </li>
+                                    <li>
+                                        <span class="tit">신청기간</span>
+                                        <span class="period">{{items.sbscSgtStrtDtime | strToDate}} ~ {{items.sbscSgtEndDtime | strToDate}}</span>
+                                    </li>
+                                    <li>
+                                        <span class="tit">지급예정</span>
+                                        <span class="period" ng-if="pageUI.saunListInfoMyType == 'list' && items.aleady == 'Y' ">{{items.pmgSndDt | strToDate2}}</span>
+                                        <span class="period" ng-if="pageUI.saunListInfoMyType == 'list' && items.aleady != 'Y' ">{{items.tm1sPayDt | strToDate2}}</span>
+                                        <span class="period" ng-if="pageUI.saunListInfoMyType == 'myList'">{{items.pmgSndDt | strToDate2}}</span>
+                                    </li>
+                                </ul>
+                                <p class="state" ng-if="pageUI.saunListInfoMyType == 'list' && items.aleady == 'Y' ">신청완료</p>
+                                <p class="state" ng-if="pageUI.saunListInfoMyType != 'list' && items.eventStatus == '001'" >준비중</p>
+                                <p class="state" ng-if="pageUI.saunListInfoMyType != 'list' && items.eventStatus == '002'" >마감임박</p>
+                                <p class="state" ng-if="pageUI.saunListInfoMyType != 'list' && items.eventStatus == '003'" >신청완료</p>
+                                <p class="state" ng-if="pageUI.saunListInfoMyType != 'list' && items.eventStatus == '004'" >결과준비중</p>
+                                <p class="state" ng-if="pageUI.saunListInfoMyType != 'list' && items.eventStatus == '005'" >신청완료</p>
+                                <p class="state" ng-if="pageUI.saunListInfoMyType != 'list' && items.eventStatus == '006'" >당첨발표</p>
+                                <p class="state" ng-if="pageUI.saunListInfoMyType != 'list' && items.eventStatus == '007'" >지급완료</p>
+                                <p class="state" ng-if="pageUI.saunListInfoMyType != 'list' && items.eventStatus == '008'" >마감</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        
+        
+        
+        <!-- 청구할인 -->
+        <section ng-if="pageUI.state == 'billing_discount'">
+            <div class="discount_wrap" ng-class="{one: pageUI.saleListInfo.length == '1'}">
+                <ul class="card_list">
+                    <li ng-repeat="items in pageUI.saleListInfo">
+                        <div class="card_box"  ng-class="getSaleCardClass(items.acqrCd)">
+                            <p class="logo">{{items.acqrNm}}</p>
+                            <p class="txt_discount"><span><span>{{items.tgtAmt | number}}원</span></span> 이상 결제시<br /><strong>{{items.fvrVal}}% 청구할인</strong></p>
+                            <div class="date">
+                                <p>{{items.eventTime}} {{items.endTime}}</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- 무이자 -->
+        <section ng-if="pageUI.state == 'interest_free_installment'">
+            <div class="installment_wrap">
+                <table class="tbl_installment">
+                    <caption>무이자할부 진행중인 카드를 나타낸 안내표</caption>
+                    <colgroup>
+                        <col width="20%;" />
+                        <col width="40%;" />
+                        <col width="40%;" />
+                    </colgroup>
+                    <tbody>
+                        <tr ng-repeat="items in pageUI.saleListInfo">
+                            <th scope="row">{{items.acqrNm}}</th>
+                            <td>{{items.minAmt | numToManwon}} 이상<br />최대 {{items.minMm}}개월</td>
+                            <td>{{items.maxAmt | numToManwon}} 이상<br />최대 {{items.maxMm}}개월</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+
+        <!-- 주문내역 -->
+        <section ng-if="pageUI.state == 'order_inquiry'">
+                <div class="order_list_wrap">
+                    <ul class="order_list">
+                        <li ng-repeat="items in pageUI.purchaseList">
+                            <p class="num"><span>{{$index+1}}</span></p>
+                            <p class="date_box">
+                                <span class="date">{{items.ord_date}} 주문</span>
+                                <span class="smart" ng-if="items.smartpick_yn == 'Y'"><img src="http://image.lotte.com/lotte/mo2018/voice/icon_smart.png" alt="스마트픽 아이콘" /></span> <!-- //스마트픽 일 경우 노출 -->
+                                <span class="name" ng-if="items.gift_ord_yn == 'Y'">To. {{items.acq_man_nm}}</span> <!-- //선물하기 일 경우 -->
+                            </p>
+                            <p class="txt_detail" ng-click="orderDetail(items.ord_no)">자세히</p>
+                            <div class="order_info_box">
+                                <div class="img_box">
+                                    <img src="{{items.goods_img}}" alt="" />
+                                </div>
+                                <div class="order_state_box">
+                                    <p class="state"><span>{{items.ord_step_str}}</span></p> <!-- 주문상태 값 -->
+                                    <p class="state_notice" ng-if="items.ord_step_str != '주문접수'">{{items.ord_step_msg}}</p> <!-- 화면안내문구 -->
+                                    <p class="state_notice" ng-if="items.ord_step_str == '주문접수'">{{items.bnk_nm}} <span class="account" ng-click="copyTextToClipboard(items.morc_actn)">{{items.morc_actn}}</span><br /><strong>{{items.pay_amt | number}}</strong>원 입금해주세요.</p>
+                                    <p class="date_schedule">{{items.send_due_date}}</p> <!-- 배송예정일 -->
+                                    <p class="txt_date_schedule" ng-if="items.ord_step_str == '주문접수'">{{items.ord_step_msg}}</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+        </section>
+        
+		<!-- 톡상담 -->
+		<section class="talk_wrap" ng-if="pageUI.state == 'customer_center'" ng-class="{close: pageUI.centerYn == 'N'}"> <!-- 오픈시간이 아닐 경우 close클래스 추가해주세요. -->
+		
+			<div class="talk_box"  ng-if="pageUI.centerYn == 'Y'">
+				<a ng-click="centerTalk()">
+					<div class="idx01">				
+						<p class="title">“<strong>채팅상담</strong> 연결해줘”</p>						
+					</div>
+				</a>
+			</div>	
+				
+			<!-- 오픈시간이 아닐 경우 -->
+			<div class="talk_box" ng-if="pageUI.centerYn == 'N'">
+				<div class="no_open_box">			
+					<p>실시간 채팅상담 · 고객센터 운영시간</p>
+					<table>		
+						<caption>실시간 채팅상담 · 고객센터 운영시간을 나타낸 표</caption>		
+						<colgroup>
+							<col width="50%;" />
+							<col width="50%;" />
+						</colgroup>
+						<thead>
+							<tr>
+								<th class="col">평일</th>
+								<th class="col">주말/공휴일</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>09~18시</td>
+								<td>휴무</td>
+							</tr>
+						</tbody>
+					</table>			
+				</div>
+			</div>
+			<!-- //오픈시간이 아닐 경우 -->
+			
+			<div class="talk_box" ng-if="pageUI.centerYn == 'Y' || pageUI.centerYn == 'N'">
+				<a ng-click="centerQue()">
+					<div class="idx02">				
+						<p class="title">“<strong>일대일 문의</strong> 연결해줘”</p>									
+					</div>
+				</a>
+			</div>
+			
+			<div class="talk_box"  ng-if="pageUI.centerYn == 'Y'">	
+				<a ng-click="customerTel()">
+					<div class="idx03">			
+						<p class="title">“<strong>고객센터</strong> 연결해줘”</p>		
+						<p class="call">1577-1110</p>			
+					</div>
+				</a>
+			</div>
+		</section>
+		<!-- //톡상담 -->
+        
+    </section>
+
+    <!-- 음성 발화 가이드 -->
+    <p ng-if="pageUI.showMsg.guide" class="message msg_guide" ng-class="{active: voiceGuideActive}">
+        <span ng-if="pageUI.voiceGuideInfo.length > 0 && pageUI.voiceGuideInfo[pageUI.curVoiceGuideIdx].guide_type != 'DISP'">"</span><span ng-bind="pageUI.voiceGuideInfo[pageUI.curVoiceGuideIdx].guide_cont"></span><span ng-if="pageUI.voiceGuideInfo[pageUI.curVoiceGuideIdx].guide_type == 'BEST'"> 추천해줘</span><span ng-if="pageUI.voiceGuideInfo.length > 0 && pageUI.voiceGuideInfo[pageUI.curVoiceGuideIdx].guide_type != 'DISP'">"</span>
+    </p>
+
+    <!-- 홈발화 -->
+    <p ng-if="pageUI.showMsg.home" class="message" ng-bind-html="pageUI.msg.home"></p>
+
+    <!-- 질의 발화 -->
+    <!-- 
+        class
+        보여줄때 : show
+        감출때 : hide
+    -->
+    <!-- <div class="voice_helper show">
+        <p class="text"><span>"도와줘"</span>라고 말해보세요</p>
+    </div> -->
+    <div class="voice_helper" ng-class="{show: pageUI.showMsg.q, hide: !pageUI.showMsg.q}">
+        <p class="text" ng-bind-html="pageUI.msg.q"></p>
+        <button ng-click="actionInput($event)" class="btn_mic" ng-class="{btn_mic: pageUI.lastInputMode != 'keyboard', btn_keyboard: pageUI.lastInputMode == 'keyboard'}">마이크</button>
+    </div>
+    
+    <!-- 톡상담 알림 -->
+    <!-- 04/27 삭제 -->
+    <!--
+    <article class="live_chat_consult">
+        <button ng-click="goTalkAdvice()" class="btn_chat"><span>실시간 채팅상담</span></button>
+        <div class="chat_message">주문/배송/교환/반품/이벤트 등 실시간 상담을 원하세요?</div>
+    </article>
+    -->
+    <!-- 화면별 선택자 -->
+    <div ng-if="pageUI.stateSelectorViewInfo" class="relation_keword_wrap" ng-class="{open: pageUI.stateSelectorViewClass}">  <!-- open클래스 주면 접힌거 열립니다. -->
+        <a class="btn_keword" ng-click="stateSelectorOpenClose(!pageUI.stateSelectorViewClass)"></a>
+        <div class="list_box" lotte-Slider id="stateSelectorSlider">
+            <ul class="selectorSlider">
+                <li ng-repeat="item in pageUI.stateSelector">
+                    <a ng-click="sendSemantic('click',item.txt)">{{item.txt}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- //화면별 선택자 -->
+    
+
+    <div id="fileInputBox" style="position:fixed;left:0;bottom:-60px;">
+        <a href="#" id="accountNumber"></a><!-- copy element -->
+        <input type="file" name="fileAttachMedia" id="fileAttachMedia" accept="image/jpeg, image/png" onChange="angular.element(this).scope().styleDetectFile('media')" /> 미디어 <br>
+        <input type="file" name="fileAttachCamera" id="fileAttachCamera" accept="image/jpeg, image/png" capture="camera"  onChange="angular.element(this).scope().styleDetectFile('camera')" /> 카메라
+    </div>
+    
+    <div ng-if="DEV_MODE" class="devModePop">
+        <!-- <div>pageState : "{{pageUI.state}}"</div>
+	    <div>inputMode : "{{pageUI.inputMode}}"</div>
+	    <div>lastInputMode : "{{pageUI.lastInputMode}}"</div> -->
+	    <div>
+	    	<a ng-click="dev_refresh()">Reload</a>
+	    	<a ng-click="dev_logInOut()">Log <span ng-if="!loginInfo.isLogin">in</span><span ng-if="loginInfo.isLogin">out</span></a>
+	    	<!-- <a ng-click="dev_chulcheck()">출석체크</a> -->
+	    	<a ng-click="dev_setSpeech()">직접입력</a>
+		    <div class="YN">
+		    	<a class="Y" ng-click="dev_setSpeech('응')">Y</a>
+		    	<a class="N" ng-click="dev_setSpeech('아니')">N</a>
+		    </div>
+	    	<a class="end" ng-click="dev_endTTS()">End TTS</a>
+	    	<a class="end" ng-click="dev_endSTT()">End STT</a>
+	    </div>
+    </div>
+
+    <!-- 텍스트/마이크 입력창 -->
+    <!-- 
+        class
+        활성화 : active
+        듣고있음 : active listen
+     -->
+    <section class="voice_mic" ng-class="{active: pageUI.inputMode == 'mic', listen: pageUI.activeVoice}">
+        
+        <!-- 마이크 모양 -->
+        <label ng-if="pageUI.inputMode == 'mic'"
+        	ng-class="{hideView : pageUI.inputMode == 'keyboard'}"
+        	ng-click="actionInput($event, 'keepMic')" class="mic_txt">
+            <span class="mic_guide" ng-bind="pageUI.micVoiceTxt"></span>
+        </label>
+        
+        <!-- textfileld 모양 -->
+        <label  ng-if="pageUI.inputMode != 'mic' && (pageUI.lastInputMode == 'mic' || pageUI.lastInputMode == '')"
+        	ng-class="{hideView : pageUI.inputMode == 'keyboard'}"
+        	ng-click="actionInput($event)" class="mic_txt" style="display:block;">
+            <ul class="guide_msg" ng-if="pageUI.helpInfo && pageUI.helpInfo.length > 0">
+                <li ng-repeat="item in pageUI.helpInfo" ng-bind="pageUI.lastInputMode == 'keyboard' && pageUI.state == 'home' ?  '' : item.banner_nm"
+                	ng-class="{active: $index == iptGuideActiveIdx, hide: $index == iptGuideHideIdx, noquote:item.banner_nm=='여기를 터치해 말해보세요'}"></li>
+            </ul>
+            <span class="mic_guide" ng-bind="pageUI.micVoiceTxt"></span>
+        </label>
+
+        <!-- textfileld 모양 -->
+        <label  for="iptSendTxt" ng-if="pageUI.inputMode == 'keyboard' || pageUI.lastInputMode == 'keyboard'"
+        	ng-class="{hideView : pageUI.inputMode == 'keyboard'}"
+        	ng-click="actionInput($event)" class="mic_txt" style="display:block;">
+        </label>
+        
+        
+        <form action="someurl.do" onsubmit="return false;"  style="position: absolute;top: 0;left: 0;width:100%" >
+        	<input name="search" type="search" id="iptSendTxt" ng-class="{hideView : pageUI.inputMode != 'keyboard' || pageUI.inputMode == ''}" style="width:100%"
+        		class="mic_txt" style="display:block;" ng-model="pageUI.inputTxt" ng-keyup="enterSendSemantic($event, 'keyboard')" />
+        </form>
+        <!-- 마이크 : 비활성화 시 ==> 텍스트필드 포커스 없음 -->
+        <label id="btnMic" ng-class="{hideView : pageUI.inputMode == 'mic'}" ng-show="pageUI.inputTxt == '' &&
+                    (
+                        (pageUI.lastInputMode != 'keyboard' && pageUI.inputMode == '') || 
+                        pageUI.inputMode != ''
+                    )" ng-click="actionInput($event)" class="btn_mic">마이크</label>
+                    
+        <!-- 마이크 : 활성화 시 ==> 텍스트필드 포커스 추가 -->
+        <label id="btnMic" for="iptSendTxt" ng-class="{hideView : pageUI.inputMode != 'mic'}" ng-show="pageUI.inputTxt == '' &&
+                    (
+                        (pageUI.lastInputMode != 'keyboard' && pageUI.inputMode == '') || 
+                        pageUI.inputMode != ''
+                    )" ng-click="actionInput($event)" class="btn_mic">마이크</label>
+                    
+        <!-- 키보드 : 활성화 시 ==> 텍스트필드 포커스 추가 -->
+        <label id="btnKeyboard" for="iptSendTxt"
+        			ng-show="pageUI.inputTxt == '' 
+                    && (pageUI.lastInputMode == 'keyboard' && pageUI.inputMode == '')"
+                    ng-click="actionInput($event)" class="btn_keyboard">키보드</label>
+        <button ng-if="pageUI.inputTxt != ''" ng-click="sendSemantic('keyboard')" class="btn_submit">전송</button>
+    </section>
+
+    <!-- 레이어 - SNS -->
+	<section class="btm_layer_wrap share_layer_wrap" ng-class="{on:pageUI.showShare, voice: pageUI.inputMode == 'mic', animate: pageUI.layerAnimate}">
+        <div class="share_layer_box">
+            <ul>
+                <li class="kakaotalk"><a ng-click="shareSNS('kakaotalk')"><i></i>카카오톡</a></li>
+                <li class="twitter"><a ng-click="shareSNS('twitter')"><i></i>트위터</a></li>
+                <li class="kakaostory"><a ng-click="shareSNS('kakaostory')"><i></i>카카오스토리</a></li>
+                <li class="sms"><a ng-click="shareSNS('sms')"><i></i>문자</a></li>
+                <li class="facebook"><a ng-click="shareSNS('facebook')"><i></i>페이스북</a></li>
+                <li class="urlcopy"><a ng-click="shareSNS('url_copy_voice')"><i></i>URL 복사</a></li>
+            </ul>
+            <div class="btn_close">
+                <a ng-click="prdShareHide()">닫기</a>
+            </div>
+        </div>
+		<div class="dim" ng-click="prdShareHide()">
+			<div class="bg"></div>
+		</div>
+    </section>
+
+    <!-- 레이어 - 상품 옵션 -->
+    <section class="btm_layer_wrap opt_layer_wrap option" ng-class="{on: pageUI.showPrdOpt, voice: pageUI.inputMode == 'mic' , animate: pageUI.layerAnimate}"><!-- 옵션레이어 열림:on, 옵션레이어 선택시 opt_layer_wrap:option -->
+        <section class="opt_toggle_layer">
+            <div class="opt_layer on">
+                <div class="dim2">
+                    <div class="bg" ng-click="closePrdOptLayer()">Dim</div>
+                </div>
+                <!-- 옵션 레이어 -->
+                <section class="opt_layer_box">
+                    <div class="opt_layer_header">
+                        <div class="opt_title">
+                        	<span class="tit">옵션선택</span>
+                        	<div class="opt_val">
+                        		<strong ng-repeat="item in pageUI.optInfo.curLayerOptValArr track by $index">{{$index != 0 ? ', ' : ''}}{{item.item.optValue}}</strong>
+                        	</div>
+                        </div>									
+                    </div>
+                    <a class="opt_layer_close" ng-click="closePrdOptLayer()">닫기</a>
+                    
+                    <div class="opt_popup_wrap" id="optPopupWrap">	
+                        <div class="opt_popup">				
+                            <div class="tit_wrap">						
+                                <p ng-bind="pageUI.optInfo.prdOptInfo[pageUI.optInfo.curOptStep].optNm"></p>
+                            </div>
+                            <div class="opt_list">
+                                <ul>
+                                    <li ng-repeat="item in pageUI.optInfo.prdOptInfo[pageUI.optInfo.curOptStep].itemList.items | filter: {isSoldout: false} track by $index" ng-click="selectOptItem(item.idx)" ng-class="{on: pageUI.optInfo.curLayerOptValArr[pageUI.optInfo.curOptStep].item.optValCd == item.optValCd}"><span class="num"><em ng-bind="$index + 1"></em></span><span class="tit">{{item.optValue}}</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>				
+                </section>
+                <!-- //옵션 레이어 -->
+            </div>
+        </section>
+    </section>
+
+    <!-- 레이어 - 상품상세 이미지 리스트 -->
+    <section class="btm_layer_wrap img_layer_wrap on" ng-if="pageUI.showPrdImgDetail">
+        <div class="pop_layer">
+            <div class="img_area">
+                <ul>
+                    <li ng-repeat="item in pageUI.prodImgInfo"><div class="img_area"><img ng-src="{{item}}" alt="상품이미지 {{$index + 1}}번" /></div></li>
+                </ul>
+            </div>
+            <div class="btn_close">
+                <a ng-click="prodImgLayerHide()">닫기</a>
+            </div>
+        </div>
+        <div class="dim" ng-click="prodImgLayerHide()">
+            <div class="bg"></div>
+        </div>
+    </section>
+
+    <!-- 레이어 - 도움말 -->
+    <section class="btm_layer_wrap help_layer_wrap option" ng-class="{on: pageUI.showHelp, voice: pageUI.inputMode == 'mic', animate: pageUI.layerAnimate}"><!-- 옵션레이어 열림:on, 옵션레이어 선택시 opt_layer_wrap:option -->	
+        <section class="help_toggle_layer">
+            <div class="help_layer on">
+                <div class="dim2">
+                    <div ng-click="helpInfoHide()" class="bg"></div>
+                </div>			
+                <!-- 옵션 레이어 -->
+                <section class="help_layer_box">
+                    <div class="help_layer_header">
+                        <p class="tit">이렇게 말해보세요</p>
+                    </div>
+                    <a class="help_layer_close" ng-click="helpInfoHide()">닫기</a>
+                    
+                    <div class="help_list">
+                        <ul>
+                            <li ng-repeat="item in pageUI.helpInfo" ng-click="helpInfoClick(item.banner_nm)">“{{item.banner_nm}}”</li>
+                        </ul>
+                    </div>
+                </section>
+                <!-- //옵션 레이어 -->
+                </div>
+        </section>
+    </section>
+
+    <!-- 레이어 - 상품평 -->
+    <section class="btm_layer_wrap comment_layer_wrap option" ng-class="{on: pageUI.showPrdComment, animate: pageUI.layerAnimate}">
+        <div class="dim">
+            <div ng-click="commentLayerHide()" class="bg">Dim</div>
+        </div>
+        <a class="comment_layer_close" ng-click="commentLayerHide()">닫기</a>    
+        <section class="comment_toggle_layer" more-scroll>
+            <div class="comment_layer on">
+                <!-- 옵션 레이어 -->
+                <section class="comment_layer_box">
+                    <!--상품 상세 서브 page 기본 wrapper(한번만 사용할 것): prod_detail_page_wrap-->
+                    <div class="prod_detail_page_wrap p_comment_all">
+
+                        <!--전체상품평-->
+                        <div class="detail_base_wrap prod_comment comment_all fold">
+                            <!-- 전체상품평 : 별점, 열기/접기 -->
+                            <p class="detail_tit fold_tap" ng-click="pageUI.starScoreOpen = !pageUI.starScoreOpen">전체상품평 <span class="starScoreWrap big"><span class="starScoreCnt" style="width:{{pageUI.prodComment.stat.topScr|starScorePolicy:100}}%"></span></span> <em>(<var>{{pageUI.prodComment.stat.topCnt | currency:'':0}}</var>)</em>
+                                <span class="fold_btn shape_triangle" ng-class="{up:pageUI.starScoreOpen,down:!pageUI.starScoreOpen}">{{pageUI.starScoreOpen? '접기':'열기'}}</span><!--상태변화 클래스: up -> down-->
+                            </p>
+                            
+                            <!-- 전체상품평 : 별점 -->
+                            <dl class="score_list" ng-show="pageUI.starScoreOpen">
+                                <!-- 전체상품평 : 별점 5개 -->
+                                <dt>
+                                    <span class="starScoreWrap"><span class="starScoreCnt" style="width:100%"></span></span> <em ng-class="{disable:pageUI.prodComment.stat.scr5Cnt == 0}">(<var>{{pageUI.prodComment.stat.scr5Cnt|number}}</var>)</em>
+                                </dt>
+                                <dd>
+                                    <span class="barScoreWrap"><span class="barScoreCnt" style="width:{{pageUI.prodComment.stat.scr5Per}}%"></span></span><span class="percent">{{pageUI.prodComment.stat.scr5Per}}%</span>
+                                </dd>
+                                <!-- 전체상품평 : 별점 4개 -->
+                                <dt>
+                                    <span class="starScoreWrap"><span class="starScoreCnt" style="width:80%"></span></span> <em ng-class="{disable:pageUI.prodComment.stat.scr4Cnt == 0}">(<var>{{pageUI.prodComment.stat.scr4Cnt|number}}</var>)</em>
+                                </dt>
+                                <dd>
+                                    <span class="barScoreWrap"><span class="barScoreCnt" style="width:{{pageUI.prodComment.stat.scr4Per}}%"></span></span><span class="percent">{{pageUI.prodComment.stat.scr4Per}}%</span>
+                                </dd>
+                                <!-- 전체상품평 : 별점 3개 -->
+                                <dt>
+                                    <span class="starScoreWrap"><span class="starScoreCnt" style="width:60%"></span></span> <em ng-class="{disable:pageUI.prodComment.stat.scr3Cnt == 0}">(<var>{{pageUI.prodComment.stat.scr3Cnt|number}}</var>)</em>
+                                </dt>
+                                <dd>
+                                    <span class="barScoreWrap"><span class="barScoreCnt" style="width:{{pageUI.prodComment.stat.scr3Per}}%"></span></span><span class="percent">{{pageUI.prodComment.stat.scr3Per}}%</span>
+                                </dd>
+                                <!-- 전체상품평 : 별점 2개 -->
+                                <dt>
+                                    <span class="starScoreWrap"><span class="starScoreCnt" style="width:40%"></span></span> <em ng-class="{disable:pageUI.prodComment.stat.scr2Cnt == 0}">(<var>{{pageUI.prodComment.stat.scr2Cnt|number}}</var>)</em>
+                                </dt>
+                                <dd>
+                                    <span class="barScoreWrap"><span class="barScoreCnt" style="width:{{pageUI.prodComment.stat.scr2Per}}%"></span></span><span class="percent">{{pageUI.prodComment.stat.scr2Per}}%</span>
+                                </dd>
+                                <!-- 전체상품평 : 별점 1개 -->
+                                <dt>
+                                    <span class="starScoreWrap"><span class="starScoreCnt" style="width:20%"></span></span> <em ng-class="{disable:pageUI.prodComment.stat.scr1Cnt == 0}">(<var>{{pageUI.prodComment.stat.scr1Cnt|number}}</var>)</em>
+                                </dt>
+                                <dd>
+                                    <span class="barScoreWrap"><span class="barScoreCnt" style="width:{{pageUI.prodComment.stat.scr1Per}}%"></span></span><span class="percent">{{pageUI.prodComment.stat.scr1Per}}%</span>
+                                </dd>
+                            </dl>
+                        </div>
+
+                        <!-- 전체상품평 : 고객 만족도 열기/접기 -->
+                        <div class="detail_base_wrap prod_comment comment_all fold div_line_t line_full_w" ng-class="{div_line_b10:!pageUI.prodComment.photoList.items}">
+                            <p class="detail_tit sub_tit fold_tap" ng-click="pageUI.customerSatisOpen = !pageUI.customerSatisOpen">고객 만족도
+                                <span class="fold_btn shape_triangle" ng-class="{up:pageUI.customerSatisOpen,down:!pageUI.customerSatisOpen}">{{pageUI.customerSatisOpen? '접기':'열기'}}</span><!--상태변화 클래스: up -> down-->
+                            </p>
+
+                            <!-- 전체상품평 : 고객 만족도 내용 -->
+                            <div class="cus_info" ng-show="pageUI.customerSatisOpen">
+                                <!-- 전체상품평 : 고객 만족도 종합 -->
+                                <div class="total">
+                                    <ul class="starlist ng-scope">
+                                        <li>
+                                            <p class="txt3">가격</p>
+                                            <span class="starScoreWrap small"><span class="starScoreCnt" ng-style="::prdStarBG(item.avg_gdas_stfd_val)"></span></span>
+                                        </li>
+                                        <li>
+                                            <p class="txt3">품질</p>
+                                            <span class="starScoreWrap small"><span class="starScoreCnt" ng-style="::prdStarBG(item.avg_gdas_stfd_val)"></span></span>
+                                        </li>
+                                        <li>
+                                            <p class="txt3">{{pageUI.prodComment.stat.dsgnNm}}</p>
+                                            <span class="starScoreWrap small"><span class="starScoreCnt" ng-style="::prdStarBG(item.avg_gdas_stfd_val)"></span></span>
+                                        </li>
+                                        <li>
+                                            <p class="txt3">{{pageUI.prodComment.stat.dlvNm}}</p>
+                                            <span class="starScoreWrap small"><span class="starScoreCnt" ng-style="::prdStarBG(item.avg_gdas_stfd_val)"></span></span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!-- 전체상품평 : 사이즈 / 색상 -->
+                                <div class="size_color bod" ng-if="pageUI.prodComment.size && pageUI.prodComment.color">
+                                    <div class="sc_cell size">
+                                        <p>사이즈</p>
+                                        <div class="sc_unit" ng-class="{on:pageUI.prodComment.size.small >= 50}">
+                                            <div class="bar_percent">{{pageUI.prodComment.size.small}}<span class="symbol">%</span></div>
+                                            <div class="bar_con ls"></div>
+                                            <div class="bar_name">작다</div>
+                                        </div>
+                                        <div class="sc_unit" ng-class="{on:pageUI.prodComment.size.good >= 50}">
+                                            <div class="bar_percent">{{pageUI.prodComment.size.good}}<span class="symbol">%</span></div>
+                                            <div class="bar_con"></div>
+                                            <div class="bar_name">딱 맞다</div>
+                                        </div>
+                                        <div class="sc_unit" ng-class="{on:pageUI.prodComment.size.big >= 50}">
+                                            <div class="bar_percent">{{pageUI.prodComment.size.big}}<span class="symbol">%</span></div>
+                                            <div class="bar_con rs"></div>
+                                            <div class="bar_name">크다</div>
+                                        </div>
+                                    </div>
+                                    <div class="sc_cell">
+                                        <p>색상</p>
+                                        <div class="sc_unit" ng-class="{on:pageUI.prodComment.color.bright >= 50}">
+                                            <div class="bar_percent">{{pageUI.prodComment.color.bright}}<span class="symbol">%</span></div>
+                                            <div class="bar_con ls"></div>
+                                            <div class="bar_name">밝다</div>
+                                        </div>
+                                        <div class="sc_unit" ng-class="{on:pageUI.prodComment.color.good >= 50}">
+                                            <div class="bar_percent">{{pageUI.prodComment.color.good}}<span class="symbol">%</span></div>
+                                            <div class="bar_con"></div>
+                                            <div class="bar_name">화면과같다</div>
+                                        </div>
+                                        <div class="sc_unit" ng-class="{on:pageUI.prodComment.color.dark >= 50}">
+                                            <div class="bar_percent">{{pageUI.prodComment.color.dark}}<span class="symbol">%</span></div>
+                                            <div class="bar_con rs"></div>
+                                            <div class="bar_name">어둡다</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 전체상품평 : 고객 등록 사진 -->
+                        <div class="detail_base_wrap prod_comment comment_all div_line_b10 div_line_t line_full_w" ng-if="!pageUI.prodComment.dispNtcTxt && pageUI.prodComment.photoList.items.length > 0">
+                            <p class="detail_tit sub_tit no_pb">고객 등록 사진</p>
+                            <!--썸네일 이미지-->
+                            <div class="thumb_list_wrap">
+                                <ul class="thumb_list">
+                                    <!--<li ng-repeat="item in pageUI.prodComment.photoList.items | limitTo:5" ng-class="{play_btn:item.videoYn, 'dim_cont dim50':$index == 4 && pageUI.prodComment.photoMoreCnt > 0}">
+                                        <span class="thumb cover"><img ng-src="{{item.imgUrl}}" alt="" /></span>
+                                        <span class="more_cnt verti_align" ng-if="$index == 4 && pageUI.prodComment.photoMoreCnt > 0">+<var>{{pageUI.prodComment.photoMoreCnt}}</var></span>
+                                    </li>-->
+                                    <li ng-repeat="n in [].constructor(5) track by $index"
+                                        ng-class="{play_btn:pageUI.prodComment.photoList.items[$index].videoYn, 'dim_cont dim50':pageUI.prodComment.photoList.items[$index] && $index == 4 && pageUI.prodComment.photoMoreCnt > 0}">
+                                        <span class="thumb cover" ng-if="pageUI.prodComment.photoList.items[$index]"><img ng-src="{{pageUI.prodComment.photoList.items[$index].imgUrl}}" alt="" /></span>
+                                        <span class="more_cnt verti_align" ng-if="pageUI.prodComment.photoList.items[$index] && $index == 4 && pageUI.prodComment.photoMoreCnt > 0">+<var>{{pageUI.prodComment.photoMoreCnt}}</var></span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                        <!-- 전체상품평 : 상품평 리스트 -->
+                        <div class="detail_base_wrap prod_comment comment_all">
+                            <!-- 전체상품평 : 상품평 리스트 -->
+                            <ul class="cmt_list">
+                                <li class="" ng-repeat="item in pageUI.prodComment.critList.items" ng-class="{div_line_b:$index < pageUI.prodComment.critList.items.length-1}">
+
+                                    <!-- 전체상품평 : 상품평 리스트 : 별점 -->
+                                    <div class="item_top">
+                                        <span class="starScoreWrap"><span class="starScoreCnt" ng-style="::prdStarBG(item.avg_gdas_stfd_val)"></span></span>
+                                        <span class="date">{{item.regDate}}</span>
+                                    </div>
+                                    
+                                    <!-- 전체상품평 : 상품평 리스트 : 상품옵션 -->
+                                    <p class="option_nm" ng-if="item.optDesc"><!--<em>옵션명</em>: -->{{item.optDesc}}</p>
+
+                                    <!-- 전체상품평 : 상품평 리스트 : 상품평 내용 -->
+                                    <p class="cmt_cont ellipsis_custom spread" ng-if="!pageUI.prodComment.dispNtcTxt">{{item.critCont}}</p>
+
+                                    <!-- 전체상품평 : 상품평 리스트 : 등록 썸네일 -->
+                                    <div class="thumb_list_wrap" ng-if="!pageUI.prodComment.dispNtcTxt && item.photoList.items.length > 0">
+                                        <ul class="thumb_list">
+                                            <li ng-repeat="n in [].constructor(5) track by $index"
+                                                ng-class="{play_btn:item.photoList.items[$index].videoYn}" ng-if="item.critTpCd == 'P' || item.critTpCd == 'V'">
+                                                <span class="thumb cover" ng-if="item.photoList.items[$index]"><img ng-src="{{item.photoList.items[$index].imgUrl}}" alt="" /></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- 전체상품평 : 상품평 리스트 : 등록자|고객특성Flag -->
+                                    <p class="cmt_writer"><em>{{item.wrtrId}}님의 상품평</em><span class="div_line_v_s" ng-if="item.wrtrTpNm">{{item.wrtrTpNm}}</span></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                </div>
+        </section>
+    </section>
+
+    <!-- 장바구니 담기/위시리스트 찜 Alert 레이어 -->
+    <div ng-if="pageUI.showAlert" class="alert_msg" ng-class="{on:pageUI.showAlert, off: showAlertHide}">
+        <p class="msg cart" ng-if="pageUI.alertType == 'cart'"><span>장바구니에<br />찜했어요</span></p>
+        <p class="msg cart" ng-if="pageUI.alertType == 'cart_duplicate'"><span>이미 찜한<br />상품이에요</span></p>
+        <p class="msg wish" ng-if="pageUI.alertType == 'wish'"><span>위시리스트에<br />담았어요</span></p>
+        <p class="msg wish" ng-if="pageUI.alertType == 'wish_duplicate'"><span>이미<br />담겨있어요</span></p>
+        <p class="msg copy" ng-if="pageUI.alertType == 'copy'"><span>URL 복사 완료</span></p>
+        <p class="msg copy" ng-if="pageUI.alertType == 'copy_account'"><span>계좌번호<br /> 복사 완료</span></p>
+    </div>
+
+    <!-- 결제서비스 이용약관 레이어 -->
+	<div class="ts_cont ts_clause" ng-if="ts_clause.visible">
+        <div class="tsc_title">결제서비스 이용약관</div>
+        <a ng-click="showHideClause(false)" class="tsc_close"></a>
+        <ul class="tsc_tabs">
+            <li ng-class="{on:ts_clause.index==1}"><a ng-click="loadClause(1)">전자금융거래<br/>이용약관</a></li>
+            <li ng-class="{on:ts_clause.index==2}"><a ng-click="loadClause(2)">개인정보 수집<br/>및 이용안내</a></li>
+            <li ng-class="{on:ts_clause.index==3}"><a ng-click="loadClause(3)">개인정보 제3자<br/>제공/위탁 안내</a></li>
+        </ul>
+        <div class="ts_clause_cont">
+            <div>
+                <div id="clauseHolder"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 레이어 - 결제 레이어 -->
+    <div class="btm_layer_wrap ord_layer_wrap" ng-class="{on: pageUI.showOrder}">
+        <div class="dim">
+            <div ng-click="ordLayerHide()" class="bg">Dim</div>
+        </div>
+        <div class="ord_layer_cont">
+            <a class="ord_layer_close" ng-click="ordLayerHide()">닫기</a>
+            <!-- 결제 Iframe -->
+            <div><iframe id="ordIframe" scrolling="yes"></iframe></div>
+        </div>
+    </div>
+    
+    <!-- 코치마크 -->
+	<div class="coach_mark_wrap" ng-if="coachMarkVisibility" ng-click="hideCoachMark()">
+		<div class="dim"></div>
+		<p class="img01">“도와줘”라고 말해보세요 음성으로 가능한 일들을 알려드릴게요</p>
+		<p class="img02">마이크를 누르고 말해보세요 원하는 상품을 말해서 추천받거나 원하는 화면으로 바로 이동해보세요</p>
+	</div>
+	<!-- //코치마크 -->
+
+    <!-- 로딩커버 -->
+    <div class="loading_cover" ng-if="jsonLoading">
+        <div class="loading"></div>
+    </div>
+
+    <!-- 구매사은 신청중일 때 -->
+    <div class="saun_event_cover" ng-if="pageSaunLoading">
+        <div class="dim"></div>
+        <div class="cover_box">
+            <p class="loading half"></p>
+            <p class="txt01">구매사은 신청중입니다</p>
+            <p class="txt02">신청 소요시간이 필요해요<br />조금만 기다려주세요</p>
+        </div>
+    </div>
+
+
+    <!-- 개발 모드 -->
+    <div id="TEST_PANNEL" ng-if="pageUI.devMode" ng-class="{on: pageUI.testMode}">
+        <div class="wrap">
+            <div class="list">
+                <ul>
+                    <li ng-repeat="item in pageUI.devCommand"><button ng-click="execCommand(item.command, item.data)">{{item.name}}</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+        
+    </div>
+    <!-- 개발 토스트 (보이스 음성 메시지 노출부) -->
+    <div ng-if="pageUI.devMode && devToastMsgShowFlag" class="dev_voice">음성 : {{devToastMsg}}</div>
+    
+</section>

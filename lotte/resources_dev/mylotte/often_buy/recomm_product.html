@@ -1,0 +1,29 @@
+<section class="recommPro">
+	<!--M30	추천 상품 일반형-->
+	<div class="moduleCon" ng-if="prdData.prdList.items.length > 2">
+		<div class="gTop_title">
+			<p><em ng-if="loginInfo.isLogin"><strong>{{loginInfo.name}}님</strong>을 위한 </em>{{prdData.txt}}</p> 
+		</div>
+		<div  lotte-slider class="swipe_wrap">
+			<ul class="prd_unit_type01_line">
+				<li ng-repeat="item in prdData.prdList.items">
+					<a ng-click="goProductDetail(item,getTclickCode(true,null,true,null,null,numberFill(($index+1),2)))">
+						<div class="imageCon">
+							<img ng-src="{{item.imgUrl}}" alt="" />
+							<!-- <span class="rkNum">{{$index + 1}}</span>  -->
+						</div>
+						<div class="titleCon">
+							<div class="name">{{item.goodsNm}}</div>
+							<div class="ti"><strong>{{item.price | number}}</strong>원<em ng-if="item.isPlanPrd">~</em></div>
+						</div>
+					</a>
+				</li>
+				<li class="bestMore">
+					<a class="txt_store" ng-href="/mylotte/m/myfeed.do?{{rScope.baseParam}}&tclick=m_RDC_main_{{rScope.pageUI.curDispNo}}_M2030_Swp_more">
+						<p>추천<br />더보기</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,28 @@
+<div class="event_small_banner" ng-class="{swipe_wrap : benefitData.items.length > 5}" lotte-slider>
+    <!-- M2159 이벤트 아이콘 모듈 (GA 추후 작업) -->
+    <ul>
+        <li ng-repeat="item in benefitData.items" ng-click="linkClick(item.linkUrl, '');">
+            <div class="img_wrap" style="background:url({{item.imgUrl}}) no-repeat 0 0;background-size:60px 40px;"></div>
+            <p>{{item.cardTxt | limitTo:5}}</p>
+        </li>
+        <!-- <li ng-click="logGAEvtModuleEach('13', '출석체크');linkClick(moduleData.linkInfo.attendUrl, '')"><div class="img_wrap"></div><p>출석체크</p></li>
+        <li ng-click="logGAEvtModuleEach('10', '쿠폰혜택');linkClick(moduleData.linkInfo.benefitUrl, '')"><div class="img_wrap"></div><p>쿠폰/혜택</p></li>
+        <li ng-click="logGAEvtModuleEach('11', '구매사은');linkClick(moduleData.linkInfo.rewordUrl, '')"><div class="img_wrap"></div><p>구매사은</p></li>
+        <li ng-click="logGAEvtModuleEach('12', '응모당첨');linkClick(moduleData.linkInfo.eventUrl, '')"><div class="img_wrap"></div><p>응모/당첨</p></li>
+        <li ng-click="logGAEvtModuleEach('13', '출석체크');linkClick(moduleData.linkInfo.attendUrl, '')"><div class="img_wrap"></div><p>출석체크</p></li>
+        <li ng-click="logGAEvtModuleEach('10', '쿠폰혜택');linkClick(moduleData.linkInfo.benefitUrl, '')"><div class="img_wrap"></div><p>쿠폰/혜택</p></li>
+        <li ng-click="logGAEvtModuleEach('11', '구매사은');linkClick(moduleData.linkInfo.rewordUrl, '')"><div class="img_wrap"></div><p>구매사은</p></li>
+        <li ng-click="logGAEvtModuleEach('12', '응모당첨');linkClick(moduleData.linkInfo.eventUrl, '')"><div class="img_wrap"></div><p>응모/당첨</p></li> -->
+    </ul>
+    <style type="text/css">
+        /* M2159 이벤트 아이콘 모듈 (혜택 상세 페이지에서 공통 사용으로 인한 CSS인라인 적용) */
+        .event_small_banner {margin:10px 0;border-bottom:1px solid #e9e9e9;background:#fff;}
+        .event_small_banner ul {display: table !important;width:100%;table-layout:fixed;}
+        .event_small_banner ul li {display:table-cell;padding:8px 0 12px;text-align:center;}
+        .event_small_banner ul li .img_wrap {display:inline-block;width:60px;height:40px;}
+        .event_small_banner ul li p {margin-top:4px;font-size:12px;color:#000;}
+        .event_small_banner.swipe_wrap {width:100%;}
+        .event_small_banner.swipe_wrap ul {display:inline-block !important;width:auto;white-space:nowrap;}
+        .event_small_banner.swipe_wrap ul li {display:inline-block;width:76px;box-sizing:border-box;}
+    </style>
+</div>

@@ -1,0 +1,2520 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>LOTTE.COM</title>
+<meta charset="UTF-8">
+<meta http-equiv="cache-control" content="no-cache"/>
+<meta http-equiv="expires" content="0"/>
+<meta http-equiv="pragma" content="no-cache"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta name="format-detection" content="telephone=no">
+
+
+<link rel="apple-touch-icon-precomposed" href="/images/common/icon/bookmark_and.ico">
+<link rel="apple-touch-icon" href="/images/common/icon/bookmark_iso.png">
+<link rel="stylesheet" type="text/css" href="/common4/css/common_20150709_v2.css">
+<link rel="stylesheet" type="text/css" href="/common4/css/layout_20150709_v2.css?v=20150819">
+<link rel="stylesheet" type="text/css" href="/common4/css/category_menu_20150818_v1.css">
+<link rel="stylesheet" type="text/css" href="/common4/css/mylotte_quick_20150402_v1.css">
+<link rel="stylesheet" type="text/css" href="/common4/css/search_v5.css">
+<link rel="stylesheet" type="text/css" href="/common4/css/footer_20150813_v1.css">
+<link rel="stylesheet" type="text/css" href="/common4/css/product_20150922_v1.css">
+<link rel="stylesheet" type="text/css" href="/common4/css/mylotte_20151022_v1.css">
+<link rel="stylesheet" type="text/css" href="/common4/css/category_20150113_v1.css">
+<link rel="stylesheet" type="text/css" href="/common4/css/order_20150918_v1.css">
+<link rel="stylesheet" type="text/css" href="/common4/css/main_20150908_v1.css">
+<link rel="stylesheet" type="text/css" href="/common4/css/cscenter_20150918_v1.css">
+<link rel="stylesheet" type="text/css" href="/common4/css/srhLayer_20151006_v1.css">
+
+<link rel="stylesheet" type="text/css" href="/common4/css/main_home_tablet_20150921_v1.css">
+
+
+<script type="text/javascript" src="/common4/js/lib/jquery.min.1.11.0.js"></script>
+<script type="text/javascript" src="/common4/js/lib/crittercismClientLibraryMin.js"></script>
+
+
+<script type="text/javascript" src="/common3/js/jquery.merge.js"></script>
+<script type="text/javascript" src="/common4/js/lib/ixBand_0.6.min.js?ixBand=$B"></script>
+<link rel="stylesheet" type="text/css" href="/common4/css/idangerous.swiper.css">
+<script type="text/javascript" src="/common4/js/lib/idangerous.swiper.min.js"></script>
+
+<script type="text/javascript">
+var __defaultDomain = 'http://mt2.lotte.com';
+var __sslDomain = "http://mt2.lotte.com";
+var __commonParam = 'c=mlotte&udid=&v=&cn=&cdn=';
+var __adultYn = '';
+var __loginYn = 'Y';
+</script>
+
+<script type="text/javascript" src="/common4/js/top_search.js"></script>
+<script type="text/javascript" src="/common3/js/common2013_20150918_v1.js"></script>
+<script type="text/javascript" src="/common3/js/bookmark.js?v=20140919"></script>
+<script type="text/javascript" src="/common3/js/app_interface_20150210_v1.js"></script>
+<script type="text/javascript" src="/common4/js/dev_common_20151002_v1.js"></script>
+<script type="text/javascript" src="/common4/js/common_20150709_v2.js"></script>
+<script type="text/javascript" src="/common4/js/category_20150821_v1.js"></script>
+<script type="text/javascript" src="/common4/js/EGSlider_20170117_v1.js"></script>
+<script type="text/javascript" src="/common4/js/mylotte_20150312_v1.js"></script>
+<script type="text/javascript" src="/common4/js/pub_category_20150602_v1.js"></script>
+<script type="text/javascript" src="/common4/js/cscenter.js"></script>
+
+<!-- 검색용 //-->
+<script type="text/javascript" src="/common4/js/iscroll.js"></script>
+<script type="text/javascript" src="/common4/js/jquery.simulate.js"></script>
+<!--// 검색용 -->
+
+
+
+
+
+<script>
+	$(document).ready(function(){
+		try{
+		
+		Crittercism.init({appId: '550904cce0697fa449637803', appVersion: '20150512'});
+		}catch(e){}
+	});
+</script>
+
+<script src="/common4/js/LottePub_20151001_v1.js"></script>
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){//html dom이 로드되면
+	$(".closePopBtn").click(function(){
+		$("#cover").css("display", "none");
+		$('#noticePop').hide();
+	});
+	
+	$(".openPopBtn").click(function(){
+		$( '#cover' ).css({ 'display' : 'block', 'height' : '100%', 'top' : 0 });
+		$('#noticePop').show();
+		var layerTop = $("#target").offset().top - 50;
+		$( '#noticePop' ).css('top', layerTop);
+	});
+
+
+	// 카드 할부 조회
+	if ( 2970 > 0){
+		if ( '026' != '' ) {
+			$.ajax({
+				type: 'post'
+				, async: false
+				, url: '/order/order_cardcheck.do?c=mlotte&udid=&v=&cn=&cdn='
+				, data: 'payamt=2970&iscmcd=026&giftyn=N&staff_yn=N&grockle_mbr_no=&grockle_yn=N'
+				, success: function(response) {
+					$("#cardinscheck").html( response );
+				}				
+			});
+		} else {
+			$("#frm_inp input[name=onintmonth]:hidden").val(''); // 무이자
+			$("#frm_inp input[name=intmonth]:hidden").val(''); // 일반할부
+		}
+	}
+
+});
+
+
+function disableItems(arg) {
+	if( arg ) {
+		//dimmed('show');
+		$("#cover").css("display", "block");
+		$("#ORDER").hide();
+		$("#PROCESSING").show();
+	}
+	else {
+		//dimmed('hide');
+		$("#cover").css("display", "none");
+		$("#ORDER").show();
+		$("#PROCESSING").hide();
+	}
+}
+
+function returnPaymentPage() {
+	disableItems(false);
+	$("#X_ANSIM_FRAME").attr("src","/dacom/xansim/iframe.jsp");
+}
+
+//결제창 닫기
+function close_iframe() {
+	returnPaymentPage();
+	location.hash="#PAYMENT_ANCHAR"; // 위치이동
+
+	document.getElementById("X_ANSIM_FRAME").width=450;
+	document.getElementById("X_ANSIM_FRAME").height=0;
+	document.getElementById("ANSIM_LAYER").style.display="none";
+	document.getElementById("X_ANSIM_FRAME").style.display="none";
+}
+
+function re_payment(){
+	var ord_agr_yn = $("#payForm input[name=ord_agr_chk]:checkbox").is(":checked"); // 주문 내역 확인
+	console.log(ord_agr_yn);
+	if (!ord_agr_yn){
+		alert("주문 내역 확인 동의 체크란에 체크를 하셔야 합니다.");
+		return;
+	}
+
+	// 복합결제 시 (현금 + 카드) 체크
+	if ($("#payForm input[name=payment_cnt]:hidden").val() > 1){
+		alert("복합결제에 대한 환불은 웹에서만 가능합니다.");
+		return;
+	}
+
+	
+	$("#frm_send input[name=pay_mean_cd]:hidden").val($("#payForm input[name=pay_mean_cd]:hidden").val());
+	
+	// 결제정보
+	paytype		= $("#payForm input[name=pay_mean_cd]:hidden").val(); // 결제수단
+	totsttlamt = "2970"; // 총결제금액
+	
+	if (parseInt(totsttlamt) > 0){
+		var iscmcd, cardinstmon, virAcctBank, onlineacctname;
+		if ( paytype == PAYTYPE_CODE_CARD ) {
+			iscmcd			= $("#payForm input[name=iscm_cd]:hidden").val();
+			cardinstmon		= $("#payForm select[name=cardinstmon]").val();				
+			
+			// L.pay 추가 - L.pay결제 우리은행(직불카드)경우 재결제 안됨: L.pay카드 목록(J351) 에서 엘페이 전용 카드일 경우 재결제 안됨
+			var obj_lpay_card_cd = document.getElementsByName('lpayCardCd');
+			var obj_lpay_card_ref_1_tval = document.getElementsByName('lpayCardRef1Tval');
+			if("" != $("#payForm input[name=lpay_conf_no]:hidden").val()){
+				for(var lpayCnt = 0; lpayCnt < obj_lpay_card_cd.length; lpayCnt++){
+					if(totsttlamt > 0 && trim(iscmcd) == obj_lpay_card_cd[lpayCnt].value && obj_lpay_card_ref_1_tval[lpayCnt].value == "Y"){
+						alert("본 주문의 부분취소/재결제는 고객센터(1577-1110)로 연락주시기 바랍니다.");
+						return;
+					}
+				}
+			}
+			if ( totsttlamt < 1000 ) {
+				// 1000원 미만일 경우 카드 결제 불가
+				alert('1,000원 미만의 금액은 카드결제가 불가능합니다.');
+				return;
+			} else if ( $.trim(iscmcd) == '' ) {
+				alert('카드 종류를 선택해주세요.');
+				return;				
+			} else if (totsttlamt > 300000 && (-1 < 0) && '' == 'mlotte003' && $.trim(iscmcd)!='048' && $.trim(iscmcd)!='029' && $.trim(iscmcd)!='016' && $.trim(iscmcd)!='026' && $.trim(iscmcd)!='047' && $.trim(iscmcd)!='002' && $.trim(iscmcd)!='054' && $.trim(iscmcd)!='018' && $.trim(iscmcd)!='021'){ // 아이패드 : 롯데/신한/현대/국민/BC/삼성/광주/우체국 카드 외 30만원 결제 불가 처리
+				// 30만원 이상 결제시 안내처리
+				if ( $("#payForm input[name=rdo_paytype]:radio").length > 1 ) {
+					alert('결제금액이 30만원 이상인 경우는 롯데, 신한, 현대, 국민, 비씨, 광주, 우체국카드만 가능합니다. 그 외 카드는 무통장입금으로 결제하시거나 고객센터(1577-1110)로 전화주세요.');
+					return;
+				} else {
+					alert('결제금액이 30만원 이상인 경우는 롯데, 신한, 현대, 국민, 비씨, 광주, 우체국카드만 가능합니다. 그 외 카드는 무통장입금으로 결제하시거나 고객센터(1577-1110)로 전화주세요.');
+					return;
+				}
+			} else if (totsttlamt > 300000 && (-1 < 0) && $.trim(iscmcd)!='048' && $.trim(iscmcd)!='029' && $.trim(iscmcd)!='016' && $.trim(iscmcd)!='026' && $.trim(iscmcd)!='047' && $.trim(iscmcd)!='031' && $.trim(iscmcd)!='002' && $.trim(iscmcd)!='054' && $.trim(iscmcd)!='018' && $.trim(iscmcd)!='021' && $.trim(iscmcd)!='008' && $.trim(iscmcd)!='020' && $.trim(iscmcd)!='036'){ // 아이폰 및 웹 : 롯데/신한/현대/국민/BC/광주/우체국 카드 외 30만원 결제 불가 처리
+				// 30만원 이상 결제시 안내처리
+				if ( $("#payForm input[name=rdo_paytype]:radio").length > 1 ) {
+					alert('결제금액이 30만원 이상인 경우는 롯데, 신한, 현대, 국민, 비씨, 삼성, 광주, 우체국카드만 가능합니다. 그 외 카드는 무통장입금으로 결제하시거나 고객센터(1577-1110)로 전화주세요.');
+					return;
+				} else {
+					alert('결제금액이 30만원 이상인 경우는 롯데, 신한, 현대, 국민, 비씨, 삼성, 광주, 우체국카드만 가능합니다. 그 외 카드는 무통장입금으로 결제하시거나 고객센터(1577-1110)로 전화주세요.');
+					return;
+				}
+			} else if (totsttlamt > 300000 && $.trim(iscmcd)!='048' && $.trim(iscmcd)!='029' && $.trim(iscmcd)!='016' && $.trim(iscmcd)!='026' && $.trim(iscmcd)!='020' && $.trim(iscmcd)!='047' && $.trim(iscmcd)!='031' && $.trim(iscmcd)!='002' && $.trim(iscmcd)!='054' && $.trim(iscmcd)!='018' && $.trim(iscmcd)!='021' && $.trim(iscmcd)!='008' && $.trim(iscmcd)!='036'){ // 롯데/신한/현대/국민/삼성/BC/하나SK/광주/우체국 카드 외 30만원 결제 불가 처리
+				// 30만원 이상 결제시 안내처리
+				if ( $("#payForm input[name=rdo_paytype]:radio").length > 1 ) {
+					alert('결제금액이 30만원 이상인 경우는 롯데, 신한, 현대, 국민, 삼성, 비씨, 하나SK, 광주, 우체국 카드만 가능합니다. 그 외 카드는 무통장입금으로 결제하시거나 고객센터(1577-1110)로 전화주세요.');
+					return;
+				} else {
+					alert('결제금액이 30만원 이상인 경우는 롯데, 신한, 현대, 국민, 삼성, 비씨, 하나SK, 광주, 우체국 카드만 가능합니다. 그 외 카드는 무통장입금으로 결제하시거나 고객센터(1577-1110)로 전화주세요.');
+					return;
+				}
+			} else if (totsttlamt > 300000 && (-1 < 0) && '' == 'mlotte001' && $.trim(iscmcd)=='031' && ''!='' && ''!='' && !appVerChk('', '133')){ // 삼성카드 결제 시
+				alert('롯데닷컴 앱에서 삼성카드 30만원 이상 결제를 하시려면 롯데닷컴 최신버전 앱으로 업데이트 해주세요.');
+				return;
+			} else if (totsttlamt > 300000 && (-1 > -1) && $.trim(iscmcd)=='047' && ''=='mlotte001' && ''!='' && !appVerChk('', '160')){ // 롯데카드 결제 시
+				alert('롯데닷컴 앱에서 롯데카드 30만원 이상 결제를 하시려면 롯데닷컴 최신버전 앱으로 업데이트 해주세요.');
+				return;
+			} else if (totsttlamt > 300000 && (-1 > -1) && $.trim(iscmcd)=='031' && ''=='mlotte001' && ''!='' && !appVerChk('', '164')){ // 삼성카드 결제 시
+				alert('롯데닷컴 앱에서 삼성카드 30만원 이상 결제를 하시려면 롯데닷컴 최신버전 앱으로 업데이트 해주세요.');
+				return;
+			} else if ( $.trim(cardinstmon) == '' ) {	// 일시불이 아니면서 할부기간이 선택안된경우
+				alert('할부기간을 선택해주세요.');
+				return;
+			}				
+		}
+		
+		$("#frm_send input[name=paytype]:hidden").val( paytype );
+		$("#frm_send input[name=iscmcd]:hidden").val( iscmcd );
+		$("#frm_send input[name=cardinstmon]:hidden").val( cardinstmon );			
+	}
+	else
+	{
+		$("#frm_send input[name=paytype]:hidden").val("");
+		$("#frm_send input[name=iscmcd]:hidden").val("");
+		$("#frm_send input[name=cardinstmon]:hidden").val("");			
+	}
+
+	// 반품배송상세 번호
+	$("#frm_send input[name=tmp_ord_dtl_sn]:hidden").val($("#payForm input[name=ord_dtl_sn]:hidden:eq(0)").val());
+
+	// 총결제금액
+	$("#frm_send input[name=totsttlamt]:hidden").val( totsttlamt );
+
+	// 카드결제정보 설정
+	$("#frm_card input[name=X_CARDTYPE]:hidden").val( iscmcd );
+	$("#frm_card input[name=X_AMOUNT]:hidden").val( totsttlamt );
+	if (totsttlamt > 300000 && (iscmcd=='048' || iscmcd=='029')){ // 신한/현대카드 30만원 이상 결제
+		$("#frm_card input[name=X_ISMART_USE_SIGN]:hidden").val("Y");
+
+		if ('http://mt2.lotte.com' != ''){
+		$("#frm_card input[name=X_MALL_APP_NAME]:hidden").val("http://mt2.lotte.com");
+		}
+	}else{
+		$("#frm_card input[name=X_ISMART_USE_SIGN]:hidden").val("");
+		$("#frm_card input[name=X_MALL_APP_NAME]:hidden").val("");
+	}
+	
+	// 롯데카드 정보				
+	if (iscmcd=="047"){ // 롯데카드
+		$("#SIMPLEPAYFORM input[name=order_amount]:hidden").val( totsttlamt );
+		$("#SIMPLEPAYFORM input[name=order_cardname]:hidden").val( "LOTTECARD" );
+	}
+	
+	doXansim();
+}
+
+function doXansim() {
+	var pay_mean_cd	= $("#frm_send input[name=pay_mean_cd]:hidden").val();
+	
+	$("#frm_send input[name=credit_crd_gb]:hidden").val(""); // ISP, MPI 구분
+
+	disableItems(true);
+
+	// 002:광주, 008:외환, 016:KB국민, 018:NH, 020:하나SK, 026:비씨, 029:신한, 031:삼성, 036:씨티, 047:롯데, 048:현대, 054:우체국체크
+	if ( pay_mean_cd == PAYTYPE_CODE_CARD ) {	// 결제 수단이 카드
+		X_CARDTYPE	= $("#frm_card input[name=X_CARDTYPE]:hidden").val();
+		var iscmcd = X_CARDTYPE;
+		
+		if (X_CARDTYPE == '047'
+			|| X_CARDTYPE == '029' 
+		    || X_CARDTYPE == '031' 
+		    || X_CARDTYPE == '048'
+		    || X_CARDTYPE == '020'
+		    || X_CARDTYPE == '008'
+		    || X_CARDTYPE == '036'
+		    || X_CARDTYPE == '018'
+		    ) { // MPI
+			payment_pop_position(); // 결제 레이어팝업 위치 지정
+
+			$("#ANSIM_LAYER").css("width"	,"100%");
+			$("#ANSIM_LAYER").css("height"	,"480px");
+			window.scrollTo(0, 0); // 안심레이어 위치 지정
+			$("#ANSIM_LAYER").show();
+			$("#X_ANSIM_FRAME").show();
+
+			$("#frm_send input[name=credit_crd_gb]:hidden").val("2"); // MPI
+		}
+		//--------------------------------------------------------
+		// X-안심클릭 서비스 관련 스크립트 Start !!!
+		//--------------------------------------------------------		
+		var pay_confirm_type = $("input[name=card_confirm_type]:radio:checked").val(); // 카드 인증 방식 
+			
+		if (X_CARDTYPE == '047' ) { // 롯데카드
+			lottecard_payment('ACS'); 
+		} else if ( X_CARDTYPE == '029' 
+		  || X_CARDTYPE == '031' 
+		  || X_CARDTYPE == '048'
+		  || X_CARDTYPE == '018'
+		    ) { // MPI (NH, 신한, 삼성, 현대)
+
+			$("#frm_card input[name=X_SP_CHAIN_CODE]:hidden").val("0");
+			
+			xmpi_exec(); // xmpi 실행
+		} else if (X_CARDTYPE == '016'
+		      && (''=='' 
+				  || (''!='' && -1 > -1 && ''=='mlotte001' && appVerChk('', '169'))
+				  || (''!='' && -1 < 0 && "mozilla/5.0 (iphone; cpu iphone os 9_1 like mac os x) applewebkit/601.1.46 (khtml, like gecko) version/9.0 mobile/13b143 safari/601.1".search("iphone") > -1 && appVerChk('', '136'))
+				  || (''!='' && -1 < 0 && "mozilla/5.0 (iphone; cpu iphone os 9_1 like mac os x) applewebkit/601.1.46 (khtml, like gecko) version/9.0 mobile/13b143 safari/601.1".search("ipad") > -1 && appVerChk('', '127'))
+				  || 'N'=='Y' 
+				  || 'N'=='Y'  
+		          || ''=='sklotte001'
+			      || ''=='mlotte001B2B' 
+			      ) 
+			  ){
+			payment_pop_position(); // 결제 레이어팝업 위치 지정
+
+			$("#ANSIM_LAYER").css("width"	,"350px");
+			$("#ANSIM_LAYER").css("height"	,"480px");
+			$("#ANSIM_LAYER").show();
+			$("#X_ANSIM_FRAME").show();
+			
+			spay_exec(); // spay 실행 (KBApp Card)
+		} else if (X_CARDTYPE == '016' 
+		  || X_CARDTYPE == '021'	
+		  || X_CARDTYPE == '054'
+		  || X_CARDTYPE == '002'
+			) { // mISP (KB국민, 비씨, 우체국체크, 광주)
+
+			if (confirm("국민,광주,우체국체크카드(ISP) 결제는 3G 또는 LTE로 진행 해야 안정적으로 결제하실 수 있습니다.\n결제를 진행하시겠습니까?")){
+				$("#frm_send input[name=credit_crd_gb]:hidden").val("1"); // ISP
+
+				misp_create_data();
+		    }else{
+		    	disableItems(false);
+		    }
+		//} else if (X_CARDTYPE == '020'){ // 하나SK
+		//	$("#frm_send input[name=credit_crd_gb]:hidden").val("2"); // MPI
+		//	hanaskcard_payment();
+		} else if (X_CARDTYPE == '026') {
+			$("#frm_send input[name=credit_crd_gb]:hidden").val("1"); // ISP
+			misp_create_data();
+		} else if (X_CARDTYPE == '036' || X_CARDTYPE == '008' || X_CARDTYPE == '020') { // ilkMPI (씨티, 외환, 하나)
+			$("#frm_send input[name=credit_crd_gb]:hidden").val("2"); // MPI
+			
+			ilkmpi_send();				
+		}
+		//--------------------------------------------------------
+		// X-안심클릭 서비스 관련 스크립트 End
+		//--------------------------------------------------------
+		else {
+			// 그외 방법....
+			//alert('Xansim, Visa3D, ISP 이외의 방식을 사용하는 카드입니다.');
+			disableItems(false);
+			
+			alert("지원되지 않는 카드 입니다.\n다시 시도해 주십시오.");
+		}
+	} else {
+		disableItems(false);
+		alert("지원되지 않는 결제방법 입니다.\n다시 시도해 주십시오.");
+	}
+}
+
+//결제, 롯데핀 레이어팝업 위치 지정
+function payment_pop_position(){
+	$("#ANSIM_LAYER").css("top"	,"43px");
+	window.scrollTo(0, 0); // 안심레이어 위치 지정
+}
+
+//롯데카드 결제 (pay_type => EACS:안심클릭 only, ESPS:간편결제 only, ACS:안심클릭기본, SPS:간편결제기본)
+function lottecard_payment(pay_type){
+	$("#ANSIM_LAYER").css("width"	,"100%");
+	$("#ANSIM_LAYER").css("height"	,"530px");
+	window.scrollTo(0, 0);
+	$("#ANSIM_LAYER").show();
+	$("#X_ANSIM_FRAME").show();
+
+	$("#SIMPLEPAYFORM input[name=PAY]:hidden").val(pay_type);
+	$("#SIMPLEPAYFORM").attr("target", "X_ANSIM_FRAME");
+	$("#SIMPLEPAYFORM").attr("action", "/smpi/M_LCSMPIAgent01.jsp");
+	$("#SIMPLEPAYFORM").submit();		
+}
+
+// 하나SK 결제
+function hanaskcard_payment(){
+	var iscmcd = $("#frm_send input[name=iscmcd]:hidden").val();
+	var vp_cardcode = "hanaM";
+
+	chk_nint_inst_yn = $("#frm_send input[name=chk_nint_inst_yn]:hidden").val(); // 무이자여부
+	cardinstmon = $("#frm_send input[name=chk_inst_mm_cnt]:hidden").val(); // 할부개월
+
+	// 이자구분
+	if (cardinstmon == ""){
+		cardinst = "01";
+	}else if (chk_nint_inst_yn == "N"){
+		cardinst = "02";
+	}else{
+		cardinst = "03";
+	}
+	
+	var vp_quota = cardinstmon; // 할부개월
+	var vp_quota_flag = chk_nint_inst_yn; // 무이자여부
+	var vp_price = $("#frm_send input[name=totsttlamt]:hidden").val(); //결제금액	
+	var vp_goodname = $("#frm_send input[name=goodsnm]:hidden").val(); //상품명
+	var goods_unit = vp_goodname.split(":^:");
+
+	if (goods_unit.length > 1){
+		vp_goodname = (goods_unit[0] + " 외 " + (goods_unit.length - 1));
+	}
+
+	$("#frm_vpay input[name=vp_cardcode]:hidden").val(vp_cardcode);
+	$("#frm_vpay input[name=vp_goodname]:hidden").val(vp_goodname);
+	$("#frm_vpay input[name=vp_price]:hidden").val(vp_price);
+	$("#frm_vpay input[name=vp_quota]:hidden").val(vp_quota);
+	$("#frm_vpay input[name=vp_quota_flag]:hidden").val(vp_quota_flag);
+	$("#frm_vpay input[name=vp_iscmcd]:hidden").val(iscmcd);
+
+	$("#frm_vpay").attr("target", "X_ANSIM_FRAME");
+	$("#frm_vpay").attr("action", "/vpay/req-authM.jsp");
+
+	$("#frm_vpay").submit();
+}
+
+// xmpi 실행
+function xmpi_exec(){
+	$("#frm_card").attr("target", "X_ANSIM_FRAME");
+	$("#frm_card").attr("action", "/dacom/xansim/m_hagent01.jsp");
+	$("#frm_card").submit();
+}
+
+// spay 실행 (KBApp Card) hoho 
+function spay_exec(){
+	$("#frm_spay input[name=totsttlamt]:hidden").val($("#frm_send input[name=totsttlamt]:hidden").val()); // 결제금액
+
+	chk_nint_inst_yn = $("#frm_send input[name=chk_nint_inst_yn]:hidden").val(); // 무이자여부
+	cardinstmon = $("#frm_send input[name=chk_inst_mm_cnt]:hidden").val(); // 할부개월
+
+	// 이자구분
+	if (cardinstmon == ""){
+		cardinst = "01";
+	}else if (chk_nint_inst_yn == "N"){
+		cardinst = "02";
+	}else{
+		cardinst = "03";
+	}
+	
+	$("#frm_spay input[name=cardinst]:hidden").val(cardinst); // 할부구분
+	$("#frm_spay input[name=cardinstmon]:hidden").val(cardinstmon); // 할부개월
+	
+	$("#frm_spay").attr("target", "X_ANSIM_FRAME");
+	$("#frm_spay").attr("action", "/spay/shopMW.jsp");
+	$("#frm_spay").submit();
+}
+
+//무이자 , 일반 할부 지정
+function fn_getNintInstYn(month){
+	var chk_nint_inst_yn = "N"; // 무이자 여부
+	var onintmonth = $("#frm_inp input[name=onintmonth]:hidden").val(); // 무이자 개월수 (2,3,4)
+	
+	if (onintmonth.indexOf(month) > -1){ // 무이자 개월수에 포함된 월이면
+		chk_nint_inst_yn = "Y";
+	}
+	
+	$("#view_nint_inst").text(""); // 무이자/일반할부 구분 text
+	
+	if (parseInt(month) > 1){ // 일시불이 아니면
+		if (chk_nint_inst_yn == "Y"){ // 무이자
+			$("#view_nint_inst").text("(무이자)");
+			$("#frm_send input[name=nint_inst_yn]:hidden").val("N");
+			$("#frm_send input[name=chk_nint_inst_yn]:hidden").val("N");
+		}else{ // 일반할부
+			$("#view_nint_inst").text("(일반할부)");
+			$("#frm_send input[name=nint_inst_yn]:hidden").val("Y");
+			$("#frm_send input[namechk_nint_inst_yn]:hidden").val("Y");
+		}
+
+		$("#frm_send input[name=inst_mm_cnt]:hidden").val(month);
+		$("#frm_send input[chk_inst_mm_cnt]:hidden").val(month);
+	}else{
+		$("#frm_send input[name=nint_inst_yn]:hidden").val("N");
+		$("#frm_send input[namechk_nint_inst_yn]:hidden").val("N");
+		$("#frm_send input[name=inst_mm_cnt]:hidden").val("");
+		$("#frm_send input[chk_inst_mm_cnt]:hidden").val("");
+	}
+}
+
+//카드사로 부터 인증 결과 수신시 호출되는 함수입니다.
+function setCertResult(xid, eci, cavv, cardno, etc) {
+	//안심클릭 창 닫아주자 
+	$("#ANSIM_LAYER").hide();
+
+	$("#X_ANSIM_FRAME").attr("src","/dacom/xansim/iframe.jsp");
+	
+	$("#frm_send input[name=xid]:hidden").val( xid );
+	$("#frm_send input[name=eci]:hidden").val( eci );
+	$("#frm_send input[name=cavv]:hidden").val( cavv );
+	$("#frm_send input[name=cardno]:hidden").val( cardno );
+
+	doPayment();	// 쇼핑몰의 결제요청 함수로 변경하세요.
+}
+
+//2011.06.14 스마트페이 결제 완료 후
+function setCertSmartpayResult(xid, eci, cavv, cardno, joinCode, hs_useamt_sh, restype, userkey, result ) {
+	paramSmartpaySet(xid, eci, cavv, cardno, hs_useamt_sh, restype, userkey, result );
+}
+
+//-->실제 승인페이지로 넘겨주는 form에 xid, eci, cavv, realPan를 세팅한다.
+function paramSmartpaySet(xid, eci, cavv, realPan, hs_useamt_sh, restype, userkey, result ){
+	
+	$("#frm_send input[name=xid]").val(xid);
+	$("#frm_send input[name=eci]").val(eci);
+	$("#frm_send input[name=cavv]").val(cavv);
+	$("#frm_send input[name=cardno]").val(realPan);
+	$("#frm_send input[name=restype]").val(restype);
+	
+	if ( restype!='' && userkey!='' && userkey != $("#frm_send input[name=user_key]").val() ){
+		$("#frm_send input[name=update_easn_yn]").val("Y");
+	}
+	$("#frm_send input[name=user_key]").val(userkey);
+	$("#frm_send input[name=res_type]").val(restype);
+	$("#frm_send input[name=req_type]").val(restype);
+	$("#frm_send input[name=apvl_desc]").val(result);
+	
+	if(xid=="" && eci=="" && cavv=="" && realPan=="") {
+		returnPaymentPage();
+
+		$("#X_ANSIM_FRAME").css("width"	,"450px");
+		$("#X_ANSIM_FRAME").css("height","0px");
+		$("#X_ANSIM_FRAME").hide();
+		$("#ANSIM_LAYER").hide();			
+	} else {			
+		doPayment();
+	}
+}
+
+//misp 플러그인 설치
+function misp_install(){
+	// 안드로이드, 아이폰 구별에 따른 ISP Application  호출
+	if (false){
+		if ('Y' == ''){ // T-store 인 경우
+			$("#X_ANSIM_FRAME").attr("src", "tstore://PRODUCT_VIEW/0000025711/0");
+		}else{
+			$("#X_ANSIM_FRAME").attr("src", "http://mobile.vpay.co.kr/jsp/MISP/andown.jsp");
+		}
+	}else if (true){
+		$("#X_ANSIM_FRAME").attr("src", "http://itunes.apple.com/kr/app/id369125087?mt=8");
+	}else{
+		alert("지원되지 않는 운영체제 입니다.");
+	}
+}
+
+// misp 실행
+function misp_exec(){
+
+	// 안드로이드, 아이폰 구별에 따른 ISP Application  호출
+	if (true){ // IOS
+		//$("#X_ANSIM_FRAME").attr("src", "ispmobile://?TID="+$("#frm_send input[name=MISP_TID]:hidden").val());
+		top.location.href = "ispmobile://?TID="+$("#frm_send input[name=MISP_TID]:hidden").val();
+	}else if (false){ // 안드로이드
+		window.location.href = "intent://TID="+$("#frm_send input[name=MISP_TID]:hidden").val()+"#Intent;scheme=ispmobile;package=kvp.jjy.MispAndroid320;end";
+	}else{
+		alert("지원되지 않는 운영체제 입니다.");
+	}
+}
+
+// misp 자료 전송
+function misp_send(){
+	$("#frm_send").attr("action", "/misp/toTransData.jsp");
+	$("#frm_send").attr("method", "post");
+	$("#frm_send").attr("target", "X_ANSIM_FRAME");
+	
+	$("#frm_send").submit();
+}
+
+// misp 정보 셋팅 후 misp 전송 페이지 호출
+function misp_create_data(){
+	iscmcd = $("#frm_send input[name=iscmcd]:hidden").val();
+	phone_num1 = '010';
+	phone_num2 = '8859';
+	phone_num3 = '6303';
+	companyCd = '300';
+	grockle_mbr_no = "";
+	
+	chk_nint_inst_yn = $("#frm_send input[name=chk_nint_inst_yn]:hidden").val(); // 무이자여부
+	cardinstmon = $("#frm_send input[name=chk_inst_mm_cnt]:hidden").val(); // 할부개월
+
+	// 이자구분
+	if (cardinstmon == ""){
+		cardinst = "01";
+	}else if (chk_nint_inst_yn == "N"){
+		cardinst = "02";
+	}else{
+		cardinst = "03";
+	}
+	
+	totsttlamt = $("#frm_send input[name=totsttlamt]:hidden").val();
+	goodsnm = $("#frm_send input[name=goodsnm]:hidden").val().replace(/'/gi, "").replace(/&/gi, "").replace(/=/gi, "").replace(/%/gi, "");
+	goodsnm = encodeURIComponent(goodsnm);
+	
+	$.ajax({
+		type: 'post'
+		, async: false
+		, url: '/order/misp_confirm.do?c=mlotte&udid=&v=&cn=&cdn='
+		, data: 'iscmcd='+iscmcd+'&companyCd='+companyCd+'&cardinst='+cardinst+'&cardinstmon='+cardinstmon+'&phone_num1='+phone_num1+'&phone_num2='+phone_num2+'&phone_num3='+phone_num3+'&totsttlamt='+totsttlamt+'&goodsnm='+goodsnm+'&grockle_mbr_no=&grockle_yn=N'
+		, success: function(response) {
+			$("#misp_confirm_div").html( response );
+			misp_send();
+			}
+		, error : init_misp()
+	});
+}
+
+// misp 정보 초기화
+function init_misp(){
+	$("#frm_send input[name=KVP_NOINT]:hidden").val("");
+	$("#frm_send input[name=KVP_QUOTA]:hidden").val("");
+	$("#frm_send input[name=KVP_GOODNAME]:hidden").val("");
+	$("#frm_send input[name=KVP_PRICE]:hidden").val("");
+	$("#frm_send input[name=KVP_NOINT_INF]:hidden").val("");
+	$("#frm_send input[name=KVP_QUOTA_INF]:hidden").val("");
+	$("#frm_send input[name=MISP_GoodName]:hidden").val("");
+	$("#frm_send input[name=MISP_Price]:hidden").val("");
+	$("#frm_send input[name=MISP_NoInt]:hidden").val("");
+	$("#frm_send input[name=MISP_Noint_Inf]:hidden").val("");
+	$("#frm_send input[name=MISP_HpNum]:hidden").val("");
+	$("#frm_send input[name=MISP_MerchantNo]:hidden").val("");
+	$("#frm_send input[name=MISP_Tcode]:hidden").val("");
+	$("#frm_send input[name=MISP_TID]:hidden").val("");
+}
+
+// ilkmpi 정보 셋팅 후 ilkmpi
+function ilkmpi_send(){
+	
+	iscmcd = $("#frm_send input[name=iscm_cd]:hidden").val();
+	pan = "";
+	
+	//cardinst = $("#frm_send input[name=cardinst]:hidden").val(); // 일시, 할부 여부
+	apvl_halbu = $("#frm_send input[name=chk_inst_mm_cnt]:hidden").val(); // 할부개월
+	pay_ansim_price = $("#frm_send input[name=totsttlamt]:hidden").val(); //결제금액
+	handNum = '01088596303';
+	
+	if (handNum.length < 10){
+		handNum = "00000000000";
+	}
+
+	if (iscmcd == "008") { // KEB
+		pan = "4599300000000000";
+	} else if (iscmcd == "036") { // Citi Mobile
+		pan = "4539350000000007";
+	}
+	
+	$("#ILKFORM input[name=apvl_halbu]:hidden").val(apvl_halbu);
+	$("#ILKFORM input[name=pay_ansim_price]:hidden").val(pay_ansim_price);
+	$("#ILKFORM input[name=handNum]:hidden").val(handNum);
+	$("#ILKFORM input[name=purchase_amount]:hidden").val(pay_ansim_price);
+	$("#ILKFORM input[name=pan]:hidden").val(pan);
+
+	$("#ILKFORM").submit();
+}
+
+//카드사로 부터 인증 결과 수신시 호출되는 결제 요청 함수 샘플입니다.
+function doPayment() {
+	if($("#frm_send input[name=totdcamt]:hidden").val()==""){
+		$("#frm_send input[name=totdcamt]:hidden").val('0')
+	}
+	//dimmed('hide');
+	$("#cover").hide();
+	$("#X_ANSIM_FRAME").attr("src","/dacom/xansim/iframe.jsp");
+	$("#frm_send").submit();
+}
+
+function getPage() {
+	return document.frm_send.pageName.value;
+}
+
+</script>
+</head>
+<body>
+<!-- warpper -->
+<div id="wrapper">
+	
+
+	
+ 
+
+
+
+
+
+
+<section id="cover"></section>
+<script>
+//음성검색-안드로이드
+function voiceSearch(){
+	window.voicesearch.callAndroid();
+}
+
+function loginChk(){
+	
+		return true;
+	
+}
+function appYnChk(){
+	
+		return false;
+	
+}
+
+/** 앱 최신버전 확인 **/
+function isAppVerChk(){
+	var appKind = 'iphone';
+	var appVer = ''.replace(/\./gi,"");
+	var schema_str = '';
+
+	var uagent = navigator.userAgent.toLowerCase();
+  	
+  	var ret_tf = true;
+	if (appKind=='iphone' && parseInt(appVer) >= 206){
+	}else if (appKind=='android' && uagent.search("android 2.3") < 0){
+		if (schema_str=='mlotte001' && parseInt(appVer) >= 212){
+		}else if (schema_str=='sklotte001'){
+		}else{
+			ret_tf = false;
+		}
+	}else{
+		ret_tf = false;
+	}
+
+  	return ret_tf;
+}
+
+/** 검색 모듈 호출 관리 **/
+function getTrakingCd(p_trakingCd) {
+
+	var returnStr = "";
+	
+	if ("MBL_TRK_CD_RECENT" == p_trakingCd) { 			// 키워드 입력전	
+		returnStr += "M_Search_RecentSearch_Web";
+	}else if ("MBL_TRK_CD_AUTO" == p_trakingCd) {		// 키워드 입력중
+		returnStr += "M_Search_Autocomplete_Web";
+	}else if ("MBL_TRK_CD_RESEARCH" == p_trakingCd) {	// 검색결과 : 재검색
+		returnStr += "M_Search_Re-search";
+	}else if ("MBL_TRK_CD_SEARCH" == p_trakingCd) {		// 검색결과 : 상품유닛
+		returnStr += "M_Search_Result";
+	}else if ("MBL_TRK_CD_CATE" == p_trakingCd) {		// 검색결과 : 카테고리선택
+		returnStr += "M_Search_Category";
+	}else if ("MBL_TRK_CD_BRAND" == p_trakingCd) {		// 검색결과 : 브랜드선택
+		returnStr += "M_Search_Brand";
+	}else if ("MBL_TRK_CD_SORT" == p_trakingCd) {		// 검색결과 : 정렬기준
+		returnStr += "M_Search_Sort";
+	}else if ("MBL_TRK_CD_SORT_RECOM" == p_trakingCd) {	// 정렬기준선택 : 추천순
+		returnStr += "M_Search_Sort_SuggestionRatings";
+	}else if ("MBL_TRK_CD_SORT_BEST" == p_trakingCd) {	// 정렬기준선택 : 판매순
+		returnStr += "M_Search_Sort_Bestseller";
+	}else if ("MBL_TRK_CD_SORT_NEW" == p_trakingCd) {	// 정렬기준선택 : 신상품순
+		returnStr += "M_Search_Sort_Newest";
+	}else if ("MBL_TRK_CD_SORT_REVIEW" == p_trakingCd) {// 정렬기준선택 : 상품평순
+		returnStr += "M_Search_Sort_BestReview";
+	}else if ("MBL_TRK_CD_SORT_LOW" == p_trakingCd) {	// 정렬기준선택 : 낮은가격순
+		returnStr += "M_Search_Sort_LowestPrice";
+	}else if ("MBL_TRK_CD_SORT_HIGH" == p_trakingCd) {	// 정렬기준선택 : 높은가격순
+		returnStr += "M_Search_Sort_HighestPrice";
+	}else{
+		returnStr = "";
+	}
+	return returnStr;
+}
+
+function goMain(){
+	//티클릭설정
+	var tclick_nm = "m_header_new_logo";
+	if($("#wrapper").hasClass("headBann")){
+		tclick_nm = "m_header_open_logo";
+	}
+	location.href = "http://mt2.lotte.com/main.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=" + tclick_nm;
+}
+//로고클릭시
+function mainLogoClick2(){
+	for(i=0; i < sessionStorage.length; i++){
+		if(sessionStorage.key(i).indexOf("m_") > -1){
+			setSessionStorage(sessionStorage.key(i), "");
+		}
+	}
+    goMain();
+}
+</script>
+
+<!-- 공통 header -->
+<header id="head">
+    <h1 class="logo">
+        
+        <a href="javascript:mainLogoClick2()"><i>LOTTE.COM</i></a>
+        
+        
+    </h1>
+    <ul class="glSearchL">
+        <li class="category"><a href="#go"><i>카테고리</i></a></li>
+        <li class="search"><a href="#"><i>검색</i></a></li>
+    </ul>
+ </header>
+<!--// 공통 header -->
+
+
+<!-- 검색 레이어 -->
+<section id="feSrhLayer">
+<form id="searchForm" name="searchForm" action="http://mt2.lotte.com/search/m/mobile_search_list.do">
+	<input type="hidden" id="c" name="c" value="mlotte" />
+	<input type="hidden" id="udid" name="udid" value="" />
+	<input type="hidden" id="v" name="v" value="" />
+    <input type="hidden" id="cn" name="cn" value="" />
+    <input type="hidden" id="cdn" name="cdn" value="" />
+	
+	
+	<input type="hidden" id="dpml_no" name="dpml_no" value="1" />
+	
+    
+    <input type="hidden" id="type" name="type" value="" />
+    
+	
+   	
+   	<input type="hidden" id="dispCnt" name="dispCnt" value="30" />
+   	<input type="hidden" id="reqType" name="reqType" value="N" />
+   	<input type="hidden" id="reqKind" name="reqKind" value="C" />
+   	<!-- 
+	<fieldset> -->
+		<legend class="blind">키워드 검색</legend>		
+			<section class="srh_layer">
+				<!-- 상단 검색 영역 -->
+				<div class="srh_wrap">
+					<div class="srh_ipt">
+						<input type="search" title="검색어 입력" name="keyword" id="searchKeyword" placeholder="검색어를 입력하세요." autocomplete="off" autocapitalize="off" autocorrect="off">
+						<a href="#none" class="btn_del">검색어 삭제</a>
+					</div>
+					<div class="srh_btn">
+						<input type="image" src="http://image.lotte.com/lotte/mobile/mobile_new/search/btn_search.png">
+					</div>
+				</div>
+				<!--검색어 탭-->
+                <div class="nsh_tab nsh_tabs">
+                    <a href="javascript:nsh_tabSelect(0);" class="nsh_tab_a on">최근검색어</a>
+                    <a href="javascript:nsh_tabSelect(1);" class="nsh_tab_a">인기</a>
+                    <a href="javascript:nsh_tabSelect(2);" class="nsh_tab_a">급상승</a>
+				</div>
+				<!-- // 상단 검색 영역 -->
+				<div class="nsh_cont nsh_tabs">
+                    <div class="nsh_mask">
+                        <ul class="nsh_ul" id="nsh_box">
+                            <li class="nsh_li">
+                                <!-- 최근 검색어 목록 -->
+                                <div class="srh_recent">
+                                    <ol>
+                                    </ol>
+                                </div>    
+                            </li>
+                            <li class="nsh_li">
+                                <!-- 인기 검색어 목록 -->
+                                <div class="nsh_list" id="nsh_best">
+                                </div>                                    
+                            </li>
+                            <li class="nsh_li">
+                                <!-- 급상승 검색어 목록 -->
+                                <div class="nsh_list" id="nsh_speed">
+                                </div>
+                            </li>				        
+                        </ul>
+                    </div>
+				</div>
+				<!-- // 최근 검색어 목록 -->
+				<!-- // 상단 검색 영역 -->
+				<!-- 최근 검색어 목록 
+				<div class="srh_recent">
+					<ol></ol>
+				</div>
+				<!-- // 최근 검색어 목록 -->
+				
+				<!-- 자동완성 -->
+				<div class="srh_auto" style="display:none;">
+					<ol></ol>
+				</div>
+				<!-- // 자동완성 -->
+				<!-- 하단바 -->
+				<div class="srh_bar">
+					<!--20150930-1 하단 문구 태그추가-->
+				    <div class="barInfo">
+				        <div class="dateInfo"></div>
+				        <div class="bestInfo"><img src="https://simage.lotte.com/lotte/mobile/mobile_new/search/searchLayer_icon0930.png">버튼 터치하면 검색어를 수정할 수 있습니다.</div>
+				    </div>
+					<button type="button" class="del" style="display:none;">전체삭제</button>
+					<button type="button" class="close">닫기</button>
+				</div>
+				<!-- // 하단바 -->
+			</section>
+			<section class="srh_cover"></section>
+<!-- 
+	</fieldset> -->
+</form>
+</section>
+<!-- // 검색 레이어 -->
+ 
+<!-- 서브 헤더  : S -->
+
+
+	
+	<header id="head_sub" class="ps_head">        
+		<h2><span>부분반품 재결제</span></h2>
+		<p class="prev"><a href="#">이전</a></p>
+	    	
+	       	<p class="btn" style="top:9px;"></p>
+	</header>
+	
+
+<!-- 서브 헤더  : E -->
+    
+    
+
+<div id="wrap_dimBg" style="display: none;"></div>
+<div id="common_layer" style="display:none;position:absolute;z-index:999;width:100%;height:100%;">
+    <iframe id="common_frame" name="common_frame" style="display:none;border:none;background:#FFFFFF;width:100%;height:100%;" src="/dacom/xansim/iframe.jsp" height=0 scrolling="no"></iframe>
+</div>
+
+<script type="text/javascript">
+function navback() {
+	//티클릭 설정
+	setTclick('m_header_new_pre');	
+	var backurl = 'http://mt2.lotte.com/mylotte/purchase/m/purchase_list.do?c=mlotte&udid=&v=&cn=&cdn=&schema=&fromPg=3&tclick=m_RDC_actionbar_purchaselist';
+	if( backurl.indexOf("cancel_yn=Y") >= 0 &&  backurl.indexOf("purchase/purchase_view.do") >= 0  ){
+		document.location.href = "http://mt2.lotte.com/mylotte/purchase/m/purchase_list.do?c=mlotte&udid=&v=&cn=&cdn="; 
+	}
+	else if(history.length > 0) {
+        history.go(-1);
+    } 
+    else {
+        alert('이전 페이지가 존재하지 않습니다');
+    }
+}
+
+//새창띄우기
+function popupLink(url){
+	
+		window.open("http://"+url);
+	
+}
+
+$(document).ready(function(){
+	//이전
+	$("#head_sub > p.prev > a").on('click', function() {
+	    navback(); return false;
+	});
+});
+
+</script>
+
+
+	
+
+<form id="frm_inp" name="frm_inp">
+<input type="hidden" name="onintmonth" value=""/>
+<input type="hidden" name="intmonth" value=""/>
+</form>
+<form method="post" name="frm_send" id="frm_send" action="/mylotte/reorder/m/re_order.do?c=mlotte&udid=&v=&cn=&cdn=">
+<input type="hidden" id="pageName" name="pageName" value="orf" />
+<input type="hidden" name="re_ord_step" value="2" />
+
+<input type="hidden" name="ord_no" value="201711174460665" />
+<input type="hidden" name="tmp_ord_dtl_sn" value="" />
+
+<input type="hidden" value="N" name="gift_yn" />
+<input type="hidden" value="N" name="useNavermPnt" />
+<input type="hidden" value="[제이핑크] 여성발목양말 택1" name="goods_nm" />
+<input type="hidden" value="[제이핑크] 여성발목양말 택1" name="goodsnm" />
+<input type="hidden" name="nint_inst_yn" value="N" />
+<input type="hidden" name="chk_nint_inst_yn" value="N" />
+<input type="hidden" name="inst_mm_cnt" value="" />
+<input type="hidden" name="chk_inst_mm_cnt" value="" />
+<input type="hidden" name="ord_gubun" value="R" />
+<input type="hidden" name="rel_pay_amt" value="2970" />
+<input type="hidden" name="staff_yn" value="N" />
+<input type="hidden" name="credit_crd_gb" value="" />
+
+<!-- 결제정보 (카드해당) -->
+
+
+<input type="hidden" name="pay_price" id="pay_price" value="3440" />
+<input type="hidden" name="pay_due_amt" id="pay_due_amt" value="2970" />
+<input type="hidden" name="pay_mean_cd" id="pay_mean_cd" value="16" />
+<input type="hidden" name="pay_sn" id="pay_sn" value="441316399" />
+<input type="hidden" name="iscm_cd" id="iscm_cd" value="026" />
+<input type="hidden" name="pay_fin_yn" id="pay_fin_yn" value="N" />
+<input type="hidden" name="pay_fin_dt" id="pay_fin_dt" value="2017-11-14" />
+<input type="hidden" name="rel_pay_amt" id="rel_pay_amt" value="3440" />
+<input type="hidden" name="poss_yn" id="poss_yn" value="N" />
+<input type="hidden" name="deposit_yn"id="deposit_yn" value="N" />
+<input type="hidden" name="card_cert_tp_cd" id="card_cert_tp_cd" value="" />
+<input type="hidden" name="lpay_conf_no" id="lpay_conf_no" value="" />
+
+
+<!-- 카드승인정보 -->
+<input type="hidden" name="xid" value="">
+<input type="hidden" name="eci" value="">
+<input type="hidden" name="cavv" value="">
+<input type="hidden" name="cardno" value="">
+<input type="hidden" name="joincode" value="">
+<!-- 롯데카드 스마트페이 정보 -->
+<input type="hidden" name="user_key"   value="A31272230541999163304167" />
+<input type="hidden" name="restype"   value="" />
+<input type="hidden" name="res_type"   value="" />
+<input type="hidden" name="req_type" value="2" />
+<input type="hidden" name="apvl_desc"   value="" />
+<input type="hidden" name="update_easn_yn"   value="N" />
+<input type="hidden" name="smartpayUser_yn" value="N" />
+<input type="hidden" name="smart_pay_use_yn" value="" />
+<!-- MISP 정보 -->
+<input type="hidden" name="KVP_PGID"		value="A0029" />	<!-- PG  -->
+<input type="hidden" name="KVP_SESSIONKEY"  value="" />		<!-- 세션키  -->
+<input type="hidden" name="KVP_ENCDATA"		value="" />		<!-- 암호된데이터 -->
+<input type="hidden" name="KVP_CURRENCY"	value="WON" />		<!-- 지불 화폐 단위 (WON/USD) : 한화 - WON, 미화 - USD-->
+<input type="hidden" name="KVP_NOINT"		value="" />		<!-- 무이자구분(1:무이자,0:일반) -->
+<input type="hidden" name="KVP_QUOTA"		value="" />		<!-- 할부 -->
+<input type="hidden" name="KVP_CARDCODE"	value="" />		<!-- 카드코드 -->
+<input type="hidden" name="KVP_CONAME"		value="" />		<!-- 카드명 -->
+<input type="hidden" name="KVP_RESERVED1"   value="" />		<!-- 예비1 -->
+<input type="hidden" name="KVP_RESERVED2"   value="" />		<!-- 예비2 -->
+<input type="hidden" name="KVP_RESERVED3"   value="" />		<!-- 예비3 -->
+<input type="hidden" name="KVP_IMGURL"		value="" />
+<input type="hidden" name="KVP_GOODNAME"	value="" />		<!-- 상품명-->
+<input type="hidden" name="KVP_PRICE"		value="" />		<!-- 금액-->
+<input type="hidden" name="KVP_NOINT_INF"   value="" />		<!-- 일반, 무이자-->
+<input type="hidden" name="KVP_QUOTA_INF"   value="" />		<!-- 할부값:ISP인증팝업에 보여질 할부개월수 설정-->
+<input type="hidden" name="KVP_CARDCOMPANY"	value="" />		<!-- 카드사코드 -->
+
+<input type="hidden" name="MISP_PgId"		value="A0029" />	<!-- PG -->
+<input type="hidden" name="MISP_ReturnUrl"	value="http://mt2.lotte.com/misp/receiveData.jsp?c=mlotte&udid=&v=&cn=&cdn=" /> <!-- 결제인증 데이터를 받을 PG URL  --> 
+<input type="hidden" name="MISP_GoodName"	value="" />			<!-- 상품명 -->
+<input type="hidden" name="MISP_Price"		value="" />			<!-- 가격 -->
+<input type="hidden" name="MISP_Currency"	value="WON" />		<!-- 지불 화폐 단위 (WON/USD) : 한화 - WON, 미화 - USD -->
+<input type="hidden" name="MISP_NoInt"		value="" />			<!-- 무이자여부 -->
+<input type="hidden" name="MISP_Noint_Inf"	value="" />			<!-- 할부개월수 -->
+<input type="hidden" name="MISP_HpNum"   	value="" />			<!-- 휴대폰 번호 -->
+<input type="hidden" name="MISP_MerchantNo" value="" />			<!-- 가맹점번호 -->
+<input type="hidden" name="MISP_Tcode"   	value="" />			<!-- 통신사구분 -->
+<input type="hidden" name="MISP_TID"		value="" />			<!-- 거래고유번호('LOTTE'+회원번호+서버년월일시간) -->
+<input type="hidden" name="MISP_WAPUrl"		value="http://mt2.lotte.com/misp/result.jsp?c=mlotte&udid=&v=&cn=&cdn=" /> <!-- 결제가 완료되고 이동될 WEB page url -->
+<input type="hidden" name="MISP_CancelUrl"  value="http://mt2.lotte.com/misp/cancel.jsp?c=mlotte&udid=&v=&cn=&cdn=" /> <!-- APP에서 결제를 취소하고 이동하는 WEB URL  -->
+<!-- 결제금액 -->
+<input type="hidden" name="totsttlamt" value="2970">
+<!-- 주문동의 여부  -->
+<input type="hidden" name="ord_agr_yn" value="N" />
+
+<!-- 결제 완료 시 정보 -->
+<input type="hidden" name="org_order_price" value="3,440" />
+<input type="hidden" name="repayment_amt" value="2,970" />
+<input type="hidden" name="refund_price" value="470" />
+
+<!-- L.pay로 사용한 L.Point포인트 -->
+
+<!-- //포인트 -->
+
+
+
+
+<input type="hidden" name="point_info" value="" />
+
+
+
+
+
+
+
+
+<input type="hidden" name="payment_info" value="신용카드:^:3,440:^:2,970:^:470" />
+</form>	
+
+	
+	<section id="cscenter">
+	
+		<!-- fo에 재결제, 재결제완료 내역이 한 페이지에 함께 뿌려져서 레이어 분할처리(보여지고 안보여지고) -->
+		
+		<form id="payForm" name="payForm">
+		<input type="hidden" name="payment_cnt" value="1" />
+		<!-- 재결제 내용확인 DIV Start -->
+		<div id="view_div">
+			<section class="step_dashboard_02">
+				<ol>
+					<li class="on"><span class="step oneline"><em>01.</em> 재결제</span></li>
+					<li><span class="step"><em>02.</em> 재결제 완료<br>환불정보확인</span></li>
+				</ol>
+			</section>
+			
+			<!-- Tips -->
+			<section class="tips">
+				<p>재결제를 하시면 최초 결제금액은 환불되고<br>남은 상품금액만큼 다시 결제됩니다.</p>
+			</section>
+			<!--// Tips -->
+			
+			<div class="order_unit">
+				<h3>주문번호
+					
+						2017-11-14-4460665                  
+					 
+				</h3>
+				<ul class="product_list01 order_refund_02"><!-- 2014-04-03 수정 -->
+					
+					<input type="hidden" name="goods_no" value="202457792" />
+					<input type="hidden" name="ord_dtl_sn" value="999531959745" />
+					<input type="hidden" name="sale_prc" value="470" />
+					<input type="hidden" name="org_ord_qty" value="2" />
+					<input type="hidden" name="return_ord_qty" value="1" />
+					<input type="hidden" name="order_prc" value="940" />
+					<input type="hidden" name="return_prc" value="470" />
+					<input type="hidden" name="adtn_cost_dlv_base" value="0" />
+					<input type="hidden" name="adtn_cost_dlv_rtgs" value="0" />
+					<input type="hidden" name="adtn_cost_dlv_total" value="0" />
+					<li>
+						<!-- 상품정보 -->
+						<div class="order_goods">
+							<span class="thumb">
+								<img src="http://image.lotte.com/goods/92/77/45/02/2/202457792_1_150.jpg" alt="상품이미지">
+							</span>
+							<span class="cont01">
+								<p class="tl"><strong>[제이핑크]</strong>[제이핑크] 여성발목양말 택1</p>
+	
+								<div class="option">
+								<ul>
+									<li style='border-bottom:0px;margin-bottom:0px;padding-top:3px;padding-bottom:3px'>상품명:44.캣츠카바,색상:딥오렌지</li>
+								</ul>
+								</div>
+	
+								<p>주문수량 2</p>
+							</span>
+						</div>
+						<!-- //상품정보 -->
+						
+						<div class="refund_option">
+							<dl>
+								<dt>반품사유</dt>
+								<dd>
+									<p class="static_ment">오배송 (다른상품 배송)</p>
+									<p></p>
+								</dd>
+								<dt>반품수량</dt>
+								<dd>1</dd>
+								<dt>주문금액</dt>
+								<dd class="order_price"><strong>940</strong>원</dd>
+								<dt>반품금액</dt>
+								<dd class="refund_price"><strong>(-) 470</strong>원</dd>
+								<dt>반품 배송비</dt>
+								<dd>
+									<dl class="refund_shipping_price">
+										<dt>최초 배송비</dt>
+										<dd>0원</dd>
+										<dt>반품 배송비</dt>
+										<dd>0원</dd>
+										<dt class="sum">합계</dt>
+										<dd class="sum">0원</dd>
+										<dt class="sum">고객 부담</dt>
+										<dd class="sum">0원</dd>
+									</dl>
+								</dd>
+							</dl>
+						</div>
+						<!-- 마지막일때만 보여주기 -->
+						
+						<div class="refund_payment">
+							<p>반품상품금액 합계 470원 - 반품 배송비 0원 = 470원</p>
+						</div>
+						
+					</li>
+					
+				</ul>
+			</div>
+			
+			<!-- 할인/결제 내역 상세보기 -->
+			
+			
+			<div class="dc_detail">
+				<a href="#" class="btn_dcdetail on"><span>할인/결제 내역 상세보기<i></i></span></a>
+				
+				<!--
+				<div class="freebie">
+					<p><strong>사은품</strong> (사은품행사 상품을 취소하는 경우 사은품도 지급도 취소됩니다.)</p>
+					<ul>
+						<li>나이키 스포츠 양말 <em>(취소)</em></li>
+					</ul>
+				</div>
+				-->
+				
+				<div class="dc_tbl">
+					<table summary="할인/결제 내역의 취소전,후에 대한 안내표">
+						<caption>할인/결제 내역 정보</caption>
+						<colgroup>
+							<col width="40%">
+							<col width="30%">
+							<col width="30%">
+						</colgroup>
+						<thead>
+						<tr>
+							<th scope="col">할인/결제 내역</th>
+							<th scope="col">반품전</th>
+							<th scope="col">반품후</th>
+						</tr>
+						</thead>
+						
+						<tfoot>
+						<tr>
+							<th scope="row">주문금액</th>
+							<td><strong>3,440</strong>원</td>
+							<td><strong>2,970</strong>원</td>
+						</tr>
+						<tr>
+							<th scope="row">포인트/할인내역</th>
+							<td><strong>0</strong>원</td>
+							<td><strong>0</strong>원</td>
+						</tr>
+						</tfoot>
+						
+						<tbody>
+						
+						
+						<tr>
+							<th scope="row" class="th">결제정보</th>
+							<td></td>
+							<td></td>
+						</tr>
+						
+						<input type="hidden" name="pay_price" id="pay_price" value="3440" />
+						<input type="hidden" name="pay_due_amt" id="pay_due_amt" value="2970" />
+						<input type="hidden" name="pay_mean_cd" id="pay_mean_cd" value="16" />
+						<input type="hidden" name="pay_sn" id="pay_sn" value="441316399" />
+						<input type="hidden" name="iscm_cd" id="iscm_cd" value="026" />
+						<input type="hidden" name="pay_fin_yn" id="pay_fin_yn" value="N" />
+						<input type="hidden" name="pay_fin_dt" id="pay_fin_dt" value="2017-11-14" />
+						<input type="hidden" name="rel_pay_amt" id="rel_pay_amt" value="3440" />
+						<input type="hidden" name="poss_yn" id="poss_yn" value="N" />
+						<input type="hidden" name="deposit_yn"id="deposit_yn" value="N" />
+						<input type="hidden" name="card_cert_tp_cd" id="card_cert_tp_cd" value="" />
+						<input type="hidden" name="lpay_conf_no" id="lpay_conf_no" value="" /> <!-- 20150813 L.pay yhsun 추가 -->
+						<if test="true">
+							
+							
+						</if>
+						<!-- 20150813 L.pay yhsun 추가 -->
+						<if test="false">
+							
+						</if>
+						<tr class="credit">
+							<th scope="row">신용카드</th>
+							<td>3,440원</td>
+							<td>2,970원</td>
+						</tr>
+						
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!-- //할인/결제 내역 상세보기 -->
+			
+			<!-- 결제금액 -->	
+			<div class="order_sum refund_sum">
+				<ul>
+					<li class="sum5">
+						<p>
+							<span class="title">환불 예정금액</span>
+							<span class="price"><strong>470</strong>원</span>
+						</p>
+						<p>
+							<span class="title">총 재결제금액</span>
+							<span class="price"><strong>2,970</strong>원</span>
+						</p>
+					</li>
+					<!--  신용카드 -->
+					
+					<li class="refund1">
+						<div>
+							<span class="title" style="width:45%;">할부선택<span id="view_nint_inst"></span></span>
+							<div class="s_box04" style="width:50%;">								
+								<select id="cardinstmon" name="cardinstmon" onchange="fn_getNintInstYn(this.value);">
+								
+									<option value="1">
+									
+									일시불
+									
+									
+									</option>
+								
+								</select>
+								<div class="img_box"><i></i></div>
+							</div>
+						</div>
+						<!-- 20150813 L.pay yhsun 추가 -->
+						
+							
+							
+						
+						
+						<!-- //20150813 L.pay yhsun 추가 -->
+					</li>
+					
+					<!--// 신용카드 -->
+				</ul>
+			</div>
+			<!-- //결제금액 -->
+			
+			<!-- 주문 내역 확인 동의 -->
+			<div class="order_section">
+				<!-- 20171117 신용카드 외 결제수단-->
+				<div class="check_layer">
+					<div class="check on">
+						<input type="checkbox" name="ord_agr_chk" class="check01" id="agree2">
+						<label for="agree2">주문 내역 확인 동의</label>
+						<a class="more_view">내용보기</a>
+					</div>
+					<div class="agree_c">
+						주문취소 상품의 상품명, 상품가격, 배송정보를 확인하였으며,
+						주문취소에 동의하시겠습니까?<br>
+						(전자상거래법 제8조 제2항)
+					</div>
+				</div>
+				<!-- // 20171117 신용카드 외 결제수단-->
+                <!-- 20171117 신용카드,엘페이 결제수단-->
+                <div class="check_layer assent_all_wrap">
+				    <div class="check on">
+				    	<input type="checkbox" name="ord_agr_yn" id="order_agree" class="check01 assent_all" checked>
+				    	<label for="order_agree">주문 동의 및 결제 서비스 이용약관 동의</label>
+				    	<a class="more_view">내용보기</a>
+				    </div>
+					<div class="agree_c">
+                        <div class="nth_wrap nth_wrap_top">
+            	            <p class="nth1"><input type="checkbox" class="check01 assent_chk" name="assent1" checked /> 주문 동의</p>
+				    	    <p class="nth2 nth_spacing">반품비 가격을 확인하였으며,<br/>해당 상품 반품비 결제에 동의하시겠습니까?<br/>(전자상거래법 제 8조 제 2항)</p>
+            	        </div>
+            	        <div class="nth_wrap nth_wrap_btm">
+            	            <p class="nth1"><input type="checkbox" class="check01 assent_chk" name="assent2" checked /> 결제 서비스 이용약관 동의</p>
+            	            <!-- 20171120 서브 약관 체크박스 추가 -->
+            			    <p class="nth2"><input type="checkbox" id="sub_assent1" class="check01 assent_chk" name="ord_agr_yn2" value="Y" /> <label for="sub_assent1"> 전자금융거래 이용약관 동의</label><a href="#" class="assent_in_btn">약관보기</a></p>
+            			    <p class="nth2"><input type="checkbox" id="sub_assent2" class="check01 assent_chk" name="ord_agr_yn2" value="Y" /> <label for="sub_assent2"> 개인정보 수집 및 이용동의</label><a href="#" class="assent_in_btn">약관보기</a></p>
+            			    <p class="nth2 last_list"><input type="checkbox" id="sub_assent3" class="check01 assent_chk" name="ord_agr_yn2" value="Y" /> <label for="sub_assent3"> 개인정보 제 3자 제공/위탁동의</label><a href="#" class="assent_in_btn">약관보기</a></p>
+						    <!-- // 20171120 서브 약관 체크박스 추가 -->
+            	        </div>
+				    </div>
+				</div>
+				<!-- // 20171117 신용카드,엘페이 결제수단-->
+			</div>      
+            <!-- 20171117 서비스이용약관 팝업 레이어-->
+			<div class="assent_pop_wrap">
+				<h3>결제 서비스 이용약관</h3>
+				<ul>
+					<li class="on">
+						<span class="tabs tab_first">전자금융거래<br/>이용약관</span>
+						<div class="cont cont_01">
+							<p class="cont_title">제1조 목적</p>
+			                    <p>이 약관은 주식회사 케이에스넷(이하 '회사'라 합니다)이 제공하는 전자지급결제대행서비스 및
+								결제대금예치서비스를 이용자가 이용함에 있어 회사와 이용자 사이의 전자금융거래에 관한 기본적인
+								사항을 정함을 목적으로 합니다.</p>
+			                    <p class="cont_title">제2조 용어의 정의</p>
+			                    <p class="cont_sub_title">이 약관에서 정하는 용어의 정의는 다음과 같습니다.</p>
+			                    <p>1. '전자금융거래'라 함은 회사가 전자적 장치를 통하여 전자지급결제대행서비스 및 결제대금예치서비스
+								(이하 '전자금융거래 서비스'라고 합니다)를 제공하고, 이용자가 회사의 종사자와 직접 대면하거나
+								의사소통을 하지 아니하고 자동화된 방식으로 이를 이용하는 거래를 말합니다.</p>
+			                    <p>2. '전자지급결제대행서비스'라 함은 전자적 방법으로 재화의 구입 또는 용역의 이용에 있어서 지급결제
+									정보를 송신하거나 수신하는 것 또는 그 대가의 정산을 대행하거나 매개하는 서비스를 말합니다.</p>
+			                    <p>3. '결제대금예치서비스'라 함은 이용자가 재화의 구입 또는 용역의 이용에 있어서 그 대가
+									(이하 '결제대금'이라 한다)의 전부 또는 일부를 재화 또는 용역(이하 '재화 등'이라 합니다)을 공급받기
+									전에 미리 지급하는 경우, 회사가 이용자의 물품수령 또는 서비스 이용 확인 시점까지 결제대금을
+									예치하는 서비스를 말합니다.</p>
+			                    <p class="sub_btm">4. '이용자'라 함은 이 약관에 동의하고 회사가 제공하는 전자금융거래 서비스를 이용하는 자를 말합니다.</p>
+			                    <p>5. '접근매체'라 함은 전자금융거래에 있어서 거래지시를 하거나 이용자 및 거래내용의 진실성과
+									정확성을 확보하기 위하여 사용되는 수단 또는 정보로서 전자식 카드 및 이에 준하는 전자적 정보
+									(신용카드번호를 포함한다), '전자서명법'상의 인증서, 회사에 등록된 이용자번호, 이용자의 생체정보, 
+									이상의 수단이나 정보를 사용하는데 필요한 비밀번호 등 전자금융거래법 제2조 제10호에서 정하고 
+									있는 것을 말합니다.</p>
+			                    <p>6. '거래지시'라 함은 이용자가 본 약관에 의하여 체결되는 전자금융거래계약에 따라 회사에 대하여
+									전자금융거래의 처리를 지시하는 것을 말합니다.</p>
+			                    <p>7. '오류'라 함은 이용자의 고의 또는 과실 없이 전자금융거래가 전자금융거래계약 또는 이용자의
+									거래지시에 따라 이행되지 아니한 경우를 말합니다.</p>
+			                    <p class="cont_title">제3조 약관의 명시 및 변경</p>
+			                    <p>① 회사는 이용자가 전자금융거래 서비스를 이용하기 전에 이 약관을 게시하고 이용자가 이 약관의 
+									중요한 내용을 확인할 수 있도록 합니다.</p>
+			                    <p>② 회사는 이용자의 요청이 있는 경우 전자문서의 전송방식에 의하여 본 약관의 사본을 이용자에게 교부합니다.</p>
+			                    <p>③ 회사가 약관을 변경하는 때에는 그 시행일 1월 전에 변경되는 약관을 회사가 제공하는 전자금융거래
+									서비스 이용 초기화면 및 회사의 홈페이지에 게시함으로써 이용자에게 공지합니다.</p>
+			                    <p class="cont_title">제4조 전자지급결제대행서비스의 종류</p>
+			                    <p class="cont_sub_title">회사가 제공하는 전자지급결제대행서비스는 지급결제수단에 따라 다음과 같이 구별됩니다.</p>
+			                    <p>1. 신용카드결제대행서비스</p>
+			                    <p>이용자가 결제대금의 지급을 위하여 제공한 지급결제수단이 신용카드인 경우로서, 
+									회사가 전자결제시스템을 통하여 신용카드 지불정보를 송,수신하고 결제대금의 정산을 대행하거나
+									 매개하는 서비스를 말합니다.</p>
+			                    <p>2. 계좌이체대행서비스</p>
+			                    <p>이용자가 결제대금을 회사의 전자결제시스템을 통하여 금융기관에 등록한 자신의 계좌에서 출금하여 원하는 계좌로 이체할 수 있는 실시간 송금 서비스를 말합니다.</p>
+			                    <p>3. 가상계좌서비스</p>
+			                    <p>이용자가 결제대금을 현금으로 결제하고자 경우 회사의 전자결제시스템을 통하여 자동으로 이용자만의 고유한 일회용 계좌의 발급을 통하여 결제대금의 지급이 이루어지는 서비스를 말합니다.</p>
+			                    <p>4. 기타</p>
+			                    <p>회사가 제공하는 서비스로서 지급결제수단의 종류에 따라 '휴대폰 결제대행서비스', 'ARS결제대행서비스', '상품권결제대행서비스'등이 있습니다.</p>
+			                    <p class="cont_title">제5조 결제대금예치서비스의 내용</p>
+			                    <p>① 이용자(이용자의 동의가 있는 경우에는 재화 등을 공급받을 자를 포함합니다. 이하 본조에서 같습니다)는 재화 등을 공급받은 사실을 재화 등을 공급받은 날부터 3영업일 이내에 회사에 통보하여야 합니다.</p>
+			                    <p>② 회사는 이용자로부터 재화 등을 공급받은 사실을 통보받은 후 회사와 통신판매업자간 사이에서 정한 기일 내에 통신판매업자에게 결제대금을 지급합니다.</p>
+			                    <p>③ 회사는 이용자가 재화 등을 공급받은 날부터 3영업일이 지나도록 정당한 사유의 제시없이 그 공급받은 사실을 회사에 통보하지 아니하는 경우에는 이용자의 동의없이 통신판매업자에게 결제대금을 지급할 수 있습니다.</p>
+			                    <p>④ 회사는 통신판매업자에게 결제대금을 지급하기 전에 이용자에게 결제대금을 환급받을 사유가 발생한 경우에는 그 결제대금을 소비자에게 환급합니다.</p>
+			                    <p>⑤ 회사는 이용자와의 결제대금예치서비스 이용과 관련된 구체적인 권리,의무를 정하기 위하여 본 약관과는 별도로 결제대금예치서비스이용약관을 제정할 수 있습니다.</p>
+			                    <p class="cont_title">제6조 이용시간</p>
+			                    <p>① 회사는 이용자에게 연중무휴 1일 24시간 전자금융거래 서비스를 제공함을 원칙으로 합니다. 단, 금융기관 기타 결제수단 발행업자의 사정에 따라 달리 정할 수 있습니다.</p>
+			                    <p>② 회사는 정보통신설비의 보수, 점검 기타 기술상의 필요나 금융기관 기타 결제수단 발행업자의 사정에 의하여 서비스 중단이 불가피한 경우, 서비스 중단 3일 전까지 게시가능한 전자적 수단을 통하여 서비스 중단 사실을 게시한 후 서비스를 일시 중단할 수 있습니다. 다만, 시스템 장애보국, 긴급한 프로그램 보수, 외부요인 등 불가피한 경우에는 사전 게시없이 서비스를 중단할 수 있습니다.</p>
+			                    <p class="cont_title">제7조 접근매체의 선정과 사용 및 관리</p> 
+			                    <p>① 회사는 전자금융거래 서비스 제공 시 접근매체를 선정하여 이용자의 신원, 권한 및 거래지시의 내용 등을 확인할 수 있습니다.</p>
+			                    <p class="sub_btm">② 이용자는 접근매체를 제3자에게 대여하거나 사용을 위임하거나 양도 또는 담보 목적으로 제공할 수 없습니다.</p>
+			                    <p>③ 이용자는 자신의 접근매체를 제3자에게 누설 또는 노출하거나 방치하여서는 안되며, 접근매체의 도용이나 위조 또는 변조를 방지하기 위하여 충분한 주의를 기울여야 합니다.</p>
+			                    <p>④ 회사는 이용자로부터 접근매체의 분실이나 도난 등의 통지를 받은 때에는 그 때부터 제3자가 그 접근매체를 사용함으로 인하여 이용자에게 발생한 손해를 배상할 책임이 있습니다.</p>
+			                    <p class="cont_title">제8조 거래내용의 확인</p> 
+			                    <p>① 회사는 이용자와 미리 약정한 전자적 방법을 통하여 이용자의 거래내용(이용자의 '오류정정 요구사실 및 처리결과에 관한 사항'을 포함합니다)을 확인할 수 있도록 하며, 이용자의 요청이 있는 경우에는 요청을 받은 날로부터 2주 이내에 모사전송 등의 방법으로 거래내용에 관한 서면을 교부합니다.</p>
+			                    <p>② 회사가 이용자에게 제공하는 거래내용 중 거래계좌의 명칭 또는 번호, 거래의 종류 및 금액, 거래상대방을 나타내는 정보, 거래일자, 전자적 장치의 종류 및 전자적 장치를 식별할 수 있는 정보와해당 전자금융거래와 관련한 전자적 장치의 접속기록은 5년간, 건당 거래금액이 1만원 이하인 소액 전자금융거래에 관한 기록, 전자지급수단 이용시 거래승인에 관한 기록, 이용자의 오류정정 요구사실 및 처리결과에 관한 사항은 1년간의 기간을 대상으로 한다.</p>
+			                    <p>③ 이용자가 제1항에서 정한 서면교부를 요청하고자 할 경우 다음의 주소 및 전화번호로 요청할 수 있습니다.</p>
+			                    <p>- 주소: 135-090 서울시 강남구 삼성동 169-10 성보타워 5층 (주)케이에스넷</p> 
+			                    <p>- 이메일 주소: / hyojung221@ksnet.co.kr</p> 
+			                    <p class="cont_row">- 전화번호: 02-1544-6030</p> 
+			                    <p class="cont_title sub_btm">제9조 오류의 정정 등</p> 
+			                    <p>① 이용자는 전자금융거래 서비스를 이용함에 있어 오류가 있음을 안 때에는 회사에 대하여 그 정정을 요구할 수 있습니다.</p>
+			                    <p>② 회사는 전항의 규정에 따른 오류의 정정요구를 받은 때에는 이를 즉시 조사하여 처리한 후 정정요구를 받은 날부터 2주 이내에 그 결과를 이용자에게 알려 드립니다.</p>
+			                    <p class="cont_title">제10조 회사의 책임</p> 
+			                    <p>① 접근매체의 위조나 변조로 발생한 사고로 인하여 이용자에게 발생한 손해에 대하여 배상책임이 있습니다.</p>
+			                    <p> 다만 이용자가 제6조 제2항에 위반하거나 제3자가 권한없이 이용자의 접근매체를 이용하여 전자금융거래를 할 수 있음을 알았거나 알 수 있었음에도 불구하고 이용자가 자신의 접근매체를 누설 또는 노출하거나  방치한 경우 그 책임의 전부 또는 일부를 이용자가 부담하게 할 수 있습니다.</p>
+			                    <p>② 회사는 계약체결 또는 거래지시의 전자적 전송이나 처리과정에서 발생한 사고로 인하여 이용자에게 그 손해가 발생한 경우에는 그 손해를 배상할 책임이 있습니다.</p>
+			                    <p>다만 본조 제1항 단서에 해당하거나 법인('중소기업기본법' 제2조 제항에 의한 소기업을 제외합니다)인 이용자에게 손해가 발생한 경우로서 회사가 사고를 방지하기 위하여 보안절차를 수립하고 이를 철저히 준수하는 등 합리적으로 요구되는 충분한 주의의무를 다한 경우 그 책임의 전부 또는 일부를 이용자가 부담하게 할 수 있습니다.</p>
+			                    <p>③ 회사는 이용자로부터의 거래지시가 있음에도 불구하고 천재지변, 회사의 귀책사유가 없는 정전, 화재, 통신장애 기타의 불가항력적인 사유로 처리 불가능하거나 지연된 경우로서 이용자에게 처리 불가능또는 지연사유를 통지한 경우 (금융기관 또는 결제수단 발행업체나 통신판매업자가 통지한 경우를 포함합니다)에는 이용자에 대하여 이로 인한 책임을 지지 아니합니다.</p>
+			                    <p>④ 회사는 전자금융거래를 위한 전자적 장치 또는 ‘정보통신망 이용촉진 및 정보보호 등에 관한 법률’ 제2조 제1항 제1호에 따른 정보통신망에 침입하여 거짓이나 그 밖의 부정한 방법으로 획득한 접근매체의  이용으로 발생한 사고로 인하여 이용자에게 그 손해가 발생한 경우에는 그 손해를 배상할 책임이 있습니다.</p>
+			                    <p class="cont_title">제11조 전자지급거래계약의 효력</p>
+			                    <p>① 회사는 이용자의 거래지시가 전자지급거래에 관한 경우 그 지급절차를 대행하며, 전자지급거래에 관한 거래지시의 내용을 전송하여 지급이 이루어지도록 합니다.</p>
+			                    <p>② 회사는 이용자의 전자지급거래에 관한 거래지시에 따라 지급거래가 이루어지지 않은 경우 수령한 자금을 이용자에게 반환하여야 합니다.</p>
+			                    <p class="cont_title">제12조 거래지시의 철회</p>
+			                    <p class="sub_btm">① 이용자는 전자지급거래에 관한 거래지시의 경우 지급의 효력이 발생하기 전까지 거래지시를 철회할 수 있습니다.</p>
+			                    <p>② 전항의 지급의 효력이 발생 시점이란 (i) 전자자금이체의 경우에는 거래지시된 금액의 정보에 대하여 수취인의 계좌가 개설되어 있는 금융기관의 계좌이 원장에 입금기록이 끝난 때 (ii) 그 밖의 전자지급수단으로 지급하는 경우에는 거래지시된 금액의 정보가 수취인의 계좌가 개설되어 있는 금융기관의 전자적 장치에 입력이 끝난 때를 말합니다.</p>
+			                    <p>③ 이용자는 지급의 효력이 발생한 경우에는 전자상거래 등에서의 소비자보호에 관한 법률 등 관련 법령상 청약의 철회의 방법 또는 본 약관 제5조에서 정한 바에 따라 결제대금을 반환받을 수 있습니다. 
+								<p>제13조 전자지급결제대행 서비스 이용 기록의 생성 및 보존</p>
+			                    <p>① 회사는 이용자가 전자금융거래의 내용을 추적, 검색하거나 그 내용에 오류가 발생한 경우에 이를 확인하거나 정정할 수 있는 기록을 생성하여 보존합니다.</p>
+			                    <p class="cont_row">② 전항의 규정에 따라 회사가 보존하여야 하는 기록의 종류 및 보존방법은 제8조 제2항에서 정한 바에 따릅니다.</p>
+			                    <p class="cont_title">제14조 전자금융거래정보의 제공금지</p>
+			                    <p>회사는 전자금융거래 서비스를 제공함에 있어서 취득한 이용자의 인적사항, 이용자의 계좌, 접근매체 및 전자금융거래의 내용과 실적에 관한 정보 또는 자료를 이용자의 동의를 얻지 아니하고 제3자에게 제공, 누설하거나 업무상 목적 외에 사용하지 아니합니다.</p>
+			                    <p class="cont_title">제15조 분쟁처리 및 분쟁조정</p>
+			                    <p>① 이용자는 다음의 분쟁처리 책임자 및 담당자에 대하여 전자금융거래 서비스 이용과 관련한 의견 및 불만의 제기, 손해배상의 청구 등의 분쟁처리를 요구할 수 있습니다.</p>
+			                    <p>- 담당자: KSNET PG사업팀 민원담당자 / 김진영</p>
+			                    <p>- 연락처(전화번호 / FAX): 02-3420-5917, 02-3420-5806 / 02-3420-5851</p>
+			                    <p class="sub_btm">- E-mail : kspay@ksnet.co.kr / kjy@ksnet.co.kr</p>
+			                    <p>② 이용자가 회사에 대하여 분쟁처리를 신청한 경우에는 회사는 15일 이내에 이에 대한 조사 또는 처리 결과를 이용자에게 안내합니다.</p>
+			                    <p>③ 이용자는 '금융감독기구의 설치 등에 관한 법률' 제51조의 규정에 따른 금융감독원의 금융분쟁조정위원회나 '소비자보호법' 제31조 제1항의 규정에 따른 소비자보호원에 회사의 전자금융거래 서비스의 이용과 관련한 분쟁조정을 신청할 수 있습니다.</p>
+			                    <p class="cont_title">제16조 회사의 안정성 확보 의무</p>
+			                    <p>회사는 전자금융거래의 안전성과 신뢰성을 확보할 수 있도록 전자금융거래의 종류별로 전자적 전송이나 처리를 위한 인력, 시설, 전자적 장치 등의 정보기술부문 및 전자금융업무에 관하여 금융감독위원회가 정하는 기준을 준수합니다.</p>
+			                    <p class="cont_title">제17조 약관 외 준칙 및 관할</p>
+			                    <p>① 이 약관에서 정하지 아니한 사항에 대하여는 전자금융거래법, 전자상거래 등에서의 소비자 보호에 관한 법률, 통신판매에 관한 법률, 여신전문금융업법 등 소비자보호 관련 법령에서 정한 바에 따릅니다.</p>
+			                    <p>② 회사와 이용자간에 발생한 분쟁에 관한 관할은 민사소송법에서 정한 바에 따릅니다.</p>
+			                    <p>이 약관은 2017년 3월 29일부터 적용합니다.</p>
+						</div>
+					</li>
+					<li>
+						<span class="tabs">개인정보 수집<br/>및 이용안내</span>
+						<div class="cont cont_02">
+							<p class="person_title">1. 주식회사 케이에스넷(이하 “회사”라 합니다)은 정보통신망 이용촉진 및 정보보호 등에 관한 법률 제22조(개인정보의 수집 이용 동의 등) 및 개인정보보호법 제15조(개인정보의 수집 이용)에 의해 통신과금서비스 이용자(이하 “이용자”라 합니다)로 부터 아래와 같이 개인정보를 수집 및 이용합니다.</p>
+			                <p class="person_title">2. 회사가 이용자의 개인정보를 수집, 이용하는 목적은 아래와 같습니다.</p> 
+			                <p>① 이용자가 구매한 재화나 용역의 대금 결제</p> 
+			                <p>② 이용자가 결제한 거래의 취소 또는 환불</p> 
+			                <p>③ 이용자가 결제한 거래의 청구 및 수납</p> 
+			                <p>④ 이용자가 수납한 거래 대금의 정산</p> 
+			                <p>⑤ 이용자가 결제한 거래의 내역을 요청하는 경우 응대 및 확인</p> 
+			                <p class="cont_row">⑥ 통신과금서비스 이용 불가능한 이용자(미성년자 등)와 불량, 불법 이용자의 부정 이용 방지</p> 
+			                <p class="person_title">3. 회사가 수집하는 이용자 개인정보의 항목은 아래와 같습니다.</p> 
+			                <p>① 이용자의 주민등록번호</p> 
+			                <p>② 이용자의 휴대폰 또는 유선 전화 번호</p> 
+			                <p>③ 이용자가 가입한 휴대폰 또는 유선 전화의 통신사</p> 
+			                <p>④ 이용자의 접속 IP</p> 
+			                <p class="cont_row">⑤ 이용자의 이메일</p> 
+			                <p class="person_title">4. 회사가 수집한 이용자 개인정보의 보유, 이용 기간은 아래와 같습니다.</p> 
+			                <p>① 건당 거래 금액 1만원 초과의 경우: 5년간</p> 
+			                <p class="cont_row">② 건당 거래 금액 1만원 이하의 경우: 1년간</p> 
+			                <p class="person_title">5. 개인정보의 보유, 이용 기간이 만료된 개인정보는 아래와 같은 방법으로 파기합니다.</p> 
+			                <p>① 전자적 파일형태로 저장된 개인정보는 기록을 재생할 수 없는 기술적 방법을 사용하여 삭제합니다.</p> 
+			                <p class="cont_row">② 종이에 출력된 개인정보는 분쇄기로 분쇄하거나 소각을 통하여 파기합니다.</p> 
+			                <p class="person_title">6. 이용자는 회사의 개인정보 수집, 이용 동의를 거부할 권리가 있습니다. 다만, 개인정보의 수집, 이용을 거부할 경우 결제가 완료될 수 없음을 알려드립니다.</p> 
+						</div>
+					</li>
+					<li>
+						<span class="tabs">개인정보 제 3자<br/>제공/위탁 안내</span>
+						<div class="cont cont_03">
+							<p class="person_title">1. 주식회사 케이에스넷(이하 “회사”라 합니다)은 정보통신망 이용촉진 및 정보보호 등에 관한 법률 및 개인정보보호법에 의해 통신과금서비스 이용자(이하 “이용자”라 합니다)로부터 수집한 개인정보를 아래와 같이 제3자에게 제공 및 위탁합니다.</p>
+			                <p class="person_title">2. 회사는 통신과금 서비스를 제공함에 있어서 취득한 이용자의 인적사항, 이용자의 계좌, 접근매체 및 통신과금의 내용과 실적에 관한 정보 또는 자료를 이용자의 동의를 얻지 아니하고 제3자에게 제공, 누설하거나 업무상 목적 외에 사용하지 아니합니다. 다만, 업무상 이용자 정보를 제3자에게 제공, 위탁할 경우 본 동의서 및 홈페이지(http://pg.ksnet.co.kr)을 통해 이용자에게 고지를 합니다.</p>
+			                <p class="person_title">3. 회사는 정보통신망 이용촉진 및 정보보호 등에 관한 법률(제7장 통신과금서비스)의 관련 규정에 의거하여 구성된 “유무선전화결제이용자보호협의회”가 이용자 보호를 위해 통신과금서비스 관련 정보를 요청하면 다음 각 호의 경우에는 관련 정보를 제공할 수 있습니다.</p>
+			                <p>① 휴대폰깡, 대포폰, 복제폰 등 시장 질서를 교란시키는 불법업체 혹은 불법행위자에 의한 민원발생의 경우</p>
+			                <p>② 지인 사용 등 제3자 결제로 인한 민원발생의 경우</p>
+			                <p class="cont_row">③ 기타 통신과금서비스를 통한 불법행위가 발생하여 이용자 보호가 필요한 경우</p>
+			                <p class="person_title">4. 회사는 아래와 같이 이용자로부터 수집한 개인정보를 제3자에게 제공, 위탁합니다.</p>
+			                <p>개인정보를 제공받는 자=LB휴넷</p>
+			                <p>개인정보를 제공받는 자의 개인정보 이용목적=거래 내역 확인, 취소 및 환불, 서비스 상담</p>
+							<p>제공하는 개인정보의 항목=주민등록번호 앞 7자리, 휴대전화 또는 유선전화 번호 및 가입한 통신사, 거래 내역 </p>
+							<p>제공받는 자의 개인정보 보유 및 이용 기간=건당 거래 금액 1만원 초과의 경우 5년, 건당 거래 금액 1만원 이하의 경우 1년</p>
+			                <p>개인정보를 제공받는 자=주식회사 에스케이텔레콤, 주식회사 케이티, 주식회사 케이에스넷</p>
+			                <p>개인정보를 제공받는 자의 개인정보 이용목적=이용자 본인 인증 및 거래 승인</p>
+			                <p>제공하는 개인정보의 항목=주민등록번호, 휴대전화 또는 유선전화 번호, 거래 내역</p>
+			                <p>제공받는 자의 개인정보 보유 및 이용 기간=건당 거래 금액 1만원 초과의 경우 5년, 건당 거래 금액 1만원 이하의 경우 1년</p>
+			                <p>개인정보를 제공받는 자=이용자의 거래 상대방</p>
+			                <p>개인정보를 제공받는 자의 개인정보 이용목적=거래 승인 여부 확인, 취소 및 환불, 거래 대금의 정산, 거래 내역 요청에 대한 응대 및 확인</p>
+			                <p>제공하는 개인정보의 항목=휴대전화 또는 유선전화 번호, 거래 승인 여부, 거래 승인 실패 원인, 결제 한도, 이메일</p>
+			                <p class="cont_row"> 제공받는 자의 개인정보 보유 및 이용 기간=건당 거래 금액 1만원 초과의 경우 5년, 건당 거래 금액 1만원 이하의 경우 1년</p>
+			                <p class="person_title">5. 제3자에게 제공, 위탁된 개인정보의 보유, 이용 기간이 만료된 개인정보는 아래와 같은 방법으로 파기합니다.</p>
+			                <p>① 전자적 파일형태로 저장된 개인정보는 기록을 재생할 수 없는 기술적 방법을 사용하여 삭제합니다.</p>
+			                <p class="cont_row">② 종이에 출력된 개인정보는 분쇄기로 분쇄하거나 소각을 통하여 파기합니다.</p>
+			                <p class="person_title">6. 이용자는 회사의 개인정보 제공, 이용 동의를 거부할 권리가 있습니다. 다만, 개인정보의 제공, 위탁을 거부할 경우 결제가 완료될 수 없음을 알려드립니다.</p>
+						</div>
+					</li>
+				</ul>
+				<span class="assent_pop_close">닫기</span>
+			</div>
+			<script>
+				// 20171117 주문동의 이용약관 전체 체크 스크립트
+	            $(".assent_all").on("click",function(){
+                var $childChk = $(this).parents(".assent_all_wrap").find("input");
+	        		$childChk.prop("checked", 
+	        	    	$(this).is(":checked") 
+	        		);
+	            });
+                        
+	            $(".assent_chk").on("click",function(){
+                	var $allChk = $(this).parents(".assent_all_wrap").find(".assent_all"),
+                   		$inChk = $(this).parents(".assent_all_wrap").find(".assent_chk:checked");
+	        	    	$allChk.prop("checked", ($inChk.length == 2) ? true : false);		
+	            });
+
+				//20171117 약관동의 팝업 스크립트
+				function assentPop(idx){
+					$(".assent_pop_wrap li").eq(idx).addClass("on").siblings("li").removeClass("on");
+					$(".cont").scrollTop(0);
+				}
+                        
+				$(".assent_in_btn").on("click",function(){
+					var idx = $(this).parent("p").index() - 1;
+                
+					$(".assent_pop_wrap").show();
+					$("#cover").show();
+					assentPop(idx);
+					return false;
+				});
+                        
+				$(".assent_pop_wrap .tabs").on("click",function(){
+					var idx = $(this).parent("li").index();
+					assentPop(idx);
+				});
+				$(".assent_pop_close").on("click",function(){
+					$(".assent_pop_wrap").hide();
+					$("#cover").hide();
+				});
+
+				// 20171117 주문 내역 확인 동의
+        		$(".more_view").bind("click", function(){
+        		    $(this).parent().toggleClass("show").next().toggle();
+        		});
+			
+			</script>
+			<!-- //주문 내역 확인 동의 -->
+			<!-- 2012-08-13 // 주문내역 확인 동의 끝-->
+			<div class="footButton">
+				<a href="javascript:history.back();" class="c_btn col05"><span>취소하기</span></a>
+				<a href="javascript:re_payment();" class="c_btn col01"><span>주문취소•재결제</span></a>
+			</div>
+			
+			<!-- 꼭 읽어보세요! -->
+			<div class="readme">
+				<h3>꼭 읽어보세요</h3>
+				<p>무료배송권과 포인트/보관금, 상품권은 변경하실 수 없습니다.<br>환불계좌의 예금주는 주문자명과 동일해야 합니다.</p>
+				<h4>[취소/반품완료 후 환불 안내]</h4>
+				<ul>	
+					<li>카드 승인 취소 : 매입이 되기 전인 카드는 당일 승인취소</li>
+					<li>카드 매입 취소 : 카드사에 매입취소를 신청하면 카드사에서 취소 처리 하는데 1~2주 소요</li>
+					<li>매입 취소처리 기간은 카드사마다 다르며, 카드사를 통하여 확인 하실 수 있습니다.</li>
+					<li>무통장입금 : 익일까지 환불계좌로 입금</li>
+					<li>휴대폰결제 : 결제하신 당월에 취소/반품처리가 완료되는 경우, 휴대폰이용요금에 부과예정이던 금액이 취소가 됩니다. 결제하신 당월이 지난 후 취소/반품처리가 완료되는 경우, 고객님의 계정에 등록된 환불계좌로 환불 됩니다.</li>
+					<li>상품권결제 : 환불금액은 L-money로 적립해드립니다.</li>
+				</ul>
+			</div>
+			<!-- 꼭 읽어보세요! -->
+			
+			<div class="read_important">
+				<p>위 목록에 없는 상품은 <em>고객센터(1577-1110)</em>나 <br><em>1:1상담</em>을 통해 접수해 주시기 바랍니다. </p>
+				<a href="#go" class="c_btn mtom"><span>1:1상담</span></a>
+			</div>
+		</div>
+		<!-- 재결제 내용확인 DIV End -->
+		</form>
+		
+		
+		
+		
+	</section>
+
+	<input type="hidden" id="lpayCardCd" name="lpayCardCd" value="008"/>
+	<input type="hidden" id="lpayCardRef1Tval" name="lpayCardRef1Tval" value="N"/>
+
+	<input type="hidden" id="lpayCardCd" name="lpayCardCd" value="016"/>
+	<input type="hidden" id="lpayCardRef1Tval" name="lpayCardRef1Tval" value="N"/>
+
+	<input type="hidden" id="lpayCardCd" name="lpayCardCd" value="021"/>
+	<input type="hidden" id="lpayCardRef1Tval" name="lpayCardRef1Tval" value="N"/>
+
+	<input type="hidden" id="lpayCardCd" name="lpayCardCd" value="026"/>
+	<input type="hidden" id="lpayCardRef1Tval" name="lpayCardRef1Tval" value="N"/>
+
+	<input type="hidden" id="lpayCardCd" name="lpayCardCd" value="029"/>
+	<input type="hidden" id="lpayCardRef1Tval" name="lpayCardRef1Tval" value="N"/>
+
+	<input type="hidden" id="lpayCardCd" name="lpayCardCd" value="031"/>
+	<input type="hidden" id="lpayCardRef1Tval" name="lpayCardRef1Tval" value="N"/>
+
+	<input type="hidden" id="lpayCardCd" name="lpayCardCd" value="047"/>
+	<input type="hidden" id="lpayCardRef1Tval" name="lpayCardRef1Tval" value="N"/>
+
+	<input type="hidden" id="lpayCardCd" name="lpayCardCd" value="048"/>
+	<input type="hidden" id="lpayCardRef1Tval" name="lpayCardRef1Tval" value="N"/>
+
+	<input type="hidden" id="lpayCardCd" name="lpayCardCd" value="055"/>
+	<input type="hidden" id="lpayCardRef1Tval" name="lpayCardRef1Tval" value="Y"/>
+
+<!-- ################################################################## -->
+<!-- X안심클릭에서 사용하는 iframe START									-->
+<!-- 스타일 및 웹 칼라는 쇼핑몰 및 PG사에 맞게 적용하세요.						-->
+<!-- ################################################################## -->
+<div id="ANSIM_LAYER" style="display:none;position:absolute;z-index:999">
+	<div style="position: absolute;right: 2px;top: -10px;">
+		<a href="javascript:close_iframe();"><img src="http://image.lotte.com/lotte/mobile/popup/btn_close03.png" alt="닫기"></a>
+	</div>
+	<iframe id="X_ANSIM_FRAME" name="X_ANSIM_FRAME" style="display:none;border:none;background:#FFFFFF;width:100%;height:100%;" src="/dacom/xansim/iframe.jsp" height=0 scrolling="no"></iframe>
+</div>
+<!-- ################################################################## -->
+<!-- 안심결제                                                                     						-->
+<!-- ################################################################## -->
+<form id="frm_card" name="frm_card">
+<input type="hidden" name="X_CARDTYPE" value="" />
+<input type="hidden" name="X_AMOUNT" value="" />
+<input type="hidden" name="X_SP_CHAIN_CODE" value="" />
+<input type="hidden" name="X_ISMART_USE_SIGN" value="">
+<input type="hidden" name="X_MALL_APP_NAME" value="">
+</form> 
+<!-- ################################################################## -->
+<!-- 롯데카드                                                                      						-->
+<!-- ################################################################## -->
+
+<form id="SIMPLEPAYFORM" name="SIMPLEPAYFORM" action="/smpi/LCSMPIAgent01.jsp" method="post" target="X_ANSIM_FRAME">
+<input type="hidden" name="order_amount" value="" />
+<input type="hidden" name="order_currency" value="410" />
+<input type="hidden" name="order_cardname" value="" />
+<input type="hidden" name="order_no" value="" />
+<input type="hidden" name="order_userid" value="" />
+<input type="hidden" name="order_business" value="1018152964" />
+<input type="hidden" name="order_mname" value="LOTTEDOTCOM" />
+<input type="hidden" name="order_etc1" value="N" />
+<input type="hidden" name="order_etc2" value="" />
+<input type="hidden" name="apvl_seller_id_lt" value="1018152964" />
+<input type="hidden" name="apvl_chain_no_lt" value="9212743785" />
+<input type="hidden" name="apvl_ss_useyn_lt" value="L" />
+<input type="hidden" name="MBRNO" value="0011607448" />
+<input type="hidden" name="REGNO" value="LD00002" />
+<input type="hidden" name="REQTYPE" value="2" />
+<input type="hidden" name="USERKEY" value="A31272230541999163304167" />
+<input type="hidden" name="PAY" value="" />
+
+<input type="hidden" name="IOS_RETURN_APP" value="" />
+</form>
+<!-- ################################################################## -->
+<!-- MISP									                            -->
+<!-- ################################################################## -->
+<span id="misp_confirm_div" style="display: none;"></span>
+<!-- ################################################################## -->
+<!-- ILKMPI									                            -->
+<!-- ################################################################## -->
+<form id="ILKFORM" name="ILKFORM" action="/ilkmpi/veri_host_mobile.jsp" method="post" target="X_ANSIM_FRAME">
+	<input type="hidden" name="pan"             	value="">				<!-- 카드번호  -->
+	<input type="hidden" name="pay_ansim_price"		value="" />				<!-- 결제금액 -->
+	<input type="hidden" name="apvl_halbu"			value="" />				<!-- 할부개월수 -->
+	<input type="hidden" name="handNum"   			value="00000000000" />	<!-- 휴대폰 번호 -->
+	<input type="hidden" name="TID" 				value="">				<!-- TransactionID -->
+	<input type="hidden" name="usimYn"				value="N" />			<!-- 모바일카드 -->
+	<input type="hidden" name="expiry"          	value="">				<!-- 유효기간 -->
+	<input type="hidden" name="purchase_amount" 	value="">				<!-- 금액 -->
+	<input type="hidden" name="description"     	value="none">			<!-- 기타비고 -->
+	<input type="hidden" name="currency"        	value="410">			<!-- 통화코드 -->
+	<input type="hidden" name="device_category" 	value="0">				<!-- 접근디바이스 -->
+	<input type="hidden" name="hostid"          	value="00000001">	    <!-- ILK에서 부여받은 ID -->
+	<input type="hidden" name="hostpwd"         	value="PkD19gVs">	    <!-- ILK에서 부여받은 Password -->
+	<input type="hidden" name="name" 				value="LOTTEDOTCOM">	<!-- 가맹점명 -->
+	<input type="hidden" name="url" 				value="http://mt2.lotte.com"><!-- 가맹점Url -->
+	<input type="hidden" name="country" 			value="410">			<!-- ISO코드 -->
+	<input type="hidden" name="useActiveX" 			value="N">				<!-- ActiveX 사용여부 -->
+	<input type="hidden" name="returnUrl" 			value="http://mt2.lotte.com/ilkmpi/mobileReturn.jsp">
+	<input type="hidden" name="cardType"      		value="">
+</form>
+<!-- ################################################################## -->
+<!-- KBAPP									                            -->
+<!-- ################################################################## -->
+<form id="frm_spay" name="frm_spay" action="/spay/shop.jsp" method="post">
+<input type="hidden" name="aff_name" value="KB" />
+<input type="hidden" name="totsttlamt" value="" />
+<input type="hidden" name="cardinst" value="" />
+<input type="hidden" name="cardinstmon" value="" />
+<input type="hidden" name="schema" value="" />
+<input type="hidden" name="form_name" value="frm_send" />
+</form>
+<!-- ################################################################## -->
+<!-- VPAY	(하나SK)								                        -->
+<!-- ################################################################## -->
+<form id="frm_vpay" name="frm_vpay" action="/vpay/req-authM.jsp" method="post">
+<input type="hidden" name="vp_cardcode" value="" />
+<input type="hidden" name="vp_goodname" value="" />
+<input type="hidden" name="vp_price" value="" />
+<input type="hidden" name="vp_quota" value="" />
+<input type="hidden" name="vp_quota_flag" value="" />
+<input type="hidden" name="vp_iscmcd" value="" />
+<input type="hidden" name="vp_site_no" value="1" />
+</form>
+
+	
+
+
+
+	
+
+
+
+	
+
+
+<script>
+$(document).ready(function(){
+	$(".btn_back a").on('click', function() {
+	    navback(); return false;
+	});
+});
+var chkApp = "";
+
+chkApp	= "N";
+
+
+//닷컴 직원 여부 조회
+
+$.ajax({
+	type: 'post',
+	url: "/login/m/dotcomStaffYn.do?c=mlotte&udid=&v=&cn=&cdn=&loginId=jds1616",
+	success: function(data) {
+		$("#dotcomStaff").html(data);
+	}
+});
+
+
+function outLink(url){
+	
+		window.open(url);
+	
+}
+
+function openNativePopup(title, url) { // MOBILE2 이형근(hglee63): 네이티브 팝업 호출
+	 // 웹
+		window.open(url);
+	
+}
+
+//액션바 홈 클릭시
+function actionbarHome(){
+	for(i=0; i < sessionStorage.length; i++){
+		if(sessionStorage.key(i).indexOf("m_") > -1){
+			setSessionStorage(sessionStorage.key(i), "");
+		}
+	}
+	location.href = "http://mt2.lotte.com/main_phone.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=m_actionbar_home";
+}
+</script>
+
+
+<section id="lotteActionbar">
+    <ul class="glSearchL">
+        <li class="home"><a href="javascript:actionbarHome();">홈</a></li>
+        <li class="category"><a href="#">카테고리</a></li> <!-- m_actionbar_category -->
+        <li class="search"><a href="#go">검색</a></li> <!-- m_actionbar_search -->
+        <li class="cart"><a id="ab_cart" href="http://mt2.lotte.com/mylotte/cart/cart_list.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=m_actionbar_cartlist">장바구니</a></li>
+        <li class="order"><a href="http://mt2.lotte.com/mylotte/purchase/purchase_list.do?c=mlotte&udid=&v=&cn=&cdn=&fromPg=3&tclick=m_actionbar_purchaselist&ordListCase=1">주문배송</a></li>
+        <li class="my"><a>MY</a></li>
+    </ul>
+</section>
+
+
+
+<script>
+function testTop () {
+	if ( document.querySelectorAll( 'header.ps_head' ).length != 0 ) {
+	    document.querySelector( 'header.ps_head' ).setAttribute( 'style' , '' ) ;
+	}
+	window.scrollTo( 0 , 0 ) ; 
+}
+</script>
+
+<div class="btn_top">
+	<!-- <a href="javascript:$(window).scrollTop(0);">위로</a> -->
+	<a onclick="testTop()">위로</a>
+</div>
+
+<div class="btn_back">
+	<a href="#" >뒤로</a>
+</div>
+
+<!-- footer -->
+<footer id="footer" class="new2015">
+	<div id="footerBn" class="banner">
+		
+	</div>
+	<ul class="menu01"><!-- 2014-04-30 수정(메뉴순서 변경) -->
+		<li id="dotcomStaff"><a href="http://mt2.lotte.com/mylotte/mylotte.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=m_footer_mylotte">마이롯데</a><i></i></li>
+		<li><a href="javascript:setTclick('m_footer_PC');outLink('http://www.lotte.com/main/viewMain.lotte?dpml_no=1&check=N');">PC버전</a><i></i></li>
+		<li><a href="http://mt2.lotte.com/mylotte/cart/cart_list.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=m_footer_cart">장바구니</a><i></i></li>
+		<li><a href="http://mt2.lotte.com/custcenter/m/submain.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=m_footer_customercenter">고객센터</a><i></i></li>
+		<li><a href="javascript:goLogout();">로그아웃</a></li><!-- 로그인 전 -->
+	</ul>
+	<div class="info">
+		<ul class="menu02">
+			<li><strong>(주)롯데닷컴</strong></li>
+			<li><a href="http://mt2.lotte.com/agreement/company.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=m_footer1">회사소개</a></li>
+			<li><a href="javascript:setTclick('m_footer2');outLink('http://www.ftc.go.kr/info/bizinfo/communicationList.jsp');">사업자정보확인</a></li>
+			<li><a href="javascript:setTclick('m_footer3');outLink('http://www.lotte.com/main/common/forward.GuaranteeService_pop.lotte');">채무지급보증안내</a></li>
+		</ul>
+		<p class="add">
+            <span>대표이사 : 김형준</span><br>
+            <span class="line">서울시 중구 을지로 158 10층(을지로4가, 삼풍빌딩)</span> <span class="line">사업자등록번호 : 101-81-52964 통신판매업신고 : 중구 제00402호</span><br>
+            <span class="line">고객만족센터 : 1577-1110  webmaster@lotte.com</span> <span class="line">개인정보관리책임 : 임성묵</span> <span class="line">청소년보호 책임자:김진수</span><br>
+            <span>호스팅 사업자 : (주)롯데닷컴
+        </p>
+	</div>
+	<div class="menu03">
+		<ul>
+			<li><a href="http://mt2.lotte.com/agreement/custAgreement.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=m_footer4">이용약관</a></li>
+			<li><a href="http://mt2.lotte.com/agreement/custPrivacy.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=m_footer5"><strong>개인정보취급(처리)방침</strong></a></li>
+			<li><a href="http://mt2.lotte.com/agreement/protect_youth.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=m_footer6">청소년보호정책</a></li>
+			
+		</ul>
+	</div>
+	<div class="capyright">Copyright © LOTTE.com, Inc. All rights Reserved.</div>
+</footer>
+<!--// footer -->	
+	
+<script>
+function goLogin() {
+	var tUrl = "";
+	if( window.location.href.indexOf("targetUrl=") < 0 ){
+		tUrl = "&targetUrl=" + encodeURIComponent(window.location.href,'UTF-8');
+	}
+	else {
+		tUrl = "&" + window.location.href.substring(window.location.href.indexOf("targetUrl="));
+	}
+	self.location.href = "http://mt2.lotte.com/login/loginForm.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=m_footer_log" + tUrl;
+}
+function goLogout() {
+	self.location.href = "http://mt2.lotte.com/login/logout.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=m_footer_log";
+}
+function goAdultLogin() {
+	var target_url = "";
+
+	if(location.href.indexOf('adultChk=Y')>-1){
+		target_url = location.href;
+	}else{
+		target_url = location.href+'&adultChk=Y';
+	}
+	
+	self.location.href = "http://mt2.lotte.com/login/loginForm.do?c=mlotte&udid=&v=&cn=&cdn=&adultChk=Y&tclick=m_home_login&targetUrl=" + encodeURIComponent(target_url,'UTF-8');
+}
+function goAdultSci(loginChk) {
+	if(loginChk != "Y"){
+		if(!confirm("19세 미만 청소년 접근이 제한된 정보로 본인인증이 필요합니다.")){
+			// 2015.01.12 iylee 상품상세의 경우, 인증창을 띄우지 않은 경우 main으로 이동되게 한다.
+			if(location.href.indexOf('/product_view.do')>-1){
+				self.location.href = "http://mt2.lotte.com/main.do?c=mlotte&udid=&v=&cn=&cdn=";
+				return;
+			} else {
+				return;
+			}
+		}
+	}	
+
+	var backUrl = "";
+	
+	if(location.href.indexOf('adultChk=Y')>-1){
+		backUrl = location.href;
+	}else{
+		backUrl = location.href+'&adultChk=Y';
+	}
+
+	localStorage.removeItem('sci_param'); // 주문서로 전달하기 위한 파리메터
+	localStorage.removeItem('sci_action'); // 주문서 이전 사은품 선택 페이지 url
+	localStorage.removeItem('sci_login_href'); // 로그인 폼 url
+
+		window.location = 'http://mt2.lotte.com/sci/pcc_V3_seed.jsp?adultChk=Y&c=mlotte&udid=&v=&cn=&cdn=&returnDomain=mt2.lotte.com&backUrl='+encodeURIComponent(backUrl,'UTF-8');
+
+}
+
+function openPopupView(url){
+	
+		window.open("http://"+url);
+	
+}
+function callCustomercenter(){
+	setTclick('m_mylayer_customercenter');
+	location.href = "tel:1577-1110";
+}
+function showMyLayer(){
+	//openSideMylotte();
+	$(".loading.half").css("display","block");
+	$.ajax({
+		type: 'post',
+		url: "/json/main/main_action_bar_my.json?c=mlotte&udid=&v=&cn=&cdn=&viewGoods="+localStorage.getItem("viewGoods")+"&amlist="+localStorage.getItem("amlist"),
+		dataType:'json',
+		xhrFields: { withCredentials: true },
+		success: function(data, textStatus, jqXHR) {
+			/*
+			 *  - 주문배송 카운트 
+			 *  - L.Point 잔여포인트
+			 *  - L.Money 잔여포인트
+			 *  - 알림 미확인개수
+			 *  - 쿠폰 미사용개수
+			 *  - 위시리스트 전체개수
+			 *  - 최근 본 상품
+			 */
+			var order_cnt = (parseInt(data.obj.order) > 0?("<span>" + parseInt(data.obj.order) + "</span>"):"");
+			var lpoint = (parseInt(data.obj.lpoint.replace(/\,/g,"")) > 0? data.obj.lpoint:"0");
+			var lmoney = (parseInt(data.obj.lmoney.replace(/\,/g,"")) > 0? data.obj.lmoney:"0");
+			var coupon = (parseInt(data.obj.coupon.replace(/\,/g,"")) > 0? ("<span>" + data.obj.coupon + "</span>"):"<span>0</span>");
+			var alarm = (parseInt(data.obj.alarm.replace(/\,/g,"")) > 0? ("<span>" + data.obj.alarm + "</span>"):"<span>0</span>");
+			var wish = (parseInt(data.obj.wish.replace(/\,/g,"")) > 0? ("<span>" + data.obj.wish + "</span>"):"<span>0</span>");
+			var late_prod = data.obj.late_prod.items;
+			var late_prod_more_cnt = 7; // 최근 본 상품 최대 표현개수
+
+			$("#ab_order").html("주문/배송조회" + order_cnt);
+			$("#ab_lpoint").html("<i>L.POINT</i>" + lpoint);
+			$("#ab_lmoney").html("<i>L-MONEY</i>" + lmoney);
+			$("#ab_coupon").html("쿠폰" + coupon);
+			$("#ab_alarm").html("알림" + alarm);
+			$("#ab_wish").html("위시" + wish);
+
+			if( late_prod != null && late_prod.length > 0 ){
+				$(".lately #lately_none").css("display", "none");
+				$(".lately #lately_exist").css("display", "");
+				$(".lately #lately_more").css("display", "");
+
+				var img_html = "";
+				$(".lately > ol").html("");
+				for( var i = 0; i < late_prod.length && i < late_prod_more_cnt; i++ ){
+					img_html += ("<li><a href=\"" + late_prod[i].link_url 
+								+ "\"><img src=\"" + late_prod[i].img_url + "\"></a></li>\n"); 
+				}
+				$(".lately > ol").html(img_html);
+			}
+			else {
+				// '최근 본 상품 없음' 처리
+				$(".lately #lately_none").css("display", "");
+				$(".lately #lately_exist").css("display", "none");
+				$(".lately #lately_more").css("display", "none");
+			}
+			
+			
+			localStorage.setItem("amlist", data.obj.alarm_txt);
+			localStorage.setItem("viewGoods", data.obj.late_prod_txt);
+			$(".loading.half").css("display","none");
+		}
+	});
+	
+}
+</script>
+
+<script type="application/x-javascript">setTimeout(function() { if(window.pageYOffset == 0) { window.scrollTo(0, 1); }}, 100);</script>
+<script type="text/javascript" src="/common4/js/SpeedTrapInsert.js"></script>
+<!-- 즐겨찾기 리스트 팝업 -->
+
+<div class="bookmarListkLayer"  style="display:none">
+	<iframe src=""></iframe>
+	<input type="hidden" name="common_param" value="c=mlotte&udid=&v=&cn=&cdn="/>
+	<input type="hidden" name="android_yn" value="N"/>
+	<input type="hidden" name="app_yn" value="N"/>
+	<input type="hidden" name="app_save" value="Y"/>
+
+	<input type="hidden" name="available" value="true"/>
+
+</div>
+ 
+<script>
+$(document).ready(function(){
+
+//alert("false");
+
+	$.ajax({
+		type: 'post',
+		url: "/json/main/main_action_bar.json?c=mlotte&udid=&v=&cn=&cdn=",
+		dataType:'json',
+		xhrFields: { withCredentials: true },
+		success: function(data, textStatus, jqXHR) {
+			//alert(JSON.stringify(data));
+			var cart_cnt = (parseInt(data.main_action_bar.cart) > 0?("<span>" + parseInt(data.main_action_bar.cart) + "</span>"):"");
+			$("#lotteActionbar > ul > li #ab_cart").html("장바구니" + cart_cnt);
+		}
+	});
+	setMyLayerParam();
+
+});
+function showLateProdList(){
+
+	location.href = "http://mt2.lotte.com/product/m/late_view_product_list.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=m_mylayer_recentviewprodmore&viewGoods="
+		+ localStorage.getItem('viewGoods');
+}
+</script>
+
+<div id="storage_layer" style="display:none;position:absolute;z-index:999;width:100%;height:100%;">
+	<iframe id="storage_frame" name="storage_frame" style="display:none;border:none;background:#FFFFFF;width:100%;height:100%;" src="" height=0 scrolling="no"></iframe>
+</div>
+<iframe id="frm_alert" name="frm_alert" style="display:none" src="" height=0 scrolling="no"></iframe>
+<iframe id="app_frame" name="app_frame" style="display:none" src="" height=0 scrolling="no"></iframe>
+<!-- 20141216 모바일주문서 수정 -->
+<style>
+#ansimPop {display:none; position:fixed; z-index:9000; left:0; width:80%; top:50%; margin-top:-120px; margin-left:10%}
+html.ansimPop_act #ansimPop {display:block;}
+</style>
+<div id="ansimPop">
+    <header id="head_sub">
+        <h2>연락처 제공 안내</h2>
+        <p class="close"><a href="javascript:closeANSPop();">닫기</a></p>
+    </header>
+    <ul class="ansim_cont">
+    	<li>고객님의 연락처는 안심번호 서비스로 보호받고 있습니다.</li>
+    	<li>안심번호 서비스란, <strong>고객님의 연락처를 1회성 임시번호(050-000-0000)로 자동전환 하여 택배사에 전달함으로써 개인정보 유출을 사전에 방지</strong>하는 서비스입니다.</li>
+    	<li><strong>택배기사님이 부재시 전화를 드리거나, 배송진행상황을 택배사에서 SMS로 안내해 드릴 수 있습니다.</strong></li>
+    </ul>
+</div>
+<!-- //20141216 모바일주문서 수정 -->
+
+
+
+
+
+
+
+
+
+<!-- WISELOG TRACKING SCRIPT CODE START -->
+<!-- DO NOT MODIFY THIS SCRIPT CODE. -->
+<!-- COPYRIGHT (C) 1999-2010 NETHRU INC. ALL RIGHTS RESERVED. -->
+<script type="text/javascript">
+(function() {
+var nl = document.createElement('script'); nl.type = 'text/javascript';
+nl.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'm.lotte.com/common4/js/lib/wl6.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(nl, s);
+var done = false;
+nl.onload = nl.onreadystatechange = function() {
+    if ( !done && (!this.readyState || this.readyState === "loaded" || this.readyState === "complete") ) {
+        done = true;
+        _n_sid = "m.lotte.com";
+        _n_uid_cookie = "MBRNO"; 
+        n_logging();
+        nl.onload = nl.onreadystatechange = null;
+    }
+}
+})();
+</script>
+<!-- WISELOG TRACKING SCRIPT CODE END -->
+</div>
+<!--// warpper -->
+<!--  이 화일은 롯데닷컴과 엘롯데에서 공통으로 사용하는 화일입니다. -->
+
+
+
+<section id="s_category" class="side_cate">
+	<!--#20141205 카테고리 메뉴 컴파일시 code too large 때문에 정적 include-->
+	
+ 
+
+
+
+<div class="close"><a><i>닫기</i></a></div>
+<div class="categoryWrap">
+	<nav class="tab mainTop">
+	    <a href="javascript:cbChange(1);" class="on">카테고리</a>
+	    <a href="javascript:cbChange(2);">브랜드</a>
+	    <a href="javascript:cbChange(3);">기획전</a>
+	</nav>
+	<div class="categoryBox">
+        <div class="categorySet">
+            <nav class="navi">
+                <a href="javascript:sideCateTab(1);" class="all on"><span>전체상품</span></a>
+                <a href="javascript:sideCateTab(2);" class="depart"><span>롯데백화점</span></a>
+            </nav>
+            <div class="scroll_wrap"><!-- scroll_wrap 추가 -->
+            <div>
+                <dl class="menu all">
+                    <dt class="icon_5537261" ctno="5537261"><span>화장품</span></dt>
+                    <dd>
+                        <ol>
+<!--                        	param cateDiv 값 변경 될 수도 있음 hklim6 2015.06.22-->
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537269&title=세트&cateDiv=MIDDLE&idx=1&tclick=m_side_cate_catebig_5537269');">세트</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537270&title=스킨케어&cateDiv=MIDDLE&idx=1&tclick=m_side_cate_catebig_5537270');">스킨케어</a></li>             
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537271&title=클렌징/선케어&cateDiv=MIDDLE&idx=1&tclick=m_side_cate_catebig_5537271');">클렌징/선케어</a></li>       
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537272&title=베이스메이크업&cateDiv=MIDDLE&idx=1&tclick=m_side_cate_catebig_5537272');">베이스메이크업</a></li>       
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537273&title=색조메이크업&cateDiv=MIDDLE&idx=1&tclick=m_side_cate_catebig_5537273');">색조메이크업</a></li>        
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537274&title=바디케어&cateDiv=MIDDLE&idx=1&tclick=m_side_cate_catebig_5537274');">바디케어</a></li>          
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537275&title=남성화장품&cateDiv=MIDDLE&idx=1&tclick=m_side_cate_catebig_5537275');">헤어케어</a></li>          
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537276&title=남성화장품&cateDiv=MIDDLE&idx=1&tclick=m_side_cate_catebig_5537276');">남성화장품</a></li>         
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537277&title=향수&cateDiv=MIDDLE&idx=1&tclick=m_side_cate_catebig_5537277');">향수</a></li>            
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537278&title=이미용기기/용품&cateDiv=MIDDLE&idx=1&tclick=m_side_cate_catebig_5537278');">이미용기기/용품</a></li>      
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537279&title=명품화장품&cateDiv=MIDDLE&idx=1&tclick=m_side_cate_catebig_5537279');">명품화장품</a></li>
+                        </ol>
+                    </dd>
+                </dl>
+                <dl class="menu all">
+                    <dt class="icon_5537262" ctno="5537262"><span>잡화/슈즈/명품</span></dt>
+                    <dd>
+                        <ol>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537280&title=패션잡화&cateDiv=MIDDLE&idx=2&tclick=m_side_cate_catebig_5537280');">패션잡화</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537281&title=슈즈&cateDiv=MIDDLE&idx=2&tclick=m_side_cate_catebig_5537281');">슈즈</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537282&title=시계/보석/주얼리&cateDiv=MIDDLE&idx=2&tclick=m_side_cate_catebig_5537282');">시계/보석/주얼리</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537283&title=패션소품&cateDiv=MIDDLE&idx=2&tclick=m_side_cate_catebig_5537283');">패션소품</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537284&title=수입명품&cateDiv=MIDDLE&idx=2&tclick=m_side_cate_catebig_5537284');">수입명품</a></li>
+                        </ol>
+                    </dd>
+                </dl>
+                <dl class="menu all">
+                    <dt class="icon_5537263" ctno="5537263"><span>패션의류</span></dt>
+                    <dd>
+                        <ol>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537285&title=여성의류&cateDiv=MIDDLE&idx=3&tclick=m_side_cate_catebig_5537285');">여성의류</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537286&title=남성의류&cateDiv=MIDDLE&idx=3&tclick=m_side_cate_catebig_5537286');">남성의류</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537287&title=진/유니섹스&cateDiv=MIDDLE&idx=3&tclick=m_side_cate_catebig_5537287');">진/유니섹스</a></li>                            
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537288&title=언더웨어&cateDiv=MIDDLE&idx=3&tclick=m_side_cate_catebig_5537288');">언더웨어</a></li>
+                        </ol>
+                    </dd>
+                </dl>
+                <dl class="menu all">
+                    <dt class="icon_5537264" ctno="5537264"><span>스포츠/레저</span></dt>
+                    <dd>
+                        <ol>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537289&title=스포츠패션&cateDiv=MIDDLE&idx=5&tclick=m_side_cate_catebig_5537289');">스포츠패션</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537290&title=등산/캠핑/낚시&cateDiv=MIDDLE&idx=5&tclick=m_side_cate_catebig_5537290');">등산/캠핑/낚시</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537291&title=골프의류/잡화&cateDiv=MIDDLE&idx=5&tclick=m_side_cate_catebig_5537291');">골프의류/잡화</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537292&title=골프클럽/용품&cateDiv=MIDDLE&idx=5&tclick=m_side_cate_catebig_5537292');">골프클럽/용품</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537293&title=헬스/스키/수영&cateDiv=MIDDLE&idx=5&tclick=m_side_cate_catebig_5537293');">헬스/스키/수영</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537294&title=축구/야구/구기/격투&cateDiv=MIDDLE&idx=5&tclick=m_side_cate_catebig_5537294');">축구/야구/구기/격투</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537295&title=자전거/인라인&cateDiv=MIDDLE&idx=5&tclick=m_side_cate_catebig_5537295');">자전거/인라인</a></li>
+                        </ol>
+                    </dd>
+                </dl>
+                <dl class="menu all">
+                    <dt class="icon_5537265" ctno="5537265"><span>유아동</span></dt>
+                    <dd>
+                        <ol>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537296&title=출산/유아용품&cateDiv=MIDDLE&idx=6&tclick=m_side_cate_catebig_5537296');">출산/유아용품</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537297&title=유아동 의류&cateDiv=MIDDLE&idx=6&tclick=m_side_cate_catebig_5537297');">유아동 의류</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537298&title=유아동 내의/속옷&cateDiv=MIDDLE&idx=6&tclick=m_side_cate_catebig_5537298');">유아동 내의/속옷</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537299&title=신발/가방/잡화&cateDiv=MIDDLE&idx=6&tclick=m_side_cate_catebig_5537299');">신발/가방/잡화</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537300&title=스킨케어&cateDiv=MIDDLE&idx=6&tclick=m_side_cate_catebig_5537300');">스킨케어</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537301&title=유모차/카시트/매트&cateDiv=MIDDLE&idx=6&tclick=m_side_cate_catebig_5537301');">유모차/카시트/매트</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537302&title=완구/교구&cateDiv=MIDDLE&idx=6&tclick=m_side_cate_catebig_5537302');">완구/교구</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537303&title=도서/전집&cateDiv=MIDDLE&idx=6&tclick=m_side_cate_catebig_5537303');">도서/전집</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537304&title=시즌테마의류/용품&cateDiv=MIDDLE&idx=6&tclick=m_side_cate_catebig_5537304');">시즌테마의류/용품</a></li>
+                        </ol>
+                    </dd>
+                </dl>
+                <dl class="menu all">
+                    <dt class="icon_5537266" ctno="5537266"><span>가전/가구</span></dt>
+                    <dd>
+                        <ol>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537305&title=TV/냉장고/세탁기/계절가전&cateDiv=MIDDLE&idx=7&tclick=m_side_cate_catebig_5537305');">TV/냉장고/세탁기/계절가전</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537306&title=주방/생활/이미용 가전&cateDiv=MIDDLE&idx=7&tclick=m_side_cate_catebig_5537306');">주방/생활/이미용 가전</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537307&title=디카/DSLR/캠코더&cateDiv=MIDDLE&idx=7&tclick=m_side_cate_catebig_5537307');">디카/DSLR/캠코더</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537308&title=스마트폰/디지털/자동차용품&cateDiv=MIDDLE&idx=7&tclick=m_side_cate_catebig_5537308');">스마트폰/디지털/자동차용품</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537309&title=노트북/태블릿/데스크탑&cateDiv=MIDDLE&idx=7&tclick=m_side_cate_catebig_5537309');">노트북/태블릿/데스크탑</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537310&title=컴퓨터 주변기기/게임&cateDiv=MIDDLE&idx=7&tclick=m_side_cate_catebig_5537310');">컴퓨터 주변기기/게임</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537311&title=쇼파/침대/옷장&cateDiv=MIDDLE&idx=7&tclick=m_side_cate_catebig_5537311');">쇼파/침대/옷장</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537312&title=책상/의자/식탁/싱크대&cateDiv=MIDDLE&idx=7&tclick=m_side_cate_catebig_5537312');">책상/의자/식탁/싱크대</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537313&title=아동/수납/사무가구&cateDiv=MIDDLE&idx=7&tclick=m_side_cate_catebig_5537313');">아동/수납/사무가구</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537314&title=침구&cateDiv=MIDDLE&idx=7&tclick=m_side_cate_catebig_5537314');">침구</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537315&title=커튼/카페트/인테리어&cateDiv=MIDDLE&idx=7&tclick=m_side_cate_catebig_5537315');">커튼/카페트/인테리어</a></li>
+                        </ol>
+                    </dd>
+                </dl>
+                <dl class="menu all">
+                    <dt class="icon_5537267" ctno="5537267"><span>생활/식품</span></dt>
+                    <dd>
+                        <ol>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537316&title=세제/욕실/위생&cateDiv=MIDDLE&idx=8&tclick=m_side_cate_catebig_5537316');">세제/욕실/위생</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537317&title=수납/청소/생활잡화&cateDiv=MIDDLE&idx=8&tclick=m_side_cate_catebig_5537317');">수납/청소/생활잡화</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537318&title=주방/식기&cateDiv=MIDDLE&idx=8&tclick=m_side_cate_catebig_5537318');">주방/식기</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537319&title=건강/다이어트/실버&cateDiv=MIDDLE&idx=8&tclick=m_side_cate_catebig_5537319');">건강/다이어트/실버</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537320&title=문구/사무기기/보안&cateDiv=MIDDLE&idx=8&tclick=m_side_cate_catebig_5537320');">문구/사무기기/보안</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537321&title=악기/애완/취미/원예&cateDiv=MIDDLE&idx=8&tclick=m_side_cate_catebig_5537321');">악기/애완/취미/원예</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537322&title=꽃배달/생활/렌탈&cateDiv=MIDDLE&idx=8&tclick=m_side_cate_catebig_5537322');">꽃배달/생활/렌탈</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537323&title=신선식품&cateDiv=MIDDLE&idx=8&tclick=m_side_cate_catebig_5537323');">신선식품</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537324&title=즉석/가공식품&cateDiv=MIDDLE&idx=8&tclick=m_side_cate_catebig_5537324');">즉석/가공식품</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537325&title=건강/다이어트 식품&cateDiv=MIDDLE&idx=8&tclick=m_side_cate_catebig_5537325');">건강/다이어트 식품</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537326&title=e쿠폰/상품권&cateDiv=MIDDLE&idx=8&tclick=m_side_cate_catebig_5537326');">e쿠폰/상품권</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537327&title=도서&cateDiv=MIDDLE&idx=8&tclick=m_side_cate_catebig_5537327');">도서</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537328&title=음반/DVD&cateDiv=MIDDLE&idx=8&tclick=m_side_cate_catebig_5537328');">음반/DVD</a></li>
+                        </ol>
+                    </dd>
+                </dl>
+            </div>
+            <div>
+                <dl class="menu depart">
+                    <dt class="icon_08" ctno="5537958"><span>뷰티/잡화</span></dt>
+                    <dd>
+                        <ol>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537965&title=명품화장품&cateDiv=MIDDLE&idx=8&tclick=m_side_cate_catebig_5537965');">명품화장품</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537967&title=패션잡화&cateDiv=MIDDLE&idx=8&tclick=m_side_cate_catebig_5537967');">패션잡화</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537968&title=슈즈&cateDiv=MIDDLE&idx=8&tclick=m_side_cate_catebig_5537968');">슈즈</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537970&title=시계/주얼리/시즌ACC&cateDiv=MIDDLE&idx=8&tclick=m_side_cate_catebig_5537970');">시계/주얼리/시즌ACC</a></li>
+                            
+                        </ol>
+                    </dd>
+                </dl>
+                <dl class="menu depart">
+                    <dt class="icon_09" ctno="5537959"><span>여성패션</span></dt>
+                    <dd>
+                        <ol>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537971&title=여성캐주얼/정장&cateDiv=MIDDLE&idx=8&tclick=m_side_cate_catebig_5537971');">여성캐주얼/정장</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537972&title=영캐주얼&cateDiv=MIDDLE&idx=8&tclick=m_side_cate_catebig_5537972');">영캐주얼</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537974&title=언더웨어&cateDiv=MIDDLE&idx=8&tclick=m_side_cate_catebig_5537974');">언더웨어</a></li>
+                            
+                        </ol>
+                    </dd>
+                </dl>
+                <dl class="menu depart">
+                    <dt class="icon_10" ctno="5537960"><span>남성패션</span></dt>
+                    <dd>
+                        <ol>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537976&title=남성정장/셔츠&cateDiv=MIDDLE&idx=8&tclick=m_side_cate_catebig_5537976');">남성정장/셔츠</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537977&title=남성캐릭터정장&cateDiv=MIDDLE&idx=8&tclick=m_side_cate_catebig_5537977');">남성캐릭터정장</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537978&title=남성캐주얼&cateDiv=MIDDLE&idx=8&tclick=m_side_cate_catebig_5537978');">남성캐주얼</a></li>
+                            
+                        </ol>
+                    </dd>
+                </dl>
+                <dl class="menu depart">
+                    <dt class="icon_11" ctno="5537963"><span>유니섹스/스포츠</span></dt>
+                    <dd>
+                        <ol>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537979&title=진/유니섹스&cateDiv=MIDDLE&idx=8&tclick=m_side_cate_catebig_5537979');">진/유니섹스</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537980&title=스포츠패션/슈즈&cateDiv=MIDDLE&idx=8&tclick=m_side_cate_catebig_5537980');">스포츠패션/슈즈</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537982&title=등산/골프/수영&cateDiv=MIDDLE&idx=8&tclick=m_side_cate_catebig_5537982');">등산/골프/수영</a></li>
+                            
+                        </ol>
+                    </dd>
+                </dl>
+                <dl class="menu depart">
+                    <dt class="icon_12" ctno="5537964"><span>유아동/생활</span></dt>
+                    <dd>
+                        <ol>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537983&title=유아동/용품&cateDiv=MIDDLE&idx=8&tclick=m_side_cate_catebig_5537983');">유아동/용품</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537985&title=가정/생활&cateDiv=MIDDLE&idx=8&tclick=m_side_cate_catebig_5537985');">가정/생활</a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/category/m/cate_mid_list_anglr.do?c=mlotte&udid=&v=&cn=&cdn=&curDispNo=5537986&title=프리미엄식품&cateDiv=MIDDLE&idx=8&tclick=m_side_cate_catebig_5537986');">프리미엄식품</a></li>
+                            
+                        </ol>
+                    </dd>
+                </dl>
+            </div>
+	            <dl class="spShop">
+	                <dt class="iconPlan">전문관</dt>
+	                <dd>
+	                    <ol>
+	                        <li><a href="/mall/gucci/gucci_main.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=m_side_cate_specialshop_gucci"><span class="iconGucci">GUCCI</span></a></li>
+	                        <li><a href="/mall/tenbyten/m/mall_main.do?c=mlotte&udid=&v=&cn=&cdn=&disp_no=5293948&spdp_no=5359832&tclick=m_side_cate_specialshop_1010"><span class="icon10by10">10BY10</span></a></li>
+	                        <li><a href="/webzine/m/lzine_list.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=m_side_cate_specialshop_vine"><span class="iconVine">Vine</span></a></li>
+                            <li><a href="javascript:goMPage('http://mt2.lotte.com/mall/kshop/kshop.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=m_side_cate_specialshop_kshop');"><span class="iconKshop">대한민국 창조의 힘 창조경제몰 </span></a></li>
+	                    </ol>
+	                </dd>
+	            </dl>
+
+ 
+<script>
+var lotteApp = {
+	/*isApp: false, //브라우저가 아닌 앱으로 접속했는지 여부. 현재 사용안함 */ 
+	isIPHONE: false,
+	isIPAD: false,
+	isANDROID: false,
+	isCHROME: false,
+	scheme: '',
+	appStoreUrl: '',
+	init : function(who) {
+		/*this.isApp = (chkApp == 'N' ? false : true);*/
+		this.isIPHONE = (navigator.userAgent.match('iPhone') != null || navigator.userAgent.match('iPod') != null);
+		this.isIPAD = (navigator.userAgent.match('iPad') != null);
+		this.isANDROID = (navigator.userAgent.match('Android') != null);
+		this.isCHROME = (navigator.userAgent.match('Chrome') != null);
+		switch (who) {
+		case 'ellotte':
+			if (this.isANDROID) {
+				this.scheme = 'intent://m.ellotte.com/main.do?cn=152726&cdn=3112669#Intent;scheme=ellotte002;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;package=com.lotte.ellotte;end';
+			} else if (this.isIPHONE || this.isIPAD) {
+				this.scheme = 'ellotte001://m.ellotte.com/main.do?cn=152726&cdn=3112669';
+				this.appStoreUrl = 'http://itunes.apple.com/kr/app/id902962633?mt=8';
+			} 
+			break;
+		case 'smp':
+			if (this.isANDROID) {
+				this.scheme = 'intent://m.lotte.com/main_smp.do?cn=116824&cdn=601848&smp_yn=Y#Intent;scheme=splotte002a;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;package=com.lotte.smartpick2a;end'
+			} else if (this.isIPHONE || this.isIPAD) {
+				this.scheme = 'splotte001://m.lotte.com/main_smp.do?cn=116824&cdn=601848&smp_yn=Y';
+				this.appStoreUrl = 'https://itunes.apple.com/app/id483508898'; 
+			} 
+			break;
+		case 'lottedfs':
+			if (this.isANDROID) {
+				this.scheme = 'intent://chindex#Intent;scheme=lottedutyfree;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;package=com.lotte.lottedutyfree;end';
+			} else if (this.isIPHONE || this.isIPAD) {
+				this.scheme = 'lottedfs://m.lottedfs.com/handler/Index?CHANNEL_CD=303396';
+				this.appStoreUrl = 'https://itunes.apple.com/app/losdemyeonsejeom/id492083651?mt=8';
+			}
+			break;
+		case 'lottesuper':
+			if (this.isANDROID) {
+				this.scheme = 'intent://order?redirect=http://m.lottesuper.co.kr/handler/Index-Start?CHL_NO=M385701&AFCR_NO=110682#Intent;scheme=lottesuper;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;package=com.lottesuper.mobile;end';
+			} else if (this.isIPHONE || this.isIPAD) {
+				this.scheme = 'lottesuper://order?redirect=http://m.lottesuper.co.kr/handler/Index-Start?CHL_NO=M385701&AFCR_NO=110682';
+				this.appStoreUrl = 'https://itunes.apple.com/app/losdemobailsyupeo/id618095243?mt=8'; 
+			}
+			break;
+		}
+	},
+	getIframe: function(id, url) {
+		var iframe = document.getElementById(id);
+		if (iframe !== null) {
+			iframe.parentNode.removeChild(iframe);
+		}
+		iframe = document.createElement('iframe');
+		iframe.id = id;
+		iframe.style.visibility = 'hidden';
+		iframe.style.display = 'none';
+		iframe.src = url;
+		return iframe;
+	},
+	exec: function(who, url) {
+		this.init(who);
+		if (this.isANDROID) { /* 안드로이드 */
+			window.location = this.scheme;				
+		} else if (this.isIPHONE || this.isIPAD) { /* IOS */
+			setTimeout(function() {
+				window.location = lotteApp.appStoreUrl;
+			}, 500);
+			var iframe = this.getIframe('lotteAppIframe', this.scheme);
+			document.body.appendChild(iframe);
+		}
+		else { /* 그 외 단말기 */
+			outLink(url);
+		}
+	}
+}
+	
+</script>
+ 
+            <div class="lotteApp">
+                <ul>
+                    <li><a href="javascript:setTclick('m_side_cate_outlink_ellotte');lotteApp.exec('ellotte', 'http://m.ellotte.com');"><span class="iconEllotte">엘롯데</span></a></li>
+                    <li><a href="javascript:setTclick('m_side_cate_outlink_smartpick');lotteApp.exec('smp', 'http://m.smartpick.co.kr');"><span class="iconSmart">스마트픽</span></a></li>
+                    <li><a href="javascript:setTclick('m_side_cate_outlink_lottedutyfree');lotteApp.exec('lottedfs', 'http://m.lottedfs.com');"><span class="iconDfs">롯데면세점</span></a></li>
+                    <li><a href="javascript:setTclick('m_side_cate_outlink_lottesuper');lotteApp.exec('lottesuper', 'http://m.lottesuper.co.kr');"><span class="iconSuper">롯데슈퍼</span></a></li>
+                </ul>
+            </div>
+		</div><!--// scroll_wrap -->
+        </div>
+    <!-- 브랜드 -->
+        <div class="brandSet" id="brand_menu">
+            <div class="s_search">
+            	<fieldset>
+                    <legend>검색</legend>
+                    <span><input id="brandKeyword" type="text" placeholder="브랜드를 검색하세요" onkeydown="javascript:searchBrandKeyword()"></span>
+                    <button type="button" onclick="javascript:loadBarndKeyword()">검색</button>  
+                </fieldset>
+                <div class="searchList result" id="bkResult">
+                    <span class="cnt">총 <strong></strong> 건</span>
+            		<p class="noList" style="display:none;" id="bkNullResult">브랜드 검색결과가 없습니다.</p>
+                    <ul>
+                    </ul>					                    
+                    <a class="btn_close">닫기</a>
+                </div>                
+            </div>
+            <nav class="tab brandTab">
+                <a href="javascript:cateTab(1);" class="on"><span>ㄱㄴㄷ</span></a>
+                <a href="javascript:cateTab(2);"><span>ABC</span></a>
+            </nav>
+            <nav class="tabSub kor">
+                <a>ㄱ</a><a>ㄴ</a><a>ㄷ</a><a>ㄹ</a><a>ㅁ</a><a>ㅂ</a><a>ㅅ</a><a>ㅇ</a><a>ㅈ</a><a>ㅊ</a><a>ㅋ</a><a>ㅌ</a><a>ㅍ</a><a>ㅎ</a><a>기타</a>
+            </nav>
+            <nav class="tabSub eng">
+                <a>A</a><a>B</a><a>C</a><a>D</a><a>E</a><a>F</a><a>G</a><a>H</a><a>I</a><a>J</a><a>K</a><a>L</a><a>M</a><a>N</a><a>O</a><a>P</a><a>Q</a><a>R</a><a>S</a><a>T</a><a>U</a><a>V</a><a>W</a><a>X</a><a>Y</a><a>Z</a><a>기타</a>
+            </nav>
+            <div class="searchList list">
+            	<p class="noList" style="display:none;" id="bNullResult">브랜드 검색결과가 없습니다.</p>
+                <div id="searchUL">
+                </div>
+            </div>
+        </div>
+    <!-- //브랜드 -->
+    <!-- 기획전 -->
+        <div class="specialSet" id="special_menu">
+            <div class="wrap">
+            <div class="s_search">
+                <fieldset>
+                    <legend>검색</legend>
+                    <span><input type="text" placeholder="기획전을 검색하세요" id="planshopKeyword" onkeydown="javascript:searchPlanShopKeyword();"></span>
+                    <button type="button" onclick="javascript:loadPlanShopKeyword()">검색</button>  
+                </fieldset>
+                </div>
+                <div class="searchList result" style="display:none;" id="pskSearchResult">
+                    <span class="cnt">총 <strong>10</strong> 건</span>
+                    <p class="noList" style="display:none;">검색된 기획전이 없습니다.</p>
+                    <ul>
+                        <li><a href="#"><span>영캐주얼</span> 시원한 여름 슈즈가 핫딜에서</a></li>
+                        <li><a href="#"><span>영캐주얼</span> 시원한 여름 슈즈가 핫딜에서</a></li>
+                        <li><a href="#"><span>영캐주얼</span> 시원한 여름 슈즈가 핫딜에서</a></li>
+                        <li><a href="#"><span>영캐주얼</span> 시원한 여름 슈즈가 핫딜에서</a></li>
+                    </ul>
+                    <a class="btn_close">닫기</a>
+                </div>
+                <nav>
+                    <a class="on" href="#">의류<br>속옷</a>
+                    <a href="#">잡화<br>뷰티</a>
+                    <a href="#">스포츠<br>레저</a>
+                    <a href="#">유아<br>식품</a>
+                    <a href="#">리빙<br>가전</a>
+                </nav>    
+            </div>
+            <div class="cateWrap cate1" style="display:block;" id="planShopCate1"></div>
+            <div class="cateWrap cate2" style="display:none;" id="planShopCate2"></div>
+            <div class="cateWrap cate3" style="display:none;" id="planShopCate3"></div>
+            <div class="cateWrap cate4" style="display:none;" id="planShopCate4"></div>
+            <div class="cateWrap cate5" style="display:none;" id="planShopCate5"></div>
+        </div>
+    <!-- //기획전 -->
+    </div>
+</div>
+</section>
+
+ <!-- // ellotte_ygchoi2 -->
+
+
+
+
+<section id="sideMylotte" class="side_mylotte">
+    <div class="loadWrap"><p class="loading half"></p></div>
+    <div class="my_lotte">
+        <div class="my_close"><a ng-click="closeSideMylotte()"><i>마이페이지 닫기</i></a></div>
+        <div class="inner">
+            <ul class="user_info">
+            
+                 <li class="name" ng-if="loginInfo.isLogin"><span>주동숙 임직원</span>님</li>  
+            
+                <li class="btn">
+                    <a href="http://mt2.lotte.com/mylotte/sub/soGoodBenefit.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=m_mylayer_sogoodbenefit" class="link">참좋은혜택</a>
+                    <a href="http://mt2.lotte.com/mylotte/mylotte.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=m_mylayer_mylotte" class="mypage">마이롯데</a>
+                </li>
+            </ul>
+            
+            <!-- 로그인 후 --> 
+            <div class="user_point">
+                <a href="http://mt2.lotte.com/mylotte/pointcoupon/m/point_info.do?c=mlotte&udid=&v=&cn=&cdn=&point_div=lt_point&tclick=m_mylayer_lpoint" class="point" id="ab_lpoint"><i>L.POINT</i></a>
+                <a href="http://mt2.lotte.com/mylotte/pointcoupon/m/point_info.do?c=mlotte&udid=&v=&cn=&cdn=&point_div=l_point&tclick=m_mylayer_lmoney" class="money" id="ab_lmoney"><i>L-MONEY</i></a>
+            </div>
+            <div class="user_alram">
+                <a href="http://mt2.lotte.com/mylotte/pointcoupon/point_info.do?c=mlotte&udid=&v=&cn=&cdn=&point_div=coupon&tclick=m_mylayer_coupon" class="coupon" id="ab_coupon">쿠폰<span></span></a>
+                <a href="http://mt2.lotte.com/planshop/m/smartAlarmList.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=m_mylayer_alarmlist&curDispNoSctCd=21" class="alram" id="ab_alarm">알림<span></span></a>
+                <a href="http://mt2.lotte.com/mylotte/wish/wish_list.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=m_mylayer_wishlist" class="wish" id="ab_wish">위시<span></span></a>
+            </div>
+            
+            <ul class="user_link">
+                <li><a id="ab_order" href="http://mt2.lotte.com/mylotte/purchase/purchase_list.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=m_mylayer_purchaselist&ordListCase=1&fromPg=3" class="bull">주문/배송조회<span></span></a></li>
+                <li><a href="http://mt2.lotte.com/mylotte/purchase/purchase_list.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=m_mylayer_purchasechange&ordListCase=3&fromPg=3" class="bull">취소/교환/반품</a></li>
+                <li><a href="http://mt2.lotte.com/custcenter/question.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=m_mylayer_question" class="bull">1:1문의하기</a></li>
+                <li><a href="http://mt2.lotte.com/mylotte/smartpay/m/smartpay.do?c=mlotte&udid=&v=&cn=&cdn=&tclick=m_mylayer_smartpay" class="bull">스마트페이 관리</a></li>
+            </ul>
+            <div class="lately">
+                <h6>최근 본 상품</h6>
+                <div id="lately_none" class="no">최근 본 상품이 없습니다.</div> 
+                <ol id="lately_exist" style="display:none;">
+                    <li><a href="#"><img src="" alt="" /></a></li>
+                    <li><a href="#"><img src="" alt="" /></a></li>
+                    <li><a href="#"><img src="" alt="" /></a></li>
+                    <li><a href="#"><img src="" alt="" /></a></li>
+                    <li><a href="#"><img src="" alt="" /></a></li>
+                    <li><a href="#"><img src="" alt="" /></a></li>
+                    <li><a href="#"><img src="" alt="" /></a></li>
+                </ol>
+                <a id="lately_more" href="javascript:showLateProdList();" class="more" style="display:none;">더보기</a>
+            </div>
+            <p class="phone">
+            
+            <a href="http://mt2.lotte.com//custcenter/m/submain.do?c=mlotte&udid=&v=&cn=&cdn=">고객센터</a> <span><a href="javascript:callCustomercenter();">1577-1110</a></span></p>
+        </div>
+    </div>
+</section>
+
+<!--// 마이롯데 메뉴 -->
+<!--// main side -->
+
+
+<div id="cardinscheck" style="display:none;"></div>
+</body>
+</html>
+
+

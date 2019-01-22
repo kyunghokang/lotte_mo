@@ -1,0 +1,654 @@
+<section>
+    <section class="optionLayerWrap"  id="optionWrap">
+    
+	<div class="optionBtnWrap">	<!-- 버튼을 감싸는 레이어 -->
+        <!--헤더용 위시리스트-->
+        <div class="hideDiv" id="hbtnWish" ng-if="BasicData.product.gift_yn != undefined && BasicData.product.gift_yn == 'Y'" ng-click="btnWish_click()">
+        </div>	
+	
+		<ul class="optionBtn" ng-if="BasicData.goods_no != '147848592' && btnDispTp=='00' && BasicData.smp_wine_yn !='Y' && (BasicData.product.gift_yn == undefined || BasicData.product.gift_yn !='Y' )"><!-- case1 : 모바일 주문 가능하고, 와인상품이 아니고, 선물하기가 아닐 경우 -->
+			<!-- 장바구니, 위시리스트, 재입고알림일때 클래스 btnIcon -->
+			<!-- 장바구니 : btnCard, 위시리스트 : btnWish, 재입고알림 : btnAlarm 
+			<li class="btnIcon" ng-if="btnCartShow && !rentalOnlyYnNew && bigdealFlag">			
+				<a class="btnCart" ng-click="btnCart_click()">장바구니</a>
+			</li>-->
+			<li class="btnIcon" ng-if="btnWishShow && !chkAppOnlyObj.flag">
+				<a class="btnWish" ng-click="btnWish_click()" ng-class="{on:hasWishList}">위시리스트</a>
+			</li>			
+			<!--20160127 수정-->
+			<li class="btnIcon" ng-if="!rentalOnlyYnNew && !chkAppOnlyObj.flag" ng-class="{half:!optionLayerYn}">			
+				<a class="btnCart2" ng-click="btnCart_click()">장바구니<span ng-show="optionLayerYn">담기</span></a>
+			</li>
+						
+			<li class="btnIcon" ng-if="btnAlarmShow && btnDispTp == '07'">
+				<a class="btnAlarm" ng-click="btnSmart_click(BasicData.goods_no,null)">재입고알림</a>
+			</li>
+			<!-- 바로주문, 예약주문, 스마트픽일때 클래스 btnOrder, 스마트픽일때 btnSmart -->
+			<li class="btnOrder"  ng-if="btnOrderShow">
+				<a ng-click="btnOrder_click()" ng-if="!(optionLayerYn && totalOrderCnt > 0) && BasicData.product.reserve_start != null && BasicData.product.reserve_start != ''">예약구매</a>
+				<a ng-click="btnOrder_click()" ng-if="!(optionLayerYn && totalOrderCnt > 0) && (BasicData.product.reserve_start == null || BasicData.product.reserve_start == '') && !rentalOnlyYnNew">바로구매</a>
+				<a ng-click="btnOrder_click()" ng-if="rentalOnlyYnNew">상담신청</a>
+				<a ng-click="btnOrder_click()" ng-if="optionLayerYn && totalOrderCnt > 0 && !rentalOnlyYnNew" class="btnPrice"><strong><span>총 {{totalOrderCnt}}개 | </span><span>{{Fnproductview.getNumberFormat(totalOrderAmt)}}</span></strong>원 <em>구매</em></a><!-- {{totalOrderCnt}}개  -->							
+			</li>
+		</ul>
+
+		<!--201607 @@선물하기 주문서비스 -->
+		<ul class="optionBtn orderGift" ng-if="BasicData.goods_no != '147848592' && btnDispTp=='00' && BasicData.smp_wine_yn !='Y'  && (BasicData.product.gift_yn != undefined && BasicData.product.gift_yn =='Y' )"><!-- case2 : 모바일 주문 가능하고, 와인상품이 아니고, 선물하기일 경우 -->
+			<!-- 장바구니, 위시리스트, 재입고알림일때 클래스 btnIcon 
+			<li class="btnIcon" ng-if="!(optionLayerYn && totalOrderCnt > 0)">			
+				<a class="btnCart" ng-click="btnCart_click()">장바구니</a>
+			</li>							-->
+			<li class="btnIcon" ng-if="!optionLayerYn && !rentalOnlyYnNew && !chkAppOnlyObj.flag && ((orderTypeGift && !optionLayerYn) || !orderTypeGift) ">			
+				<a class="btnCart" ng-click="btnCart_click()">장바구니</a>
+			</li>							
+			<li class="btnIcon" ng-if="optionLayerYn && !rentalOnlyYnNew && !chkAppOnlyObj.flag && ((orderTypeGift && !optionLayerYn) || !orderTypeGift)">			
+				<span ng-if="BasicData.chanel_yn">
+					<a class="btnCart2" ng-click="btnCart_click()" style="background:#666;text-indent:inherit">장바구니 담기</a>
+				</span>
+				<span ng-if="BasicData.chanel_yn !=true">
+					<a class="btnCart2" ng-click="btnCart_click()" style="background:#3766d4;text-indent:inherit">장바구니 담기</a>
+				</span>
+			</li>
+			<li class="btnOrder"  ng-if="btnOrderShow">
+				<a ng-click="btnOrderNormal_click()" ng-if="!(optionLayerYn && totalOrderCnt > 0) && BasicData.product.reserve_start != null && BasicData.product.reserve_start != ''">예약구매</a>
+				<a ng-click="btnOrderNormal_click()" ng-if="!(optionLayerYn && totalOrderCnt > 0) && (BasicData.product.reserve_start == null || BasicData.product.reserve_start == '') && !rentalOnlyYnNew">바로구매</a>
+				<!--일반 주문하기-->
+				<a ng-click="btnOrderNormal_click('normal')" ng-if="!orderTypeGift && optionLayerYn && totalOrderCnt > 0" class="btnPrice"><strong><span>총 {{totalOrderCnt}}개 | </span><span>{{Fnproductview.getNumberFormat(totalOrderAmt)}}</span></strong>원 <em>주문</em></a><!-- {{totalOrderCnt}}개  -->							
+				<!--선물 주문하기-->
+				<a ng-click="btnOrderGift_click()" ng-if="orderTypeGift && optionLayerYn && totalOrderCnt > 0" class="btnPrice gift"><strong><span>총 {{totalOrderCnt}}개 | </span><span>{{Fnproductview.getNumberFormat(totalOrderAmt)}}</span></strong>원 <em>선물하기</em></a><!-- {{totalOrderCnt}}개  -->							
+			</li>
+            <li class="btnOrder gift" ng-if="!(optionLayerYn && totalOrderCnt > 0)">
+                <a ng-click="btnOrderGift_click()" ng-if="!(optionLayerYn && totalOrderCnt > 0) && (BasicData.product.reserve_start == null || BasicData.product.reserve_start == '') && !rentalOnlyYnNew">
+                <img ng-src="http://image.lotte.com/lotte/mo2015/angular/detail/giftOrder_icon1.png">선물하기</a>
+            </li>			
+		</ul>
+
+		<!-- 스마트픽 -->
+		<ul class="optionBtn"  ng-if="BasicData.goods_no != '147848592' && BasicData.smp_wine_yn =='Y'"><!-- case3 : 스마트픽 와인 상품일 경우 -->
+			<li class="btnOrder">
+				<a class="btnSmart" ng-click="btnOrder_wine_click()"><span>smart pick</span>예약구매</a>
+			</li>
+		</ul>
+
+		<!-- 바로주문 only -->
+		<ul class="optionBtn"  ng-if="BasicData.goods_no == '147848592'"><!-- case4 : 상품번호 147848592 바로주문 only일 경우 -->
+			<li class="btnOrder">
+				<a ng-click="btnOrder_click()" >바로구매</a>
+			</li>
+		</ul>
+
+		<!-- 가격노출될 경우 -->
+		<ul class="optionBtn" style="display:none">
+			<li class="btnOrder">
+				<a class="btnPrice"><strong>총 <span>{{Fnproductview.getNumberFormat(BasicData.product.sale_prc)}}</span></strong>원 {{BasicData.product.min_lmt_qty}}개 <em>구매</em></a>
+			</li>
+		</ul>
+
+		<!-- 품절일 경우 -->
+		<ul ng-if="isBasicData && btnDispTp!='00' && BasicData.smp_wine_yn !='Y'" class="optionBtn"><!-- case5 : 모바일 주문 불가하고 와인 상품이 아닐 경우-->
+			<li class="btnIcon" ng-if="btnDispTp=='07'">
+				<a class="btnAlarm"  ng-click="btnSmart_click(BasicData.goods_no,null)">재입고알림</a>
+			</li>
+			<!-- 주문불가상품 -->
+			<li class="btnSoldout" ng-switch on="btnDispTp">
+				<!-- 품절일때 -->
+				<a ng-switch-when="07"><strong>품절</strong>되었습니다.</a>
+				<!-- 판매종료 -->
+				<a ng-switch-when="08"><strong>판매종료</strong>된 상품입니다.</a>
+				<!-- 모바일 불가상품 -->
+				<a ng-switch-default>해당 상품은 <strong>PC에서 구매</strong>해 주세요.</a> 
+			</li>
+		</ul>
+
+        <!--201607 @@선물하기 -->
+        <div class="buyGift optBar giftOrderMsg" ng-if="showBuyGift && BasicData.product.gift_yn != undefined && BasicData.product.gift_yn == 'Y' && BasicData.product.gift_message">
+            <div class="bgift_box" ng-bind-html="BasicData.product.gift_message"></div>
+            <a ng-click="closeBuyGift()" class="link">></a>        
+        </div> 		
+		
+        <!--20160303 구매사은  && !(BasicData.product.gift_pkg_premium_yn != undefined && BasicData.product.gift_pkg_premium_yn == 'Y')-->
+        <div class="buyGift optBar" id="buyGiftPop" ng-class="{gift:BasicData.product.gift_yn != undefined && BasicData.product.gift_yn == 'Y'}" ng-if="(BasicData.product.gift_message == null || BasicData.product.gift_message == '') && buygift != null && tabFixed && showBuyGift && showToday.show('buyGiftPop')" >
+            <div class="bgift_box" ng-bind-html="showBuyGiftDetail"></div>
+            <a ng-click="closeBuyGift(); showToday.check('buyGiftPop');" class="link"></a>        
+        </div> 		
+	</div>
+				
+	<section  class="optionToggleLayer">	<!-- 바로주문 클릭 후 on 클래스 추가되면서 보이는 레이어 - ,  옵션을 선택했을때 option 클래스를 추가하면 옵션영역만 보인다 -->	
+		
+		<!--<div class="dim" ng-click="btnOptionClose_click()" id="optionDim"></div>-->
+		<!-- <div class="dim" ng-click="btnOptionClose_click()"></div> -->
+		<div class="optionLayer" ng-class="{on:isShowOption || isShowGoods}"> <!-- 옵션을 선택하기전 영역 20160211-->							
+			<div class="dim2" ng-click="btnOptionClose_click()">
+			    <div class="bg">Dim</div>
+			    <a class="btnOptionClose" ng-click="btnOptionClose_click()">팝업닫기</a>
+			</div>
+			<!-- 옵션이 쌓이는 곳 -->
+			<section class="optionBox">
+			
+				<!-- 수량, 선택된 옵션 레이어 -->	
+				<div class="orderLayerWrap">				
+					<!-- 안내 문구 -->
+					<div class="orderDesc" ng-if="BasicData.max_lmt_qty != '' && BasicData.pur_qty_lmt_yn == 'Y'">1일 최대 {{BasicData.max_lmt_qty}}개 구매 가능합니다.</div>
+					
+					<!-- 상품 선택 -->	
+					<div class="selLayer" ng-if="BasicData.product.select_goods_list.total_count > 0">
+						<div class="selPick" ng-click="selLayer_prodClick()">
+							<span>{{BasicData.product.select_goods_list.displayName}}</span>
+						</div>
+					</div>
+					<!-- 옵션 선택 -->	
+					<div class="selLayer" ng-repeat="item in prodItemList">
+						<div class="selPick" ng-click="selLayer_optClick('{{item.value_type}}')">
+							<span>{{item.displayName }}</span>
+						</div>
+					</div>
+					<!-- 선택된 상품, 팝업창 높이가 전체창의 2/3넘어갈경우 선택된 상품에 스크롤 생김(높이 계산해서 height값 주세요) -->
+					<div class="orderPrdList">
+						<ul class="selList">
+							<li ng-repeat="item in orderList" id="order_{{$index}}">
+								<div class="prdImg" ng-if="item.img_url != ''">
+									<img ng-src="{{item.img_url}}" alt=""/>
+								</div>
+								<span ng-if="BasicData.chanel_yn == true"><img class="color_img" ng-src="{{item.color_img_url}}" alt="{{item.item_nm}}" ng-if="item.color_img_url" /></span>
+								<div class="selPrdTit product" ng-class="{selPrdTit_color:BasicData.chanel_yn == true && item.color_img_url !=null}" ng-if="item.goods_nm != '' || item.item_nm != '' ">{{item.goods_nm}} {{item.item_nm}}</div>
+								<div class="selBottom">
+									<div class="quantity">
+										<button class="btnMinus" ng-click="setOptsQty(item.goods_no,item.item_no,-1,'Y',item.smartOrd)"><span>-</span></button>
+										<span class="ipt_num"><input ng-disabled="inputNumber" type="number" pattern="[0-9]*"  ng-model="item.ord_cnt" min='{{item.min_lmt_qty}}' max='{{item.max_lmt_qty}}'  name="orderQuantity" ng-change="setOptsQty(item.goods_no,item.item_no,null,'Y',item.smartOrd)" ng-blur="setOptsQty(item.goods_no,item.item_no,null,'N',item.smartOrd)"></span>
+										<button class="btnPlus" ng-click="setOptsQty(item.goods_no,item.item_no,1,'Y',item.smartOrd)"><span>+</span></button>
+									</div>
+									<div class="selPrice">
+									    <!--<span class="icSmart" ng-if="item.smartOrd=='Y'" >스마트픽 가능</span>-->
+									    <!--<strong>{{Fnproductview.getNumberFormat(item.sale_price)}}</strong>원</div>-->
+									    <strong>{{item.sale_price | number:0}}</strong>원</div>
+									<a class="selPrdDel" ng-if="item.isAbleDelete"  ng-click="selPrdDel_click(item.goods_no,item.item_no)">상품 삭제</a>
+								</div>
+                                <!-- eung 예약기간 ng-if="item.buy_term"-->
+                                <div class="e_buyTerm ord" ng-if="item.buy_term">
+                                   <b>예약상품</b><span ng-bind-html="item.buy_term" class="buyterm"></span>    
+                                </div>								
+								<!-- eung 기획전의 입력형 옵션 item.item_opt_list-->
+								<div class="mgtop10" ng-if="item.item_opt_list.items" pindex="{{pindex = $index}}">
+                                    <div ng-repeat="itemOpt in item.item_opt_list.items" ng-class="(itemOpt.item_opt_type == '10') ? 'addInfoInput' : 'addInfoDate'" id="input_{{$index}}">
+                                        <span ng-if="itemOpt.item_opt_type != '10'">
+                                            <input type="text" class="calendar-input" value="" disabled placeholder="{{itemOpt.item_opt_name}}"  id="calendar_input" ng-click="datePickerOpen({target:'calendar_input',idx:$index, pindex:pindex})" ng-model="itemOpt.item_opt_value">
+                                            <a class="wa-datechooser-btn" ng-click="datePickerOpen({target:'calendar_input',idx:$index, pindex:pindex})"><span>달력</span></a>
+                                        </span>
+                                        <span ng-if="itemOpt.item_opt_type == '10'">
+                                            <input type="text" name="opt_input_value{{pindex}}_{{$index}}" value="" ng-model="itemOpt.item_opt_value" placeholder="{{itemOpt.item_opt_name}}" ng-blur="boldOptionBorder()">
+                                        </span>
+                                    </div>								    
+								</div>								
+								<div class="dimLayer"></div>								
+							</li>
+						</ul>
+					</div>
+					
+					<!--@@선물하기 메시지 문구
+					<div ng-if="orderTypeGift && optionLayerYn && totalOrderCnt > 0" class="giftOptionInfo">
+					    <span ng-if="BasicData.product.gift_pkg_premium_yn == 'Y' && BasicData.product.gift_pkg_yn == 'Y'">무료포장과 프리미엄 포장이 가능한 상품입니다.</span>					    
+					    <span ng-if="BasicData.product.gift_pkg_premium_yn == 'Y' && BasicData.product.gift_pkg_yn == 'N'">프리미엄 포장이 가능한 상품입니다.</span>					    
+					    <span ng-if="BasicData.product.gift_pkg_premium_yn == 'N' && BasicData.product.gift_pkg_yn == 'Y'">무료포장이 가능한 상품입니다.</span>					    
+					</div>
+					-->
+				</div>
+                <!-- eung 택배, 스마트픽 선택 totalDelivery_type == '1'--> 
+                <!--선물하기 $scope.orderTypeGift 케이스 추가-->
+                <section ng-if="showDelivery && !orderTypeGift">
+                    <ul class="deliSelect">
+                        <li class="btnDelivery" ng-click="deliSelect_layer_cov('#method9')" ng-if="isBtnDeli">
+                           <input type="radio" name="shipping3" id="method9" class="radio01" value="1" checked="checked" ng-checked="totalDelivery_type == '1'||totalDelivery_type == '0'" ng-click="deliSelect_layer('1')" ng-disabled="totalDelivery_type == '2'"> <label for="method9">택배</label>
+                        </li>
+                        <li class="btnQuick"  ng-click="deliSelect_layer_cov('#method11')" ng-if="isBtnQuick">
+                            <input type="radio" name="shipping3" id="method11" class="radio01" value="3" ng-click="deliSelect_layer('3')" ng-disabled="!isQuick"> <label for="method11">퀵배송</label>
+                        </li>
+                        <li class="btnSmartpick"  ng-click="deliSelect_layer_cov('#method10')">
+                            <input type="radio" name="shipping3" id="method10" class="radio01" value="2" ng-checked="totalDelivery_type == '2' || BasicData.product.smp_only_yn == 'Y'" ng-click="deliSelect_layer('2')"  ng-disabled="totalDelivery_type == '1'"> <label for="method10">스마트픽으로 찾기</label>
+                            <span ng-if="BasicData.product.smp_sale_price > 0  && BasicData.product.smp_psb_yn == 'Y'" class="smpDiscount">({{Fnproductview.getNumberFormat(BasicData.product.smp_sale_price)}}원 할인)</span>
+                           <!-- <span>{{BasicData.product.smp_sale_price > 0}}</span>-->
+                        </li>
+                    </ul>
+                    
+                </section>
+			</section>
+			<!--// 옵션이 쌓이는 곳 -->
+			
+			<!-- 옵션이 레이어 -->
+			<section class="optionLayerBox"> <!-- 옵션을 선택한후 보이는 영역 -->
+				
+				<!-- 셀렉트 클릭 시 셀렉트 팝업(일반옵션) -->
+					<div class="selPopup"  ng-if="isShowOption">
+    					<div class="selOptionTitleWrap"  ng-click="closeOptionLayer()"><div class="selOptionTitle">({{prodItemList[selectOptionDepth].name}})선택</div></div>
+						<!-- 클릭 시 클래스 on, 리스트 많을 경우 height값 주세요   ng-repeat="subItem in itemDtl.item.items" -->
+						<div ng-repeat="itemDtl in prodItemList">    						
+							<div class="selLayer on" ng-show="itemDtl.displayOn == 'on'">
+								<div class="selList">
+									<!-- 옵션 셀렉트일때 클래스 selOption -->
+									<ul class="selOption">
+								        <!--ng-if = "isSubOption(itemDtl.value_type, subItem.item_no)"-->
+										<!--20160408 옵션 품절처리 추가 -->
+										<li ng-repeat="subItem in itemDtl.item.items" 
+											ng-class="((itemDtl.value_type != 'OPT_1_TVAL' && subOpt[$index] == 0) || subItem.opt_stk_yn=='Y' || subItem.opt_cnt=='0' || (optArr != null && optArr[$index] == 0 && !subItem.opt_cnt && itemDtl.value_type == 'OPT_1_TVAL')) ? 'soldout' : ''"											
+										>
+											<span ng-click="selOption_click(itemDtl.value_type,subItem.item_no)"
+												  ng-if="!(subItem.opt_stk_yn=='Y' || subItem.opt_cnt=='0')">
+                                                <!-- 20161117 샤넬 색상 추가 --><div class="selColorImg" ng-if="BasicData.chanel_yn == true && subItem.color_img_url!=null"><img ng-src="{{subItem.color_img_url}}" alt="{{subItem.opt_value}}" /></div>
+                                                <div class="selPrdTit">{{subItem.opt_value}}<span ng-if="(itemDtl.value_type != 'OPT_1_TVAL' && subOpt[$index] == 0) || subItem.opt_stk_yn=='Y' || subItem.opt_cnt=='0' || (optArr != null && optArr[$index] == 0 && !subItem.opt_cnt && itemDtl.value_type == 'OPT_1_TVAL')"> | 품절</span></div>
+												<div class="selPrdQt" ng-if="subItem.opt_cnt != '' && !(subItem.opt_stk_yn=='Y' || subItem.opt_cnt=='0')">잔여수량 : {{subItem.opt_cnt}}개</div>
+											</span>
+											
+											
+											<span ng-if="(subItem.opt_stk_yn=='Y' || subItem.opt_cnt=='0')">
+												<!-- 20161117 샤넬 색상 추가 --><div class="selColorImg" ng-if="BasicData.chanel_yn == true && subItem.color_img_url!=null"><span ng-if="(subItem.opt_stk_yn=='Y' || subItem.opt_cnt=='0')"></span><img ng-src="{{subItem.color_img_url}}" alt="{{subItem.opt_value}}" /></div>
+												<div class="selPrdTit">{{subItem.opt_value}}</div>
+												<div class="selPrdQt" ng-if="subItem.opt_cnt != '' && !(subItem.opt_stk_yn=='Y' || subItem.opt_cnt=='0')">잔여수량 : {{subItem.opt_cnt}}개</div>
+												<!-- 품절된 옵션일때 클래스 soldout -->
+												<div class="selPrdQt" ng-if="(subItem.opt_stk_yn=='Y' || subItem.opt_cnt=='0')">품절</div>
+												<a class="icAlarm" ng-if="(subItem.opt_stk_yn=='Y' || subItem.opt_cnt=='0')"  ng-click="btnSmart_click(BasicData.goods_no,subItem.stc_item_no)">재입고 알림</a>
+											</span>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				<!-- 셀렉트 클릭 시 셀렉트 팝업(상품) -->
+					<div class="selPopup" ng-if="isShowGoods">
+						<!-- 클릭시 클래스 on, 리스트 많을 경우 height값 주세요 -->
+						<div class="selOptionTitleWrap" ng-click="closeOptionLayer()"><div class="selOptionTitle">상품선택</div></div>
+						
+						<div class="selLayer on">
+							<div class="selList">
+								<!-- 상품 셀렉트일때 클래스 selPrd -->								
+                                <ul class="selPrd" style="max-height:250px;">                                    
+									<li  ng-repeat="item in BasicData.product.select_goods_list.items"  
+										ng-class="(item.sale_stat_cd != '10' || item.use_yn == 'N' || (item.sale_stat_cd != '10' && item.inv_qty == '0') || (orderTypeGift && item.gift_pkg_yn == 'N')) ? 'soldout' : ''">
+                                        <!--@@선물하기 케이스 추가 -->
+                                        <div ng-if="!orderTypeGift || (orderTypeGift && item.gift_pkg_yn == 'Y')">
+                                            <div class="prdImg" ng-click="ncGoodsSelected(item.goods_no)" ng-if="item.img_url != '' && item.sale_stat_cd == '10'">
+                                                <img ng-src="{{item.img_url}}" alt=""/>
+                                            </div>
+                                            <div class="prdImg" ng-if="item.img_url != '' && item.sale_stat_cd != '10'">
+                                                <img ng-src="{{item.img_url}}" alt=""/>
+                                            </div>
+
+                                            <div class="selPrdTit" ng-if="!(item.sale_stat_cd != '10' || item.use_yn == 'N' || (item.sale_stat_cd == '10' && item.inv_qty == '0'))" 
+                                                ng-click="ncGoodsSelected(item.goods_no)">{{item.goods_nm}}</div>
+                                            <div class="selPrdTit" ng-if="item.sale_stat_cd != '10' || item.use_yn == 'N' || (item.sale_stat_cd == '10' && item.inv_qty == '0')" >{{item.goods_nm}}</div>
+                                            <div class="selDesc" ng-if="item.max_lmt_qty != '' && item.pur_qty_lmt_yn == 'Y'">1일 최대 {{item.max_lmt_qty}}개 구매 가능합니다.</div>
+                                            <div class="selPrice opt" ng-click="ncGoodsSelected(item.goods_no)"><strong>{{Fnproductview.getNumberFormat(item.sale_prc - item.inst_cpn_aply_unit_price - item.immed_pay_dscnt_amt)}}</strong>원</div>
+
+                                            <!--eung ng-if 의 위치 변경-->
+                                            <div class="selBottom" ng-if="(item.sale_stat_cd != '10' || item.use_yn == 'N' || (item.sale_stat_cd == '10' && item.inv_qty == '0')) && BasicData.elotte_yn != 'Y'">
+                                                <a class="icAlarm"  ng-click="btnSmart_click(item.goods_no,'')">재입고 알림</a>
+                                            </div>                                            
+                                        </div>
+                                        <!--주문 불가능한 선물하기 인 경우-->
+                                        <div ng-if="orderTypeGift && item.gift_pkg_yn != 'Y'">
+                                            <div class="prdImg nogift" ng-if="item.img_url != ''">
+                                                <img ng-src="{{item.img_url}}" alt=""/>
+                                            </div>
+                                            <div class="selPrdTit">{{item.goods_nm}}</div>
+                                            <div class="selPrice opt"><strong>{{Fnproductview.getNumberFormat(item.sale_prc - item.inst_cpn_aply_unit_price - item.immed_pay_dscnt_amt)}}</strong>원</div>
+                                        </div>
+										
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				<!--// 셀렉트 클릭 시 셀렉트 팝업(상품) -->
+				
+			</section>
+			<!--// 옵션이 레이어 -->
+			
+		</div>
+		
+		<!-- datepicker -->
+        <section id="datepicker" ng-show="datePickerYn" date-picker>
+            <span class="close" ng-click="datePickerClose()">닫기</span>
+            <div class="head">
+                <span class="prev" ng-click="datePrev()">Prev</span>
+                <span class="next" ng-click="dateNext()">Next</span>
+                <h5>
+                   <strong ng-bind="date | date:'yyyy'"></strong> 년 
+                   <strong ng-bind="date | date:'MM'"></strong> 월
+                </h5>
+            </div>
+            <section class="calendar">                
+                <div class="week" ng-repeat="val in dateHead" ng-class="{sun:($index == 0)}">{{val}}</div>
+                <div ng-repeat="i in day"><span ng-class="{today:(i == today)}" ng-click="pick(i)" ng-if="i > 0"><strong ng-class="{on:(cdate.getDate() == i)}">{{i}}</strong></span></div>
+            </scction>
+        </section>	
+        
+	</section>
+	
+	<form  id="frm_send" name="frm_send" method="post" action="">
+	<!-- 기획전형상품 -->
+		<input type="hidden" name="goods_no"  ng-value="orderSendInfo.goods_no"/>
+		<input type="hidden" name="item_no"  ng-value="orderSendInfo.item_no"/>
+		<input type="hidden" name="goods_cmps_cd"  ng-value="orderSendInfo.goods_cmps_cd"/><!-- 1:일반주문 만 진행 -->
+		<input type="hidden" name="goods_choc_desc"  ng-value="orderSendInfo.goods_choc_desc"/><!-- 입력형 상품 옵션 정보 -->
+		<input type="hidden" name="ord_qty" ng-value="orderSendInfo.ord_qty"/>
+		<input type="hidden" name="infw_disp_no"  ng-value="orderSendInfo.infw_disp_no"/>
+		<input type="hidden" name="infw_disp_no_sct_cd"  ng-value="orderSendInfo.infw_disp_no_sct_cd"/>
+		<input type="hidden" name="master_goods_yn"  ng-value="orderSendInfo.master_goods_yn"/>
+		<input type="hidden" name="cart_sn"  ng-value="orderSendInfo.cart_sn"/>
+		<input type="hidden" name="cmps_qty"  ng-value="orderSendInfo.cmps_qty"/>
+		<input type="hidden" name="mast_disp_no" ng-value="orderSendInfo.mast_disp_no"/>
+		<input type="hidden" name="shop_memo_tp_cd"  ng-value="orderSendInfo.shop_memo_tp_cd"/>
+		<input type="hidden" name="shop_memo_cont"  ng-value="orderSendInfo.shop_memo_cont"/>
+		<input type="hidden" name="smpVstShopNo"  ng-value="orderSendInfo.smp_vst_shop_no"/>
+		<input type="hidden" name="smartpickdate"  ng-value="orderSendInfo.smartpickdate"/>
+		<input type="hidden" name="conr_no"  ng-value="orderSendInfo.conr_no"/>
+		<input type="hidden" name="std_goods_no"  ng-value="orderSendInfo.std_goods_no"/>
+		<input type="hidden" name="smp_tp_cd"  ng-value="orderSendInfo.smp_tp_cd"/>
+		<input type="hidden" name="smp_deli_loc_sn"  ng-value="orderSendInfo.smp_deli_loc_sn"/>
+		
+		<!-- 일반상품 -->	
+		<input type="hidden" name="cartcatcode" ng-value="reqParam.curDispNo " />
+		<input type="hidden" name="carttype" ng-value="BasicData.carttype" />
+		<input type="hidden" name="cartuseyn" value="N" />
+		<input type="hidden" name="dir_delv_yn" value="1" />
+		<input type="hidden" name="dispno" ng-value="reqParam.curDispNo " />
+		<input type="hidden" name="goodsnm" ng-value="BasicData.product.mgoods_nm " />
+		<input type="hidden" name="goods_sort_cd" ng-value="BasicData.product.pmg_md_gsgr_no " />
+		<input type="hidden" name="goodsdtlcd" ng-value="BasicData.product.goods_dtl_cd"  />
+		<input type="hidden" name="lmt_cnt_max" ng-value="BasicData.product.max_lmt_qty " />
+		<input type="hidden" name="lmt_cnt_min" ng-value="BasicData.product.min_lmt_qty " />
+		<input type="hidden" name="myshop" ng-value="BasicData.product.myshop " />
+		<input type="hidden" name="ordertype" value="ORD_TP_NOCART" />
+		<input type="hidden" name="tdfSctCd" ng-value="BasicData.product.tdf_sct_cd " />	
+		<input type="hidden" name="smpVstShopNm"  ng-value="" />
+		<input type="hidden" name="smartpicktime" ng-value="" />
+		<input type="hidden" name="wishlistyn" ng-value="BasicData.product.wish_yn " />
+		<input type="hidden" name="opt_name1" ng-value="" />
+		<input type="hidden" name="opt_name2" ng-value="" />
+		<input type="hidden" name="opt_name3" ng-value="" />
+		<input type="hidden" name="opt_name4" ng-value="" />
+		<input type="hidden" name="opt_name5" ng-value="" />
+		<input type="hidden" name="opt_value1" ng-value="" />
+		<input type="hidden" name="opt_value2" ng-value="" />
+		<input type="hidden" name="opt_value3" ng-value="" />
+		<input type="hidden" name="opt_value4" ng-value="" />
+		<input type="hidden" name="opt_value5" ng-value="" />
+		<input type="hidden" name="imgUrl0" ng-value="BasicData.product.img_url0"> 
+		<input type="hidden" name="imgUrl" ng-value="BasicData.product.img_url"> 
+		<input type="hidden" name="mfcpNm" ng-value="BasicData.product.mfcp_nm"> 
+		<input type="hidden" name="brndNm" ng-value="BasicData.product.brnd_nm">
+		<input type="hidden" name="deliverydate" ng-value="" />
+		<input type="hidden" name="smartOrd" ng-value="orderSendInfo.smartOrd"/>
+		<input type="hidden" name="gift_goods_no" ng-value="orderSendInfo.gift_goods_no"/>
+		<input type="hidden" name="girtGoodsChoice" ng-value="orderSendInfo.girtGoodsChoice"/>
+		<input type="hidden" name="smp_prod_yn" ng-value="orderSendInfo.smp_prod_yn" />
+		<input type="hidden" name="smp_entr_no" ng-value="orderSendInfo.smp_entr_no" />
+		<input type="hidden" name="smp_shop_no" ng-value="orderSendInfo.smp_shop_no" />
+		<input type="hidden" name="back_url" ng-value="orderSendInfo.back_url" />
+		<input ng-if="!orderTypeGift" type="hidden" name="cartSctCd"  value="20"/>
+		<input ng-if="orderTypeGift" type="hidden" name="cartSctCd"  value="40"/>
+		<input type="hidden" name="qs_yn" ng-value="orderSendInfo.qs_yn" />
+	</form>
+	<form id="frm_smart_send" name="frm_smart_send" method="post" action="">
+		<input type="hidden" name="goods_no" ng-value="orderSendInfo.goods_no"/>
+		<input type="hidden" name="item_no" ng-value="orderSendInfo.item_no"/>
+		<input type="hidden" name="goods_cmps_cd" ng-value="orderSendInfo.goods_cmps_cd"/>
+		<input type="hidden" name="goods_choc_desc"ng-value="orderSendInfo.goods_choc_desc"/>
+		<input type="hidden" name="ord_qty" ng-value="orderSendInfo.ord_qty"/>
+		<input type="hidden" name="infw_disp_no" ng-value="orderSendInfo.infw_disp_no"/>
+		<input type="hidden" name="infw_disp_no_sct_cd" ng-value="orderSendInfo.infw_disp_no_sct_cd"/>
+		<input type="hidden" name="master_goods_yn" ng-value="orderSendInfo.master_goods_yn"/>
+		<input type="hidden" name="cart_sn" ng-value="orderSendInfo.cart_sn"/>
+		<input type="hidden" name="cart_no"/>
+		<input type="hidden" name="cmps_qty"/ ng-value="orderSendInfo.cmps_qty">
+		<input type="hidden" name="mast_disp_no" ng-value="orderSendInfo.mast_disp_no"/>
+		<input type="hidden" name="smartOrd" ng-value="orderSendInfo.smartOrd"/>
+		<input type="hidden" name="smp_prod_yn" ng-value="orderSendInfo.smp_prod_yn"/>
+		<input type="hidden" name="smp_vst_shop_no" ng-value="orderSendInfo.smp_vst_shop_no"/>
+		<input type="hidden" name="smp_vst_rsv_dtime" ng-value="orderSendInfo.smartpickdate"/>
+		<input type="hidden" name="smp_tp_cd" ng-value="orderSendInfo.smp_tp_cd"/>
+		<input type="hidden" name="smp_deli_loc_sn" ng-value="orderSendInfo.smp_deli_loc_sn"/>
+		<input type="hidden" name="smp_entr_no" ng-value="orderSendInfo.smp_entr_no" />
+		<input type="hidden" name="smp_shop_no" ng-value="orderSendInfo.smp_shop_no" />
+		<input type="hidden" name="back_url" ng-value="orderSendInfo.back_url"/>
+		<input type="hidden" name="shop_memo_tp_cd"  ng-value="orderSendInfo.shop_memo_tp_cd"/>
+		<input type="hidden" name="shop_memo_cont"  ng-value="orderSendInfo.shop_memo_cont"/>
+		
+		<!--이쿠폰상품체크-->
+		<input type="hidden" name="is_ecoupon"  ng-value="orderSendInfo.is_ecoupon"/>
+		
+		<!--크로스픽-->
+		<input type="hidden" name="crspk_store" ng-value="orderSendInfo.crspk_store"/>
+		<input type="hidden" name="crspk_yn" ng-value="orderSendInfo.crspk_yn"/>
+		<input type="hidden" name="crspk_psb_yn" ng-value="orderSendInfo.crspk_psb_yn"/>
+		<input type="hidden" name="crspk_corp_cd" ng-value="orderSendInfo.crspk_corp_cd"/>
+		<input type="hidden" name="crspk_corp_str_sct_cd"  ng-value="orderSendInfo.crspk_corp_str_sct_cd"/>
+		<input type="hidden" name="crspk_str_no"  ng-value="orderSendInfo.crspk_str_no"/>
+		<input type="hidden" name="smp_only_yn"  ng-value="orderSendInfo.smp_only_yn"/>
+		<!--선물하기-->
+		<input ng-if="!orderTypeGift" type="hidden" name="cartSctCd"  value="20"/>
+		<input ng-if="orderTypeGift" type="hidden" name="cartSctCd"  value="40"/>
+		<input type="hidden" name="qs_yn" ng-value="orderSendInfo.qs_yn" />
+	</form>
+	<!--렌탈상품용-->   
+	<form id="frm_rent_send" name="frm_rent_send" method="post" action="">
+		<input type="hidden" name="goods_no" ng-value="orderSendInfo.goods_no"/>
+		<input type="hidden" name="item_no" ng-value="orderSendInfo.item_no"/>
+		<input type="hidden" name="entr_no" ng-value="orderSendInfo.entr_no" />
+		<input type="hidden" name="ord_qty" ng-value="orderSendInfo.ord_qty"/>
+		<input type="hidden" name="pImg"  ng-value="orderSendInfo.pImg">    
+		<input type="hidden" name="pTitle"  ng-value="orderSendInfo.pTitle">
+		<input type="hidden" name="pPrice"  ng-value="orderSendInfo.pPrice">
+		<input type="hidden" name="goods_choc_desc"  ng-value="orderSendInfo.goods_choc_desc"/><!-- 입력형 상품 옵션 정보 -->
+		<input type="hidden" name="cartSctCd"  value="20"/>
+    </form>
+    </section>	
+    <!-- 인스턴트팝업: 품절안내 -->
+	<div class="brieflyPop soldoutPop" style="display:none;">
+		<div class="popCnt">
+            <div class="popTxt">
+                이 상품은 품절되었습니다. <br />재 입고 알림 신청을 해주세요.
+            </div>
+        </div>
+	</div>
+	<!-- 인스턴트팝업: 판매종료안내 -->
+	<div class="brieflyPop soldout2Pop" style="display:none;">
+		<div class="popCnt">
+            <div class="popTxt">
+                판매종료된 상품입니다. <br />보내주신 성원에 감사 드립니다.
+            </div>
+        </div>
+	</div>
+    <!-- 인스턴트팝업: 확대안내 -->
+    <div class="brieflyPop imgZoomPop" style="display:none">
+        <div class="popCnt">
+            <div class="popImg"></div>
+            <div class="popTxt">
+                자유로운 확대가<br />가능합니다
+            </div>
+        </div>
+    </div>
+    <!-- 인스턴트팝업: 재입고 알림 신청 -->
+    <div class="brieflyPop alarmPop" style="display:none">
+        <div class="popCnt">
+            <div class="popImg"></div>
+            <span>010-1234-123</span>
+            <div class="popTxt">
+                재 입고 알림<br />신청되었습니다
+            </div>
+            <p>연락처 수정은 마이롯데에서<br />하실 수 있습니다</p>
+        </div>
+    </div>
+    <!-- 인스턴트팝업: 장바구니 -->
+    <div class="brieflyPop cartPop" ng-show="isShowCartComp">
+        <div class="popCnt">
+            <div class="popImg"></div>
+            <div class="popTxt">
+                장바구니에<br />담겼습니다
+            </div>
+        </div>
+    </div>
+    <!-- 인스턴트팝업: 위시리스트 -->
+    <div class="brieflyPop wishPop" ng-show="isShowWishComp">
+        <div class="popCnt">
+            <div class="popImg"></div>
+            <div class="popTxt">
+                위시리스트에<br />담겼습니다
+            </div>
+        </div>
+    </div>
+    <!-- 인스턴트팝업: 상세 옵션이미지 설명 -->
+    <div class="brieflyPop optionPop" style="display:none">
+        <div class="popCnt">
+            <div class="popImg"></div>
+            <div class="popTxt">
+                옵션 이미지를 터치하면<br />자세한 상품설명을<br />볼 수 있어요!
+            </div>
+        </div>
+    </div>
+
+    </section>
+
+    <!--eung 스마트픽 지점 선택 레이어 --> 
+    <div class="commonPop smartpick_spot_layer" ng-show="deliSelect2">
+       <div class="bg"></div>
+       <div class="box">
+           <div class="popBox">
+               <div class="cont">
+                   <p class="title01">스마트픽 지점 선택하기.</p>
+                    <p class="title02">선택한 상품</p>
+                    <div class="select_prd" id="smpShopList">
+                        <ul>
+                            <li  ng-repeat="item in smpData.goods_list.items" ng-if="orderList[$index].disable == undefined || !orderList[$index].disable" ng-class="{mart:item.crspk_psb_yn == 'Y'}">                           	
+                                <!--크로스픽 추가-->
+                                <input type="checkbox" id="smartpickSpot0{{$index}}" class="check01" disabled  data-goods_no="{{item.goods_no}}" ng-if="item.smp_brch_list == null && !orderList[$index].is_ecoupon && item.smp_psb_yn != 'Y' && item.crspk_psb_yn != 'Y'">                                
+                                <input type="checkbox" id="smartpickSpot0{{$index}}" class="check01" checked="checked" data-goods_no="{{item.goods_no}}" ng-if="item.smp_brch_list == null && !orderList[$index].is_ecoupon && item.smp_psb_yn == 'N' && item.crspk_psb_yn == 'Y'">
+                                <input type="checkbox" id="smartpickSpot0{{$index}}" class="check01" checked="checked" data-goods_no="{{item.goods_no}}" ng-if="item.smp_brch_list == null && !orderList[$index].is_ecoupon && item.smp_psb_yn == 'Y'">
+                                <input type="checkbox" id="smartpickSpot0{{$index}}" class="check01" checked="checked" data-goods_no="{{item.goods_no}}" ng-if="item.smp_brch_list == null && orderList[$index].is_ecoupon">                                
+                                <input type="checkbox" id="smartpickSpot0{{$index}}" class="check01" checked="checked" data-goods_no="{{item.goods_no}}" ng-if="item.smp_brch_list != null">
+                                <div class="prd_pdpage">
+                                    <label for="smartpickSpot0{{$index}}">
+                                        <strong class="title">{{item.goods_nm}}</strong>
+                                        <span class="option">{{item.item_nm}}</span>
+                                    </label>
+                                    <!--20160516 편의점-->
+                                    <div  ng-if="item.smp_psb_yn == 'Y'" class="deptSelectOpt">
+                                        <input type="radio" id="mart_a{{$index}}"  checked="checked" name ="mart_{{$index}}" class="radio01">
+                                        <label for="mart_a{{$index}}">롯데백화점</label>
+                                        <span ng-if="BasicData.product.smp_sale_price > 0  && BasicData.product.smp_psb_yn == 'Y'" class="smpDiscount">({{Fnproductview.getNumberFormat(BasicData.product.smp_sale_price)}}원 할인)</span>    
+                                    </div>
+                                    
+                                    
+                                    
+                                    <div ng-if="item.smp_brch_list == null && item.smp_psb_yn == 'Y'"> 
+                                        <span class="smpLayer_noshop" ng-if="orderList[$index].is_ecoupon == undefined || !orderList[$index].is_ecoupon">해당 옵션은 스마트픽 주문이 가능한 지점이 없습니다. '택배로 받기'로만 주문하실 수 있습니다.    </span>                                
+                                        <!--이쿠폰인 경우 20151204-->
+                                        <span class="smpLayer_noshop" ng-if="orderList[$index].is_ecoupon">이쿠폰 상품입니다.</span>                                
+                                    </div>
+                                    
+                                    <span class="s_box02" ng-if="item.smp_brch_list != null && item.smp_psb_yn == 'Y'">
+                                       {{setTempIndex($index)}}                       
+                                        <select name="brch_area" id="brch_area_{{$index}}" idx="{{$index}}">                                        
+                                            <option value="">지점을 선택해주세요</option>
+                                            <option  ng-repeat="opt in item.smp_brch_list.items" value="{{opt.shop_no}}"} ng-selected = "smpSelectCheck(opt.shop_no)">
+                                                {{myshopFlag(smpData.rgl_brch_entr_contr_no, opt.brch_entr_contr_no) + opt.brch_nm}}
+                                            </option>								
+                                        </select>
+                                        <div class="img_box"><i></i></div>			 			
+                                    </span>
+                                    
+                                    <!--20161130 크로스픽 편의점-->
+                                    <div  ng-if="item.crspk_psb_yn == 'Y' && item.smp_only_yn !='Y'" class="deptSelectOpt searchMart">
+                                        <input type="radio" id="mart_b{{$index}}" class="radio01" name ="mart_{{$index}}"  ng-click="show_map({{$index}}, '1000:^:1', '1000')">
+                                        <label for="mart_b{{$index}}"   ng-click="show_map({{$index}}, '1000:^:1', '1000')">세븐일레븐</label>  
+                                        <div class="martFind">
+                                            <span ng-if="item.mart_name == '' || item.mart_name == undefined || item.crspk_corp_cd != '1000'">가까운 세븐 일레븐 매장에서 픽업하는 서비스입니다.</span>
+                                            <span ng-if="item.mart_name != '' && item.mart_name != undefined && item.crspk_corp_cd != '3000'">{{item.mart_name}}</span>
+                                            <a class="alink"  ng-click="show_map({{$index}}, '1000:^:1', '1000')" ng-if="item.mart_name != undefined">지점찾기</a>
+                                        </div>
+                                        <div class="hideDiv">
+                                            <input type="text" name="crspk_name_{{$index}}" id="crspk_name_{{$index}}" ng-model="item.mart_name"/>
+                                            <input type="text" name="crspk_corp_cd_{{$index}}" id="crspk_corp_cd_{{$index}}" ng-model="item.crspk_corp_cd"/>
+                                            <input type="text" name="crspk_corp_str_sct_cd_{{$index}}" id="crspk_corp_str_sct_cd_{{$index}}"  ng-model="item.crspk_corp_str_sct_cd"/>
+                                            <input type="text" name="crspk_str_no_{{$index}}" id="crspk_str_no_{{$index}}"  ng-model="item.crspk_str_no"/>                                             
+                                        </div>                                
+                                    </div>         
+                                    <!--20161130 크로스픽 하이마트-->
+                                    <div  ng-if="item.crspk_psb_yn == 'Y' && item.smp_only_yn !='Y'" class="deptSelectOpt searchMart">
+                                        <input type="radio" id="mart_c{{$index}}" class="radio01" name ="mart_{{$index}}"  ng-click="show_map({{$index}}, '3000:^:1', '3000')">
+                                        <label for="mart_c{{$index}}"   ng-click="show_map({{$index}}, '3000:^:1', '3000')">하이마트</label>  
+                                        <div class="martFind">
+                                            <span ng-if="item.mart_name == '' || item.mart_name == undefined || item.crspk_corp_cd != '3000'">가까운 하이마트 매장에서 픽업하는 서비스입니다.</span>
+                                            <span ng-if="item.mart_name != '' && item.mart_name != undefined && item.crspk_corp_cd == '3000'">{{item.mart_name}}</span>
+                                            <a class="alink"  ng-click="show_map({{$index}}, '3000:^:1', '3000')" ng-if="item.mart_name != undefined">지점찾기</a>
+                                        </div>
+                                    </div>                                    
+                                    
+                                </div>
+                            </li>
+                        </ul>
+                   </div>
+                    <div class="smpSelectLine" ng-if="smpData.goods_list.items.length > 1"></div> 
+               </div>
+                <div class="foot">              
+                   <a ng-click="close_smpLayer()" class="cancle">취소</a>
+                   <a ng-click="ok_smpLayer()" class="ok">확인</a>
+                </div>
+            </div>
+       </div>
+    </div>  
+    <!--20161130 크로스픽 편의점 팝업-->
+    <div id="searchMartPop" class="martPopup">
+       <iframe></iframe>
+    </div>    
+    
+    <!-- 20160616 제휴채널 전면 팝업 
+    <div ng-if="chkAlliancePopupObj.flag && chkAlliancePopupObj.imgPath" class="alliance_pop">
+        <div class="dimmed"></div>
+        <div class="cont">
+            <a ng-click="allianceExcuteApp()" class="img_wrap"><img ng-src="{{chkAlliancePopupObj.imgPath}}" alt="롯데닷컴 앱 다운로드" /></a>
+            <a ng-click="closeAlliancePopup();" class="btn_close"><img src="http://image.lotte.com/lotte/mo2015/angular/detail/popBann_close_20160512.png" alt="롯데닷컴 앱 다운로드-닫기" /></a>
+        </div>
+    </div>
+	-->
+	<!-- 퀵 배송 안내 팝업 -->
+	<div class="commonPop quick_layer" ng-show="quickPop">
+		<div class="bg" ng-click="close_quickPop()"></div>
+		<div class="box">
+			<div class="popBox">
+				<h2>퀵 배송 안내</h2>
+				<div class="cont">
+					<ul>
+						<li>이용시간 : 09:00~16:30<br />(롯데백화점 본점 휴무, 공휴일 제외)</li>
+						<li>가능 지역 : 서울지역</li>
+						<li>퀵 배송비 : 10만원 미만 주문 시 <em>10,000원</em><br />10만원 이상 주문 시 <em>5,000원</em></li>
+						<li>배송 소요 시간 : 결제완료 후 4시간 이내<br />(서대문구,용산구,중구,종로구:<br>결제 완료 후 2시간 이내)</li>
+						<li>교환/반품 : 교환 불가/택배로 반품만 가능</li>
+					</ul>
+				 </div>
+				<div class="foot" ng-click="close_quickPop()">
+					닫기
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--20170817 스마트픽 안내 팝업 -->
+	<div class="commonPop quick_layer" ng-show="smartPop">
+		<div class="bg" ng-click="close_smartPop()"></div>
+		<div class="box">
+			<div class="popBox">
+				<h2>스마트픽 안내</h2>
+				<div class="cont">
+					<ul>
+						<li><b>스마트픽서비스란?</b><br/>온라인에서 주문하고 오프라인 매장으로 방문하여 픽업하는 서비스</li>
+						<li><b>롯데백화점</b><br/>원하는 롯데백화점 지점에 방문예정일을 선택하여 픽업(오후 4시 이전에는 당일픽업도 가능)</li>
+						<li><b>세븐일레븐/하이마트</b><br/>원하는 픽업매장으로 주문한 상품을 택배로 배송받아 안전하게 픽업(택배 3일 이내 토,일 제외)</li>
+					</ul>
+				 </div>
+				<div class="foot" ng-click="close_smartPop()">
+					닫기
+				</div>
+			</div>
+		</div>
+	</div>	
+</section>

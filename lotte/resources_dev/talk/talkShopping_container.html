@@ -1,0 +1,303 @@
+<section ng-show="contVisible" class="cont_minheight" ng-class="{dev_mode:DEV_MODE}">
+
+<div class="ts_cont ts_intro" ng-if="ts_showIntroPop">
+	<div class="tsi_img">
+		<a ng-click="ts_playVideo()">서비스 영상 보기</a>
+	</div>
+	<div class="tsi_btn">
+		<a ng-click="closeIntroPop(true)">다시 보지 않기</a>
+		<a ng-click="closeIntroPop()">닫기</a>
+	</div>
+	<div class="tsi_mov">
+		<video id="tsi_mov" playsinline="playsinline">
+			<source type="video/mp4">
+		</video>
+		<a class="tsim_play" ng-click="playPauseIntro()"></a>
+		<a class="tsim_close" ng-click="closeIntroPop()">닫기</a>
+	</div>
+</div>
+
+<div ng-if="!ts_showIntroPop">
+	<div class="dev_sidebar minimize" ng-if="DEV_MODE && ts_currentStep > 0">
+		<div>
+			<span>Step {{ts_currentStep}}</span>
+			<a ng-if="ts_currentStep==1" ng-click="talkRecomDelegate('sendSpeech', '생수 주문해줘')">생수 주문</a>
+			<a ng-if="ts_currentStep==2" ng-click="talkRecomDelegate('sendSpeech', '1번 주문해줘')">1번 주문</a>
+			<a ng-if="ts_currentStep==2" ng-click="talkRecomDelegate('sendSpeech', '1번 담아줘')">1번 담기</a>
+			<a ng-if="ts_currentStep==2" ng-click="talkRecomDelegate('sendSpeech', '1번 자세히')">1번 상세</a>
+			<a ng-if="ts_currentStep==1 || ts_currentStep==2" ng-click="talkRecomDelegate('sendSpeech', '아이시스 주문해줘')">아이시스</a>
+			<a ng-if="ts_currentStep==3" ng-click="talkRecomDelegate('sendSpeech', '응')">응</a>
+			<a ng-if="ts_currentStep==4" ng-click="talkOrderCallBack('0000', '성공', '201710274726454')">결제성공</a>
+			<a ng-if="ts_currentStep==4" ng-click="talkOrderCallBack('9999', '결제실패 시뮬레이션')">결제실패</a>
+			<a ng-if="ts_currentStep==4" ng-click="ispCBSimulate(true)">ISP성공</a>
+			<a ng-if="ts_currentStep==4" ng-click="ispCBSimulate(false)">ISP실패</a>
+			<a ng-if="ts_currentStep==5" ng-click="talkRecomDelegate('sendSpeech', '이전으로')">이전으로</a>
+			<a ng-if="ts_currentStep==5" ng-click="talkRecomDelegate('sendSpeech', '배송조회')">배송조회</a>
+			<span>Common</span>
+			<a ng-click="talkUserInput()">직접입력</a>
+			<span>Misc</span>
+			<a ng-click="stopSpeechRecogDV()"><span style="display:inline-block;width:10px;height:10px;background-color:#f00;margin-right:4px;"></span>Stop</a>
+			<a ng-click="delLS()">Del LS</a>
+			<a ng-click="reloadTS()">Reload</a>
+			<a ng-click="endTTSCB()">TTS end</a>
+			<a onclick="backKeyClicked()">Back키</a>
+			<a ng-click="notUnderstand()">이해못함</a>
+		</div>
+		<a class="toggle" ng-click="toggleDevSidebar()"></a>
+	</div>
+
+	<div class="ts_cont ts_chat" ng-if="!ts_basicInfo.showBasicInfo && !ts_clause.visible">
+		<div class="ts_header" ng-class="{noinfo:ts_currentStep>3, nosetting:ts_currentStep>2, noprev:ts_currentStep<2 || ts_currentStep>3}">
+			<a class="tsh_prev" ng-click="goPrevStepCall(11)"></a>
+			<a class="tsh_setting" ng-click="showHideBIPop(true, 10)"></a>
+			<a class="tsh_info" ng-click="showHideGuidePop(true)"></a>
+			<a class="tsh_close" ng-click="goHistoryBack()"></a>
+		</div>
+		
+		<!-- 상품군 선택 -->
+		<div class="ts_step ts_step1" ng-if="ts_currentStep==1">
+			<div class="ts_step_cont">
+				<div class="talk_list_grp">
+					<div class="talk_list" ng-repeat="talk in ts_talkList[1].talk_list track by $index" ng-bind-html="talk"></div>
+				</div>
+				<div>
+					<div class="group_list group{{$index+1}}" ng-repeat="item in ts_prodGroup track by $index">
+						<div class="tsg_row">
+							<div class="tsg_cell" ng-repeat="grp in item track by $index">
+								<a ng-click="selectProdGroup(grp, ($parent.$index*4)+($index+1))">
+									<span class="tsg_img"><img ng-src="{{grp.thumb}}" /></span>
+									<span class="tsg_ttl">{{grp.title}}</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 상품 선택 -->
+		<div class="ts_step ts_step2" ng-if="ts_currentStep==2">
+			<div class="ts_step_cont">
+				<div class="talk_list user_text" ng-if="ts_talkList[2].user_text">{{ts_talkList[2].user_text}}</div>
+				<div class="talk_list_grp">
+					<div class="talk_list" ng-repeat="talk in ts_talkList[2].talk_list track by $index" ng-bind-html="talk"></div>
+				</div>
+				<div>
+					<div class="prod_list prod{{$index+1}}" ng-click="selectProduct($index+1, item.goods_no)"
+						ng-repeat="item in ts_prodList track by $index">
+						<span class="tsp_idx">{{$index+1}}</span>
+						<span class="tsp_img"><img ng-src="{{item.img_url}}" /></span>
+						<span class="tsp_ttl">{{item.goods_nm}}</span>
+						<span class="tsp_prc">{{item.price | number}}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 주문 결정 -->
+		<div class="ts_step ts_step3" ng-if="ts_currentStep==3">
+			<div class="ts_step_cont">
+				<div class="talk_list user_text" ng-if="ts_talkList[3].user_text">{{ts_talkList[3].user_text}}</div>
+				<div class="talk_list_grp">
+					<div class="talk_list" ng-repeat="talk in ts_talkList[3].talk_list track by $index" ng-bind-html="talk"></div>
+				</div>
+				<div class="order_review" ng-repeat="item in ts_orderReview.goods_list.items track by $index | limitTo : 1">
+					<div class="tsor_prod">
+						<div class="tsor_img"><img ng-src="{{ts_currentProduct.img_url}}" /></div>
+						<div class="tsor_ttl">{{item.goods_nm}}</div>
+					</div>
+					<div class="tsor_price">
+						<dl class="tsor_discount" ng-if="isValidNumber(ts_orderReview.discount_amt)">
+							<dt>총 할인금액</dt>
+							<dd>{{ts_orderReview.discount_amt | number}}</dd>
+						</dl>
+						<dl class="tsor_total">
+							<dt>최종 결제금액</dt>
+							<dd>{{ts_orderReview.total_price | number}}</dd>
+						</dl>
+						<dl class="tsor_payment">
+							<dt></dt>
+							<dd ng-if="ts_basicInfo.pay_mean_cd=='40'"><em>{{ts_basicInfo.pay_mean_nm}}</em><em ng-if="ts_basicInfo.fnCoNm">{{ts_basicInfo.fnCoNm}}</em><em ng-if="ts_basicInfo.pmtMthdAlias">{{ts_basicInfo.pmtMthdAlias}}</em></dd>
+							<dd ng-if="ts_basicInfo.pay_mean_cd!='40'"><em>{{ts_basicInfo.pay_nm}}</em><em ng-if="ts_basicInfo.card_pay_meth_nm">{{ts_basicInfo.card_pay_meth_nm}}</em></dd>
+						</dl>
+					</div>
+					<div class="tsor_delivery">
+						<dl>
+							<dt>배송지</dt>
+							<dd>
+								<span class="tsor_delname">{{ts_orderReview.deliver_info.rmit_nm}}({{ts_orderReview.deliver_info.dlvp_nm}})</span>
+								<span ng-if="ts_orderReview.deliver_info.stnm_post_addr">{{ts_orderReview.deliver_info.stnm_post_addr}} {{ts_orderReview.deliver_info.stnm_dtl_addr}}</span>
+								<span ng-if="!ts_orderReview.deliver_info.stnm_post_addr">{{ts_orderReview.deliver_info.post_addr}} {{ts_orderReview.deliver_info.dtl_addr}}</span>
+							</dd>
+						</dl>
+					</div>
+				</div>
+				<div class="talk_list noti_text">
+					<div class="noti_toggle" ng-class="{open:ts_clause.toggle}" ng-click="toggleClause()">주문내역 확인 및 결제서비스 이용약관에 모두 동의합니다.</div>
+					<ul ng-if="ts_clause.toggle">
+						<li>주문할 상품의 상품명, 상품가격, 배송정보를 확인하였습니다. (전자상거래법 제8조 제2항)</li>
+						<li>결제서비스 이용 약관에 동의합니다.<a ng-click="showHideClause(true)">약관보기</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 주문중 -->
+		<div class="ts_step ts_step4" ng-if="ts_currentStep==4">
+			<div>
+				<div class="talk_list user_text" ng-if="ts_talkList[4].user_text">{{ts_talkList[4].user_text}}</div>
+				<div class="ts_orderLayer">
+					<div class="tsol_frame">
+						<div><iframe id="tsol_iframe" scrolling="yes"></iframe></div>
+						<a class="tsol_close" ng-click="closeOrderLayer()"></a>
+					</div>
+				</div>
+				<!-- <div class="talk_list">결제 모듈 실행</div> -->
+			</div>
+		</div>
+		<div class="ts_step">
+		</div>
+		
+		<!-- 주문 완료 -->
+		<div class="ts_step ts_step5" ng-if="ts_currentStep==5">
+			<div class="ts_step_cont">
+				<div>
+					<div class="talk_list" ng-repeat="talk in ts_talkList[5].talk_list track by $index" ng-bind-html="talk"></div>
+				</div>
+				<div class="order_complete" ng-repeat="item in ts_orderResult.goods_list.items track by $index | limitTo : 1">
+					<div class="tsoc_orderno" ng-click="gotoPurchaseView()">{{ts_orderResult.ord_no}}</div>
+					<div class="tsoc_prod">
+						<div class="tsoc_img"><img ng-src="{{ts_currentProduct.img_url}}" /></div>
+						<div class="tsoc_ttl">{{item.goods_nm}}</div>
+					</div>
+					<div class="tsoc_price">
+						<dl class="tsoc_sum">
+							<dt>총 주문금액</dt>
+							<dd>{{ts_orderResult.total_amt | number}}</dd>
+						</dl>
+						<dl class="tsoc_discount" ng-if="isValidNumber(ts_orderResult.discount_amt)">
+							<dt>총 할인금액</dt>
+							<dd>{{ts_orderResult.discount_amt | number}}</dd>
+						</dl>
+						<dl class="tsoc_total">
+							<dt>최종 결제금액</dt>
+							<dd>{{ts_orderResult.total_price | number}}</dd>
+						</dl>
+					</div>
+				</div>
+				<div>
+					<a class="order_restart" ng-click="talkRecomDelegate('sendSpeech', '취소')">새 주문 하기</a>
+				</div>
+			</div>
+		</div>
+		
+		<!-- mic -->
+		<div class="ts_mic" ng-class="{open:ts_micStat.open}" ng-click="micClick()">
+		
+			<div class="tsm_box" ng-if="ts_micStat.inited" ng-class="{warning:ts_micStat.warning, listening:ts_micStat.listening, sending:ts_micStat.sending}">
+				<div class="tsm_circle">
+					<div class="tsmc_ripple"></div>
+					<div class="tsmc_disc"><div ng-if="ts_micStat.open && ts_micStat.listening"></div></div>
+					<div class="tsmc_mic" ng-if="!ts_micStat.open || !(ts_micStat.listening || ts_micStat.sending || ts_micStat.warning)"></div>
+					<div class="tsmc_dot" ng-if="ts_micStat.open && (ts_micStat.listening || ts_micStat.sending || ts_micStat.warning)">
+						<span class="a1"><span></span></span>
+						<span class="a2"><span></span></span>
+						<span class="a3"><span></span></span>
+					</div>
+					<!-- <div class="tsmc_dot tsmc_waver" ng-if="ts_micStat.listening"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div>
+					<div class="tsmc_dot tsmc_flick" ng-if="ts_micStat.sending"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div> -->
+				</div>
+				<div class="tsm_text">
+					<span ng-if="!ts_stt.text">{{ts_toastList[ts_toastIdx]}}</span>
+					<span class="tsm_user" ng-if="ts_stt.text">{{ts_stt.text}}</span>
+				</div>
+			</div>
+			
+			<div class="tsm_intro" ng-class="{init:ts_micStat.init}" ng-if="!ts_micStat.inited">
+				<div class="tsmi_circle"></div>
+				<div class="tsmi_mic"></div>
+			</div>
+			
+		</div>
+		
+	</div>
+	
+	<div class="ts_cont ts_basic" ng-if="ts_basicInfo.showBasicInfo">
+		<div class="tsb_intro">
+			{{loginInfo.name}}님 음성주문에 오신걸 환영해요!<br/>
+			<b>배송지</b>, <b>결제수단</b> 등록 후<br/>
+			음성으로 주문 및 결제가 가능해요.
+		</div>
+		<div class="tsb_infobox">
+			<div class="tsb_del">
+				<div ng-if="!ts_basicInfo.et_mbr_dlvp_chk" class="btn_init">
+					<a ng-click="changeBasicInfo(1, 1)">배송지 입력하기</a>
+				</div>
+				<div ng-if="ts_basicInfo.et_mbr_dlvp_chk" class="btn_fill">
+					<span>{{ts_basicInfo.rmit_nm}}({{ts_basicInfo.dlvp_nm}}) {{ts_basicInfo.post_addr}} {{ts_basicInfo.dtl_addr}}</span>
+					<a ng-click="changeBasicInfo(1, 4)">변경</a>
+				</div>
+			</div>
+			<div class="tsb_pay">
+				<div ng-if="!ts_basicInfo.base_op_pay_chk" class="btn_init">
+					<a ng-click="changeBasicInfo(2, 2)">결제수단 등록하기</a>
+				</div>
+				<div ng-if="ts_basicInfo.base_op_pay_chk" class="btn_fill">
+					<span ng-if="ts_basicInfo.pay_mean_cd=='40'"><em>{{ts_basicInfo.pay_mean_nm}}</em><em ng-if="ts_basicInfo.fnCoNm">{{ts_basicInfo.fnCoNm}}</em><em ng-if="ts_basicInfo.pmtMthdAlias">{{ts_basicInfo.pmtMthdAlias}}</em></span>
+					<span ng-if="ts_basicInfo.pay_mean_cd!='40'"><em>{{ts_basicInfo.pay_nm}}</em><em>{{ts_basicInfo.card_pay_meth_nm}}</em></span>
+					<a ng-click="changeBasicInfo(2, 5)">변경</a>
+				</div>
+			</div>
+		</div>
+		<div class="tsb_btns">
+			<div ng-if="!ts_basicInfo.initiated" class="tsb_btn2" ng-class="{dimm:!ts_basicInfo.prior_info_chk}">
+				<div class="later">
+					<a ng-click="closeBasicInfo(0, 3)">나중에 할래요</a>
+				</div>
+				<div class="start">
+					<a ng-click="closeBasicInfo(1, 6)">시작하기</a>
+				</div>
+			</div>
+			<div ng-if="ts_basicInfo.initiated" class="tsb_btn1">
+				<div>
+					<a ng-click="closeBasicInfo(2, 7)">확인</a>
+				</div>
+			</div>
+		</div>
+		<div class="tsb_info">
+			<ul>
+				<li>등록하신 배송지와 결제수단으로 주문결제되며,<br/>
+				설정 화면에서 추후 수정 가능합니다.</li>
+				<li>주문하신 상품은 마이롯데에서 확인 가능합니다.</li>
+				<li>일부지역은 배송이 제한될 수 있어 상품페이지 참조 바랍니다.</li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="ts_cont ts_guide" ng-if="ts_basicInfo.showGuideInfo">
+		<a class="tsg_close" ng-click="showHideGuidePop(false)"></a>
+		<div class="tsg_img tsgi1" ng-if="ts_currentStep==1"><img ng-src="http://image.lotte.com/lotte/mo2017/talk/talkshop_info1.png" /></div>
+		<div class="tsg_img tsgi2" ng-if="ts_currentStep==2"><img ng-src="http://image.lotte.com/lotte/mo2017/talk/talkshop_info2.png" /></div>
+		<div class="tsg_img tsgi3" ng-if="ts_currentStep==3"><img ng-src="http://image.lotte.com/lotte/mo2017/talk/talkshop_info3.png" /></div>
+		<div class="tsg_mic"></div>
+	</div>
+	
+	<div class="ts_cont ts_clause" ng-if="ts_clause.visible">
+		<div class="tsc_title">결제서비스 이용약관</div>
+		<a ng-click="showHideClause(false)" class="tsc_close"></a>
+		<ul class="tsc_tabs">
+			<li ng-class="{on:ts_clause.index==1}"><a ng-click="loadClause(1)">전자금융거래<br/>이용약관</a></li>
+			<li ng-class="{on:ts_clause.index==2}"><a ng-click="loadClause(2)">개인정보 수집<br/>및 이용안내</a></li>
+			<li ng-class="{on:ts_clause.index==3}"><a ng-click="loadClause(3)">개인정보 제3자<br/>제공/위탁 안내</a></li>
+		</ul>
+		<div class="ts_clause_cont">
+			<div>
+				<div id="clauseHolder"></div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="ts_loading" ng-if="ts_loadingData"><span></span></div>
+</div>
+
+</section>

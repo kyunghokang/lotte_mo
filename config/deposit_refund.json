@@ -1,0 +1,69 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplDepositRefund" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mylotte/pointcoupon/m/deposit_refund_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/deposit_refund.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsDepositRefund" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mylotte/pointcoupon/m/deposit_refund.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/deposit_refund.js"
+            }
+        },
+
+        "uglify" : {
+            "jsDepositRefund" : {
+                "src" : "lotte/resources/<%= version %>/deposit_refund.js",
+                "dest" : "lotte/resources/<%= version %>/deposit_refund.min.js"
+            },
+            "tplDepositRefund" : {
+                "src" : "lotte/resources/<%= version %>/deposit_refund.template.js",
+                "dest" : "lotte/resources/<%= version %>/deposit_refund.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssDepositRefund" : {
+                "src" : [
+                    "lotte/resources_dev/mylotte/pointcoupon/m/point_info.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/deposit_refund.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanDepositRefund" : [
+                "lotte/resources/<%= version %>/deposit_refund.js",
+                "lotte/resources/<%= version %>/deposit_refund.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlDepositRefund" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mylotte/pointcoupon/m/deposit_refund.html" : "mylotte/pointcoupon/m/deposit_refund_dev.html"
+                }
+            }
+        }
+    }
+}
+

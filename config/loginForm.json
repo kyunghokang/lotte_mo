@@ -1,0 +1,70 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplloginForm" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/login/login_form_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/loginForm.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsloginForm" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/login/login_form.js",
+                    "lotte/lib/naver/naverLogin.js",
+                    "lotte/lib/facebook/ko_KR/all.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/loginForm.js"
+            }
+        },
+
+        "uglify" : {
+            "jsloginForm" : {
+                "src" : "lotte/resources/<%= version %>/loginForm.js",
+                "dest" : "lotte/resources/<%= version %>/loginForm.min.js"
+            },
+            "tplloginForm" : {
+                "src" : "lotte/resources/<%= version %>/loginForm.template.js",
+                "dest" : "lotte/resources/<%= version %>/loginForm.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssloginForm" : {
+                "src" : [
+                    "lotte/resources_dev/login/login.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/loginForm.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanloginForm" : [
+                "lotte/resources/<%= version %>/loginForm.js",
+                "lotte/resources/<%= version %>/loginForm.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlloginForm" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "login/m/loginForm.html" : "login/m/loginForm_dev.html"
+                }
+            }
+        }
+    }
+}

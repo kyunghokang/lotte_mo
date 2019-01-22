@@ -1,0 +1,39 @@
+main_popup.js 사용 방법
+--------------------------------------
+
+1. 스크립트
+	<script src="/lotte/resources_dev/layer/main_popup.js"></script>
+
+2. CSS
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/layer/main_popup.css"/>
+
+3. DIRECTIVE
+	<lotte-main-popup ppp_tgt_pg_cd="10"></lotte-main-popup>
+
+	이 때 디렉티브의 속성 'ppp-tgt-pg-cd'의 값은 다음을 따른다:
+	 - 메인: 10
+	 - 상품상세: 20
+	 - 기획전: 30
+	 - 검색결과: 40
+	 - 카테고리: 50
+	
+	롯데닷컴과 엘롯데는 백엔드에서 도메인으로 판단하므로 따로 명시하지 않는다.
+	 
+4. 각 페이지의 모듈 초기화 부분에 'lotteMainPop' 포함
+	ex)	var app = angular.module('app', [
+	        ...,
+	        'lotteMainPop'
+    	]);
+
+5. 테스트 방법:
+	DB가 TSEC일 떄 'ppp-tgt-pg-cd'의 값을 10으로 설정하면 페이지 로딩 시 자동으로 팝업이 떠야한다.
+	이 때 다시보지 않기 쿠키: NOCOMMONPOPUP, NOCHANNELPOPUP<채널번호>가 없어야 팝업이 뜨는걸 확인할 수 있다.
+   	
+6. 참고할 수 있는 파일
+	webapp/WEB-INF/lotte_template/main_phone.jsp
+
+7. 관련 파일
+	webroot/lotte/resources_dev/layer/main_popup.html
+	webroot/lotte/resources_dev/layer/main_popup.css
+	webroot/lotte/resources_dev/layer/main_popup.js
+	/fo/src/com/lotte/mobile2/system/controller/SystemController#current_page_popup(ModelMap, HttpServletRequest)

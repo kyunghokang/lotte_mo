@@ -1,0 +1,68 @@
+<ol class="list">
+	<li ng-repeat="item in prd_deal_list | filter:dept_filterFn "
+		class="n_1 b_" ng-class="{ban_hid:item.banner_mix}">
+		<div class="unit_deal_01" dom-load-directive2="" ng-if="item.unit_mix">
+			<a ng-click="clickUnit(item.reIdx)">
+				<div class="mdTip">
+					<!-- ngIf: item.copy_nm -->
+					<p class="txtBox ng-binding ng-scope" ng-if="item.copy_nm">액세서리는
+						레이어드로 해줘야 멋쟁이</p>
+					<!-- end ngIf: item.copy_nm -->
+				</div>
+				<div class="thumb" ng-class="{normal:item.default_img == true}">
+					<!-- ngIf: item.sold_out -->
+					<img
+						ng-src="http://image.lotte.com/upload/display/mobile_banner/5532534_151346396.jpg"
+						alt="[헤리메이슨] 시계/주얼리 20종"
+						src="http://image.lotte.com/upload/display/mobile_banner/5532534_151346396.jpg">
+					<!-- ngIf: item.is_dept || item.is_tvhome -->
+				</div>
+				<div class="info"
+					ng-class="{true:item.plan_prod_yn != true &amp;&amp; item.sale_rate &amp;&amp; item.sale_rate != 0}">
+					<div class="line1">
+						<!-- ngIf: item.plan_prod_yn != true && item.sale_rate && item.sale_rate != 0 -->
+						<div class="txtBox">
+							<p class="tit elli ng-binding" ng-bind="item.goods_nm">[헤리메이슨]
+								시계/주얼리 20종</p>
+							<p class="price">
+								<strong ng-bind="item.price2" class="ng-binding">9,800</strong>원
+								<!-- ngIf: item.plan_prod_yn == true -->
+								<span ng-if="item.plan_prod_yn == true" class="ng-scope">~</span>
+								<!-- end ngIf: item.plan_prod_yn == true -->
+							</p>
+						</div>
+					</div>
+					<div class="line2">
+						<!-- ngIf: item.sale_cnt && item.sale_cnt != '0' -->
+						<span class="sale ng-scope"
+							ng-if="item.sale_cnt &amp;&amp; item.sale_cnt != '0' "><strong
+							ng-bind="item.sale_cnt" class="ng-binding">621</strong>개 구매중</span>
+						<!-- end ngIf: item.sale_cnt && item.sale_cnt != '0' -->
+						<!-- ngIf: item.flag -->
+						<span class="tag ng-scope" ng-if="item.flag"> <!-- ngRepeat: flag in item.flag track by $index -->
+							<span ng-repeat="flag in item.flag track by $index"
+							class="ng-binding ng-scope">눈이부셔</span>
+						<!-- end ngRepeat: flag in item.flag track by $index -->
+						</span>
+						<!-- end ngIf: item.flag -->
+					</div>
+				</div>
+			</a>
+
+		</div>
+		<!-- end ngIf: item.unit_mix --> <!-- ngIf: item.banner_mix -->
+	</li>
+	<!-- end ngRepeat: item in prd_deal_list | filter:dept_filterFn -->
+	<li ng-repeat="item in prd_deal_list | filter:dept_filterFn "
+		class="n_ b_2 ban_hid" ng-class="{ban_hid:item.banner_mix}">
+		<!-- ngIf: item.unit_mix --> <!-- ngIf: item.banner_mix -->
+		<div class="banner  ng-scope" ng-if="item.banner_mix">
+			<a
+				ng-click="cornerBanView(item.img_link,tclickMainBanStr + item.mrk_rnk)"><img
+				ng-src="http://image.lotte.com/upload/display/corner/5537338_42057_0_30_13008014_184.jpg"
+				alt="8/21 롯데카드"
+				src="http://image.lotte.com/upload/display/corner/5537338_42057_0_30_13008014_184.jpg"></a>
+		</div>
+		<!-- end ngIf: item.banner_mix -->
+	</li>
+</ol>

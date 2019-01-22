@@ -1,0 +1,72 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplSearchResultList":{
+				"options": {
+					"prefix":"/",
+					"module" : "app"
+				},
+				"src":[
+					"lotte/resources_dev/layer/layer_coupon.html",
+					"lotte/resources_dev/layer/main_popup.html",
+					"lotte/resources_dev/layer/app_down_bnr.html",
+					"lotte/resources_dev/search/search_list_container.html"
+				],
+				"dest":"lotte/resources/<%= version %>/search_list.template.js"
+			}
+		},
+		"concat" : {
+			"options" : {
+				"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+			},
+			"jsSearchResultList":{
+				"title":"검색결과",
+				"src": [
+					"lotte/resources_dev/search/search_list.js",
+					"lotte/resources_dev/layer/main_popup.js",
+					"lotte/resources_dev/layer/lotte_coupon_layer.js"
+				],
+				"dest":"lotte/resources/<%= version %>/search_list.js"
+			}
+		},
+		"uglify" : {
+			"jsSearchResultList":{
+				"src":"lotte/resources/<%= version %>/search_list.js",
+				"dest":"lotte/resources/<%= version %>/search_list.min.js"
+			},
+			"tplSearchResultList":{
+				"src":"lotte/resources/<%= version %>/search_list.template.js",
+				"dest":"lotte/resources/<%= version %>/search_list.tpl.js"
+			}
+		},
+		"cssmin" : {
+			"cssSearchResultList":{
+				"src":[
+					"lotte/resources_dev/layer/coupon_layer.css",
+					"lotte/resources_dev/layer/main_popup.css",
+					"lotte/resources_dev/search/search_list.css"
+				],
+				"dest":"lotte/resources/<%= version %>/search_list.min.css"
+			}
+		},
+		"clean" : {
+			"cleanSearchResultList" : [
+				"lotte/resources/<%= version %>/search_list.template.js",
+				"lotte/resources/<%= version %>/search_list.js"
+			]
+		},
+		 "processhtml" : {
+			"htmlSearchResultList" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"search/search_list.html" : "search/search_list_dev.html"
+				}
+			}
+		}
+	}
+}
+

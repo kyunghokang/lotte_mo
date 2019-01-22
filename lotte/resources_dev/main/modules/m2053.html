@@ -1,0 +1,38 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!--M53 선물함 즐겨찾기-->
+	<div ng-if="presentData.linkUrl != null && loginInfo.isLogin">
+		<div  class="moduleCon" ng-if="presentData.fromNm != null">
+			<div class="present_wrap">
+				<div class="be_ti">
+					<p><span>{{loginInfo.name}}님의 받은선물</span></p>
+				</div>
+				<div class="prd_wrap">
+					<div class="thumb">
+						<img ng-src="{{presentData.imgUrl}}" alt="" />
+					</div>
+					<div class="info">
+						<p class="user"><strong>From</strong> {{presentData.fromNm}}</p>
+						<p class="name">
+							<!-- <span class="n1">[{{presentData.brdNm}}]</span> -->
+							<span class="n2">{{presentData.goodsNm}}</span>
+						</p>
+						<ul>
+							<li><a ng-click="logGAEvtModuleEach('01', '선물후기작성');presentWriteClick(presentData.writeUrl, moduleData.tclick + '_Clk_Btn02', presentData.writable)">선물 후기 작성</a></li>
+							<li><a ng-click="logGAEvtModuleEach('01', '선물함더보기');mainBannerClick(presentData.linkUrl, false, moduleData.tclick + '_Clk_Btn03')">선물함 더보기</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- <div class="btnMore">
+				<span class="btnArea"><a ng-click="moreClick(presentData.linkUrl, moduleData.tclick)"><span>선물함 더보기</span></a></span>
+			</div> -->
+		</div>
+		<div class="gift_btn" ng-if="presentData.fromNm == null">
+			<a ng-click="logGAEvtModuleEach('선물함바로가기', '선물함바로가기');mainBannerClick(presentData.linkUrl, false, moduleData.tclick + '_Clk_Btn01')"><span>내 선물함 바로가기</span></a>
+		</div>
+	</div>
+	
+	<div class="gift_btn" ng-if="!loginInfo.isLogin">
+		<a ng-click="logGAEvtModuleEach('선물함바로가기', '선물함바로가기');mainBannerClick(presentData.linkUrl, false, moduleData.tclick + '_Clk_Btn01')"><span>내 선물함 바로가기</span></a>
+	</div>
+</section>

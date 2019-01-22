@@ -1,0 +1,97 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplMain" : {
+				"options": {
+					"prefix":"/",
+					"module" : "app"
+				},
+				"src" : [
+					"lotte/resources_dev/main/lotte_header_main.html",
+					"lotte/resources_dev/main/main_container.html",
+					"lotte/resources_dev/main/template_event.html",
+					"lotte/resources_dev/main/template_planshop.html",
+					"lotte/resources_dev/main/template_trend.html",
+					"lotte/resources_dev/main/template_deal.html",
+					"lotte/resources_dev/main/template_etv.html",
+					"lotte/resources_dev/main/template_storyshop.html",
+					"lotte/resources_dev/main/template_recommend.html",
+					"lotte/resources_dev/main/template_ranking.html",
+					"lotte/resources_dev/main/template_bigdeal.html",
+					"lotte/resources_dev/main/template_ctgdeal.html",
+					"lotte/resources_dev/main/template_holiday.html",
+					"lotte/resources_dev/main/template_styleshop.html",
+					"lotte/resources_dev/main/app_info.html",
+					"lotte/resources_dev/main/smart_message.html",
+					"lotte/resources_dev/layer/main_popup.html",
+					"lotte/resources_dev/layer/layer_coupon.html",
+					"lotte/resources_dev/product_unit/product_unit_list_best10.html",
+					"lotte/resources_dev/product_unit/product_unit_list_mixdeal.html",
+					"lotte/resources_dev/product_unit/product_unit_list_mixetv.html",
+					"lotte/resources_dev/product_unit/product_unit_list_planshop.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/main.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsMain" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/common/lotte_slider.js",
+					"lotte/resources_dev/main/app_info.js",
+					"lotte/resources_dev/main/main.js",
+					"lotte/resources_dev/layer/main_popup.js",
+					"lotte/resources_dev/layer/lotte_coupon_layer.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/main.js"
+			}
+		},
+
+		"uglify" : {
+			"jsMain" : {
+				"src" : "lotte/resources/<%= version %>/main.js",
+				"dest" : "lotte/resources/<%= version %>/main.min.js"
+			},
+			"tplMain" : {
+				"src" : "lotte/resources/<%= version %>/main.template.js",
+				"dest" : "lotte/resources/<%= version %>/main.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssMain" : {
+				"src" : [
+					"lotte/resources_dev/main/main.css",
+					"lotte/resources_dev/layer/main_popup.css",
+					"lotte/resources_dev/layer/coupon_layer.css",
+					"lotte/resources_dev/main/app_info.css",
+					"lotte/resources_dev/product_unit/product_unit.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/main.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanMain" : [
+				"lotte/resources/<%= version %>/main.js",
+				"lotte/resources/<%= version %>/main.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlMain" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"main/main.html" : "main/main_dev.html"
+				}
+			}
+		}
+	}
+}

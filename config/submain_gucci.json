@@ -1,0 +1,70 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplgucciFaq" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/custcenter/faq_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/submain_gucci.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsgucciFaq" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/custcenter/faq.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/submain_gucci.js"
+            }
+        },
+
+        "uglify" : {
+            "jsgucciFaq" : {
+                "src" : "lotte/resources/<%= version %>/submain_gucci.js",
+                "dest" : "lotte/resources/<%= version %>/submain_gucci.min.js"
+            },
+            "tplgucciFaq" : {
+                "src" : "lotte/resources/<%= version %>/submain_gucci.template.js",
+                "dest" : "lotte/resources/<%= version %>/submain_gucci.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssgucciFaq" : {
+                "src" : [
+                    "lotte/resources_dev/custcenter/cscenter_main.css",
+                    "lotte/resources_dev/mall/gucci/gucci_main.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/submain_gucci.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleangucciFaq" : [
+                "lotte/resources/<%= version %>/submain_gucci.js",
+                "lotte/resources/<%= version %>/submain_gucci.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlgucciFaq" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "custcenter/m/submain_gucci.html" : "custcenter/m/submain_gucci_dev.html"
+                }
+            }
+        }
+    }
+}
+

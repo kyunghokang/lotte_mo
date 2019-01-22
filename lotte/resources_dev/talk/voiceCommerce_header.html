@@ -1,0 +1,17 @@
+<header class="vc_header_wrap state_{{pageUI.state}}">
+	<ul class="ts_header_left">
+		<li ng-if="(pageUI.state == 'prod_detail' || pageUI.state == 'order')"><a class="tsh_prev" ng-click="backPrdList()"><span>이전</span></a></li>
+		<li>
+			<a class="tsh_menu" ng-click="toggleSideNav(true)"><span>메뉴</span></a>
+			<div class="msg_box" ng-if="pageUI.evtTxt && pageUI.evtTxtShowFlag" ng-click="hideEvtTxt()">
+				<p class="msg" ng-bind-html="pageUI.evtTxt"></p>
+			</div>
+		</li>
+	</ul>
+	<ul class="ts_header_right">
+		<li ng-if="pageUI.devMode"><button class="btn_toggle" ng-click="toggleDevMode()">DEV9</button></li>
+		<li ng-if="appObj.isApp"><a class="tsh_volume" ng-class="{on: pageUI.app.soundFlag}" ng-click="toggleSound(!pageUI.app.soundFlag)"><span>소리</span></a></li>
+		<li><a class="tsh_help" ng-click="toggleHelp(true)"><span>도움말</span></a></li>
+		<li><a class="tsh_close" ng-click="exit('btn')"><span>닫기</span></a></li>
+	</ul>
+</header>

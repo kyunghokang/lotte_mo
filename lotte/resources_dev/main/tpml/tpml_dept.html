@@ -1,0 +1,306 @@
+<div tpml-dept ng-if="pageUI.curMenuDispNo == '5553646'" class="cont_wrap tpml_dept padding">
+  	<!--2017 2일 ~ 22일-->
+	<div ng-if="bannerShow(2017,1,2,2017,1,5)" class="recomStaffBanner" style="background:#ef1b27">
+		<a href="#" ng-click="goBannerLink('/product/m/product_list.do?curDispNo=5404621&tclick=m_DC_menu_5553646_Clk_TopBan01')"><img ng-src="http://image.lotte.com/lotte/mo2015/angular/main/main_dept_201702_01_2.jpg"/></a>		
+	</div>  
+	<div ng-if="bannerShow(2017,1,5,2017,1,9)" class="recomStaffBanner" style="background:#ef1b27">
+		<a href="#" ng-click="goBannerLink('/product/m/product_list.do?curDispNo=5404623&tclick=m_DC_menu_5553646_Clk_TopBan01')"><img ng-src="http://image.lotte.com/lotte/mo2015/angular/main/main_dept_201702_02_2.jpg"/></a>		
+	</div>  
+	<div ng-if="bannerShow(2017,1,9,2017,1,12)" class="recomStaffBanner" style="background:#ef1b27">
+		<a href="#" ng-click="goBannerLink('/product/m/product_list.do?curDispNo=5404621&tclick=m_DC_menu_5553646_Clk_TopBan01')"><img ng-src="http://image.lotte.com/lotte/mo2015/angular/main/main_dept_201702_03_2.jpg"/></a>		
+	</div>  
+	<div ng-if="bannerShow(2017,1,12,2017,1,16)" class="recomStaffBanner" style="background:#ef1b27">
+		<a href="#" ng-click="goBannerLink('/product/m/product_list.do?curDispNo=5404623&tclick=m_DC_menu_5553646_Clk_TopBan01')"><img ng-src="http://image.lotte.com/lotte/mo2015/angular/main/main_dept_201702_04_2.jpg"/></a>		
+	</div>  
+	<div ng-if="bannerShow(2017,1,16,2017,1,19)" class="recomStaffBanner" style="background:#ef1b27">
+		<a href="#" ng-click="goBannerLink('/product/m/product_list.do?curDispNo=5404621&tclick=m_DC_menu_5553646_Clk_TopBan01')"><img ng-src="http://image.lotte.com/lotte/mo2015/angular/main/main_dept_201702_05_2.jpg"/></a>		
+	</div>  
+	<div ng-if="bannerShow(2017,1,19,2017,1,23)" class="recomStaffBanner" style="background:#ef1b27">
+		<a href="#" ng-click="goBannerLink('/product/m/product_list.do?curDispNo=5404623&tclick=m_DC_menu_5553646_Clk_TopBan01')"><img ng-src="http://image.lotte.com/lotte/mo2015/angular/main/main_dept_201702_06_2.jpg"/></a>		
+	</div>  
+    <!--20170216 롤링배너 적용-->    
+	<section class="main_banner" id="deptbann" interval="3000" roll-swipe-banner rolling="true" width320="1" width640="1" width900="1" info="randomTopBann"  ng-if="randomTopBann">
+		<ul class="swipe_wrap swipeBox">
+			<li ng-repeat="item in bn_order track by $index" >
+				<a href="#" ng-click="processTclick(randomTopBann[item].img_link, {prefix:'Swp_Ban_idx', useIndex:true, index:item+1})">
+					<span class="imageCon"><img ng-src="{{randomTopBann[item].img_url}}" alt="" /></span>
+					<span class="txt">
+						<span class="maintxt">{{randomTopBann[item].title}}</span>
+						<span class="subtxt">{{randomTopBann[item].subtitle}}</span>
+					</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="indicator">
+			<li ng-repeat="item in randomTopBann track by $index"><span>{{$index}}</span></li>
+		</ul>
+	</section>
+		
+	<!-- 빅딜 -->
+	<section class="deptBigDeal">
+		<div class="titlearea">
+			<div class="subtitle">설렘가득 두근두근</div>
+			<div class="title">오늘의 백화점딜</div>
+			<div class="more"><a href="#" ng-click="showMoreBigDeal()">BIG딜</a></div>
+		</div>
+	
+		<ol class="prod_list_mix_2016">
+			<li ng-repeat="item in tpmlData.contData.big_deal.items track by $index" class="prod swipe" ng-hide="(screenType == 2 && $index >= tpmlData.contData.big_deal.maxCount2) || (screenType == 3 && $index >= tpmlData.contData.big_deal.maxCount3)"><!-- ng-if="winWidth < 640 || (winWidth >= 640 && item.isProduct)" ng-class="{prod: item.isProduct, banner: item.isBanner, swipe: item.isSwipe}" -->
+				<div class="unit_mixdeal_01" ><!-- ng-if="item.isProduct" -->
+					<a ng-click="productDealClick(item, 'bigdeal')"><!-- -->
+						<!-- 품절 -->
+						<!-- <div class="soldout" ng-show="item.is_soldout">SOLD OUT</div> -->
+	
+						<!-- MD Talk -->
+						<!-- <div class="md_talk_wrap">
+							<p ng-class="{md_talk:item.md_tip}" class="md_talk_copy"><span> {{item.md_tip}} </span></p>
+						</div> -->
+	
+						<!-- 상품 이미지 : 대표이미지 불러오는 경우 class='thumb normal' 코너이미지 불러오는 경우 clas='thumb' -->
+						<div class="thumb" ><!-- ng-class="{normal:item.default_img}" default_img REMOVED -->
+	                        <!-- 엘포인트백 플레그 -->
+	                        <span ng-if="item.goods_nm.indexOf('[포인트백]') > -1" class="lpointBack_flag">엘포인트백</span>
+	
+							<img ng-src="{{getProductImage2(item)}}" alt="{{item.goods_nm}}"/>
+	
+							<div class="prod_flag_wrap">
+								<span class="flag depart" ng-if="item.mall_flag.is_dept">롯데백화점</span>
+								<span class="flag etv" ng-if="item.mall_flag.is_tvhome && !item.mall_flag.is_dept">롯데홈쇼핑</span>
+								<!--<span class="flag tag" ng-show="item.dlv_fee_tp=='Y'||item.isdlex_free">무료배송</span>-->
+								<span class="flag smart" ng-show="item.mall_flag.is_smartpick">스마트픽</span>
+							</div>
+						</div>
+						<!-- 추천 플래그 2017.02.13 -->
+						<div class="prod_rcmd_flag_wrap" ng-if="$index < 3 ">
+							<span class="rcmdFlagIcon">추천</span>
+						</div>	
+						<!-- //추천 플래그 -->
+						<!-- 상품 정보 -->
+						<div class="info"><!--  ng-class="{true:item.is_coupon}" -->
+							<div class="prod">
+								<!-- 할인율 : 할인율 표시 (기획전형 상품이 아니고 할인율이 0이 아니면서 있을 경우) -->
+								<p ng-if="item.sale_rate && item.sale_rate != 0" class="sale_rate_wrap">
+									<span class="sale_rate">{{item.sale_rate}}</span>
+									<span class="sale_limit">%</span>
+									<em class="sale_desc">쿠폰포함</em>
+								</p>
+								<!-- 상품명 -->
+								<span class="tit" ng-bind-html="item.goods_nm"></span><!-- ng-bind-html="item.goods_nm|titleToHtml" -->
+	
+								<!-- 상품가격 -->
+								<p class="price"><span>{{item.sale_price|number}}</span>원<em ng-if="item.is_plan_prod" class="plan_prod_limit">~</em></p>
+							</div>
+	
+							<!-- 구매 개수 및 입력형 Flag -->
+							<div class="sale_wrap">
+								<span class="no" ng-show="item.sale_cnt > 0"><em>{{item.sale_cnt|number}}</em>개 구매 중</span>
+								<span ng-if="item.ipt_flags" class="flag_tag" >{{item.ipt_flags}}</span>
+							</div>
+						</div>
+					</a>
+				</div>
+			</li>
+		</ol>
+	</section>
+	
+	<!-- 스타일 추천 운영: 태블릿용 -->
+	<section class="stylebanner simplebanner banner1718" ng-if="appObj.isApp && screenType>1">
+		<a href="#" ng-click="processTclick(tpmlData.contData.style_recom.items[0].img_link, {prefix:'Clk_Ban02', useDevice:true})" class="imageCon"><img ng-src="{{tpmlData.contData.style_recom.items[0].img_url}}" alt="" /></a>
+	</section>
+	
+	<!-- 테마기획전 1 2016.10.31 개선 -->
+	<section class="brandbanner brandbanner1" ng-if=" (screenType == 1 || tpmlData.contData.brand_bnr1.bnr_large.img_url != null)">
+		<div class="big" ng-if="tpmlData.contData.brand_bnr1.bnr_large.img_url != null">
+			<a href="#" ng-click="processTclick(tpmlData.contData.brand_bnr1.bnr_large.img_link, {prefix:'Clk_Ban_A', useIndex:true, index:1, useSex:true})">
+				<span class="img imageCon"><img ng-src="{{tpmlData.contData.brand_bnr1.bnr_large.img_url}}" /></span>
+				<span class="txt">
+					<span class="goodname" ng-bind-html="tpmlData.contData.brand_bnr1.bnr_large.title"></span>
+					<span class="brandname">{{tpmlData.contData.brand_bnr1.bnr_large.brand_nm}}</span>
+				</span>
+			</a>
+		</div>
+		<ul>
+			<li ng-repeat="item in tpmlData.contData.brand_bnr1.bnr_list.items | startFrom : 0">
+				<a href="#" ng-click="processTclick(item.img_link, {prefix:'Clk_Ban_A', useIndex:true, index:$index+2, useSex:true})">
+					<span class="img" ng-style="{'background-image':'url('+item.img_url+')'}"><!-- <img ng-src="{{item.img_url}}" alt="" /> --></span>
+				<span class="txt">
+					<span class="goodname">{{item.title}}</span>
+					<span class="brandname">{{item.brand_nm}}</span>
+				</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+	
+	<!-- 스타일 추천 운영: 폰용 -->
+	<section class="stylebanner simplebanner banner1718" ng-if="appObj.isApp && screenType==1">
+		<a href="#" ng-click="processTclick(tpmlData.contData.style_recom.items[0].img_link, {prefix:'Clk_Ban02', useDevice:true})" class="imageCon"><img ng-src="{{tpmlData.contData.style_recom.items[0].img_url}}" alt="" /></a>
+	</section>
+	
+	<!-- 테마기획전 2 2016.10.31 개선 -->
+	<section class="brandbanner brandbanner2" ng-if=" (screenType == 1 || tpmlData.contData.brand_bnr2.bnr_large.img_url != null)">
+		<div class="big" ng-if="tpmlData.contData.brand_bnr2.bnr_large.img_url != null">
+			<a href="#" ng-click="processTclick(tpmlData.contData.brand_bnr2.bnr_large.img_link, {prefix:'Clk_Ban_B', useIndex:true, index:1, useSex:true})">
+				<span class="img imageCon"><img ng-src="{{tpmlData.contData.brand_bnr2.bnr_large.img_url}}" /></span>
+				<span class="txt">
+					<span class="goodname" ng-bind-html="tpmlData.contData.brand_bnr2.bnr_large.title"></span>
+					<span class="brandname">{{tpmlData.contData.brand_bnr2.bnr_large.brand_nm}}</span>
+				</span>
+			</a>
+		</div>
+		<ul>
+			<li ng-repeat="item in tpmlData.contData.brand_bnr2.bnr_list.items | startFrom : 0">
+				<a href="#" ng-click="processTclick(item.img_link, {prefix:'Clk_Ban_B', useIndex:true, index:$index+2, useSex:true})">
+					<span class="img" ng-style="{'background-image':'url('+item.img_url+')'}"><!-- <img ng-src="{{item.img_url}}" alt="" /> --></span>
+				<span class="txt">
+					<span class="goodname">{{item.title}}</span>
+					<span class="brandname">{{item.brand_nm}}</span>
+				</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+	
+	<!-- 테마기획전 3 2016.10.31 개선 -->
+	<section class="brandbanner brandbanner3" ng-if="brandBnL">
+		<div class="big" ng-if="tpmlData.contData.brand_bnr3.bnr_large.img_url != null">
+			<a href="#" ng-click="processTclick(tpmlData.contData.brand_bnr3.bnr_large.img_link, {prefix:'Clk_Ban_C', useIndex:true, index:1, useSex:true})">
+				<span class="img imageCon"><img ng-src="{{tpmlData.contData.brand_bnr3.bnr_large.img_url}}" /></span>
+				<span class="txt">
+					<span class="goodname" ng-bind-html="tpmlData.contData.brand_bnr3.bnr_large.title"></span>
+					<span class="brandname">{{tpmlData.contData.brand_bnr3.bnr_large.brand_nm}}</span>
+				</span>
+			</a>
+		</div>
+		<ul>
+			<li ng-repeat="item in tpmlData.contData.brand_bnr3.bnr_list.items | startFrom : 0">
+				<a href="#" ng-click="processTclick(item.img_link, {prefix:'Clk_Ban_C', useIndex:true, index:$index+2, useSex:true})">
+					<span class="img" ng-style="{'background-image':'url('+item.img_url+')'}"><!-- <img ng-src="{{item.img_url}}" alt="" /> --></span>
+				<span class="txt">
+					<span class="goodname">{{item.title}}</span>
+					<span class="brandname">{{item.brand_nm}}</span>
+				</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<div class="clearboth" ng-if="screenType>1"></div>
+	<!-- 랭킹 -->	
+	<section class="deptRanking">
+		<div class="titlearea">
+			<div class="subtitle">센스만점</div>
+			<div class="title" ng-if="loginInfo.isLogin">
+				{{ageRange}}대
+                <span ng-if="ageRange == '50'">이상</span>
+                <span ng-if="loginInfo.genSctCd == 'M'">남성의</span>
+                <span ng-if="loginInfo.genSctCd != 'M'">여성의</span>
+                선택
+			</div>
+			<div class="title" ng-if="!loginInfo.isLogin">지금 인기 상품</div>
+			<div class="more"><a href="#" ng-click="goToPage(1)">랭킹존</a></div>
+		</div>
+		
+        <div lotte-slider ng-if="tpmlData.contData.ranking.items.length > 0" class="swipe_wrap prd_type6_wrap">
+	        <ul class="prd_type6">
+	            <li ng-repeat="item in tpmlData.contData.ranking.items track by $index">
+	                <a href="#" ng-click="gotoDetail(item, $index)">
+	                    <div class="imageCon"><img ng-src="{{item.img_url}}"></div>
+	                    <div class="titleCon">
+	                        <!-- <div class="flag">
+	                            <span class="flag depart" ng-show="item.mall_flag.is_dept">롯데백화점</span>
+	                            <span class="flag smart" ng-show="item.mall_flag.is_smartpick">스마트픽</span>
+	                        </div> -->                       
+	                        <div class="m3F14B elli">{{item.brand_nm}}</div>
+	                        <div class="m6F14 elli">{{item.goods_nm}}</div>
+	                        <div class="t1"><span class="m38F10"><b  class="m38F19">{{item.sale_price | number}}</b>원<em ng-if="item.is_plan_prod" class="plan_prod_limit">~</em></span></div>
+	                    </div>
+	                </a>                
+	            </li>
+	        </ul>
+	    </div>
+	</section>
+
+	<!-- 스마트픽 -->
+	<section class="smartpick">
+		<div class="titlearea">
+			<div class="subtitle">
+				<span ng-if="tpmlData.contData.branch_list.fav_branch==undefined">본점</span>
+				<span ng-if="tpmlData.contData.branch_list.fav_branch">{{tpmlData.contData.branch_list.fav_branch.branch_nm}}</span>
+			</div>
+			<div class="title">백화점에서 바로 픽!</div>
+			<div class="more"><a href="#" ng-click="goToPage(2)">스마트픽</a></div>
+		</div>
+		
+		<div class="select_store" ng-class="{showlayer:tpmlData.uiOpt.showBranchLayer}">
+			<div class="title"></div>
+			<div class="more"><a href="#" ng-click="showHideStoreList()">단골지점 설정</a></div>
+			<div class="storelist_layer">
+				<div class="inform" ng-if="!loginInfo.login">
+					로그인 후 단골지점을 설정할 수 있습니다.
+					<a href="#" ng-click="goLoginPage()">로그인</a>
+				</div>
+				<div class="inform" ng-if="loginInfo.login">
+					<span ng-if="tpmlData.contData.branch_list.fav_branch==undefined">단골지점을 선택해주세요.</span>
+					<span ng-if="tpmlData.contData.branch_list.fav_branch">고객님의 단골지점은 <b>{{tpmlData.contData.branch_list.fav_branch.branch_nm}}</b>입니다.</span>
+				</div>
+				<ul>
+					<li ng-repeat="group in tpmlData.contData.branch_list.items">
+						<ol>
+							<li>{{group.branch_grp_nm}}</li>
+							<li ng-repeat="branch in group.branch_list.items" ng-class="{on:branch.is_fav}"><a href="#" ng-click="branchClick(this)">{{branch.branch_nm}}</a></li>
+						</ol>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="smartpick_list">
+			<ul>
+				<li ng-repeat="item in tpmlData.contData.smp_prod.items track by $index">
+					<a href="#" ng-click="productDealClick(item, 'smartpick')">
+						<!-- 2017.02.15 플래그 추가-->
+						<div class="prod_flag_wrap">
+						  <span class="flag depart ng-scope" >롯데백화점</span>
+						  <span class="flag smart" >스마트픽</span>
+						</div>
+						<span class="imageCon"><img ng-src="{{item.img_url}}" alt="{{item.goods_nm}}" /></span>
+						<span class="brandname">{{item.brand_nm}}</span>
+						<span class="goodname">{{item.goods_nm}}</span>
+						<span class="price">{{item.sale_price | number:0}}<em>원<em ng-if="item.is_plan_prod" class="plan_prod_limit">~</em></em></span>
+						<!-- <dl>
+							<dt>판매지점</dt>
+							<dd>본점 영등포점 잠실점 영등포점 잠실점</dd>
+						</dl> -->
+					</a>
+				</li>
+			</ul>
+		</div>
+	</section>
+	
+	<!-- 스마트픽 이벤트 -->
+	<section class="simplebanner banner4359 midbanner" ng-if="screenType==1 && tpmlData.contData.smp_evt.items[0]!=undefined">
+		<a href="#" ng-click="processTclick(tpmlData.contData.smp_evt.items[0].img_link, {prefix:'Clk_Ban01'})" class="imageCon"><img ng-src="{{tpmlData.contData.smp_evt.items[0].img_url}}" alt="" /></a>
+	</section>
+	
+	<!-- 영수증 이벤트 -->
+	<section class="simplebanner banner4359 midbanner" ng-if="(screenType==1 && tpmlData.contData.receipt_evt.items[0]!=undefined) || (screenType>1 && tpmlData.contData.dept_live.items[0]!=undefined && tpmlData.contData.receipt_evt.items[0]!=undefined)">
+		<a href="#" ng-click="processTclick(tpmlData.contData.receipt_evt.items[0].img_link, {prefix:'Clk_receiptevent'})" class="imageCon"><img ng-src="{{tpmlData.contData.receipt_evt.items[0].img_url}}" alt="" /></a>
+	</section>
+	
+	<!-- 백화점 라이브 -->
+	<section class="simplebanner banner4359 midbanner midbannerDeptLive" ng-if="(screenType==1 && tpmlData.contData.dept_live.items[0]!=undefined) || (screenType>1 && tpmlData.contData.dept_live.items[0]!=undefined && tpmlData.contData.receipt_evt.items[0]!=undefined)">
+		<a href="#" ng-click="processTclick(tpmlData.contData.dept_live.items[0].img_link, {prefix:'Clk_Ban03'})" class="imageCon"><img ng-src="{{tpmlData.contData.dept_live.items[0].img_url}}" alt="" /></a>
+	</section>
+	
+	<div class="clearboth" ng-if="screenType>1"></div>
+	
+	<section class="deptcategory">
+		<h4>더 많은 백화점 상품보기</h4>
+		<ul>
+			<li ng-repeat="item in tpmlData.contData.dept_ctg.items track by $index" ng-class="{blank:item.ctg_nm==''}" ng-if="(item.ctg_nm!='') || (item.ctg_nm=='' && (screenType==1 && item.scrtype==1) || (screenType>1 && item.scrtype==2))">
+				<a href="#" ng-click="categoryClick(this)">{{item.ctg_nm}}</a>
+			</li>
+		</ul>
+	</section>
+	
+</div>

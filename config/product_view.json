@@ -1,0 +1,101 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplProduct" : {
+				"options": {
+					"prefix":"/",
+					"module" : "app"
+				},
+				"src" : [
+					"lotte/resources_dev/product/m/product_view_container.html",
+					"lotte/resources_dev/product/m/footer_optionbar.html",
+					"lotte/resources_dev/product/m/productFormInfo.html",
+					"lotte/resources_dev/product/m/product_send_form.html",
+					"lotte/resources_dev/product/m/product_compare_list.html",
+					"lotte/resources_dev/product/m/product_info_price.html",
+					"lotte/resources_dev/product/m/product_info_normal.html",
+					"lotte/resources_dev/product/m/product_info_wine.html",
+					"lotte/resources_dev/product/m/product_info_chanel.html",
+					"lotte/resources_dev/product/m/pop_pre_calculator.html",
+					"lotte/resources_dev/product/m/imagelist.html",
+					"lotte/resources_dev/product/m/product_vod_info.html",
+					"lotte/resources_dev/product/m/smp_desk_info.html",
+					"lotte/resources_dev/product/prdZoomPop.html",
+					"lotte/resources_dev/product/m/product_info.html",
+					"lotte/resources_dev/product/m/product_wine_info.html",
+					"lotte/resources_dev/product/m/product_info_detail.html",
+					"lotte/resources_dev/layer/main_popup.html",
+					"lotte/resources_dev/layer/app_down_bnr.html",
+					"lotte/resources_dev/unit/comm_unit.html",
+					"lotte/resources_dev/unit/plan_unit.html",
+					"lotte/resources_dev/unit/unit_deal_01.html",
+					"lotte/resources_dev/unit/unit_type01.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/product_wine_view.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsProduct" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+                    "lotte/resources_dev/common/style_recom.js",
+					"lotte/lib/angular/angular-route.min.js",
+					"lotte/resources_dev/layer/main_popup.js",
+					"lotte/resources_dev/common/lotte_unit_new.js",
+					"lotte/resources_dev/common/lotte_ngswipe.js",
+					"lotte/resources_dev/common/lotte_slider.js",
+					"lotte/resources_dev/product/m/product_view_popup.js",
+					"lotte/resources_dev/product/m/product_view.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/product_wine_view.js"
+			}
+		},
+
+		"uglify" : {
+			"jsProduct" : {
+				"src" : "lotte/resources/<%= version %>/product_wine_view.js",
+				"dest" : "lotte/resources/<%= version %>/product_wine_view.min.js"
+			},
+			"tplProduct" : {
+				"src" : "lotte/resources/<%= version %>/product_wine_view.template.js",
+				"dest" : "lotte/resources/<%= version %>/product_wine_view.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssProduct" : {
+				"src" : [
+					"lotte/resources_dev/layer/main_popup.css",
+					"lotte/resources_dev/product/m/detail.css",
+					"lotte/resources_dev/product/m/detail_datepicker.css",
+					"lotte/resources_dev/product/m/detail_popup.css",
+					"lotte/resources_dev/common/navermap.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/product_wine_view.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanProduct" : [
+				"lotte/resources/<%= version %>/product_wine_view.js",
+				"lotte/resources/<%= version %>/product_wine_view.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlProduct" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"product/m/product_view.html" : "product/m/product_wine_view_dev.html"
+				}
+			}
+		}
+	}
+}

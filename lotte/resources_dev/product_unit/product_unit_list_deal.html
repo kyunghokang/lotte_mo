@@ -1,0 +1,43 @@
+<ol class="prod_list_deal">
+	<li ng-repeat="item in products track by $index">
+		<!-- 딜상품 -->
+		<div class="unit_deal_01">
+			<a href="#" ng-click="productInfoClick(item)">
+				<div class="soldout" ng-show="item.sold_out">SOLD OUT</div>
+				<div>
+					<p style="height:27px;margin:5px;padding:0 10px;line-height: 27px;" ng-class="{md_talk:item.copy_nm}"><span> {{item.copy_nm}} </span></p>
+				</div>
+				<p class="thumb" ng-class="{normal:item.default_img}"><!-- 대표이미지 불러오는 경우 class='thumb normal' 코너이미지 불러오는 경우 clas='thumb' -->
+					<img ng-src="{{getProductImage2(item)}}" alt="{{item.goods_nm}}" err-src />
+					<span class="flag_wrap">
+						<span class="flag depart" ng-if="item.is_dept">롯데백화점</span>
+						<span class="flag etv" ng-if="item.is_tvhome && !item.is_dept">롯데홈쇼핑</span>
+<!-- 						<span class="flag tag" ng-show="item.dlv_fee_tp=='Y'||item.isdlex_free">무료배송</span> -->
+						<span class="flag smart" ng-show="item.smartpick_yn=='Y'||item.issmart_pick">스마트픽</span>
+					</span>
+				</p>
+				<div class="info" ng-class="{true:(item.useCpn == 'coupon' || item.has_coupon || item.coupon || item.sale_rate!='0') && !item.plan_prod_yn}"><!-- 쿠폰포함이 있는 경우 class='info true', 쿠폰포함이 없는 경우 class='info' -->
+					<p class="coupon" ng-show="!item.plan_prod_yn">
+						<b ng-show="item.sale_rate!='0'">
+							<em class="no">{{item.sale_rate}}</em>
+							<em class="po">%</em>
+						</b>
+						<span ng-show="item.useCpn == 'coupon' || item.has_coupon || item.coupon">쿠폰포함</span>
+					</p>
+					<p class="prod">
+						<span class="tit">
+							<b ng-show="item.brnd_nm"><em>[</em><b ng-bind-html="item.brnd_nm|titleToHtml"></b><em>]</em></b>
+							<b ng-bind-html="item.goods_nm|titleToHtml"></b>
+						</span>
+						<span class="price"><em>{{item.price2|number}}</em>원<b style="font-weight:normal;" ng-if="item.plan_prod_yn">~</b></span>
+						<span class="sale">
+							<em class="no" ng-show="item.sale_cnt > 0">{{item.sale_cnt|number}}<b>개 구매중</b></em>
+							<em class="flag tag" ng-repeat="flag in item.flag">{{flag}}</em>
+						</span>
+					</p>
+				</div>
+			</a>
+		</div>
+		<!-- //딜상품 -->
+	</li>
+</ol>

@@ -1,0 +1,113 @@
+<section ng-show="contVisible" class="cont_minheight">
+	<!-- L-point / param : lt_point  -->
+	<section class="mylotte_point" ng-show="!isShowLoadingImage">
+		<nav class="tab_nav">
+			<ul>
+				<li class="on"><a ng-click="lPointClick()">L.POINT <span><strong>{{maxData.lt_point | number}}</strong>점</span></a></li>
+				<li><a ng-click="ltPointClick()">L-money <span><strong>{{maxData.l_point | number}}</strong>점</span></a></li>
+				<li><a ng-click="depositClick()">보관금 <span><strong>{{maxData.deposit | number}}</strong>원</span></a></li>
+			</ul>
+		</nav>
+		<div class="tab_con on">
+			<!-- 소멸예정 포인트 사용안함 11.08 결함번호 846
+			<section class="pay_box">
+				<p>3일 이내 소멸 예정 L.POINT <span class="num">{{maxData.total_l_point_blnc}}</span>점</p>
+			</section>			
+			 -->
+			 
+			<!-- 적립대기 포인트 -->
+			<section class="point_list waiting_point" ng-if="pointSaveData.length != 0">
+				<h3>적립대기 포인트</h3>
+				<table ng-repeat="items in pointSaveData" id="tb_point_list" class="tbl_list_01" summary="적립대기 포인트가 나와있는 표">
+					<caption>L.POINT 적립/사용 내역 상세 테이블</caption>
+					<colgroup>
+						<col width="35%">
+						<col width="65%">
+					</colgroup>
+					<thead>
+					<tr>
+						<th scope="col" colspan="2" class="order_num"><strong>주문번호</strong> {{items.ord_no}}</th>
+					</tr>
+					</thead>
+					<tbody class="add_point">
+					<tr>
+						<th>상품명</th>
+						<td ng-bind-html="items.goods_nm"></td>
+					</tr>
+					<tr>
+						<th>적립대기포인트</th>
+						<td>
+							<strong>+{{items.save_point}}</strong>
+							<span class="btn on" ng-if="items.down_yn == 'Y'" ng-click="pointSaveClick(items.ord_no)">적립하기</span>
+							<span class="btn" ng-if="items.down_yn == 'N'">적립대기</span>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<!--L.POINT는 2AM~ <p class="desc">  4AM시까지 시스템 점검 시에는 적립이 불가능합니다.</p>-->
+			</section>
+			<!-- // 포인트 적립.사용 내역 -->
+			
+			<section class="point_list" ng-if="pointListData.length != 0">
+				<h3>L.POINT 적립/사용 내역 <span>(최근 3개월간)</span></h3>
+				<table id="tb_point_list" class="tbl_list_01" summary="상세내용, 적립/사용 포인트가 나와있는 표">
+					<caption>L.POINT 적립/사용 내역 상세 테이블</caption>
+					<colgroup>
+						<col width="65%">
+						<col width="35%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">상세내용</th>
+							<th scope="col">적립/사용</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="items in pointListData">
+							<td>
+								<span class="date">{{items.occur_dtime | htmlRemove}}</span>
+								<p>{{items.mm_title}}</p>
+								<p ng-if="items.ord_no">주문번호 {{items.mm_gbn_value}}</p>
+							</td>
+							<td ng-if="items.point_sign == '+'" class="point plus"><strong>+{{items.occur_amt | number}}</strong></td>
+							<td ng-if="items.point_sign == '-'" class="point minus"><strong>-{{items.occur_amt | number}}</strong></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+			<!-- // 포인트 적립.사용 내역 -->
+			<section class="point_list" ng-if="pointListData.length == 0">
+				<h3>L.POINT 적립/사용 내역 <span>(최근 3개월간)</span></h3>
+				<p class="cont_no">적립/사용 내역이 없습니다.</p>
+			</section>
+			
+			<!-- 더보기 버튼 -->
+			<section class="more_view" ng-if="thisPage < page_end">
+				<div><a href="#" ng-click="moreListClick()"><span><strong>더보기</strong> (<label id="currentCnt">{{pointListData.length}}</label>/<label id="totalCnt">{{pointList_tot_cnt}}</label>)</a></span></div>
+			</section>
+			<!--// 더보기 버튼 -->
+
+			<!-- L.POINT 사용 안내 -->
+			<dl class="slideGuide" ng-click="depositViewClick1()">
+				<dt >L.POINT 사용 안내</dt>
+				<dd ng-if="depositView1 == true">
+					<ul>
+					   <li>L.POINT는 롯데닷컴 및 L.POINT 제휴사에서 상품구매 또는 이용 후 적립 받으실 수 있는 포인트입니다.</li>
+					   <li>L.POINT는 1점 이상이면 사용이 가능합니다.</li>
+					   <li>할인쿠폰을 사용한 주문의 경우, 포인트 적립 시 할인 받은 금액을 제외한 금액기준으로 부여됩니다.</li>
+					   <li>L.POINT 유효기간은 적립 유형에 따라 아래와 같습니다.<br>
+                            구매사은, 이벤트 적립: 적립일로부터 2년<br>
+                            상품적립금: 적립일로부터 5년
+                            <br/>(단, 롯데카드에서 적립된 포인트는 유효기간 없음)
+                        </li>
+					   <li>롯데백화점 지류/모바일 상품권으로 전환된 L.POINT 는 현금영수증 발행이 가능합니다.<br/> 그외 이벤트 등으로 적립된 L.POINT 는 현금영수증 발행이 불가능 합니다.<br/>&#40;현금영수증 발행은 L.POINT에 문의 바랍니다. <a class="lPointC" ng-click="lPointGoLink()">http://www.lpoint.com</a>&#41;</li>
+					</ul>
+				</dd>
+			</dl>
+
+		</div>
+	</section><!-- 로딩이미지 -->
+    <div class="listLoading" ng-show="isShowLoadingImage" style="height:300px">
+    	<p class="noData"><p class="loading half"></p></p>
+    </div>
+</section>

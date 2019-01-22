@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+.sstalk{background:#eaf7ff;position:relative;height:100%}
+
+/* 동영상 영역 */
+video{width:100%;}
+video::-webkit-media-controls,
+video::-webkit-media-controls-play-button,
+video::-webkit-media-controls-fullscreen-button,
+video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+}
+
+.mov_auto_wrap{overflow:hidden;background-color:#fff;}
+.mov_auto_wrap .video_wrap{position:relative;font-size:0;z-index:1;padding-bottom:56.3%;width:100%;}
+.mov_auto_wrap .video_wrap video{width:100%;height:100%;position:absolute;top:0;left:0;right:0;box-sizing:border-box;}
+.mov_auto_wrap .video_wrap .btn_box{position:absolute;top:0;left:0;width:100%;height:100%;display:none;z-index:1;}
+.mov_auto_wrap .video_wrap .btn_box.play_box{display:block;}
+.mov_auto_wrap .video_wrap a{position:absolute;;display:none;z-index:3;}
+.mov_auto_wrap .video_wrap .btn_text{padding-top:58px;height:22px;color:#fff;font-size:13px;text-align:center;font-weight:700;}
+.mov_auto_wrap .video_wrap .btn_move_start{background:url(http://image.lotte.com/lotte/mo2015/angular/btn_movie_play.png) no-repeat 0 0;background-size:30px 35px;top:50%;left:50%;height:35px;width:30px;margin:-17px 0 0 -15px;text-indent:-9999px}
+.mov_auto_wrap .video_wrap .btn_move_stop{background:url(http://image.lotte.com/lotte/mo2015/angular/btn_movie_pause.png) no-repeat 0 0;background-size:55px 55px;top:50%;left:30%;height:55px;width:55px;margin:-27px 0 0 -27px;}
+.mov_auto_wrap .video_wrap .btn_move_goods{background:url(http://image.lotte.com/lotte/mo2015/angular/btn_movie_goods.png) no-repeat 0 0;background-size:55px 55px;top:50%;left:70%;height:55px;width:55px;margin:-27px 0 0 -27px;}
+.mov_auto_wrap .video_wrap .stop_cover,
+.mov_auto_wrap .video_wrap .play_cover{background:rgba(0, 0, 0, 0.3);width:100%;height:100%;display:none;z-index:1;position:absolute;top:0;left:0}
+.mov_auto_wrap .video_wrap .play_cover{display:block;z-index:2;}
+.mov_auto_wrap .video_wrap .stop_cover .move_title,
+.mov_auto_wrap .video_wrap .play_cover .move_title{position:absolute;top:12px;left:13px;color:#fff;font-size:13px;font-weight:700;}.mov_auto_wrap .video_wrap .click_cover{width:100%;height:100%;z-index:1;position:absolute;top:0;left:0;display:none;}
+
+.mov_auto_wrap .plan_wrap{margin-top:18px;padding-bottom:15px;position:relative;z-index:2;border-bottom:1px solid #dcdcdc}
+.mov_auto_wrap .plan_wrap:after{position:absolute;height:20px;width:20px;margin-left:-10px;background-color:#fff;display:block;content:'';top:-26px;left:50%;-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);-ms-transform: rotate(45deg);transform: rotate(45deg)}
+.mov_auto_wrap .plan_wrap a{position:relative;display:block;height:43px;padding:0 88px 0 13px}
+.mov_auto_wrap .plan_wrap .ss_txt{font-size:14px;color:#333;overflow:hidden;height:17px;line-height:17px}
+.mov_auto_wrap .plan_wrap .ss_price{line-height:17px;color:#446ede;margin-top:6px}
+.mov_auto_wrap .plan_wrap .ss_price span.price{font-size:10px}
+.mov_auto_wrap .plan_wrap .ss_price span.price b{font-size:19px}
+.mov_auto_wrap .plan_wrap .ss_price span.buy_icon{color:#fff;font-size:12px;width:65px;height:25px;line-height:25px;display:block;background:#12a8ff;text-align: center;border-radius:20px;position:absolute;right:13px;top:50%;margin-top:-17px}
+.mov_auto_wrap .plan_wrap .ss_price img{width:17px;vertical-align:middle}
+.mov_auto_wrap .top_cover{position:absolute;top:0px;z-index:3;text-align:left;padding:8px 7px 0 5px;width:100%;box-sizing: border-box;height:30px;display:none}/* 20161026 아이콘 동영상에 직접 삽입 */
+.mov_auto_wrap .top_cover .limg{width:131px}
+.mov_auto_wrap .top_cover .rimg{width:126px;float:right}
+.talkbox{background:#eaf7ff;font-size:13px;color:#333;padding:18px 14px;overflow-y:scroll;max-height:200px;margin-bottom:57px;position:relative}
+.talkbox ul li{padding:0 0 15px 107px;position:relative;min-height:25px;box-sizing:border-box;word-break:break-all}
+.talkbox ul li .idcan{position:absolute;left:0px;width:85px;overflow: hidden;height:14px;line-height: 14px}
+.talkbox ul li.staff{color:#0070ee}
+.time{width:45px;height:45px;background:url(http://image.lotte.com/lotte/mo2015/angular/mall/sslive_icon1.png) no-repeat;background-size:45px 45px;font-size:11px;color:#7d7d7d;text-align: center;position:fixed;right:6px;bottom:52px;padding-top:26px;box-sizing:border-box;z-index:5}
+.talk_input{height:46px;padding:5px 86px 5px 5px;border-top:1px solid #dcdcdc;background:#f7f7f7;width:100%;position:fixed;bottom:0;box-sizing: border-box;z-index:10}
+.talk_input input{height:36px;border:1px solid #dcdcdc;background:#fff;width:100%;border-radius:2px;padding-left:10px;box-sizing: border-box}
+.talk_input .inputdiv{height:36px;border:1px solid #dcdcdc;background:#fff;width:100%;border-radius:2px;padding-left:10px;box-sizing: border-box;color:#8a8a8a;font-size:12px;line-height:36px}
+.talk_input .btn{position:absolute;right:5px;top:5px;background:#12a8ff;text-align:center;line-height:36px;width:76px;height:36px;color:#fff;border-radius:2px}
+/*풋터 및 액션바 가림*/
+#lotteActionbar, #footer{display:none !important}
+.quick_btn a.btn_back, .quick_btn a.btn_top{display:none}
+body{background:#eaf7ff}

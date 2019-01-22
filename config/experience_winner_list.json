@@ -1,0 +1,70 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplExperienceWinnerList" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/event/m/kids/experience_winner_list_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/experience_winner_list.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsExperienceWinnerList" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/event/m/kids/experience_winner_list.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/experience_winner_list.js"
+			}
+		},
+
+		"uglify" : {
+			"jsExperienceWinnerList" : {
+				"src" : "lotte/resources/<%= version %>/experience_winner_list.js",
+				"dest" : "lotte/resources/<%= version %>/experience_winner_list.min.js"
+			},
+			"tplExperienceWinnerList" : {
+				"src" : "lotte/resources/<%= version %>/experience_winner_list.template.js",
+				"dest" : "lotte/resources/<%= version %>/experience_winner_list.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssExperienceWinnerList" : {
+				"src" : [
+					"lotte/resources_dev/event/m/kids/experience.css",
+					"lotte/resources_dev/event/m/kids/experience_winner_list.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/experience_winner_list.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanExperienceWinnerList" : [
+				"lotte/resources/<%= version %>/experience_winner_list.js",
+				"lotte/resources/<%= version %>/experience_winner_list.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlExperienceWinnerList" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"event/m/kids/experience_winner_list.html" : "event/m/kids/experience_winner_list_dev.html"
+				}
+			}
+		}
+	}
+}
+

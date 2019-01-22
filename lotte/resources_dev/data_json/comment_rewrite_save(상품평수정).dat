@@ -1,0 +1,48 @@
+1. 업무명: 마이롯데 > 상품평 수정
+2. 담당자: 이형근
+3. URL: http://molocal.lotte.com/json/cn/comment/comment_rewrite_save.json
+4. 파라미터
+	- gdas_no: 상품평 번호
+	- goods_no: 상품번호
+	- size: 사이즈
+	- color: 색상
+	- reviewTxt: 상품평 내용
+	- prc_stfd_val: 가격만족도
+	- qual_stfd_val: 품질만족도
+	- dsgn_stfd_val: 디자인만족도
+	- div_stfd_val: 배송만족도
+5. JSON 파라미터
+    - response_code: 응답코드
+    - response_msg: 응답메시지
+6. 성공 시
+{
+  "data_set": {
+    "response_code" : "0000",
+    "response_msg" : "수정되었습니다." 
+  }
+}
+7. 실패 시
+{
+  "error" : {
+    "response_code" : "9999",
+    "response_msg" : "서버 오류"
+  }
+}
+{
+  "error" : {
+    "response_code" : "9004",
+    "response_msg" : "아이디 또는 회원번호 존재하지 않음"
+  }
+}
+{
+  "error" : {
+    "response_code" : "3100",
+    "response_msg" : "상품평 등록에 실패했습니다."
+  }
+}
+{
+  "error" : {
+    "response_code" : "3103",
+    "response_msg" : "해당 글자는 등록하실 수 없습니다. 삭제 후 다시 등록해 주시기 바랍니다.""
+  }
+}

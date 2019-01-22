@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_9" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<display-name>Lotte MO</display-name>
+	
+	<jsp-config>
+		<jsp-property-group>
+			<url-pattern>*.jsp</url-pattern>
+			<page-encoding>UTF-8</page-encoding>
+		</jsp-property-group>
+	</jsp-config>
+	
+	<!-- spring mvc setting start -->
+	<servlet>
+		<servlet-name>simpleServlet</servlet-name>
+		<servlet-class>
+			com.lotte.mobile2.SimpleServlet
+		</servlet-class>
+		<init-param>
+			<param-name>templateHome</param-name>
+			<param-value>/WEB-INF/lotte_template</param-value>
+		</init-param>
+		<init-param>
+			<param-name>resourcePath</param-name>
+			<param-value>/lotte</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>simpleServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<!-- start : mapi json proxy -->
+	<servlet>
+		<servlet-name>mapiProxy</servlet-name>
+		<servlet-class>
+			com.lotte.mobile.common.servlet.ProxyServlet
+		</servlet-class>
+		<init-param>
+			<param-name>log</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<load-on-startup>3</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>mapiProxy</servlet-name>
+		<url-pattern>/json/*</url-pattern>
+	</servlet-mapping>
+	<!-- end : mapi json proxy -->
+	
+	<!-- start : mo jsondata proxy -->
+	<servlet>
+		<servlet-name>moProxy</servlet-name>
+		<servlet-class>
+			com.lotte.mobile.common.servlet.ProxyServlet
+		</servlet-class>
+		<init-param>
+			<param-name>log</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>targetUri</param-name>
+			<param-value>http://molocal.lotte.com/jsondata</param-value>
+		</init-param>
+		<load-on-startup>3</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>moProxy</servlet-name>
+		<url-pattern>/jsondata/*</url-pattern>
+	</servlet-mapping>
+	<!-- end : mo jsondata proxy -->
+	
+	<!-- sample board servlet -->
+	<servlet>
+		<servlet-name>simpleBoardServlet</servlet-name>
+		<servlet-class>
+			sample.SimpleBoardServlet
+		</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>simpleBoardServlet</servlet-name>
+		<url-pattern>/sample/simpleBoard/data/*</url-pattern>
+	</servlet-mapping>
+	<!-- sample board servlet -->
+</web-app>

@@ -1,0 +1,95 @@
+<div template-bigdeal class="cont_wrap template_bigdeal" ng-class="{bigdeal: mainTemplateType == 5537338, padding: winWidth >= 640}">
+	<!-- 개인화 영역 -->
+	<section ng-if="mainTemplateType == 5537338 && loginInfo.isLogin && loginInfo.privateBigDeal && bigDealBigDataFlag" class="bigdata_sort_wrap">
+		<input type="checkbox" id="bigDealBigData" ng-model="pageOptions.bigdataChkFlag" ng-click="bigDataChkClick()" ng-change="bigDataChange()">
+		<label for="bigDealBigData">{{loginInfo.name}}님을 위한 추천순</label>
+	</section>
+
+	<!-- 플래티넘 대상 구찌 기획전 노출  (1/25 ~ 1/31) 20160119 임직원이 아닌경우 추가
+	<section ng-if="winWidth < 640 && 
+		(platinumPlanshopFlag && (loginInfo.gradeCd == '10' || loginInfo.gradeCd == '20' || loginInfo.gradeCd == '30')) &&
+		!(holidayBnr && loginInfo.isLogin && loginInfo.isStaff) &&
+		mainTemplateType == 5537338" 
+		class="bnr_platinum_planshop">
+		<a ng-click="linkUrl('/product/m/product_list.do?curDispNo=5396076', false)"><img src="http://image.lotte.com/lotte/mo2015/angular/banner_20160125_sony.png" alt="플래티넘 고객 대상 기획전 - SONY A7 시리즈 최강 할인전!" /></a>
+	</section>
+	-->
+	
+	<!-- 플래티넘 대상 코너화 배너 20160224-->
+	<section class="bnr_platinum_planshop" ng-if="winWidth < 640 && screenData.platinum_banner != undefined && screenData.platinum_banner.length > 0">
+		<a ng-click="linkUrl('{{screenData.platinum_banner[0].img_link}}', false)"><img src="{{screenData.platinum_banner[0].img_url}}" alt="{{screenData.platinum_banner[0].banner_nm}}" /></a>
+	</section>
+	
+	<!-- 명절 상단 띠배너 표시 여부 1/8 11:00 ~ 2/2 18:00 -->
+	<section ng-if="winWidth < 640 && 
+		(holidayBnr && loginInfo.isLogin && loginInfo.isStaff) &&
+		mainTemplateType == 5537338 " class="bnr_platinum_planshop">
+		<a ng-click="linkUrl('/product/product_list.do?curDispNo=5232413', false)"><img src="http://image.lotte.com/lotte/mo2015/angular/mall/holiday/holiday_main_top_banner.jpg" alt="설 임직원 특가매장" /></a>
+	</section>
+
+	<!-- 황금연휴 3종 쿠폰 안내 배너 노출 (1/25 09:00 ~ 2/2 23:59) -->
+	<section ng-if="winWidth < 640 && 
+		(!appObj.isApp && eventBnrFlag) && 
+		!(platinumPlanshopFlag && (loginInfo.gradeCd == '10' || loginInfo.gradeCd == '20' || loginInfo.gradeCd == '30')) &&
+		!(holidayBnr && loginInfo.isLogin && loginInfo.isStaff) &&
+		mainTemplateType == 5537338" 
+		class="bnr_platinum_planshop">
+		<a ng-click="linkUrl('/product/product_list.do?curDispNo=5396124', false)"><img src="http://image.lotte.com/lotte/mo2015/angular/banner_holiday_dot.png" alt="명절 식품 구매하면 황금연휴 3종 쿠폰" /></a>
+	</section>
+
+	<!-- 최상단 띠배너 -->
+	<section ng-if="winWidth >= 640 && screenData.reward_banner && screenData.reward_banner.banner_nm == 'rewardevent'" class="top_banner_list">
+		<ul>
+			<li><a ng-click="linkUrl(screenData.reward_banner.img_link, screenData.reward_banner.mov_frme_cd, 'm_menu_{{mainTemplateType}}_rewardevent')"><img ng-src="{{screenData.reward_banner.img_url}}" alt="{{screenData.reward_banner.banner_nm}}" /></a></li>
+
+			<!-- 640 이상일때만 나오는 출석 도장 이벤트 -->
+			<li ng-if="winWidth >= 640 && 
+				!(platinumPlanshopFlag && (loginInfo.gradeCd == '10' || loginInfo.gradeCd == '20' || loginInfo.gradeCd == '30')) &&
+				!(holidayBnr && loginInfo.isLogin && loginInfo.isStaff) && 
+				!(!appObj.isApp && eventBnrFlag) && 
+				mainTemplateType == 5537338"><a ng-click="linkUrl(eventLinkObj.eventAttendUrl, false, 'm_menu_{{mainTemplateType}}_tabletbanner')"><img src="http://image.lotte.com/lotte/mo2015/angular/banner_201507_attend.png" alt="출석도짱" /></a></li>
+
+			<!-- 플래티넘 대상 구찌 기획전 노출 - 태블릿 (1/25 ~ 1/31) 20160119 임직원이 아닌경우 추가-->
+			<li ng-if="winWidth >= 640 && 
+				(platinumPlanshopFlag && (loginInfo.gradeCd == '10' || loginInfo.gradeCd == '20' || loginInfo.gradeCd == '30')) &&
+				!(holidayBnr && loginInfo.isLogin && loginInfo.isStaff) &&
+				mainTemplateType == 5537338	">
+				<a ng-click="linkUrl('/product/m/product_list.do?curDispNo=5396076', false)"><img src="http://image.lotte.com/lotte/mo2015/angular/banner_20160125_sony.png" alt="플래티넘 고객 대상 기획전 - SONY A7 시리즈 최강 할인전!" /></a>
+			</li>	
+
+			<!-- 명절 상단 띠배너 표시 여부 1/8 11:00 ~ 2/2 18:00 -->
+			<li ng-if="winWidth >= 640 && 
+				(holidayBnr && loginInfo.isLogin && loginInfo.isStaff) &&
+				mainTemplateType == 5537338">
+				<a ng-click="linkUrl('/product/product_list.do?curDispNo=5232413', false)"><img src="http://image.lotte.com/lotte/mo2015/angular/mall/holiday/holiday_main_top_banner.jpg" alt="설 임직원 특가매장" /></a>
+			</li>
+
+			<!-- 황금연휴 3종 쿠폰 안내 배너 노출 (1/25 09:00 ~ 2/2 23:59) -->
+			<li ng-if="winWidth >= 640 && 
+				(!appObj.isApp && eventBnrFlag) && 
+				!(platinumPlanshopFlag && (loginInfo.gradeCd == '10' || loginInfo.gradeCd == '20' || loginInfo.gradeCd == '30')) &&
+				!(holidayBnr && loginInfo.isLogin && loginInfo.isStaff) &&
+				mainTemplateType == 5537338">
+				<a ng-click="linkUrl('/product/product_list.do?curDispNo=5396124', false)"><img src="http://image.lotte.com/lotte/mo2015/angular/banner_holiday_dot.png" alt="명절 식품 구매하면 황금연휴 3종 쿠폰" /></a>
+			</li>
+		</ul>
+	</section>
+
+	<div product-container 
+		template-type="mixdeal" 
+		templatetype="templateType" 
+		products="screenData.bannerMixContents" 
+		banners="screenData.deal_banners" 
+		more-product-continer="getProductData()" 
+		win-width="winWidth"
+		main-template-type="mainTemplateType"
+		tclick-prod="m_menu_{{mainTemplateType}}_unit" 
+		tclick-banner="m_menu_{{mainTemplateType}}_banner" 
+		tclick-banner-idx-key="bannerIdx" 
+		class="prd_lst_wrap"></div>
+
+	<!-- Product Load Loading -->
+	<div class="listLoading" ng-if="productListLoading && !pageLoading">
+		<p class="loading half"></p>
+	</div>
+</div>

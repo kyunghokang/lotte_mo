@@ -1,0 +1,21 @@
+<section ng-show="contVisible" class="cont_minheight">
+    <div class="basicBox" ng-repeat="box in dp_data">
+        <div class="dp_top">
+            <p class="dp_brd">{{box.brd_nm}}</p>
+            <p class="dp_sub">{{box.sub_title}}</p>
+            <a ng-href="{{box.link_url}}&{{baseParam}}" class="img_con">
+                <img ng-src="{{box.img_url}}">
+                <div class="top_dim"></div>
+            </a>
+        </div>
+        <div class="dp_con3">
+           <a ng-repeat="item in box.prd_list.items" ng-click="gotoPrdDetail({{item.goods_no}}, {{$parent.$index * 4 + $index + 2}})">
+               <img ng-src="{{item.img_url}}">
+                <p class="dp_title">{{item.goods_nm}}</p>
+                <p class="dp_price" ng-show="item.price"><b>{{item.price}}</b><em>원</em><em ng-if="item.cmps_yn == 'Y'">~</em></p>
+           </a>            
+        </div>
+    </div>
+    
+    
+</section>

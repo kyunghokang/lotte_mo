@@ -1,0 +1,19 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<div class="moduleCon">
+	<!--M08 프로모션배너 C형..-->
+		<div class="unit unit_bn_promo typeC store1">
+			<ul class="fclear">
+				<li class="shop2" ng-click="logGAEvtModuleEach(moduleData);mainBannerClick(moduleData.linkUrl, moduleData.isOutLink, moduleData.tclick + '_Clk_Ban'+ numberFill(($index+1),2))">
+					<p class="imgwrap cover_img"><img ng-src="{{moduleData.imgUrl}}"></p>
+					<div class="titwrap">
+						<!--<span class="subtit">{{moduleData.topTxt}}</span>--> <!--C형 텍스트1 없음-->
+						<div class="maintitwrap">
+							<span class="maintit txt1">{{moduleData.btmTxt.split('\n')[0]}}</span><br/>
+							<span class="maintit txt2" ng-if="moduleData.btmTxt.split('\n')[1] != null">{{moduleData.btmTxt.split('\n')[1]}}</span>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>

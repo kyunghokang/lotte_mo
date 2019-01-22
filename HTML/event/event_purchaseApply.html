@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">	
+<!----------------- current css ----------------->
+	
+<link rel="stylesheet" href="/lotte/resources_dev/event/m/event.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+</head>
+<body>
+
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<!-- container -->
+<section id="container">
+	<section id="evt_purchase">
+	<!-- event purchase apply -->
+          <div class="purchaseApplyWrap">
+
+              <!-- image banner -->
+              <img class="banner" src="/images/lotte2015/temp/evt_banner02.jpg" alt="">
+              <!-- //image banner -->
+
+              <!-- purchase period -->
+              <div class="periodWrap">
+                  <ul class="period">
+                       <li>
+                          <span>구매기간</span>
+                          <span>2015.07.21(화)~2015.07.23(목)</span>
+                      </li>
+                      <li>
+                          <span>신청기간</span>
+                          <span>2015.07.21(화)~2015.07.23(목)</span>
+                      </li>
+                      <li>
+                          <span>지급예정</span>
+                          <span>2015.07.21(화)</span>
+                      </li>
+                      <li class="desc">
+                          <span>참여대상 삼성카드 기간별 누적적기준 300,000원 이상 구매</span>
+                      </li>
+                  </ul>
+                  <span class="lb_status">신청중</span>
+              </div>
+              <!-- //purchase period -->
+
+              <!-- desc title -->
+              <div class="desc_tlt">
+                  <span class="txt">나의 대상금액</span>
+                  <a href="#none" class="btn_single">자세히 보기</a>
+              </div>
+              <!-- //desc title -->
+
+              <!-- apply range -->
+              <div class="price_range">
+                  <ul>
+                      <li>
+                          <p class="tlt">총 행사 대상 금액</p>
+                          <p class="price">231,050,000</p>
+                      </li>
+                      <li>
+                          <p class="tlt">예상 총총[L.POINT]</p>
+                          <p class="price">80,000,000</p>
+                      </li>
+                  </ul>
+                  <a href="#none" class="btn_l point">신청하기</a><!--로그인 일경우 "로그인" 문구만 넣어주시면 됩니다-->
+                  <!--지급준비중,지급완료 문구및 설명은 디자인컨펌 후, 추가 될 예정입니다.-->
+              </div>
+              <!-- //apply range -->
+
+              <!-- info table -->
+              <div class="tblInfoWrap">
+                  <table class="tbl_info">
+                      <tbody>
+                          <tr>
+                              <th><span>결제금액</span></th>
+                              <th><span>혜택</span></th>
+                          </tr>
+                          <tr>
+                              <td>50,000원 이상</td>
+                              <td>L.POINT 5,000 점</td>
+                          </tr>
+                          <tr>
+                              <td>100,000원 이상</td>
+                              <td>L.POINT 10,000 점</td>
+                          </tr>
+                          <tr>
+                              <td>150,000원 이상</td>
+                              <td>L.POINT 15,000 점</td>
+                          </tr>
+                          <tr>
+                              <td>300,000원 이상</td>
+                              <td>L.POINT 30,000 점</td>
+                          </tr>
+
+                      </tbody>
+                  </table>
+              </div>
+              <!-- //info table -->
+
+              <div class="infoWrap">
+                  <p class="info">
+                      고객님,삼성카드로 결제하셨나요?<br/>
+                      행사 기간동안 30만원 이상 결제하셨다면 결제하신 금액의 최대7%를 L.POINT(구.롯데포인트)로 돌려드립니다.<br/>
+                      (행사기간 주문합산 삼성카드 수령/발송완료 금액기준)
+                  </p>
+                  <ul class="bullet_list">
+                      <li>법인, 기프트, 선불카드 제외</li>
+                      <li>특판몰, B2E(오케이캐쉬백몰등),카드몰 구매고객은 행사 제외됩니다.</li>
+                  </ul>
+              </div>
+
+               <!-- desc title -->
+              <div class="desc_tlt">
+                  <span class="txt">행사대상상품보기</span>
+              </div>
+              <!-- //desc title -->
+
+              <!--info-->
+              <div class="infoWrap">
+                  <div class="noti">
+                      <p class="tlt">※ 행사 대상상품</p>
+                      <p class="info">
+                          롯데닷컴 계절가전 캐리어,위니아,위닉스,하이마트,롯데홈쇼핑, 다이슨, 블루에어 행사 상품外 행사 페이지內에 MD 공지배너삽입 제품에 한함
+                      </p>
+                  </div>
+                  <div class="noti">
+                      <p class="tlt">※행사 제외상품</p>
+                      <p class="info">
+                          백화점, 하이마트 (행사품목을 제외한 일부상품) 상품 및 복지몰, 판촉몰, 제휴몰, B2E몰, 카드몰, 법인몰 상품 및 경유 결제시 제외
+                      </p>
+                  </div>
+              </div>
+              <div class="infoWrap">
+                  <ul class="bullet_list gray">
+
+                      <li>구매기간 중 주문/결제를 완료하셔야 대상 금액에 포함됩니다.</li>
+                      <li>고객님께서 구매하신 상품이 대상 품목에 포함되는지 여부는 위의
+                      ‘나의 대상금액’ 우측 [자세히보기] 에서 확인하실 수 있습니다.</li>
+                      <li>고객님의 주문내역 중 배송비 결제액 등 일부 상품은 행사 대상 금
+                      액 에서 제외됩니다.</li>
+                      <li>구매사은 신청은 1회 신청시 자동 참여되며, 최종 누적금액으로 혜
+                      택이 지급됩니다.  (단, 주문취소/반품/결제수단 변경시 최종 누적
+                      금액에 포함되지 않습니다.)</li>
+                      <li>포인트 신청 대상금액은 결제완료 기준으로 표기되며, 포인트 지급
+                      시 발송완료 주문 금액에 한하여 해당 포인트 금액이 지급일 18시
+                      이후에 지급됩니다.</li>
+                      <li>포인트 적립 이후 주문취소/반품/결제 수단 변경 시 지급된 포인트
+                      는 회수됩니다.</li>
+                      <li>본 행사는 바로 방문을 통한 구매내역에 한해 제공됩니다. 바로 방
+                      문시 화면 하단 우측에 [바로 방문 ON] 으로 표시되어 있습니다.</li>
+                      <li>바로 방문은 앱 또는 모바일웹, 인터넷을 통한 주문만 해당되며, 제
+                      휴 사이트 등을 통하여 결제 시 대상에서 제외되오니 이 점 양지해
+                      주시기 바랍니다.</li>
+                      <li>본 행사는 포인트 예산 소진시 조기 종료 될 수 있습니다.</li>
+                      <li>배송 지연, 미발송 등에 의한 포인트 미지급 금액은 물품을 받으신
+                      후 당사 고객센터 (1577-1110)로 연락 주시면 정상 지급해 드립니다.</li>
+                  </ul>
+              </div>
+
+              <!-- //info-->
+          </div>
+      </section>
+          <!-- //event purchase apply -->
+
+
+
+    <div class="layerPop pop_readMore" id="layerPopup" style="/*display:none;*/">
+        <div id="head_sub">
+            <h2>나의 대상상금액 자세히 보기</h2>
+            <p class="close"><a href="#none">닫기</a></p>
+        </div>
+
+
+        <div class="readMoreWrap">
+            <!-- info table -->
+            <div class="tblInfoWrap">
+                <table class="tbl_info">
+                    <tbody>
+                    <tr>
+                        <th><span>상품내역 및 대상여부</span></th>
+                        <th><span>대상 금액</span></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="prdList">
+                                <p class="tlt">
+                                    <span class="on">대상</span>
+                                    <span class="date">2015.07.15</span>
+                                </p>
+                                <p class="desc">[롯데칠성] 아이시스스8.0 2L 1박스 무료배송 신라면 1박스 사은품 증정</p>
+                            </div>
+                        </td>
+                        <td><span class="price"><em>20,000,000</em>원</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="prdList">
+                                <p class="tlt">
+                                    <span class="off">대상아님</span>
+                                    <span class="off">행사상품 아님</span>
+                                    <span class="date">2015.07.15</span>
+                                </p>
+                                <p class="desc">[롯데칠성] 아이시스스8.0 2L 1박스 무료배송 신라면 1박스 사은품 증정</p>
+                            </div>
+                        </td>
+                        <td><span class="price"><em>0</em>원</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="prdList">
+                                <p class="tlt">
+                                    <span class="off">행사상품 아님</span>
+                                    <span class="date">2015.07.15</span>
+                                </p>
+                                <p class="desc">[롯데칠성] 아이시스스8.0 2L 1박스 무료배송 신라면 1박스 사은품 증정</p>
+                            </div>
+                        </td>
+                        <td><span class="price"><em>0</em>원</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- //info table -->
+
+            <!--total price-->
+            <p class="total_price">
+                총 행사 대상 금액<span class="price"><em>1,000,000</em>원</span>
+            </p>
+
+            <!--info-->
+            <div class="infoWrap">
+                <ul class="bullet_list gray">
+                    <li>포인트 신청 대상금액은 결제완료 기준으로 표기되며, 포인트 지급시
+                        수령완료 주문 금액에 한하여 해당 포인트 금액이 지급됩니다.</li>
+                    <li>구매사은 신청 이후 주문취소/반품/결제수단 변경시 구매사은 지급
+                        대상에서 제외될 수 있습니다.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</section>
+<!-- //container -->
+
+<!-- footer -->
+<section ng-include src="'/HTML/include/footer.html'"></section>
+
+</body>
+</html>

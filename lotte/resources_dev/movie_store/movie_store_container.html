@@ -1,0 +1,130 @@
+<section ng-show="contVisible" class="cont_minheight">
+  <!-- <section>
+		<div class='sub_header_wrap'>
+			<header id="head_sub" class="fixedSubHeader " ng-class="{fixedHeader: fixedHeader && subHeaderFixed && !appObj.isNativeHeader}">
+				<div class='head_sub_inner'>
+					<h2><a ng-click="mallMainClick('m_DC_SpeDisp_Reviewer_Clk_logo')"><span>영상제보</span></a></h2>
+					<a class='share' href='#' ng-click="petShare({shareImg:screenData.top_banner[0].img_url})"><span>공유</span></a>
+				</div>
+			</header>
+		</div>
+	</section> -->
+  <div class="top_tit_img mov" ng-class="{on:appObj.isApp}">
+    <!-- 동영상1 -->
+    <div class="mov_plan">
+      <div>
+        <div class="mov_wrap">
+          <video id="autoVideo"  playsinline="true" webkit-playsinline="true"  data-bg-url="{{MainMovInfoTop.video_img_url}}">
+            <source ng-src="{{MainMovInfoTop.movie_url | trusted}}" type="video/mp4">
+          </video>
+          <div class="play_cover"></div>
+          <div class="stop_cover"></div>
+          <div class="click_cover"></div>
+          <a id="btnVolume1" ng-click="movVolume('btnVolume1')" class="btn_move_volume btn_text">음소거</a>
+          <a ng-click="movPlayTclick()" class="btn_move_start">비디오 재생</a>
+          <a ng-click="movPauseTclick()" class="btn_move_stop btn_text">일시정지</a>
+          <a ng-click="mainProductClick(MainMovInfoTopInfo.goods_no, 'm_DC_SpeDisp_Vcom_Clk_detail')" class="btn_move_goods btn_text">상품보기</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pre_mov_bot top planshop" ng-show="MainMovInfoTop.top_select_goods_cmps_info">
+    <p class="tit1">[{{MainMovInfoTopCmps.items[0].brnd_nm}}]{{MainMovInfoTopCmps.items[0].goods_nm}}</p>
+    <ul>
+      <li>
+        <a ng-click="productInfoClick(MainMovInfoTopCmps.items[0],'1')"><img ng-src="{{MainMovInfoTopCmps.items[0].prd_img_url}}" alt=""></a>
+        <p class="price">{{MainMovInfoTopCmps.items[0].price1 | currency: '':0}}<span>원</span></p>
+      </li>
+      <li><a ng-click="productInfoClick(MainMovInfoTopCmps.items[1],'2')"><img ng-src="{{MainMovInfoTopCmps.items[1].prd_img_url}}" alt=""></a><p class="price">{{MainMovInfoTopCmps.items[1].price1 | currency: '':0}}<span>원</span></p></li>
+      <li><a ng-click="productInfoClick(MainMovInfoTopCmps.items[2],'3')"><img ng-src="{{MainMovInfoTopCmps.items[2].prd_img_url}}" alt=""></a><p class="price">{{MainMovInfoTopCmps.items[2].price1 | currency: '':0}}<span>원</span></p></li>
+      <li><a ng-click="productInfoClick(MainMovInfoTopCmps.items[3],'4')"><img ng-src="{{MainMovInfoTopCmps.items[3].prd_img_url}}" alt=""></a><p class="price">{{MainMovInfoTopCmps.items[3].price1 | currency: '':0}}<span>원</span></p></li>
+    </ul>
+  </div>
+  <div class="pre_mov_bot top" ng-hide="MainMovInfoTop.top_select_goods_cmps_info">
+    <img ng-src="{{MainMovInfoTopInfo.img_url}}" ng-click="movprdTclick(MainMovInfoTopInfo)" class="bot_img" alt="">
+    <div class="right_area" ng-click="movprdTclick(MainMovInfoTopInfo)">
+      <ul class="option_list">
+        <li class="benefit_flags2 lotte" ng-show="MainMovInfoTopInfo.is_dept">롯데백화점</li>
+        <li class="benefit_flags2 himart" ng-if="MainMovInfoTopInfo.is_himart">하이마트</li>
+        <li class="benefit_flags2 smart" ng-show="MainMovInfoTopInfo.smartpick_yn=='Y'">스마트픽</li>
+        <li class="benefit_flags2 today" ng-show="MainMovInfoTopInfo.isDlvToday">오늘도착</li>
+        <li class="benefit_flags2 today" ng-show="MainMovInfoTopInfo.isCrsPickYn">편의점픽업</li>
+        <li class="benefit_flags2 today" ng-show="MainMovInfoTopInfo.isDeptPickYn">백화점픽업</li>
+      </ul>
+      <p class="tit1">[{{MainMovInfoTopInfo.brnd_nm}}]{{MainMovInfoTopInfo.goods_nm}}</p>
+      <div class="tit2"><span class="tit3">{{MainMovInfoTopInfo.discounted_price | currency: '':0}}</span><span class="tit4">원</span><del class="tit5" ng-show="MainMovInfoTopInfo.original_price!=MainMovInfoTopInfo.discounted_price && MainMovInfoTopInfo.original_price !=0 && !MainMovInfoTopInfo.is_sale_promotion">{{MainMovInfoTopInfo.original_price | currency: '':0}}원</del></div>
+      <ul class="benefit_list">
+        <li ng-if="MainMovInfoTopInfo.dlv_fee_tp == 'Y'">무료배송</li>
+      </ul>
+      <div class="user_feedback">
+        <span class="score">
+            <span class="starScoreWrap"><span class="starScoreCnt" style="width:{{MainMovInfoTopInfo.avg_gdas_stfd_val / 5 * 100}}%"></span></span>
+            <span class="review ng-binding">({{MainMovInfoTopInfo.review_count}})</span>
+        </span>
+      </div>
+      <div class="header_alert_pop" id="productViewAlert">
+  			<div class="msg_brand_add_after">
+  				<div class="msg_wrap" id="alertTemplateContent">
+  				</div>
+  				<div class="btn_wrap" ng-if="alertTemplate.button != ''">
+  					<div class="btn_cont" id="alertTemplateButton">
+  					</div>
+  				</div>
+  			</div>
+  		</div>
+    </div>
+    <span class="wish div_line_v_s2" ng-click="wishClick(MainMovInfoTopInfo)" ng-class="{on:MainMovInfoTopInfo.has_wish}"></span>
+  </div>
+  <div class="cate swipe_wrap">
+    <ul class="slide_ul">
+      <li ng-repeat="item in ctgll.items" ng-class="{on:$index == ctgll.tabIdx}">
+        <a ng-click="tabClick(item, $index)">{{item.disp_nm}}</a>
+      </li>
+    </ul>
+  </div>
+  <ul class="pre_mov_ul type2">
+    <li ng-repeat="item in cate_goods_list2">
+      <div ng-if="item.prd_info" ng-class="{goods:item.prd_info}">
+    		<a ng-click="movClick(item, $index)" class="mov_plan"><img ng-src="{{item.prd_info.img_url}}" alt=""></a>
+        <div class="pre_mov_bot right">
+          <div class="right_area" ng-click="productInfoClick2(item.prd_info, $index)">
+            <!-- <ul class="option_list"> -->
+              <!-- <li ng-repeat="(k,v) in item.benefit_flags" class="flag2" ng-class="{lotte:v == 'dept', smart:v == 'smartpick', 'today':v == 'today', 'quick':v == 'quick'}">{{v | dealFlagName}}</li> -->
+              <!-- <li class="smart flag2">스마트픽</li> -->
+              <!-- <li class="quick flag2">퀵</li> -->
+              <!-- <li class="today flag2">오늘도착</li> -->
+            <!-- </ul> -->
+            <ul class="option_list">
+              <li class="benefit_flags2 lotte" ng-show="item.prd_info.is_dept">롯데백화점</li>
+              <li class="benefit_flags2 himart" ng-if="item.prd_info.is_himart">하이마트</li>
+              <li class="benefit_flags2 smart" ng-show="item.prd_info.smartpick_yn=='Y'">스마트픽</li>
+              <li class="benefit_flags2 today" ng-show="item.prd_info.isDlvToday">오늘도착</li>
+              <li class="benefit_flags2 today" ng-show="item.prd_info.isCrsPickYn">편의점픽업</li>
+              <li class="benefit_flags2 today" ng-show="item.prd_info.isDeptPickYn">백화점픽업</li>
+            </ul>
+            <p class="tit1"><span ng-show="item.prd_info.brnd_nm">[{{item.prd_info.brnd_nm}}]</span>{{item.prd_info.goods_nm}}</p>
+            <div class="tit2"><span class="tit3">{{item.prd_info.discounted_price | currency: '':0}}</span><span class="tit4">원</span><span ng-if="item.item.is_sale_promotion"> ~</span><del class="tit5" ng-show="item.prd_info.original_price!=item.prd_info.discounted_price && item.prd_info.original_price !=0 && !item.prd_info.is_sale_promotion">{{item.prd_info.original_price | currency: '':0}}원</del></div>
+            <ul class="benefit_list">
+              <li ng-if="item.prd_info.dlv_fee_tp">무료배송</li>
+              <li ng-if="item.prd_info.promotion_text">{{item.promotion_text}}</li>
+            </ul>
+            <!-- <ul class="benefit_list">
+              <li ng-repeat="(k,v) in item.opt">{{v | optName}}</li>
+            </ul> -->
+            <div class="user_feedback">
+              <span class="score">
+                  <span class="starScoreWrap"><span class="starScoreCnt" style="width:{{item.prd_info.avg_gdas_stfd_val / 5 * 100}}%"></span></span>
+                  <span class="review ng-binding">({{item.prd_info.review_count}})</span>
+              </span>
+            </div>
+          </div>
+          <span class="wish div_line_v_s2" ng-click="wishClick(item.prd_info)" ng-class="{on:item.prd_info.has_wish}"></span>
+        </div>
+      </div>
+      <div ng-if="item.banner_info" ng-click="bannClick(item, $index)">
+        <img ng-src="{{item.banner_info.img_url}}" alt="">
+      </div>
+    </li>
+
+  </ul>
+</section>

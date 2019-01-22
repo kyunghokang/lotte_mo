@@ -1,0 +1,74 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplmovieReview" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/sns/share_box.html",
+					"lotte/resources_dev/sns/share_pop.html",
+					"lotte/resources_dev/movie_review/movie_review_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/movie_review.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsmovieReview" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/sns/lotte_sns.js",
+					"lotte/resources_dev/common/lotte_video.js",
+					"lotte/resources_dev/common/lotte_slider.js",
+					"lotte/resources_dev/movie_review/movie_review.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/movie_review.js"
+			}
+		},
+
+		"uglify" : {
+			"jsmovieReview" : {
+				"src" : "lotte/resources/<%= version %>/movie_review.js",
+				"dest" : "lotte/resources/<%= version %>/movie_review.min.js"
+			},
+			"tplmovieReview" : {
+				"src" : "lotte/resources/<%= version %>/movie_review.template.js",
+				"dest" : "lotte/resources/<%= version %>/movie_review.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssmovieReview" : {
+				"src" : [
+					"lotte/resources_dev/sns/sns.css",
+					"lotte/resources_dev/movie_review/movie_review.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/movie_review.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanmovieReview" : [
+				"lotte/resources/<%= version %>/movie_review.js",
+				"lotte/resources/<%= version %>/movie_review.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlmovieReview" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"movie_review/movie_review.html" : "movie_review/movie_review_dev.html"
+				}
+			}
+		}
+	}
+}

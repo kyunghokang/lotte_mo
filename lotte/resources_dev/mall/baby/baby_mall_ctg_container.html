@@ -1,0 +1,14 @@
+<div class="sort_baby_header_wrap">
+	<section>
+		<div class="ctg_list" ng-class="{reply_focus:screenData.active}">
+			<div class="ctg_list_big">
+				<ul>
+					<li ng-class="{on:$index == inFantUi.d_cate}" ng-repeat="item in screenData.cate_list">
+						<a ng-click="headerMenuClick(item, $index, '')">{{item.disp_nm}}</a>
+					</li>
+				</ul>		
+			</div>		
+			<sub-cate-select></sub-cate-select>
+		</div>	
+	</section>
+</div>

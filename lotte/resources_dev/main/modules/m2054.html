@@ -1,0 +1,35 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!--M54 5+6형..-->
+	<div class="moduleCon" ng-if="unitShow">
+		<div class="unit unit_cate bigdeal">
+			<div class="cate swipe_wrap" lotte-slider>
+				<ul>
+					<li ng-repeat="item in moduleData.items" ng-click="logGAEvtModuleEach($index + 1, item.txt);tabClick($event, $index)" ng-class="{on:$index == moduleData.uiData.tabIdx}" ng-if="item.prdList.items.length >= 3">
+						<a>
+							<span class="img_wrap"><img ng-src="{{item.imgUrl}}"></span>
+							<span class="tit"><span class="tit_cont">{{item.txt}}</span></span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<ul class="prd_unit_type01 float_ul">
+			<li ng-repeat="item in moduleData.items[moduleData.uiData.tabIdx].prdList.items | limitTo:(moduleData.items[moduleData.uiData.tabIdx].prdList.items.length % 3 == 0)?
+				moduleData.items[moduleData.uiData.tabIdx].prdList.items.length:
+				((moduleData.items[moduleData.uiData.tabIdx].prdList.items.length % 2 == 0)? moduleData.items[moduleData.uiData.tabIdx].prdList.items.length - 2: moduleData.items[moduleData.uiData.tabIdx].prdList.items.length - 1)">
+				<a ng-click="logGAEvtModuleEach(moduleData.uiData.tabIdx + 1, item.goodsNo,$index + 1);mainProductClick(item.goodsNo, moduleData.tclick + '_Clk_Btn'+numberFill((moduleData.uiData.tabIdx+1),2)+'_Prd'+numberFill(($index+1),2))">
+					<div class="imageCon">
+						<img ng-src="{{item.imgUrl}}">
+					</div>
+					<div class="titleCon">
+						<div class="name">{{item.goodsNm}}</div>
+						<div class="ti"><strong>{{item.price | currency: '':0}}</strong>원<em class="plan_prod_limit" ng-if="item.isPlanPrd">~</em></div>
+					</div>
+				</a>
+			</li>
+		</ul>
+		<!--<div class="btnMore">
+			<span class="btnArea"><a href="#more"><span>더보기</span></a></span>
+		</div>-->
+	</div>
+</section>

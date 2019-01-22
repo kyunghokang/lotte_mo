@@ -1,0 +1,67 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplReOrder" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    
+                ],
+                "dest" : "lotte/resources/<%= version %>/re_order.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsReOrder" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/orderclaim/m/re_order.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/re_order.js"
+            }
+        },
+
+        "uglify" : {
+            "jsReOrder" : {
+                "src" : "lotte/resources/<%= version %>/re_order.js",
+                "dest" : "lotte/resources/<%= version %>/re_order.min.js"
+            },
+            "tplReOrder" : {
+                "src" : "lotte/resources/<%= version %>/re_order.template.js",
+                "dest" : "lotte/resources/<%= version %>/re_order.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssReOrder" : {
+                "src" : [
+                    "lotte/resources_dev/orderclaim/m/re_order.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/re_order.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanReOrder" : [
+                "lotte/resources/<%= version %>/re_order.js",
+                "lotte/resources/<%= version %>/re_order.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlReOrder" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                }
+            }
+        }
+    }
+}

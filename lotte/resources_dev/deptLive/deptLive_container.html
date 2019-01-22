@@ -1,0 +1,51 @@
+<section class="deptCon">
+<!--상단 스와이핑 배너-->                
+<div class="mainBanner">
+   <div class="brlistBox">
+       <ul class="brlist" rn-carousel rn-carousel-index="prdDealIdx">
+           <li ng-repeat="item in mainData.top.items">
+               <a ng-click="bannerTclick(item.img_link, 0)">
+                    <img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}">          
+               </a>
+           </li>
+       </ul>                      
+    </div>
+    <div class="indicator" ng-if="mainData.top.items.length > 1">
+        <div class="circle" ng-repeat="item in mainData.top.items" ng-class="{on:prdDealIdx == $index}"></div>
+    </div>   
+</div>
+
+<!--탑 메뉴-->
+<div class="dlMenu">
+    <a href="#/floor{{$index}}" class="dla" ng-class="{on:mainIndex == $index}" ng-repeat="m in menuAr">
+        <div class="menuIcon"></div>
+        <div class="select"></div>
+    </a>
+</div>
+
+<!--리스트 : 전체보기-->
+<div class="dlall" ng-show="mainIndex == 0">
+    <div class="floorBox" ng-repeat="list in main_prdList" floor="{{$findex = $index + 1}}">        
+        <img ng-src="http://image.lotte.com/lotte/mobile/mobile_new/product/deptLive_floor{{$index + 1}}.png" class="floorImg" alt="{{$findex}}층">        
+        <a ng-click="dLgoDetail('{{unit.brandNo}}', '{{unit.goodsNo}}', '{{'m_live_main_floor0' + $findex + '_brand'}}', {{$index}})" class="floorUnit" ng-repeat="unit in list.items | number6Filter : 6" ng-if="unit.imgUrl  && unit.goodsNo">
+            <img ng-src="{{unit.imgUrl}}" class="brandIcon">
+            <img ng-src="http://image.lotte.com/lotte/mobile/mobile_new/product/deptLive_newIcon.png" class="deptNewIcon" ng-if="unit.newIcon">
+        </a>
+    </div>
+</div>
+
+<!--리스트 : 1층 ~ 4층 -->
+<div class="floorList" ng-show="mainIndex == ($index + 1)" ng-repeat="fl in [1,2,3,4]">
+    <ul class="floorBox2"  floor="{{$findex = $index + 1}}">   
+        <li ng-repeat="item in main_prdList[$index].items" class="floorUnit2" ng-if="item.imgUrl  && item.goodsNo">
+            <a ng-click="dLgoDetail('{{item.brandNo}}', '{{item.goodsNo}}', '{{'m_live_sub_floor0' + $findex + '_brand'}}', {{$index}})" >
+                <img ng-src="{{item.imgUrl}}" >
+                <img ng-src="http://image.lotte.com/lotte/mobile/mobile_new/product/deptLive_newIcon.png" class="deptNewIcon" ng-if="item.newIcon">                
+                <span class="elli">{{item.brandNm}}</span>
+            </a>
+        </li>        
+    </ul>    
+</div>
+</section>
+
+

@@ -1,0 +1,2066 @@
+1. 업무명 : 검색 메인
+2. 담당자 : 신주섭
+3. URL : 
+  http://molocal.lotte.com/json/getSearchListJson.json?dispCnt=30&dpml_no=1&imgListGbn=L&keyword=%25EB%2582%2598%25EC%259D%25B4%25ED%2582%25A4&page=1&rtnType=&sort=RANK,1
+
+4. 파라미터
+  - dispCnt : 상위 브랜드번호
+  - dpml_no : 카테고리 최상위 번호(무조건 1로 넘김)
+  - imgListGbn : L(리스트), I(이미지리스트)
+  - keyword : 검색어
+  - page : page번호
+  - rtnType : xml, json 구분이나 현재 사용 안함(넘기긴 해야함)
+  - sort : 정렬구분
+
+5. JSON 파라미터
+  - arkList : 연관검색어
+    - hkeyword : 연관 검색어(html)
+    - keyword : 연관검색어
+    - count : 연관검색어 카운트
+    - type : 2 ??
+    - likename : 카테고리
+    - linkurl : 링크 url 
+  - price : 검색내 최소, 최대 상품 금액(기존 형식을 유지하기 위함, prdList에 정보 있음)
+     - min : 최소금액
+     - max : 최대금액
+  - tCnt : 검색 전체 개수
+  - page : 현재 페이지 번호
+  - prdList : 상품
+      - 상품 공통유닛
+        - hash_list: 해시태그 리스트
+      - total_count: 페이지 검색 개수(30)
+      - rs_total_cnt: 전체 검색 개수(9606)
+      - price_min: "500",
+      - price_max: "3989360",
+      - sort_type: "RANK,1",
+      - display_cnt: "30"
+  - dptsRglList : 스마트픽 정보(기존과 동일)
+  - recomLink : 추천 링크(검색엔진에서 비어 있어도 내용이 있게 옴)
+    - label: 추천문구
+    - link_url: 링크
+    - blank_flag: 모름
+    - alert_str: 모름
+  - cateList : 카테고리 정보
+    - disp_no : 카테고리 번호
+    - disp_nm : 카테고리 명
+    - cate_cnt : 카테고리 검색 개수
+    - subCate : 하위 카테고리 정보
+       - disp_no, disp_nm, cate_cnt 동일
+  - dealList : 딜유닛 공통 
+  - brandList : 브랜드 정보
+    - brnd_no : 브랜드 번호
+    - brnd_nm : 브랜드 이름
+    - brnd_eng_nm : 브랜드 영문(없음)
+    - brnd_cnt : 브랜드 해당 상품 검색 개수
+
+6. JSON
+{
+  "arkList" : [ ],
+  "price" : {
+    "min" : "500",
+    "max" : "3989360"
+  },
+  "tCnt" : 9606,
+  "page" : 1,
+  "prdList" : {
+    "items" : [ {
+      "goods_no" : 90914161,
+      "goods_nm" : "[<!HS>나이키<!HE>키즈]다이나모 프리 PS 343738-408",
+      "brnd_nm" : "나이키 키즈",
+      "img_url" : "http://image.lotte.com/goods/61/41/91/90/90914161_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/61/41/91/90/90914161_1_550.jpg",
+      "original_price" : 0,
+      "discounted_price" : 69000,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+      "flag" : "D",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 29,
+      "bought_sum" : 530,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "Y",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:D`스포츠패션/슈즈`1696687:아동스포츠슈즈`5418405:운동화/스니커즈`5419690:남아`5419965",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1696687,
+        "cate_nm" : "스포츠패션/슈즈",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418405,
+        "cate_nm" : "아동스포츠슈즈",
+        "depth" : 2
+      }, {
+        "cate_No" : 5419690,
+        "cate_nm" : "운동화/스니커즈",
+        "depth" : 3
+      }, {
+        "cate_No" : 5419965,
+        "cate_nm" : "남아",
+        "depth" : 4
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0,
+      "hash_list" : [
+        "해시태그1",
+        "해시태그2",
+        "해시태그3",
+        "해시태그4",
+        "해시태그5"
+      ]
+    }, {
+      "goods_no" : 90914145,
+      "goods_nm" : "[<!HS>나이키<!HE>키즈]다이나모 프리 PS 343738-607",
+      "brnd_nm" : "나이키 키즈",
+      "img_url" : "http://image.lotte.com/goods/45/41/91/90/90914145_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/45/41/91/90/90914145_1_550.jpg",
+      "original_price" : 0,
+      "discounted_price" : 69000,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+      "flag" : "D",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 17,
+      "bought_sum" : 328,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "Y",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:D`스포츠패션/슈즈`1696687:아동스포츠슈즈`5418405:운동화/스니커즈`5419690:남아`5419965",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1696687,
+        "cate_nm" : "스포츠패션/슈즈",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418405,
+        "cate_nm" : "아동스포츠슈즈",
+        "depth" : 2
+      }, {
+        "cate_No" : 5419690,
+        "cate_nm" : "운동화/스니커즈",
+        "depth" : 3
+      }, {
+        "cate_No" : 5419965,
+        "cate_nm" : "남아",
+        "depth" : 4
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0
+    }, {
+      "goods_no" : 82726724,
+      "goods_nm" : "우먼스 <!HS>나이키<!HE> 인터내셔널리스트  629684-004",
+      "brnd_nm" : "나이키",
+      "img_url" : "http://image.lotte.com/goods/24/67/72/82/82726724_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/24/67/72/82/82726724_1_550.jpg",
+      "original_price" : 0,
+      "discounted_price" : 99000,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+      "flag" : "D",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 6,
+      "bought_sum" : 71,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "Y",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:D`스포츠패션/슈즈`1696687:스포츠슈즈`5418404:운동화`5420119:여성용`5420153",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1696687,
+        "cate_nm" : "스포츠패션/슈즈",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418404,
+        "cate_nm" : "스포츠슈즈",
+        "depth" : 2
+      }, {
+        "cate_No" : 5420119,
+        "cate_nm" : "운동화",
+        "depth" : 3
+      }, {
+        "cate_No" : 5420153,
+        "cate_nm" : "여성용",
+        "depth" : 4
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0
+    }, {
+      "goods_no" : 94750185,
+      "goods_nm" : "우먼스 <!HS>나이키<!HE> 에어 페가서스 83  407477-007",
+      "brnd_nm" : "나이키",
+      "img_url" : "http://image.lotte.com/goods/85/01/75/94/94750185_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/85/01/75/94/94750185_1_550.jpg",
+      "original_price" : 0,
+      "discounted_price" : 89000,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+      "flag" : "D",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 2,
+      "bought_sum" : 29,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "Y",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:D`스포츠패션/슈즈`1696687:스포츠슈즈`5418404:운동화`5420119:여성용`5420153",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1696687,
+        "cate_nm" : "스포츠패션/슈즈",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418404,
+        "cate_nm" : "스포츠슈즈",
+        "depth" : 2
+      }, {
+        "cate_No" : 5420119,
+        "cate_nm" : "운동화",
+        "depth" : 3
+      }, {
+        "cate_No" : 5420153,
+        "cate_nm" : "여성용",
+        "depth" : 4
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0
+    }, {
+      "goods_no" : 82719217,
+      "goods_nm" : "<!HS>나이키<!HE> 인터네셔널리스트 631754-003",
+      "brnd_nm" : "나이키",
+      "img_url" : "http://image.lotte.com/goods/17/92/71/82/82719217_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/17/92/71/82/82719217_1_550.jpg",
+      "original_price" : 0,
+      "discounted_price" : 99000,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+      "flag" : "D",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 4,
+      "bought_sum" : 52,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "Y",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:D`스포츠패션/슈즈`1696687:스포츠슈즈`5418404:운동화`5420119:남성용`5420149",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1696687,
+        "cate_nm" : "스포츠패션/슈즈",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418404,
+        "cate_nm" : "스포츠슈즈",
+        "depth" : 2
+      }, {
+        "cate_No" : 5420119,
+        "cate_nm" : "운동화",
+        "depth" : 3
+      }, {
+        "cate_No" : 5420149,
+        "cate_nm" : "남성용",
+        "depth" : 4
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0
+    }, {
+      "goods_no" : 87668762,
+      "goods_nm" : "<!HS>나이키<!HE> 테크 플리스 풀집 후디  617153-011",
+      "brnd_nm" : "나이키",
+      "img_url" : "http://image.lotte.com/goods/62/87/66/87/87668762_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/62/87/66/87/87668762_1_550.jpg",
+      "original_price" : 0,
+      "discounted_price" : 139000,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+      "flag" : "D",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 6,
+      "bought_sum" : 46,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "Y",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:D`스포츠패션/슈즈`1696687:여성스포츠의류`5418403:바람막이재킷/점퍼`5419688",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1696687,
+        "cate_nm" : "스포츠패션/슈즈",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418403,
+        "cate_nm" : "여성스포츠의류",
+        "depth" : 2
+      }, {
+        "cate_No" : 5419688,
+        "cate_nm" : "바람막이재킷/점퍼",
+        "depth" : 3
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0
+    }, {
+      "goods_no" : 95351110,
+      "goods_nm" : "[ <!HS>나이키<!HE> 642195-700/800 ] <!HS>나이키<!HE>줌보메로9/남성런닝화/운동화/신발",
+      "brnd_nm" : "나이키(슈즈)",
+      "img_url" : "http://image.lotte.com/goods/10/11/35/95/95351110_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/10/11/35/95/95351110_1_550.jpg",
+      "original_price" : 0,
+      "discounted_price" : 159000,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "", "sort_icon05" ],
+      "flag" : "EC",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 1,
+      "bought_sum" : 4,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "Y",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:L`스포츠패션/슈즈/구기`1687397:스포츠슈즈`5418351:런닝화`5418751:남성용`5418753",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1687397,
+        "cate_nm" : "스포츠패션/슈즈/구기",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418351,
+        "cate_nm" : "스포츠슈즈",
+        "depth" : 2
+      }, {
+        "cate_No" : 5418751,
+        "cate_nm" : "런닝화",
+        "depth" : 3
+      }, {
+        "cate_No" : 5418753,
+        "cate_nm" : "남성용",
+        "depth" : 4
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0
+    }, {
+      "goods_no" : 87528691,
+      "goods_nm" : "<!HS>나이키<!HE> 운동화모음 15종택일",
+      "brnd_nm" : "나이키(슈즈)",
+      "img_url" : "http://image.lotte.com/goods/91/86/52/87/87528691_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/91/86/52/87/87528691_1_550.jpg",
+      "original_price" : 0,
+      "discounted_price" : 55000,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "", "sort_icon05" ],
+      "flag" : "EC",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 15,
+      "bought_sum" : 23,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "N",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:L`스포츠패션/슈즈/구기`1687397:스포츠슈즈`5418351:운동화`5418759:여성용`5418771",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1687397,
+        "cate_nm" : "스포츠패션/슈즈/구기",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418351,
+        "cate_nm" : "스포츠슈즈",
+        "depth" : 2
+      }, {
+        "cate_No" : 5418759,
+        "cate_nm" : "운동화",
+        "depth" : 3
+      }, {
+        "cate_No" : 5418771,
+        "cate_nm" : "여성용",
+        "depth" : 4
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0
+    }, {
+      "goods_no" : 87545709,
+      "goods_nm" : "우먼스 <!HS>나이키<!HE> 에어 맥스 루나90 C3.0  631762-700",
+      "brnd_nm" : "나이키",
+      "img_url" : "http://image.lotte.com/goods/09/57/54/87/87545709_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/09/57/54/87/87545709_1_550.jpg",
+      "original_price" : 0,
+      "discounted_price" : 159000,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+      "flag" : "D",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 0,
+      "bought_sum" : 13,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "Y",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:D`스포츠패션/슈즈`1696687:스포츠슈즈`5418404:운동화`5420119:여성용`5420153",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1696687,
+        "cate_nm" : "스포츠패션/슈즈",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418404,
+        "cate_nm" : "스포츠슈즈",
+        "depth" : 2
+      }, {
+        "cate_No" : 5420119,
+        "cate_nm" : "운동화",
+        "depth" : 3
+      }, {
+        "cate_No" : 5420153,
+        "cate_nm" : "여성용",
+        "depth" : 4
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0
+    }, {
+      "goods_no" : 96135613,
+      "goods_nm" : "<!HS>나이키<!HE> TW14 599416-001 골프화/남성골프화/<!HS>나이키<!HE>골프화/TW골프화/TW14",
+      "brnd_nm" : "나이키골프",
+      "img_url" : "http://image.lotte.com/goods/13/56/13/96/96135613_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/13/56/13/96/96135613_1_550.jpg",
+      "original_price" : 0,
+      "discounted_price" : 188200,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "", "sort_icon05" ],
+      "flag" : "EC",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 1,
+      "bought_sum" : 1,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "N",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:L`골프의류/용품`1689931:골프화`5418385:골프화`5419672:남성용`5419741",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1689931,
+        "cate_nm" : "골프의류/용품",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418385,
+        "cate_nm" : "골프화",
+        "depth" : 2
+      }, {
+        "cate_No" : 5419672,
+        "cate_nm" : "골프화",
+        "depth" : 3
+      }, {
+        "cate_No" : 5419741,
+        "cate_nm" : "남성용",
+        "depth" : 4
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0
+    }, {
+      "goods_no" : 94750186,
+      "goods_nm" : "<!HS>나이키<!HE> SB 허드슨 파카  615762-325",
+      "brnd_nm" : "나이키",
+      "img_url" : "http://image.lotte.com/goods/86/01/75/94/94750186_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/86/01/75/94/94750186_1_550.jpg",
+      "original_price" : 299000,
+      "discounted_price" : 296100,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+      "flag" : "D",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 1,
+      "bought_sum" : 8,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "Y",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:D`스포츠패션/슈즈`1696687:여성스포츠의류`5418403:다운/패딩재킷/점퍼`5420083:덕다운/패딩`5420097",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1696687,
+        "cate_nm" : "스포츠패션/슈즈",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418403,
+        "cate_nm" : "여성스포츠의류",
+        "depth" : 2
+      }, {
+        "cate_No" : 5420083,
+        "cate_nm" : "다운/패딩재킷/점퍼",
+        "depth" : 3
+      }, {
+        "cate_No" : 5420097,
+        "cate_nm" : "덕다운/패딩",
+        "depth" : 4
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0
+    }, {
+      "goods_no" : 87545692,
+      "goods_nm" : "우먼스 <!HS>나이키<!HE> 에어 맥스 루나90 C3.0  631762-800",
+      "brnd_nm" : "나이키",
+      "img_url" : "http://image.lotte.com/goods/92/56/54/87/87545692_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/92/56/54/87/87545692_1_550.jpg",
+      "original_price" : 0,
+      "discounted_price" : 159000,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+      "flag" : "D",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 3,
+      "bought_sum" : 16,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "Y",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:D`스포츠패션/슈즈`1696687:스포츠슈즈`5418404:운동화`5420119:여성용`5420153",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1696687,
+        "cate_nm" : "스포츠패션/슈즈",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418404,
+        "cate_nm" : "스포츠슈즈",
+        "depth" : 2
+      }, {
+        "cate_No" : 5420119,
+        "cate_nm" : "운동화",
+        "depth" : 3
+      }, {
+        "cate_No" : 5420153,
+        "cate_nm" : "여성용",
+        "depth" : 4
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0
+    }, {
+      "goods_no" : 92379093,
+      "goods_nm" : "<!HS>나이키<!HE> 레전더리 타이트 팬츠  620998-010",
+      "brnd_nm" : "나이키",
+      "img_url" : "http://image.lotte.com/goods/93/90/37/92/92379093_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/93/90/37/92/92379093_1_550.jpg",
+      "original_price" : 0,
+      "discounted_price" : 79000,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+      "flag" : "D",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 1,
+      "bought_sum" : 7,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "Y",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:D`스포츠패션/슈즈`1696687:여성스포츠의류`5418403:바지`5420088:긴바지`5420104",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1696687,
+        "cate_nm" : "스포츠패션/슈즈",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418403,
+        "cate_nm" : "여성스포츠의류",
+        "depth" : 2
+      }, {
+        "cate_No" : 5420088,
+        "cate_nm" : "바지",
+        "depth" : 3
+      }, {
+        "cate_No" : 5420104,
+        "cate_nm" : "긴바지",
+        "depth" : 4
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0
+    }, {
+      "goods_no" : 95350979,
+      "goods_nm" : "<!HS>나이키<!HE> 티엠포 레전드 V FG 축구화(631518-418) 블루 천연잔디화 우수한 쿠셔닝",
+      "brnd_nm" : "나이키(슈즈)",
+      "img_url" : "http://image.lotte.com/goods/79/09/35/95/95350979_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/79/09/35/95/95350979_1_550.jpg",
+      "original_price" : 0,
+      "discounted_price" : 179500,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "", "sort_icon05" ],
+      "flag" : "EC",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 1,
+      "bought_sum" : 1,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "N",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:L`스포츠패션/슈즈/구기`1687397:축구`5418356:축구화`5418904",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1687397,
+        "cate_nm" : "스포츠패션/슈즈/구기",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418356,
+        "cate_nm" : "축구",
+        "depth" : 2
+      }, {
+        "cate_No" : 5418904,
+        "cate_nm" : "축구화",
+        "depth" : 3
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0
+    }, {
+      "goods_no" : 92379098,
+      "goods_nm" : "4인치 <!HS>나이키<!HE> 라이벌 쇼츠  624604-010",
+      "brnd_nm" : "나이키",
+      "img_url" : "http://image.lotte.com/goods/98/90/37/92/92379098_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/98/90/37/92/92379098_1_550.jpg",
+      "original_price" : 0,
+      "discounted_price" : 45000,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+      "flag" : "D",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 1,
+      "bought_sum" : 7,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "N",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:D`스포츠패션/슈즈`1696687:여성스포츠의류`5418403:바지`5420088:반바지`5420106",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1696687,
+        "cate_nm" : "스포츠패션/슈즈",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418403,
+        "cate_nm" : "여성스포츠의류",
+        "depth" : 2
+      }, {
+        "cate_No" : 5420088,
+        "cate_nm" : "바지",
+        "depth" : 3
+      }, {
+        "cate_No" : 5420106,
+        "cate_nm" : "반바지",
+        "depth" : 4
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0
+    }, {
+      "goods_no" : 94938880,
+      "goods_nm" : "<!HS>나이키<!HE> /머큐리얼 빅토리 5 TF [651646-800]/축구화/신발/운동화/축구/축구용품",
+      "brnd_nm" : "나이키(슈즈)",
+      "img_url" : "http://image.lotte.com/goods/80/88/93/94/94938880_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/80/88/93/94/94938880_1_550.jpg",
+      "original_price" : 0,
+      "discounted_price" : 81500,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "", "sort_icon05" ],
+      "flag" : "EC",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 1,
+      "bought_sum" : 1,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "N",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:L`스포츠패션/슈즈/구기`1687397:축구`5418356:축구화`5418904",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1687397,
+        "cate_nm" : "스포츠패션/슈즈/구기",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418356,
+        "cate_nm" : "축구",
+        "depth" : 2
+      }, {
+        "cate_No" : 5418904,
+        "cate_nm" : "축구화",
+        "depth" : 3
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0
+    }, {
+      "goods_no" : 94250863,
+      "goods_nm" : "[<!HS>나이키<!HE>] 쉴드 맥스 자켓 <!HS>NIKE<!HE> 619434-891",
+      "brnd_nm" : "나이키",
+      "img_url" : "http://image.lotte.com/goods/63/08/25/94/94250863_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/63/08/25/94/94250863_1_550.jpg",
+      "original_price" : 259000,
+      "discounted_price" : 256500,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+      "flag" : "D",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 1,
+      "bought_sum" : 1,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "Y",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:D`스포츠패션/슈즈`1696687:남성스포츠의류`5418402:바람막이재킷/점퍼`5419687",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1696687,
+        "cate_nm" : "스포츠패션/슈즈",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418402,
+        "cate_nm" : "남성스포츠의류",
+        "depth" : 2
+      }, {
+        "cate_No" : 5419687,
+        "cate_nm" : "바람막이재킷/점퍼",
+        "depth" : 3
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0
+    }, {
+      "goods_no" : 91105121,
+      "goods_nm" : "<!HS>나이키<!HE> 에어로로프트 800 베스트  616241-010",
+      "brnd_nm" : "나이키",
+      "img_url" : "http://image.lotte.com/goods/21/51/10/91/91105121_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/21/51/10/91/91105121_1_550.jpg",
+      "original_price" : 0,
+      "discounted_price" : 169000,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+      "flag" : "D",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 3,
+      "bought_sum" : 13,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "Y",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:D`스포츠패션/슈즈`1696687:남성스포츠의류`5418402:바람막이재킷/점퍼`5419687",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1696687,
+        "cate_nm" : "스포츠패션/슈즈",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418402,
+        "cate_nm" : "남성스포츠의류",
+        "depth" : 2
+      }, {
+        "cate_No" : 5419687,
+        "cate_nm" : "바람막이재킷/점퍼",
+        "depth" : 3
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0
+    }, {
+      "goods_no" : 94235571,
+      "goods_nm" : "[<!HS>나이키<!HE>] 다이나모 프리 PS <!HS>NIKE<!HE> 343738-408",
+      "brnd_nm" : "나이키",
+      "img_url" : "http://image.lotte.com/goods/71/55/23/94/94235571_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/71/55/23/94/94235571_1_550.jpg",
+      "original_price" : 0,
+      "discounted_price" : 69000,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+      "flag" : "D",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 2,
+      "bought_sum" : 55,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "Y",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:D`스포츠패션/슈즈`1696687:아동스포츠슈즈`5418405:운동화/스니커즈`5419690:여아`5420205",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1696687,
+        "cate_nm" : "스포츠패션/슈즈",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418405,
+        "cate_nm" : "아동스포츠슈즈",
+        "depth" : 2
+      }, {
+        "cate_No" : 5419690,
+        "cate_nm" : "운동화/스니커즈",
+        "depth" : 3
+      }, {
+        "cate_No" : 5420205,
+        "cate_nm" : "여아",
+        "depth" : 4
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0
+    }, {
+      "goods_no" : 77641840,
+      "goods_nm" : "우먼스 <!HS>나이키<!HE> 에어 맥스 루나1 <!HS>NIKE<!HE> 654937-002",
+      "brnd_nm" : "나이키",
+      "img_url" : "http://image.lotte.com/goods/40/18/64/77/77641840_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/40/18/64/77/77641840_1_550.jpg",
+      "original_price" : 0,
+      "discounted_price" : 169000,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+      "flag" : "D",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 3,
+      "bought_sum" : 11,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "Y",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:D`스포츠패션/슈즈`1696687:스포츠슈즈`5418404:운동화`5420119:여성용`5420153",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1696687,
+        "cate_nm" : "스포츠패션/슈즈",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418404,
+        "cate_nm" : "스포츠슈즈",
+        "depth" : 2
+      }, {
+        "cate_No" : 5420119,
+        "cate_nm" : "운동화",
+        "depth" : 3
+      }, {
+        "cate_No" : 5420153,
+        "cate_nm" : "여성용",
+        "depth" : 4
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0
+    }, {
+      "goods_no" : 93857104,
+      "goods_nm" : "<!HS>나이키<!HE> /티엠포 레전드 5 HG-E [658602-418]/축구화/신발/운동화/축구/축구용품",
+      "brnd_nm" : "나이키(슈즈)",
+      "img_url" : "http://image.lotte.com/goods/04/71/85/93/93857104_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/04/71/85/93/93857104_1_550.jpg",
+      "original_price" : 0,
+      "discounted_price" : 161500,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "", "sort_icon05" ],
+      "flag" : "EC",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 1,
+      "bought_sum" : 2,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "N",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:L`스포츠패션/슈즈/구기`1687397:축구`5418356:축구화`5418904",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1687397,
+        "cate_nm" : "스포츠패션/슈즈/구기",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418356,
+        "cate_nm" : "축구",
+        "depth" : 2
+      }, {
+        "cate_No" : 5418904,
+        "cate_nm" : "축구화",
+        "depth" : 3
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0
+    }, {
+      "goods_no" : 90184369,
+      "goods_nm" : "[<!HS>나이키<!HE>] 우먼스 에어 맥스 엑셀러레이트+ 2 <!HS>NIKE<!HE> 555764-016",
+      "brnd_nm" : "나이키",
+      "img_url" : "http://image.lotte.com/goods/69/43/18/90/90184369_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/69/43/18/90/90184369_1_550.jpg",
+      "original_price" : 0,
+      "discounted_price" : 169000,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+      "flag" : "D",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 2,
+      "bought_sum" : 17,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "Y",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:D`스포츠패션/슈즈`1696687:스포츠슈즈`5418404:런닝화`5419689:여성용`5420133",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1696687,
+        "cate_nm" : "스포츠패션/슈즈",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418404,
+        "cate_nm" : "스포츠슈즈",
+        "depth" : 2
+      }, {
+        "cate_No" : 5419689,
+        "cate_nm" : "런닝화",
+        "depth" : 3
+      }, {
+        "cate_No" : 5420133,
+        "cate_nm" : "여성용",
+        "depth" : 4
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0
+    }, {
+      "goods_no" : 87044049,
+      "goods_nm" : "<!HS>나이키<!HE> 테크 풀집 후디-1MM  614637-063",
+      "brnd_nm" : "나이키",
+      "img_url" : "http://image.lotte.com/goods/49/40/04/87/87044049_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/49/40/04/87/87044049_1_550.jpg",
+      "original_price" : 0,
+      "discounted_price" : 199000,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+      "flag" : "D",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 0,
+      "bought_sum" : 10,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "Y",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:D`스포츠패션/슈즈`1696687:남성스포츠의류`5418402:바람막이재킷/점퍼`5419687",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1696687,
+        "cate_nm" : "스포츠패션/슈즈",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418402,
+        "cate_nm" : "남성스포츠의류",
+        "depth" : 2
+      }, {
+        "cate_No" : 5419687,
+        "cate_nm" : "바람막이재킷/점퍼",
+        "depth" : 3
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0
+    }, {
+      "goods_no" : 54327765,
+      "goods_nm" : "<!HS>나이키<!HE> 드라이핏 페더 플리스 풀집 <!HS>NIKE<!HE> 588653-010",
+      "brnd_nm" : "나이키",
+      "img_url" : "http://image.lotte.com/goods/65/77/32/54/54327765_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/65/77/32/54/54327765_1_550.jpg",
+      "original_price" : 0,
+      "discounted_price" : 129000,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+      "flag" : "D",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 3,
+      "bought_sum" : 8,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "Y",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:D`스포츠패션/슈즈`1696687:여성스포츠의류`5418403:티셔츠`5420086:긴팔티셔츠`5420099",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1696687,
+        "cate_nm" : "스포츠패션/슈즈",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418403,
+        "cate_nm" : "여성스포츠의류",
+        "depth" : 2
+      }, {
+        "cate_No" : 5420086,
+        "cate_nm" : "티셔츠",
+        "depth" : 3
+      }, {
+        "cate_No" : 5420099,
+        "cate_nm" : "긴팔티셔츠",
+        "depth" : 4
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0
+    }, {
+      "goods_no" : 83038976,
+      "goods_nm" : "<!HS>나이키<!HE> 레전드 2.0 슬림 폴리 팬츠  548523-455",
+      "brnd_nm" : "나이키",
+      "img_url" : "http://image.lotte.com/goods/76/89/03/83/83038976_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/76/89/03/83/83038976_1_550.jpg",
+      "original_price" : 0,
+      "discounted_price" : 69000,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+      "flag" : "D",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 3,
+      "bought_sum" : 9,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "Y",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:D`스포츠패션/슈즈`1696687:여성스포츠의류`5418403:바지`5420088:긴바지`5420104",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1696687,
+        "cate_nm" : "스포츠패션/슈즈",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418403,
+        "cate_nm" : "여성스포츠의류",
+        "depth" : 2
+      }, {
+        "cate_No" : 5420088,
+        "cate_nm" : "바지",
+        "depth" : 3
+      }, {
+        "cate_No" : 5420104,
+        "cate_nm" : "긴바지",
+        "depth" : 4
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0
+    }, {
+      "goods_no" : 90927176,
+      "goods_nm" : "<!HS>나이키<!HE> 테크 플리스 크루-1MM  545164-695",
+      "brnd_nm" : "나이키",
+      "img_url" : "http://image.lotte.com/goods/76/71/92/90/90927176_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/76/71/92/90/90927176_1_550.jpg",
+      "original_price" : 0,
+      "discounted_price" : 99000,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+      "flag" : "D",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 2,
+      "bought_sum" : 10,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "Y",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:D`스포츠패션/슈즈`1696687:남성스포츠의류`5418402:티셔츠`5420059:긴팔티셔츠`5420069",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1696687,
+        "cate_nm" : "스포츠패션/슈즈",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418402,
+        "cate_nm" : "남성스포츠의류",
+        "depth" : 2
+      }, {
+        "cate_No" : 5420059,
+        "cate_nm" : "티셔츠",
+        "depth" : 3
+      }, {
+        "cate_No" : 5420069,
+        "cate_nm" : "긴팔티셔츠",
+        "depth" : 4
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0
+    }, {
+      "goods_no" : 92745266,
+      "goods_nm" : "[<!HS>나이키<!HE>] <!HS>나이키<!HE> 루나글라이드 6 <!HS>NIKE<!HE> 654433-700",
+      "brnd_nm" : "나이키",
+      "img_url" : "http://image.lotte.com/goods/66/52/74/92/92745266_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/66/52/74/92/92745266_1_550.jpg",
+      "original_price" : 0,
+      "discounted_price" : 139000,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+      "flag" : "D",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 1,
+      "bought_sum" : 2,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "Y",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:D`스포츠패션/슈즈`1696687:스포츠슈즈`5418404:런닝화`5419689:남성용`5419964",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1696687,
+        "cate_nm" : "스포츠패션/슈즈",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418404,
+        "cate_nm" : "스포츠슈즈",
+        "depth" : 2
+      }, {
+        "cate_No" : 5419689,
+        "cate_nm" : "런닝화",
+        "depth" : 3
+      }, {
+        "cate_No" : 5419964,
+        "cate_nm" : "남성용",
+        "depth" : 4
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0
+    }, {
+      "goods_no" : 82721060,
+      "goods_nm" : "<!HS>나이키<!HE> 프리 5 (PSV)  644448-601",
+      "brnd_nm" : "나이키 키즈",
+      "img_url" : "http://image.lotte.com/goods/60/10/72/82/82721060_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/60/10/72/82/82721060_1_550.jpg",
+      "original_price" : 0,
+      "discounted_price" : 79000,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+      "flag" : "D",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 3,
+      "bought_sum" : 14,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "Y",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:D`스포츠패션/슈즈`1696687:아동스포츠슈즈`5418405:운동화/스니커즈`5419690:여아`5420205",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1696687,
+        "cate_nm" : "스포츠패션/슈즈",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418405,
+        "cate_nm" : "아동스포츠슈즈",
+        "depth" : 2
+      }, {
+        "cate_No" : 5419690,
+        "cate_nm" : "운동화/스니커즈",
+        "depth" : 3
+      }, {
+        "cate_No" : 5420205,
+        "cate_nm" : "여아",
+        "depth" : 4
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0
+    }, {
+      "goods_no" : 89246000,
+      "goods_nm" : "[<!HS>나이키<!HE>] 우먼스 <!HS>나이키<!HE> 에어 맥스 루나90 C3.0 <!HS>NIKE<!HE> 631762-602",
+      "brnd_nm" : "나이키",
+      "img_url" : "http://image.lotte.com/goods/00/60/24/89/89246000_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/00/60/24/89/89246000_1_550.jpg",
+      "original_price" : 0,
+      "discounted_price" : 159000,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+      "flag" : "D",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 3,
+      "bought_sum" : 8,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "Y",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:D`스포츠패션/슈즈`1696687:스포츠슈즈`5418404:런닝화`5419689:여성용`5420133",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1696687,
+        "cate_nm" : "스포츠패션/슈즈",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418404,
+        "cate_nm" : "스포츠슈즈",
+        "depth" : 2
+      }, {
+        "cate_No" : 5419689,
+        "cate_nm" : "런닝화",
+        "depth" : 3
+      }, {
+        "cate_No" : 5420133,
+        "cate_nm" : "여성용",
+        "depth" : 4
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0
+    }, {
+      "goods_no" : 93118859,
+      "goods_nm" : "[<!HS>나이키<!HE>] 다이나모 프리 TD <!HS>NIKE<!HE> 343938-408",
+      "brnd_nm" : "나이키",
+      "img_url" : "http://image.lotte.com/goods/59/88/11/93/93118859_1_280.jpg",
+      "img_url_550" : "http://image.lotte.com/goods/59/88/11/93/93118859_1_550.jpg",
+      "original_price" : 0,
+      "discounted_price" : 59000,
+      "sale_rate" : 0,
+      "benefit_flags" : [ "sort_icon01", "sort_icon05" ],
+      "flag" : "D",
+      "is_sold_out" : false,
+      "has_coupon" : false,
+      "has_wish" : false,
+      "is_sale_promotion" : false,
+      "review_count" : 0,
+      "bought_sum" : 10,
+      "md_tip" : null,
+      "promotion_text" : null,
+      "dlv_fee_tp" : "N",
+      "smartpick_yn" : "N",
+      "sold_out_cd_yn" : "N",
+      "limit_age_yn" : "N",
+      "wish_item" : null,
+      "parentCatePath" : "스포츠/레저`5844:D`스포츠패션/슈즈`1696687:아동스포츠슈즈`5418405:운동화/스니커즈`5419690:남아`5419965",
+      "parentCateList" : [ {
+        "cate_No" : 5844,
+        "cate_nm" : "스포츠/레저",
+        "depth" : 0
+      }, {
+        "cate_No" : 1696687,
+        "cate_nm" : "스포츠패션/슈즈",
+        "depth" : 1
+      }, {
+        "cate_No" : 5418405,
+        "cate_nm" : "아동스포츠슈즈",
+        "depth" : 2
+      }, {
+        "cate_No" : 5419690,
+        "cate_nm" : "운동화/스니커즈",
+        "depth" : 3
+      }, {
+        "cate_No" : 5419965,
+        "cate_nm" : "남아",
+        "depth" : 4
+      } ],
+      "link_url" : null,
+      "title_nm" : null,
+      "is_himart" : false,
+      "is_dept" : false,
+      "is_youngplz" : false,
+      "dt_rnk" : null,
+      "calculatedSaleRate" : 0
+    } ],
+    "total_count" : 30,
+    "rs_total_cnt" : 9606,
+    "price_min" : "500",
+    "price_max" : "3989360",
+    "sort_type" : "RANK,1",
+    "display_cnt" : "30"
+  },
+  "dptsRglList" : [ {
+    "disp_no" : "20",
+    "disp_nm" : "본  점",
+    "lnk_url_addr" : null,
+    "cate_cnt" : null,
+    "mall_nm" : null,
+    "lcate_nm" : null,
+    "cate_depth" : null
+  } ],
+  "recomLink" : {
+    "label" : "",
+    "link_url" : "",
+    "blank_flag" : "",
+    "alert_str" : ""
+  },
+  "cateList" : {
+    "items" : [ {
+      "disp_no" : "5844",
+      "disp_nm" : "스포츠/레저",
+      "cate_cnt" : "9207",
+      "subCate" : {
+        "items" : [ ],
+        "total_count" : 0
+      }
+    }, {
+      "disp_no" : "0",
+      "disp_nm" : "_",
+      "cate_cnt" : "169",
+      "subCate" : {
+        "items" : [ {
+          "disp_no" : "1687397",
+          "disp_nm" : "스포츠패션/슈즈/구기",
+          "cate_cnt" : "5038"
+        }, {
+          "disp_no" : "1696687",
+          "disp_nm" : "스포츠패션/슈즈",
+          "cate_cnt" : "2452"
+        }, {
+          "disp_no" : "1689931",
+          "disp_nm" : "골프의류/용품",
+          "cate_cnt" : "886"
+        }, {
+          "disp_no" : "1488049",
+          "disp_nm" : "등산/골프/수영",
+          "cate_cnt" : "782"
+        }, {
+          "disp_no" : "1689074",
+          "disp_nm" : "헬스/스키/수영",
+          "cate_cnt" : "44"
+        }, {
+          "disp_no" : "1689272",
+          "disp_nm" : "등산/캠핑/낚시",
+          "cate_cnt" : "4"
+        }, {
+          "disp_no" : "1732809",
+          "disp_nm" : "자전거/인라인",
+          "cate_cnt" : "1"
+        } ],
+        "total_count" : 7
+      }
+    }, {
+      "disp_no" : "5847",
+      "disp_nm" : "유아동",
+      "cate_cnt" : "122",
+      "subCate" : {
+        "items" : [ {
+          "disp_no" : "5492531",
+          "disp_nm" : "1300K",
+          "cate_cnt" : "164"
+        }, {
+          "disp_no" : "5444727",
+          "disp_nm" : "2013 추석",
+          "cate_cnt" : "5"
+        } ],
+        "total_count" : 2
+      }
+    }, {
+      "disp_no" : "5845",
+      "disp_nm" : "잡화/슈즈/명품",
+      "cate_cnt" : "82",
+      "subCate" : {
+        "items" : [ {
+          "disp_no" : "5152208",
+          "disp_nm" : "롯데백화점 유아동/용품",
+          "cate_cnt" : "122"
+        } ],
+        "total_count" : 1
+      }
+    }, {
+      "disp_no" : "5960",
+      "disp_nm" : "스마트픽",
+      "cate_cnt" : "7",
+      "subCate" : {
+        "items" : [ {
+          "disp_no" : "1675880",
+          "disp_nm" : "수입명품",
+          "cate_cnt" : "81"
+        }, {
+          "disp_no" : "1674767",
+          "disp_nm" : "패션슈즈",
+          "cate_cnt" : "1"
+        } ],
+        "total_count" : 2
+      }
+    }, {
+      "disp_no" : "6784",
+      "disp_nm" : "롯데닷컴 도서",
+      "cate_cnt" : "4",
+      "subCate" : {
+        "items" : [ {
+          "disp_no" : "5455115",
+          "disp_nm" : "스포츠/레저",
+          "cate_cnt" : "7"
+        } ],
+        "total_count" : 1
+      }
+    }, {
+      "disp_no" : "5854",
+      "disp_nm" : "언더웨어",
+      "cate_cnt" : "4",
+      "subCate" : {
+        "items" : [ {
+          "disp_no" : "5443047",
+          "disp_nm" : "롯데닷컴 도서",
+          "cate_cnt" : "4"
+        } ],
+        "total_count" : 1
+      }
+    }, {
+      "disp_no" : "5851",
+      "disp_nm" : "가전/컴퓨터",
+      "cate_cnt" : "1",
+      "subCate" : {
+        "items" : [ {
+          "disp_no" : "1673641",
+          "disp_nm" : "언더웨어",
+          "cate_cnt" : "4"
+        } ],
+        "total_count" : 1
+      }
+    } ],
+    "total_count" : 8
+  },
+  "sortType" : "RANK,1",
+  "dispCnt" : "30",
+  "dealList" : {
+    "items" : [ ],
+    "total_count" : 0
+  },
+  "brndList" : {
+    "items" : [ {
+      "brnd_no" : "4703",
+      "brnd_nm" : "나이키",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "2565"
+    }, {
+      "brnd_no" : "256032",
+      "brnd_nm" : "나이키(의류)",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "2343"
+    }, {
+      "brnd_no" : "256031",
+      "brnd_nm" : "나이키(슈즈)",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "2121"
+    }, {
+      "brnd_no" : "6522",
+      "brnd_nm" : "나이키골프",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "1370"
+    }, {
+      "brnd_no" : "249337",
+      "brnd_nm" : "나이키 키즈",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "384"
+    }, {
+      "brnd_no" : "8819",
+      "brnd_nm" : "르까프",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "214"
+    }, {
+      "brnd_no" : "287236",
+      "brnd_nm" : "천삼백케이",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "164"
+    }, {
+      "brnd_no" : "1029",
+      "brnd_nm" : "타이틀리스트",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "48"
+    }, {
+      "brnd_no" : "48808",
+      "brnd_nm" : "아디다스골프",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "48"
+    }, {
+      "brnd_no" : "47112",
+      "brnd_nm" : "몽벨",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "34"
+    }, {
+      "brnd_no" : "184528",
+      "brnd_nm" : "기타",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "33"
+    }, {
+      "brnd_no" : "269567",
+      "brnd_nm" : "나이키(잠실)",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "23"
+    }, {
+      "brnd_no" : "14733",
+      "brnd_nm" : "캘러웨이 골프",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "22"
+    }, {
+      "brnd_no" : "255904",
+      "brnd_nm" : "아디다스(슈즈)",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "22"
+    }, {
+      "brnd_no" : "255905",
+      "brnd_nm" : "아디다스(의류)",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "18"
+    }, {
+      "brnd_no" : "1743",
+      "brnd_nm" : "풋조이",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "16"
+    }, {
+      "brnd_no" : "9017",
+      "brnd_nm" : "아스토레",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "12"
+    }, {
+      "brnd_no" : "1751",
+      "brnd_nm" : "볼빅",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "12"
+    }, {
+      "brnd_no" : "12739",
+      "brnd_nm" : "푸마 골프",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "11"
+    }, {
+      "brnd_no" : "249590",
+      "brnd_nm" : "푸마(슈즈)",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "10"
+    }, {
+      "brnd_no" : "3778",
+      "brnd_nm" : "아디다스",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "8"
+    }, {
+      "brnd_no" : "15600",
+      "brnd_nm" : "데상트",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "7"
+    }, {
+      "brnd_no" : "212",
+      "brnd_nm" : "미즈노",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "6"
+    }, {
+      "brnd_no" : "10890",
+      "brnd_nm" : "크록스",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "6"
+    }, {
+      "brnd_no" : "1014",
+      "brnd_nm" : "테일러메이드",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "6"
+    }, {
+      "brnd_no" : "6113",
+      "brnd_nm" : "반스",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "6"
+    }, {
+      "brnd_no" : "1122",
+      "brnd_nm" : "낫소",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "6"
+    }, {
+      "brnd_no" : "261932",
+      "brnd_nm" : "프로페",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "6"
+    }, {
+      "brnd_no" : "5742",
+      "brnd_nm" : "울스포츠",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "5"
+    }, {
+      "brnd_no" : "289248",
+      "brnd_nm" : "디아도라(스포츠)",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "4"
+    }, {
+      "brnd_no" : "242955",
+      "brnd_nm" : "XEEON",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "4"
+    }, {
+      "brnd_no" : "282467",
+      "brnd_nm" : "스베누",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "4"
+    }, {
+      "brnd_no" : "129",
+      "brnd_nm" : "니켄트",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "3"
+    }, {
+      "brnd_no" : "12612",
+      "brnd_nm" : "투어스테이지",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "3"
+    }, {
+      "brnd_no" : "1015",
+      "brnd_nm" : "요넥스",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "3"
+    }, {
+      "brnd_no" : "244033",
+      "brnd_nm" : "adidas martial arts",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "3"
+    }, {
+      "brnd_no" : "11248",
+      "brnd_nm" : "썬버드",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "3"
+    }, {
+      "brnd_no" : "126",
+      "brnd_nm" : "노스페이스",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "2"
+    }, {
+      "brnd_no" : "299",
+      "brnd_nm" : "아식스",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "1"
+    }, {
+      "brnd_no" : "3547",
+      "brnd_nm" : "푸마",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "1"
+    }, {
+      "brnd_no" : "4384",
+      "brnd_nm" : "슬레진저",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "1"
+    }, {
+      "brnd_no" : "46721",
+      "brnd_nm" : "다이어트고고",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "1"
+    }, {
+      "brnd_no" : "133660",
+      "brnd_nm" : "포보스",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "1"
+    }, {
+      "brnd_no" : "255896",
+      "brnd_nm" : "미즈노(슈즈)",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "1"
+    }, {
+      "brnd_no" : "282745",
+      "brnd_nm" : "엘트레일",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "1"
+    }, {
+      "brnd_no" : "250883",
+      "brnd_nm" : "기타브랜드(스포츠의류)",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "1"
+    }, {
+      "brnd_no" : "569",
+      "brnd_nm" : "다이와",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "1"
+    }, {
+      "brnd_no" : "1020",
+      "brnd_nm" : "던롭",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "1"
+    }, {
+      "brnd_no" : "3614",
+      "brnd_nm" : "애플",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "1"
+    }, {
+      "brnd_no" : "14110",
+      "brnd_nm" : "코비스",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "1"
+    }, {
+      "brnd_no" : "255906",
+      "brnd_nm" : "아식스(슈즈)",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "1"
+    }, {
+      "brnd_no" : "16747",
+      "brnd_nm" : "코비스.",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "1"
+    }, {
+      "brnd_no" : "250887",
+      "brnd_nm" : "기타브랜드(구기)",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "1"
+    }, {
+      "brnd_no" : "165843",
+      "brnd_nm" : "바볼랏",
+      "brnd_eng_nm" : "",
+      "brnd_cnt" : "1"
+    } ],
+    "total_count" : 54
+  }
+}

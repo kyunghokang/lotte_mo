@@ -1,0 +1,38 @@
+{
+    "tasks" : {
+        "concat" : {
+            "jseventkdbLife" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/event/kdbLife.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/kdbLife.js"
+            }
+        },
+
+        "uglify" : {
+            "jseventkdbLife" : {
+                "src" : "lotte/resources/<%= version %>/kdbLife.js",
+                "dest" : "lotte/resources/<%= version %>/kdbLife.min.js"
+            }
+        },
+
+        "cssmin" : {
+            "csseventkdbLife" : {
+                "src" : [
+                    "lotte/resources_dev/event/kdbLife.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/kdbLife.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleaneventkdbLife" : [
+                "lotte/resources/<%= version %>/kdbLife.js"
+            ]
+        }
+    }
+}
+

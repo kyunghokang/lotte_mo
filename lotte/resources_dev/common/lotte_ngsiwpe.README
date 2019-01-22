@@ -1,0 +1,49 @@
+Lotte ngSwipe 사용 방법
+--------------------------------------
+swipe-end-exec : 스와이프 종료와 함깨 호출될 함수 
+	ex) swipe-end-exec =“abc($event)”
+		abc 함수를 호출하고 event 값을 전달해줍니다.
+
+swipe-loading-el : 로딩 스와이프 시에 사용될 로딩 엘리먼트 ID 또는 클레스
+
+swipe-max-ratio : 실행 조건 비율 [0.0 ~ 1]
+
+swipe-min-distance : 최소 범위 [0-100] %
+
+swipe-loop :  무한 스와이프 [true/false] 아직 미구현 
+
+swipe-responsive :  반응형 스와이프 [true/false] 아직 미구현
+
+swipe-disp-count : 기본 노출 갯수 (기본 1)
+
+swipe-slide-item : 슬라이드형 스와이프 [true/false] 
+
+
+Bullet  설정예제
+--------------------------------------
+<ol class="bullet">
+	<li ng-repeat="item in swipeBullet" ng-class=“{on:$index==swipeIdx}" >{{$index}}</li>
+</ol>
+
+
+
+이전 다음 버튼 설정 예제 
+--------------------------------------
+<p class="btn prev" ng-click="beforeSlide()" ng-show="swipeIdx > 0”><button>이전</button></p>
+<p class="btn next" ng-click="nextSlide()" ng-show=“swipeIdx<=(swipeBullet.length-2)"><button>다음</button></p>
+
+
+
+다중 스와이프를 위해서 반듯이 컨트롤러로 감싸야함
+--------------------------------------
+<div class="banner_slide" ng-controller=“lotteNgSwipeCtrl">
+.
+.  스와이프 리스트 및 버튼/Bullet
+.
+</div>
+
+
+
+
+
+

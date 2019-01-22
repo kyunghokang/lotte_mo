@@ -1,0 +1,83 @@
+<section ng-show="contVisible" class="cont_minheight" id="container">
+	<!-- 서브 헤더 -->
+	<div class="head_sub_cateDepth" ng-class="{app:appObj.isApp}">
+		<header id="head_sub" class="cateDepth2" sub-header-prod-list>
+		    <h2 ng-class="{search:searchCntTxt}" class="{{addCls}}">
+		        <span ng-click="cateView()">
+		            <span class="title">{{uiStateObj.subTitle}}</span>
+		        </span>
+		    </h2>
+		</header>
+	</div>
+
+	<!-- //서브 헤더 -->
+	<style ng-if="appObj.isIOS">
+		video::-webkit-media-controls,
+		video::-webkit-media-controls-play-button,
+		video::-webkit-media-controls-fullscreen-button,
+		video::-webkit-media-controls-start-playback-button{display:none}
+		
+		*::-webkit-media-controls-panel {
+		  display: none!important;
+		  -webkit-appearance: none;
+		}
+		/* Old shadow dom for play button */
+		*::--webkit-media-controls-play-button {
+		  display: none!important;
+		  -webkit-appearance: none;
+		}
+		/* New shadow dom for play button */
+		*::-webkit-media-controls-start-playback-button {
+		  display: none!important;
+		  -webkit-appearance: none;
+		}
+	</style>
+	<!-- 카테고리 -->
+	<div class="result_wrap categoryWrap cate_prod unitType_{{templateType}}">
+		<!-- 검색 필터 /-->
+		<div class="srh_terms_wrap_area" ng-class="{app:appObj.isApp ,fixed:getListHeadFixedPose()}">
+			<div class="srh_terms_wrap" ng-class="{show:uiStateObj.initFlag==false}">
+				<div class="result_cnt">전체<em>{{srhResultData.tCnt|number}}</em>개</div>
+				<div class="right">
+					<ul>
+						<li>
+							<span class="unit_listType type1" ng-click="changeTemplate('cate_prod_normal');" ng-show="templateType=='cate_prod_double'"></span>
+							<span class="unit_listType type2" ng-click="changeTemplate('cate_prod_double');" ng-show="templateType=='cate_prod_normal'"></span>
+						</li>
+					</ul>
+					<a ng-click="showHideSortPop(true)" class="sort"><span>{{ uiStateObj.sortTypeArr[uiStateObj.sortTypeIdx].shortLabel }}</span></a>
+					<p class="filter">
+						<a ng-click="showHideSideSearch()" ng-class="{disabled:!uiStateObj.detailSearchDataLoaded,on:checkResetDisabled()}">필터<!--<em ng-if="uiStateObj.selectedFilter">({{uiStateObj.selectedFilter}})</em>--></a>
+					</p>
+				</div>
+			</div>
+		</div>
+		<!--/ 검색 필터 -->
+
+
+		<!-- 검색 결과 / -->
+		<div class="listWrap newProdListWrap" ng-controller="productCtrl" ng-if="!uiStateObj.emptyResult">
+			<!-- s: unit list area -->
+			<div class="unitWrap" ng-if="srhResultData.prdLst1.length > 0">
+				<div product-container template-type="cate_prod_double" total-count="srhResultData.tCnt" templatetype="templateType" use-storage="false"
+					products="srhResultData.prdLst1" more-product-continer="loadMoreData()"></div>
+			</div>
+			
+			<!-- 기획전형 상품 20180307 박해원 -->
+			<search-plan-shop></search-plan-shop>
+			
+			<div class="unitWrap" ng-if="srhResultData.prdLst2.length > 0">
+				<div product-container template-type="cate_prod_double" total-count="srhResultData.tCnt" templatetype="templateType" use-storage="false"
+					products="srhResultData.prdLst2" more-product-continer="loadMoreData()"></div>
+			</div>
+			<!-- e: unit list area -->
+		</div>
+		<section class="noData" ng-if="uiStateObj.emptyResult">필터링 결과가 없습니다.<br>필터를 재설정해주세요.</section>
+		<!-- /검색 결과 -->
+	</div>
+	<!-- //카테고리 -->
+	<scroll-count></scroll-count>
+    <loading-bar></loading-bar>
+	<cate-side-filter></cate-side-filter>
+	<search-detail-popup></search-detail-popup>
+</section>

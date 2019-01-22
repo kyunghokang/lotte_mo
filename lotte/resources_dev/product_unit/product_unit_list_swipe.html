@@ -1,0 +1,90 @@
+<!-- 상품리스트 : 스와이프형 -->
+<div class="prod_list_swipe">
+	<div class="mask">
+		<ol class="prod_list_03" lotte-ng-list-swipe 
+			swipe-id="productsSwipeUnit" 
+			swipe-list-model="products" 
+			swipe-slide-item="true" 
+			swipe-autoheight="true" 
+			swipe-responsive="true" 
+			swipe-responsive640="2" 
+			swipe-responsive900="2" 
+			swipe-max-ratio="0.2" 
+			swipe-min-distance="40" 
+			swipe-end-exec="$parent.moreProductListCheck($event)">
+			<li ng-repeat="item in products track by $index" ng-if="!item.cateflag" item_nm="{{item.divObjNm}}" item_cnt="{{item.cnt}}">
+				<!-- 일반상품 : 스와이프형 -->
+				<div class="unit_list_03 unit_list_03_v2">
+					<!-- 성별/연령대 문구 노출 -->
+					<div ng-class="{arrow_off : item.find_age == null && item.find_gender == null}" ng-show="srhKeyword" class="find_much_box">
+						<span ng-if="item.find_age != null && item.find_gender != null" class="find_much_txt"><span class="age">{{item.find_age}}대</span> <span ng-if="item.find_gender == 'M'" class="gender">남성</span><span ng-if="item.find_gender == 'F'" class="gender">여성</span>이 많이 찾아요</span>
+					</div>
+					<!-- //성별/연령벌 상품추천 -->
+					
+					<span class="unit_zoom" ng-click="zoomImageClick(getProductImage(item))">크게보기</span>
+					<a href="#" ng-click="productInfoClick(item)">
+						<div class="soldout" ng-show="item.sold_out">SOLD OUT</div>
+						<div class="thumb">
+                            <!--텐텐 플래그 20180510 -->
+                            <div class="tt_flag swipe" ng-if="item.tenten_url">
+                                <img ng-src="{{item.tenten_url}}">
+                            </div>                 
+                            
+							<img ng-src="{{getProductImage(item)}}" alt="{{item.goods_nm}}" err-src />
+						</div>
+                        <p class="flag">
+                            <span class="flag depart" ng-show="item.flag=='D'||item.is_dept">롯데백화점</span>
+                            <span class="flag etv" ng-if="item.is_tvhome && !item.is_dept">롯데홈쇼핑</span>
+                            <!--<span class="flag tag" ng-show="item.dlv_fee_tp=='Y'||item.isdlex_free">무료배송</span>-->
+                            <span class="flag smart" ng-show="item.smartpick_yn=='Y'||item.issmart_pick">스마트픽</span>
+                        </p>
+                        
+						<div class="info">
+							<span class="tit"><span ng-show="item.brnd_nm">[<span ng-bind-html="item.brnd_nm|titleToHtml"></span>]</span> <span ng-bind-html="item.goods_nm|titleToHtml"></span></span>
+							<p class="pr_box">
+								<span class="price"><em>{{item.discounted_price|number}}</em>원<span ng-show="item.is_sale_promotion">~</span></span>
+								<span class="price2" ng-show="item.original_price!=item.discounted_price && item.original_price !=0 && !item.is_sale_promotion">
+									<em>{{item.original_price|number}}</em>원
+								</span>
+							</p>
+							<!-- ng-show="item.has_coupon" -->
+							<!--
+							<p class="coupon" ng-show="!item.is_sale_promotion"><span ng-show="item.original_price&&item.sale_rate!='0'&&item.original_price!=item.discounted_price"><em class="no">{{item.sale_rate}}</em><em class="po">%</em></span><span ng-show="item.has_coupon">쿠폰포함</span></p>
+							-->
+						</div>
+					</a>
+
+					<!-- 해시태그 -->
+					<div ng-if="srhKeyword" class="hash_list">
+						<a ng-if="hash != ''" ng-repeat="hash in item.hash_list track by $index" ng-click="goSearch(hash, 'M_SEARCH_hash_slide')">#{{hash}}</a>
+					</div>
+					<!-- //해시태그 -->
+
+					<div class="info2">
+						<!-- 별점/상품평 -->
+						<div class="user_feedback">
+							<span class="review" ng-if="item.review_count > 0 && item.avg_gdas_stfd_val <= 0" ng-click="productReviewClick(item)">상품평 <em>({{item.review_count|number}})</em></span>
+							<span class="score" ng-if="item.review_count > 0 && item.avg_gdas_stfd_val > 0" ng-click="productReviewClick(item)">
+								<span class="starScoreWrap"><span class="starScoreCnt" style="width:{{ ((item.avg_gdas_stfd_val*2)|ceil)*10 }}%"></span></span>
+								<span class="review"><em>({{item.review_count|number}})</em></span>
+							</span>
+						</div>
+						<!-- //별점/상품평 -->
+						<div class="info_dsc">
+							<span ng-if="item.nint_card_flag != '' " class="noItr">{{item.nint_card_flag}}</span><span ng-if="item.dlv_fee_tp=='Y'||item.isdlex_free">무료배송</span><span ng-if="item.isDlvToday">오늘도착</span><span ng-if="item.isCrsPickYn">편의점픽업</span><span ng-if="item.isDeptPickYn">백화점픽업</span><span ng-if="item.isDlvQuick">퀵배송</span>
+						</div>						
+					</div>
+					<span class="wish_icon" ng-class="{on:item.has_wish}" ng-click="addWishClick($index,item)">위시리스트</span>
+				</div>
+				<!-- //일반상품 : 스와이프형 -->
+			</li>
+		</ol>
+	</div>
+	<a href="#" class="btn_prev" ng-show="swipeIdx > 0" ng-click="beforeSlide()">이전 상품 보기</a>
+	<a href="#" class="btn_next" ng-show="swipeIdx<=(swipeBullet.length-2)" ng-click="nextSlide()">다음 상품보기</a>
+	<div class="total" ng-show="totalCount" val="{{swipeIdx}}" id="swipe_indi">
+		<span>{{swipeIdx+1|number}} / {{totalCount|number}}</span>
+	</div>
+	
+</div>
+<!-- //상품리스트 : 스와이프형 -->

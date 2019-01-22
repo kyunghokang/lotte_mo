@@ -1,0 +1,69 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplExperienceWrite" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/event/m/kids/experience_write_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/experience_write.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsExperienceWrite" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/event/m/kids/experience_write.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/experience_write.js"
+			}
+		},
+
+		"uglify" : {
+			"jsExperienceWrite" : {
+				"src" : "lotte/resources/<%= version %>/experience_write.js",
+				"dest" : "lotte/resources/<%= version %>/experience_write.min.js"
+			},
+			"tplExperienceWrite" : {
+				"src" : "lotte/resources/<%= version %>/experience_write.template.js",
+				"dest" : "lotte/resources/<%= version %>/experience_write.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssExperienceWrite" : {
+				"src" : [
+					"lotte/resources_dev/event/m/kids/experience_write.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/experience_write.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanExperienceWrite" : [
+				"lotte/resources/<%= version %>/experience_write.js",
+				"lotte/resources/<%= version %>/experience_write.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlExperienceWrite" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"event/m/kids/experience_write.html" : "event/m/kids/experience_write_dev.html"
+				}
+			}
+		}
+	}
+}
+

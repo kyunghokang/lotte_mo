@@ -1,0 +1,28 @@
+<div class="share_this">
+        <div class="save">
+            <img src="http://image.lotte.com/lotte/mo2015/angular/product_img_this.png" alt="친구에게 공유하기! 나누면 배가 되는 행복 쇼핑"/>
+        </div>
+        <dl class="sms">
+            <dt>휴대폰 번호</dt>
+            <dd>
+                <input type="tel" ng-model="sms_phoneNo" ng-maxlength="11" class="txt01" placeholder="휴대폰번호 숫자만 입력해 주세요."/>
+                <span>예) 01012345678</span>
+            </dd>
+            <dt>발송내용</dt>
+            <dd class="txt" id="sms_msg">
+                <p ng-bind-html="smsTxt"></p>
+            </dd>
+        </dl>
+        <div class="btn01">
+            <!-- <div> -->
+                <a href="" ng-click="hideSharePop()" class="c_btn col05">
+                    <span>취소</span>
+                </a>
+            <!-- </div>
+            <div> -->
+                <a href="" ng-click="sendShareSMS()" class="c_btn col01">
+                    <span>문자전송</span>
+                </a>
+            <!-- </div> -->
+        </div>
+</div>

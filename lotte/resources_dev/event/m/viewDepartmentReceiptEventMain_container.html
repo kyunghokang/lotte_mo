@@ -1,0 +1,237 @@
+<section ng-show="contVisible" class="cont_minheight">
+<div id="wrap_dimBg" style="display: none;"></div>
+<div id="common_layer" style="display:none;position:absolute;z-index:999;width:100%;height:100%;">
+    <iframe id="common_frame" name="common_frame" style="display:none;border:none;background:#FFFFFF;width:100%;height:100%;" ng-src="{{receiptIframeUrl}}" scrolling="no"></iframe>
+</div>
+<section class="receipt_top">
+	<div>
+		<img src="http://image.lotte.com/ellotte/mobile/mylotte/receipt_20150824_01.jpg" alt="올 가을 인기만점 뷰티패키지! Beauty Package 응모기간 9.4~10.1 / 구매기간 9.4~9.30 / 당첨 발표일 10.12 2명 프라다 사피아노 명품백 + 사피아노 지갑 + 로즈몽 손목시계 + SK RNA 파워 래디컬 뉴 에이지크림 세트 -당첨된 경품은 품절 등의 당사 사정에 의헤 L-money로 대체지급, 변경될 수 있습니다. - 당첨 경품은 따로 배송될 수 있습니다. 30명 럭셔리한 호텔의 무드를 그대로~ 롯데호텔 델리카한스 햄퍼 세트 ( 50만원 상당 ) 100% 응모만하면 100% 당첨! 엘롯데 7% 추가할인 첫 응모시 자동발급 / ID당 1회 사용기간 : 9/30까지 적용제외 : 상품권, E쿠폰, 순금, 일부브랜드(맥,샤넬등), 가전 및 저마진상품, 특가상품 신규 앱 설치만해도 100% 지급! L-money 2,000점 설치 및 응모기간 : 8월 6일 ~ 9월 3일 다상 : 모바일앱 신규설치 후 응모고객 포인트 적립일 : 9월 9일 mylotte확인" />
+	</div>
+</section>
+<!-- container -->
+<div id="container">
+	<!-- 영수증이벤트 -->
+	<section id="evt_purchase">
+
+		<!-- [레이어] 이벤트 동의 안내 -->
+		<div id="evt_agree_bg" class="info_agree_layer bg"  style="display:none"></div>
+		<div id="evt_agree" class="event_info_layer info_agree_layer" style="display:none">
+			<div class="cont">
+				<h3 class="title_layer"><img src="http://image.lotte.com/lotte/mobile/popup/popup_event_info_title.png" alt="응모하시기전 회원님의 소중한 정보보호를 위해  아래사항을 확인해주세요"></h3>
+				<p class="event_info_txt">영수증이벤트 경품응모 신청하며,<br />아래의 사항들에 대하여 동의합니다.</p>
+				<ul class="event_info_list">
+					<li><strong>개인정보를 제공받는 자</strong> : 아르모스, ㈜프랄린, ㈜비엔에프 통상, 롯데닷컴</li>
+					<li><strong>개인정보를 제공받는 자의 개인정보 이용 목적</strong> : 경품 발송용</li>
+					<li><strong>제공하는 개인정보의 항목</strong> : 당첨자 이름, 전화번호, 주소</li>
+					<li><strong>개인정보를 제공받는 자의 개인정보 보유 및 이용 기간</strong> : <br/>경품 발송 확인 후 즉시 파기</li>
+				</ul>
+				<p class="event_info_query">위 내용에 동의 하십니까?</p>
+				<ul class="event_info_btn">
+					<li><a href="javascript:goReceiptEvent();"><img src="http://image.lotte.com/lotte/mobile/popup/popup_event_info_btn01.png" alt="동의 합니다"></a></li>
+					<li><a href="javascript:$('.info_agree_layer').hide();"><img src="http://image.lotte.com/lotte/mobile/popup/popup_event_info_btn02.png" alt="동의하지 않습니다"></a></li>
+				</ul>
+			</div>
+			<div class="check">
+				<span class="close"><a href="#">닫기</a></span>
+			</div>
+		</div>
+		<!-- [레이어] 이벤트 동의 안내-->
+		
+		<!-- 영수증이벤트 -->
+		<section class="mylotte_receipt">
+			
+			<!-- 탭메뉴 -->
+			<nav class="tab_nav">
+				<ul>
+					<li ng-class="{true: 'list-tab on', false: 'list-tab'}[departmentViewFlag]" >
+						<a ng-click="departmentClick()">롯데백화점 영수증 응모</a>
+					</li>
+					<li ng-class="{true: 'list-tab on', false: 'list-tab'}[dotcomViewFlag]">
+						<a ng-click="dotcomClick()">롯데닷컴 주문번호 응모</a>
+					</li>
+				</ul>
+			</nav>
+			<!--// 탭메뉴 -->
+			<form name="frmReceiptEvent" id="frmReceiptEvent">
+				<input type="hidden" name="evt_no" value="298357">
+				<input type="hidden" name="ordList">	
+				<input type="hidden" name="recpt_no">
+				<input type="hidden" name="evt_sbsc_path_cd">
+				<input type="hidden" name="recpt_evt_tgt_cd">
+				<input type="hidden" name="result">
+				<input type="hidden" name="saveUrl" value="">
+				<input type="hidden" name="evt_shop_sn">
+			<!-- 롯데백화점 영수증 응모 -->
+			<div class="sub-tab" style="display:block;" ng-if="departmentViewFlag == true">
+				<section class="dept_con">
+					<h4>1. 이벤트 참여방법</h4>
+					<div class="event_info">
+						<img src="http://image.lotte.com/lotte/mobile/mylotte/receipt_dept_con_img1.jpg" alt="" />
+						<ol>
+							<li>영수증 확인</li>
+							<li>응모번호 입력 후 응모</li>
+							<li>당첨확인 및 상품수령</li>
+						</ol>
+					</div>
+
+					<h4>2. 이벤트 응모하기</h4>
+					<div class="event_entry">
+						<h5><img src="http://image.lotte.com/lotte/mobile/mylotte/icon_step1.gif" alt="STEP 01" />사용백화점 선택</h5>
+						<!-- 백화점 선택 -->
+
+						<div class="store_select">
+							<div class="s_box04">
+						 		 <select ng-model="local" name="local">
+									<option selected="selected" value="">선택해주세요.</option> 
+									<option value="001">서울점</option>
+									<option value="002">수도권점</option>
+									<option value="004">지방점</option>
+									<option value="005">영플라자</option>
+									<option value="007">아울렛</option>
+								</select>
+						 		<div class="img_box"><i></i></div>
+						    </div>
+						    <div class="s_box04 store">
+						    	<select ng-model="evt_shop" ng-options="p.evtShopNm for p in shopListData.items | filter: {dptsRgnSctCd: local}"><option value="">선택해주세요.</option></select>
+						    	<div class="img_box"><i></i></div>
+						    </div>
+						</div>
+						<!-- //백화점 선택 -->
+												
+						<h5><img src="http://image.lotte.com/lotte/mobile/mylotte/icon_step2.gif" alt="STEP 02" />응모번호 입력</h5>
+						<div class="number_input">
+							<p>롯데백화점 영수증 응모권 <strong>응모번호 숫자 20자리</strong>를 입력하세요!</p>
+							<div class="input_box">
+								<input type="tel" ng-model="recpt_no1" maxlength="5" numeric-only /> - 
+								<input type="tel" ng-model="recpt_no2" maxlength="5" numeric-only /> - 
+								<input type="tel" ng-model="recpt_no3" maxlength="5" numeric-only /> - 
+								<input type="tel" ng-model="recpt_no4" maxlength="5" numeric-only />
+							</div>
+						</div>
+						<div class="btn_sec"><a ng-click="receiptEventClick(recpt_no1, recpt_no2, recpt_no3, recpt_no4, evt_shop.evtShopSn)"><i></i>이벤트 응모하기</a></div>
+					</div>
+					
+				</section>			
+			</div>
+			<!-- //롯데백화점 영수증 응모 -->
+
+			<!-- 롯데닷컴 주문번호 응모 -->
+			<div class="sub-tab" ng-if="dotcomViewFlag == true">			
+				<section class="ellotte_con">
+					<h4>1. 이벤트 참여방법</h4>
+					<div class="event_info">
+						<img src="http://image.lotte.com/lotte/mobile/mylotte/receipt_lotte_con_img1.jpg" alt="" />
+						<ol>
+							<li>영수증 확인</li>
+							<li>응모번호 입력 후 응모</li>
+							<li>당첨확인 및 상품수령</li>
+						</ol>
+					</div>
+
+					<h4>2. 이벤트 응모하기</h4>
+					<table class="tbl_receipt_list" summary="이벤트 응모관련 주문/결제일자, 주문번호가 나와있는 표">
+						<caption>이벤트 응모관련 상세 테이블</caption>
+						<colgroup>
+							<col width="12%">
+							<col width="34%">
+							<col>
+						</colgroup>
+						<thead>
+							<tr>
+								<th scope="col">선택</th>
+								<th scope="col">주문/결제일자</th>
+								<th scope="col">주문번호</th>
+							</tr>
+						</thead>
+						<tbody ng-if="orderListData.total_count > 0">
+							<tr>
+								<th scope="col"><input type="checkbox" name="checkOrder[items.ordNo]" id="chekOrder[items.ordNo]" ng-model="orderCheck[items.ordNo]" ></th>
+								<th scope="col">{{items.ordDate}}</th>
+								<th scope="col">{{items.ordNo}}</th>
+							</tr>
+							<input type="hidden" name="chkOrdCnt" value="0" >
+						</tbody>
+						<tbody ng-if="orderListData.total_count == 0">
+							<tr>
+								<td colspan="3">롯데닷컴 주문내역이 없습니다.</td>
+							</tr>
+							<input type="hidden" name="chkOrdCnt" value="0" >
+						</tbody>
+					</table>
+					<div class="btn_sec"><a ng-click="orderEventClick(orderCheck[items.ordNo])"><i></i>이벤트 응모하기</a></div>
+				</section>			
+			</div>
+			</form>
+			<!-- //elLOTTE 주문번호 응모 -->
+
+			<!-- 이벤트 응모내역 확인 -->
+			<div class="event_entry_con">
+				<h4>이벤트 응모내역 확인</h4>
+				<div ng-if="checkMyEventViewFlag == false">
+					<div class="text_box">완료팝업이 뜨면 이벤트 응모 완료!<br/>추첨증정의 행운도 확인하세요!</div>
+					<div class="btn_sec"><a ng-click="checkMyEvent()"><i></i>나의 응모내역 확인하기</a></div>
+				</div>
+				<div ng-if="checkMyEventViewFlag == true">
+					<table class="tbl_receipt_list" summary="이벤트 응모내역 응모일, 응모번호가 나와있는 표">
+						<caption>이벤트 응모내역 상세 테이블</caption>
+						<colgroup>
+							<col width="12%">
+							<col width="23%">
+							<col>
+							<col width="110">
+						</colgroup>
+						<thead>
+							<tr>
+								<th scope="col">순번</th>
+								<th scope="col">응모일</th>
+								<th scope="col">응모번호</th>
+								<th scope="col">구분</th>
+							</tr>
+						</thead>
+						<tbody ng-if="resultRecieptListData.total_count > 0">
+							<tr ng-repeat="items in orderListData.items">
+								<th scope="col">{{items.$index+1}}</th>
+								<th scope="col">{{items.recptDate}}</th>
+								<th scope="col">{{items.recptNo}}</th>
+								<th scope="col">{{items.recptGb}}</th>
+							</tr>	
+						</tbody>
+						<tbody ng-if="resultRecieptListData.total_count == 0">
+							<tr>
+								<td colspan="4">응모내역이 없습니다.</td>
+							</tr>	
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<!-- //이벤트 응모내역 확인 -->
+
+			<div class="event_notice event_notice_1">
+				<h4>꼭 확인해 주세요!</h4>
+				<ul>
+					 <li>경품추첨 및 당첨자발표는 닷컴(엘롯데포함) 주문번호 응모고객을 포함하여 선정/공지됩니다.</li>
+					 <li>롯데백화점 영수증은 1일 5회응모, 롯데닷컴 주문번호는 횟수 제한 없이 응모가능합니다.</li>
+					 <li>5만원 초과 경품에 대한 제세공과금 (경품가액 22%) 은 당첨자 부담입니다.</li>
+					 <li>경품은 당사 사정에 의하여 변경 및 조기 종료될 수 있으며, 품절 시 포인트로 대체 지급 될 수 있습니다.</li>
+					 <li>구매한 제품을 취소 또는 반품할 경우 당첨이 취소 됩니다.</li>
+					 <li>추첨경품 당첨고객은 응모한 일련번호가 인쇄된 영수증을 증빙으로 제출하셔야 합니다.</li>
+					 <li>당첨경품은 타인에 양도 또는 현금 대체수령이 불가능하며 부정한 방법을 통한 응모로 밝혀질 경우, 당첨이 취소될 수 있습니다.</li>
+					 <li>회원 정보가 잘못되어 연락이 안될 경우 당첨이 취소될 수 있으니, 반드시 회원정보를 확인/수정 해주세요!(SMS공지예정)</li>
+					 <li>경품 발송을 위해 제공된 고객 정보는 발송 확인 후 즉시 파기되며, 참여 ID의 해당 회원 정보 기본 연락처 및 주소 기준으로 발송됩니다.</li>
+				</ul>
+				<p class="btn_regedit"><a ng-click="myInfoChangClick()"><span>나의 회원정보 확인/수정하기</span></a></p>
+				<!-- //20150723 수정 -->
+			</div>
+
+		</section>		
+		
+		<div id="msg"></div>
+		<!-- //영수증이벤트 -->
+
+
+	</section>
+	<!-- //event purchase apply -->
+
+</div>
+</section>

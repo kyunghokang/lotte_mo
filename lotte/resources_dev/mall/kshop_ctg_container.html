@@ -1,0 +1,35 @@
+<div class="sort_header_wrap">
+    <section sort-header kshop-ctg ng-show="contVisible" id="kshopSubHead" ng-if="ctgData.ctgs && ctgData.ctgs.length > 0">
+        <h2><a href="#" ng-click="goKshopHome($event);"><img src="http://image.lotte.com/lotte/mobile/mobile_new/brandshop/kshop/logo_kshop.png" alt="Kshop" /></a></h2>
+        <!-- category menu -->
+        <div class="ksCA">
+            <div class="ksMenuBox" id="ksAmenu">
+                <button ng-repeat="item in ctgData.ctgs" ng-class="{on:kShopUI.curCtgIdx == $index}" ng-click="ctgSliceData($index);">{{item.name}}</button>
+            </div>
+            <div class="sideBar">
+                <img src="http://image.lotte.com/lotte/mobile/mobile_new/brandshop/kshop/kshop_menuSide2.png" class="left">
+                <img src="http://image.lotte.com/lotte/mobile/mobile_new/brandshop/kshop/kshop_menuSide.png" class="right">
+            </div>    
+        </div>
+        <!--sub category-->
+        <div class="ksCB">
+            <ul ng-repeat="item in ctgData.ctgs" ng-class="{on:kShopUI.curCtgIdx == $index && kShopUI.sCtgLayerOpen}">
+                <li ng-repeat="sctg in ctgData.ctgs.sliceItems">
+                    <div class="bca"  ng-class="{sub:sctg[0].ssctgs.length > 0, open:sctg[0].open}" ng-if="sctg[0]">
+                        <a href="#" ng-click="sctgClick($event, sctg[0], $index*2)">{{sctg[0].name}}</a>
+                    </div>            
+                    <div class="bca"  ng-class="{sub:sctg[1].ssctgs.length > 0, open:sctg[1].open}"  ng-if="sctg[1]">
+                        <a href="#" ng-click="sctgClick($event, sctg[1], $index*2+1)">{{sctg[1].name}}</a>
+                    </div>
+
+                    <div class="cca" ng-class="{open:sctg[0].open}" ng-if="sctg[0]">
+                        <a href="#" ng-repeat="ssctg in sctg[0].ssctgs" ng-click="ssctgClick($event, ssctg, $index)">{{ssctg.name}}</a>      
+                    </div>
+                    <div class="cca" ng-class="{open:sctg[1].open}" ng-if="sctg[1]">
+                        <a href="#" ng-repeat="ssctg in sctg[1].ssctgs" ng-click="ssctgClick($event, ssctg, $index)">{{ssctg.name}}</a>      
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+</div>

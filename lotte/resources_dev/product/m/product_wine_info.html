@@ -1,0 +1,56 @@
+<section>
+<div ng-controller="ProductWineDetailCtrl">
+    <!-- 상세 탭 -->
+    <section class="detailPrdTabWrap" detail-prd-tab>
+        <ul class="detailPrdTab">
+            <!-- 선택 시 클래스 on -->
+            <li ng-class="{on:productWineInfotabIdx  == 0}"><a href="" ng-click="productWineInfotabIdx = 0">상품설명</a></li>
+            <li ng-class="{on:productWineInfotabIdx == 1}"><a href="" ng-click="productWineInfotabIdx = 1">구매정보</a></li>
+        </ul>
+    </section>
+    <!-- 상품 상세 내용 -->
+    <div class="detailInfoCnt wine">
+        <!-- 상품설명 탭 내용 -->
+        <div class="prdExplain" id="wineDetailTab0" ng-show="productWineInfotabIdx == 0">
+            <h4>상품상세설명</h4>
+            <!-- 아코디언 리스트(공통, 선택됐을때 li 클래스 on) -->
+            <div class="accordionWrap mdNotice" ng-if="BasicData.product.md_ntc_fcont || BasicData.product.md_ntc_fcont1 || BasicData.product.md_ntc_fcont2">
+                <ul>
+                    <li ng-click="mdNoticeAccordion()" ng-class="{true:'on', false:''}[mdNoticeAccordionYn]">
+                        <!-- 아코디언 리스트 내용 -->
+                        <div class="accordionCnt">
+                            <span ng-bind-html="BasicData.product.md_ntc_fcont"></span>
+                            <span ng-bind-html="BasicData.product.md_ntc_fcont1"></span>
+                            <span ng-bind-html="BasicData.product.md_ntc_fcont2"></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="ditailImgWrap" ng-if="winelodomain.length > 0" ditail-img-wrap>
+                <a href="{{winelodomain}}" class="viewBigImg" target="new" ng-show="viewBigImg">상세이미지크게보기</a>
+                <section id="ditailImgWrap">
+                </section>
+            </div>
+            <div class="detailLayout" id="wineDetailLayout" >
+            </div>
+        </div>
+        <!-- 구매정보 -->
+        <div class="prdBuyInfo" id="wineDetailTab1"  ng-show="productWineInfotabIdx == 1">
+            <ul class="vineInfo wine">
+                <li>
+                    <div class="infoTit"><b>상품코드 :</b></div>
+                    <div class="infoCon"><b>{{BasicData.goods_no}}</b></div>
+                </li>
+
+                <li>
+                    <div class="infoTit nofloat"><b>스마트픽 와인예약 서비스 안내</b></div>
+                    <div ng-bind-html="BasicData.product.attd_mtr_cont"></div>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+</section>
+
+

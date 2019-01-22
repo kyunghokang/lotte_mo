@@ -1,0 +1,84 @@
+@charset "UTF-8";
+div.appIntro { position: absolute; left: 0px; top: 0px; width: 100%; z-index:999999; height: 100%;box-sizing:border-box;-webkit-box-sizing:border-box;}
+div.appIntro p.bg { background-color: #000; opacity: .8; width:100%; height: 100%; }
+div.appIntro div.desc {position:absolute;left:0;top:50%;text-align:center;width:100%;margin-top:-217px}
+div.appIntro h2{margin:0 0 5px 0;}
+div.appIntro h2 img{width:170px}
+div.appIntro div.mask {overflow:hidden;width:270px;height:305px;margin:auto;}
+div.appIntro ul li img{width:270px;}
+div.appIntro ul { width: 540px; height: 316px; position: relative; left: 0px; 
+    -webkit-transition: all .5s cubic-bezier( 0.420 , 0.000 , 0.580, 1.000 ) ;
+    -moz-transition: all .5s cubic-bezier( 0.420 , 0.000 , 0.580, 1.000 ) ; 
+    -o-transition: all .5s cubic-bezier( 0.420 , 0.000 , 0.580, 1.000 ) ; 
+    transition: all .5s cubic-bezier( 0.420 , 0.000 , 0.580, 1.000 ) ;
+    
+    -webkit-transition-timing-function: cubic-bezier( 0.420 , 0.000 , 0.580, 1.000 ) ;
+    -moz-transition-timing-function: cubic-bezier( 0.420 , 0.000 , 0.580, 1.000 ) ; 
+    -o-transition-timing-function: cubic-bezier( 0.420 , 0.000 , 0.580, 1.000 ) ; 
+    transition-timing-function: cubic-bezier( 0.420 , 0.000 , 0.580, 1.000 ) ;   
+}
+div.appIntro ul li{width:270px;float:left;}
+div.appIntro ul.move {left:-270px}
+div.appIntro p.bullet {height:10px;text-align: center;}
+div.appIntro p.bullet span {width:0px;height:0px; border:4px solid #666; border-radius:100%; font-size:0px; margin:0px 2px; }
+div.appIntro p.bullet span.active{border:4px solid #fff;}
+div.appIntro p.btn {margin-top:6px;position:relative;height:35px;}
+div.appIntro p.btn img {width:100px;position:absolute;left:50%;top:0px;margin-left:-50px;}
+div.appIntro img.next {  }
+div.appIntro img.start {visibility: hidden;}
+div.appIntro p.skip {width:30px;margin-top:8px;}
+div.appIntro p.skip img{width:30px;}
+div.appIntro * { margin:auto; text-align: center; font-size:0px; line-height: 0px; }
+div#wrapper.blur { -webkit-filter: blur(5px); filter: blur(5px);overflow:hidden !important;width:100% !important;height:100% !important; }
+body.noneScroll{overflow:hidden;width:100%;height:100%}
+
+/* app 안내페이지 타블릿 모드*/
+@media screen and (min-width:360px){
+    div.appIntro div.desc {position:absolute;left:0;top:50%;text-align:center;width:100%;margin-top:-258px}
+    div.appIntro h2 img{width:200px}
+    div.appIntro div.mask {width:320px;height:365px;}
+    div.appIntro ul li img{width:320px;}
+    div.appIntro ul { width: 640px; height:365px;}
+    div.appIntro ul li{width:320px;float:left;}
+    div.appIntro ul.move {left:-320px}
+    div.appIntro p.bullet {height:10px;}
+    div.appIntro p.bullet span { border:5px solid #666; margin:0px 3px; }
+    div.appIntro p.bullet span.active{border:5px solid #fff;}
+    div.appIntro p.btn {margin-top:5jpx;position:relative;height:38px;}
+    div.appIntro p.btn img {width:110px;margin-left:-55px;}
+    div.appIntro p.skip {width:40px;margin-top:8px;}
+    div.appIntro p.skip img{width:40px;}
+}
+@media screen and (min-width:640px){
+    div.appIntro div.desc {position:absolute;left:0;top:50%;text-align:center;width:100%;margin-top:-405px;}
+    div.appIntro h2{margin:0 0 15px 0;}
+    div.appIntro h2 img{width:370px}
+    div.appIntro div.mask {width:500px;height:570px;}
+    div.appIntro ul li img{width:500px;}
+    div.appIntro ul { width: 1000px; height:570px;}
+    div.appIntro ul li{width:500px;float:left;}
+    div.appIntro ul.move {left:-500px}
+    div.appIntro p.bullet {height:10px;display:block;clear:both}
+    div.appIntro p.bullet span { border:7px solid #666; margin:0px 3px; }
+    div.appIntro p.bullet span.active{border:7px solid #fff;}
+    div.appIntro p.btn {margin-top:10px;position:relative;height:65px;}
+    div.appIntro p.btn img {width:200px;margin-left:-100px;}
+    div.appIntro p.skip {width:56px;margin-top:15px;}
+    div.appIntro p.skip img{width:56px;}
+}
+@media screen and (min-width:800px){
+    div.appIntro div.desc {position:absolute;left:0;top:50%;text-align:center;width:100%;margin-top:-258px}
+    div.appIntro h2 img{width:200px}
+    div.appIntro div.mask {width:320px;height:365px;}
+    div.appIntro ul li img{width:320px;}
+    div.appIntro ul { width: 640px; height:365px;}
+    div.appIntro ul li{width:320px;float:left;}
+    div.appIntro ul.move {left:-320px}
+    div.appIntro p.bullet {height:10px;}
+    div.appIntro p.bullet span { border:5px solid #666; margin:0px 3px; }
+    div.appIntro p.bullet span.active{border:5px solid #fff;}
+    div.appIntro p.btn {margin-top:5jpx;position:relative;height:38px;}
+    div.appIntro p.btn img {width:110px;margin-left:-55px;}
+    div.appIntro p.skip {width:40px;margin-top:8px;}
+    div.appIntro p.skip img{width:40px;}
+}

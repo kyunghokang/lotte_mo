@@ -1,0 +1,464 @@
+1. 업무명 :스마트픽리서트
+2. 담당자 : 김강덕
+3. URL : 
+	http://mapi.lotte.com/json/smartpick/smartpick_list.json
+4. 파라미터
+	search_flag		: 사용기간구분값   D7:최근 7일 D15:최근 15일 M1:최근 1개월 M3:최근 3개월	- 기본 한달 M1
+	cpn_state_cd	: 쿠폰 사용 가능 코드  0:전체 1:사용가능, 2:사용불가, 3:사용완료
+	smp_yn			: 스마트픽 여부 (앱여부)				
+	ord_no			: 주문번호
+	ord_dtl_sn		: 주문순번
+5. Json
+	1)
+		{
+			prod_div                      :    스마트픽(S), 쿠폰(E), 와인 구분(W)
+			ord_no                        :    주문번호
+			ord_dtl_sn                    :    주문순번
+			site_no                       :    사이트번호			구매처정보  1:롯데  else 엘롯데
+			brnd_no                       :    브랜드번호
+			brnd_nm                       :    브랜드명
+			goods_no                      :    상품번호
+			goods_nm                      :    상품명
+			opt_desc                      :    옵션설명
+			goods_choc_desc               :    상품선택설명
+			rel_qty                       :    실수량
+			sale_prc                      :    판매가
+			byr_age_lmt_cd                :    구매자나이제한코드
+			goods_mast_img_conts_sn       :    기본이미지가 등록된 일련번호
+			ecpn_no                       :    이쿠폰번호
+			smp_vst_fcst_dtime            :    방문예정일시(픽업예정일)
+			aval_term_strt_dtime          :    유효기간시작일시
+			aval_term_end_dtime           :    유효기간종료일시
+			ord_dtl_stat_cd               :    주문내역상태코드(J183)
+			adre_no                       :    수신자번호
+			adre_nm                       :    수신자명
+			sndr_no                       :    송신자명 (보낸이)
+			sndr_nm                       :    송신자명 (보낸이)
+			msg_cont                      :    메시지내용
+			self_snd_yn                   :    본인 여부 (송수신 번호로 비교)
+			mms_exch_bil_img_path_nm      :    mms교환권이미지경로명
+			mms_exch_bil_img_nm           :    mms교환권이미지명
+			exch_bil_use_goods_smp_cpn_no :    다른 상품 스마트픽 쿠폰 번호
+			cpn_state_cd                  :    쿠폰 사용 가능 코드(스마트픽포함) 			쿠폰상태코드  
+			cpn_state_nm                  :    쿠폰 사용 가능 상태			쿠폰상태값	 (1:사용가능, 2:사용완료, 3:사용불가)
+			useable_yn                    :    쿠폰 사용 가능 여부
+			impsb_reason                  :    사용불가사유
+			d_day_cnt                     :    남은 기간
+			dpt_ready_yn                  :    백화점 매장준비중
+			entr_no                       :    거래처번호
+			entr_contr_no                 :    거래처계약번호
+			lwst_entr_no                  :    하위거래처번호
+			smp_tp_cd                     :    픽업유형
+			smp_deli_loc_sn               :     픽업순번(데스크, 락커)
+			smp_deli_loc_desc             :     스마트픽인도장소설명
+			use_loc_nm                    :    사용매장 (픽업장소)
+			use_loc_desc_cont             :    사용매장장소설명
+			bsns_time                     :    영업시간
+			use_lmt_cont                  :    사용제한
+			attd_mtr_cont                 :    주의사항
+			inq_tel_cont                  :    문의전화
+			smp_cpn_issu_tp_cd            :    스마트픽쿠폰발급유형코드[P351]
+			smp_cpn_goods_tp_cd           :    스마트픽쿠폰상품유형코드[P347]
+			smp_cpn_goods_tp_dtl_cd       :    스마트픽쿠폰상품유형상세코드[P348]
+			mms_lmt_cnt                   :    MMS제한수
+			mms_trns_rmnd_cnt             :    MMS전송잔여수
+			pmg_dpts_goods_cd             :  백화점 상품 구분,ex) 0:일반업체, 1:롯데백화점, 2:영플, 3:아울렛
+			shop_cnt                      :   스마트픽 매장 개수
+			shop_no                       :  사용처번호
+			dlv_goods_sct_cd              :  배송지상품구분코드(스마트픽 3-2차 추가)
+			goods_img                     :  상품이미지
+			ecpn_img                      :  사용가능 상품만 이쿠폰 이미지      ->바코드 있는 이미지
+			smp_goods_type                :  스마트픽 상품 유형
+			ord_cncl_psbl_yn              :  주문취소가능여부
+			smp_install_yn                :  스마트픽 설치상품 여부(3-2차 스마트픽 추가)	
+			reserv_send 				  :  예약상품 여부(Y,N)
+			reserv_date  				  :	 예약상품 고객선택날짜 (ex20160622)
+		}
+
+==================================================================
+스마트픽 상세				
+1.URL :	http://mapi.lotte.com/json/smartpick/smartpick_list.json 리스트와 같음
+
+2.파라미터
+	search_flag		: 사용기간구분값 D7:최근 7일 D15:최근 15일 M1:최근 1개월 M3:최근 3개월	- 기본 한달 M1
+	cpn_state_cd	: 쿠폰 사용 가능 코드 1:사용가능, 2:사용불가, 3:사용완료
+	smp_yn			: 스마트픽 여부				
+	ord_no			: 주문번호
+	ord_dtl_sn		: 주문순번
+3.리턴 
+		{
+			prod_div                      :    스마트픽(S), 쿠폰(E), 와인 구분(W)
+			ord_no                        :    주문번호
+			ord_dtl_sn                    :    주문순번
+			site_no                       :    사이트번호  		
+			brnd_no                       :    브랜드번호
+			brnd_nm                       :    브랜드명
+			goods_no                      :    상품번호
+			goods_nm                      :    상품명
+			opt_desc                      :    옵션설명
+			goods_choc_desc               :    상품선택설명
+			rel_qty                       :    실수량
+			sale_prc                      :    판매가
+			byr_age_lmt_cd                :    구매자나이제한코드
+			goods_mast_img_conts_sn       :    기본이미지가 등록된 일련번호
+			ecpn_no                       :    이쿠폰번호
+			smp_vst_fcst_dtime            :    방문예정일시(픽업예정일)
+			aval_term_strt_dtime          :    유효기간시작일시
+			aval_term_end_dtime           :    유효기간종료일시
+			ord_dtl_stat_cd               :    주문내역상태코드(J183)
+			adre_no                       :    수신자번호
+			adre_nm                       :    수신자명
+			sndr_no                       :    송신자명 (보낸이)
+			sndr_nm                       :    송신자명 (보낸이)
+			msg_cont                      :    메시지내용
+			self_snd_yn                   :    본인 여부 (송수신 번호로 비교)
+			mms_exch_bil_img_path_nm      :    mms교환권이미지경로명
+			mms_exch_bil_img_nm           :    mms교환권이미지명
+			exch_bil_use_goods_smp_cpn_no :    다른 상품 스마트픽 쿠폰 번호
+			cpn_state_cd                  :    쿠폰 사용 가능 코드
+			cpn_state_nm                  :    쿠폰 사용 가능 상태 
+			useable_yn                    :    쿠폰 사용 가능 여부
+			impsb_reason                  :    사용불가사유
+			d_day_cnt                     :    남은 기간
+			dpt_ready_yn                  :    백화점 매장준비중
+			entr_no                       :    거래처번호
+			entr_contr_no                 :    거래처계약번호
+			lwst_entr_no                  :    하위거래처번호
+			smp_tp_cd                     :    픽업유형
+			smp_deli_loc_sn               :     픽업순번(데스크, 락커)
+			smp_deli_loc_desc             :     스마트픽인도장소설명
+			use_loc_nm                    :    사용매장
+			use_loc_desc_cont             :    사용매장장소설명
+			bsns_time                     :    영업시간
+			use_lmt_cont                  :    사용제한
+			attd_mtr_cont                 :    주의사항
+			inq_tel_cont                  :    문의전화
+			smp_cpn_issu_tp_cd            :    스마트픽쿠폰발급유형코드[P351]
+			smp_cpn_goods_tp_cd           :    스마트픽쿠폰상품유형코드[P347]
+			smp_cpn_goods_tp_dtl_cd       :    스마트픽쿠폰상품유형상세코드[P348]
+			mms_lmt_cnt                   :    MMS제한수
+			mms_trns_rmnd_cnt             :    MMS전송잔여수
+			pmg_dpts_goods_cd             :  백화점 상품 구분,ex) 0:일반업체, 1:롯데백화점, 2:영플, 3:아울렛
+			shop_cnt                      :   스마트픽 매장 개수
+			shop_no                       :  사용처번호
+			dlv_goods_sct_cd              :  배송지상품구분코드(스마트픽 3-2차 추가)
+			goods_img                     :  상품이미지
+			ecpn_img                      :  사용가능 상품만 이쿠폰 이미지
+			smp_goods_type                :  스마트픽 상품 유형
+			ord_cncl_psbl_yn              :  주문취소가능여부
+			smp_install_yn                :  스마트픽 설치상품 여부(3-2차 스마트픽 추가)	
+			reserv_send 				  :  예약상품 여부(Y,N)
+			reserv_date  				  :	 예약상품 고객선택날짜 (ex20160622)	
+		}
+
+==================================================================
+스마트픽(E-COUPON)선물하기 폼 조회 
+1.URL : /json/smartpick/smartpick_gift.json
+2.파라미터
+		grockle_yn		: 비회원여부
+		grockle_mbr_no 	: 비회원번호
+		smp_yn			: 스마트픽 여부				
+		ord_no			: 주문번호
+		ord_dtl_sn		: 주문순번		
+		
+3.json 
+		ord_no                               :  주문번호
+		ord_dtl_sn              			 :  주문순번
+		ord_user_nm                          :  주문자명
+		ord_user_cell_phone                  :  주문자전화번호
+		smartpick_yn                         :  스마트픽앱여부
+		smp_vst_fcst_dtime                   :  픽업일자
+		shop_time                            :  방문시간
+		shop_nm                              :  매장명
+		cbl_tel                              :  문의전화
+		entr_no                 			 :  거래처코드
+		goods_no                			 :  상품번호
+		goods_desc                           :  상품설명
+		opt_desc                             :  
+		discounted_price                     :  할인가격
+		ord_qty                              :  주문수량
+		original_price                       :  할인전가격
+		mms_lmt_cnt                          :  MMS제한수
+		mms_trns_rmnd_cnt                    :  MMS전송잔여수
+		re_send_yn                           :  재발송여부
+		opt_1_nm                             :  단품옵션1 = 옵션1명 : 옵션1문자값
+		opt_2_nm                             :  단품옵션2 = 옵션2명 : 옵션2문자값
+		shop_no                              :  사용처번호
+		ecpn_no                     	     :  E쿠폰번호
+		exch_bil_use_goods_smp_cpn_no        : 교환권사용상품스마트픽
+		use_adre_nm                          : 쿠폰사용자
+		use_adre_no                          : 쿠폰사용자연락처
+		use_yn                               : 사용여부
+		use_message							 : 주문서 작성시 사용한 메시지 가져오기
+===============================================
+마이롯데 스마트픽 메시지 보내기
+1.URL : /json/smartpick/smartpick_gift_send.json
+2.파라미터 
+		ord_no	           : 주문번호
+		ord_dtl_sn	       : 주문상세번호
+		goods_no	       : 상품번호
+		smartkpick_yn	   : 스마트픽 적용 여부
+		ecpn_cret_meth_cd  : 
+		gift_yn            : 선물여부
+		ecpn_no            : E쿠폰번호
+		sndr_nm            : 보내는이 성명
+		sndr_no            : 보내는이 휴대폰 번호
+		adre_nm            : 받는이 성명
+		adre_no            : 받는이 휴대폰 번호
+		sms_title          : 제목
+		msg_cont           : 메시지
+		use_yn             : 사용여부
+		grockle_yn         : 비회원여부
+		opt_1_nm           : 단품옵션1 = 옵션1명 : 옵션1문자값
+		opt_2_nm           : 단품옵션2 = 옵션2명 : 옵션2문자값
+		re_send_yn         : 재발송여부
+		pitm_no            : 사용처번호
+
+3.리턴
+	responseCode 	: 결과코드	0000 성공 /나머지 실패
+	responseMsg 	: 결과메시지
+
+==================================================================
+예약취소
+1.URL : /json/smartpick/reservation_cancel.json 
+2.파라미터 
+		ord_no		:	주문번호		
+		ord_dtl_sn	:	주문순번
+		ecpn_no		:	이쿠폰번호
+		rel_qty		:	실수량
+		adre_no		:	수신자번호
+		adre_nm		:	수신자명
+		goods_nm	:	상품명
+
+3.리턴 
+	responseCode 	: 결과코드	0000 성공 /나머지 실패
+	responseMsg 	: 결과메시지	
+=============================================================
+예약증 MMS 전송
+1.URL : /json/smartpick/reservation_send_mms.json
+2.파라미터 
+		goods_no        : 상품코드
+		ecpn_no         : 이쿠폰번호
+		send_sct_cd     : 전송유형코드 (1:MMS, 2:SMS, 3:EMAIL)
+		adre_no         : 고객전화번호
+		sndr_no         : 발송자전화번호
+		adre_nm         : 고객명
+		sndr_nm         : 발송자명
+		msg_cont        : 추가메시지
+		rsv_yn          : 예약발송여부
+		shop_no         : 사용처번호
+		ord_qty         : 예약수량		
+
+3.리턴 
+	responseCode 	: 결과코드	0000 성공 /나머지 실패
+	responseMsg 	: 결과메시지	
+	
+==================================================================
+예약변경
+1.URL : /json/smartpick/reservation_update.json 
+2.파라미터 
+		ord_no		:	주문번호		
+		ord_dtl_sn	:	주문순번
+		ecpn_no		:	이쿠폰번호
+		smp_vst_fcst_dtime		:	변경일자 YYYYMMDD
+		smp_tp_cd   : 픽업유형
+
+3.리턴 
+	responseCode 	: 결과코드	0000 성공 /나머지 실패
+	responseMsg 	: 결과메시지	
+=============================================================	
+	
+{
+  "obj" : {
+    "useable_smartpick" : [ ],
+    "RESPONSE_MSG" : "정상",
+    "smartpick" : [ {
+      "prod_div" : "W",
+      "ord_no" : "20150323W000209",
+      "ord_dtl_sn" : 209,
+      "site_no" : 1,
+      "brnd_no" : 0,
+      "brnd_nm" : "와인 오브 바인스토리",
+      "goods_no" : 100578376,
+      "goods_nm" : "WINE_01",
+      "opt_desc" : "",
+      "goods_choc_desc" : "",
+      "rel_qty" : 1,
+      "sale_prc" : 50000,
+      "byr_age_lmt_cd" : null,
+      "goods_mast_img_conts_sn" : 0,
+      "ecpn_no" : "",
+      "smp_vst_fcst_dtime" : "20150330",
+      "aval_term_strt_dtime" : "",
+      "aval_term_end_dtime" : "",
+      "ord_dtl_stat_cd" : "11",
+      "adre_no" : "",
+      "adre_nm" : "",
+      "sndr_no" : "01092283506",
+      "sndr_nm" : "홍성욱",
+      "msg_cont" : "",
+      "self_snd_yn" : "N",
+      "mms_exch_bil_img_path_nm" : "",
+      "mms_exch_bil_img_nm" : "",
+      "exch_bil_use_goods_smp_cpn_no" : "",
+      "cpn_state_cd" : "1",
+      "cpn_state_nm" : "사용가능",
+      "useable_yn" : "N",
+      "impsb_reason" : "주문완료",
+      "d_day_cnt" : 0,
+      "dpt_ready_yn" : "N",
+      "entr_no" : 271332,
+      "entr_contr_no" : 111163,
+      "lwst_entr_no" : 182,
+      "smp_tp_cd" : "1",
+      "smp_deli_loc_sn" : 0,
+      "smp_deli_loc_desc" : "",
+      "use_loc_nm" : "광복점(스포츠_리복슈즈)",
+      "use_loc_desc_cont" : "",
+      "bsns_time" : "10:30~19:00",
+      "use_lmt_cont" : "지정된 픽업장소에서만 상품 수령 가능",
+      "attd_mtr_cont" : "방문예정일 + 1일까지 상품 수령 가능(미수령 시 예약취소)",
+      "inq_tel_cont" : "02-6744-5004",
+      "smp_cpn_issu_tp_cd" : "01",
+      "smp_cpn_goods_tp_cd" : null,
+      "smp_cpn_goods_tp_dtl_cd" : null,
+      "mms_lmt_cnt" : 3,
+      "mms_trns_rmnd_cnt" : 0,
+      "pmg_dpts_goods_cd" : null,
+      "shop_cnt" : 0,
+      "shop_no" : 130683,
+      "dlv_goods_sct_cd" : null,
+      "goods_img" : "http://image.lotte.com/goods/76/83/57/00/1/100578376_1_150.jpg",
+      "ecpn_img" : "",
+      "smp_goods_type" : "",
+      "ord_cncl_psbl_yn" : "Y",
+      "smp_install_yn" : "N",
+      "reserv_send" : "Y",
+      "reserv_date" : "20160621"
+    }, {
+      "prod_div" : "W",
+      "ord_no" : "20150311W000101",
+      "ord_dtl_sn" : 101,
+      "site_no" : 1,
+      "brnd_no" : 0,
+      "brnd_nm" : "와인 오브 바인스토리",
+      "goods_no" : 99536667,
+      "goods_nm" : "까데 독 샤르도네",
+      "opt_desc" : "",
+      "goods_choc_desc" : "",
+      "rel_qty" : 2,
+      "sale_prc" : 25000,
+      "byr_age_lmt_cd" : null,
+      "goods_mast_img_conts_sn" : 0,
+      "ecpn_no" : "",
+      "smp_vst_fcst_dtime" : "20150314",
+      "aval_term_strt_dtime" : "",
+      "aval_term_end_dtime" : "",
+      "ord_dtl_stat_cd" : "11",
+      "adre_no" : "",
+      "adre_nm" : "",
+      "sndr_no" : "01092283506",
+      "sndr_nm" : "홍성욱",
+      "msg_cont" : "",
+      "self_snd_yn" : "N",
+      "mms_exch_bil_img_path_nm" : "",
+      "mms_exch_bil_img_nm" : "",
+      "exch_bil_use_goods_smp_cpn_no" : "",
+      "cpn_state_cd" : "1",
+      "cpn_state_nm" : "사용가능",
+      "useable_yn" : "N",
+      "impsb_reason" : "주문완료",
+      "d_day_cnt" : 0,
+      "dpt_ready_yn" : "N",
+      "entr_no" : 10591,
+      "entr_contr_no" : 20,
+      "lwst_entr_no" : 3389,
+      "smp_tp_cd" : "1",
+      "smp_deli_loc_sn" : 0,
+      "smp_deli_loc_desc" : "",
+      "use_loc_nm" : "본점 B1 와인매장",
+      "use_loc_desc_cont" : "",
+      "bsns_time" : "10:30~19:00",
+      "use_lmt_cont" : "지정된 픽업장소에서만 상품 수령 가능",
+      "attd_mtr_cont" : "방문예정일 + 1일까지 상품 수령 가능(미수령 시 예약취소)",
+      "inq_tel_cont" : "02-6744-5004",
+      "smp_cpn_issu_tp_cd" : "01",
+      "smp_cpn_goods_tp_cd" : null,
+      "smp_cpn_goods_tp_dtl_cd" : null,
+      "mms_lmt_cnt" : 3,
+      "mms_trns_rmnd_cnt" : 0,
+      "pmg_dpts_goods_cd" : null,
+      "shop_cnt" : 0,
+      "shop_no" : 132120,
+      "dlv_goods_sct_cd" : null,
+      "goods_img" : "http://image.lotte.com/goods/67/66/53/99/99536667_1_150.jpg",
+      "ecpn_img" : "",
+      "smp_goods_type" : "",
+      "ord_cncl_psbl_yn" : "Y",
+      "smp_install_yn" : "N"
+    }, {
+      "prod_div" : "W",
+      "ord_no" : "20150303W000003",
+      "ord_dtl_sn" : 3,
+      "site_no" : 1,
+      "brnd_no" : 0,
+      "brnd_nm" : "와인 오브 바인스토리",
+      "goods_no" : 99536667,
+      "goods_nm" : "까데 독 샤르도네",
+      "opt_desc" : "",
+      "goods_choc_desc" : "",
+      "rel_qty" : 1,
+      "sale_prc" : 25000,
+      "byr_age_lmt_cd" : null,
+      "goods_mast_img_conts_sn" : 0,
+      "ecpn_no" : "",
+      "smp_vst_fcst_dtime" : "20150310",
+      "aval_term_strt_dtime" : "",
+      "aval_term_end_dtime" : "",
+      "ord_dtl_stat_cd" : "11",
+      "adre_no" : "",
+      "adre_nm" : "",
+      "sndr_no" : "01092283506",
+      "sndr_nm" : "홍성욱",
+      "msg_cont" : "",
+      "self_snd_yn" : "N",
+      "mms_exch_bil_img_path_nm" : "",
+      "mms_exch_bil_img_nm" : "",
+      "exch_bil_use_goods_smp_cpn_no" : "",
+      "cpn_state_cd" : "1",
+      "cpn_state_nm" : "사용가능",
+      "useable_yn" : "N",
+      "impsb_reason" : "주문완료",
+      "d_day_cnt" : 0,
+      "dpt_ready_yn" : "N",
+      "entr_no" : 271332,
+      "entr_contr_no" : 111163,
+      "lwst_entr_no" : 786,
+      "smp_tp_cd" : "1",
+      "smp_deli_loc_sn" : 0,
+      "smp_deli_loc_desc" : "",
+      "use_loc_nm" : "광복점 B1층 와인매장",
+      "use_loc_desc_cont" : "",
+      "bsns_time" : "10:30~19:00",
+      "use_lmt_cont" : "지정된 픽업장소에서만 상품 수령 가능",
+      "attd_mtr_cont" : "방문예정일 + 1일까지 상품 수령 가능(미수령 시 예약취소)",
+      "inq_tel_cont" : "02-6744-5004",
+      "smp_cpn_issu_tp_cd" : "01",
+      "smp_cpn_goods_tp_cd" : null,
+      "smp_cpn_goods_tp_dtl_cd" : null,
+      "mms_lmt_cnt" : 3,
+      "mms_trns_rmnd_cnt" : 0,
+      "pmg_dpts_goods_cd" : null,
+      "shop_cnt" : 0,
+      "shop_no" : 58100,
+      "dlv_goods_sct_cd" : null,
+      "goods_img" : "http://image.lotte.com/goods/67/66/53/99/99536667_1_150.jpg",
+      "ecpn_img" : "",
+      "smp_goods_type" : "",
+      "ord_cncl_psbl_yn" : "Y",
+      "smp_install_yn" : "N"
+    } ],
+    "smp_cpn_cnt" : 3,
+    "RESPONSE_CODE" : "0000"
+  }
+}	

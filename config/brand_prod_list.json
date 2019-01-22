@@ -1,0 +1,74 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplBrandSub" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/category/m/brand_prod_list_container.html",
+                    "lotte/resources_dev/category/m/cate_side_search.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/brand_prod_list.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsBrandSub" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/category/m/brand_prod_list.js",
+                    "lotte/resources_dev/category/m/cate_side_search.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/brand_prod_list.js"
+            }
+        },
+
+        "uglify" : {
+            "jsBrandSub" : {
+                "src" : "lotte/resources/<%= version %>/brand_prod_list.js",
+                "dest" : "lotte/resources/<%= version %>/brand_prod_list.min.js"
+            },
+            "tplBrandSub" : {
+                "src" : "lotte/resources/<%= version %>/brand_prod_list.template.js",
+                "dest" : "lotte/resources/<%= version %>/brand_prod_list.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssBrandSub" : {
+                "src" : [
+					"lotte/resources_dev/category/category.css",
+					"lotte/resources_dev/category/m/cate_side_search.css",
+					"lotte/resources_dev/brandshop/brand_common.css",
+					"lotte/resources_dev/brandshop/brandshop.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/brand_prod_list.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanBrandSub" : [
+                "lotte/resources/<%= version %>/brand_prod_list.js",
+                "lotte/resources/<%= version %>/brand_prod_list.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlBrandSub" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "category/m/brand_prod_list.html" : "category/m/brand_prod_list_dev.html"
+                }
+            }
+        }
+    }
+}
+

@@ -1,0 +1,71 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplProductBenefitCompare" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/product/m/sub/product_sub_header.html",
+					"lotte/resources_dev/product/m/sub/product_benefit_compare_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/product_benefit_compare.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsProductBenefitCompare" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/product/m/sub/product_sub_header.js",
+					"lotte/resources_dev/product/m/sub/product_benefit_compare.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/product_benefit_compare.js"
+			}
+		},
+
+		"uglify" : {
+			"jsProductBenefitCompare" : {
+				"src" : "lotte/resources/<%= version %>/product_benefit_compare.js",
+				"dest" : "lotte/resources/<%= version %>/product_benefit_compare.min.js"
+			},
+			"tplProductBenefitCompare" : {
+				"src" : "lotte/resources/<%= version %>/product_benefit_compare.template.js",
+				"dest" : "lotte/resources/<%= version %>/product_benefit_compare.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssProductBenefitCompare" : {
+				"src" : [
+					"lotte/resources_dev/product/m/sub/product_benefit_compare.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/product_benefit_compare.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanProductBenefitCompare" : [
+				"lotte/resources/<%= version %>/product_benefit_compare.js",
+				"lotte/resources/<%= version %>/product_benefit_compare.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlProductBenefitCompare" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"product/m/sub/product_benefit_compare.html" : "product/m/sub/product_benefit_compare_dev.html"
+				}
+			}
+		}
+	}
+}
+

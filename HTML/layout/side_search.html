@@ -1,0 +1,60 @@
+<section id="feSrhLayer">
+<form id="searchForm" novalidate name="searchForm" action="{{srhUrl}}" ng-submit="submitSearch($event)">
+    <fieldset>
+        <legend class="blind">키워드 검색</legend>
+        <input type="hidden" ng-model="c" name="c" value="{{fnSrhParam('c')}}" />
+        <input type="hidden" ng-model="udid" name="udid" value="{{fnSrhParam('udid')}}" />
+        <input type="hidden" ng-model="v" name="v" value="{{fnSrhParam('v')}}" />
+        <input type="hidden" ng-model="cn" name="cn" value="{{fnSrhParam('cn')}}" />
+        <input type="hidden" ng-model="cdn" name="cdn" value="{{fnSrhParam('cdn')}}" />
+        <input type="hidden" ng-model="schema" name="schema" value="{{fnSrhParam('schema')}}" />
+        <input type="hidden" ng-model="dpml_no" name="dpml_no" value="1"/>
+        <input type="hidden" ng-model="type" name="type" value=""/>
+        <input type="hidden" ng-model="dispCnt" name="dispCnt" value="30"/>
+        <input type="hidden" ng-model="reqType" name="reqType" value="N"/>
+        <input type="hidden" ng-model="reqKind" name="reqKind" value="C"/>
+        <input type="hidden" ng-model="tclick" name="tclick" value="{{tclick}}"/>
+            <section class="srh_layer">
+                <div class="srh_wrap">
+                    <div class="srh_ipt">
+                        <input type="search" srh-focus="showSrh" ng-model="keyword" name="keyword" id="keyword" placeholder="검색어를 입력하세요." autocomplete="off" autocapitalize="off" autocorrect="off" required  ng-keyup="showAutoSrh($event)"/>
+                        <a href="" ng-click="delSrhText()" ng-show="isAutoSrhing" class="btn_del">검색어 삭제</a>
+                    </div>
+                    <div class="srh_btn">
+                        <a ng-click="submitSearch($event)">
+                            <img src="http://image.lotte.com/lotte/mo2015/angular/common/btn_search.png" alt=""/>
+                        </a>
+                    </div>
+                </div>
+                <div vertical-scroll-layer class="srh_recent" ng-show="!isAutoSrhing">
+                    <ol>
+                        <li ng-repeat="(key, item) in recentKwData" ng-if="recentKwData">
+                            <!-- <a href="" ng-click="fn_goSearch(item.srhParam);" class="word" ng-if="item.srhParam">{{item.keytxt}}</a> -->
+                            <a href="" ng-click="goRecentSrh(key)" class="word">{{item.keytxt}}</a>
+                            <a href="" ng-click="delRecentOneKeyword(key)" class="del">최근 검색어 삭제</a>
+                        </li>
+                        <li ng-show="recentKwData==undefined" class="none">최근 검색한 기록이 없습니다.</li>
+                    </ol>
+                </div>
+                <div class="srh_auto" ng-show="isAutoSrhing">
+                    <ol>
+                        <li ng-repeat="(key, item) in srhAutoData">
+                            <!-- <a href="javascript:fn_goSearch('aa건전지', '&reqType=N&tclick=M_Search_Autocomplete_Web');"> -->
+                            <a ng-click="goAutoSrh(key)">
+                                <span class="name" ng-bind-html="item.hkeyword">
+                                    <!-- <span class="point" ng-if="item.keyword">{{item.keyword}}</span>{{item.value}} -->
+                                </span>
+                                <span class="category" ng-if="item.linkname">[{{item.linkname}}]</span>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+                <div class="srh_bar">
+                    <a ng-click="delRecentAllKeyword()" ng-show="recentKwData && !isAutoSrhing" class="del">최근 검색어 전체삭제</a>
+                    <a ng-click="searchClose()" class="close">닫기</a>
+                </div>
+            </section>
+            <!--<section ly-cover class="srh_cover" ng-click="closeSrhLayor()"></section>-->
+    </fieldset>
+</form>
+</section>

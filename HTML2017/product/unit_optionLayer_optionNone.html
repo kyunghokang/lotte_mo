@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html ng-app="">
+<head>
+	<meta charset="utf-8">
+	<title>롯데닷컴</title>
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+
+	<!-- 기존 css & js -->
+	<!-- <script src="/lotte/resources_dev/common/common_load_2017.js"></script> -->
+	<link rel="stylesheet" type="text/css" href="common.min.css">
+	<link rel="stylesheet" type="text/css" href="product_view.min.css">
+	<!-- //기존 css & js -->
+	<!-- 신규 css -->
+	<!-- <link rel="stylesheet" type="text/css" href="product_k.css">
+	<link rel="stylesheet" type="text/css" href="product_p.css"> -->
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/product/m/product_view_2017.css">
+	<!-- //신규 css -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script><!-- 코딩용 angular js -->
+
+</head>
+<body>
+
+	<div id="wrapper">
+
+		<section>
+			<header class="sub_header_top_wrap" id="lotteHeader">
+				<div class="inner_wrap headerFixed">
+					<h1 class="logo"><button class="btn_main">LOTTE.COM</button></h1>
+					<button class="btn_prev">이전</button>
+					<div class="header_srh_wrap web">
+						<div class="srh_box">
+							<label for="keyword" class="btn_srh"></label>
+						</div>
+					</div>
+					<button class="btn_ctg">카테고리</button>
+					<button class="btn_cart">장바구니<i class="cnt">5</i></button>
+				</div>
+			</header>
+		</section>
+
+		<section class="cont_minheight">
+
+			<!-- container -->
+			<div id="container">
+				<!-- 퍼블리싱 시작-->
+				<div class="prd_title">
+					<p>루이까또즈 베스트상품</p>
+					<div class="btn_bs on"><span>즐겨찾기</span></div>
+				</div>
+				<div class="unit_prod_4">
+					<ul>
+						<li>
+							<a ng-click="">
+								<div class="imgwrap">
+									<img src="http://image.lotte.com/goods/88/43/20/61/3/361204388_1_280.jpg" alt="" />
+								</div>
+								<p class="prodname">[블랙앤믹스] 브로치가디건+스커트 투피스</p>
+								<p class="price">26,000<em>원</em></p>
+							</a>
+						</li>
+						<li>
+							<a ng-click="">
+								<div class="imgwrap">
+									<div class="soldout">SOLD OUT</div>
+									<img src="http://image.lotte.com/goods/88/43/20/61/3/361204388_1_280.jpg" alt="" />
+								</div>
+								<p class="prodname">[블랙앤믹스] 브로치가디건+스커트 투피스</p>
+								<p class="price">26,000<em>원</em></p>
+							</a>
+						</li>
+						<li>
+							<a ng-click="">
+								<div class="imgwrap">
+									<img src="http://image.lotte.com/goods/88/43/20/61/3/361204388_1_280.jpg" alt="" />
+								</div>
+								<p class="prodname">[블랙앤믹스] 브로치가디건+스커트 투피스</p>
+								<p class="price">26,000<em>원</em></p>
+							</a>
+						</li>
+						<li>
+							<a ng-click="">
+								<div class="imgwrap">
+									<img src="http://image.lotte.com/goods/88/43/20/61/3/361204388_1_280.jpg" alt="" />
+								</div>
+								<p class="prodname">[블랙앤믹스] 브로치가디건+스커트 투피스</p>
+								<p class="price">26,000<em>원</em></p>
+							</a>
+						</li>
+					</ul>
+				</div>
+				
+				<div class="btnMore">
+					<span class="btnArea"><a href="#more"><span>브랜드샵 바로가기</span></a></span>
+				</div>
+				<!-- 퍼블리싱 끝-->
+				
+				<section class="optLayerWrap on" id="optionWrap"><!-- 옵션레이어 열림:on, 옵션레이어 선택시 optLayerWrap:option -->
+					<!-- 바로주문바 -->
+					<div class="optBtnWrap">
+						<ul class="optBtn">
+							<!-- 아이콘 -->
+							<li ng-if="false" class="btnIcon"><a class="ic_cart" ng-click="">장바구니 아이콘</a></li>
+							<li ng-if="false" class="btnIcon"><a class="ic_alarm" ng-click="">품절 아이콘</a></li>
+							<!-- //아이콘 -->
+							
+							<!-- 일반 -->
+							<li ng-if="true" class="btnCart"><a ng-click="btnCart">장바구니 담기</a></li><!-- btnCart 클래스 들어가면 작은 사이즈 고정 -->
+							<li ng-if="true"><a ng-click="">총 4개 | 189,000원 구매</a></li>
+							<!-- //일반 -->
+							<li ng-if="false"><a ng-click="">바로구매</a></li>
+							<li ng-if="false"><a ng-click="">예약주문</a></li>
+							<!-- 선물하기 -->
+							<li ng-if="false" class="btnGift"><a ng-click="">선물하기</a></li>
+							<li ng-if="false" class="btnGift"><a ng-click=""> 총 4개 | 189,000원 선물하기 </a></li>
+							<!-- //선물하기 -->
+							<!-- 렌탈상품 -->
+							<li ng-if="false"><a ng-click="">상담신청</a></li>
+							<!-- //렌탈상품 -->
+							<!-- 스마트픽 -->
+							<li ng-if="false" class="btnSmart"><a ng-click=""><span>스마트 픽</span>예약주문</a></li>
+							<!-- //스마트픽 -->
+							<!-- 품절알림 & 모바일 주문불가 & 판매종료 -->
+							<li ng-if="false" class="btnSoldout"><a ng-click="">이 상품은 품절되었습니다.</a></li>
+							<li ng-if="false" class="btnSoldout"><a ng-click=""> 모바일 주문 불가상품입니다</a></li>
+							<li ng-if="false" class="btnSoldout"><a ng-click=""> 판매종료된 상품입니다 </a></li>
+							<!-- //품절알림 & 모바일 주문불가 & 판매종료 -->
+						</ul>
+					</div>
+					<!-- //바로주문바 -->
+					
+					<!-- 바로주문 옵션 선택창 -->
+					<section class="optToggleLayer">
+						<div class="optLayer on">
+							<div class="dim2">
+								<div class="bg">Dim</div>
+							</div>
+							<!-- 옵션이 쌓이는 곳-->
+							<section class="optBox">
+								<div class="optBoxHeader">
+									<p>1일 최대 00개 구매 가능합니다.</p>
+								</div>
+								<a ng-click="" class="optLayerBoxClose">닫기</a>
+								<div class="ordLayerWrap">
+									<div class="optPopup active" ng-if="false">
+										<div class="titWrap">
+											<p>옵션을 선택해 주세요.</p>
+										</div>
+									</div>
+									<div class="ordPrdList">
+										<ul>
+											<li>
+												<div class="prdInfo">
+													<p class="thumb"><img src="http://image.lotte.com/goods/84/58/72/71/3/371725884_1_60.jpg" alt="" /></p>
+													<div class="txt">
+														<div class="tit">AJ7756589 (라이트 스웨트 셔츠) AJ7756589 (라이트 스웨트 셔츠)</div>
+														<div class="delivery"><strong> 4/18(수)</strong> 도착예정 </div>
+														<div class="quantityCnt"> 품절임박( 4개)</div>
+													</div>													
+													<a class="prdDel">상품 삭제</a>
+												</div>
+												<div class="prdQuantity">
+													<div class="inner">
+														<div class="quantityWarp">
+															<button class="btnMinus" ng-click=""><span>-</span></button>
+															<span class="ipt_num"><input type="number" pattern="[0-9]*" min="1" max="50" value="1" /></span>
+															<button class="btnPlus" ng-click=""><span>+</span></button>
+														</div>
+														<div class="price"><strong>318,000</strong>원</div>
+														<div class="delivery">+2,500원 배송비</div>
+													</div>	
+												</div>
+												<!-- 달력 추가 옵션 -->
+												<div class="optAddInfo" ng-if="false">
+													<div class="itemOpt">
+														<input type="text" value="" class="optInput" placeholder="카드or리본 메시지" />
+													</div>
+													<div class="itemOpt">
+														<input type="text" value="" class="optInput" placeholder="구매자 연락처" />
+													</div>
+													<div class="itemOpt">
+														<input type="text" value="" class="optInput cal" placeholder="배송희망일" />
+														<a class="btnCal"><span>달력</span></a>
+													</div>
+												</div>
+												<!-- //달력 추가 옵션 -->
+											</li>
+										</ul>
+									</div>
+								</div>
+								<section>
+									<ul class="deliSelectWarp">
+										<li><input type="radio" name="shipping3" class="radio01" checked="checked" /> <label for="">택배</label></li>
+										<li><input type="radio" name="shipping3" class="radio01" disabled="disabled"/> <label for="">퀵 배송</label></li>
+										<li><input type="radio" name="shipping3" class="radio01" /> <label for="">스마트픽</label></li>
+									</ul>
+								</section>
+							</section>
+							<!-- //옵션이 쌓이는 곳-->
+							<!-- 옵션 레이어 -->
+							<section class="optLayerBox">
+								<div class="optLayerHeader">
+									<span class="optTitle">옵션선택</span>
+									<span class="soldOutCk">
+										<input type="checkbox" id="soCk" /> <label for="soCk">품절 상품 보기</label>
+									</span>
+									<div class="optSearchWrap">
+										<input type="search" placeholder="찾고싶은 옵션명을 입력해주세요" />
+										<a ng-click="" class="btn_srh">검색</a>
+									</div>
+								</div>
+								<a ng-click="" class="optLayerBoxClose">닫기</a>
+								
+								<div class="optPopupWrap">
+									<!-- 옵션 타입1 -->
+									<div class="optPopup" ng-class="{on:true}">									
+										<div class="titWrap">
+											<p>컬러 선택</p>
+										</div>
+										<div class="optList">
+											<ul>
+												<li>
+													<div class="optItem">
+														<div class="opt">
+															<div class="txtCut">
+																<span class="choice">선택1)</span>
+																<span>ANNIE CITY RAFFIA (매디슨 미니)</span>
+															</div>
+														</div>
+													</div>
+												</li>
+												<li>
+													<div class="optItem">
+														<div class="opt">
+															<div class="txtCut">
+																<span class="choice">선택2)</span>
+																<span>ANNIE CITY RAFFIA (매디슨 미니)</span>
+																<p>3COLOR</p>
+															</div>
+														</div>
+													</div>
+												</li>
+												<li class="soldout">
+													<div class="optItem">
+														<p class="thumb"><img src="http://image.lotte.com/goods/87/35/62/03/4/403623587_5_60.jpg" alt="" /></p>
+														<div class="opt">
+															<div class="txtCut">
+																<span class="choice">선택3)</span>
+																<span>ANNIE CITY RAFFIA (매디슨 미니)</span>
+																<p>3COLOR | 품절</p>
+															</div>
+														</div>
+													</div>
+												</li>
+												<li>
+													<div class="optItem">
+														<p class="thumb"><img src="http://image.lotte.com/goods/63/51/56/03/4/403565163_5_60.jpg" alt="" /></p>
+														<div class="opt">
+															<div class="txtCut">
+																<span class="choice">선택4)</span>
+																<span>ANNIE CITY RAFFIA (매디슨 미니) ANNIE CITY RAFFIA (매디슨 미니) ANNIE CITY RAFFIA (매디슨 미니) ANNIE CITY RAFFIA (매디슨 미니) ANNIE CITY RAFFIA (매디슨 미니) ANNIE CITY RAFFIA (매디슨 미니)  </span>
+															</div>
+														</div>
+													</div>
+												</li>
+												<li>
+													<div class="optItem">
+														<div class="opt">
+															<div class="txtCut">
+																<span class="choice">선택5)</span>
+																<span>ANNIE CITY RAFFIA (매디슨 미니) ANNIE CITY RAFFIA (매디슨 미니) ANNIE CITY RAFFIA (매디슨 미니) ANNIE CITY RAFFIA (매디슨 미니) ANNIE CITY RAFFIA (매디슨 미니) ANNIE CITY RAFFIA (매디슨 미니)  </span>
+																<p>3COLOR | 품절</p>
+															</div>
+														</div>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<!-- //옵션 타입1 -->
+									<!-- 옵션 타입2 -->
+									<div class="optPopup" ng-class="{on:false}">	
+										<div class="titWrap">
+											<p>사이즈 선택</p>
+										</div>
+										<div class="optList">
+											<ul>
+												<li>
+													<div class="optItem">
+														<div class="opt">
+															<span>XS</span>
+														</div>
+													</div>
+												</li>
+												<li>
+													<div class="optItem">
+														<div class="opt">
+															<span>S</span>
+															<span class="quantityCnt">| 품절임박 (2개) </span>
+															<p class="delivery ">퀵배송 | 스마트픽</p>
+														</div>
+													</div>
+												</li>
+												<li class="soldout">
+													<div class="optItem">
+														<div class="opt">
+															<span>M</span>
+															<span>| 품절 </span>
+															<div class="restockAlram"><a ng-click="">재입고알림</a></div>
+														</div>
+													</div>
+												</li>
+												<li>
+													<div class="optItem">
+														<div class="opt">
+															<span>L</span>
+														</div>
+													</div>
+												</li>
+												<li>
+													<div class="optItem">
+														<div class="opt">
+															<span>XL</span>
+														</div>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<!-- //옵션 타입2 -->
+									<!-- 기획전 상품선택 -->
+									<div class="optPopup" ng-if="false" ng-class="{on:false}">	
+										<div class="titWrap">
+											<p>상품 선택</p>
+										</div>
+										<div class="prdOptList">
+											<ul>
+												<li>
+													<p class="maxOrder">1일 최대 00개 구매 가능합니다.</p>
+													<div class="optItem">
+														<p class="thumb"><img src="http://image.lotte.com/goods/87/35/62/03/4/403623587_5_60.jpg" alt="" /></p>
+														<div class="opt">
+															<p class="name">AAJ7759 (라이트 스웨트 셔츠)AJ7759 (라이트 스웨트 셔츠)AAJ7759 (라이트 스웨트 셔츠)AJ7759 (라이트 스웨트 셔츠)AAJ7759 (라이트 스웨트 셔츠)AJ7759 (라이트 스웨트 셔츠)</p>
+														</div>
+													</div>
+												</li>
+												<li class="soldout">
+													<div class="optItem">
+														<p class="thumb"><img src="http://image.lotte.com/goods/87/35/62/03/4/403623587_5_60.jpg" alt="" /></p>
+														<div class="opt">
+															<p class="name">AAJ7759 (라이트 스웨트 셔츠)AJ7759 (라이트 스웨트 셔츠)AAJ7759 (라이트 스웨트 셔츠)AJ7759 (라이트 스웨트 셔츠)AAJ7759 (라이트 스웨트 셔츠)AJ7759 (라이트 스웨트 셔츠)</p>
+															<a ng-click="" class="restockAlram">재입고알림</a>
+															<p class="price"><strong>198,600</strong>원</p>
+														</div>
+													</div>
+												</li>
+												<li class="pkgNo">
+													<div class="optItem">
+														<p class="thumb"><img src="http://image.lotte.com/goods/87/35/62/03/4/403623587_5_60.jpg" alt="" /></p>
+														<div class="opt">
+															<p class="name">AAJ7759 (라이트 스웨트 셔츠)AJ7759 (라이트 스웨트 셔츠)AAJ7759 (라이트 스웨트 셔츠)AJ7759 (라이트 스웨트 셔츠)AAJ7759 (라이트 스웨트 셔츠)AJ7759 (라이트 스웨트 셔츠)</p>
+															<p class="delivery">4/18(수) 도착예정</p>
+															<p class="price"><strong>198,600</strong>원</p>
+														</div>
+													</div>
+												</li>
+												<li>
+													<div class="optItem">
+														<p class="thumb"><img src="http://image.lotte.com/goods/87/35/62/03/4/403623587_5_60.jpg" alt="" /></p>
+														<div class="opt">
+															<p class="name">AAJ7759 (라이트 스웨트 셔츠)AJ7759 (라이트 스웨트 셔츠)AAJ7759 (라이트 스웨트 셔츠)AJ7759 (라이트 스웨트 셔츠)AAJ7759 (라이트 스웨트 셔츠)AJ7759 (라이트 스웨트 셔츠)</p>
+															<p class="delivery">4/18(수) 도착예정</p>
+															<p class="price"><strong>198,600</strong>원</p>
+														</div>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<!-- // 기획전 상품선택 -->
+								</div>
+							</section>
+							<!-- //옵션 레이어 -->
+						</div>
+						
+					</section>
+					<!-- //바로주문 옵션 선택창 -->
+					<!-- datepicker -->
+					<section id="dtPicker" date-picker  ng-if="false">
+						<span class="close" ng-click="datePickerClose()">닫기</span>
+						<div class="head">
+							<span class="prev" ng-click="datePrev()">Prev</span>
+							<span class="next" ng-click="dateNext()">Next</span>
+							<h5>
+							   <strong>2017</strong> 년 
+							   <strong>07</strong> 월
+							</h5>
+						</div>
+						<section class="calendar">
+							<div class="week">SUN</div>
+							<div class="week">MON</div>
+							<div class="week">TUE</div>
+							<div class="week">WED</div>
+							<div class="week">THU</div>
+							<div class="week">FRI</div>
+							<div class="week">SAT</div>
+							<div><span class="off"><strong class="">25</strong></span></div>
+							<div><span class="off"><strong class="">26</strong></span></div>
+							<div><span class="off"><strong class="">27</strong></span></div>
+							<div><span class="off"><strong class="">28</strong></span></div>
+							<div><span class="off"><strong class="">29</strong></span></div>
+							<div><span class="off"><strong class="">30</strong></span></div>
+							<div><span class="off"><strong class="">1</strong></span></div>
+							<div><span class="off"><strong class="">2</strong></span></div>
+							<div><span class="off"><strong class="">3</strong></span></div>
+							<div><span class="off"><strong class="">4</strong></span></div>
+							<div><span class="off"><strong class="">5</strong></span></div>
+							<div><span class="off"><strong class="">6</strong></span></div>
+							<div><span class="off"><strong class="">7</strong></span></div>
+							<div><span class="off"><strong class="">8</strong></span></div>
+							<div><span class="off"><strong class="">9</strong></span></div>
+							<div><span class="off"><strong class="">10</strong></span></div>
+							<div><span class="off"><strong class="">11</strong></span></div>
+							<div><span class="today"><strong class="">12</strong></span></div>
+							<div><span class=""><strong class="on">13</strong></span></div>
+							<div><span class=""><strong class="">14</strong></span></div>
+							<div><span class=""><strong class="">15</strong></span></div>
+							<div><span class=""><strong class="">16</strong></span></div>
+							<div><span class=""><strong class="">17</strong></span></div>
+							<div><span class=""><strong class="">18</strong></span></div>
+							<div><span class=""><strong class="">19</strong></span></div>
+							<div><span class=""><strong class="">20</strong></span></div>
+							<div><span class=""><strong class="">21</strong></span></div>
+							<div><span class=""><strong class="">22</strong></span></div>
+							<div><span class=""><strong class="">23</strong></span></div>
+							<div><span class=""><strong class="">24</strong></span></div>
+							<div><span class=""><strong class="">25</strong></span></div>
+							<div><span class=""><strong class="">26</strong></span></div>
+							<div><span class=""><strong class="">27</strong></span></div>
+							<div><span class=""><strong class="">28</strong></span></div>
+							<div><span class=""><strong class="">29</strong></span></div>
+							<div><span class=""><strong class="">30</strong></span></div>
+							<div><span class=""><strong class="">31</strong></span></div>
+						</section>
+					</section>
+					<!-- //datepicker-->
+				</section>
+			</div>
+			<!-- //container -->
+
+		</section>
+		<!-- //sub_header_wrap -->
+
+		<!-- footer -->
+		<footer id="footer">
+			<ul class="menu01">
+				<li><a class="ng-binding" href="#">마이롯데</a><i></i>	</li>
+				<li><a ng-click="pcClick()">PC버전</a><i></i></li>
+				<li><a href="#">장바구니</a><i></i></li>
+				<li><a href="#">고객센터</a><i></i></li>
+				<li><a href="#" ng-click="loginProc()" ng-bind="(loginInfo.isLogin)?'로그아웃':'로그인'" class="ng-binding">로그아웃</a></li>
+			</ul>
+			<div class="info">
+				<ul class="menu02">
+					<li><strong>(주)롯데닷컴</strong></li>
+					<li><a ng-click="ftcClick()">사업자정보확인</a></li>
+					<li><a ng-click="forwardClick()">채무지급보증안내</a></li>
+				</ul>
+				<p class="add">
+					<span class="addFirst">대표이사 : 김형준</span>
+					<span class="line">서울시 중구 을지로 158 10층(을지로4가, 삼풍빌딩)</span>
+					<span class="line">사업자등록번호 : 101-81-52964 통신판매업신고 : 중구 제00402호</span>
+					<span class="line">고객만족센터 : <a href="tel:1577-1110">1577-1110</a>  webmaster@lotte.com</span>
+					<span class="line">개인정보보호책임자 : 윤상선</span> <span class="line">청소년보호책임자 : 김찬기</span>
+					<span>호스팅 사업자 : (주)롯데닷컴</span>
+				</p>
+			</div>
+			<div class="menu03">
+				<ul>
+					<li><a href="#">이용약관</a></li>
+					<li><a href="#"><strong>개인정보처리방침</strong></a></li>
+					<li><a href="#">청소년보호정책</a></li>
+				</ul>
+			</div>
+			<div class="capyright">Copyright © LOTTE.com, Inc. All rights Reserved.</div>
+		</footer>
+		<!-- //footer -->
+
+		<!-- quick_btn -->
+		<div class="quick_btn">
+			<div ng-show="visible" class="">
+				<a class="btn_back ng-hide" ng-click="gotoPrepageSide()" ng-show="quickBackBtn">뒤로</a><a class="btn_top" ng-click="gotoTop()">위로</a>
+			</div>
+			<a class="btn_talk" ng-click="gotoTalk()">톡상담</a>
+		</div>
+		<!-- quick_btn -->
+	</div>
+
+	<!-- lotteActionbar -->
+	<section id="lotteActionbar" class="actionbar" ng-show="!appObj.isApp &amp;&amp; !actionbarHideFlag">
+		<ul class="actionbar_wrap">
+			<li class="home on" ng-class="{on:cur_pageid == 1 &amp;&amp; !isShowSideCtg}"><button ng-click="gotoMainFooter()" class="btn_main">홈</button></li>
+			<li class="ctg" ng-class="{on: isShowSideCtg}"><button ng-click="showSideCtgFooter()" class="btn_ctg">카테고리</button></li>
+			<li class="order" ng-class="{on:cur_pageid == 2}"><button ng-click="gotoOrderLstFooter()" class="btn_order">주문배송</button></li>
+			<li class="mylotte" ng-class="{on:cur_pageid == 3}"><button ng-click="gotoMyPageFooter()" class="btn_mylotte">마이롯데</button></li>
+		</ul>
+	</section>
+	<!-- //lotteActionbar -->
+</body>
+</html>

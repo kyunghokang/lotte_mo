@@ -1,0 +1,1 @@
+angular.module("app").run(["$templateCache",function(a){"use strict";a.put("/lotte/resources_dev/talk/talkRecom_container.html",'<section ng-show="contVisible" class="cont_minheight">\nSmartTalk Recom\n</section>')}]);

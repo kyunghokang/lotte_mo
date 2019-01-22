@@ -1,0 +1,23 @@
+<ol class="prod_list_best10">
+    <li ng-repeat="item in products track by $index">
+        <!-- 일반상품 : Best10형 -->
+        <div class="unit_list_best10">
+            <a ng-click="best10ProductInfoClick(item)">
+                <span class="idx">{{$index + 1}}</span>
+                <div class="thumb">
+                    <img ng-src="{{'http://image.lotte.com' + item.sImgUrl}}" alt="{{item.goodsNm}}" err-src />
+                </div>
+                <div class="info">
+                    <span class="tit"><span ng-bind-html="item.goodsNm"></span></span>
+                    <p class="pr_box">
+                        <span class="price"><em>{{item.price2|number}}</em>원<b style="font-weight:normal;" ng-if="item.goodsCmpsCd == 30">~</b></span>
+                        <span class="price2" ng-show="item.price2 != item.price1 && item.price1">
+                            <em>{{item.price1|number}}</em>원
+                        </span>
+                    </p>
+                </div>
+            </a>
+        </div>
+        <!-- //일반상품 : Best10형 -->
+    </li>
+</ol>

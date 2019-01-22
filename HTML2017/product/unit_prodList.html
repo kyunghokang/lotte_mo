@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+	<meta charset="utf-8">
+	<title>롯데닷컴</title>
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+
+	<!-- 기존 css & js -->
+	<!-- <script src="/lotte/resources_dev/common/common_load_2017.js"></script> -->
+	<link rel="stylesheet" type="text/css" href="common.min.css">
+	<link rel="stylesheet" type="text/css" href="product_view.min.css">
+	<!-- //기존 css & js -->
+	<!-- 신규 css -->
+	<!-- <link rel="stylesheet" type="text/css" href="product_k.css">
+	<link rel="stylesheet" type="text/css" href="product_p.css"> -->
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/product/m/product_view_2017.css">
+	<!-- //신규 css -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script><!-- 코딩용 angular js -->
+
+</head>
+<body ng-controller="ProductCtrl">
+
+	<div id="wrapper">
+
+		<section>
+			<header class="sub_header_top_wrap" id="lotteHeader">
+				<div class="inner_wrap headerFixed">
+					<h1 class="logo"><button class="btn_main">LOTTE.COM</button></h1>
+					<button class="btn_prev">이전</button>
+					<div class="header_srh_wrap web">
+						<div class="srh_box">
+							<label for="keyword" class="btn_srh"></label>
+						</div>
+					</div>
+					<button class="btn_ctg">카테고리</button>
+					<button class="btn_cart">장바구니<i class="cnt">5</i></button>
+				</div>
+			</header>
+		</section>
+
+		<section class="cont_minheight">
+			<!-- sub_header_wrap -->
+			<div class="sub_header_wrap">
+				<header id="head_sub" style="z-index:10;position:fixed;top:48px;width:100%">
+					<div class="ng-scope">
+						<h2>
+							<span>
+								<span>상품상세</span>
+								<a class="btn_sel"></a>
+							</span>
+							<span class="titLocation">
+								<span class="headTagspan">
+									<a class="ddca ng-binding">화장품</a>
+								</span>
+								<span class="headTagspan">
+									<a>색조메이크업</a>
+								</span>
+								<span class="headTagspan">
+									<a>립스틱</a>
+								</span>
+							</span>
+						</h2>
+						<p class="header_wish share gift"><a href="#"><img id="wishIcon" src="http://image.lotte.com/lotte/mo2015/angular/detail/detail_wish_icon.png"></a></p>
+						<p class="this gift"><a href="#">공유</a></p>
+					</div>
+				</header>
+			</div>
+			<!-- //sub_header_wrap -->
+
+			<!-- container -->
+			<div id="container">
+				<!-- 퍼블리싱 시작-->
+				<div class="prd_title">
+					<p>루이까또즈 베스트상품</p>
+					<div class="btn_bs on"><span>즐겨찾기</span></div>
+				</div>
+				<div class="unit_prod_4">
+					<ul>
+						<li>
+							<a href="#">
+								<div class="imgwrap">
+									<img src="http://image.lotte.com/goods/88/43/20/61/3/361204388_1_280.jpg" alt="" />
+								</div>
+								<p class="prodname">[블랙앤믹스] 브로치가디건+스커트 투피스</p>
+								<p class="price">26,000<em>원</em></p>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<div class="imgwrap">
+									<div class="soldout">SOLD OUT</div>
+									<img src="http://image.lotte.com/goods/88/43/20/61/3/361204388_1_280.jpg" alt="" />
+								</div>
+								<p class="prodname">[블랙앤믹스] 브로치가디건+스커트 투피스</p>
+								<p class="price">26,000<em>원</em></p>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<div class="imgwrap">
+									<img src="http://image.lotte.com/goods/88/43/20/61/3/361204388_1_280.jpg" alt="" />
+								</div>
+								<p class="prodname">[블랙앤믹스] 브로치가디건+스커트 투피스</p>
+								<p class="price">26,000<em>원</em></p>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<div class="imgwrap">
+									<img src="http://image.lotte.com/goods/88/43/20/61/3/361204388_1_280.jpg" alt="" />
+								</div>
+								<p class="prodname">[블랙앤믹스] 브로치가디건+스커트 투피스</p>
+								<p class="price">26,000<em>원</em></p>
+							</a>
+						</li>
+					</ul>
+				</div>
+				
+				<div class="btnMore">
+					<span class="btnArea"><a href="#more"><span>브랜드샵 바로가기</span></a></span>
+				</div>
+				<!-- 퍼블리싱 끝-->
+			</div>
+			<!-- //container -->
+
+		</section>
+		<!-- //sub_header_wrap -->
+
+		<!-- footer -->
+		<footer id="footer">
+			<ul class="menu01">
+				<li><a class="ng-binding" href="#">마이롯데</a><i></i>	</li>
+				<li><a ng-click="pcClick()">PC버전</a><i></i></li>
+				<li><a href="#">장바구니</a><i></i></li>
+				<li><a href="#">고객센터</a><i></i></li>
+				<li><a href="#" ng-click="loginProc()" ng-bind="(loginInfo.isLogin)?'로그아웃':'로그인'" class="ng-binding">로그아웃</a></li>
+			</ul>
+			<div class="info">
+				<ul class="menu02">
+					<li><strong>(주)롯데닷컴</strong></li>
+					<li><a ng-click="ftcClick()">사업자정보확인</a></li>
+					<li><a ng-click="forwardClick()">채무지급보증안내</a></li>
+				</ul>
+				<p class="add">
+					<span class="addFirst">대표이사 : 김형준</span>
+					<span class="line">서울시 중구 을지로 158 10층(을지로4가, 삼풍빌딩)</span>
+					<span class="line">사업자등록번호 : 101-81-52964 통신판매업신고 : 중구 제00402호</span>
+					<span class="line">고객만족센터 : <a href="tel:1577-1110">1577-1110</a>  webmaster@lotte.com</span>
+					<span class="line">개인정보보호책임자 : 윤상선</span> <span class="line">청소년보호책임자 : 김찬기</span>
+					<span>호스팅 사업자 : (주)롯데닷컴</span>
+				</p>
+			</div>
+			<div class="menu03">
+				<ul>
+					<li><a href="#">이용약관</a></li>
+					<li><a href="#"><strong>개인정보처리방침</strong></a></li>
+					<li><a href="#">청소년보호정책</a></li>
+				</ul>
+			</div>
+			<div class="capyright">Copyright © LOTTE.com, Inc. All rights Reserved.</div>
+		</footer>
+		<!-- //footer -->
+
+		<!-- quick_btn -->
+		<div class="quick_btn">
+			<div ng-show="visible" class="">
+				<a class="btn_back ng-hide" ng-click="gotoPrepageSide()" ng-show="quickBackBtn">뒤로</a><a class="btn_top" ng-click="gotoTop()">위로</a>
+			</div>
+			<a class="btn_talk" ng-click="gotoTalk()">톡상담</a>
+		</div>
+		<!-- quick_btn -->
+	</div>
+
+	<!-- lotteActionbar -->
+	<section id="lotteActionbar" class="actionbar" ng-show="!appObj.isApp &amp;&amp; !actionbarHideFlag">
+		<ul class="actionbar_wrap">
+			<li class="home on" ng-class="{on:cur_pageid == 1 &amp;&amp; !isShowSideCtg}"><button ng-click="gotoMainFooter()" class="btn_main">홈</button></li>
+			<li class="ctg" ng-class="{on: isShowSideCtg}"><button ng-click="showSideCtgFooter()" class="btn_ctg">카테고리</button></li>
+			<li class="order" ng-class="{on:cur_pageid == 2}"><button ng-click="gotoOrderLstFooter()" class="btn_order">주문배송</button></li>
+			<li class="mylotte" ng-class="{on:cur_pageid == 3}"><button ng-click="gotoMyPageFooter()" class="btn_mylotte">마이롯데</button></li>
+		</ul>
+	</section>
+	<!-- //lotteActionbar -->
+</body>
+</html>

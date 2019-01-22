@@ -1,0 +1,17 @@
+<section class="footer_agreement">
+    <p ng-bind-html="agreementData"></p>
+	<div class="s_box04" ng-show="agreementList.length > 0" >
+		<select  ng-model="agreementIdx" ng-change="openPop()">
+		   <option value="-1">구버전 이용약관</option>
+		   <option ng-repeat="list in agreementList" value="{{$index}}">{{list.title}}</option>    
+		</select>
+		<div class="img_box">&nbsp;</div>
+	</div>
+    <div class="agreement_popup" ng-if ="agreementIdx > -1 ">
+       	<div class="agreement_pop_wrap">
+       		<h2 class="agreement_h">{{popContTit}}</h2>
+       		<div id="pop_cont" class="agreement_conts" ng-bind-html="popContDetail"></div>
+       		<a ng-click = "closePop()" href="#" class="close_btn">닫기</a>
+       	</div>
+    </div>        
+</section>

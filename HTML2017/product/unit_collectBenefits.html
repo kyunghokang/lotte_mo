@@ -1,0 +1,263 @@
+﻿<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+	<meta charset="utf-8">
+	<title>롯데닷컴</title>
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+
+	<!-- 기존 css & js -->
+	<!-- <script src="/lotte/resources_dev/common/common_load_2017.js"></script> -->
+	<link rel="stylesheet" type="text/css" href="common.min.css">
+	<link rel="stylesheet" type="text/css" href="product_view.min.css">	
+	<!-- //기존 css & js -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script><!-- 코딩용 angular js -->
+
+<style type="text/css">
+/* common */
+.sub_header_top_wrap h2{text-align:center;line-height:48px;font-size:19px;font-weight:normal;color:#fff;}
+.prd_title_line{background-color:#fff;}
+.prd_title_line p{height:25px;margin:0 15px;padding:15px 0;font-size:16px;font-weight:bold;line-height:25px;word-break:break-all;white-space:normal;overflow:hidden;border-bottom:1px solid #f1f1f1;}
+.btn_sty2{height:32px;display:inline-block;text-align:center;padding:0 8px;font-size:13px;line-height:32px;color:#7291cf;border:1px solid #7291cf;background-color:#fff;border-radius:4px;box-sizing:border-box;}
+.btn_sty3{height:32px;display:inline-block;text-align:center;padding:0 10px;font-size:13px;line-height:32px;color:#fff;background-color:#7291cf;border-radius:4px;box-sizing:border-box;}
+	
+.benefits_info{padding:15px;background-color:#c9d7f5;}
+.benefits_box{background-color:#fff;border-radius:4px;}
+.benefits_info .benefits_top, .benefits_info .benefits_bottom{line-height:25px;padding:15px 23px;}
+.benefits_info .benefits_top .nm, .benefits_info .benefits_bottom .nm{float:left;font-size:16px;font-weight:bold;}
+.benefits_info .benefits_top .price, .benefits_info .benefits_bottom .price{float:right;font-size:13px;letter-spacing:-1px;color:#f27c3d;}
+.benefits_info .benefits_top .price strong{font-size:16px;}
+.benefits_info .benefits_top:after, .benefits_info .benefits_bottom:after{content:"";display:block;clear:both;height:0;visibility:hidden;}
+.benefits_info .benefits_bottom{border-top:5px solid #c9d7f5;}
+.benefits_info .benefits_bottom .price strong{font-size:23px;}
+.benefits_info ul{padding:10px 23px;border-top:1px solid #f1f1f1;}
+.benefits_info ul li{width:100%;display:table;line-height:17px;padding:10px 0;}
+.benefits_info ul li:first-child{border-top:none;}
+.benefits_info ul li:after{content:"";display:block;clear:both;height:0;visibility:hidden;}
+.benefits_info ul li p{height:100%;display:table-cell;vertical-align:middle}
+.benefits_info ul li .nm{width:65%;text-align:left;}
+.benefits_info ul li .nm strong{font-size:16px;}
+.benefits_info ul li .price{width:35%;text-align:right;font-size:13px;letter-spacing:-1px;color:#f27c3d;}
+.benefits_info ul li .price strong{font-size:16px;}
+.benefits_info .login_ck{margin-bottom:-15px;line-height:35px;color:#7291cf;background-color:#c9d7f5;}
+
+.benefits_add{margin-bottom:10px;border-bottom:1px solid #e9e9e9;background-color:#fff;}
+.benefits_add ul.card_info{margin:0 15px;padding:13px 15px 25px;}
+.benefits_add ul.card_info li{position:relative;padding:8px 0 8px 30px;line-height:20px;}
+.benefits_add ul.card_info li p{position:relative;}
+.benefits_add ul.card_info li p .price{font-size:16px;font-weight:bold;}
+.benefits_add ul.card_info li .card:before{content:"";display:inline-block;position:absolute;top:50%;left:-30px;margin-top:-8px;width:23px;height:17px;vertical-align:middle;background:url(../images/product/ic_elem_prod2.png) no-repeat -50px 0;background-size:200px 100px}
+.benefits_add ul.card_info li .point:before{content:"";display:inline-block;position:absolute;top:1px;left:-30px;width:22px;height:22px;vertical-align:middle;background:url(../images/product/ic_elem_prod2.png) no-repeat -100px 0;background-size:200px 100px}
+.benefits_add ul.card_info li .txt{color:#aaaaaa;}
+.benefits_add ul.card_info li .btn{position:absolute;top:1px;right:-15px;}
+.benefits_add ul li .layer_tip{display:inline-block;width:21px;height:14px;background:url(../images/product/ic_elem_prod2.png) no-repeat -147px 0;background-size:200px 100px;text-indent:-9999px;overflow:hidden;}
+.benefits_desc{margin-bottom:18px;padding:0 28px;background-color:#fff;}
+.benefits_desc li{margin-bottom:3px;padding:0 0 0 9px;font-size:12px;;line-height:17px;background:url(http://image.lotte.com/lotte/mo2015/angular/cart/bul_cart1.gif) no-repeat 0 8px;background-size:2px;color:#aaa;}
+
+.lpoint_info {margin-bottom:10px;border-bottom:1px solid #e9e9e9;background-color:#fff;}
+.lpoint_info .lpoint_list{padding:0 0 12px}
+.lpoint_info .lpoint_list li{position:relative;padding:22px 98px 22px 30px;line-height:20px;line-height:18px;}
+.lpoint_info .lpoint_list li:nth-child(even){background-color:#f3f3f3;}
+.lpoint_info .lpoint_list li .point{font-size:16px;font-weight:bold;}
+.lpoint_info .lpoint_list li .ti{margin-top:6px;}
+.lpoint_info .lpoint_list li .card{margin-top:6px;color:#aaa;}
+.lpoint_info .lpoint_list li .card span{color:#333;}
+.lpoint_info .lpoint_list li .btn{position:absolute;top:50%;right:15px;margin-top:-16px;}
+
+.benefits_ad{padding:0 15px;background-color:#98add9;}
+.benefits_ad a{position:relative;display:block;text-align:center;line-height:50px;color:#fff;}
+.benefits_ad a span{position:absolute;top:0;left:0;font-size:15px;opacity:0.4;}
+.benefits_ad a strong{font-size:16px;}
+.benefits_ad a:after{content:"";position:absolute;width:7px;height:7px;top:50%;right:0;margin-top:-4px;text-align:right;line-height:0;font-size:0;font-weight:normal;border-width: 1px 1px 0 0;border-style:solid;border-color:#ffffff;
+-moz-transform:rotate(45deg);
+-o-transform:rotate(45deg);
+-ms-transform:rotate(45deg);
+-webkit-transform:rotate(45deg);
+transform:rotate(45deg)}
+</style>
+</head>
+<body ng-controller="MainCtrl">
+
+	<div id="wrapper">
+
+		<section>
+			<header class="sub_header_top_wrap" id="lotteHeader">
+				<div class="inner_wrap headerFixed">
+				<!-- <h1 class="logo"><button class="btn_main">LOTTE.COM</button></h1>-->
+					<button class="btn_prev">이전</button>
+					<!-- <div class="header_srh_wrap web">
+						<div class="srh_box">
+							<label for="keyword" class="btn_srh"></label>
+						</div>
+					</div> -->
+					<!-- <button class="btn_ctg">카테고리</button>
+					<button class="btn_cart">장바구니<i class="cnt">5</i></button> -->
+					<h2>혜택 모아보기</h2>
+				</div>
+			</header>
+		</section>
+
+		<section class="cont_minheight">
+
+			<!-- container -->
+			<div id="container">
+				<!-- 퍼블리싱 시작-->
+				<div class="benefits_info">
+					<div class="benefits_box">
+						<div class="benefits_top">
+							<div class="nm">참좋은혜택가</div>
+							<div class="price"><strong>109,250</strong>원</div>
+						</div>
+						<ul>
+							<li>
+								<p class="nm">2월 플래티넘+전월 구매자 <br />구매감사 2% 할인쿠폰 사용시 </p>
+								<p class="price"><strong>- 9,755</strong>원 할인</p>
+							</li>
+							<li>
+								<p class="nm">네이버 7% 중복쿠폰 사용시</p>
+								<p class="price"><strong>- 8,755</strong>원 할인</p>
+							</li>
+						</ul>
+						<div class="benefits_bottom">
+							<div class="nm">최대할인 적용가</div>
+							<div class="price"><strong>94,810</strong>원</div>
+						</div>
+						<div class="login_ck">
+							<p>* 로그인을 하시면 고객님의 쿠폰이 추가 적용됩니다.</p>
+						</div>
+					</div>
+				</div>
+		
+				<div class="prd_title_line">
+					<p> 한번 더! 추가할인 혜택 및 적립</p>
+				</div>
+				<div class="benefits_add">
+					<ul class="card_info">
+						<li>
+							<p class="card"><strong>KB카드</strong>  청구할인가  <span class="price">92,505</span>원</p>
+							<p class="txt">7만원이상 7%청구할인</p>
+						</li>
+						<li>
+							<p class="card"><strong>하나카드</strong>  청구할인가  <span class="price">98,755</span>원</p>
+							<p class="txt">10만원이상 5%청구할인</p>
+							<div class="btn"><a href="#" class="btn_sty3">카드안내</a></div>
+						</li>
+						<li>
+							<p class="card"><strong>무이자</strong> 최대 6개월  <span class="price">23,866</span>원×6개월</p>
+						</li>
+						<li>
+							<p class="point">
+								L.POINT 적립  <span class="price">10,100P</span><br />
+								 롯데포인트플러스카드로 결제 시 <strong>21,900P </strong><a href="#" class="layer_tip">Tip</a>
+							</p>
+						</li>
+					</ul>
+					<ul class="benefits_desc">
+						<li>추가할인혜택금액은 참좋은혜택가 기준으로 노출되며, <br />청구할인은 실제 결제금액으로 청구할인이 됩니다. </li>
+						<li>추가할인쿠폰은 결제 전 주문서에서 확인가능합니다.</li>
+					</ul>
+				</div>
+		
+				<div class="prd_title_line">
+					<p>구매하고 혜택 받으세요!</p>
+				</div>
+				<div class="lpoint_info">
+					<ul class="lpoint_list">
+						<li>
+							<p class="point">L.POINT 34,000원 적립</p>
+							<p class="ti">전상품(가전/가구제외) 구매 대상</p>
+							<p class="date">구매기간 :  05.01(월)~05.02(화)</p>
+							<p class="card"><span>롯데카드</span> 150,000원 이상 결제시</p>
+							<div class="btn"><a href="#" class="btn_sty2">자세히 보기</a></div>
+						</li>
+						<li>
+							<p class="point">L.POINT 34,000원 적립</p>
+							<p class="ti">전상품(가전/가구제외) 구매 대상</p>
+							<p class="date">구매기간 :  05.01(월)~05.02(화)</p>
+							<p class="card">SKII 상품  150,000원 이상 결제시</p>
+							<div class="btn"><a href="#" class="btn_sty2">자세히 보기</a></div>
+						</li>
+						<li>
+							<p class="point">L.POINT 34,000원 적립</p>
+							<p class="ti">전상품(가전/가구제외) 구매 대상</p>
+							<p class="date">구매기간 :  05.01(월)~05.02(화)</p>
+							<p class="card"><span>롯데카드</span> 150,000원 이상 결제시</p>
+							<div class="btn"><a href="#" class="btn_sty2">자세히 보기</a></div>
+						</li>
+					</ul>
+					<ul class="benefits_desc">
+						<li>참좋은 혜택가 109,250원 기준인 리스트이며, 실제 적립 기준은 <br />각 결제금액 기준으로 적립됩니다. </li>
+						<li>현재 보시고 있는 상품 기준의 구매사은 이벤트 리스트 입니다. <br />구매 전 자세히 보기를 누르셔서 해당하는 더 큰 혜택을 받아가세요.</li>
+					</ul>
+				</div>
+				
+				<div class="benefits_ad">
+					<a href=""><span>AD</span> <strong>잠깐 포인트 받고 구경하세요!</strong></a>
+				</div>
+				<!-- 퍼블리싱 끝-->
+			</div>
+			<!-- //container -->
+
+		</section>
+		<!-- //sub_header_wrap -->
+
+		<!-- footer -->
+		<footer id="footer">
+			<ul class="menu01">
+				<li><a class="ng-binding" href="#">마이롯데</a><i></i>	</li>
+				<li><a ng-click="pcClick()">PC버전</a><i></i></li>
+				<li><a href="#">장바구니</a><i></i></li>
+				<li><a href="#">고객센터</a><i></i></li>
+				<li><a href="#" ng-click="loginProc()" ng-bind="(loginInfo.isLogin)?'로그아웃':'로그인'" class="ng-binding">로그아웃</a></li>
+			</ul>
+			<div class="info">
+				<ul class="menu02">
+					<li><strong>(주)롯데닷컴</strong></li>
+					<li><a ng-click="ftcClick()">사업자정보확인</a></li>
+					<li><a ng-click="forwardClick()">채무지급보증안내</a></li>
+				</ul>
+				<p class="add">
+					<span class="addFirst">대표이사 : 김형준</span>
+					<span class="line">서울시 중구 을지로 158 10층(을지로4가, 삼풍빌딩)</span>
+					<span class="line">사업자등록번호 : 101-81-52964 통신판매업신고 : 중구 제00402호</span>
+					<span class="line">고객만족센터 : <a href="tel:1577-1110">1577-1110</a>  webmaster@lotte.com</span>
+					<span class="line">개인정보보호책임자 : 윤상선</span> <span class="line">청소년보호책임자 : 김찬기</span>
+					<span>호스팅 사업자 : (주)롯데닷컴</span>
+				</p>
+			</div>
+			<div class="menu03">
+				<ul>
+					<li><a href="#">이용약관</a></li>
+					<li><a href="#"><strong>개인정보처리방침</strong></a></li>
+					<li><a href="#">청소년보호정책</a></li>
+				</ul>
+			</div>
+			<div class="capyright">Copyright © LOTTE.com, Inc. All rights Reserved.</div>
+		</footer>
+		<!-- //footer -->
+
+		<!-- quick_btn -->
+		<div class="quick_btn">
+			<div ng-show="visible" class="">
+				<a class="btn_back ng-hide" ng-click="gotoPrepageSide()" ng-show="quickBackBtn">뒤로</a><a class="btn_top" ng-click="gotoTop()">위로</a>
+			</div>
+			<a class="btn_talk" ng-click="gotoTalk()">톡상담</a>
+		</div>
+		<!-- quick_btn -->
+	</div>
+
+	<!-- lotteActionbar -->
+	<section id="lotteActionbar" class="actionbar" ng-show="!appObj.isApp &amp;&amp; !actionbarHideFlag" style="display:block">
+		<ul class="actionbar_wrap">
+			<li class="home on" ng-class="{on:cur_pageid == 1 &amp;&amp; !isShowSideCtg}"><button ng-click="gotoMainFooter()" class="btn_main">홈</button></li>
+			<li class="ctg" ng-class="{on: isShowSideCtg}"><button ng-click="showSideCtgFooter()" class="btn_ctg">카테고리</button></li>
+			<li class="order" ng-class="{on:cur_pageid == 2}"><button ng-click="gotoOrderLstFooter()" class="btn_order">주문배송</button></li>
+			<li class="mylotte" ng-class="{on:cur_pageid == 3}"><button ng-click="gotoMyPageFooter()" class="btn_mylotte">마이롯데</button></li>
+		</ul>
+	</section>
+	<!-- //lotteActionbar -->
+</body>
+</html>

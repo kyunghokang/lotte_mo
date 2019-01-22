@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴-order_simple_complete</title>
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+
+<script>
+var APP_KEY = "7fa1e44757a94fd89921";
+var SERVER_TIME = new Date();
+</script>
+
+<script>
+// 로컬 테스트용 변수 설정 시작
+var LOTTE_CONSTANTS = [];
+LOTTE_CONSTANTS['MAPI_HOST_API'] = "http://localhost:8082";
+LOTTE_CONSTANTS['MAPI_HOST_SSL_API'] = "https://localhost:8082";
+LOTTE_CONSTANTS['M_HOST_MOBILE'] = "http://localhost:8082";
+LOTTE_CONSTANTS['M_HOST_SSL'] = "https://localhost:8082";
+LOTTE_CONSTANTS['PC_HOST_WEB'] = "http://www.lotte.com";
+var MAPI_HOST_API = LOTTE_CONSTANTS['MAPI_HOST_API'];
+var MAPI_HOST_SSL_API = LOTTE_CONSTANTS['MAPI_HOST_SSL_API'];
+var M_HOST_MOBILE = LOTTE_CONSTANTS['M_HOST_MOBILE'];
+var M_HOST_SSL = LOTTE_CONSTANTS['M_HOST_SSL'];
+var PC_HOST_WEB = LOTTE_CONSTANTS['PC_HOST_WEB'];
+LOTTE_CONSTANTS['SPLIT_GUBUN_1'] = ":^:"; 
+LOTTE_CONSTANTS['SPLIT_GUBUN_3'] = ";;;;;"; 
+LOTTE_CONSTANTS['ONENONE_BUY_LOGIN'] = "1"; 
+LOTTE_CONSTANTS['IMALL_BUY_LOGIN'] = "4";
+LOTTE_CONSTANTS['ST_STD_CD_PAY_MEAN_CD_L_POINT'] = "21";
+LOTTE_CONSTANTS['ST_STD_CD_PAY_MEAN_CD_LOTTE_POINT'] = "19";
+LOTTE_CONSTANTS['ST_STD_CD_PAY_MEAN_CD_DEPOSIT'] = "20";
+LOTTE_CONSTANTS['DEFAULT_LATE_VIEW_GOODS_COUNT'] = "20";
+LOTTE_CONSTANTS['NORMAL_LOGIN'] = "0";
+LOTTE_CONSTANTS['ONENONE_BUY_LOGIN'] = "1"; 
+LOTTE_CONSTANTS['CART_BUY_LOGIN'] = "2";
+LOTTE_CONSTANTS['ORDER_SEARCH_LOGIN'] = "3";
+LOTTE_CONSTANTS['IMALL_BUY_LOGIN'] = "4"; 
+LOTTE_CONSTANTS['IMALL_CART_BUY_LOGIN'] = "5" 
+LOTTE_CONSTANTS['LOGIN_SEED'] = "MDOTCOM";
+LOTTE_CONSTANTS['ORDER_PROTOCAL'] = "https";
+LOTTE_CONSTANTS['MOBILE_DOMAIN'] = "m.lotte.com";
+LOTTE_CONSTANTS['ELLOTTE_HOST_API'] = "http://mapi.ellotte.com";
+LOTTE_CONSTANTS['ELLOTTE_HOST_SSL_API'] = "http://mapi.ellotte.com";
+LOTTE_CONSTANTS['ELLOTTE_HOST_MOBILE'] = "http://m.ellotte.com";
+LOTTE_CONSTANTS['ELLOTTE_HOST_SSL'] = "https://m.ellotte.com";    
+LOTTE_CONSTANTS['ELLOTTE_LOGIN_SEED'] = "NMELLOTTE";
+LOTTE_CONSTANTS['ELLOTTE_IOS_APP_SCHEMA'] = "ellotte001";
+LOTTE_CONSTANTS['ELLOTTE_ANDROID_APP_SCHEMA'] = "ellotte002";
+LOTTE_CONSTANTS['PAYTYPE_CARD_047'] = "047";
+LOTTE_CONSTANTS['PAYTYPE_CARD_029'] = "029";
+LOTTE_CONSTANTS['PAYTYPE_CARD_031'] = "031";
+LOTTE_CONSTANTS['PAYTYPE_CARD_048'] = "048";
+LOTTE_CONSTANTS['EXP_MY_LOTTE_KO'] = "마이롯데";
+// 로컬 테스트용 변수 설정 끝
+</script>
+    
+<link rel="stylesheet" type="text/css" href="/lotte/resources/rt20181109_1/common.min.css"/>
+<script src="/lotte/resources/rt20181109_1/common.min.js"></script>
+<script src="/lotte/resources/rt20181109_1/common.tpl.js"></script>
+<link rel="stylesheet" type="text/css" href="/lotte/resources/rt20181109_1/order_simple_complete.min.css"/>
+<script src="/lotte/resources/rt20181109_1/order_simple_complete.min.js"></script>
+<script src="/lotte/resources/rt20181109_1/order_simple_complete.tpl.js"></script>
+
+</head>
+<body ng-controller="orderSimpleCompleteCtrl">
+    <div id="wrapper" ng-show="showWrap">
+        <lotte-header></lotte-header>
+        <lotte-search></lotte-search>
+        <sub-header></sub-header>
+
+        <lotte-container></lotte-container>
+
+        <lotte-footer></lotte-footer>
+        <lotte-btntop></lotte-btntop>
+    </div>
+
+    <lotte-side-category></lotte-side-category>
+    <lotte-footer-actionbar></lotte-footer-actionbar>
+    <lotte-comm-footer></lotte-comm-footer>
+</body>
+</html>

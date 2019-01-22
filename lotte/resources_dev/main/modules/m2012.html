@@ -1,0 +1,20 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!--M12 크로스컨텐츠형..-->
+	<div class="moduleCon">
+		<div class="unit unit_crosscontents">
+			<ul class="fclear">
+				<li ng-repeat="item in moduleData.items" ng-click="logGAEvtModuleEach($index + 1, item.topTxt + ' ' + item.btmTxt);planClick(item.linkUrl, moduleData.tclick + '_Clk_Ban'+numberFill(($index+1),2))">
+					<div class="imgwrap">
+						<p class="cover_img dim10_cont"><img ng-src="{{item.imgUrl}}"></p>
+					</div>
+					<div class="desc_wrap">
+						<div class="desc_cont">
+							<p class="ttl">{{item.topTxt}}</p>
+							<p class="desc">{{item.btmTxt}}</p>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>

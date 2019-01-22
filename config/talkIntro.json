@@ -1,0 +1,69 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tpltalk" : {
+                "options": {
+	            	"prefix":"/",
+                "module": "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/talk/talkIntro_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/talkIntro.template.js"
+            }
+        },
+
+        "concat" : {
+            "jstalk" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/talk/talkIntro.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/talkIntro.js"
+            }
+        },
+
+        "uglify" : {
+            "jstalk" : {
+                "src" : "lotte/resources/<%= version %>/talkIntro.js",
+                "dest" : "lotte/resources/<%= version %>/talkIntro.min.js"
+            },
+            "tpltalk" : {
+                "src" : "lotte/resources/<%= version %>/talkIntro.template.js",
+                "dest" : "lotte/resources/<%= version %>/talkIntro.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "csstalk" : {
+                "src" : [
+                    "lotte/resources_dev/talk/talkIntro.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/talkIntro.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleantalk" : [
+                "lotte/resources/<%= version %>/talkIntro.js",
+                "lotte/resources/<%= version %>/talkIntro.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmltalk" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "talk/talkIntro.html" : "talk/talkIntro_dev.html"
+                }
+            }
+        }
+    }
+}
+

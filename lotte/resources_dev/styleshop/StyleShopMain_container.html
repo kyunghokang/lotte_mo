@@ -1,0 +1,15 @@
+<section ng-show="contVisible" class="cont_minheight">
+	<section id="container"  
+		swipe-id="MainContent" 
+		ignore-destory="true"
+		swipe-max-ratio="0.2" 
+		swipe-min-distance="40" 
+		swipe-responsive="true"
+		swipe-loading-el="#swipePageLoading"
+		swipe-loading-el-zindex="30" 
+		swipe-end-exec="mainSwipeReset($event)">
+		<content-container></content-container>
+	</section>
+	<div class="pageLoading" ng-show="pageLoading && !productListLoading"><p class="loading half"></p></div>
+	<div class="loadWrap none" id="swipePageLoading" ng-show="!pageLoading && !productListLoading" style="top:0px;"><p class="loading half"></p></div>
+</section>

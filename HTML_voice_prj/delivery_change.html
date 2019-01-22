@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>배송지 변경</title>
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">	
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/push/common.css"/>	
+	<link rel="stylesheet" type="text/css" href="/HTML_voice_prj/voice.css" />		
+	
+	<link rel="stylesheet" type="text/css" href="/HTML_voice_prj/voice_shopping.css" />
+</head>
+<body>
+
+<section ng-show="contVisible" class="cont_minheight">
+	<div class="pop_middle2 tab-cont voice_cont_wrap">   <!-- 20180511 voice_cont_wrap클래스 추가 -->
+		<div class="order_simple_wrap "><!-- order -->
+			<address-tabs class="clear">
+		        <span class="inlineBorder active" data-tab2="tab2-1" onclick="toggleAction8(this)"> 배송지 목록
+		        </span>
+		        <span class="inlineBorder" data-tab2="tab2-2" onclick="toggleAction8(this)"> 배송지 직접 등록
+		        </span>
+		    </address-tabs>
+			<div class="tab1 tab-con active" id="tab2-1">
+				<ul class="home_list">
+					<!-- 20170621 2차수정 -->
+					<li class="home_li">
+						<span class="combo">
+							<input type="radio" name="coupon_refund" id="coupon_refund1" value="" class="radio01" checked="">
+							<!-- 20170628레이블안으로태그이동 -->
+							<label for="coupon_refund1">
+								<span class="color1">[최근]</span><span class="ls2">김로테(우리회사아닐까너네회사)</span>
+								<div class="detail_address">[234-120]서울시 중구 을지로 상품상가 12층</div>
+								<div class="detail_phone"><span>02-123-4567</span><span>010-1234-5678</span></div><!-- 20171106 추가 -->
+							</label>
+						</span>
+						<div class="btn_position two">
+							<a class="lpoint_btn">수정</a><!-- 20171106 삭제에서 수정으로 변경 -->
+						</div>
+						<address-content>
+				        <table border="0" cellpadding="0" cellspacing="0" width="100%" summary="배송지">
+				            <colgroup>
+				                <col width="80">
+				                <col width="*">
+				            </colgroup>
+				            <tbody>
+				                <tr>
+				                    <th>배송지명</th>
+				                    <td>
+				                        <input class="inlineBorder" type="text">
+				                    </td>
+				                </tr>
+				                <tr>
+				                    <th>받는분</th>
+				                    <td>
+				                        <input class="inlineBorder" type="text">
+				                    </td>
+				                </tr>
+				                <tr>
+				                    <th>주소</th>
+				                    <td class="td-address">
+				                        <div class="postal clear">
+				                            <input class="inlineBorder" type="text">
+				                            <span class="postal-search" onclick="javascript:$('.postal_code').show();">
+				                                우편번호 찾기
+				                            </span>
+				                        </div>
+				                        <div>
+				                            <input class="inlineBorder" type="text">
+				                        </div>
+				                        <div>
+				                            <input class="inlineBorder" type="text">
+				                        </div>
+				                    </td>
+				                </tr>
+				                <tr>
+				                    <th>연락처
+				                        <small>(택배안심번호)</small>
+				                    </th>
+														<!-- 20170704수정 -->
+				                    <td class="phone_align">
+				                        <div class="phone clear">
+		                                <selectbox class="pos-rel phone p32 rcArrow mr1">
+		                                    <select name="pfn">
+												                  <option value="010">010</option>
+												                  <option value="011">011</option>
+												                  <option value="019">019</option>
+		                                    </select>
+		                                </selectbox>
+		                                <input class="float-left inlineBorder p32 mr1 ng-pristine ng-untouched ng-valid" type="tel" ng-model="frmData.hp2">
+		                                <input class="float-left inlineBorder p33 ng-pristine ng-untouched ng-valid" type="tel" ng-model="frmData.hp3">
+
+				                        </div>
+				                    </td>
+				                </tr>
+				            </tbody>
+				        </table>
+						<div class="order_simple_pop04_1">
+							<a onclick="javascript:$(this).closest('li').removeClass('modify');" class="btn_style3">배송지 수정</a>
+							<a onclick="javascript:$(this).closest('li').removeClass('modify');" class="btn_style3">닫기</a><!-- 20171106 닫기버튼 추가 -->
+						</div>
+				    </address-content>
+					</li>
+					<!-- 20170621 2차수정 -->
+					<li class="home_li modify">
+						<span class="combo">
+							<input type="radio" name="coupon_refund" id="coupon_refund2" value="" class="radio01">
+							<!-- 20170628레이블안으로태그이동 -->
+							<label for="coupon_refund2">
+								<span class="color1">[기본배송지]</span><span class="ls2">김로테(우리회사아닐까너네회사)</span>
+								<div class="detail_address">[234-120]서울시 중구 을지로 상품상가 12층</div>
+								<div class="detail_phone"><span>02-123-4567</span><span>010-1234-5678</span></div><!-- 20171106 추가 -->
+							</label>
+						</span>
+						<div class="btn_position two">
+							<a class="lpoint_btn">수정</a><!-- 20171106 삭제에서 수정으로 변경 -->
+						</div>
+						<address-content>
+					        <table border="0" cellpadding="0" cellspacing="0" width="100%" summary="배송지">
+					            <colgroup>
+					                <col width="80">
+					                <col width="*">
+					            </colgroup>
+					            <tbody>
+					                <tr>
+					                    <th>배송지명</th>
+					                    <td>
+					                        <input class="inlineBorder" type="text">
+					                    </td>
+					                </tr>
+					                <tr>
+					                    <th>받는분</th>
+					                    <td>
+					                        <input class="inlineBorder" type="text">
+					                    </td>
+					                </tr>
+					                <tr>
+					                    <th>주소</th>
+					                    <td class="td-address">
+					                        <div class="postal clear">
+					                            <input class="inlineBorder" type="text">
+					                            <span class="postal-search" onclick="javascript:$('.postal_code').show();">
+					                                우편번호 찾기
+					                            </span>
+					                        </div>
+					                        <div>
+					                            <input class="inlineBorder" type="text">
+					                        </div>
+					                        <div>
+					                            <input class="inlineBorder" type="text">
+					                        </div>
+					                    </td>
+					                </tr>
+					                <tr>
+					                    <th>연락처
+					                        <small>(택배안심번호)</small>
+					                    </th>
+															<!-- 20170704수정 -->
+					                    <td class="phone_align">
+					                        <div class="phone clear">
+	                                      <selectbox class="pos-rel phone p32 rcArrow mr1">
+	                                          <select name="pfn">
+	                                            <option value="010">010</option>
+	                                            <option value="011">011</option>
+	                                            <option value="019">019</option>
+	                                          </select>
+	                                      </selectbox>
+		                                <input class="float-left inlineBorder p32 mr1 ng-pristine ng-untouched ng-valid" type="text" ng-model="frmData.hp2">
+		                                <input class="float-left inlineBorder p33 ng-pristine ng-untouched ng-valid" type="text" ng-model="frmData.hp3">
+					                        </div>
+					                    </td>
+					                </tr>
+					            </tbody>
+					        </table>
+							<div class="order_simple_pop04_1">
+								<a onclick="javascript:$(this).closest('li').removeClass('modify');" class="btn_style3">배송지 수정</a>
+								<a onclick="javascript:$(this).closest('li').removeClass('modify');" class="btn_style3">닫기</a><!-- 20171106 닫기버튼 추가 -->
+							</div>
+					    </address-content>
+					</li>
+					<!-- 20170621 2차수정 -->
+					<li class="home_li">
+						<span class="combo">
+							<input type="radio" name="coupon_refund" id="coupon_refund3" value="" class="radio01">
+							<!-- 20170628레이블안으로태그이동 -->
+							<label for="coupon_refund3">
+								<span class="ls2">김사랑(우리회사)</span>
+								<div class="detail_address">[234-120]서울시 중구 을지로 상품상가 12층</div>
+								<div class="detail_phone"><span>02-123-4567</span><span>010-1234-5678</span></div><!-- 20171106 추가 -->
+							</label>
+						</span>
+						<address-content>
+				        <table border="0" cellpadding="0" cellspacing="0" width="100%" summary="배송지">
+				            <colgroup>
+				                <col width="80">
+				                <col width="*">
+				            </colgroup>
+				            <tbody>
+				                <tr>
+				                    <th>배송지명</th>
+				                    <td>
+				                        <input class="inlineBorder" type="text">
+				                    </td>
+				                </tr>
+				                <tr>
+				                    <th>받는분</th>
+				                    <td>
+				                        <input class="inlineBorder" type="text">
+				                    </td>
+				                </tr>
+				                <tr>
+				                    <th>주소</th>
+				                    <td class="td-address">
+				                        <div class="postal clear">
+				                            <input class="inlineBorder" type="text">
+				                            <span class="postal-search" onclick="javascript:$('.postal_code').show();">
+				                                우편번호 찾기
+				                            </span>
+				                        </div>
+				                        <div>
+				                            <input class="inlineBorder" type="text">
+				                        </div>
+				                        <div>
+				                            <input class="inlineBorder" type="text">
+				                        </div>
+				                    </td>
+				                </tr>
+				                <tr>
+				                    <th>연락처
+				                        <small>(택배안심번호)</small>
+				                    </th>
+														<!-- 20170704수정 -->
+				                    <td class="phone_align">
+				                        <div class="phone clear">
+                                      <selectbox class="pos-rel phone p32 rcArrow mr1">
+                                          <select name="pfn">
+                                            <option value="010">010</option>
+                                            <option value="011">011</option>
+                                            <option value="019">019</option>
+                                          </select>
+                                      </selectbox>
+	                                <input class="float-left inlineBorder p32 mr1 ng-pristine ng-untouched ng-valid" type="text" ng-model="frmData.hp2">
+	                                <input class="float-left inlineBorder p33 ng-pristine ng-untouched ng-valid" type="text" ng-model="frmData.hp3">
+				                        </div>
+				                    </td>
+				                </tr>
+				            </tbody>
+				        </table>
+								<div class="order_simple_pop04_1">
+									<a onclick="javascript:$(this).closest('li').removeClass('modify');" class="btn_style3">배송지 수정</a>
+									<a onclick="javascript:$(this).closest('li').removeClass('modify');" class="btn_style3">닫기</a><!-- 20171106 닫기버튼 추가 -->
+								</div>
+				    </address-content>
+						<div class="btn_position two">
+							<a class="lpoint_btn">수정</a><!-- 20171106 삭제에서 수정으로 변경 -->
+						</div>
+					</li>
+					<!-- 20170621 2차수정 -->
+					<li class="home_li">
+						<span class="combo">
+							<input type="radio" name="coupon_refund" id="coupon_refund4" value="" class="radio01">
+							<!-- 20170628레이블안으로태그이동 -->
+							<label for="coupon_refund4">
+								<span class="ls2">김로테(우리회사아닐까너네회사)</span>
+								<div class="detail_address">[234-120]서울시 중구 을지로 상품상가 12층</div>
+								<div class="detail_phone"><span>02-123-4567</span><span>010-1234-5678</span></div><!-- 20171106 추가 -->
+							</label>
+						</span>
+						<address-content>
+				        <table border="0" cellpadding="0" cellspacing="0" width="100%" summary="배송지">
+				            <colgroup>
+				                <col width="80">
+				                <col width="*">
+				            </colgroup>
+				            <tbody>
+				                <tr>
+				                    <th>배송지명</th>
+				                    <td>
+				                        <input class="inlineBorder" type="text">
+				                    </td>
+				                </tr>
+				                <tr>
+				                    <th>받는분</th>
+				                    <td>
+				                        <input class="inlineBorder" type="text">
+				                    </td>
+				                </tr>
+				                <tr>
+				                    <th>주소</th>
+				                    <td class="td-address">
+				                        <div class="postal clear">
+				                            <input class="inlineBorder" type="text">
+				                            <span class="postal-search" onclick="javascript:$('.postal_code').show();">
+				                                우편번호 찾기
+				                            </span>
+				                        </div>
+				                        <div>
+				                            <input class="inlineBorder" type="text">
+				                        </div>
+				                        <div>
+				                            <input class="inlineBorder" type="text">
+				                        </div>
+				                    </td>
+				                </tr>
+				                <tr>
+				                    <th>연락처
+				                        <small>(택배안심번호)</small>
+				                    </th>
+														<!-- 20170704수정 -->
+				                    <td class="phone_align">
+				                        <div class="phone clear">
+                                      <selectbox class="pos-rel phone p32 rcArrow mr1">
+                                          <select name="pfn">
+                                            <option value="010">010</option>
+                                            <option value="011">011</option>
+                                            <option value="019">019</option>
+                                          </select>
+                                      </selectbox>
+	                                <input class="float-left inlineBorder p32 mr1 ng-pristine ng-untouched ng-valid" type="text" ng-model="frmData.hp2">
+	                                <input class="float-left inlineBorder p33 ng-pristine ng-untouched ng-valid" type="text" ng-model="frmData.hp3">
+				                        </div>
+				                    </td>
+				                </tr>
+				            </tbody>
+				        </table>
+								<div class="order_simple_pop04_1">
+									<a onclick="javascript:$(this).closest('li').removeClass('modify');" class="btn_style3">배송지 수정</a>
+									<a onclick="javascript:$(this).closest('li').removeClass('modify');" class="btn_style3">닫기</a><!-- 20171106 닫기버튼 추가 -->
+								</div>
+				    </address-content>
+						<div class="btn_position two">
+							<a class="lpoint_btn">수정</a><!-- 20171106 삭제에서 수정으로 변경 -->
+						</div>
+					</li>
+				</ul>
+				<div class="div_btn_cont type2">
+					<div class="btn_areaC type3">
+						<a href="#" class="btn_style3">선택 배송지 적용</a>
+					</div>
+				</div>
+			</div>
+			<div class="tab2 tab-con " id="tab2-2">
+				<address-content>
+					<table border="0" cellpadding="0" cellspacing="0" width="100%" summary="배송지">
+							<colgroup>
+									<col width="80">
+									<col width="*">
+							</colgroup>
+							<tbody>
+								<tr>
+									<th>배송지명</th>
+									<td>
+											<input class="inlineBorder" type="text">
+									</td>
+								</tr>
+								<tr>
+									<th>받는분</th>
+									<td>
+											<input class="inlineBorder" type="text">
+									</td>
+								</tr>
+								<tr>
+									<th>주소</th>
+									<td class="td-address">
+										<div class="postal clear">
+											<input class="inlineBorder" type="text">
+											<span class="postal-search" onclick="javascript:$('.postal_code').show();">
+													우편번호 찾기
+											</span>
+										</div>
+										<div>
+											<input class="inlineBorder" type="text">
+										</div>
+										<div>
+											<input class="inlineBorder" type="text">
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th>연락처
+											<small>(택배안심번호)</small>
+									</th>
+									<!-- 20170704수정 -->
+									<td class="phone_align">
+										<div class="phone clear">
+			                               <selectbox class="pos-rel phone p32 rcArrow mr1">
+			                                   <select name="pfn">
+			                                     <option value="010">010</option>
+			                                     <option value="011">011</option>
+			                                     <option value="019">019</option>
+			                                   </select>
+			                               </selectbox>
+											<input class="float-left inlineBorder p32 mr1 ng-pristine ng-untouched ng-valid" type="text" ng-model="frmData.hp2">
+											<input class="float-left inlineBorder p33 ng-pristine ng-untouched ng-valid" type="text" ng-model="frmData.hp3">
+										</div>
+									</td>
+								</tr>
+							</tbody>
+					</table>
+				</address-content>
+				<div class="check_bot_wrap">
+					<div class="s_text pdt0 pdb10">
+						<input type="checkbox" id="chk_dlvp_reuse" name="chk_dlvp_reuse" class="check01 mgb0" checked="checked">
+						<label for="chk_dlvp_reuse" style="font-weight:normal">배송지 목록에 추가</label>
+					</div>
+				</div>
+				<div class="div_btn_cont">
+					<div class="btn_areaC2">
+						<a href="#" class="btn_style3">등록배송지적용</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">	
+<!----------------- current css ----------------->
+
+<link rel="stylesheet" href="/lotte/resources_dev/mylotte/mylotte_smp.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<!-- container -->
+<section id="container">	
+	<!-- 스마트픽상품교환권_전송 -->
+	<div class="smp_coupon">
+		<section class="detail">
+			<div class="cont_wrap">
+				<div class="smpSendWrap">
+					<dl>
+						<dt>보내시는 분</dt>
+						<dd>
+							<ul>
+								<li>
+									<div class="sendTit"><label for="userName1">이름</label></div>
+									<div class="sendCont"><input type="text" id="userName1" placeholder="USER_NAME"></div>
+								</li>
+								<li>
+									<div class="sendTit"><label for="userNum1">휴대폰번호</label></div>
+									<div class="sendCont">
+										<select name="" id="userNum1">
+											<option value="">010</option>
+											<option value="">011</option>
+										</select>
+										<input type="tel" title="보내시는분 핸드폰 두번째 4자리">
+										<input type="tel" title="보내시는분 핸드폰 마지막 4자리">
+									</div>
+								</li>
+							</ul>
+						</dd>
+						<dt>
+							받으시는 분
+							<div class="sendGift">
+								<input type="checkbox" id="sendGift">
+								<label for="sendGift">선물하기</label>
+							</div>
+						</dt>
+						<dd>
+							<ul>
+								<li>
+									<div class="sendTit"><label for="userName2">이름</label></div>
+									<div class="sendCont"><input type="text" id="userName2" placeholder="USER_NAME"></div>
+								</li>
+								<li>
+									<div class="sendTit"><label for="userNum2">휴대폰번호</label></div>
+									<div class="sendCont">
+										<select name="" id="userNum2">
+											<option value="">010</option>
+											<option value="">011</option>
+										</select>
+										<input type="tel" title="받으시는분 핸드폰 두번째 4자리" class="userNum">
+										<input type="tel" title="받으시는분 핸드폰 마지막 4자리">
+										<a href="#none" class="btn_findP">휴대폰 주소록에서 찾기</a>
+									</div>
+								</li>
+							</ul>
+						</dd>
+						<dt>선물메시지</dt>
+						<dd>
+							<div class="textbox"><textarea cols="" rows="" placeholder="메시지 (한글50자이내)"></textarea></div>
+							<div class="count">0&#47;100byte</div>
+							<div class="sendComment">교환권 문자 전송은 총 3회까지 재전송이 가능하며, 현재 <span>2회</span> 남았습니다.</div>
+						</dd>
+					</dl>
+					<div class="btnArea"><a href="#none" class="btnSend">교환권 보내기</a></div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<!-- //스마트픽상품교환권_전송 -->
+</section>
+
+
+<section ng-include src="'/HTML/include/footer.html'"></section>
+</body>
+</html>

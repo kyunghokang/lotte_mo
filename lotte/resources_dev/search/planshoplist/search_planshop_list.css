@@ -1,0 +1,100 @@
+@charset "UTF-8";
+
+.unitWrap { position:relative }
+.unitWrap .here {
+    padding:3px 10px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    background-color:#acb5b2;
+    color:#fff;
+    right:7px;
+    display:none;
+    position: absolute;
+
+    -webkit-transition:opacity ease .3s;
+    -moz-transition:opacity ease .3s;
+    -mz-transition:opacity ease .3s;
+    -o-transition:opacity ease .3s;
+    transition:opacity ease .3s;
+
+    opacity: 1;
+    z-index:150;
+    line-height: 16px;
+}
+.unitWrap .here:after, .arrow_box:before {
+    right:-12px;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.unitWrap .here:after {
+    border-color: rgba(136, 183, 213, 0);
+    border-left-color: #acb5b2;
+    border-width: 8px;
+    margin-top: -7px;
+}
+.unitWrap .here:before {
+    border-color: rgba(194, 225, 245, 0);
+    border-left-color: #acb5b2;
+    border-width: 26px;
+    margin-top: -26px;
+}
+
+.unitWrap .here.remove { opacity:0 }
+/*
+[lazy-show] {
+    -webkit-transform:translateY(50px);
+    -moz-transform:translateY(50px);
+    -ms-transform:translateY(50px);
+    -o-transform:translateY(50px);
+    transform:translateY(50px);
+
+    opacity:0;
+
+    -webkit-transition: -webkit-transform ease .4s, opacity ease .4s;
+    -moz-transition: -moz-transform ease .4s, opacity ease .4s;
+    -ms-transition: -ms-transform ease .4s, opacity ease .4s;
+    -o-transition: -o-transform ease .4s, opacity ease .4s;
+    transition: transform ease .4s, opacity ease .4s;
+}
+[lazy-show].is_show {
+    opacity: 1;
+    -webkit-transform:translateY(0px);
+    -moz-transform:translateY(0px);
+    -ms-transform:translateY(0px);
+    -o-transform:translateY(0px);
+    transform:translateY(0px);
+}
+*/
+[product-container] ol > li[lazy-show]:nth-child(2n),
+[product-container] ol > li:nth-child(2n) [lazy-show] {
+    -webkit-transition-delay: 50ms;
+    -moz-transition-delay: 50ms;
+    -o-transition-delay: 50ms;
+    -ms-transition-delay: 50ms;
+    transition-delay: 50ms;;
+}
+.oph { overflow:hidden }
+
+.prod_search_container .unit_list_02 .unit_box a { height:auto!important }
+.prod_search_container .unit_list_02 .thumb { height:auto!important }
+
+.result_wrap.cate_prod { margin-top:10px!important }
+
+#head_sub {  background: #f9f9f9 }
+#head_sub.white { background: #fff }
+#head_sub prog {
+    display:block;
+    background: #fff;
+    position: absolute;
+    left:0;
+    top:0;
+    width:0%;
+    height:100%;
+}

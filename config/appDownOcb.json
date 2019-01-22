@@ -1,0 +1,37 @@
+{
+    "tasks" : {
+        "concat" : {
+            "jsAppDownOcb" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/event/appDownOcb.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/appDownOcb.js"
+            }
+        },
+
+        "uglify" : {
+            "jsAppDownOcb" : {
+                "src" : "lotte/resources/<%= version %>/appDownOcb.js",
+                "dest" : "lotte/resources/<%= version %>/appDownOcb.min.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssAppDownOcb" : {
+                "src" : [
+                    "lotte/resources_dev/event/appDownOcb.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/appDownOcb.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanAppDownOcb" : [
+                "lotte/resources/<%= version %>/appDownOcb.js"
+            ]
+        }
+    }
+}

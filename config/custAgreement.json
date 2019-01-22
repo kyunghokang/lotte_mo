@@ -1,0 +1,69 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplCustAgreement" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/agreement/cust_agreement_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/custAgreement.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsCustAgreement" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/agreement/cust_agreement.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/custAgreement.js"
+            }
+        },
+
+        "uglify" : {
+            "jsCustAgreement" : {
+                "src" : "lotte/resources/<%= version %>/custAgreement.js",
+                "dest" : "lotte/resources/<%= version %>/custAgreement.min.js"
+            },
+            "tplCustAgreement" : {
+                "src" : "lotte/resources/<%= version %>/custAgreement.template.js",
+                "dest" : "lotte/resources/<%= version %>/custAgreement.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssCustAgreement" : {
+                "src" : [
+                    "lotte/resources_dev/agreement/cust_agreement.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/custAgreement.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanCustAgreement" : [
+                "lotte/resources/<%= version %>/custAgreement.js",
+                "lotte/resources/<%= version %>/custAgreement.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlCustAgreement" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "agreement/custAgreement.html" : "agreement/custAgreement_dev.html"
+                }
+            }
+        }
+    }
+}
+

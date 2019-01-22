@@ -1,0 +1,43 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!--M24	핀터레스트 기획전형-->
+	<div class="moduleCon" ng-if="moduleData.items.length == 4">
+		<div class="pinterest_list">
+			<ul class="pl">
+				<li class="long_prd">
+					<a ng-click="logGAEvtModuleEach('01', moduleData.items[0].txt);planClick(moduleData.items[0].linkUrl, moduleData.tclick + '_Clk_Ban01')">
+						<div class="thumb" ng-style="{'background-image':'url({{moduleData.items[0].imgUrl}})' }"></div>
+						<div class="info">
+							<p class="tit" ng-bind-html="moduleData.items[0].txt | nl2br"></p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a ng-click="logGAEvtModuleEach('03', moduleData.items[2].txt);planClick(moduleData.items[2].linkUrl, moduleData.tclick + '_Clk_Ban03')">
+						<div class="thumb" ng-style="{'background-image':'url({{moduleData.items[2].imgUrl}})' }"></div>
+						<div class="info">
+							<p class="tit" ng-bind-html="moduleData.items[2].txt | nl2br"></p>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<ul class="pr">
+				<li>
+					<a ng-click="logGAEvtModuleEach('02', moduleData.items[1].txt);planClick(moduleData.items[1].linkUrl, moduleData.tclick + '_Clk_Ban02')">
+						<div class="thumb" ng-style="{'background-image':'url({{moduleData.items[1].imgUrl}})' }"></div>
+						<div class="info">
+							<p class="tit" ng-bind-html="moduleData.items[1].txt | nl2br"></p>
+						</div>
+					</a>
+				</li>
+				<li class="long_prd">
+					<a ng-click="logGAEvtModuleEach('04', moduleData.items[3].txt);planClick(moduleData.items[3].linkUrl, moduleData.tclick + '_Clk_Ban04')">
+						<div class="thumb" ng-style="{'background-image':'url({{moduleData.items[3].imgUrl}})' }"></div>
+						<div class="info">
+							<p class="tit" ng-bind-html="moduleData.items[3].txt | nl2br"></p>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>

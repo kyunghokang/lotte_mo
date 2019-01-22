@@ -1,0 +1,38 @@
+{
+    "tasks" : {
+        "concat" : {
+            "jsprsnMail" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/push/prsn_mail.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/prsn_mail.js"
+            }
+        },
+
+        "uglify" : {
+            "jsprsnMail" : {
+                "src" : "lotte/resources/<%= version %>/prsn_mail.js",
+                "dest" : "lotte/resources/<%= version %>/prsn_mail.min.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssprsnMail" : {
+                "src" : [
+                    "lotte/resources_dev/push/prsn_mail.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/prsn_mail.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanprsnMail" : [
+                "lotte/resources/<%= version %>/prsn_mail.js"
+            ]
+        }
+    }
+}
+

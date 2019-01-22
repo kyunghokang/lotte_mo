@@ -1,0 +1,62 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tp{%= controller_name %}" : {
+                "src" : [
+                    "resources_dev/layout/header.html",
+                    "resources_dev/layout/sub_header.html",
+                    "resources_dev/layout/lotte_side_category.html",
+                    "resources_dev/layout/lotte_side_mylotte.html",
+                    "resources_dev/common/comm_footer.html",
+                    "resources_dev/layer/layer_search.html",
+                    "resources_dev/{%= folder_name %}/{%= file_name %}_container.html"
+                ],
+                "dest" : "resources/<%= version %>/{%= file_name %}.template.js"
+            }
+        },
+
+        "concat" : {
+            "js{%= controller_name %}" : {
+                "src" : [
+                    "resources_dev/{%= folder_name %}/{%= file_name %}.js",
+                    "resources_dev/common/lotte_comm.js",
+                    "resources_dev/common/lotte_svc_dev.js",
+                    "resources_dev/common/lotte_util.js",
+                    "resources_dev/common/lotte_filter.js",
+                    "resources_dev/common/lotte_search.js",
+                    "resources_dev/common/lotte_comm_footer.js",
+                    "resources_dev/layout/lotte_sidectg.js",
+                    "resources_dev/layout/lotte_sidemylotte.js"
+                ],
+                "dest" : "resources/<%= version %>/{%= file_name %}.js"
+            }
+        },
+
+        "uglify" : {
+            "js{%= controller_name %}" : {
+                "src" : "resources/<%= version %>/{%= file_name %}.js",
+                "dest" : "resources/<%= version %>/{%= file_name %}-<%= version %>.min.js"
+            },
+            "tpl{%= controller_name %}" : {
+                "src" : "resources/<%= version %>/{%= file_name %}.template.js",
+                "dest" : "resources/<%= version %>/{%= file_name %}-<%= version %>.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "css{%= controller_name %}" : {
+                "src" : [
+                    "resources_dev/{%= folder_name %}/{%= file_name %}.css"
+                ],
+                "dest" : "resources/<%= version %>/{%= file_name %}-<%= version %>.min.css"
+            }
+        },
+
+        "clean" : {
+            "clean{%= controller_name %}" : [
+                "resources/<%= version %>/{%= file_name %}.js",
+                "resources/<%= version %>/{%= file_name %}.template.js"
+            ]
+        }
+    }
+}

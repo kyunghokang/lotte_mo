@@ -1,0 +1,54 @@
+{
+    "tasks" : {
+        "concat" : {
+            "jsOrder" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+					"lotte/resources_dev/order/order.js",
+					"lotte/resources_dev/order/order_form.js",
+					"common3/js/function.js",
+                    "common3/js/storage.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/order.js"
+            }
+        },
+
+        "uglify" : {
+            "jsOrder" : {
+                "src" : "lotte/resources/<%= version %>/order.js",
+                "dest" : "lotte/resources/<%= version %>/order.min.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssOrder" : {
+                "src" : [
+                    "lotte/resources_dev/order/order_form.css",
+                    "lotte/resources_dev/layer/datepicker.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/order.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanOrder" : [
+                "lotte/resources/<%= version %>/order.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlOrder" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "order/order.html" : "order/order_dev.html"
+                }
+            }
+        }
+    }
+}

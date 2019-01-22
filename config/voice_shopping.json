@@ -1,0 +1,68 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplvoiceShopping" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/voice_shopping/voice_shopping_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/voice_shopping.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsvoiceShopping" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/voice_shopping/voice_shopping.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/voice_shopping.js"
+			}
+		},
+
+		"uglify" : {
+			"jsvoiceShopping" : {
+				"src" : "lotte/resources/<%= version %>/voice_shopping.js",
+				"dest" : "lotte/resources/<%= version %>/voice_shopping.min.js"
+			},
+			"tplvoiceShopping" : {
+				"src" : "lotte/resources/<%= version %>/voice_shopping.template.js",
+				"dest" : "lotte/resources/<%= version %>/voice_shopping.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssvoiceShopping" : {
+				"src" : [
+					"lotte/resources_dev/voice_shopping/voice_shopping.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/voice_shopping.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanvoiceShopping" : [
+				"lotte/resources/<%= version %>/voice_shopping.js",
+				"lotte/resources/<%= version %>/voice_shopping.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlvoiceShopping" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"voice_shopping/voice_shopping.html" : "voice_shopping/voice_shopping_dev.html"
+				}
+			}
+		}
+	}
+}

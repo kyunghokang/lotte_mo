@@ -1,0 +1,42 @@
+
+.clear { zoom:1; }
+.clear:after { content:""; display:block; clear:both }
+
+.dearpet_mall_sub_category {   }
+.line_map { display:block; padding:10px 15px; background:#f6f6f6 }
+.line_map > li { color:#333; font-size:14px; padding:5px 12px 5px 0px; display:inline-block; position:relative; margin-right:10px; }
+.line_map > li span { width:6px; margin-top:1px; position:absolute; right:0; -webkit-transform:translate3d(50%,-50%,0px); transform:translate3d(50%,-50%,0px); top:50% }
+.line_map > li span:before { content:""; display:block; position: absolute; height:1px; top:-1px;  width:6px; background:#999; -webkit-transform:translateY(-50%) rotate(45deg); transform:translateY(-50%) rotate(45deg);  }
+.line_map > li span:after { content:""; display:block; position: absolute;  top:1px; height:1px; width:6px; background:#999; -webkit-transform:translateY(-50%) rotate(-45deg); transform:translateY(50%) rotate(-45deg);  }
+.line_map > li:last-child span { display:none }
+.line_map > li.active,
+.line_map > li.currentCate  { color:#e97a7a; padding-right:25px }
+/*
+.line_map > li:last-child.currentCate  { color:#f38066; padding-right:25px } */
+.line_map > li.currentCate:after { content:"▼"; font-size:10px; position:absolute; right:10px; -webkit-transform:translateY(-50%); transform:translateY(-50%); top:50%;}
+.line_map > li.active:after  { content:"▲"; font-size:10px; position:absolute; right:10px; -webkit-transform:translateY(-50%); transform:translateY(-50%); top:50%; }
+.line_map > li:last-child.currentCate.bleatHidden:after { content:"" }
+.line_map > li:last-child.currentCate.noneArrow:after,
+.line_map > li.active.noneArrow:after { content:"" }
+
+.sub_list_group { margin-bottom:10px; background:#f6f6f6 }
+.dearpet_mall_sub_category .sub_cate_list { padding:0 10px; vertical-align: top }
+.dearpet_mall_sub_category .sub_cate_list .group { border:1px solid #ddd; background:#fff   }
+.dearpet_mall_sub_category .sub_cate_list .group > div { border-top:1px solid #ddd  }
+.dearpet_mall_sub_category .sub_cate_list .group > div:nth-child(1),
+.dearpet_mall_sub_category .sub_cate_list .group > div:nth-child(2) { border-top:0 }
+.dearpet_mall_sub_category .sub_cate_list .group > div span { display:block; padding:10px 10px 10px 20px }
+.dearpet_mall_sub_category .sub_cate_list .group > div { float:left; width:50% }
+.dearpet_mall_sub_category .sub_cate_list .group > div.single { width:100% }
+.dearpet_mall_sub_category .sub_cate_list .group > div.active { color:#e97a7a }
+.swipeBox { display:table; vertical-align: top }
+.swipeBox > li { display:table-cell; vertical-align: top; float:none !important }
+
+.sub_cate_close .indicator { text-align: center; padding-bottom:10px; position:absolute; left:0; width:100%; top:10px }
+.sub_cate_close .indicator ul { display: inline-block }
+.sub_cate_close .indicator li { font-size:0; text-indent:-9999; overflow:hidden; vertical-align: middle; display:inline-block; width:8px; height:8px; background: #7b7b7b; border-radius: 50%; margin:0 5px }
+.sub_cate_close .indicator li.active { background:#f38066 }
+.sub_cate_close {  padding: 10px 15px; text-align: right; position:relative }
+.sub_cate_close a { position:relative; display: inline-block; padding-right:18px }
+.sub_cate_close a:before { content:"";  margin-top:1px; width:14px; height:1px; background:#666; position:absolute; right:0; top:50%; -webkit-transform:rotate(45deg) translateY(-50%); transform:rotate(45deg) translateY(-50%) }
+.sub_cate_close a:after { content:""; margin-top:1px;  width:14px; height:1px; background:#666; position:absolute; right:0; top:50%;  -webkit-transform:rotate(-45deg) translateY(-50%); transform:rotate(-45deg) translateY(-50%) }

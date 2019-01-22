@@ -1,0 +1,66 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tpldormancyInfoFail" : {
+                "options": {
+	            	"prefix":"/",
+                        "module" : "app"
+            	},
+                "src" : [
+                ],
+                "dest" : "lotte/resources/<%= version %>/dormancyInfoFail.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsdormancyInfoFail" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mylotte/sub/dormancyInfoFail.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/dormancyInfoFail.js"
+            }
+        },
+        
+        "uglify" : {
+            "jsdormancyInfoFail" : {
+                "src" : "lotte/resources/<%= version %>/dormancyInfoFail.js",
+                "dest" : "lotte/resources/<%= version %>/dormancyInfoFail.min.js"
+            },
+            "tpldormancyInfoFail" : {
+                "src" : "lotte/resources/<%= version %>/dormancyInfoFail.template.js",
+                "dest" : "lotte/resources/<%= version %>/dormancyInfoFail.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssdormancyInfoFail" : {
+                "src" : [
+                    "lotte/resources_dev/mylotte/sub/dormancyInfoFail.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/dormancyInfoFail.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleandormancyInfoFail" : [
+                "lotte/resources/<%= version %>/dormancyInfoFail.js",
+                "lotte/resources/<%= version %>/dormancyInfoFail.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmldormancyInfoFail" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                }
+            }
+        }
+    }
+}

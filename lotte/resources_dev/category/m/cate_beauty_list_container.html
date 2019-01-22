@@ -1,0 +1,490 @@
+<section ng-show="contVisible" class="cont_minheight">
+	<section class="pageLoading" ng-show="pageLoading">
+		<p class="loading half"></p>
+	</section>
+	<section ng-show="!pageLoading" class="cate_wrap">
+		<!-- 중 카테고리 리스트(상단) -->
+		<div class="small_cate_img no_layout">
+			<ul>
+				<li ng-repeat="x in screenData.smallCateImg">
+					<a ng-click="subCateClk(x,'A')">
+						<div class="cate_img"><img ng-src="{{x.img_url}}" alt="카테고리 이미지" /></div>
+						<div class="cate_tit">{{x.disp_nm}}</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<!-- 타임특가 2017.01.02 -->
+		<div class="time_sale_promotion" ng-if="screenData.timePrd.goods_no">
+			<a ng-click="timePrdClk(screenData.timePrd.goods_no)">
+				<div class="prd_info">
+					<div class="corner_tit">
+						<h3>타임특가</h3>
+					</div>
+					<div class="prd_wrap">
+						<div class="prd_dsc">
+							<p class="tit">{{screenData.timePrd.brand_nm}}</p>
+							<p>{{screenData.timePrd.goods_nm}}</p>
+						</div>
+						<div class="prd_price">
+							<span class="price" ng-if="screenData.timePrd.price > screenData.timePrd.sale_price"><em>{{screenData.timePrd.price|number}}</em>원</span>
+							<span class="sale_price"><strong>{{screenData.timePrd.sale_price|number}}</strong>원</span>
+						</div>
+					</div>
+				</div>
+				<div class="prd_img">
+					<img ng-src="{{screenData.timePrd.img_url}}" alt="{{screenData.timePrd.title}}" />
+				</div>
+			</a>
+		</div>
+		<!-- 카드 광고 배너 -->
+		<div class="bn_card" ng-if="screenData.bnList[0].img_url">
+			<a ng-click="bnLink(screenData.bnList[0].link_url,'_Clk_Ban_H01')" style="background:{{screenData.bnList[0].bn_bg}}">
+				<img ng-src="{{screenData.bnList[0].img_url}}" alt="" />
+			</a>
+		</div>
+		<!-- 동영상1 -->
+		<div class="mov_plan" ng-if="screenData.movPlan[0].mov_url">
+			<div>
+				<div class="mov_wrap">
+					<video id="autoVideo1" playsinline="true" webkit-playsinline="true"  video-poster="{{screenData.movPlan[0].poster_img}}">
+						<source video-source="{{screenData.movPlan[0].mov_url}}" type="video/mp4">
+					</video>
+					<div class="play_cover"></div>
+					<div class="stop_cover"></div>
+					<div class="click_cover"></div>
+					<a id="btnVolume1" ng-click="movVolume('btnVolume1')" class="btn_move_volume btn_text">음소거</a>
+					<a ng-click="movPlay()" class="btn_move_start">비디오 재생</a>
+					<a ng-click="movPause()" class="btn_move_stop btn_text">일시정지</a>
+					<a ng-click="movLnk(screenData.movPlan[0].link_url,'goods')" class="btn_move_goods btn_text">상품보기</a>
+					<a ng-if="!appObj.isApp" ng-click="movFull()" class="btn_move_full btn_text">전체화면보기</a>
+				</div>
+				<script type="text/javascript">
+				setTimeout(function(){
+					autoVideoPlay('autoVideo1', '#autoVideo1');
+				}, 1500);
+				</script>
+				<div class="mov_info">
+					<div class="btn_mov_prd">
+						<div class="mov_brnd" ng-if="false"><img ng-src="{{screenData.movPlan[0].brand_img}}" alt="{{screenData.movPlan[0].title}}" /></div>
+						<div class="mov_txt">
+							<strong>{{screenData.movPlan[0].title}}</strong>
+							<span class="mov_desc">{{screenData.movPlan[0].sub_title}}</span>
+						</div>
+					</div>
+					<a class="btn_mov_dtl" ng-click="movLnk(screenData.movPlan[0].btn_url,'Btn_idx01')">{{screenData.movPlan[0].btn_txt}}</a>
+				</div>
+			</div>
+		</div>
+		<!-- 메인 배너 -->
+		<div class="main_banner no_layout">
+			<ul>
+				<li ng-repeat="x in screenData.mainBn" ng-hide="screenType>1 && screenData.mainBn.length%2==1 && screenData.mainBn.length-1==$index" ng-if="$index<4">
+					<a ng-click="mainBnClk(x.link_url,$index+1)">
+						<div class="bn_txt" ng-if="x.title">
+							<strong>{{x.title}}</strong>
+							<span>{{x.sub_title}}</span>
+						</div>
+						<div class="bn_img"><img ng-src="{{x.img_url}}" alt="배너 이미지" /></div>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<!-- 동영상2 -->
+		<div class="mov_plan" ng-if="screenData.movPlan[1].mov_url && !screenData.movPlan[0].mov_url">
+			<div>
+				<div class="mov_wrap">
+					<video id="autoVideo2" playsinline="true" webkit-playsinline="true" video-poster="{{screenData.movPlan[1].poster_img}}">
+						<source video-source="{{screenData.movPlan[1].mov_url}}" type="video/mp4">
+					</video>
+					<div class="play_cover"></div>
+					<div class="stop_cover"></div>
+					<div class="click_cover"></div>
+					<a id="btnVolume2" ng-click="movVolume('btnVolume2')" class="btn_move_volume btn_text">음소거</a>
+					<a ng-click="movPlay()" class="btn_move_start">비디오 재생</a>
+					<a ng-click="movPause()" class="btn_move_stop btn_text">일시정지</a>
+					<a ng-click="movLnk(screenData.movPlan[1].link_url,'goods')" class="btn_move_goods btn_text">상품보기</a>
+					<a ng-if="!appObj.isApp" ng-click="movFull()" class="btn_move_full btn_text">전체화면보기</a>
+				</div>
+				<script type="text/javascript">
+				setTimeout(function(){
+					autoVideoPlay('autoVideo2', '#autoVideo2');
+				}, 1500);
+				</script>
+				<div class="mov_info">
+					<div class="btn_mov_prd">
+						<div class="mov_brnd" ng-if="false"><img ng-src="{{screenData.movPlan[1].brand_img}}" alt="{{screenData.movPlan[1].title}}" /></div>
+						<div class="mov_txt">
+							<strong>{{screenData.movPlan[1].title}}</strong>
+							<span class="mov_desc">{{screenData.movPlan[1].sub_title}}</span>
+						</div>
+					</div>
+					<a class="btn_mov_dtl" ng-click="movLnk(screenData.movPlan[1].btn_url,'Btn_idx01')">{{screenData.movPlan[1].btn_txt}}</a>
+				</div>
+			</div>
+		</div>
+		<!-- o'clock -->
+		<div class="oclock_wrap" ng-if="screenData.timePlan.title">
+			<h3 class="corner_tit">
+				<span>{{screenData.timePlan.sub_title}}</span>
+				<strong>{{screenData.timePlan.title}}</strong>
+			</h3>
+			<div class="oclock_time">
+				<div class="time_tit">남은시간</div>
+				<div id="time_num"></div>
+			</div>
+			<ul class="oclock_prd">
+				<li ng-repeat="x in screenData.timePlan.prd_list.items">
+					<a ng-click="oclockClk(x.goods_no,$index+1)">
+						<div class="prd_img"><img ng-src="{{x.img_url}}" alt="{{x.goods_nm}}" /></div>
+						<div class="prd_info">
+							<strong class="prd_brnd">{{x.brand_nm}}</strong>
+							<span class="prd_goods">{{x.goods_nm}}</span>
+							<div class="prd_price">
+								<span class="price" ng-if="x.price && x.price>x.sale_price"><span>{{x.price|number}}</span>원</span>
+								<span class="sale_price"><strong>{{x.sale_price|number}}</strong>원</span><em ng-if="x.is_plan_prod" class="plan_prod_limit">~</em>
+							</div>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<!-- 랭킹존 -->
+		<div class="ranking">
+			<h3 class="corner_tit">
+				<span>품절임박</span>
+				<strong>이번주 베스트 아이템</strong>
+			</h3>
+			<div product-container template-type="imagerank" templatetype="templateType" products="screenData.rankingPrd" class="prd_list"></div>
+			<div class="more_list" ng-show="screenData.rankingPrd.length < 100 && screenData.isRanking" ng-click="moreRanking()">판매 Best 상품 4개 더 보기</div>
+		</div>
+		<!-- 테스터 -->
+		<div class="tester no_layout" ng-if="screenData.tester.test_list.items">
+			<h3 class="corner_tit">
+				<span>{{screenData.tester.title}}</span>
+				<strong ng-bind-html="::screenData.tester.sub_title"></strong>
+			</h3>
+			<div class="evt_tester_list swipe_wrap" roll-swipe-banner id="rolltopbann" rolling="true" width320="1" width640="1" width900="1" info="top_banner" getcontrol="banner_ct">
+				<ul class="swipeBox">
+					<li ng-repeat="x in screenData.tester.test_list.items">
+						<div class="tester_wrap" ng-if="x.mast_evt_no == 'L103568'"
+							 ng-click="tstEvtClk(x.evt_no,$index+1)">
+							<!-- 테스터 이벤트 일때 -->
+							<div class="evt_img">
+								<img ng-src="{{x.img_url}}" alt="{{x.goods_nm}}" />
+							</div>
+							<div class="evt_info">
+								<div class="evt_tit"><span>{{x.brnd_nm}}</span>{{x.goods_nm}}</div>
+								<div class="evt_date">{{x.evt_dtime_str}}</div>
+								<a class="btn_evt" ng-click="tstEvtClk(x.evt_no,$index+1)">테스터 신청하기</a>
+							</div>
+						</div>
+						<div class="evt_review_wrap" ng-if="x.mast_evt_no == 'L103567'"
+							 ng-click="rvwEvtClk(x.evt_no,$index+1)">
+							<!-- 상품평 이벤트 일때 -->
+							<div class="evt_img">
+								<img ng-src="{{x.img_url}}" alt="{{x.evt_nm}}"/>
+							</div>
+							<div class="evt_info">
+								<div class="evt_tit">{{x.evt_nm}}</div>
+								<div class="evt_num">당첨인원 : {{x.pay_prct}}명</div>
+								<div class="evt_gift">증정품 : {{x.etc_goods_nm}}</div>
+								<a class="btn_evt" ng-click="rvwEvtClk(x.evt_no,$index+1)">상품보기</a>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<div class="swipe_indicator">
+					<ul class="bullet indicator">
+						<li ng-repeat="x in screenData.tester.test_list.items"><span>{{$index}}</span></li>
+					</ul>
+				</div>
+			</div>
+			<div class="btn_tester">
+				<a ng-click="myReviewClk()">상품평 쓰기</a>
+				<a ng-click="myEventClk()">응모/당첨 확인</a>
+			</div>
+		</div>
+		<!-- 뷰티 NO.1 -->
+		<div class="beauty_no1" ng-if="screenData.beautyNo1.items">
+			<h3 class="corner_tit">
+				<span>다양한 뷰티 정보가 한 자리에</span>
+				<strong>Beauty No.1</strong>
+				<a ng-click="facebookLnk()" class="btn_facebook">바로가기</a>
+			</h3>
+			<div class="beauty_prd_list">
+				<ul lotte-ng-list-swipe swipe-id="beautySwipe" swipe-list-model="screenData.beautyNo1.items" swipe-responsive="true" swipe-responsive320="1" swipe-responsive640="2" swipe-slide-item="true" swipe-max-ratio="0.2" swipe-min-distance="40" swipe-end-exec="btSwipeEnd($event)">
+					<li ng-repeat="x in screenData.beautyNo1.items" ng-init="item=x.img_list.items[0]">
+						<a ng-click="facebookPop(x,$index+1)">
+							<span ng-style="{'background-color':item.bn_bg,'background-image':'url('+item.img_url+')'}">{{x.title}}</span>
+						</a>
+					</li>
+				</ul>
+				<ul class="indicator">
+					<li ng-repeat="x in screenData.beautyNo1.items" ng-class="{on:swipeIdx==$index}"><span>{{$index}}</span></li>
+				</ul>
+			</div>
+		</div>
+		<!-- 후기 추천 상품 -->
+		<!-- 모바일버전 -->
+		<div class="prd_review" ng-if="screenType == 1 && screenData.prdReview.review_list">
+			<h3 class="corner_tit">
+				<span>{{screenData.prdReview.title}}</span>
+				<strong>{{screenData.prdReview.sub_title}}</strong>
+			</h3>
+			<div class="review_list">
+				<ul>
+					<li ng-repeat="x in screenData.prdReview.review_list.items" ng-if="$index<4">
+						<div class="rv_wrap">
+							<div class="rv_top">
+								<span class="rv_cate">{{x.mid_cate}}</span>
+								<!-- <span class="rv_date">{{x.review_date}}</span> -->
+							</div>
+							<a class="rv_mid" ng-click="rvClk('Rvw',x.goods_no,$index+1)">
+								<div class="rv_txt">{{x.review_con}}</div>
+								<div class="rv_score">
+									<span class="star_score">
+										<span class="star_score_cnt" style="width:{{Math.ceil(x.avg_gdas_stfd_val*2)*10}}%">별점 {{x.avg_gdas_stfd_val}}</span>
+									</span>
+									<span class="rv_cnt">({{x.pmg_gdas_cnt|number}})</span>
+								</div>
+							</a>
+						</div>
+						<a class="rv_prd" ng-click="rvClk('prd', x.goods_no,$index+1)">
+							<div class="prd_img"><img ng-src="{{x.img_url}}" alt="{{x.goods_nm}}" /></div>
+							<div class="prd_info">
+								<div class="prd_goods"><strong class="prd_brnd">{{x.brand_nm}}</strong>{{x.goods_nm}}</div>
+								<div class="prd_price">
+									<span class="price" ng-if="x.price && x.price>x.sale_price"><span>{{x.price|number}}</span>원</span>
+									<span class="sale_price">
+										<strong>{{x.sale_price|number}}</strong>원<em ng-if="x.is_plan_prod" class="plan_prod_limit">~</em>
+									</span>
+								</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- 테블릿버전 -->
+		<div class="prd_review" ng-if="screenType > 1 && screenData.prdReview.review_list && screenData.prdReview.review_list.items.length> 1">
+			<h3 class="corner_tit">
+				<span>{{screenData.prdReview.title}}</span>
+				<strong>{{screenData.prdReview.sub_title}}</strong>
+			</h3>
+			<div class="review_list">
+				<ul>
+					<li ng-repeat="x in screenData.prdReview.review_list.items" ng-if="$index<4 && !(screenData.prdReview.review_list.items.length%2==1 && $index==screenData.prdReview.review_list.items.length-1 && screenData.prdReview.review_list.items.length>2)">
+						<div class="rv_wrap">
+							<div class="rv_top">
+								<span class="rv_cate">{{x.mid_cate}}</span>
+								<!-- <span class="rv_date">{{x.review_date}}</span> -->
+							</div>
+							<a class="rv_mid" ng-click="rvClk('Rvw',x.goods_no,$index+1)">
+								<div class="rv_txt">{{x.review_con}}</div>
+								<div class="rv_score">
+									<span class="star_score">
+										<span class="star_score_cnt" style="width:{{Math.ceil(x.avg_gdas_stfd_val*2)*10}}%">별점 {{x.avg_gdas_stfd_val}}</span>
+									</span>
+									<span class="rv_cnt">({{x.pmg_gdas_cnt|number}})</span>
+								</div>
+							</a>
+						</div>
+						<a class="rv_prd" ng-click="rvClk('prd', x.goods_no,$index+1)">
+							<div class="prd_img"><img ng-src="{{x.img_url}}" alt="{{x.goods_nm}}" /></div>
+							<div class="prd_info">
+								<div class="prd_goods"><strong class="prd_brnd">{{x.brand_nm}}</strong>{{x.goods_nm}}</div>
+								<div class="prd_price">
+									<span class="price" ng-if="x.price && x.price>x.sale_price"><span>{{x.price|number}}</span>원</span>
+									<span class="sale_price">
+										<strong>{{x.sale_price|number}}</strong>원<em ng-if="x.is_plan_prod" class="plan_prod_limit">~</em>
+									</span>
+								</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- 광고 배너 -->
+		<div class="bn_promotion" ng-if="screenData.bnList[1].img_url">
+			<a ng-click="bnLink(screenData.bnList[1].link_url,'_Clk_Ban_C01')" style="background:{{screenData.bnList[1].bn_bg}}">
+				<img ng-src="{{screenData.bnList[1].img_url}}" alt="롯데닷컴에서 선물포장 쉽게해요!" />
+			</a>
+		</div>
+		<!-- 신규상품 -->
+		<div class="new_prd" ng-if="screenData.newPrdList.prd_list">
+			<h3 class="corner_tit">
+				<span>{{screenData.newPrdList.title}}</span>
+				<strong>{{screenData.newPrdList.sub_title}}</strong>
+			</h3>
+			<div class="new_prd_list" lotte-slider>
+				<ul>
+					<li ng-repeat="x in screenData.newPrdList.prd_list.items">
+						<a ng-click="newPrdClk(x.goods_no,$index+1)">
+							<div class="prd_img"><img ng-src="{{x.img_url}}" alt="{{x.goods_nm}}" /></div>
+							<div class="prd_info">
+								<div class="prd_flag">
+									<span class="depart" ng-if="x.mall_flag.is_dept">롯데백화점</span>
+									<span class="smart" ng-if="x.mall_flag.is_smartpick">스마트픽</span>
+								</div>
+								<span class="prd_goods"><strong class="prd_brnd">{{x.brand_nm}}</strong>{{x.goods_nm}}</span>
+								<div class="prd_price">
+									<span class="sale_price"><strong>{{x.sale_price|number}}</strong>원</span>
+								</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- MD's tip -->
+		<div class="md_tip_wrap no_layout">
+			<div class="md_tip" ng-repeat="item in screenData.mdTip" ng-if="item.title != null" ng-init="list = $index">
+				<div class="md_tit" ng-click="mdBnClk(item.link_url,list)">
+					<div class="md_img"><img ng-src="{{item.img_url}}" alt="타이틀 이미지" /></div>
+					<div class="md_tit_con">
+						<div class="md_tit_txt"><strong>{{item.title}}</strong>{{item.sub_title}}</div>
+						<span class="btn_moreview" ng-show="item.title || item.sub_title">자세히보기 &nbsp; ></span>
+					</div>
+				</div>
+				<ul>
+					<li ng-repeat="x in item.prd_list.items" ng-if="$index < 2">
+						<a ng-click="mdPrdClk(x.goods_no,$index+1,list)">
+							<div class="prd_img"><img ng-src="{{x.img_url}}" alt="{{x.goods_nm}}" /></div>
+							<div class="prd_info">
+								<span class="prd_goods"><strong class="prd_brnd">{{x.brand_nm}}</strong>{{x.goods_nm}}</span>
+								<div class="prd_price">
+									<span class="sale_price"><strong>{{x.sale_price|number}}</strong>원</span>
+								</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- 선물하기 배너 -->
+		<div class="bn_gift" ng-if="screenData.bnList[2].img_url">
+			<a ng-click="bnLink(screenData.bnList[2].link_url,'_Clk_Ban_F01')" style="background:{{screenData.bnList[2].bn_bg}}">
+				<img ng-src="{{screenData.bnList[2].img_url}}" alt="롯데닷컴에서 선물포장 쉽게해요!" />
+			</a>
+		</div>
+		<!-- 명품화장품 딜 -->
+		<div class="deal_prd">
+			<h3 class="corner_tit">
+				<span>세상어디에도 없는</span>
+				<strong>쇼핑파워 오늘의 빅딜</strong>
+			</h3>
+			<div class="deal_prd_list">
+				<ul>
+					<li ng-repeat="x in screenData.dealPrd">
+						<a class="prd_unit" ng-click="dealPrdClk(x.goods_no,$index+1)">
+							<div class="prd_img"><img ng-src="{{x.img_url}}" alt="{{x.goods_nm}}" /></div>
+							<div class="prd_flag">
+								<span class="depart" ng-if="x.mal_flag.is_dept">롯데백화점</span>
+								<span class="smart" ng-if="x.mal_flag.is_smartpick">스마트픽</span>
+							</div>
+							<div class="prd_info">
+								<div ng-if="x.sale_rate && x.sale_rate != 0" class="sale_rate_wrap">
+									<span class="sale_rate">{{x.sale_rate}}</span>
+									<span class="sale_limit">%</span>
+									<em class="sale_desc">쿠폰포함</em>
+								</div>
+								<p class="prd_goods" ng-bind-html="x.goods_nm"></p>
+								<p class="prd_price">
+									<strong>{{x.sale_price|number}}</strong>원<em ng-if="x.is_plan_prod" class="plan_prod_limit">~</em>
+								</p>
+								<div class="sale_wrap">
+									<span class="no" ng-show="x.sale_cnt > 0"><strong>{{x.sale_cnt|number}}</strong>개 구매 중</span>
+									<span ng-if="x.ipt_flag" class="flag_tag" >{{x.ipt_flag[0]}}</span>
+								</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="more_list" ng-show="screenData.dealPrd.length < 100" ng-click="moreDeal()">딜 상품 더 보기</div>
+		</div>
+		<div class="btm_wrap no_layout">
+			<!-- 중 카테고리 리스트(하단) -->
+			<div class="small_cate_img" ng-class="{type1:screenType>1 && screenData.bnList[1].img_url,type2:screenType>1 && !screenData.bnList[1]}">
+				<div>
+					<h4>전체 카테고리 보기</h4>
+					<ul>
+						<li ng-repeat="x in screenData.smallCateImg">
+							<a ng-click="subCateClk(x,'B')">
+								<div class="cate_img"><img ng-src="{{x.img_url}}" alt="카테고리 이미지" /></div>
+								<div class="cate_tit">{{x.disp_nm}}</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- 이벤트 배너 -->
+			<div class="bn_evt" ng-if="screenData.bnList[3].img_url">
+				<a ng-click="bnLink(screenData.bnList[3].link_url,'_Clk_Ban_G01')">
+					<img ng-src="{{screenData.bnList[3].img_url}}" alt="" />
+					<div class="bn_dim">
+						<div class="bn_txt">
+							<strong class="bn_tit">{{screenData.bnList[3].title}}</strong>
+							<strong class="bn_subtit">{{screenData.bnList[3].sub_title}}</strong>
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+	</section>
+	<div class="no1_pop_wrap" ng-if="no1PopFlag">
+		<div class="no1_pop">
+			<h2>{{screenData.no1Pop.title}}</h2>
+			<div class="pop_con">
+				<div class="no1_img">
+					<ul lotte-ng-list-swipe swipe-id="no1ImgSwipe" swipe-list-model="screenData.no1Pop.img_list.items" swipe-slide-item="true" swipe-max-ratio="0.2" swipe-min-distance="40" swipe-end-exec="no1ImgSwipeEnd($event)">
+						<li ng-repeat="x in screenData.no1Pop.img_list.items">
+							<div class="pop_img" ng-style="{'background-color':x.bn_bg,'background-image':'url('+x.img_url+')'}"></div>
+						</li>
+					</ul>
+					<div class="swipeArr" ng-if="screenData.no1Pop.img_list.items.length > 1">
+						<a ng-click="beforeSlide()" ng-show="swipeIdx > 0" class="arrPrev">이전</a>
+						<a ng-click="nextSlide()" ng-show="swipeIdx <=(screenData.no1Pop.img_list.items.length-2)" class="arrNext">다음</a>
+					</div>
+				</div>
+				<div class="no1_prd_wrap" ng-if="screenData.no1Pop.prd_list.items.length>0">
+					<h3>지금 이 상품</h3>
+					<ul lotte-ng-list-swipe swipe-id="no1PrdSwipe" swipe-list-model="screenData.no1Pop.prd_list.items" swipe-slide-item="true" swipe-max-ratio="0.2" swipe-min-distance="40">
+						<li ng-repeat="x in screenData.no1Pop.prd_list.items">
+							<a ng-click="no1PrdClk(x.goods_no,$index+1)">
+								<span class="prd_img">
+									<img ng-src="{{x.img_url}}" alt="{{x.goods_nm}}" />
+								</span>
+								<div class="prd_info">
+									<div class="prd_flag">
+										<span class="depart" ng-if="x.mall_flag.is_dept">롯데백화점</span>
+										<span class="smart" ng-if="x.mall_flag.is_smartpick">스마트픽</span>
+									</div>
+									<div class="prd_nm">
+										<strong class="brd_nm">{{x.brand_nm}}</strong>
+										<span>{{x.goods_nm}}</span>
+									</div>
+									<div class="prd_price">
+										<div class="sale_price">
+											<strong>{{x.sale_price|number}}</strong>원<em ng-if="x.is_plan_prod" class="plan_prod_limit">~</em>
+										</div>
+										<div class="price" ng-if="x.price && x.price>x.sale_price">
+											<span>{{x.price|number}}</span>원
+										</div>
+									</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+					<div class="swipeArr" ng-if="screenData.no1Pop.prd_list.items.length > 1">
+						<a ng-click="beforeSlide()" ng-show="swipeIdx > 0" class="arrPrev">이전</a>
+						<a ng-click="nextSlide()" ng-show="swipeIdx <=(screenData.no1Pop.prd_list.items.length-2)" class="arrNext">다음</a>
+					</div>
+				</div>
+			</div>
+			<a ng-click="no1Close()" class="btn_pop_close">닫기</a>
+		</div>
+	</div>
+</section>

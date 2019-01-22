@@ -1,0 +1,581 @@
+<section ng-show="contVisible" class="cont_minheight myfeed" id="container">
+
+	<!-- 로그인 / 제목 영역 -->
+	<div ng-if="!loginInfo.isLogin" class="user_wrap">
+		<div class="title_area">로그인하시면, 추천이 정확해져요!</div>
+		<a class="btn_login" ng-click="goLoginClick()"><span>로그인하기</span></a>
+	</div>
+	
+	<!-- 최근 본 상품 관련 -->
+	<div ng-if="recently.items && recently.items.length > 0" class="recently_total" ng-class="{noRecom: ( !recentlyRecom.items || recentlyRecom.items.length <= 2 ) && ( !recentlyPlan.items || recentlyPlan.items.length == 0 )}">
+		<!-- 최근 본 상품 -->
+		<div class="recently_wrap" ng-if="recently.hasLately == 'Y'">
+			<div class="title_wrap">
+				<span class="sub_title">{{recently.txt}}</span>
+				<span ng-if="recently.items.length > 1" class="count"><em>{{swipeCurIdx+1}}</em>/{{recently.items.length}}</span>
+			</div>
+			<div ng-if="recently.items.length > 1" class="swipe_wrap" id="recentlySwipe" roll-swipe-banner 
+			 rolling="true" width320="1" width640="1" width900="1"
+			 info="recently.items" endfnc="swipeComplete">
+				<ul class="swipeBox">
+					<li ng-repeat="item in recently.items track by $index" class="item{{$index}}" ng-init="pindex = $index">
+						<div>
+							<a class="item" ng-repeat="items in item track by $index" ng-click="goProductView(items.goodsNo, 'RctView_Clk_Prd_' + arrAlpha[pindex] + addZero($index+1), '52')">
+								<div class="imageCon">
+									<img ng-src="{{items.imgUrl}}" alt="{{items.goodsNm}}" />
+								</div>
+							</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div ng-if="recently.items.length == 1" class="swipe_wrap one">
+				<ul>
+					<li class="item0">
+						<div>
+							<a class="item" ng-repeat="items in recently.items[0] track by $index" ng-click="goProductView(items.goodsNo, 'RctView_Clk_Prd_A' + addZero($index+1))">
+								<div class="imageCon">
+									<img ng-src="{{items.imgUrl}}" alt="{{items.goodsNm}}" />
+								</div>
+							</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- 최근 본 상품 기반 추천 상품 -->
+		<div ng-if="recentlyRecom.items && recentlyRecom.items.length > 2" class="recently_recom">
+			<span class="title">{{recentlyRecom.txt}}</span>
+			<ul>
+				<li ng-repeat="item in recentlyRecom.slice[recentlyRecomIdx] track by $index">
+					<a href="#" ng-click="goProductView(item.goodsNo, 'RctView_Clk_Rel_' + arrAlpha[swipeCurIdx] + addZero($index+1), '52', 'M_detail_myreco')">
+						<div class="imageCon">
+							<img ng-src="{{item.imgUrl}}" alt="{{item.goodsNm}}"/>
+						</div>
+						<div class="text_area">
+							<span class="name">{{item.goodsNm}}</span>
+							<span class="price"><em>{{item.price | number}}</em>원<span ng-if="item.isPlanPrd">~</span></span>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<div ng-if="recentlyRecom.items.length > 6" class="more_wrap">
+				<a ng-click="recentlyRecomMore()" class="btn_more">다른 추천 상품 볼래요</a>
+			</div>
+		</div>
+		<!-- 최근 본 상품 기반 추천 기획전 -->
+		<div ng-if="recentlyPlan.items && recentlyPlan.items.length > 0" class="recently_plan">
+			<span class="title">{{recentlyPlan.txt}}</span>
+			<div lotte-slider class="swipe_wrap">
+				<ul class="prd_unit_type01_line">
+					<li ng-repeat="item in recentlyPlan.items" ng-if="$index < 6">
+						<a href="#" ng-click="goPlanView(item.linkUrl, $index, 'M_plan_detail_myreco')">
+							<div class="imageCon">
+								<img ng-src="{{item.goodsImgUrl}}" alt="{{item.btmTxt}}" />
+							</div>
+							<div class="titleCon">
+								<div class="name">{{item.btmTxt}}</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 최근 구매/장바구니 담은 상품 + 보완재 -->
+	<div class="order_wrap" ng-if="orderRecom && orderRecom.prdList && orderRecom.prdList.items && orderRecom.prdList.items.length > 0 && orderRecom.hasSub">
+		<div class="title_wrap">
+			<span class="sub_title">{{orderRecom.txt}}</span>
+		</div>
+		<div class="cont_wrap">
+			<ul>
+				<li ng-repeat="item in orderRecom.prdList.items" ng-if="orderRecom.prdList.items[$index].subItem && orderRecom.prdList.items[$index].subItem.length > 2" ng-init="pindex = $index">
+					<a class="subject" href="#" ng-click="goProductView(item.goodsNo, 'RelCodi_Clk_Prd_' + arrAlpha[$index] + '01', '53')">
+						<div class="imageCon">
+							<img ng-src="{{item.imgUrl}}" alt="{{item.goodsNm}}" />
+						</div>
+						<div class="titleCon">
+							<div class="name">{{item.goodsNm}}</div>
+							<span class="price"><em>{{item.price | number}}</em>원<span ng-if="item.isPlanPrd">~</span></span>
+						</div>
+					</a>
+					<div  lotte-slider class="swipe_wrap">
+						<ul class="prd_unit_type01_line">
+							<li ng-repeat="items in item.subItem">
+								<a href="#" ng-click="goProductView(items.goodsNo, 'RelCodi_Swp_Rel_' + arrAlpha[pindex] + addZero($index+1), '53', 'M_detail_cross_myreco')">
+									<div class="imageCon">
+										<img ng-src="{{items.imgUrl}}" alt="{{items.goodsNm}}" />
+									</div>
+									<div class="titleCon">
+										<div class="name">{{items.goodsNm}}</div>
+										<span class="price"><em>{{items.price | number}}</em>원<span ng-if="item.isPlanPrd">~</span></span>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- 카드 구매 사은 안내 -->
+	<div ng-if="cardList && cardList.length > 0" class="card_wrap">
+		<div ng-if="cardList.length > 1" class="swipe_wrap card_area" id="cardSwipe" roll-swipe-banner 
+			rolling="true" width320="1" width640="1" width900="1"
+			info="cardList" endfnc="cardSwipeComplete">
+			   <ul class="swipeBox">
+				   <li ng-repeat="item in cardList track by $index">
+					<a ng-if="item.evt_no" href="#" ng-click="goCardEvent(item.evt_no, item.idx)" ng-style="{background:item.color}">
+						<p><span class="highlight"><em>{{item.evt_crcm_nm}} {{item.min_fvr_polc_strt_val | number}}원</em></span> 이상 결제시</p>
+						<p><em>{{item.free_gift_nm}}</em> 최대 <span class="highlight"><em>{{item.max_pay_pnt | number}}</em></span>점 적립</p>
+						<span class="timer">남은시간 <em>{{item.remain_time}}</em></span>
+					</a>	
+					<a ng-if="!item.evt_no" href="#" ng-click="goMain('5570119', 'card', 'Event_Swp_Ban', item.idx)" ng-style="{background:item.color}">
+						<p><span class="highlight">
+							<em ng-if="!item.multi">{{item.evt_crcm_nm}} {{item.aply_lmt_amt | number}}원</em>
+							<em ng-if="item.multi">{{item.evt_crcm_nm}} {{item.aply_lmt_amt}}</em>
+						</span> 이상 결제시</p>
+						<p>최대 <span class="highlight"><em>{{item.fvr_val}}%</em></span> 청구할인</p>
+						<span class="timer">남은시간 <em>{{item.remain_time}}</em></span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		
+		<ul class="indicator" ng-if="cardList && cardList.length > 1" >
+			<li ng-repeat="item in cardList track by $index"><span>{{$index}}</span></li>
+		</ul>
+			
+		<div ng-if="cardList.length == 1" class="card_area one">
+			<ul>
+				<li>
+				<a ng-if="cardList[0].evt_no" href="#" ng-click="goCardEvent(cardList[0].evt_no, cardList[0].idx)" ng-style="{background:cardList[0].color}">
+					<p><span class="highlight"><em>{{cardList[0].evt_crcm_nm}} {{cardList[0].min_fvr_polc_strt_val | number}}원</em></span> 이상 결제시</p>
+					<p><em>{{cardList[0].free_gift_nm}}</em> 최대 <span class="highlight"><em>{{cardList[0].max_pay_pnt | number}}</em></span>점 적립</p>
+					<span class="timer">남은시간 <em>{{cardList[0].remain_time}}</em></span>
+				</a>	
+				<a ng-if="!cardList[0].evt_no" href="#" ng-click="goMain('5570119', 'card', 'Event_Swp_Ban', cardList[0].idx)" ng-style="{background:cardList[0].color}">
+					<p><span class="highlight">
+						<em ng-if="!cardList[0].multi">{{cardList[0].evt_crcm_nm}} {{cardList[0].aply_lmt_amt | number}}원</em>
+						<em ng-if="cardList[0].multi">{{cardList[0].evt_crcm_nm}} {{cardList[0].aply_lmt_amt}}</em>
+					</span> 이상 결제시</p>
+					<p>최대 <span class="highlight"><em>{{cardList[0].fvr_val}}%</em></span> 청구할인</p>
+					<span class="timer">남은시간 <em>{{cardList[0].remain_time}}</em></span>
+				</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<!-- 재입고 품절임박 담은 상품 할인 -->
+	<div class="push_wrap" ng-if="pushProducts && pushProducts.items && pushProducts.items.length > 0">
+		<div class="title_wrap">
+			<span class="sub_title">{{pushProducts.title}}</span>
+		</div>
+		<ol class="prod_list_01">
+			<li ng-repeat="item in pushProducts.items track by $index" ng-class="{outstock: item.outstock, restock: item.sum_tgt_sct_cd.indexOf('NTC') != -1, discount: item.sum_tgt_sct_cd.indexOf('NTC') == -1}">
+               <div class="unit_list_01">
+                   <a href="#" ng-click="goProductView(item.goods_no, 'SmartPush_Clk_Prd' + addZero($index + 1), '54')">
+                       <div class="thumb">
+                           <img ng-src="{{item.img_url}}" alt="{{item.goods_nm}}" err-src />
+                       </div>
+                       <div class="info">
+                           <p ng-if="item.is_dept || item.is_tvhome || item.is_himart || item.smartpick_yn=='Y'||item.issmart_pick" class="flag">
+                               <span class="flag depart" ng-show="item.flag=='D'||item.is_dept">롯데백화점</span>
+                               <span class="flag etv" ng-if="item.is_tvhome && !item.is_dept">롯데홈쇼핑</span>
+                               <span class="flag himart" ng-if="item.is_himart && !item.is_dept && !item.is_etv">하이마트</span>
+                               <span class="flag smart" ng-show="item.smartpick_yn=='Y'||item.issmart_pick">스마트픽</span>
+                           </p>
+                           <p class="tit">
+                               <span>{{item.goods_nm | delDot}}</span>
+						   </p>
+						   <p ng-if="item.sum_tgt_sct_cd.indexOf('NTC') != -1" class="pr_box">
+								<span class="price"><em>{{item.exist_sale_prc|number}}</em>원<span ng-show="item.is_sale_promotion">~</span></span>
+							</p>
+                           <p ng-if="item.sum_tgt_sct_cd.indexOf('NTC') == -1" class="pr_box">
+                               <span class="price"><em>{{item.dscnt_sale_prc|number}}</em>원<span ng-show="item.is_sale_promotion">~</span></span>
+                               <span class="price2" ng-show="item.exist_sale_prc!=item.dscnt_sale_prc && item.exist_sale_prc !=0 && !item.is_sale_promotion">
+                                   <em>{{item.exist_sale_prc|number}}</em>원
+                               </span>
+						   </p>
+                       </div>
+                       <p ng-if="item.sum_tgt_sct_cd.indexOf('NTC') != -1" class="info_label">재입고</p>
+                       <p ng-if="item.sum_tgt_sct_cd.indexOf('NTC') == -1" class="info_label">가격<br />인하</p>
+                   		<!-- <span class="info_label">품절임박</span> -->
+                   </a>
+                   <div class="info2">
+                       <div class="info_dsc">
+						   <span ng-if="item.sum_tgt_sct_cd.indexOf('NTC') != -1">재입고일 : {{item.send_dt | pushDate}}</span>
+						   <span ng-if="item.sum_tgt_sct_cd.indexOf('NTC') == -1">할인일 : {{item.send_dt | pushDate}}</span>
+						   <!-- <span>잔여수량 : 10개</span> -->
+                       </div>
+                   </div>
+               </div>
+			</li>
+		</ol>
+		<a ng-if="appObj.isApp && !appObj.isSuperApp" href="#" class="btn_more" ng-click="showAppConfig()"><span>재입고/할인 소식 알림 받기</span></a>
+	</div>
+	
+	<!-- 장바구니/위시 담은 상품 + 대체재 -->
+	<div class="wish_wrap" ng-if="wishes && wishes.items && wishes.items.length > 0">
+		<div>
+			<div class="title_wrap">
+				<span class="sub_title">{{wishes.txt}}</span>
+				<span ng-if="wishes.items.length > 1" class="count"><em>{{wishSwipeCurIdx+1}}</em>/{{wishes.items.length}}</span>
+			</div>
+			<!-- wishes.items 여러개 -->
+			<div ng-if="wishes.items.length > 1" class="swipe_wrap" id="wishesSwipe" roll-swipe-banner
+			 rolling="true" width320="1" width640="1" width900="1" 
+			 info="wishes.items" endfnc="wishSwipeComplete">
+				<ul class="swipeBox">
+					<li ng-repeat="item in wishes.items track by $index" class="wish{{$index}}">
+						<div>
+						<div class="border">
+						<div class="unit_list_01">
+							<a href="#" ng-click="goProductView(item.goodsNo, 'Pick_Swp_Prd_' + arrAlpha[$index] + '01', '55')">
+								<div class="thumb">
+									<img ng-src="{{item.imgUrl}}" alt="{{item.dispGoodsNm}}" err-src />
+								</div>
+								<div class="info">
+									<p ng-if="item.flag.indexOf('dept') >= 0 || item.flag.indexOf('tvhome') >= 0 || item.flag.indexOf('himart') >= 0 || item.flag.indexOf('smartpick') >= 0" class="flag">
+										<span class="flag depart" ng-show="item.flag.indexOf('dept') >= 0">롯데백화점</span>
+										<span class="flag etv" ng-if="item.flag.indexOf('tvhome') >= 0">롯데홈쇼핑</span>
+										<span class="flag himart" ng-if="item.flag.indexOf('himart') >= 0">하이마트</span>
+										<span class="flag smart" ng-show="item.flag.indexOf('smartpick') >= 0">스마트픽</span>
+									</p>
+									<p class="tit">
+										<span>{{item.goodsNm}}</span>
+									</p>
+									<p class="pr_box">
+										<span class="price"><em>{{item.price|number}}</em>원<span ng-show="item.isPlanPrd">~</span></span>
+										<span class="price2" ng-show="item.orgPrice!=item.price && item.orgPrice !=0 && !item.isPlanPrd">
+											<em>{{item.orgPrice|number}}</em>원
+										</span>
+									</p>
+								</div>
+							</a>
+						</div>
+						</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<!-- wishes.items 한개 -->
+			<div ng-if="wishes.items.length == 1" class="swipe_wrap one" ng-init="item = wishes.items[0]">
+			   <ul>
+				   <li class="wish0">
+					   <div>
+					   <div class="border">
+					   <div class="unit_list_01">
+						   <a href="#" ng-click="goProductView(item.goodsNo, 'Pick_Swp_Prd_' + arrAlpha[0] + '01', '55')">
+							   <div class="thumb">
+								   <img ng-src="{{item.imgUrl}}" alt="{{item.dispGoodsNm}}" err-src />
+							   </div>
+							   <div class="info">
+								   <p ng-if="item.flag.indexOf('dept') >= 0 || item.flag.indexOf('tvhome') >= 0 || item.flag.indexOf('himart') >= 0 || item.flag.indexOf('smartpick') >= 0" class="flag">
+									   <span class="flag depart" ng-show="item.flag.indexOf('dept') >= 0">롯데백화점</span>
+									   <span class="flag etv" ng-if="item.flag.indexOf('tvhome') >= 0">롯데홈쇼핑</span>
+									   <span class="flag himart" ng-if="item.flag.indexOf('himart') >= 0">하이마트</span>
+									   <span class="flag smart" ng-show="item.flag.indexOf('smartpick') >= 0">스마트픽</span>
+								   </p>
+								   <p class="tit">
+									   <span>{{item.goodsNm}}</span>
+								   </p>
+								   <p class="pr_box">
+									   <span class="price"><em>{{item.price|number}}</em>원<span ng-show="item.isPlanPrd">~</span></span>
+									   <span class="price2" ng-show="item.orgPrice!=item.price && item.orgPrice !=0 && !item.isPlanPrd">
+										   <em>{{item.orgPrice|number}}</em>원
+									   </span>
+								   </p>
+							   </div>
+						   </a>
+					   </div>
+					   </div>
+					   </div>
+				   </li>
+			   </ul>
+		   </div>
+		</div>
+		<div ng-if="wishesRecom && wishesRecom.length > 2" class="recently_recom">
+			<span class="title">{{wishes.title}}</span>
+			<ul>
+				<li ng-repeat="item in wishesRecom track by $index">
+					<a href="#" ng-click="goProductView(item.goodsNo, 'Pick_Clk_Rel_' + arrAlpha[wishSwipeCurIdx] + addZero($index + 1), '55', 'M_detail_wish_myreco')">
+						<div class="imageCon">
+							<img ng-src="{{item.imgUrl}}" alt="{{item.goodsNm}}"/>
+						</div>
+						<div class="text_area">
+							<span class="name">{{item.goodsNm}}</span>
+							<span class="price"><em>{{item.price | number}}</em>원<span ng-if="item.isPlanPrd">~</span></span>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<!-- 즐겨찾기 브랜드 -->
+	<div class="favBrandWrap" ng-if="favoriteBrand.available > 0">
+		<div class="favBrandTitle">{{favoriteBrand.title}}</div>
+		<div class="favBrandList">
+			<div class="favBrandText">
+				<a class="title" ng-click="goFavBrandShop('PreBrd_Clk_Brdname')" xxx-ng-click="goBrandShop(favoriteBrand.curBrand.brdNo, 'PreBrd_Clk_Brdname')">{{favoriteBrand.curBrand.brdNm}}</a>
+				<!-- <a ng-if="isAvailApp" ng-click="goMain('5570111', 'brand', 'BkBrd_Clk_Btn01')">더보기</a> -->
+				<a class="more" ng-if="isAvailApp" ng-click="goFavBrandShop('PreBrd_Clk_Brd_more')" xxx-ng-click="goBrandShop(favoriteBrand.curBrand.brdNo, 'PreBrd_Clk_Brd_more')">더보기</a>
+			</div>
+			<ul ng-if="favoriteBrand.curBrand.prodList.length > 0">
+				<li ng-repeat="item in favoriteBrand.curBrand.prodList" class="col{{$index % 3}}" ng-click="goProductView(item.goodsNo, 'PreBrd_Clk_Prd_' + addZero($index + 1), '38')">
+					<div class="img"><img ng-src="{{item.imgUrl}}" /></div>
+					<div class="text">
+						<div class="prodName">{{item.goodsNm}}</div>
+						<div class="price" ng-class="{planPrd:item.isPlanPrd}">{{item.price | number}}</div>
+					</div>
+				</li>
+			</ul>
+			<div class="favBrandMore">
+				<a ng-click="changeFavBrand(true)"><span>다른 브랜드 볼래요</span></a>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 즐겨찾기 브랜드 신상품 안내 +++++ NON ABtest -->
+	<!-- <div class="favorite_wrap" ng-if="!ABtest && brandList && brandList.brndList && brandList.brndList.items && brandList.brndList.items.length > 0">
+		<div class="title_wrap">
+			<span class="sub_title">{{brandList.txt}}</span>
+		</div>
+		<div class="list_wrap" ng-repeat="items in brandList.brndList.items" ng-init="pindex = $index" ng-class="{top:$index == 0}">
+			<div class="brand">
+				<a class="brand_nm" ng-click="goBrandShop(items.brdNo, 'BkBrd_Clk_Brd_' + arrAlpha[$index])"><span>#{{items.brdNm}}</span></a>
+				<a class="quick" ng-click="goBrandShop(items.brdNo, 'BkBrd_Clk_Brd_' + arrAlpha[$index] + '_more')">더보기</a>
+			</div>
+			<ol class="prod_list_01">
+				<li ng-repeat="item in items.prdList.items track by $index">
+					<div class="unit_list_01">
+						<a href="#" ng-click="goProductView(item.goodsNo, 'BkBrd_Clk_Prd_' + arrAlpha[pindex] + addZero($index + 1), '56')">
+							<div class="thumb">
+								<img ng-src="{{item.imgUrl}}" alt="{{item.goodsNm}}" err-src />
+							</div>
+							<div class="info">
+								<p ng-if="item.flag.indexOf('dept') >= 0 || item.flag.indexOf('tvhome') >= 0 || item.flag.indexOf('himart') >= 0 || item.flag.indexOf('smartpick') >= 0" class="flag">
+									<span class="flag depart" ng-show="item.flag.indexOf('dept') >= 0">롯데백화점</span>
+									<span class="flag etv" ng-if="item.flag.indexOf('tvhome') >= 0">롯데홈쇼핑</span>
+									<span class="flag himart" ng-if="item.flag.indexOf('himart') >= 0">하이마트</span>
+									<span class="flag smart" ng-show="item.flag.indexOf('smartpick') >= 0">스마트픽</span>
+								</p>
+								<p class="tit">
+									<span>{{item.goodsNm}}</span>
+								</p>
+								<p class="pr_box">
+									<span class="price"><em>{{item.price|number}}</em>원<span ng-show="item.isPlanPrd">~</span></span>
+									<span class="price2" ng-show="item.orgPrice!=item.price && item.orgPrice !=0 && !item.isPlanPrd">
+										<em>{{item.orgPrice|number}}</em>원
+									</span>
+								</p>
+							</div>
+	                        <div class="user_feedback">
+	                            <span class="score" ng-if="item.gdasCnt > 0 && item.gdasStfdVal > 0">
+	                                <span class="starScoreWrap"><span class="starScoreCnt" style="width:{{ ((item.gdasStfdVal*2)|ceil)*10 }}%"></span></span>
+	                                <span class="review"><em>({{item.gdasCnt|number}})</em></span>
+	                            </span>
+	                        </div>
+						</a>
+					</div>
+				</li>
+			</ol>
+		</div>
+		<a ng-if="isAvailApp" xxx-ng-if="!(appObj.isApp && appObj.isIOS)" href="#" class="btn_more" ng-click="goMain('5570111', 'brand', 'BkBrd_Clk_Btn01')"><span>즐겨찾는 브랜드 더보기 ></span></a>
+	</div> -->
+	
+	<!-- 추천 브랜드 + 베스트 상품 -->
+	<div class="brand_wrap" ng-if="favoriteBrand.relBrands.length > 0">
+		<div class="title_wrap">
+			<div class="title1"><a ng-click="goFavBrandShop('PreBrdReco_Clk_Brdname')" xxx-ng-click="goBrandShop(favoriteBrand.curBrand.brdNo, 'PreBrdReco_Clk_Brdname')">#{{favoriteBrand.curBrand.brdNm}}</a> 브랜드와 함께 찾는</div>
+			<div class="title2">이 브랜드, 관심 있으시죠?</div>
+		</div>
+		<div class="list_wrap">
+			<ul>
+				<li ng-repeat="item in favoriteBrand.relBrands track by $index" ng-if="item.prdList.items.length > 0" class="posx0 item" ng-init="pindex = $index">
+					<div class="fixed">
+						<a class="imageCon" href="#" ng-click="brandClick(item.linkUrl, 'PreBrdReco_Clk_Brd_' + arrAlpha[$index])">
+							<img ng-src="{{item.imgUrl}}"/>
+						</a>
+						<div class="titleCon">
+							<div class="name">{{item.brdNm}}</div>
+						</div>
+						<span class="icon" ng-click="brandBookMark(item.brdNo, item.brdNm, $event, $index)"></span>
+					</div>
+					<div lotte-slider class="swipe_wrap">
+						<ul class="prd_unit_type01_line">
+							<li ng-repeat="items in item.prdList.items track by $index">
+								<a href="#" ng-click="goProductView(items.goodsNo, 'PreBrdReco_Clk_Prd_' + arrAlpha[pindex] + addZero($index + 1), '39')">
+									<img ng-src="{{items.imgUrl}}"/>
+									<span class="price">
+										<em>{{items.price | number}}</em>원<span ng-if="items.isPlanPrd">~</span>
+									</span>
+								</a>
+							</li>
+							<li class="more">
+								<a ng-click="goBrandShop(item.brdNo, 'PreBrdReco_Clk_' + arrAlpha[pindex] + '_more')">
+									<img src=""/>
+									<div class="btn">상품<br />더보기</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<span class="shadow"></span>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<!-- 추천 브랜드 + 베스트 상품 +++++ NON ABtest -->
+	<!-- <div class="brand_wrap" ng-if="!ABtest && brandRecom && brandRecom.prdList && brandRecom.prdList.items && brandRecom.prdList.items.length > 0">
+		<div class="title_wrap">
+			<span ng-if="!brandRecom.user" class="sub_title">{{brandRecom.topTxt}}</span>
+			<span ng-if="brandRecom.user" class="sub_title">{{brandRecom.prefix}}<em>{{brandRecom.user}}</em>{{brandRecom.subtitle}}</span>
+		</div>
+		<div class="list_wrap">
+			<ul>
+				<li ng-repeat="item in brandRecom.prdList.items track by $index" ng-if="$index < 3" class="posx0 item" ng-init="pindex = $index">
+					<div class="fixed">
+						<a class="imageCon" href="#" ng-click="brandClick(item.linkUrl, 'BrdReco_Clk_Brd_' + arrAlpha[$index])">
+							<img ng-src="{{item.imgUrl}}"/>
+						</a>
+						<div class="titleCon">
+							<div class="name">{{item.brdNm}}</div>
+						</div>
+						<span class="icon" ng-click="brandBookMark(item.brdNo, item.brdNm, $event, $index)"></span>
+					</div>
+					<div lotte-slider class="swipe_wrap">
+						<ul class="prd_unit_type01_line">
+							<li ng-repeat="items in item.subItem track by $index">
+								<a href="#" ng-click="goProductView(items.goods_no, 'BrdReco_Swp_Prd_' + arrAlpha[pindex] + addZero($index + 1), '57')">
+									<img ng-src="{{items.img_url}}"/>
+									<span class="price">
+										<em>{{items.discounted_price | number}}</em>원<span ng-if="items.is_sale_promotion">~</span>
+									</span>
+								</a>
+							</li>
+							<li class="more">
+								<a ng-click="goBrandShop(item.brdNo, 'BrdReco_Swp_' + arrAlpha[pindex] + '_more')">
+									<img src=""/>
+									<div class="btn">상품<br />더보기</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<span class="shadow"></span>
+				</li>
+			</ul>
+		</div>
+	</div> -->
+	
+	<!-- 검색어 추천 -->
+	<div class="search_wrap" ng-if="searchList.data && searchList.data.goods_list_1 && searchList.data.goods_list_1.prdList && 
+	searchList.data.goods_list_1.prdList.items && searchList.data.goods_list_1.prdList.items.length > 2">
+		<div class="title_wrap">
+			<span class="sub_title"><em>[{{searchList.keyword}}]</em> 상품 찾으셨나요?</span>
+		</div>
+		<ol class="prod_list_01">
+			<li ng-repeat="item in searchList.data.goods_list_1.prdList.items track by $index" ng-if="$index < 3">
+				<div class="unit_list_01">
+					<a href="#" ng-click="goProductView(item.goodsNo, 'SchReco_Clk_Prd' + addZero($index + 1), '58', 'M_search_myreco')">
+						<div class="thumb">
+							<img ng-src="{{item.imgUrl}}" alt="{{item.goodsNm}}" err-src />
+						</div>
+						<div class="info">
+							<p ng-if="item.flag.indexOf('dept') >= 0 || item.flag.indexOf('tvhome') >= 0 || item.flag.indexOf('himart') >= 0 || item.flag.indexOf('smartpick') >= 0" class="flag">
+								<span class="flag depart" ng-show="item.flag.indexOf('dept') >= 0">롯데백화점</span>
+								<span class="flag etv" ng-if="item.flag.indexOf('tvhome') >= 0">롯데홈쇼핑</span>
+								<span class="flag himart" ng-if="item.flag.indexOf('himart') >= 0">하이마트</span>
+								<span class="flag smart" ng-show="item.flag.indexOf('smartpick') >= 0">스마트픽</span>
+							</p>
+							<p class="tit">
+								<span>{{item.goodsNm}}</span>
+							</p>
+							<p class="pr_box">
+								<span class="price"><em>{{item.price|number}}</em>원<span ng-show="item.isPlanPrd">~</span></span>
+								<span class="price2" ng-show="item.orgPrice!=item.price && item.orgPrice !=0 && !item.isPlanPrd">
+									<em>{{item.orgPrice|number}}</em>원
+								</span>
+							</p>
+						</div>
+						<!-- 별점/상품평 -->
+                        <div class="user_feedback">
+                            <span class="score" ng-if="item.gdasCnt > 0 && item.gdasStfdVal > 0">
+                                <span class="starScoreWrap"><span class="starScoreCnt" style="width:{{ ((item.gdasStfdVal*2)|ceil)*10 }}%"></span></span>
+                                <span class="review"><em>({{item.gdasCnt|number}})</em></span>
+                            </span>
+                        </div>
+                        <!-- //별점/상품평 -->
+					</a>
+				</div>
+			</li>
+		</ol>
+	</div>
+	
+	<!-- 판매 랭킹 베스트 -->
+	<div class="category_wrap" ng-if="categoryList && categoryList.cate_best_list && categoryList.cate_best_list.length > 0">
+		<div class="title_wrap">
+			<span class="sub_title"><em>{{categoryList.user}}</em>{{categoryList.txt}}</span>
+		</div>
+		<div lotte-slider class="swipe_wrap">
+			<ul class="prd_unit_type01_line">
+				<li ng-repeat="item in categoryList.cate_best_list">
+					<a href="#" ng-click="goProductView(item.goodsNo, 'BestPrd_Swp_Prd' + addZero($index + 1), '59')">
+						<div class="imageCon">
+							<img ng-src="{{item.imgUrl}}" alt="" />
+						</div>
+						<div class="titleCon">
+							<div class="name">{{item.goodsNm}}</div>
+							<span class="price"><em>{{item.price | number}}</em>원<span ng-if="item.isPlanPrd">~</span></span>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<a ng-if="isAvailApp" xxx-ng-if="!appObj.isApp" href="#" ng-click="goMain('5572537', 'category', 'BestPrd_Clk_Btn01')" class="btn_more"><span>베스트 상품 더보기 ></span></a>
+	</div>
+	
+	<!-- DS 데이터 추천상품 -->
+	<div class="customRecomWrap" ng-if="customRecomProd.origin.length > 0">
+		<div class="title">
+			<em ng-if="loginInfo.isLogin">{{loginInfo.name}}</em><em ng-if="!loginInfo.isLogin">고객</em>님을 위한 맞춤 추천상품
+		</div>
+		<ul>
+			<li ng-repeat="item in customRecomProd.origin | limitTo : customRecomProd.limit">
+				<div ng-click="goProductView(item.goodsNo, 'PrdReco_Clk_Rel_' + addZero($index + 1, 3), '19')">
+					<div class="img"><div><img ng-src="{{item.imgUrl}}" /></div></div>
+					<div class="text">
+						<div class="prodName">{{item.goodsNm}}</div>
+						<div class="price" ng-class="{planPrd:item.isPlanPrd}">{{item.price | number}}</div>
+					</div>
+				</div>
+				<a ng-click="addWishList(item, $index + 1)" class="wish_icon" ng-class="{on:item.wishAdded}"></a>
+			</li>
+			<li ng-if="customRecomProd.origin.length == customRecomProd.limit && (customRecomProd.limit % 2) == 1" class="blank">
+				<div>
+					<div class="img"><div></div></div>
+					<div class="text"></div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	
+	<!-- 배너 영역 -->
+	<div class="banner_wrap">
+		<a ng-click="">
+			<img ng-if="screenType <= 1" src="http://image.lotte.com/lotte/mo2017/myfeed/banner.jpg" alt="배너"/>
+			<img ng-if="screenType > 1" src="http://image.lotte.com/lotte/mo2017/myfeed/banner_big.jpg" alt="배너"/>
+		</a>
+	</div>
+	
+	<!--알림팝업-->
+	<div class="header_alert_pop">
+		<p class="msg"></p>
+	</div>
+
+	<loading-bar></loading-bar>
+</section>

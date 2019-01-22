@@ -1,0 +1,224 @@
+<section ng-show="contVisible" class="cont_minheight">
+
+	<!-- <section class="pageLoading" ng-show="pageLoading"><p class="loading half"></p></section> -->
+	<section ng-show="!pageLoading">
+		<header id="head_sub" sub-header-each>
+			<h2><a ng-click="headerMenuClick('5571264')"><span>맘 & 베이비</span></a></h2>
+			<p class="this" ng-if="isShowThisSns">
+				<a ng-click="showSharePop({shareImg:share_img});">공유</a>
+			</p>
+			<!-- 카테고리 -->
+			<!-- //카테고리 -->
+		</header>
+		<infant-mall-ctg></infant-mall-ctg>
+		<section id="container">
+			<!-- 스토리 -->
+			<section ng-if="inFantUi.uiDispNo == '5571265'">
+		
+				<!-- 출산준비용품 HTML -->
+				<div class="infant_banner unitWrap">
+					<span><img src="/images/lotte2015/mall/infant/main_spot01.jpg" alt="체크리스트 출산준비 태어날 아기를 위해 잊지말고 준비해야 하는 것들!"></span>
+					<span><img src="/images/lotte2015/mall/infant/main_spot02.jpg" alt="아기 이불  보온성, 흡습성, 통기성이 있어야 하며, 너무 무거워서 압박감을 주는것은 피해야 해요. 1.사랑스런 얼굴의 고양이가 매력적인, 마이캣 낮잠이불세트/ 2.마일드스타 유아 이불세트/ 3.고급스러운 소재감에 맛을 더한, 시크워싱 유아패드"></span>
+				</div>
+				<!-- //출산준비용품 HTML -->
+				
+				<!-- 수량한정찬스&브랜드할인쿠폰 -->
+				<section class="statege">
+					<ul class="tab">
+						<li class="a"><a ng-click="tabDepChange('a');" ng-class="{on:screenData.take == 'a'}">{{screenData.StrategeList[0].title}}</a></li>
+						<li class="b"><a ng-click="tabDepChange('b');" ng-class="{on:screenData.take == 'b'}">{{screenData.StrategeList[1].title}}</a></li>
+					</ul>
+					<div class="tab_contents tab01" ng-if="screenData.take == 'a'">
+						<p class="title" ng-bind-html="screenData.StrategeList[0].subtitle"></p>
+						<a href="#" ng-click="">
+							<div class="img_wrap">
+								<p class="goods_img"  style="background-image:url({{screenData.StrBgImg}})"></p>
+								<!-- 뱃지이미지 -->
+								<span class="badge"><img src="{{screenData.StrBadge}}" alt=""></span>
+								<!-- //뱃지이미지 -->
+							</div>
+							<div class="text_wrap">
+								<span class="goods_name">{{screenData.StrategeList[0].prd_list.items[0].goodsNm}}</span>
+								<p class="price_area">
+									<span class="price1"><em>{{screenData.StrategeList[0].prd_list.items[0].price1}}</em>원</span>
+									<span class="price2"><em>{{screenData.StrategeList[0].prd_list.items[0].price2}}</em>원</span>
+								</p>
+							</div>
+							<a class="more"><span ng-click="">구매하기</span></a>
+						</a>
+						<!--<ul class="list_wrap two">
+							<li ng-repeat="item in screenData.StrategeList[0].img_list.items">
+								<a href="#" ng-click="stategeBannerClick(item.img_link, 'm_DC_SpeDisp_Dearpet_Clk_Prd_G{{$index + 1}}')">
+									<div class="img_wrap">
+										<img ng-src="{{item.img_url}}" alt="{{item.goodsNm}}">
+									</div>
+									<div class="text_wrap">
+										<span class="goods_name">{{screenData.StrategeList[0].prd_list.items[0].goodsNm}}</span>
+										<p class="price_area">
+											<span class="price1"><em>{{screenData.StrategeList[0].prd_list.items[0].price1}}</em>원</span>
+											<span class="price2"><em>{{screenData.StrategeList[0].prd_list.items[0].price2}}</em>원</span>
+										</p>
+									</div>
+									<a class="more"><span ng-click="">구매하기</span></a>
+								</a>
+							</li>
+						</ul>-->					
+					</div>
+					<div class="tab_contents tab02" ng-if="screenData.take == 'b'">
+						<p class="title" ng-bind-html="screenData.StrategeList[1].subtitle"></p>
+						<ul class="list_wrap two">
+							<li ng-repeat="item in screenData.StrategeList[1].img_list.items" ng-if="$index<1">
+								<a href="#" ng-click="stategeBannerClick(item.img_link, 'm_DC_SpeDisp_Dearpet_Clk_Prd_G{{$index + 1}}')">
+									<div class="img_wrap">
+										<img ng-src="{{item.img_url}}" alt="{{item.title}}">
+									</div>
+									<a class="more"><span ng-click="">다운받기</span></a>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<!--  //수량한정찬스&브랜드할인쿠폰 -->
+				
+				<!-- data영역 -->
+				<div class="main_content_wrap">	
+						
+					<!-- 믿고 쓰는 Best 브랜드 -->
+					<section class="best_brand">
+						<h3 class="title">신상품 Best</h3>
+						<ul class="list_wrap three">
+							<li ng-repeat="item in screenData.BestBrandList" ng-if="$index<3">
+								<a href="#" ng-click="mallProductClick(item.goods_no, 'm_DC_SpeDisp_Dearpet_Clk_Prd_A0{{$index + 1}}')">
+									<div class="img_wrap"><img ng-src="{{item.img_url}}" alt="{{item.title +' '+ item.subtitle}}"></div>
+									<div class="txt_wrap">
+										<strong class="title" ng-bind-html="item.title"></strong>
+										<span class="subtitle" ng-bind-html="item.subtitle"></span>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</section>
+					<!-- //믿고 쓰는 Best 브랜드 -->
+					
+					<!-- 관련 검색 키워드 -->
+					<section class="relation_keyword">
+			    		<h3>관련 검색 키워드</h3>
+			    		<ul>
+			    			<li ng-repeat="item in screenData.KeyWrodList" ng-if="$index<9">
+								<a ng-click="">#{{item.title}}</a>
+							</li>
+				    	</ul>
+			    	</section>
+					<!-- //관련 검색 키워드 -->
+					
+					<!-- 무료 체험 기회 -->
+					<section class="free_tester" ng-if="screenData.FreeTester.length >= 1">
+						<h3>무료 체험 기회</h3>	
+						<div ng-repeat="item in screenData.FreeTester">
+                        	<a href="#" ng-click="gotoKidsLink('m_DC_CateTpl_Clk_Kids_Ban_idx', $index + 1)">
+                           		<div class="img_wrap"><img ng-src={{item.img_url}} alt="{{item.title +' [기간]'+ item.sub_title}}" /></div>	
+                        		<div class="txt_wrap">
+                        			<strong>{{item.title}}</strong>
+                        			<span>모집기간 : {{item.sub_title}}</span>
+                        		</div>
+                        	</a>
+                       </div>
+					</section>
+					<!-- //무료 체험 기회 -->
+					
+					<!-- 이웃맘들의 육아 꿀팁 -->
+					<section class="useful_tip" ng-if="screenData.UsefulTip.length >= 1">
+						<h3 class="title">이웃맘들의 육아 꿀팁</h3>
+						<ul class="list_wrap">
+							<li ng-repeat="item in screenData.UsefulTip" ng-if="$index<1">
+								<div class="img_wrap">
+									<img ng-click="" ng-src="{{item.img_url}}">
+								</div>
+								<div class="txt_wrap">
+									<p class="writer"><span>{{item.reg_dtime}}</span>{{item.user_name | hidestr}}</p>
+									<p class="txt"><span ng-click="" ng-bind-html="item.text"></span></p>
+								</div>
+							</li>
+						</ul>
+						<a data-ctg-disp-no="5566438" data-ctg-name="이웃맘들의 육아 꿀팁" data-ctg-before-disp-no="5564054" data-ctg-depth="2" class="more"><span ng-click="galleryMoreClick($event, 'm_DC_SpeDisp_Dearpet_Clk_Btn03')">꿀팁 더 보기</span></a>
+					</section>
+					<!-- //이웃맘들의 육아 꿀팁 -->
+					
+					<!-- Best 포토후기 -->
+					<section class="photo_review" ng-if="screenData.PhotoReview.length >= 1">
+						<h3 class="title">Best 포토후기</h3>
+						<ul class="list_wrap">
+							<li ng-repeat="item in screenData.PhotoReview">
+								<div class="img_wrap">
+									<img ng-click="" ng-src="{{item.img_url}}">
+								</div>
+								<div class="txt_wrap">
+									<p class="writer"><span>{{item.reg_dtime}}</span>{{item.user_name | hidestr}}</p>
+									<!-- <p class="text"><span ng-click="" ng-bind-html="item.text"></span></p> -->
+									<p class="txt"><span ng-click="" ng-bind-html="item.text"></span></p>
+								</div>
+							</li>
+						</ul>
+						<a data-ctg-disp-no="5566437" data-ctg-name="포토후기" data-ctg-before-disp-no="5564054" data-ctg-depth="2" class="more"><span ng-click="galleryMoreClick($event, 'm_DC_SpeDisp_Dearpet_Clk_Btn01')">포토후기 더 보기</span></a>
+					</section>
+					<!-- //Best 포토후기 -->
+					
+					<!-- 상품리스트 영역 -->
+					<section class="product_list">
+						<sort-cate ng-if="allProductFlag" ng-class="{fixtype:fixflag}"></sort-cate>
+
+						<!-- s: unit list area -->
+						<div class="unitWrap" style="min-height:550px;">
+							<!-- 상품리스트 유형 선택 -->
+							<div>
+								<div class="unit_type" >
+							  	    <!--<p class="unit_tlt">전체<em> {{maxitemData}}</em>개<p>-->
+							  	    <!--20170309-->
+							  	    <p class="unit_tlt" ng-class="{sub:firstcate_flag}"><b>{{screenData.cate_first}}</b><em> ({{screenData.cate_count}})</em><p>
+									<ul>
+										<li class="r1"><a href="#" ng-class="{on:templateType=='list'}" ng-click="changeTemplate('list')">리스트형</a></li>
+										<li class="r2"><a href="#" ng-class="{on:templateType=='image'}" ng-click="changeTemplate('image')">이미지형</a></li>
+										<li class="r3"><a href="#" ng-class="{on:templateType=='swipe'}" ng-click="changeTemplate('swipe')">스와이프형</a></li>
+									</ul>
+								</div>
+							</div>
+							<!-- //상품리스트 유형 선택 eung -->							
+							<div ng-controller="productCtrl" ng-if="templateType == 'list' && isProductLoading == true">
+								<div ng-show="dataLoadingFinish" product-container template-type="list" total-count="maxitemData" templatetype="templateType" products="screenData.ProductList"  more-product-continer="getProductDataLoad()"></div>
+							</div>
+							<div ng-controller="productCtrl" ng-if="templateType == 'image' && isProductLoading == true">
+								<div ng-show="dataLoadingFinish" product-container template-type="image" total-count="maxitemData" templatetype="templateType" products="screenData.ProductList"  more-product-continer="getProductDataLoad()"></div>
+							</div>
+							<div ng-controller="productCtrl" ng-if="templateType == 'swipe' && isProductLoading == true">
+								<div ng-show="dataLoadingFinish" product-container template-type="swipe" total-count="maxitemData" templatetype="templateType" products="screenData.ProductList"  more-product-continer="getProductDataLoad()" swipe-move="swipefnc()"></div>
+							</div>
+							
+						</div>
+					</section>
+					<!-- //상품리스트 영역 -->
+					
+				</div>
+				<!-- //data영역 -->
+				
+			</section>
+			<!-- //스토리 -->
+			
+			<!-- 육아꿀팁 -->
+			<section ng-if="inFantUi.uiDispNo == 5571267">
+				<div>
+					<infant-mall-tip></infant-mall-tip>
+				</div>
+			</section>
+			<!-- //육아꿀팁 -->
+			
+			<!-- 포토후기 -->
+			<section ng-if="inFantUi.uiDispNo == 5571268">
+				<div>
+					<pet-mall-photoview></pet-mall-photoview>
+				</div>
+			</section>
+			<!-- //포토후기 -->
+			
+		</section>
+	</section>
+</section>

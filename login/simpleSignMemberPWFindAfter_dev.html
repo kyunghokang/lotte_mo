@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+    <meta charset="utf-8">
+    <title>롯데닷컴-simpleSignMemberPWFindAfter</title>
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+
+    <script>
+    var APP_KEY = "7fa1e44757a94fd89921";
+    var SERVER_TIME = new Date();
+    </script>
+	<!-- JSP 영역 -->
+	<!-- 
+	<%@ page language="java" contentType="text/html;charset=utf-8"  %>
+    
+    <%@include file="/common3/angular_common_include.jsp"%>
+    <% if (LOTTE_DEVEL_MODE) { %>
+    <%@include file="/angular_common/lotte_common_css.jsp"%>
+    <%@include file="/angular_common/lotte_common_js.jsp"%>
+    
+    <!-- 이 화면에서 쓰이는 CSS -->
+    
+    <!-- 이 화면에서 쓰이는 JS -->
+    
+    <!-- 
+    <% } else {  %>
+	    <%@include file="/common3/html_meta_angular.jsp"%>
+	    <link rel="stylesheet" type="text/css" href="/lotte/resources/<%= pubVersion %>/simpleSignMemberPWFindAfter.min.css"/>
+	    <script src="/lotte/resources/<%= pubVersion %>/simpleSignMemberPWFindAfter.min.js"></script>
+	    <script src="/lotte/resources/<%= pubVersion %>/simpleSignMemberPWFindAfter.tpl.js"></script>
+    <% } %>
+     -->
+    <!-- // JSP 영역 -->
+
+    <!-- build:template
+    <link rel="stylesheet" type="text/css" href="/lotte/resources/<%= version %>/common.min.css"/>
+    /build -->
+    <!-- build:remove -->
+    <script src="/lotte/resources_dev/common/common_load.js"></script>
+
+    <!-- /build -->
+
+    <!-- build:template
+    <link rel="stylesheet" type="text/css" href="/lotte/resources/<%= version %>/simpleSignMemberPWFindAfter.min.css"/>
+    /build -->
+    <!-- build:remove -->
+    <link rel="stylesheet" type="text/css" href="/lotte/resources_dev/login/login.css"/>
+    <!-- /build -->
+
+    <!-- build:template
+    <script src="/lotte/resources/<%= version %>/common.min.js"></script>
+    /build -->
+    <!-- build:remove -->
+    <!-- /build -->
+
+    <!-- build:template
+    <script src="/lotte/resources/<%= version %>/simpleSignMemberPWFindAfter.min.js"></script>
+    /build -->
+    <!-- build:remove -->
+    <script src="/lotte/resources_dev/login/find_pw_after.js"></script>
+    <link rel="stylesheet" type="text/css" href="/lotte/resources_dev/login/find_ellotte.css"/>
+    <script src="/lotte/resources_dev/login/find_ellotte.js"></script>    
+    
+    <!-- /build -->
+
+    <!-- build:template
+    <script src="/lotte/resources/<%= version %>/simpleSignMemberPWFindAfter.tpl.js"></script>
+    /build -->
+
+</head>
+<body ng-controller="findPwAfterCtrl">
+<!--	<input id="mbr_no" name="mbr_no" type="hidden" value="<%=request.getParameter("mbr_no") %>" />
+	<input id="mbr_name" name="mbr_name" type="hidden" value="<%=request.getParameter("mbr_name") %>" />
+	<input id="login_id" name="login_id" type="hidden" value="<%=request.getParameter("login_id") %>" />
+	<input id="email_addr" name="email_addr" type="hidden" value="<%=request.getParameter("email_addr") %>" />
+	<input id="hpno_1" name="hpno_1" type="hidden" value="<%=request.getParameter("hpno_1") %>" />
+	<input id="hpno_2" name="hpno_2" type="hidden" value="<%=request.getParameter("hpno_2") %>" />
+	<input id="hpno_3" name="hpno_3" type="hidden" value="<%=request.getParameter("hpno_3") %>" />-->
+    <div id="wrapper" ng-show="showWrap">
+        <lotte-header></lotte-header>
+        <lotte-search></lotte-search>
+        <sub-header></sub-header>
+
+        <lotte-container></lotte-container>
+
+        <lotte-footer></lotte-footer>
+        <lotte-btntop></lotte-btntop>
+    </div>
+
+    <lotte-side-category></lotte-side-category>
+    <lotte-side-mylotte></lotte-side-mylotte>
+    <lotte-footer-actionbar></lotte-footer-actionbar>
+
+    <lotte-comm-footer></lotte-comm-footer>
+</body>
+</html>

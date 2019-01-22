@@ -1,0 +1,33 @@
+{
+	"tasks" : {
+		"uglify" : {
+			"jsEventYouthSpring" : {
+				"src" : "lotte/resources_dev/event/youthSpring.js",
+				"dest" : "lotte/resources/<%= version %>/youthSpring.min.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssEventYouthSpring" : {
+				"src" : [
+					"lotte/resources_dev/event/youthSpring.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/youthSpring.min.css"
+			}
+		},
+
+		"processhtml" : {
+			"htmlEventYouthSpring" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"event/youthSpring.html" : "event/youthSpring.html"
+				}
+			}
+		}
+	}
+}
+

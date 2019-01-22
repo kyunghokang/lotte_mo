@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/push/common.css"/>
+
+<link rel="stylesheet" type="text/css" href="voiceMain.css"/>
+<link rel="stylesheet" href="../voiceCommerce/prdList.css"/>
+
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script>
+	$(function(){
+		$('.btn_mic').click(function(){
+			micM()
+		});
+		$('.mic_txt').click(function(){
+			$('.voice_mic').toggleClass('listen');
+		});
+		
+		
+		$('.btn_chat').click(function(){
+			helperM()
+		});
+		
+		function micM(){
+			$('.voice_mic').toggleClass('active');
+			$('.live_chat_consult').toggleClass('active');
+		}
+		
+		
+		function helperM(){
+			var target = $('.voice_helper');
+			target.removeClass('hide').addClass('show');
+			setTimeout(function(){
+				target.addClass('active');
+			},500);
+			
+			
+			setTimeout(function(){
+				target.removeClass('active show').addClass('hide');
+				micM();
+				
+				setTimeout(function(){
+					micM();
+				},5000);
+			},5000);
+		};
+	});
+</script>
+
+</head>
+<body>
+<header class="vc_header_wrap">
+	<ul class="ts_header_left">
+			<li><a class="tsh_prev"><span>이전</span></a></li>
+			<li><a class="tsh_menu"><span>메뉴</span></a>
+					<div class="msg_box">
+						<p class="msg">내정보 등록하고 엘머니 받아보세요!</p>
+					</div>
+			</li>
+	</ul>
+	<ul class="ts_header_right">
+			<li><a class="tsh_volume"><span>소리</span></a></li>
+			<li><a class="tsh_help"><span>도움말</span></a></li>
+			<li><a class="tsh_close"><span>닫기</span></a></li>
+	</ul>
+</header>
+
+<section class="voice_main">
+	<p class="message">추천 받고 싶은 상품을 말해보세요</p>
+	
+	<!-- 2018.04.27 삭제
+	<article class="live_chat_consult">
+		<button class="btn_chat"><span>실시간 채팅상담</span></button>
+		<div class="chat_message">주문/배송/교환/반품/이벤트 등 실시간 상담을 원하세요?</div>
+	</article>
+	 -->
+</section>
+
+<!-- 
+	스크립트 활성화 상태
+	활성화 :active
+	듣고있음 : listen
+ -->
+<section class="voice_mic">
+	<!-- <span class="mic_txt">듣고 있어요</span> -->
+	<input class="mic_txt" value="듣고 있어요" />
+	
+	<!-- 각 버튼별 정의 -->
+	<button class="btn_mic">마이크</button>
+	<button class="btn_keyboard">키보드</button>
+	<button class="btn_submit">전송</button>
+	<!-- //각 버튼별 정의 -->
+</section>
+
+<div class="voice_helper">
+	<p class="text"><span>"도와줘"</span>라고 말해보세요</p>
+</div>
+
+<!-- 코치마크 -->
+<div class="coach_mark_wrap">
+	<div class="dim"></div>
+	<p class="img01">“도와줘”라고 말해보세요 음성으로 가능한 일들을 알려드릴게요</p>
+	<p class="img02">마이크를 누르고 말해보세요 원하는 상품을 말해서 추천받거나 원하는 화면으로 바로 이동해보세요</p>
+</div>
+<!-- //코치마크 -->
+</body>
+</html>

@@ -1,0 +1,167 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!--M2161 싸면특가-->
+	<div class="moduleCon n201811 todayl">
+        <!--중카 탭 2개 -->
+        <ul class="tl_menu" ng-show="moduleData.ctgList.items.length > 1">
+            <li ng-repeat="item in moduleData.ctgList.items | limitTo:2" ng-click="logGAEvtModuleEach($index + 1, item.dispNm, item.dispNm,'탭');tabClick($event, $index, item.linkUrl)">
+                <span class="tit" style="color:{{$index == moduleData.uiData.tabIdx ? moduleData.uiData.fontColor :'#888'}}">
+                    <span class="icon"><img ng-src="{{item.imgUrl}}"></span>
+                    {{item.dispNm | cutStrLen : 8}}                    
+                </span>
+                <span class="select_bar" ng-show="$index == moduleData.uiData.tabIdx">
+                    <span class="bar" style="background:{{moduleData.uiData.fontColor}}"></span>
+                </span>
+            </li>
+        </ul>
+        <div class="gab10"></div>
+	    <!--중카
+		<div class="unit unit_cate fillbg bigdeal_store" ng-hide="moduleData.ctgList.items.length == 1">
+			<div class="cate swipe_wrap" lotte-slider>
+				<ul>
+					<li ng-repeat="item in moduleData.ctgList.items" ng-class="{on:$index == moduleData.uiData.tabIdx}" style="background:{{$index == moduleData.uiData.tabIdx? moduleData.uiData.copyBgColor:'#fff'}}">
+						<a ng-click="logGAEvtModuleEach($index + 1, item.dispNm, item.dispNm,'탭');tabClick($event, $index, item.linkUrl)">
+							<span class="img_wrap"><img ng-src="{{item.imgUrl}}"></span>
+							<span class="tit">{{item.dispNm}}</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+       --> 
+        <!--소카 -->
+		<div class="unit unit_cate" ng-show="moduleData.subCtgList && moduleData.subCtgList.items.length > 1">
+			<div class="subcate">
+				<ul class="div3">
+					<li ng-repeat="item in moduleData.subCtgList.items" ng-click="logGAEvtModuleEach($index + 1, item.dispNm, moduleData.ctgList.items[moduleData.uiData.tabIdx].dispNm + '_' + item.dispNm,'탭');subTabClick($event, $index, item.linkUrl);" ng-class="{on:$index == moduleData.uiData.selectSubIdx,less:moduleData.subCtgList.items.length < 4}">
+					    <span><var style="{{$index == moduleData.uiData.selectSubIdx? 'color:' + moduleData.uiData.fontColor:''}}">{{item.dispNm}}</var></span>
+					    <div class="selectedOn" style="{{$index == moduleData.uiData.selectSubIdx? 'border:1px solid ' + moduleData.uiData.fontColor:''}}"></div>
+				    </li>
+					<li ng-repeat="n in [1,2,3] | limitTo: 3 - (moduleData.subCtgList.items.length % 3)" ng-if="(moduleData.subCtgList.items.length % 3) != 0">
+					    <span><var></var></span>
+					    <div class="selectedOn"></div>
+				    </li> 
+				</ul>
+			</div>
+		</div>
+        
+		<div class="unit unit_bigdeal">
+			<ul>
+                <!--A,B,C타입-->
+			    <li ng-if="moduleData.timePrdInfo && (moduleData.toDayType == 'A' || moduleData.toDayType == 'B')">
+                   <!-- 타임특가영역 A, B-->
+                   <div class="timezone" style="background:{{moduleData.uiData.copyBgColor}}">
+                       <div class="centercon">남은시간</div>
+                       <div class="centercon timer"></div>
+                   </div>
+                   <!--상품영역 A -->
+                   <div class="goodszone"  style="background:{{moduleData.uiData.copyBgColor}}" ng-if="moduleData.toDayType == 'A'">
+                        <a ng-click="logGAEvtModuleEach(1, moduleData.timePrdInfo.goodsNo, moduleData.ctgList.items[moduleData.uiData.tabIdx].dispNm + (moduleData.uiData.tabIdx == 0 ? '' : (moduleData.subCtgList.items[moduleData.uiData.selectSubIdx].dispNm ? '_' + moduleData.subCtgList.items[moduleData.uiData.selectSubIdx].dispNm : '')),'타임특가');mainProductClick(moduleData.timePrdInfo.goodsNo, moduleData.tclick+ '_'+ moduleData.uiData.tabDispNo + '_Clk_unit'+numberFill(($index+1),2))" ng-if="moduleData.timePrdInfo">
+                            <div class="thumb2">
+                                <div class="thumb_sub" style="background:url({{moduleData.timePrdInfo.imgUrl}}) no-repeat;background-size:auto 190px;background-position-x:center"></div>                                
+                                <div class="soldout" ng-if="moduleData.timePrdInfo.isSoldOut">SOLD OUT</div>
+                            </div>
+                            <!--좌측상단 플래그-->
+                            <div class="s_flag" ng-if="moduleData.timePrdInfo.emImgUrl">
+                                <img ng-src="{{moduleData.timePrdInfo.emImgUrl}}">
+                            </div>
+                            <!-- 상품정보 -->
+                            <div class="prod">
+                                <!--메시지-->
+                                <p class="msg" style="color:{{moduleData.uiData.fontColor}}">{{moduleData.timePrdInfo.mdTip}}</p>
+                                <!-- 상품명 -->
+                                <p class="prodname">{{moduleData.timePrdInfo.goodsNm}}</p>
+                                <!-- 상품가격 -->
+                                <p class="price"><span class="discount" style="color:{{moduleData.uiData.fontColor}}" ng-if="!moduleData.timePrdInfo.isPlanPrd && moduleData.timePrdInfo.saleRate > 0"><span class="dis_rate">{{moduleData.timePrdInfo.saleRate}}%</span><em ng-if="moduleData.timePrdInfo.isCoupon">쿠폰<br/>포함</em></span><b>{{moduleData.timePrdInfo.price | currency: '':0}}</b>원<em class="plan_prod_limit" ng-if="moduleData.timePrdInfo.isPlanPrd">~</em></p>
+                                <!-- 20190131 메인개선2차 31일배포 예정 구매 개수 및 입력형 Flag -->
+                                <!-- <div class="sale_wrap" ng-if="item.prdInfo.saleCnt > 0">
+                                    <span class="no"><em>{{item.prdInfo.saleCnt | number}}</em>개 구매 중</span>
+                                </div> -->
+                            </div>
+                        </a>                       
+                   </div>
+                   <!--상품영역 B -->
+                   <div class="today_typeb" ng-if="moduleData.toDayType == 'B'">
+                        <a ng-click="logGAEvtModuleEach(1, moduleData.timePrdInfo.goodsNo, moduleData.ctgList.items[moduleData.uiData.tabIdx].dispNm + (moduleData.uiData.tabIdx == 0 ? '' : (moduleData.subCtgList.items[moduleData.uiData.selectSubIdx].dispNm ? '_' + moduleData.subCtgList.items[moduleData.uiData.selectSubIdx].dispNm : '')),'타임특가');mainProductClick(moduleData.timePrdInfo.goodsNo, moduleData.tclick+ '_'+ moduleData.uiData.tabDispNo + '_Clk_unit'+numberFill(($index+1),2))">
+                            <!-- 품절 -->
+                            <div class="soldout" ng-if="moduleData.timePrdInfo.isSoldOut">SOLD OUT</div>
+                            <div class="thumb" ng-style="{'background-image':'url({{moduleData.timePrdInfo.imgUrl}})'}">						                                                  						    
+                            </div>
+                            <!--좌측상단 플래그-->
+                            <div class="s_flag" ng-if="moduleData.timePrdInfo.emImgUrl">
+                                <img ng-src="{{moduleData.timePrdInfo.emImgUrl}}">
+                            </div>
+                            <!-- 상품정보 -->
+                            <div class="info">
+                                <div class="flag_wrap">
+                                    <span class="flag2" ng-repeat="(k,v) in moduleData.timePrdInfo.flag" ng-class="{depart:v == 'dept', himart:v == 'himart', 'tv_shopping':v == 'tvhome', 'smartpick':v == 'smartpick', 'free_ship':v == 'freeDlv', 'gift_pack':v == 'present'}">{{v | dealFlagName}}</span>
+                                </div>
+                                <div class="prod">
+                                    <!--메시지-->
+                                    <p class="msg">{{moduleData.timePrdInfo.mdTip}}</p>
+                                    <!-- 상품명 -->
+                                    <p class="prodname">{{moduleData.timePrdInfo.goodsNm}}</p>
+                                    <!-- 상품가격 -->
+                                    <p class="price"><span class="discount" ng-if="!moduleData.timePrdInfo.isPlanPrd && moduleData.timePrdInfo.saleRate > 0"><span class="dis_rate">{{moduleData.timePrdInfo.saleRate}}<sub>%</sub></span><em ng-if="moduleData.timePrdInfo.isCoupon">쿠폰<br/>포함</em></span><b>{{moduleData.timePrdInfo.price | currency: '':0}}</b>원<em class="plan_prod_limit" ng-if="moduleData.timePrdInfo.isPlanPrd">~</em></p>
+                                    <!-- 구매 개수 및 입력형 Flag -->
+                                    <div class="sale_wrap" ng-if="item.prdInfo.saleCnt > 0">
+                                        <span class="no"><em>{{item.prdInfo.saleCnt | number}}</em>개 구매 중</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>                    
+                   </div>                   
+			    </li>	
+<!--			    <li class="typea" ng-if="moduleData.timePrdInfo.btmTxt && moduleData.toDayType == 'A'">
+                    <div class="gTop_title">
+                        <p><b>{{moduleData.timePrdInfo.btmTxt}}</b></p>
+                    </div>			        			        
+			    </li>	-->	
+				<li ng-repeat="item in moduleData.dealList.items"> <!--ng-class="{linomargin:$index == 0 && moduleData.toDayType == 'A' && moduleData.timePrdInfo.btmTxt}"-->
+					<a ng-click="logGAEvtModuleEach($index + 1, item.prdInfo.goodsNo, moduleData.ctgList.items[moduleData.uiData.tabIdx].dispNm + (moduleData.subCtgList.items[moduleData.uiData.selectSubIdx].dispNm ? '_' + moduleData.subCtgList.items[moduleData.uiData.selectSubIdx].dispNm : ''),'상품');mainProductClick(item.prdInfo.goodsNo, moduleData.tclick+ '_'+ moduleData.uiData.tabDispNo + '_Clk_unit'+numberFill(($index+1),2))" ng-if="item.prdInfo">
+						<!-- 품절 -->
+						<div class="soldout" ng-if="item.prdInfo.isSoldOut">SOLD OUT</div>
+						<!--<div class="thumb"><img ng-src="{{item.prdInfo.imgUrl}}"></div>-->
+						<div class="thumb" ng-style="{'background-image':'url({{item.prdInfo.imgUrl}})'}">						                                                  						    
+						</div>
+                        <!--좌측상단 플래그-->
+                        <div class="s_flag" ng-if="item.prdInfo.emImgUrl">
+                            <img ng-src="{{item.prdInfo.emImgUrl}}">
+                        </div>
+						<!-- 상품정보 -->
+						<div class="info">
+							<div class="flag_wrap">
+								<span class="flag2" ng-repeat="(k,v) in item.prdInfo.flag" ng-class="{depart:v == 'dept', himart:v == 'himart', 'tv_shopping':v == 'tvhome', 'smartpick':v == 'smartpick', 'free_ship':v == 'freeDlv', 'gift_pack':v == 'present'}">{{v | dealFlagName}}</span>
+							</div>
+							<div class="prod">
+								<!--메시지-->
+								<p class="msg">{{item.prdInfo.mdTip}}</p>
+								<!-- 상품명 -->
+								<p class="prodname">{{item.prdInfo.goodsNm}}</p>
+								<!-- 상품가격 -->
+                                <p class="price"><span class="discount" ng-if="!item.prdInfo.isPlanPrd && item.prdInfo.saleRate > 0"><span class="dis_rate">{{item.prdInfo.saleRate}}<sub>%</sub></span><em ng-if="item.prdInfo.isCoupon">쿠폰<br/>포함</em></span><b>{{item.prdInfo.price | currency: '':0}}</b>원<em class="plan_prod_limit" ng-if="item.prdInfo.isPlanPrd">~</em></p>
+                                <!-- 구매 개수 및 입력형 Flag -->
+                                <div class="sale_wrap" ng-if="item.prdInfo.saleCnt > 0">
+                                    <span class="no"><em>{{item.prdInfo.saleCnt | number}}</em>개 구매 중</span>
+                                </div>
+							</div>
+						</div>
+					</a>
+					<div class="unit unit_bn_ad" ng-click="logGAEvtModuleEach($index + 1,(item.dealBanner.btmTxt) ? item.dealBanner.btmTxt : '-', moduleData.ctgList.items[moduleData.uiData.tabIdx].dispNm + (moduleData.subCtgList.items[moduleData.uiData.selectSubIdx].dispNm ? '_' + moduleData.subCtgList.items[moduleData.uiData.selectSubIdx].dispNm : ''),'이미지배너');mainBannerClick(item.dealBanner.linkUrl, item.dealBanner.isOutLink, moduleData.tclick + '_'+ moduleData.uiData.tabDispNo +'_Clk_Ban'+numberFill(($index+1),2), item.dealBanner.ad_url)" ng-if="item.dealBanner">
+						<div class="img_wrap">
+							<img alt="" ng-src="{{item.dealBanner.imgUrl}}">
+                            <!--201804 광고솔루션-->
+                            <span ng-if="item.dealBanner.ad_url" ng-init="calllmp(moduleData.tclick + '_'+ moduleData.uiData.tabDispNo +'_Clk_Ban'+numberFill(($index+1),2))"></span>
+							
+                            <div class="txt_wrap">
+								<div class="txt_cont">
+									<p class="top_txt"><span>{{item.dealBanner.topTxt}}</span></p>
+									<p class="btm_txt">{{item.dealBanner.btmTxt}}</p>
+								</div>
+							</div>
+						</div>                        
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>

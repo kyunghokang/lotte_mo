@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">	
+<link rel="stylesheet" href="/HTML/mylotte/receipt.css">
+<!----------------- current css ----------------->
+
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<!-- container -->
+<section id="container">	
+	<!-- 영수증상세 -->
+	<div class="mylotteReceipt">
+		<div class="receiptHead">
+			영수증 (공급받는자 보관용)
+		</div>
+		<div class="receiptCont">
+			<!-- 내역없음 -->
+			<div class="nodata">상세내역이 없습니다.</div>
+			<!-- 내역있음 -->
+			<div class="receipt">
+				<ul class="customer">
+					<li>
+						<div class="tit">주문하신 분</div>
+						<div>김현경</div>
+					</li>
+					<li>
+						<div class="tit">회원 ID</div>
+						<div>thfkrhdwn6</div>
+					</li>
+				</ul>
+				<!-- 통신판매 -->
+				<div class="store">
+					<table>
+						<caption>영수증상세중 업체이름, 업체대표, 사업자등록번호, 사업지주소, 업태, 종목이 포함된 사업지정보</caption>
+						<colgroup>
+							<col width="33%" />
+							<col width="*" />
+						</colgroup>
+						<tbody>
+						<tr>
+							<th scope="row">롯데닷컴</th>
+							<td><div class="name">대표 :  김형준(인)<span class="sign">도장</span></div></td>
+						</tr>
+						<tr>
+							<th scope="row">사업자등록번호</th>
+							<td>101-81-52964</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<ul>
+									<li>서울특별시 중구 을지로158(을지로4가, 삼풍빌딩8층)</li>
+									<li>서울특별시 중구 을지로 158 8층 (을지로4가,삼풍빌딩)</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">업태</th>
+							<td>도소매</td>
+						</tr>
+						<tr>
+							<th scope="row">종목</th>
+							<td>통신판매</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- 백화점 -->
+				<div class="store">
+					<table>
+						<caption>영수증상세중 업체이름, 업체대표, 사업자등록번호, 사업지주소, 업태, 종목이 포함된 사업지정보</caption>
+						<colgroup>
+							<col width="33%" />
+							<col width="*" />
+						</colgroup>
+						<tbody>
+						<tr>
+							<th scope="row">롯데닷컴</th>
+							<td><div class="name">대표 :  이원준, 신격호, 이인원(인)<span class="sign">도장</span></div></td>
+						</tr>
+						<tr>
+							<th scope="row">사업자등록번호</th>
+							<td>104-81-26067</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<ul>
+									<li>서울특별시 중구 소공동1</li>
+									<li>서울특별시 중구 남대문로 81, 본점 (소공동,롯데백화점)</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">업태</th>
+							<td>소매업</td>
+						</tr>
+						<tr>
+							<th scope="row">종목</th>
+							<td>백화점</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="order">
+					<ul class="orderNum">
+						<li>주문번호 : 2015-02-03-2039961</li>
+						<li>발행일자 : 2015년 02월 03일</li>
+					</ul>
+					<div class="orderTb">
+						<table>
+							<caption>영수증상세 중 결제수단 및 결제금액, 카드번호, 승인번호 내역</caption>
+							<colgroup>
+								<col width="45%" />
+								<col width="*" />
+								<col width="*" />
+							</colgroup>
+							<thead>
+							<tr>
+								<th scope="col">결제수단&#47;결제금액</th>
+								<th scope="col">카드번호</th>
+								<th scope="col">승인번호</th>
+							</tr>
+							</thead>
+							<tbody>
+							<!-- 20180503 네이버페이 추가 -->
+							<!-- 신용카드 -->
+							<tr>
+								<th scope="row">
+									네이버페이(현대카드)
+									<div class="sum">29,000원</div>
+								</th>
+								<td>37797311<br>*******</td>
+								<td>7979107</td>
+							</tr>
+							<!-- 체크카드 -->
+							<tr>
+								<th scope="row">
+									네이버페이(국민카드)
+									<div class="sum">29,000원</div>
+								</th>
+								<td></td>
+								<td></td>
+							</tr>
+							<!-- // 20180503 네이버페이 추가 -->
+							<tr>
+								<th scope="row">
+									롯데카드
+									<div class="sum">29,000원</div>
+								</th>
+								<td>37797311<br>*******</td>
+								<td>7979107</td>
+							</tr>
+							<tr>
+								<th scope="row">
+									L-포인트(현금성)
+									<div class="sum">100,000원</div>
+								</th>
+								<td>37797311<br>*******</td>
+								<td>A938731<br>00</td>
+							</tr>
+							<tr>
+								<th scope="row">
+									L-포인트(비현금성)
+									<div class="sum">100,000원</div>
+								</th>
+								<td>37797311<br>*******</td>
+								<td>A938731<br>00</td>
+							</tr>
+							<tr>
+								<th scope="row">
+									에누리금액
+									<div class="sum">4,500원</div>
+								</th>
+								<td>37797311<br>*******</td>
+								<td>A938731<br>00</td>
+							</tr>
+							<tr>
+								<th scope="row">
+									롯데포인트
+									<div class="sum">16,520원</div>
+								</th>
+								<td>37797311<br>*******</td>
+								<td>9876543<br>21</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="orderTb orderTb2">
+						<table>
+							<caption>영수증상세 중 거래일자, 품목, 공급가액, 세액, 수량, 합계금액</caption>
+							<colgroup>
+								<col width="45%" />
+								<col width="*" />
+							</colgroup>
+							<thead>
+							<tr>
+								<th scope="col">거래일자</th>
+								<th scope="col">2014-02-03</th>
+							</tr>
+							</thead>
+							<tfoot>
+							<tr>
+								<th scope="row">합계</th>
+								<td><strong>129,000</strong>원</td>
+							</tr>
+							</tfoot>
+							<tbody>
+							<tr>
+								<th scope="row">품목</th>
+								<td>
+									[나이키(의류)] NIKE나이키 FCB 스쿼드 미드필더 자켓
+									<div class="proNum">575709-0111</div>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">공급가액</th>
+								<td>117,273원</td>
+							</tr>
+							<tr>
+								<th scope="row">세액</th>
+								<td>11,727원</td>
+							</tr>
+							<tr>
+								<th scope="row">수량</th>
+								<td>1</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="orderTb orderTb2 orderTb3">
+						<table>
+							<caption>영수증상세중 면세품가액, 과세물품가액, 부가세, 배송료, 총합계가 포함된 거래상세내역</caption>
+							<colgroup>
+								<col width="45%" />
+								<col width="*" />
+							</colgroup>
+							<thead>
+							<tr>
+								<th scope="col" colspan="2">거래 상세내역</th>
+							</tr>
+							</thead>
+							<tfoot>
+							<tr>
+								<th scope="row">총합계</th>
+								<td><strong>33,500</strong>원</td>
+							</tr>
+							</tfoot>
+							<tbody>
+							<tr>
+								<th scope="row">면세품가액</th>
+								<td>0원</td>
+							</tr>
+							<tr>
+								<th scope="row">과세물품가액</th>
+								<td>30,455원</td>
+							</tr>
+							<tr>
+								<th scope="row">부가세</th>
+								<td>3,045원</td>
+							</tr>
+							<tr>
+								<th scope="row">배송료</th>
+								<td>0원</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+					<ul class="receiptNoteList">
+						<li>본 영수증은 거래명세표로 사용할 수 있으며, 신용카드, 현금영수증 전표가 필요하실 경우 본 영수증에서 각 전표를 별도로 인쇄하셔야 합니다.</li>
+						<li>인쇄는 PC웹 마이롯데 (마이페이지) > 계산서 / 영수증신청 에서 가능합니다.</li>
+					</ul>
+				</div>
+			</div>
+			<dl class="receiptNote">
+				<dt><a href="#none">영수증 발급 안내</a></dt>
+				<dd>
+					<ul class="receiptNoteList">
+						<li>고객님의 주문 중 현금영수증 신청 및 세금계산서 발행이 가능한 주문에 대해서 확인하실 수 있습니다.</li>
+						<li>영수증&#47;세금계산서 내역은 발송완료 이후에 발행되며, 신용카드는 세금계산서 발행이 불가합니다.</li>
+					</ul>
+					<div class="tit">[현금영수증&#47;세금계산서 신청 안내]</div>
+					<div class="noteCont">
+						현금영수증/세금계산서 신청은 주문한 상품의 배송상태가 발송완료(롯데홈쇼핑상품은 배송완료)일 경우 신청이 가능하며, 신청 및 출력은 PC웹 마이롯데를 통해 접수하실 수 있습니다. 세금계산서 교부의무의 면제 등' 부가가치세법 시행령 제 32조의 2 제 1항 규정에 의거 상품구매 후 신용카드로 결제하셨거나 현금결제 후 지출증빙용 현금영수증을 신청하신 경우 세금계산서 발급이 제한됩니다. 세금계산서 신청을 원하는 경우 익월 9일까지 신청접수를 해주셔야 합니다. 
+						<dl class="noteEx">
+							<dt>예시)</dt>
+							<dd>4월 10일 발송완료인 경우 : 5월 9일까지 마이롯데 신청가능<br>
+							익월 9일 이내 마이롯데에서 신청하지 못한 경우 익월 10일 오후 3시까지 고객센터 접수 가능 익월 10일이 토/일, 공휴일인 경우 바로 전 평일 17시에 마감되오니 유의하시기 바랍니다.</dd>
+							<dt>예시)</dt>
+							<dd>4월 10일(일)인 경우 : 4월 8일(금) 17시까지 신청 가능</dd>
+						</dl>
+						세금계산서와 현금&#47;신용카드 영수증은 중복발행을 하실 수 없습니다.<br>
+						세금계산서, 현금영수증 발급의 취소를 원하시는 경우 고객센터로 문의하여 주시기 바랍니다.
+					</div>
+				</dd>
+			</dl>
+			<script>
+				$(".receiptNote>dt>a").click(function(){
+					if($(this).hasClass("dtOn")){
+						$(this).removeClass("dtOn");
+						$(this).parent().next("dd").removeClass("contOn");
+					}else{
+						$(this).addClass("dtOn");
+						$(this).parent().siblings("dd").removeClass("contOn");
+						$(this).parent().next("dd").addClass("contOn");
+					}
+				});
+			</script>
+		</div>
+		<a href="#none" class="receiptClose">닫기</a>
+	</div>
+	<!-- //영수증상세 -->
+</section>
+
+<section ng-include src="'/HTML/include/footer.html'"></section>
+</body>
+</html>

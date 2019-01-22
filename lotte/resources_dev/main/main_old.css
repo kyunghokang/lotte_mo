@@ -1,0 +1,415 @@
+body { overflow-x: hidden !important; position: relative; width: 100%; }
+.contVisible { overflow: hidden; width:100%; }
+#wrapper { position: relative; left: 0px; }
+
+body * { -webkit-tap-highlight-color: rgba(0,0,0,0) ; }
+.quick_btn a.btn_back{display:none;}
+div.wrapBox { width: 100%; height: 100%; /*min-height:800px;*/ touch-action: auto; -ms-touch-action: auto; position: relative;}
+div.wrapBox > ul { position: relative; width: 100%; height: 100%; }
+div.wrapBox > ul > li { float: left; width: inherit; height: inherit;}
+div.wrapBox > ul:after { content: ''; display: block; width: 100%; clear: both; font-size: 0px; line-height: 0px; }
+div.wrapBox:after { content: ''; display: block; width: 100%; clear: both; font-size: 0px; line-height: 0px; }
+div.dimmedTest { position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; opacity: .5; z-index: 1000; }
+div.testBox { position: absolute; visibility: hidden; width: 100%; left: 0px; top: 0px; right: 0px; z-index:-1; }
+
+div.subCC {background:#e9e9e9; position:relative; clear:both;width:100%;}
+div.subCC .sortOption{padding:0 80px 0 0; height:39px;line-height:41px;font-size:14px;box-sizing: border-box;overflow:hidden}
+div.subCC .sortOption .sortTitle{color:#333;padding:0 30px 0 10px;position:relative}
+div.subCC .sortOption .sortOpt{padding-left:5px;}
+div.subCC .sortOption .sortOpt a{width:60px; display:block; float:left; color:#666; text-align:center; position: relative}
+div.subCC .sortOption .sortOpt a:nth-child(1):after,
+div.subCC .sortOption .sortOpt a:nth-child(2):after{width:1px; height:11px;content:"";background:#ccc;position:absolute;right:0;top:15px}
+div.subCC .sortOption .sortOpt a.on{color:#285ace}
+div.subCC .sortOption .checkOption{position:absolute; right:10px; top:0}
+
+#ngView{position:relative;min-height:800px;background:#e9e9e9}
+
+.main_event01 a:before,
+.main_event02 a:after,
+.main_slide .btn,
+.main_eventbox .blank{display:inline-block;background:url('http://image.lotte.com/lotte/mo2015/angular/main_1.png') no-repeat;background-size:150px 150px;color:transparent;font-size:0;}
+
+/* Put your css in here */
+.main_one{height:50px;
+ -webkit-user-select: none ;
+ -moz-user-select: none ; 
+ -ms-user-select: none ;
+ -o-user-select: none ;
+ user-select: none ;  
+}
+.main_one ul:after{clear:both;content:''}
+.main_one ul{height:50px;background:#719cff;}
+.main_one li{float:left;width:17%;text-align:center;cursor:pointer}
+.main_one li:nth-child(1){width:16%;}
+.main_one li:nth-child(2){width:16%}
+.main_one li.active{position:relative;background:#5386fa}
+.main_one li.active:after{width:6px;height:6px;content:'';position:absolute;bottom:-3px;left:50%;margin-left:-3px;background:#fff;-webkit-transform:rotate(45deg);transform:rotate(45deg);}
+.main_one li a{display:block;width:100%;padding:9px 0;color:#fff;font-size:15px;line-height:16px;}
+/*.main_one li:nth-child(1) a{padding:0;line-height:50px;}*/
+.main_one li.textLineH a {padding:0;line-height:50px;}
+.main_two{ overflow: hidden ; 
+ -webkit-user-select: none ;
+ -moz-user-select: none ; 
+ -ms-user-select: none ;
+ -o-user-select: none ;
+ user-select: none ; border-bottom:1px solid #d4d4d4;
+ background:#fff;
+ }
+.main_two.open:before { content: ""; display: block; background: #fff; position: absolute; left: 0px; top: 0px; right: 0px; height: 100px; }
+.main_two ul.menu{display:block;white-space:nowrap;position:relative;overflow:hidden;height:36px;background:#fff;}
+.main_two ul.menu li{display:inline-block;display:inline-block;padding:0 10px;color:#333;width:auto;line-height:36px;font-size:14px;cursor:pointer}
+.main_two ul.menu li.active {/*color:#5386fa;*/font-weight:bold;position:relative;}
+.main_two ul.menu li.active:after{width:86%;height:2px;content:'';position:absolute;bottom:0;left:7%;background:#5386fa;border-radius:2px}
+/*20150619 서브 퀵메뉴*/
+.list.on{background:#fff}
+.subCD{position:relative;}
+.subCD .openBtn{position:absolute;right:0;top:-36px;width:36px;height:36px;border-left:1px solid #f5f5f5;background:#fff;font-size:0;line-height:36px;display:inline-block;vertical-align:middle;text-align:center;}
+.subCD .openBtn:after{background:url("http://image.lotte.com/lotte/mobile/mobile_new/main/main_subQuick.png") no-repeat 0 0;background-size:28px 50px;width:23px;height:10px;content:"";display:inline-block;vertical-align:middle}
+.subCD.on .openBtn:after{background-position: 0 -20px}
+.subCD.on .openBtn{top:-37px; height: 37px;}
+.subCD{position:absolute;z-index:10;width:100%}
+.subCD.on{border-top:1px solid #D4D4D4}/*position:fixed;z-index:22;margin-top:36px;margin-top:41px;border-top:1px solid #D4D4D4}*/
+.subCD .subQuickMenu{display:none}
+.subCD.on .subQuickMenu{display:block;background:#fff;}
+.subCD .sublymenu{background:#fff;display:table;width:100%}
+.subCD .sublymenu a{display:block;float:left;background:#fff;width:50%;text-align:left;font-size:13px;padding:0 14px;box-sizing: border-box;color:#666;height:40px;line-height:42px;overflow:hidden}
+.subCD .sublymenu a.active{color:#285ace;font-weight:normal}
+.subCD .sublymenu a.active:after{content:none}
+.subCD .sublymenu a:nth-child(odd){border-right:1px solid #eee;border-bottom:1px solid #eee}
+.subCD .sublymenu a:nth-last-child(2){border-bottom:0}
+.subCD .sublymenu a:nth-child(even){border-bottom:1px solid #eee}
+.subCD .sublymenu a:last-child{border-bottom:0}
+.subCD .dim{background:#000;opacity:0.5;width:100%;height:900%;position:absolute}
+.subCD .close{margin-top:-1px;border-top:1px solid #ddd;background:#fafafa;color:#666;font-size:13px;height:34px;line-height:35px;text-align:right;width:100%;overflow:hidden;box-sizing:border-box;padding-right:32px;position:relative}
+.subCD .close:after{background:url("http://image.lotte.com/lotte/mobile/mobile_new/main/main_subQuick.png") no-repeat 0 -39px;background-size:28px 50px;width:23px;height:15px;content:"";position:absolute;right:0px;top:11px}
+
+
+input.check02[type="checkbox"] {border:0px;vertical-align:middle;cursor:pointer;background:url(http://image.lotte.com/lotte/mobile/mobile_new/main/checkbox_201504.png) no-repeat 0 0;background-size:64px 17px;width:17px;height:19px;appearance:none;-webkit-appearance:none;outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-tap-highlight-color:transparent}
+input.check02[type="checkbox"]:checked {background-position:-18px 0}
+input.check02+label{color:#888;vertical-align:middle;}
+/* top banner */
+.main_ban01{width:100%;background:#bce9ff;text-align:center;}
+.main_ban02{width:100%;background:#e9e9e9;text-align:center;}
+.main_ban03{width:100%;background:#e9e9e9;text-align:center;overflow:hidden;}
+.main_ban03 ul:after{display:block;clear:both;content:'';}
+.main_ban03 ul{position:relative;margin:5px;}
+.main_ban03 ul li{width:100%;}
+.main_ban03 ul li:nth-child(2){display:none;}
+.main_ban03 img{width:100%}
+.main_ban03.rewardevent{display:none}
+.main_ban03.rewardevent ul li { display: none; }
+.main_ban03.rewardevent ul li.show { display: block;  }
+@media screen and (min-width:640px){
+	.main_ban03.rewardevent{display:block}
+    .main_ban01 img{max-width:50%}
+    .main_ban02 img{max-width:50%}
+	.main_ban03 ul:after{display:block;clear:both;content:'';}
+	.main_ban03 ul li{width:50%;float:left;}
+	.main_ban03 ul li.jjang{display:block;position:absolute;top:0;right:0;}
+    .main_ban03 img{max-width:100%}
+}
+@media screen and (min-width:1024px){
+    .main_ban01 img{max-width:50%;}
+    .main_ban02 img{max-width:50%}
+    .main_ban03 img{max-width:100%}
+}
+
+/* 이벤트 */
+.main_eventbox{padding:5px 0 10px;background:#e9e9e9}
+.main_planshop{padding:0 0 10px;background:#e9e9e9}
+.main_etvbox{padding:0 0 10px;background:#e9e9e9}
+/* .main_etvbox .unit_deal_01 .flag .flag_02{display:none;} */
+.main_etvbox .main_ban02{padding-top:5px;}
+.main_eventbox .event_list:after{display:block;clear:both;content:'';}
+.main_eventbox .event_list{margin:0 5px;}
+.main_eventbox .event_list li{margin:5px 0 0 0;}
+.main_eventbox .event_list li a{display:block;position:relative;border:1px solid #c2c2c2}
+.main_eventbox .event_list li .thum{min-height:110px}
+.main_eventbox .event_list li .tit{position:absolute;left:0;bottom:35px;width:100%;height:24px;color:#fff;font-size:11px;line-height:24px;
+    background:rgba(0, 0, 0, 0.5);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+}
+.main_eventbox .event_list li .tit .partner{padding:0 6px 0 10px;}
+.main_eventbox .event_list li .tit .partner:after{display:inline-block;content:'';width:1px;height:7px;margin:0 0 0 6px;background:#b1b1b1;}
+.main_eventbox .event_list li .tit .blank{color:transparent;width:14px;height:15px;background-position:0 -34px;position:absolute;top:5px;right:5px}
+.main_eventbox .event_list li .date{padding:0 0 0 10px;height:35px;color:#2c2c2c;font-size:14px;line-height:35px}
+@media screen and (min-width:640px){
+    .main_eventbox .event_list li{width:50%;float:left}
+    .main_eventbox .event_list li a{margin:0 3px;}
+}
+@media screen and (min-width:900px){
+    .main_eventbox .event_list li{width:33.3%;float:left}
+    .main_eventbox .event_list li a{margin:0 3px;}
+}
+
+
+
+/* banner slide */
+.main_slide{overflow:hidden;position:relative;background:#e9e9e9;padding-bottom:13px;margin:0 5px 0 5px;}
+.main_slide .mask{height:100%;overflow:hidden}
+.main_slide .mask .list{}
+.main_slide .mask .list li{width:100%;float:left}
+.main_slide .mask .list li img{width:100%;}
+.main_slide .btn{width:18px;height:27px;position:absolute;top:50%;z-index:9;border:0;font-size:0;opacity:0.6;cursor:pointer}
+.main_slide .btn.hide {visibility:hidden;}
+.main_slide .btn.prev {left:10px;background-position:0 -81px;margin-top:-29px}
+.main_slide .btn.next {right:10px;background-position:-21px -81px;margin-top:-29px}
+.main_slide .bullet{text-align:center;margin-top:-1px;}
+.main_slide .bullet li{display:inline-block;width:6px;height:6px;margin:0 2px;border-radius:100%;background:#b7b7b7;font-size:0}
+.main_slide .bullet li.active{background:#3c599e;}
+.main_slide .thumb{background:#fff;padding:12px 0;margin:0 auto;text-align:center}
+.main_slide .thumb span{width:32%;display:inline-block;}
+.main_slide .thumb span a{width:90%;display:inline-block;}
+.main_slide .thumb a img{border-radius:100%;}
+
+/* 기획전 */
+.main_planshop .plan_list:after{display:block;clear:both;content:'';}
+.main_planshop .plan_list{margin:0 5px;}
+.main_planshop .plan_list li{margin:5px 0 0 0;}
+.main_planshop .plan_list li a{display:block;padding:0 0 8px;background:#fff;border:1px solid #c2c2c2}
+.main_planshop .plan_list .thum{position:relative;min-height:110px;}
+.main_planshop .plan_list .tit{padding:8px 0 0;height:24px;color:#111;font-size:16px;font-weight:bold;line-height:24px;text-align:center;}
+.main_planshop .plan_list .txt{color:#111;font-size:14px;}
+@media screen and (min-width:640px){
+    .main_planshop .plan_list li{width:50%;float:left}
+    .main_planshop .plan_list li a{margin:0 3px;padding:4px;border:1px solid #d4d4d4}
+    .main_planshop .plan_list li .thum img{height:172px}
+}
+@media screen and (min-width:900px){
+    .main_planshop .plan_list li{width:33.3%;float:left}
+    .main_planshop .plan_list li a{margin:0 3px;}
+    .main_planshop .plan_list li a{margin:0 3px;padding:4px;border:1px solid #d4d4d4}
+    .main_planshop .plan_list li .thum img{height:190px}
+}
+
+/* TV쇼핑 */
+.main_unit01 .list:after{clear:both;display:block;content:''}
+.main_unit01 .list li{padding:5px 5px 0 5px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.main_unit01 .list li > div{border:1px solid #d3d3d3;background:#fff; box-sizing: border-box;}
+.main_unit01 .list li.sky{margin:5px 0 0 0 !important;border:5px solid #B3CAF3}
+.bigDeal .main_unit01 .list li.n_0,
+.bigDeal .main_unit01 .list li.n_1,
+.bigDeal .main_unit01 .list li.n_2,
+.bigDeal .main_unit01 .list li.n_3{background-color:#B3CAF3;}
+.bigDeal .main_unit01 .list li.n_3{padding-bottom:5px;}
+.bigDeal .main_unit01 .list li a{display:block;}
+.bigDeal .main_unit01 .list li.n_0 > div,
+.bigDeal .main_unit01 .list li.n_1 > div,
+.bigDeal .main_unit01 .list li.n_2 > div,
+.bigDeal .main_unit01 .list li.n_3 > div{border:0;}
+
+ul.topBannerList:after{content:'';clear:both;display:block; }
+ul.topBannerList.hide { display:none}
+ul.topBannerList li { padding: 5px 5px 0px 5px; display: none; }
+ul.topBannerList li.show { }
+
+@media screen and (min-width:640px){
+	ul.topBannerList li:nth-child(1){display:block;}
+	ul.topBannerList li:nth-child(2){display:block;}
+	.main_etvbox .list .tv1{display:none}
+    .main_unit01 .list{padding-left:5px;}
+    .main_unit01 .list li{width:50%;float:left;padding:5px 5px 0 0;}
+    .main_unit01 .list li a{display:block;}
+    .main_unit01 .list li.ban_hid{display:none;}
+    .bigDeal .main_unit01 .list li.n_1{background-color:transparent;}
+	.bigDeal .main_unit01 .list li.n_2{background-color:transparent;}
+	.bigDeal .main_unit01 .list li.n_3{background-color:transparent;padding-bottom:0;}
+	.bigDeal .main_unit01 .list li.b_1{background-color:transparent;}
+	.bigDeal .main_unit01 .list li.b_2{background-color:transparent;}
+	
+	ul.topBannerList { display: block; padding-left: 5px; }
+	ul.topBannerList li { padding: 5px 5px 0px 0px; }
+}
+@media screen and (min-width:900px){
+	ul.topBannerList li:nth-child(3){display:block;}
+    .main_unit01 .list li{width:33.3%;float:left}
+}
+.n_1:before{background-color: #b3caf3;}
+
+
+
+.bigDeal .unit_deal_01 { background-color: #fff; }
+@media screen and (min-width:640px){
+    .main_unit01 li{border:0px !important;background:transparent !important;width:50%;float:left;box-sizing:border-box;-webkit-box-sizing:border-box}
+    .main_unit01 li > div{/*margin:5px 3px 0;*/border:1px solid #d3d3d3;background:#fff}
+    .main_unit01 li > div > a{}
+    
+}
+@media screen and (min-width:900px){
+    .main_unit01 li{border:0px !important;background:transparent !important;width:33.3%;float:left;box-sizing:border-box;-webkit-box-sizing:border-box}
+    .main_unit01 li > div{/*margin:5px 3px 0;*/border:1px solid #d3d3d3;background:#fff}
+}
+
+/* 20150826 박형윤 - 명절 TFT 빅딜 임직원 특가매장 배너 노출 */
+.bigDeal .bnr_bigdeal_thxgiving{padding:5px 5px 0 5px;background-color:#B3CAF3}
+
+.main_etvbox .info{position:relative;padding:11px 93px 11px 13px;height:60px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.main_etvbox .info .tit{font-size:14px;line-height:20px;}
+.main_etvbox .info .price{color:#275acd;line-height:20px;}
+.main_etvbox .info .price strong{font-size:19px}
+
+.main_etvbox:after{display:block;clear:both;content:'';}
+.main_etvbox .tv0 .info{}
+.main_etvbox .tv0 .price,
+.main_etvbox .tv0 .sale{display:inline-block;margin-right:5px}
+.main_etvbox .tv0 .btn_tv{position:absolute;top:20px;right:13px;}
+.main_etvbox .tv0 .skt_app{position:absolute;top:-40px;left:0; width:100%;height:40px;}
+.main_etvbox .tv0 .skt_app div{height:40px;line-height:16px;background:url(http://image.lotte.com/lotte/mobile/mobile_new/main/maintv_bg.png);font-size:9px;color:#fff;padding:6px 0 5px 13px;box-sizing:border-box;-webkit-box-sizing:border-box}
+.main_etvbox .tv0 .skt_app a{position:absolute;right:0;top:50%;width:43px;margin-top:-18px}
+.main_etvbox .tv0 .time{display:block;position:relative;height:37px;background:#e3614c;color:#fff;padding:0 25px 0 27px;line-height:37px}
+.main_etvbox .tv0 .time .onair{font-size:12px}
+.main_etvbox .tv0 .time .onair:before{background:url("http://image.lotte.com/lotte/mobile/mobile_new/main/tvshop_unit0407.png") no-repeat;background-size:15px 25px;width:15px;height:15px;content:"";position:absolute;left:11px;top:12px}
+.main_etvbox .tv0 .time .btn_v1:after{background:url("http://image.lotte.com/lotte/mobile/mobile_new/main/tvshop_unit0407.png") no-repeat 0 -13px;background-size:15px 25px;width:15px;height:15px;content:"";position:absolute;right:-18px;top:12px}
+.main_etvbox .tv0 .time span{font-size:10px}
+.main_etvbox .tvsch > a{height:90px}
+
+.main_etvbox .tv1{position:relative;}
+.main_etvbox .tv1 .thumb{position:absolute;top:8px;left:8px;width:105px;height:105px;border-bottom:0;vertical-align:middle;}
+.main_etvbox .tv1 .thumb img{width:105px;height:105px}
+.main_etvbox .tv1 .info{height:80px;padding:8px;margin:25px 0 0 130px;text-align:right;vertical-align:middle;}
+.main_etvbox .tv1 .price,
+.main_etvbox .tv1 .sale{display:inline-block;margin-right:5px}
+.main_etvbox .tv1 .btn_tv{margin-top:5px;}
+.main_etvbox .btn_tv{background:#e3614c;display:inline-block;color:#fff;width:69px;height:23px;line-height:23px;text-align:center;border-radius:9px}
+.main_etvbox .tv1 .time{position:relative;display:block;padding:0 10px;line-height:37px;height:37px;background:#e3614c;color:#fff;font-size:11px;text-align:right}
+.main_etvbox .tv1 .time .onair{float:left}
+.main_etvbox .tv1 .time .btn_tv1{color:#fff;}
+.main_etvbox .vodBox div {position:relative;padding-bottom: 56.25%;height:0;overflow:hidden;max-width:100%;} 
+.main_etvbox .vodBox div iframe,
+.main_etvbox .vodBox div object,
+.main_etvbox .vodBox div embed{position:absolute;top:0;left:0;width:100%;height:100%;}
+
+@media screen and (min-width:640px){
+    .main_etvbox .vodBox{height:196px !important;overflow:hidden;}
+    .main_etvbox li{border:0px !important;background:transparent !important;width:50%;float:left;box-sizing:border-box;-webkit-box-sizing:border-box}
+    .main_etvbox li > div{/*margin:5px 3px 0;*/border:1px solid #d3d3d3;background:#fff}
+    .main_etvbox li > div > a{}
+    
+}
+@media screen and (min-width:900px){
+	.main_etvbox .vodBox{height:216px !important;overflow:hidden;}
+    .main_etvbox li{border:0px !important;background:transparent !important;width:33.3%;float:left;box-sizing:border-box;-webkit-box-sizing:border-box}
+    .main_etvbox li > div{/*margin:5px 3px 0;*/border:1px solid #d3d3d3;background:#fff}
+    
+}
+
+
+.main_rankbox {background:#e9e9e9;padding:0 0 10px;}
+.main_rankbox .rank_menu{padding:20px 10px 15px;}
+.main_rankbox .rank_menu:after{content:'';display:block;clear:both;}
+.main_rankbox .rank_menu li{width:25%;float:left;text-align:center;}
+.main_rankbox .rank_menu li a{display:block;border-right:1px solid #d4d4d4;color:#444;font-size:14px;}
+.main_rankbox .rank_menu li a.on {font-weight:bold; color:#5386fa}
+.main_rankbox .rank_menu li:last-child a{border-right:0}
+.main_rankbox .rank_cate{position:relative;padding:0 0 0 97px;height:40px;margin:5px;background:#fff;}
+.main_rankbox .rank_cate h5{position:absolute;left:14px;color:#969696;font-size:14px;font-weight:normal;line-height:39px;}
+.main_rankbox .rank_cate h5:after{content:'';display:block;width:1px;height:14px;background:#ddd;position:absolute;top:13px;right:-12px;}
+.main_rankbox .rank_select{font-size:14px;display:block;width:100%;height:40px;border:0;-webkit-appearance:none;background:url("http://image.lotte.com/lotte/mobile/mobile_new/main/lank_select_2015.png") no-repeat right;background-size:28px 40px;outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-tap-highlight-color:transparent}
+.main_rankbox .list li{position:relative}
+.main_rankbox .list span.no{position:absolute;top:10px;left:10px;z-index:6;display:block;width:25px;height:25px;background:#000;opacity:0.7;color:#fff;line-height:25px;text-align:center;}
+
+.main_event01{padding:8px 0;background-color:#e9e9e9;text-align:center}
+.main_event01 a:before{display:block;content:'';height:38px;margin:0 auto 5px;background-size:200px 200px;}
+.main_event01 a{padding:5px 0;width:20%;margin:0 5px;display:inline-block;position:relative;}
+.main_event01 .sp1:before{width:40px;}
+.main_event01 .sp2:before{width:43px;background-position:-46px 0}
+.main_event01 .sp3:before{width:41px;background-position:-95px 0}
+.main_event01 .sp4:before{width:45px;background-position:-142px 0}
+.main_event01 a:after{background-color:#ddd;width:2px;height:22px;display:inline-block;content:'';position:absolute;top:26px;left:-5px;}
+.main_event01 a:first-child:after{width:0}
+
+.main_event02:after{clear:both;content:'';display:block;}
+.main_event02{margin:0 5px;}
+.main_event02 a{position:relative;display:block;padding:15px 20px 15px 85px;margin:5px 0 0 0;background-color:#fff;border:1px solid #c2c2c2;}
+.main_event02 a:after{display:block;content:'';width:9px;height:14px;position:absolute;top:25px;right:12px;background-position:-127px -34px}
+.main_event02 a:before{display:block;content:'';width:52px;height:43px;position:absolute;top:10px;left:20px;}
+.main_event02 a span{display:block;color:#333;}
+.main_event02 .img{position:absolute;left:0;top:9px;width:80px;}
+.main_event02 .img img{width:80px;height:48px}
+.main_event02 .tit{font-size:16px;font-weight:bold}
+.main_event02 .txt{font-size:12px;margin-top:3px;}
+
+
+.dealMoreCon{margin:5px 5px 0 5px;background:#fff;border:1px solid #d1d1d1;position:relative}
+.dealMoreCon .dtitle{height:30px;line-height:33px;font-size:13px;color:#333;text-align:center;border-bottom:1px solid #ededed}    
+.dealMoreCon .dcategory{display:table;width:100%}
+.dealMoreCon .dcategory a{display:block;float:left;width:50%;height:40px;line-height:42px;font-size:14px;color:#666;padding:0 25px 0 13px;box-sizing:border-box;border-bottom:1px solid #ededed;background:url(http://image.lotte.com/lotte/mobile/mobile_new/main/dealcateArr.png) no-repeat right center;background-size:22px 40px;overflow: hidden;word-break: break-all}
+.dealMoreCon .dcategory a:nth-child(2n-1){border-right:1px solid #ededed}
+.dealMoreCon .lastLine{height:1px;position:absolute;bottom:0px;background:#fff;width:100%}
+
+
+
+/* 랭킹존 급상승검색어*/
+.lank_keyword{display:none;margin:3px 4px;}
+.lank_keyword.on { display: block; }
+.lank_keyword .default{display:block;height:50px;background:#fff;line-height:50px;font-size:14px;color:#2c2c2c;position:relative}
+.lank_keyword .default.hide { display: none;  }
+.lank_keyword .default span.title{padding:0 15px 0 13px;color:#a09f9f;font-size:14px}
+.lank_keyword .keyword_list{display:none}
+.lank_keyword .keyword_list.open { display: block; }
+.lank_keyword span.count{position: absolute;right:42px;font-size:12px}
+.lank_keyword span.count.new{color:#ff4800}
+.lank_keyword span.count img.up{width:9px;margin-top:21px}
+.lank_keyword .default img.k_arr{width:28px;position: absolute;right:0;top:5px}
+.lank_keyword .listhead{display:block;height:40px;background: #f7f7f7;line-height:40px;font-size:11px;color:#a09f9f;position:relative}
+.lank_keyword .listhead span.title{color:#2c2c2c;font-size:12px;padding:0 10px 0 12px}
+.lank_keyword .listhead img.k_arr{width:16px;position: absolute;right:12px;top:13px}
+.lank_keyword ul.klist {margin-bottom:10px;}
+.lank_keyword ul.klist li{display:block;height:47px;line-height:47px;border-bottom:1px solid #f5f5f5;background:#fff;color:#2c2c2c;padding:0;margin:0;font-size:14px}
+.lank_keyword ul.klist li a{display:block}
+.lank_keyword ul.klist li span:first-child{display:inline-block;width:35px;text-align:center}
+.lank_keyword ul.klist li span.count{right:17px}
+.lank_keyword ul.klist li span.count img.up{margin-top:18px}
+.main_rankbox ol.list:after{display:block;content:'';clear:both;}
+.main_rankbox ol.list li{margin:0;}
+.main_rankbox ol.list li .unit_type01 > a{margin:3px;}
+.main_rankbox ol.list li .unit_type01 > a{border:1px solid #d4d4d4;}
+.main_rankbox ol.list li.keywordOn{clear:both;display:block;box-sizing:border-box;-webkit-box-sizing:border-box}
+.main_rankbox ol.list li.keywordOn li{width:100% !important;margin:0;clear:both !important;display:block;float:none !important;box-sizing:border-box;-webkit-box-sizing:border-box}
+@media screen and (min-width:640px){
+    .main_rankbox ol.list li{width:50%;float:left}
+    .main_rankbox ol.list li.keywordOn{width:100%;float:none !important;}
+}
+@media screen and (min-width:900px){
+    .main_rankbox ol.list li{width:33.3%;float:left}
+    .main_rankbox ol.list li.keywordOn{width:100%;float:none !important;}
+}
+/*20150901 eung 추석매장*/
+/*20150901 eung 추석매장*/
+.hoTopBanner{position:relative;}
+.holiday .main_slide{padding-bottom:0;margin:0 auto;width:100% !important;}
+.holiday .main_slide .mask .list li{padding:0;margin:0 auto;width:100% !important;}
+.holiday .main_slide .bullet{position:absolute;bottom:10px}
+.holiday .main_slide .btn.prev,.holiday .main_slide .btn.next{top:45%;margin-top:0;-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-tap-highlight-color:transparent;}
+.holidayMenu{font-size:0;margin-bottom:4px}
+.holidayMenu a{display:inline-block;width:25%}
+.holidayMenu a img.menu{display:block}
+.holidayMenu a img.menuon{display:none}
+.holidayMenu a.on img.menu{display:none}
+.holidayMenu a.on img.menuon{display:block}
+@media screen and (min-width:640px){
+	.main_unit01.holiday .list{padding-left:0}
+}
+
+/* //--- 20150909 ksg 맞춤추천 */
+section.alignment_prd .recom_tit {font-size:16px;color:#333;border-top:solid 1px #d4d4d4;border-bottom:solid 1px #d4d4d4;text-align:center;height:39px;line-height:39px}
+section.alignment_prd .view_history_tit {position:relative;padding:0 10px;background:#fff;border-bottom:solid 1px #dcdcdc;height:38px;line-height:38px;color:#333;font-size:14px}
+section.alignment_prd .view_history_tit > p > span {color:#999;vertical-align:middle}
+section.alignment_prd .view_history_tit > a.all_view {position:absolute;right:10px;top:0;color:#888;font-size:12px;padding-right:12px}
+section.alignment_prd .view_history_tit > a.all_view:after {content:"";display:block;position:absolute;right:0;top:50%;margin-top:-6px;width:13px;height:12px;background:url(http://image.lotte.com/lotte/mobile/mobile_new/main/main_alignmentPrd.png) no-repeat 0 -13px;background-size:13px 25px}
+section.alignment_prd .login_info_txt {font-size:12px;color:#666;border-top:solid 1px #eee;border-bottom:solid 1px #eee;margin:5px 0;padding:11px 0;text-align:center;line-height:17px;background:#fff}
+section.alignment_prd .login_info_txt strong {color:#ff7b62;font-weight:normal}
+section.alignment_prd .sharing_best_tit {font-size:16px;color:#333;height:30px;line-height:30px;padding:0 9px;border-bottom:solid 1px #dcdcdc}
+section.alignment_prd ul.sv-unit {background:#fff;overflow:hidden}
+section.alignment_prd ul.sv-unit li {position:relative;width:50%;float:left;border-bottom:solid 1px #dde1e7;border-right:solid 1px #dde1e7;min-height:270px;box-sizing:border-box;-webkit-box-sizing: border-box;}
+section.alignment_prd ul.sv-unit li:nth-child(even) {border-right:solid 1px #fff;box-sizing:border-box;-webkit-box-sizing: border-box;}
+section.alignment_prd ul.sv-unit li span.no {position:absolute;top:0;left:0;z-index:6;display:block;width:25px;height:25px;background:#000;opacity: .4;color:#fff;line-height:25px;text-align:center;}
+section.alignment_prd .recommendPrdCon > li {margin-bottom: 10px}
+section.alignment_prd .ranking_info_txt {font-size:12px;color:#666;padding:7px 11px;line-height:16px}
+section.alignment_prd .ranking_info_txt p {position:relative;padding-left:18px}
+section.alignment_prd .ranking_info_txt p:before{content:"";display:block;position:absolute;left:0;top:9px;margin-top:-6px;width:13px;height:13px;background:url(http://image.lotte.com/lotte/mobile/mobile_new/main/main_alignmentPrd.png) no-repeat 0 0;background-size:13px 25px}
+section.alignment_prd .ranking_info_txt p strong {color:#5386fa;font-weight:normal}
+section.alignment_prd .unit_type01 .coupon {bottom: 5px}
+section.alignment_prd .main_slide .mask .list li img{width: 130px}
+section.alignment_prd .main_slide .mask .list li .thumb{padding: 0}
+section.alignment_prd .main_slide .bullet { margin-top: -110px }
+/* 20150909 ---// */

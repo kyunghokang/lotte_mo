@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>LOTTE.COM</title>
+<meta charset="UTF-8">
+<meta http-equiv="cache-control" content="no-cache"/>
+<meta http-equiv="expires" content="0"/>
+<meta http-equiv="pragma" content="no-cache"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta name="format-detection" content="telephone=no">
+<link rel="apple-touch-icon-precomposed" href="/images/common/icon/bookmark_and.ico">
+<link rel="apple-touch-icon" href="/images/common/icon/bookmark_iso.png">
+<link rel="stylesheet" type="text/css" href="./css/chat_service_v2.css">
+<script type="text/javascript" src="./js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="./js/pub_chat_service.js"></script>
+<script type="text/javascript" src="./js/EGSlider_20150707_v1.js"></script>
+</head>
+
+<div id="wrapper">
+	<header id="head">
+		<h1><a href="#none">롯데닷컴 톡</a></h1>
+		<ul>
+			<li class="back"><a href="#">뒤로가기</a></li>
+			<li class="alarm"><a href="#">알림</a></li>
+			<li class="out"><!-- 레이어팝업, 버튼 활성화 on01 / 버튼만 활성화 on02 -->
+				<a href="#">나가기</a>
+				<div class="decorations">
+					<p><strong>나가기 버튼</strong>으로 상담을<br/> 종료할 수 있습니다.</p>
+					<a href="#none" class="close">닫기</a>
+				</div>
+			</li>
+		</ul>
+		<div class="layer_info">
+			<!-- 20151110 수정 S -->
+
+			<!-- 상담 가능시간-->
+			<!-- <p>반갑습니다, 고객님! 롯데닷컴 톡 입니다.</p>
+			<p>우측 하단의 <span class="blue">[상담신청] 또는 메시지를 입력</span>해 주시면 톡 상담이 시작됩니다.</p>
+			<p>오늘도 활기찬 하루 되세요.</p>
+			<p>감사합니다.</p> -->			
+
+			<!-- 상담 불가능시간_차단	
+			<p>안녕하세요, 고객님. 롯데닷컴 톡 입니다. </p>
+			<p>현재 톡 상담 이용고객이 많아 상담이 어렵습니다.</p>
+			<p><span class="red">[1:1문의하기]로 접수</span>해 주시면 신속히 답변 드리겠습니다. </p>
+			<p>감사합니다.</p>
+			<div class="btn">
+				<a href="#">1:1 문의하기</a>
+			</div>
+			 -->
+
+			<!-- 상담 불가능시간 _운영시간 외 -->
+			<p>안녕하세요, 고객님. 롯데닷컴 톡 입니다.</p>
+			<p>지금은 톡 상담시간이 아닙니다.</p>
+			<p><span class="red">[1:1문의하기]로 접수</span>해 주시면 신속히 답변 드리겠습니다.</p>
+			<p>감사합니다.</p>
+			<div class="counsel_time">
+				<h2>상담시간 안내</h2>
+				<!-- 2015.02.07 상담 시간대 수정 -->
+				<table>
+					<tr>
+						<th>평일</th>
+						<th>주말/공휴일</th>
+					</tr>
+					<tr>
+						<td>09~18시</td>
+						<td>휴무</td>
+					</tr>
+				</table>
+				<!--// 2015.02.07 상담 시간대 수정 -->
+			</div>
+			
+			<a href="#none" class="close">닫기</a>			
+
+		</div>	
+	</header>
+	<section id="chat">
+		<div class="loading none"></div><!-- 20151030 추가 : 로딩완료후에는 <div class="loading none"> 클래스명 none 부여-->
+		<div class="history_before"><p>상담이력은 최근 6개월까지만 제공합니다.</p></div>
+		<div class="date"><p>2015년 9월 16일 수요일</p></div>
+
+		<!---------------------- 톡상담 ---------------------->
+
+		<div class="message me">
+			<div class="text">
+				<p>어제 주문한 상품 이번주 내로 받고 싶은데 언제 배송되나요?</p>
+			</div>
+			<div class="text">
+				<p>.</p>
+			</div>
+			<div class="text">
+				<p>이번주 배송되나요?</p>
+			</div>
+			<div class="check"><span>읽음</span> 오후 11:46</div>
+		</div>
+
+		<div class="message me">
+			<div class="text no_tail">
+				<p>.</p><!-- 말풍선꼬리표 없을 경우 : no_tail 부여 -->
+			</div>
+			<div class="check"><span>읽음</span> 오후 11:46</div>
+		</div>
+
+		<div class="message opp">
+			<div class="writer"><img src="http://image.lotte.com/lotte/mo2015/angular/custcenter/cs_2018_question.png" alt="LOTTE.COM"></div>
+			<div class="text no_tail">
+				<p>.</p><!-- 말풍선꼬리표 없을 경우 : no_tail 부여 -->
+			</div>
+			<div class="check"><span>읽음</span> 오후 11:46</div>
+		</div>
+	
+		<div class="message opp">
+			<div class="writer"><img src="http://image.lotte.com/lotte/mo2015/angular/custcenter/cs_2018_question.png" alt="LOTTE.COM"></div>
+			<div class="text">
+				<p>업체 확인 후 답변드리겠습니다.</p>
+			</div>
+			<div class="text">
+				<p>이번주 금요일 발송 예정입니다.</p>
+			</div>
+			<div class="check">오후 11:46</div>
+		</div>
+
+		<div class="message opp">
+			<div class="writer"><img src="http://image.lotte.com/lotte/mo2015/angular/custcenter/cs_2018_question.png" alt="LOTTE.COM"></div>
+			<div class="text">
+				<p>상담 후 불편사항을 작성해 주시면 서비스 개선에 적극 반영하겠습니다.<a href="#none" class="opp_btn satisfaction_btn">상담만족도 평가</a></p>
+			</div>
+			<div class="check">오후 11:46</div>
+		</div>
+
+		<div class="message me">
+			<div class="text">
+				<p>이번주 안으로 교환이 어려우면 다른 모델로 바꾸고 싶은데요. 사진으로 보낸 모델 230사이즈 가능한지 알려주세요~</p>
+			</div>
+			<div class="thumbnail"><img src="http://image.lotte.com/goods/42/95/78/67/1/167789542_1_550.jpg" alt="" /></div>
+			<div class="thumbnail"><img src="http://image.lotte.com/lotte/mobile/chat_service/@temp01.png" alt="" /></div>
+			<div class="thumbnail"><img src="http://image.lotte.com/lotte/mobile/chat_service/@temp02.png" alt="" /></div>
+			<div class="thumbnail"><img src="http://image.lotte.com/upload/editor/2015/10/20/2594660.jpg" alt="" /></div>
+			<div class="thumbnail"><img src="http://image.lotte.com/eBay/auction/150928_millet_s01.jpg" alt="" /></div>
+			<div class="text">
+				<p>확인요</p>
+			</div>
+			<div class="check"><span>읽음</span> 오후 11:46</div>
+		</div>
+
+		<div class="message opp">
+			<div class="writer"><img src="http://image.lotte.com/lotte/mo2015/angular/custcenter/cs_2018_question.png" alt="LOTTE.COM"></div>
+			<div class="text">
+				<p>업체 확인 후 답변드리겠습니다.</p>
+			</div>
+			<div class="check">오후 11:46</div>
+		</div>
+
+		<div class="date"><p>2015년 9월 16일 수요일</p></div>
+
+		<div class="message opp">
+			<div class="writer"><img src="http://image.lotte.com/lotte/mo2015/angular/custcenter/cs_2018_question.png" alt="LOTTE.COM"></div>
+			<div class="text">
+				<p>반품신청은 고객님이 직접 신청하실 수 있습니다.<a href="#none" class="opp_btn back_btn">반품신청하기</a></p>
+			</div>
+			<div class="check">오후 11:46</div>
+		</div>
+
+		<div class="message me">
+			<div class="text">
+				<p><a href="http://lotte.com.SNS">http://lotte.com.SNS</a></p>
+			</div>
+			<div class="text">
+				<p>업체 확인 후 답변드리겠습니다.</p>
+			</div>
+			<div class="check"><span>읽음</span> 오후 11:46</div>
+		</div>
+
+		<div class="message opp">
+			<div class="writer"><img src="http://image.lotte.com/lotte/mo2015/angular/custcenter/cs_2018_question.png" alt="LOTTE.COM"></div>
+			<div class="text">
+				<p>고객님, 9월 회원등급별 쿠폰이 발행되었습니다.<br/>아래 순서로 쿠폰을 다운받고 사용해주세요.<br/><br/>1. 마이롯데 이동하기<br/>2. 쿠폰정보 버튼 선택<br/>3. 한번에 다운받기 선택</p>
+			</div>
+			<div class="check">오후 11:46</div>
+		</div>
+
+		<div class="message opp">
+			<div class="writer"><img src="http://image.lotte.com/lotte/mo2015/angular/custcenter/cs_2018_question.png" alt="LOTTE.COM"></div>
+			<div class="text">
+				<p>아래의 FAQ 도움말 페이지에서 확인하실 수 있습니다. <a href="#" class="opp_btn faq_btn">FAQ 도움말</a></p>
+			</div>
+			<div class="check">오후 11:46</div>
+		</div>
+
+		<div class="message opp">
+			<div class="writer"><img src="http://image.lotte.com/lotte/mo2015/angular/custcenter/cs_2018_question.png" alt="LOTTE.COM"></div>
+			<div class="text">
+				<p><a href="http://lotte.com.SNS">http://lotte.com.SNS</a></p>
+			</div>
+			<div class="check"><span>읽음</span> 오후 11:46</div>
+		</div>
+
+		<div class="message opp">
+			<div class="writer"><img src="http://image.lotte.com/lotte/mo2015/angular/custcenter/cs_2018_question.png" alt="LOTTE.COM"></div>
+			<div class="text">
+				<p>고객님, 9월 회원등급별 쿠폰이 발행되었습니다.<br/>아래 순서로 쿠폰을 다운받고 사용해주세요.<br/><br/>1. 마이롯데 이동하기<br/>2. 쿠폰정보 버튼 선택<br/>3. 한번에 다운받기 선택<a href="#" class="opp_btn allview_btn">전체보기</a></p>
+			</div>
+			<div class="check">오후 11:46</div>
+		</div>
+
+
+		<div class="message me">
+			<div class="movie"><img src="http://image.lotte.com/lotte/mobile/chat_service/@temp_play.png" alt="" /></div>
+			<div class="check"><span>읽음</span> 오후 11:46</div>
+		</div>
+
+		<div class="message me">
+			<div class="text">
+				<p><a href="#" class="voice_btn"><img src="http://image.lotte.com/lotte/mobile/chat_service/icon_voice_btn.png" alt="" /></a></p>
+			</div>
+			<div class="check"><span>읽음</span> 오후 11:46</div>
+		</div>
+
+		<div class="message me">
+			<div class="movie"><img src="http://image.lotte.com/lotte/mobile/chat_service/@temp_stop.png" alt="" /></div>
+			<div class="check"><span>읽음</span> 오후 11:46</div>
+		</div>
+
+		<div class="message me">
+			<div class="text">
+				<p class="title">2015 - 03 - 13 - 3222618</p>
+				<div class="prd_cont">
+					<a href="#">
+						<div class="thumbnail">
+							<img src="http://image.lotte.com/lotte/mobile/chat_service/@temp03.png" alt="" />
+							<span class="receipt">주문접수</span>
+						</div>
+						<div class="detail">
+							<!-- 20151021 수정 : p 태그 클래스명 부여 -->
+							<p class="name">[레이첼콕스] Pumps_Avril 여성 토오픈 플랫 슈즈, 245[레이첼콕스] Pumps_Avril 여성 토오픈 플랫 슈즈, 245[레이첼콕스] Pumps_Avril 여성 토오픈 플랫 슈즈, 245[레이첼콕스] Pumps_Avril 여성 토오픈 플랫 슈즈, 245[레이첼콕스] Pumps_Avril 여성 토오픈 플랫 슈즈, 245</p>
+							<p class="option">색상 : 그레이, 사이즈 : 미디움 색상 : 그레이, 사이즈 : 미디움</p>
+							<p class="total">326,700원/1개</p>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="check"><span>읽음</span> 오후 11:46</div>
+		</div>
+
+		<div class="message me">
+			<div class="text">
+				<p class="title">2015 - 03 - 13 - 3222618</p>
+				<div class="prd_cont">
+					<a href="#">
+						<div class="thumbnail">
+							<img src="http://image.lotte.com/lotte/mobile/chat_service/@temp03.png" alt="" />
+						</div>
+						<div class="detail">
+							<!-- 20151021 수정 : p 태그 클래스명 부여 -->
+							<p class="name">[레이첼콕스] Pumps</p>
+							<p class="option">색상 : 그레이, 사이즈 : 미디움 색상 : 그레이, 사이즈 : 미디움</p>
+							<p class="total">326,700원/1개</p>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="check"><span>읽음</span> 오후 11:46</div>
+		</div>
+
+		<div class="message me">
+			<div class="text">
+				<p class="title">상품 문의를 신청합니다.</p>
+				<div class="prd_cont">
+					<a href="#">
+						<div class="thumbnail">
+							<img src="http://image.lotte.com/lotte/mobile/chat_service/@temp03.png" alt="" />
+							<span class="end">발송지연/입고예정일 확인중</span>
+						</div>
+						<div class="detail">
+							<!-- 20151021 수정 : p 태그 클래스명 부여 -->
+							<p class="name">[레이첼콕스] Pumps_Avril 여성 토오픈 플랫 슈즈, 245</p>
+							<p class="option">색상 : 그레이, 사이즈 : 미디움</p>
+							<p class="total">326,700원/1개</p>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="check"><span>읽음</span> 오후 11:46</div>
+		</div>		
+
+		<div class="message opp">
+			<div class="writer"><img src="http://image.lotte.com/lotte/mo2015/angular/custcenter/cs_2018_question.png" alt="LOTTE.COM"></div>
+			<div class="text">
+				<p>질문해 주신 내용 답변드리겠습니다. 주문하신 내용 답변하겠습니다.질문해 주신 내용 답변드리겠습니다. 주문하신 내용 답변하겠습니다.질문해 주신 내용 답변드리겠습니다. 주문하신 내용 답변하겠습니다.질문해 주신 내용 답변드리겠습니다. 주문하신 내용 답변하겠습니다.</p>
+			</div>
+			<div class="check">오후 11:46</div>
+		</div>
+
+		<!---------------------- //톡상담 ---------------------->
+
+
+		<!---------------------- 톡추천 ---------------------->
+
+		<div class="message opp">
+			<div class="writer"><img src="http://image.lotte.com/lotte/mo2015/angular/custcenter/cs_2018_question.png" alt="LOTTE.COM"></div>
+			<div class="text">
+				<p>만나서 반갑습니다!<br>고객님의 쇼핑을 도와드릴 톡비서 입니다.<br>무엇을 도와드릴까요?</p>
+			</div>
+			<div class="text">
+				<p>상품추천 상담을 시작하시려면, 상담신청 버튼을 누르시거나 직접 메시지를 입력해 주세요~</p>
+			</div>
+			<div class="check">오후 11:40</div>
+		</div>
+
+		<div class="message me">
+			<div class="text">
+				<p>상품 추천해주세요!</p>
+			</div>
+			<div class="check"><span>읽음</span> 오후 11:45</div>
+		</div>
+
+		<div class="message opp">
+			<div class="writer"><img src="http://image.lotte.com/lotte/mo2015/angular/custcenter/cs_2018_question.png" alt="LOTTE.COM"></div>
+			<div class="text">
+				<p>고객님~ 잠시만 기다려주세요! 고객님의 소중한 개인정보(이메일, 연락처 등)는 입력하시면 안돼요~</p>
+			</div>
+			<div class="check">오후 11:45</div>
+		</div>
+
+		<div class="message opp">
+			<div class="writer"><img src="http://image.lotte.com/lotte/mo2015/angular/custcenter/cs_2018_question.png" alt="LOTTE.COM"></div>
+			<div class="text">
+				<p>본격적인 상품추천 상담 전, 최적의 상품을 찾기 위한 상품정보 입력을 시작합니다.(와우!)</p>
+			</div>
+			<div class="text">
+				<p>누구를 위한 추천 상품인가요?</p>
+				<div class="flow_command">
+					<!-- flow 옵션 리스트 레이아웃 : wide -->
+					<ul class="list_layout_wide">
+						<li><a href="#none" class="btn_box"><span>제 것이에요.</span></a></li>
+						<li><a href="#none" class="btn_box"><span>다른 분께 선물할 거에요.</span></a></li>
+					</ul>
+					<!-- //flow 옵션 리스트 레이아웃 : wide -->
+				</div>
+			</div>
+			<div class="check">오후 11:46</div>
+		</div>
+
+		<div class="message me">
+			<div class="text">
+				<p>다른 분께 선물할 거에요</p>
+			</div>
+			<div class="check"><span>읽음</span> 오후 11:46</div>
+		</div>
+
+		<div class="message opp">
+			<div class="writer"><img src="http://image.lotte.com/lotte/mo2015/angular/custcenter/cs_2018_question.png" alt="LOTTE.COM"></div>
+			<div class="text">
+				<p>받으실 분의 연령을 추천해주세요.</p>
+				<div class="flow_command">
+					<!-- flow 옵션 리스트 레이아웃 : half -->
+					<ul class="list_layout_half">
+						<li><a href="#none" class="btn_box"><span>10대</span></a></li>
+						<li><a href="#none" class="btn_box"><span>20대</span></a></li>
+						<li><a href="#none" class="btn_box"><span>30대</span></a></li>
+						<li><a href="#none" class="btn_box"><span>40대</span></a></li>
+						<li><a href="#none" class="btn_box"><span>50대 이상</span></a></li>
+						<li><a href="#none" class="btn_box"><span>기타</span></a></li>
+					</ul>
+					<!-- //flow 옵션 리스트 레이아웃 : half -->
+				</div>
+				<a href="#none" class="btn_start">처음부터 다시 시작하기</a>
+			</div>
+			<div class="check">오후 11:46</div>
+		</div>
+
+		<div class="message me">
+			<div class="text">
+				<p>20대 입니다.</p>
+			</div>
+			<div class="check"><span>읽음</span> 오후 11:46</div>
+		</div>
+
+		<div class="message opp">
+			<div class="writer"><img src="http://image.lotte.com/lotte/mo2015/angular/custcenter/cs_2018_question.png" alt="LOTTE.COM"></div>
+			<div class="text">
+				<p>선물받으실 분의 성별을 선택해주세요.</p>
+				<div class="flow_command">
+					<ul class="list_layout_half">
+						<li><a href="#none" class="btn_box"><span>남성</span></a></li>
+						<li><a href="#none" class="btn_box"><span>여성</span></a></li>
+					</ul>
+				</div>
+				<a href="#none" class="btn_start">처음부터 다시 시작하기</a>
+			</div>
+			<div class="check">오후 11:46</div>
+		</div>
+
+		<div class="message me">
+			<div class="text">
+				<p>여성 입니다.</p>
+			</div>
+			<div class="check"><span>읽음</span> 오후 11:46</div>
+		</div>
+
+		<div class="message opp">
+			<div class="writer"><img src="http://image.lotte.com/lotte/mo2015/angular/custcenter/cs_2018_question.png" alt="LOTTE.COM"></div>
+			<div class="text">
+				<p>추천 원하시는 상품 카테고리를 선택해주세요.</p>
+				<div class="flow_command">
+					<ul class="list_layout_half">
+						<li><a href="#none" class="btn_box"><span>여성의류</span></a></li>
+						<li><a href="#none" class="btn_box"><span>잡화/슈즈/명품</span></a></li>
+						<li><a href="#none" class="btn_box"><span>영패션/유니섹스</span></a></li>
+						<li><a href="#none" class="btn_box"><span>화장품</span></a></li>
+						<li><a href="#none" class="btn_box"><span>스포츠/레저</span></a></li>
+						<li><a href="#none" class="btn_box"><span>유아동</span></a></li>
+						<li><a href="#none" class="btn_box"><span>남성의류</span></a></li>
+						<li><a href="#none" class="btn_box"><span>식품</span></a></li>
+						<li><a href="#none" class="btn_box"><span>가전/컴퓨터</span></a></li>
+						<li><a href="#none" class="btn_box"><span>가구</span></a></li>
+					</ul>
+				</div>
+				<a href="#none" class="btn_start">처음부터 다시 시작하기</a>
+			</div>
+			<div class="check">오후 11:46</div>
+		</div>
+
+		<div class="message me">
+			<div class="text">
+				<p>잡화/슈즈/명품 추천해주세요.</p>
+			</div>
+			<div class="check"><span>읽음</span> 오후 11:46</div>
+		</div>
+
+		<div class="message opp">
+			<div class="writer"><img src="http://image.lotte.com/lotte/mo2015/angular/custcenter/cs_2018_question.png" alt="LOTTE.COM"></div>
+			<div class="text">
+				<p>잡화/슈즈/명품에서 찾으시는 상품을 선택해주세요</p>
+				<div class="flow_command">
+					<ul class="list_layout_half">
+						<li><a href="#none" class="btn_box"><span>여성의류</span></a></li>
+						<li><a href="#none" class="btn_box"><span>패션잡화</span></a></li>
+						<li><a href="#none" class="btn_box"><span>슈즈</span></a></li>
+						<li><a href="#none" class="btn_box"><span>시계/보석/주얼리</span></a></li>
+						<li><a href="#none" class="btn_box"><span>패션소품(모자,스카프 등)</span></a></li>
+						<li><a href="#none" class="btn_box"><span>수입명품</span></a></li>
+						<li><a href="#none" class="btn_box"><span>해당없음</span></a></li>
+					</ul>
+				</div>
+				<a href="#none" class="btn_start">상품 카테고리 다시 선택하기</a>
+				<a href="#none" class="btn_start">처음부터 다시 시작하기</a>
+			</div>
+			<div class="check">오후 11:46</div>
+		</div>
+
+		<div class="message me">
+			<div class="text">
+				<p>슈즈 추천해주세요.</p>
+			</div>
+			<div class="check"><span>읽음</span> 오후 11:46</div>
+		</div>
+
+		<div class="message opp">
+			<div class="writer"><img src="http://image.lotte.com/lotte/mo2015/angular/custcenter/cs_2018_question.png" alt="LOTTE.COM"></div>
+			<div class="text">
+				<p>감사합니다. 잠시만 기다려주세요.<br>고객님의 소중한 개인정보 (이메일, 연락처 등)는 입력하시면 안돼요. </p>
+			</div>
+			<div class="check">오후 11:45</div>
+		</div>
+
+		<div class="message opp">
+			<div class="writer"><img src="http://image.lotte.com/lotte/mo2015/angular/custcenter/cs_2018_question.png" alt="LOTTE.COM"></div>
+			<div class="text">
+				<!-- 선택된 추천 키워드 -->
+				<p><span class="selected_key">20대</span> <span class="selected_key">여성</span> <span class="selected_key">화장품</span> <span class="selected_key">시계/보석/주얼리</span></p>
+				<!-- //선택된 추천 키워드  -->
+				<a href="#none" class="btn_start">처음부터 다시 시작하기</a>
+			</div>
+			<div class="text">
+				<p>말씀하신 조건에 맞는 상품으로 찾아드리겠습니다.<br>잠시만 기다려주세요!</p>
+			</div>
+			<div class="check">오후 11:46</div>
+		</div>
+
+		<div class="message opp">
+			<div class="writer"><img src="http://image.lotte.com/lotte/mo2015/angular/custcenter/cs_2018_question.png" alt="LOTTE.COM"></div>
+			<div class="text">
+				<p>고객님~ 오래 기다리셨습니다!<br>고객님을 위한 상품 소개해드립니다!</p>
+			</div>
+			<div class="check">오후 11:46</div>
+		</div>
+
+		<!-- 추천 상품 -->
+		<div class="recommand_product">
+			<ul>
+				<li>
+					<a href="#" class="product_link">
+						<div class="product_thumb">
+							<img src="http://image.lotte.com/lotte/mobile/chat_service/@temp01.png" alt="">
+						</div>
+						<div class="product_info">
+							<div class="product_title">
+								[SK-II] Pumps_Avril 파워 아이크림&피테라 키트 세트 파워 아이크림&피테라 키트 세트
+							</div>
+							<div class="product_price">
+								<span>300,000</span>원
+							</div>
+							<div class="product_review">
+								<span class="score_wrap">
+									<span class="score_count" style="width:100%;"></span>
+								</span>
+								<span class="review_user">(320)</span>
+							</div>
+							<div class="product_extra">
+								<span>인기 온열매트! 어디가지 말고 여기에서 해결하자 해결하자 아자아자 끝</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="#" class="product_link">
+						<div class="product_thumb">
+							<img src="http://image.lotte.com/lotte/mobile/chat_service/@temp01.png" alt="">
+						</div>
+						<div class="product_info">
+							<div class="product_title">
+								[SK-II] 아이크림
+							</div>
+							<div class="product_price">
+								<span>300,000</span>원
+							</div>
+							<div class="product_review">
+								<span class="score_wrap">
+									<span class="score_count" style="width:50%;"></span>
+								</span>
+								<span class="review_user">(320)</span>
+							</div>
+							<div class="product_extra">
+								<span>20대 여성 인기상품 입니다.</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="#" class="product_link">
+						<div class="product_thumb">
+							<img src="http://image.lotte.com/lotte/mobile/chat_service/@temp01.png" alt="">
+						</div>
+						<div class="product_info">
+							<div class="product_title">
+								[SK-II] 아이크림
+							</div>
+							<div class="product_price">
+								<span>3,000</span>원
+							</div>
+							<div class="product_review">
+								<span class="score_wrap">
+									<span class="score_count" style="width:20%;"></span>
+								</span>
+								<span class="review_user">(20)</span>
+							</div>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<!-- //추천 상품 -->
+
+		<div class="message opp">
+			<div class="writer"><img src="http://image.lotte.com/lotte/mo2015/angular/custcenter/cs_2018_question.png" alt="LOTTE.COM"></div>
+			<div class="text">
+				<p>추가 상품추천 상담을 원하세요?<br>클릭 클릭!▼</p>
+				<a href="#none" class="btn_start">새 상담 시작하기 </a>
+			</div>
+			<div class="check">오후 11:46</div>
+		</div>
+
+		<div class="message opp">
+			<div class="writer"><img src="http://image.lotte.com/lotte/mo2015/angular/custcenter/cs_2018_question.png" alt="LOTTE.COM"></div>
+			<div class="text">
+				<p>추천상품에 점수를 매겨주세요!<br>이 점수는 깨알상품 추천에 큰 힘이 됩니다. (꺄아) <a href="#none" class="opp_btn recommand_btn">톡상담 힘 보태기</a></p>
+			</div>
+			<div class="check">오후 11:46</div>
+		</div>
+
+		<!---------------------- //톡추천 ---------------------->
+
+		<div class="attach_loading"></div><!-- 20151116 추가 : 첨부파일 업로드 로딩바 / 로딩완료후에는 <div class="loading none"> 클래스명 none 부여-->
+
+	</section>
+	<section id="chatInput">
+		<div class="now_message">
+			<p>질문해 주신 내용 답변드리겠습니다. 주문하신 내용 답변하겠습니다.질문해 주신 내용 답변드리겠습니다. 주문하신 내용 답변하겠습니다.질문해 주신 내용 답변드리겠습니다. 주문하신 내용 답변하겠습니다.질문해 주신 내용 답변드리겠습니다. 주문하신 내용 답변하겠습니다.</p>
+		</div>
+		<div class="emoticon_message">
+			<a class="view" href="#none"></a>
+			<a class="close" href="#none">닫기</a>
+		</div>
+		<!-- 20151021 추가 : 상담 불가능 시간 시 -->
+		<!--
+		<p class="no_info">지금은 톡 상담시간이 아닙니다.</p>  20151110 수정
+		<p class="no_info">잠시 상담원과 연결이 불가능 합니다.</p>
+		-->
+		<!-- 상담 가능 시간 시 -->
+		<div class="keypad_input">
+			<a href="#none" class="attach_btn">첨부하기</a>
+			<div class="keypad">
+				<textarea name="" placeholder="메시지를 입력해주세요" rows="1" ></textarea>
+			</div>
+			<a href="#none" class="emoticon_btn">이모티콘</a>
+			<div class="send">
+				<button disabled>상담<br/>신청</button>
+				<!-- 상담신청
+				<button>상담<br/>신청</button>		
+				-->	
+			</div>
+		</div>
+		<div class="layer_input">
+			<div class="attach">
+				<ul>
+					<li class="photo"><span>사진<input type="file" /></span></li><!-- 20151124 수정 -->
+					<li class="movie"><span>동영상<input type="file" /></span></li><!-- 20151124 수정 -->
+					<li class="camera"><span>카메라<input type="file" /></span></li><!-- 20151124 수정 -->
+					<li class="cart"><a href="#">장바구니</a></li>
+					<li class="order"><a href="#">주문상품</a></li>	
+					<li class="voice"><span>음성메시지<input type="file" /></span></li><!-- 20151124 수정 -->
+				</ul>
+			</div>
+			<div class="emoticon">
+				<div id="emoticonSlider">
+					<ul>
+						<li><a href="#none"><img src="http://image.lotte.com/lotte/mobile/chat_service/icon_emoticon01_btn.png" alt="" /></a></li>
+						<li><a href="#none"><img src="http://image.lotte.com/lotte/mobile/chat_service/icon_emoticon02_btn.png" alt="" /></a></li>
+						<li><a href="#none"><img src="http://image.lotte.com/lotte/mobile/chat_service/icon_emoticon03_btn.png" alt="" /></a></li>
+						<li><a href="#none"><img src="http://image.lotte.com/lotte/mobile/chat_service/icon_emoticon04_btn.png" alt="" /></a></li>
+						<li><a href="#none"><img src="http://image.lotte.com/lotte/mobile/chat_service/icon_emoticon05_btn.png" alt="" /></a></li>
+						<li><a href="#none"><img src="http://image.lotte.com/lotte/mobile/chat_service/icon_emoticon06_btn.png" alt="" /></a></li>
+						<li><a href="#none"><img src="http://image.lotte.com/lotte/mobile/chat_service/icon_emoticon07_btn.png" alt="" /></a></li>
+						<li><a href="#none"><img src="http://image.lotte.com/lotte/mobile/chat_service/icon_emoticon08_btn.png" alt="" /></a></li>
+					</ul>
+					<ul>
+						<li><a href="#none"><img src="http://image.lotte.com/lotte/mobile/chat_service/icon_emoticon09_btn.png" alt="" /></a></li>
+						<li><a href="#none"><img src="http://image.lotte.com/lotte/mobile/chat_service/icon_emoticon10_btn.png" alt="" /></a></li>
+						<li><a href="#none"><img src="http://image.lotte.com/lotte/mobile/chat_service/icon_emoticon11_btn.png" alt="" /></a></li>
+						<li><a href="#none"><img src="http://image.lotte.com/lotte/mobile/chat_service/icon_emoticon12_btn.png" alt="" /></a></li>
+						<li><a href="#none"><img src="http://image.lotte.com/lotte/mobile/chat_service/icon_emoticon13_btn.png" alt="" /></a></li>
+						<li><a href="#none"><img src="http://image.lotte.com/lotte/mobile/chat_service/icon_emoticon14_btn.png" alt="" /></a></li>
+						<li><a href="#none"><img src="http://image.lotte.com/lotte/mobile/chat_service/icon_emoticon15_btn.png" alt="" /></a></li>
+						<li><a href="#none"><img src="http://image.lotte.com/lotte/mobile/chat_service/icon_emoticon16_btn.png" alt="" /></a></li>
+					</ul>
+				</div>
+				<div class="page">
+					<span class="page_list on">이모티콘 1</span>
+					<span class="page_list">이모티콘 2</span>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="cover"></section>
+
+	<!-- 이미지 팝업 -->
+	<section class="layer_pop img_pop">
+		<div class="img_pop_wrap">
+			<div class="thumbnail" ><img src="" alt="" /></div>
+			<a href="#none" class="close">닫기</a>
+		</div>
+	</section>
+	<!-- // 이미지 팝업 -->
+
+	<!-- 상담만족도 평가 팝업 -->
+	<section class="layer_pop satisfaction_pop">
+		<p class="title">상담만족도 평가</p>
+		<div class="satisfaction_score">
+			<span class="score">
+				<a href="#" class="on">1점</a>
+				<a href="#">2점</a>
+				<a href="#">3점</a>
+				<a href="#">4점</a>
+				<a href="#">5점</a>
+			</span>
+			<div class="textarea"><textarea name="" placeholder="상담 후 불편사항을 작성해주시면 서비스 개선에 적극 반영하겠습니다. (최대 한글 1,000자)" ></textarea></div><!-- 20151117 수정 : <div class="textarea"></div> 상위 태그 추가 -->
+		</div>			
+		<div class="btn">
+			<a href="#none" class="cancle">취소</a>
+			<a href="#">완료</a>
+		</div>		
+	</section>
+	<!-- // 상담만족도 평가 팝업 -->
+
+	<!-- 추천상품 만족도 팝업 -->
+	<section class="layer_pop recommand_pop">
+		<p class="title">추천상품 만족도</p>
+		<div class="satisfaction_score">
+			<span class="score">
+				<a href="#" class="on">1점</a>
+				<a href="#">2점</a>
+				<a href="#">3점</a>
+				<a href="#">4점</a>
+				<a href="#">5점</a>
+			</span>
+		</div>			
+		<div class="btn">
+			<a href="#none" class="cancle">취소</a>
+			<a href="#">완료</a>
+		</div>		
+	</section>
+	<!-- // 추천상품 만족도 팝업 -->
+
+</div>
+</body>
+</html>

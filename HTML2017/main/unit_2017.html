@@ -1,0 +1,841 @@
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+	<meta charset="utf-8">
+	<title>롯데닷컴</title>
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+
+	<!-- 기존 css -->
+	<link rel="stylesheet" type="text/css" href="common.min.css"/>
+	<link rel="stylesheet" type="text/css" href="main.min.css">
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/layer/main_popup.css"/>
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/layer/coupon_layer.css"/>
+	<!-- 기존 css -->
+
+	<!--<link rel="stylesheet" type="text/css" href="unit_list_01.css"/>-->
+	<!--<link rel="stylesheet" type="text/css" href="unit_2017.css">-->
+	<link rel="stylesheet" type="text/css" href="../../lotte/resources_dev/main/main_2017.css"><!-- 신규 main css-->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script><!-- 코딩용 angular js -->
+
+</head>
+
+<body ng-controller="MainCtrl" class="ng-scope" ondragstart="return false" onselectstart="return false">
+
+
+<div id="wrapper" ng-show="showWrap">
+	<div class="container_wrap">
+		<section id="container" lotte-ng-list-swipe="" swipe-id="MainContent" ignore-destory="true" swipe-max-ratio="0.2" swipe-min-distance="40" swipe-responsive="true" swipe-loading-el="#swipePageLoading" swipe-loading-el-zindex="30" swipe-end-exec="mainSwipeReset($event)">
+			<div content-container="" tpml="pageUI.curMenuDispNo" class="cont_wrap">
+
+
+				<!-- 퍼블리싱 시작, 작업자: 김기용-->
+				<div class="moduleCon">
+
+					<h3>브랜드</h3>
+					<div class="gTop_title">
+						<span>브랜드 즐겨찾기</span>
+						<p>김롯데님의 <u>16개</u> 브랜드입니다.</p>
+					</div>
+
+					<div lotte-slider="" class="swipe_wrap" style="overflow-x:scroll;">
+						<div class="unit unit_elemlist_01">
+							<ul class="">
+								<li>
+									<a href="#">
+										<div class="imageCon">
+											<img src="../images/main/ic_brand_logo_03.jpg" alt="">
+										</div>
+										<div class="titleCon">
+											<div class="name">쎔소나이트</div>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<div class="imageCon">
+											<img src="../images/main/ic_brand_logo_05.jpg" alt="">
+										</div>
+										<div class="titleCon">
+											<div class="name">코치</div>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<div class="imageCon">
+											<img src="../images/main/ic_brand_logo_07.jpg" alt="">
+										</div>
+										<div class="titleCon">
+											<div class="name">라푸마</div>
+										</div>
+									</a>
+								</li>
+								<li class="more">
+									<a href="#">
+										<p>브랜드<br>전체보기</p>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="unit unit_btn brand_search">
+						<a href="#">브랜드 검색/추가</a>
+					</div>
+
+
+
+
+					<!--실시간 베스트-->
+					<div class="unit unit_tabmenu best">
+						<ul>
+							<li class="menu1 "><a href="#"><span>판매 베스트</span></a></li>
+							<li class="menu2 on"><a href="#"><span>실시간 베스트</span></a></li>
+						</ul>
+					</div>
+
+					<div class="tmpl_best">
+						<div class="unit unit_search">
+							<h4 class="title"><strong>롯데닷컴</strong> 급상승 검색어</h4>
+
+							<div class="slide_wrap">
+								<ul class="search_word">
+									<li class="on"><a href="#"><span>1. 봄 신상자켓</span></a></li>
+									<li><a href="#"><span>2. 루이까토즈 지갑</span></a></li>
+									<li><a href="#"><span>3. 레노마키조</span></a></li>
+									<li><a href="#"><span>4. 레노마키조</span></a></li>
+									<li><a href="#"><span>5. 레노마키조</span></a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="unit_thumb_4x2">
+							<ul class="fclear">
+								<li><a href="#"><img alt="" src="http://image.lotte.com/goods/95/76/02/91/2/291027695_1_280.jpg"></a></li>
+								<li><a href="#"><img alt="" src="http://image.lotte.com/goods/95/76/02/91/2/291027695_1_280.jpg"></a></li>
+								<li><a href="#"><img alt="" src="http://image.lotte.com/goods/95/76/02/91/2/291027695_1_280.jpg"></a></li>
+								<li><a href="#"><img alt="" src="http://image.lotte.com/goods/95/76/02/91/2/291027695_1_280.jpg"></a></li>
+								<li><a href="#"><img alt="" src="http://image.lotte.com/goods/95/76/02/91/2/291027695_1_280.jpg"></a></li>
+								<li><a href="#"><img alt="" src="http://image.lotte.com/goods/95/76/02/91/2/291027695_1_280.jpg"></a></li>
+								<li><a href="#"><img alt="" src="http://image.lotte.com/goods/95/76/02/91/2/291027695_1_280.jpg"></a></li>
+								<li class="more"><a class="dim dim50" href="#"><img alt="" src="http://image.lotte.com/goods/95/76/02/91/2/291027695_1_280.jpg"></a></li>
+							</ul>
+						</div>
+						<div class="search_subtitle">
+							<p><strong>전국민</strong>이 많이 찾고있는 상품</p>
+						</div>
+					</div>
+
+
+					<!--판매베스트-->
+					<div class="unit unit_tabmenu best">
+						<ul>
+							<li class="menu1 on"><a href="#"><span>판매 베스트</span></a></li>
+							<li class="menu2 "><a href="#"><span>실시간 베스트</span></a></li>
+						</ul>
+					</div>
+					<div class="unit unit_cate best">
+						<div class="cate">
+							<ul>
+								<li class="cate1 "><a href="#"><span>전체</span></a></li>
+								<li class="cate2 on"><a href="#"><span>화장품</span></a></li>
+								<li class="cate3"><a href="#"><span>잡화/슈즈/명품</span></a></li>
+								<li class="cate4"><a href="#"><span>패션의류</span></a></li>
+							</ul>
+						</div>
+
+						<div class="subcate">
+							<div class="catenavi">
+								<span class="">명품화장품</span> <span class="on">메이크업</span>
+							</div>
+							<div class="categroupwrap">
+								<ul class="categroup fclear">
+									<li>
+										<ul class="div2 fclear">
+											<li class="on"><a href="#"><span>전체</span></a></li>
+											<li><a href="#"><span>화장품</span></a></li>
+											<li><a href="#"><span>잡회/슈즈/명품</span></a></li>
+											<li><a href="#"><span>패션의류</span></a></li>
+											<li><a href="#"><span>스포츠/레저</span></a></li>
+											<li><a href="#"><span>유아동</span></a></li>
+										</ul>
+									</li>
+									<li>
+										<ul class="div2 fclear">
+											<li><a href="#"><span>가전/가구</span></a></li>
+											<li><a href="#"><span>생활/식품</span></a></li>
+											<li><a href="#"><span></span></a></li>
+											<li><a href="#"><span></span></a></li>
+											<li><a href="#"><span></span></a></li>
+											<li><a href="#"><span></span></a></li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+
+							<div class="pagewrap">
+								<span class="paging"><strong>1</strong> / <span>2</span></span>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="cst_best">
+
+						<div class="filter_wrap" style="margin-bottom: 10px;">
+							<p class="title">판매 베스트 100</p>
+
+							<ul class="filter">
+								<li class="gender figure select_arrow">
+									<select class="" id="" name="rankTypeAge" ng-change="rankAgeChange()">
+										<option value="A" selected="">성별 전체</option>
+										<option value="F" >여성</option>
+										<option value="M">남성</option>
+									</select>
+								</li>
+								<li class="age figure select_arrow on">
+									<select class="" id="" name="">
+										<option value="A" selected="">연령 전체</option>
+										<option value="20" >20대</option>
+										<option value="30">30대</option>
+										<option value="40">40대</option>
+										<option value="50">50대</option>
+									</select>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+
+
+				<div class="moduleCon">
+					<h3>탭메뉴</h3>
+
+					<div class="unit unit_tabmenu best">
+						<ul>
+							<li class="menu1 on"><a href="#"><span>판매 베스트</span></a></li>
+							<li class="menu2 "><a href="#"><span>실시간 베스트</span></a></li>
+						</ul>
+					</div>
+				</div>
+
+
+				<div class="moduleCon">
+					<h3>프로모션배너 D형</h3>
+
+					<div class="unit unit_bn_promo typeD">
+						<ul class="fclear">
+							<li class="shop3">
+								<p class="imgwrap"><img src="http://image.lotte.com/goods/12/73/44/70/3/370447312_1_550.jpg"></p>
+								<div class="titwrap">
+									<span class="subtit">빈폴 레이디스</span>
+									<div class="maintitwrap">
+										<span class="maintit txt1">S/S NEW Arrivals</span><br>
+										<span class="maintit txt2">최대 15%쿠폰</span>
+									</div>
+								</div>
+								<div class="pagewrap dimbe dim30">
+									<span class="paging"><strong>3</strong> / <span>5</span></span>
+									<span class="all">+</span>
+								</div>
+							</li>
+							<li class="shop2">
+								<p class="imgwrap"><img src="http://image.lotte.com/goods/22/78/24/55/3/355247822_1_550.jpg"></p>
+								<div class="titwrap">
+									<span class="subtit">추가할인 쿠폰혜택까지!</span>
+									<div class="maintitwrap">
+										<span class="maintit txt1">CYBER MONDAY</span><br>
+										<span class="maintit txt2">월요일, 단 하루!</span>
+									</div>
+								</div>
+								<div class="pagewrap dimbe dim30">
+									<span class="paging"><strong>3</strong> / <span>5</span></span>
+									<!--<span class="all">+</span>-->
+								</div>
+							</li>
+							<li class="shop1">
+								<p class="imgwrap"><img src="http://image.lotte.com/goods/33/52/75/68/3/368755233_1_550.jpg"></p>
+								<div class="titwrap">
+									<span class="subtit">추가할인 쿠폰혜택까지!</span>
+									<div class="maintitwrap">
+										<span class="maintit txt1">CYBER MONDAY</span><br>
+										<span class="maintit txt2">월요일, 단 하루!</span>
+									</div>
+								</div>
+								<div class="pagewrap dimbe dim30">
+									<span class="paging"><strong>3</strong> / <span>5</span></span>
+									<!--<span class="all">+</span>-->
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+
+				<div class="moduleCon">
+					<h3>프로모션배너 C형</h3>
+
+					<div class="unit unit_bn_promo typeC store1">
+						<ul class="fclear">
+							<li class="shop2">
+								<p class="imgwrap"><img src="http://image.lotte.com/upload/display/corner/5553631_55055_47658_30_13010106_746.jpg"></p>
+								<div class="titwrap">
+									<div class="maintitwrap">
+										<span class="maintit txt1">상상력이 자라는 인테리어</span><br>
+										<span class="maintit txt2">한샘 키즈가구</span>
+									</div>
+								</div>
+							</li>
+							<li class="shop3">
+								<p class="imgwrap"><img src="http://image.lotte.com/upload/display/corner/5553631_55055_47658_30_13010106_750.jpg"></p>
+								<div class="titwrap">
+									<div class="maintitwrap">
+										<span class="maintit txt1">CYBER MONDAY</span><br>
+										<span class="maintit txt2">월요일, 단 하루!</span>
+									</div>
+								</div>
+							</li>
+							<li class="shop1">
+								<p class="imgwrap"><img src="http://image.lotte.com/upload/display/corner/5553631_55055_47658_30_13010106_750.jpg"></p>
+								<div class="titwrap">
+									<div class="maintitwrap">
+										<span class="maintit txt1">CYBER MONDAY</span><br>
+										<span class="maintit txt2">월요일, 단 하루!</span>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+
+				<div class="moduleCon">
+					<h3>프로모션배너 B형</h3>
+
+					<div class="unit unit_bn_promo typeB">
+						<ul class="fclear">
+							<li class="shop1">
+								<p class="imgwrap"><img src="http://image.lotte.com/upload/display/corner/5553631_55055_47658_30_13010106_746.jpg"></p>
+								<div class="titwrap">
+									<span class="subtit">추가할인 쿠폰혜택까지!</span>
+									<div class="maintitwrap">
+										<span class="maintit txt1">CYBER MONDAY</span><br>
+										<span class="maintit txt2">월요일, 단 하루!</span>
+									</div>
+								</div>
+								<div class="pagewrap dimbe dim30">
+									<span class="paging"><span class="curpage">3</span> / <span>5</span></span>
+									<span class="all">+</span>
+								</div>
+							</li>
+							<li class="shop2">
+								<p class="imgwrap"><img src="http://image.lotte.com/upload/display/corner/5553631_55055_47658_30_13010106_750.jpg"></p>
+								<div class="titwrap">
+									<span class="subtit">추가할인 쿠폰혜택까지!</span>
+									<div class="maintitwrap">
+										<span class="maintit txt1">CYBER MONDAY</span><br>
+										<span class="maintit txt2">월요일, 단 하루!</span>
+									</div>
+								</div>
+								<div class="pagewrap dimbe dim30">
+									<span class="paging"><span class="curpage">3</span> / <span>5</span></span>
+									<!--<span class="all">+</span>-->
+								</div>
+							</li>
+							<li class="shop3">
+								<p class="imgwrap"><img src="http://image.lotte.com/upload/display/corner/5553631_55055_47658_30_13010106_750.jpg"></p>
+								<div class="titwrap">
+									<span class="subtit">추가할인 쿠폰혜택까지!</span>
+									<div class="maintitwrap">
+										<span class="maintit txt1">CYBER MONDAY</span><br>
+										<span class="maintit txt2">월요일, 단 하루!</span>
+									</div>
+								</div>
+								<div class="pagewrap dimbe dim30">
+									<span class="paging"><span class="curpage">3</span> / <span>5</span></span>
+									<!--<span class="all">+</span>-->
+								</div>
+							</li>
+						</ul>
+
+						<div class="">
+							<p>내 선물함 바로가기 ></p>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="moduleCon">
+					<h3>카드행사 배너</h3>
+
+					<div class="unit unit_bn_card">
+						<ul>
+							<li>
+								<a href="#">
+									<img alt="" src="http://image.lotte.com/upload/display/corner/5537338_42057_0_30_13008014_2312.gif">
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+
+				<div class="moduleCon">
+					<h3>광고 배너</h3>
+
+					<div class="unit unit_bn_ad">
+						<ul>
+							<li>
+								<a href="#">
+									<img alt="" src="http://image.lotte.com/upload/display/corner/5562275_42057_0_30_13008014_58.jpg">
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
+
+				<div class="moduleCon">
+					<h3>크로스컨텐츠</h3>
+
+					<div class="unit unit_crosscontents">
+						<ul class="fclear">
+							<li>
+								<a href="#">
+									<p class="imgwrap dim dim10"><img src="http://image.lotte.com/goods/17/78/47/57/3/357477817_1_280.jpg"></p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<p class="ttl">뷰티</p>
+									<p class="desc">5월 뷰티풀 페스티벌 <br/>전 브랜드 10% 적립혜택</p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<p class="imgwrap dim dim10"><img src="http://image.lotte.com/goods/46/37/34/60/3/360343746_1_280.jpg"></p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<p class="ttl">스킨케어</p>
+									<p class="desc">민감해진 피부엔 시카페어 <br/>회복크림</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+
+				<div class="moduleCon">
+					<h3>개인화 기획전 배너</h3>
+
+					<div class="unit unit_bn_person">
+						<ul class="fclear">
+							<li>
+								<a href="#">
+									<p class="ttl">키즈</p>
+									<p class="desc">봄맞이 신학기 할인 기획전 <br/>빈폴/뉴발란스 키즈외</p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<p class="ttl">스포츠/취미</p>
+									<p class="desc">애완용품의 모든것 <br/>디어팻 인기상품 할인</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+
+				<div class="moduleCon">
+					<h3>핫키워드</h3>
+
+					<div class="unit unit_hotkeyword">
+						<ul class="fclear">
+							<li>
+								<a href="#">
+									<p class="imgwrap"><img src="http://image.lotte.com/goods/17/78/47/57/3/357477817_1_280.jpg"></p>
+									<p class="tag">#전기밥솥</p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<p class="imgwrap"><img src="http://image.lotte.com/goods/46/37/34/60/3/360343746_1_280.jpg"></p>
+									<p class="tag">#청소기</p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<p class="imgwrap"><img src="http://image.lotte.com/goods/10/36/30/55/3/355303610_1_280.jpg"></p>
+									<p class="tag">#3단책장</p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<p class="imgwrap"><img src="http://image.lotte.com/goods/17/78/47/57/3/357477817_1_280.jpg"></p>
+									<p class="tag">#러그</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+
+				<div class="moduleCon">
+					<h3>서비스배너 A형</h3>
+
+					<div class="unit unit_bn_svcA">
+						<ul>
+							<li>
+								<a href="#">
+									<p class="imgwrap"><img src="http://image.lotte.com/goods/17/78/47/57/3/357477817_1_280.jpg"></p>
+									<p class="ttl">스마트픽</p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<p class="imgwrap"><img src="http://image.lotte.com/goods/17/78/47/57/3/357477817_1_280.jpg"></p>
+									<p class="ttl">TV쇼핑</p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<p class="imgwrap"><img src="http://image.lotte.com/goods/17/78/47/57/3/357477817_1_280.jpg"></p>
+									<p class="ttl">기획전</p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<p class="imgwrap"><img src="http://image.lotte.com/goods/17/78/47/57/3/357477817_1_280.jpg"></p>
+									<p class="ttl">오늘도착</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+
+				<div class="moduleCon">
+					<h3>서비스배너 B형</h3>
+
+					<div class="unit unit_bn_svcB">
+						<ul>
+							<li class="on">
+								<a href="#"><span class="imgwrap"><img src="../images/main/u_svcbnB_02.jpg"></span><span class="tag">#시크</span></a>
+							</li>
+							<li class="">
+								<a href="#"><span class="imgwrap"><img src="../images/main/u_svcbnB_03.jpg"></span><span class="tag">#러블리</span></a>
+							</li>
+							<li>
+								<a href="#"><span class="imgwrap"><img src="../images/main/u_svcbnB_04.jpg"></span><span class="tag">#베이직</span></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+
+
+				<div class="moduleCon">
+					<h3>3+4개형</h3>
+
+					<div class="unit unit_bn_svcB">
+						<ul>
+							<li class="on">
+								<a href="#"><span class="imgwrap"><img src="../images/main/u_svcbnB_02.jpg"></span><span class="tag">#시크</span></a>
+							</li>
+							<li class="">
+								<a href="#"><span class="imgwrap"><img src="../images/main/u_svcbnB_03.jpg"></span><span class="tag">#러블리</span></a>
+							</li>
+							<li>
+								<a href="#"><span class="imgwrap"><img src="../images/main/u_svcbnB_04.jpg"></span><span class="tag">#베이직</span></a>
+							</li>
+						</ul>
+					</div>
+					<div class="unit unit_prod_logo type34">
+						<ul>
+							<li>
+								<a href="#">
+									<!--상품이미지-->
+									<p class="imgwrap"><img alt="" src="../images/main/u_prodnlogo_03.png"></p>
+									<!--브랜드명-->
+									<p class="brandlogo"><img src="../images/main/u_prodnlogo_09_2.png" alt="LG전자"></p>
+									<!--상품명-->
+									<p class="prodname">ALL직수 슬림정수기<br/> 퓨리케어</p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<!--상품이미지-->
+									<p class="imgwrap"><img alt="" src="../images/main/u_prodnlogo_05.png"></p>
+									<!--브랜드명-->
+									<p class="brandlogo"><img src="../images/main/u_prodnlogo_10_2.png" alt="삼성저낮"></p>
+									<!--상품명-->
+									<p class="prodname">깨끗한 스마트 세탁<br/> 애드워시</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="moduleCon">
+					<h3>상품+브랜드로고형</h3>
+
+					<div class="unit unit_prod_logo">
+						<div class="title">
+							<p>브랜드는 서프라이즈</p>
+						</div>
+
+						<ul>
+							<li>
+								<a href="#">
+									<!--상품이미지-->
+									<p class="imgwrap"><img alt="" src="../images/main/u_prodnlogo_03.png"></p>
+									<!--브랜드명-->
+									<p class="brandlogo"><img src="../images/main/u_prodnlogo_09_2.png" alt="LG전자"></p>
+									<!--상품명-->
+									<p class="prodname">ALL직수 슬림정수기<br/> 퓨리케어</p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<!--상품이미지-->
+									<p class="imgwrap"><img alt="" src="../images/main/u_prodnlogo_05.png"></p>
+									<!--브랜드명-->
+									<p class="brandlogo"><img src="../images/main/u_prodnlogo_10_2.png" alt="삼성저낮"></p>
+									<!--상품명-->
+									<p class="prodname">깨끗한 스마트 세탁<br/> 애드워시</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+
+				<div class="moduleCon">
+					<h3>상품4개형</h3>
+					<div class="unit unit_prod_4">
+						<ul>
+							<li>
+								<a href="#">
+									<!--상품이미지-->
+									<p class="imgwrap"><img alt="[홈쇼핑HOT] 기대 그 이상, 가격또한 대만족! ★ 블라우스/니트/티셔츠/가디건/코트/팬츠/set" src="http://image.lotte.com/goods/56/98/16/48/3/348169856_3_280.jpg"></p>
+									<!--브랜드명-->
+									<p class="brandname">바닐라비</p>
+									<!--상품명-->
+									<p class="prodname">[홈쇼핑HOT] 기대 그 이상, 가격또한 대만족! ★ 블라우스/니트/티셔츠/가디건/코트/팬츠/set</p>
+									<!--가격-->
+									<p class="price">8,720<em>원<em class="plan_prod_limit ng-scope">~</em></em></p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<p class="imgwrap"><img alt="[홈쇼핑HOT] 기대 그 이상, 가격또한 대만족! ★ 블라우스/니트/티셔츠/가디건/코트/팬츠/set" src="http://image.lotte.com/goods/56/98/16/48/3/348169856_3_280.jpg"></p>
+									<p class="brandname">바닐라비</p>
+									<p class="prodname">[홈쇼핑HOT] 기대 그 이상, 가격또한 대만족! ★ 블라우스/니트/티셔츠/가디건/코트/팬츠/set</p>
+									<p class="price">8,720<em>원<em class="plan_prod_limit ng-scope">~</em></em></p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<p class="imgwrap"><img alt="[홈쇼핑HOT] 기대 그 이상, 가격또한 대만족! ★ 블라우스/니트/티셔츠/가디건/코트/팬츠/set" src="http://image.lotte.com/goods/56/98/16/48/3/348169856_3_280.jpg"></p>
+									<p class="brandname">바닐라비</p>
+									<p class="prodname">[홈쇼핑HOT] 기대 그 이상, 가격또한 대만족! ★ 블라우스/니트/티셔츠/가디건/코트/팬츠/set</p>
+									<p class="price">8,720<em>원<em class="plan_prod_limit ng-scope">~</em></em></p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<p class="imgwrap"><img alt="[홈쇼핑HOT] 기대 그 이상, 가격또한 대만족! ★ 블라우스/니트/티셔츠/가디건/코트/팬츠/set" src="http://image.lotte.com/goods/56/98/16/48/3/348169856_3_280.jpg"></p>
+									<p class="brandname">바닐라비</p>
+									<p class="prodname">[홈쇼핑HOT] 기대 그 이상, 가격또한 대만족! ★ 블라우스/니트/티셔츠/가디건/코트/팬츠/set</p>
+									<p class="price">8,720<em>원<em class="plan_prod_limit ng-scope">~</em></em></p>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+
+				<div class="moduleCon">
+					<h3>카테고리</h3>
+
+					<div class="unit unit_cate best">
+						<div class="cate">
+							<ul>
+								<li class="cate1 "><a href="#"><span>전체</span></a></li>
+								<li class="cate2 on"><a href="#"><span>화장품</span></a></li>
+								<li class="cate3"><a href="#"><span>잡화/슈즈/명품</span></a></li>
+								<li class="cate4"><a href="#"><span>패션의류</span></a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="unit unit_cate gift">
+						<div class="title">
+							<p>원하는 선물을 찾아드려요</p>
+						</div>
+
+						<div class="cate">
+							<ul>
+								<li class="cate1 "><a href="#">생일</a></li>
+								<li class="cate2 on"><a href="#">기념일</a></li>
+								<li class="cate3"><a href="#">감사/부모님</a></li>
+								<li class="cate4"><a href="#">출산/돌백일</a></li>
+							</ul>
+						</div>
+						<div class="subcate">
+							<ul class="age">
+								<li><a href=""><span>전체</span></a></li>
+								<li class="on"><a href=""><span>20대</span></a></li>
+								<li><a href=""><span>30대</span></a></li>
+								<li><a href=""><span>40대</span></a></li>
+								<li><a href=""><span>50대</span></a></li>
+							</ul>
+
+							<div class="gender figure triangle rb">
+								<select id="rankTypeAge" name="rankTypeAge" ng-change="rankAgeChange()" ng-model="screenData.ranking_age" class="">
+									<option value="A">전체</option>
+									<option value="F" selected>여성</option>
+									<option value="M">남성</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="unit unit_cate bigdeal">
+						<div class="title">
+							<p>카테고리별 빅딜</p>
+						</div>
+
+						<div class="cate">
+							<ul>
+								<li class="cate1"><a href="#">추천</a></li>
+								<li class="cate2 on"><a href="#">잡화/뷰티</a></li>
+								<li class="cate3"><a href="#">의류/속옷</a></li>
+								<li class="cate4"><a href="#">스포츠/레저</a></li>
+								<li class="cate5"><a href="#">유아동/식품</a></li>
+								<li class="cate6"><a href="#">리빙/가전</a></li>
+							</ul>
+						</div>
+						<div class="subcate">
+							<ul class="div3">
+								<li class="on"><span><var>Best</var></span></li>
+								<li><span><var>영캐주얼</var></span></li>
+								<li><span><var>여성캐주얼/정장</var></span></li>
+								<li><span><var>여성트랜디</var></span></li>
+								<li><span><var>진/유니섹스</var></span></li>
+								<li><span><var>베이직캐주얼</var></span></li>
+								<li><span><var>모피/언더웨어</var></span></li>
+								<li><span><var>남성 정장/셔츠</var></span></li>
+								<li><span><var>남성 상/하의</var></span></li>
+								<li><span><var>남성 아우터/시즌</var></span></li>
+								<li><span><var>디자이너</var></span></li>
+							</ul>
+						</div>
+
+					</div>
+
+
+					<div class="unit unit_cate_pop">
+						<div class="title">
+							<p>인기 카테고리</p>
+						</div>
+
+						<ul class="fclear">
+							<li>
+								<a href="#">
+									<p class="imgwrap"><img src="http://image.lotte.com/goods/18/48/92/60/3/360924818_1_280.jpg"></p>
+									<p class="ttl">여성의류</p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<p class="imgwrap"><img src="http://image.lotte.com/goods/55/52/51/68/3/368515255_1_280.jpg"></p>
+									<p class="ttl">남성의류</p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<p class="imgwrap"><img src="http://image.lotte.com/goods/23/14/02/70/3/370021423_1_280.jpg"></p>
+									<p class="ttl">패션잡화</p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<p class="imgwrap"><img src="http://image.lotte.com/goods/41/86/03/70/3/370038641_1_280.jpg"></p>
+									<p class="ttl">슈즈</p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<p class="imgwrap"><img src="http://image.lotte.com/goods/18/48/92/60/3/360924818_1_280.jpg"></p>
+									<p class="ttl">진/유니섹</p>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<p class="more"></p>
+									<p class="ttl">전체보기</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+
+				<div class="moduleCon">
+					<h3>빅딜형</h3>
+					<div class="unit unit_bigdeal">
+						<ul>
+							<li>
+								<a href="#">
+									<!-- 품절 -- >
+									<div class="soldout">SOLD OUT</div>
+
+									<!-- 상품 이미지 : 대표이미지 불러오는 경우 class='thumb default_img' 코너이미지 불러오는 경우 class='thumb' -->
+									<div class="thumb"><img alt="720x338" src="http://image.lotte.com/goods/75/34/74/58/3/358743475_0.jpg"></div>
+
+									<!-- 상품정보 -->
+									<div class="info">
+										<div class="prod_flag_wrap">
+											<span class="flag depart">롯데백화점</span>
+											<span class="flag tag free">무료배송</span>
+											<span class="flag tag gift">선물포장</span>
+											<span class="flag tag tvshopping">TV쇼핑</span>
+											<span class="flag smart">스마트픽</span>
+										</div>
+
+										<div class="prod">
+											<!--메시지-->
+											<p class="msg"><span>SK2 더블적립! 추가혜택!</span></p>
+											<!-- 상품명 -->
+											<span class="prodname">[SK2] 이은천 디자이너의 감성충만 데일리룩</span>
+											<!-- 상품가격 -->
+											<p class="price"><span class="ng-binding">11,880</span>원<!-- ngIf: item.is_plan_prod --><em class="plan_prod_limit ng-scope">~</em><!-- end ngIf: item.is_plan_prod --></p>
+										</div>
+
+										<!-- 구매 개수 및 입력형 Flag -->
+										<div class="sale_wrap">
+											<span class="no"><em class="ng-binding">355</em>개 구매 중</span>
+										</div>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+
+			</div>
+		</section>
+	</div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+	<meta charset="utf-8">
+	<title>롯데닷컴-order</title>
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+
+	<script>
+		var APP_KEY = "7fa1e44757a94fd89921";
+		var SERVER_TIME = new Date();
+
+		var LOTTE_CONSTANTS = [];
+			LOTTE_CONSTANTS['MAPI_HOST_API'] = "http://mo.lotte.com";
+			LOTTE_CONSTANTS['MAPI_HOST_SSL_API'] = "http://mo.lotte.com";
+			LOTTE_CONSTANTS['M_HOST_MOBILE'] = "http://mo.lotte.com";
+			LOTTE_CONSTANTS['M_HOST_SSL'] = "http://mo.lotte.com";
+			LOTTE_CONSTANTS['PC_HOST_WEB'] = "http://www.lotte.com";
+
+		var MAPI_HOST_API = LOTTE_CONSTANTS['MAPI_HOST_API'];
+		var MAPI_HOST_SSL_API = LOTTE_CONSTANTS['MAPI_HOST_SSL_API'];
+		var M_HOST_MOBILE = LOTTE_CONSTANTS['M_HOST_MOBILE'];
+		var M_HOST_SSL = LOTTE_CONSTANTS['M_HOST_SSL'];
+		var PC_HOST_WEB = LOTTE_CONSTANTS['PC_HOST_WEB'];
+
+		LOTTE_CONSTANTS['SPLIT_GUBUN_1'] = ":^:";
+		LOTTE_CONSTANTS['SPLIT_GUBUN_3'] = ";;;;;";
+		LOTTE_CONSTANTS['ONENONE_BUY_LOGIN'] = "1";
+		LOTTE_CONSTANTS['IMALL_BUY_LOGIN'] = "4";
+		LOTTE_CONSTANTS['ST_STD_CD_PAY_MEAN_CD_L_POINT'] = "21";
+		LOTTE_CONSTANTS['ST_STD_CD_PAY_MEAN_CD_LOTTE_POINT'] = "19";
+		LOTTE_CONSTANTS['ST_STD_CD_PAY_MEAN_CD_DEPOSIT'] = "20";
+		LOTTE_CONSTANTS['DEFAULT_LATE_VIEW_GOODS_COUNT'] = "20";
+
+		//rudolph start
+		LOTTE_CONSTANTS['NORMAL_LOGIN'] = "0";
+		LOTTE_CONSTANTS['ONENONE_BUY_LOGIN'] = "1";
+		LOTTE_CONSTANTS['CART_BUY_LOGIN'] = "2";
+		LOTTE_CONSTANTS['ORDER_SEARCH_LOGIN'] = "3";
+		LOTTE_CONSTANTS['IMALL_BUY_LOGIN'] = "4";
+		LOTTE_CONSTANTS['IMALL_CART_BUY_LOGIN'] = "5"
+		LOTTE_CONSTANTS['LOGIN_SEED'] = "MDOTCOM";
+		LOTTE_CONSTANTS['ORDER_PROTOCAL'] = "http";
+		LOTTE_CONSTANTS['MOBILE_DOMAIN'] = "mo.lotte.com";
+
+		LOTTE_CONSTANTS['ELLOTTE_HOST_API'] = "http://mapi.ellotte.com";
+		LOTTE_CONSTANTS['ELLOTTE_HOST_SSL_API'] = "https://mapi.ellotte.com";
+		LOTTE_CONSTANTS['ELLOTTE_HOST_MOBILE'] = "http://mo.ellotte.com";
+		LOTTE_CONSTANTS['ELLOTTE_HOST_SSL'] = "http://mo.ellotte.com";
+		LOTTE_CONSTANTS['ELLOTTE_LOGIN_SEED'] = "NMELLOTTE";
+		LOTTE_CONSTANTS['ELLOTTE_IOS_APP_SCHEMA'] = "ellotte001";
+		LOTTE_CONSTANTS['ELLOTTE_ANDROID_APP_SCHEMA'] = "ellotte002";
+		//rudolph end
+
+		LOTTE_CONSTANTS['PAYTYPE_CARD_047'] = "047";
+		LOTTE_CONSTANTS['PAYTYPE_CARD_029'] = "029";
+		LOTTE_CONSTANTS['PAYTYPE_CARD_031'] = "031";
+		LOTTE_CONSTANTS['PAYTYPE_CARD_048'] = "048";
+		LOTTE_CONSTANTS['EXP_MY_LOTTE_KO'] = "마이롯데";
+	</script>
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/common/lotte.css"/>
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/layout/header.css"/>
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/layout/header_sub.css"/>
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/layout/footer.css"/>
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/layout/actionbar.css"/>
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/layout/side_ctg.css"/>
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/layout/side_mylotte.css"/>
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/search/layer_srh.css"/>
+	<link rel="stylesheet" type="text/css" href="../lotte/resources_dev/order_simple/ordersimple.css"/>
+	<script src="/lotte/lib/jquery/jquery-1.11.2.min.js"></script>
+	<script src="/lotte/lib/jquery/LottePub.js"></script>
+	<script src="/lotte/lib/jquery/EGSlider.js"></script>
+	<script src="/lotte/lib/jquery/cnt_interface.js"></script>
+	<script src="/lotte/lib/jquery/app_interface.js"></script>
+	<script src="/lotte/lib/angular/angular.min.js"></script>
+	<script src="/lotte/lib/angular/angular-sanitize.min.js"></script>
+	<script src="/lotte/resources_dev/common/lotte_comm.js"></script>
+	<script src="/lotte/resources_dev/common/lotte_util.js"></script>
+	<script src="/lotte/resources_dev/common/lotte_filter.js"></script>
+	<script src="/lotte/resources_dev/common/lotte_svc.js"></script>
+	<script src="/lotte/resources_dev/common/lotte_search.js"></script>
+	<script src="/lotte/resources_dev/common/lotte_comm_footer.js"></script>
+	<script src="/lotte/resources_dev/common/lotte_log_dev.js"></script>
+	<script src="/lotte/resources_dev/layout/lotte_sidectg.js"></script>
+	<script src="/lotte/resources_dev/layout/lotte_sidemylotte.js"></script>
+	<script src="../lotte/resources_dev/order_simple/ordersimple.js"></script>
+
+	<!-- <link rel="stylesheet" type="text/css" href="/lotte/resources_dev/order/order_form.css"/> -->
+	<script src="/lotte/resources_dev/order/order_gift_form.js"></script>
+	<!-- 	<script src="/common4/js/order.js"></script> -->
+	<!-- html_meta_angular.jsp -->
+	<script src="/common4/js/lib/crittercismClientLibraryMin.js"></script>
+	<script src="/common3/js/function.js"></script>
+	<script src="/common3/js/storage.js"></script>
+
+	<script src="https://flyasiana.com/CW/common/linkage/ozcd.js"></script>
+
+	<script type="text/javascript">
+		var __defaultDomain = 'http://mo.lotte.com';
+		var __sslDomain = "http://mo.lotte.com";
+		var __commonParam = 'c=mlotte&udid=&v=&cn=&cdn=';
+		var __adultYn = '';
+		var __loginYn = 'Y';
+		var isEllotte = false;
+		var split_gubun_1 = ":^:"; // 구분자1
+		var split_gubun_3 = ";;;;;"; // 구분자3
+		var paytype_card_002 = "002";
+		var paytype_card_008 = "008";
+		var paytype_card_016 = "016";
+		var paytype_card_018 = "018";
+		var paytype_card_020 = "020";
+		var paytype_card_021 = "021";
+		var paytype_card_026 = "026";
+		var paytype_card_029 = "029";
+		var paytype_card_031 = "031";
+		var paytype_card_036 = "036";
+		var paytype_card_047 = "047";
+		var paytype_card_048 = "048";
+		var paytype_card_054 = "054";
+		var hyundaeAppCardAval = false;
+		var grockle_yn = "N";
+		var singleProm = '';
+		var singlePromCnt = 0;
+		var multiProm = '';
+		var multiPromCnt = 0;
+		var cardStr = "<option value ='047'>롯데카드</option><option value ='029'>신한카드</option><option value ='026'>비씨카드</option><option value ='048'>현대카드</option><option value ='031'>삼성카드</option><option value ='016'>KB국민카드</option><option value ='021'>우리카드</option><option value ='008'>하나카드(구,외환)</option><option value ='020'>하나카드(구,하나SK)</option><option value ='018'>NH카드</option><option value ='036'>씨티카드</option><option value ='002'>광주카드</option><option value ='054'>우체국체크카드</option>";
+		var cp_schema = "";
+		var schema_domain = "http://mo.lotte.com";
+		var exp_tel_no = "1577-1110";
+		var cp_udid = "";
+		var cp_v = "";
+		var cp_cn = "";
+		var lotte_app_yn = "N";
+		var smart_pic_app_yn = "N";
+		var ellotte_app_yn = "N";
+		var tstore_yn = "";
+		var simple_mem_yn = "N";
+		var ua_lower_str = "mozilla/5.0 (ipad; cpu os 7_0 like mac os x) applewebkit/537.51.1 (khtml, like gecko) version/7.0 mobile/11a465 safari/9537.53";
+		var adtn_cost_dtl_sct_cd_card = "10";
+		var adtn_cost_dtl_sct_cd_coupon = "12";
+		var adtn_cost_dtl_sct_cd_staff = "27";
+		var adtn_cost_dtl_sct_cd_mrktng_cpn = "11";
+		var varUa = "-1";
+		var gubun = "GOODS";
+		var imallYN = "N";
+		var isDeliPlcChg = true;
+		var freeShippingYn = "N";
+		var dupGoodsInfo = "";
+		var deli_size = "7";
+		var manggo_yn = "N";
+		var gucci_yn = "N";
+		var username = "홍길동";
+		var lPoint = "21";
+		var ltPoint = "19";
+		var soilPoint = "24";
+		var deposit = "20";
+		var from_page = "";
+		var paytype_code_card = "16";
+		var paytype_code_bank = "03";
+		var paytype_code_lpay = "40";
+		var lpayCardCdArr = "008:021:016:031:048:026:029:047:055:";
+		var claim_sale_yn = "N";
+		var claim_sale_fvr_val = "5";
+		var claim_sale_aply_lmt_amt = "50000";
+		var claim_sale_card_knd_cd = "047";
+		var curMonPhnSttlAmt = "0";
+		var phone_no1 = "552";
+		var phone_no2 = "8931";
+		var phone_no3 = "4856";
+		var commid = "300";
+		var cartSn = "1278460735";
+		var goods_smp_normal_etc = "0102ETC";
+		var app_card_only_yn = "N";
+		var app_card_cd = "";
+		var PAYTYPE_CODE_BANK   = '03';
+		var PAYTYPE_CODE_CARD   = '16';
+		var PAYTYPE_CODE_SMART  = '16-1'; // 2011.06.07 스마트페이 추가
+		var PAYTYPE_CODE_PHONE  = '15'; // 2011.05.27 (LotteUtil.java 참조)
+		var PAYTYPE_CODE_LPAY  = '40';
+
+		/*
+		 * 카드 종류 선택시 일시불/무이자할부/일반할부에 대한 정보를 가져온 후
+		 * UI를 구현한다.
+		 */
+
+	</script>
+</head>
+<!-- 20160712 수정 -->
+<body ng-controller="OrderGiftCtrl" ondragstart="return false">
+	<section id="pageCover" style="display:none"></section>
+	<script>
+		var resCode = "0000";
+		var resMsg = "정상";
+		var orderSubTitle = "주문서 작성";
+	</script>
+	<div id="wrapper" ng-show="showWrap">
+		<lotte-header></lotte-header>
+		<lotte-search></lotte-search>
+		<sub-header></sub-header>
+		<not-found ng-if="noData"></not-found>
+		<lotte-container></lotte-container>
+<div id="container">
+	<section ng-show="contVisible" class="cont_minheight">
+	 <div id="container">
+	   <section id="order">
+	     <div class="order_simple_wrap">
+	       <div class="box_section type1">
+	         <a href="#" class="user_data">
+	           <p>이미준</p>
+	           <span class="ellipsis">(배송지명이길경우에한해서...)</span>
+	           <address>서울시 중구 을지로</address>
+	         </a>
+	       </div>
+	       <div class="box_section type2">
+	         <div class="left_img_area">
+	           <img src="http://image.lotte.com/lotte/mo2015/angular/order/order_sample_img.gif" alt="">
+	         </div>
+	         <div class="right_cont_area off" onclick="toggleAction();" >
+	           <p class="title1">[슈에무라] [NEW]루즈언리미티드 루즈언리미티드 슈프림 마뜨 립스틱 </p>
+	           <p class="title2">색상 : <span>화이트(WH)</span> | 사이즈 : <span>45(55)</span>  / <span>1</span>개</p>
+	           <ul class="cont_detail_list">
+	             <li>
+	               <p class="lft">판매가</p>
+	               <p class="rgt">91,250원</p>
+	             </li>
+	             <li>
+	               <p class="lft">즉석쿠폰 할인</p>
+	               <p class="rgt">(-)1,000원</p>
+	             </li>
+	             <li class="c_bold">
+	               <p class="lft">즉석쿠폰가</p>
+	               <p class="rgt">90,250원</p>
+	             </li>
+	             <li class="c_bold">
+	               <p class="lft">배송비</p>
+	               <p class="rgt">2,500원</p>
+	             </li>
+	           </ul>
+	           <ul class="cont_detail_list2">
+	             <li><a ng-click="someFunc();">매장전달 메시지</a></li>
+	             <li><a ng-click="someFunc();">선물포장</a></li>
+	             <li><a ng-click="someFunc();">종이카드</a></li>
+	           </ul>
+	           <div class="delivery_day">
+	             <p class="average_box">평균배송일</p>
+	             <p class="expect_day">3월 25일 전후 도착</p>
+	             <p class="percent">(99% 확률)</p>
+	           </div>
+	           <div class="delivery_day2">
+	             <p class="quick">빠른배송</p>
+	             <p class="expect_day"><span>3월 25일 내일(3/28)</span> 도착</p>
+	           </div>
+	         </div>
+	       </div>
+	       <div class="box_section type3">
+	         <ul class="apply_lpoint">
+	           <li>
+	             <div class="left_area">
+	               <input type="checkbox" name="chk_point" id="chk_lpoint" class="check01" value="lpoint">
+	               <label for="chk_lpoint" class="no_bold mgl1">L-POINT <span class="price">(<span>15,045</span>점)</span></label>
+	             </div>
+	             <div class="right_area">
+	               <input type="number" class="txt01 txt_num" pattern="[0-9]*" id="lpoint_amt" style="width:100%;" onblur="fn_point_change(this);" onfocus="fn_point_focus(this);">
+	             </div>
+	           </li>
+	           <li>
+	             <div class="left_area">
+	               <input type="checkbox" name="chk_point" id="chk_lpoint" class="check01" value="lpoint">
+	               <label for="chk_lpoint" class="no_bold mgl1">L-money <span class="price">(<span>5,045</span>점)</span></label>
+	             </div>
+	             <div class="right_area">
+	               <input type="number" class="txt01 txt_num" pattern="[0-9]*" id="lpoint_amt" style="width:100%;" onblur="fn_point_change(this);" onfocus="fn_point_focus(this);">
+	             </div>
+	           </li>
+	           <li>
+	             <div class="left_area">
+	               <input type="checkbox" name="chk_point" id="chk_lpoint" class="check01" value="lpoint">
+	               <label for="chk_lpoint" class="no_bold mgl1">보관금 <span class="price">(<span>1,200</span>점)</span></label>
+	             </div>
+	             <div class="right_area">
+	               <input type="number" class="txt01 txt_num" pattern="[0-9]*" id="lpoint_amt" style="width:100%;" onblur="fn_point_change(this);" onfocus="fn_point_focus(this);">
+	             </div>
+	           </li>
+	         </ul>
+	         <div class="lpoint_cert">
+	           <div class="top_title">L.POINT 온라인 사용인증</div>
+	           <div class="bot_cont">
+	             <div class="put_pass">
+	               <input type="text" class="lpoint_input">
+	               <a href="#" class="lpoint_btn">확인하기</a>
+	             </div>
+	             <ul class="msg_3">
+	               <li>* 5회 이상 비밀번호 오류 시, 비밀번호를 재설정해 주세요</li>
+	               <li>* L.POINT 전액 사용 시 인증이 필요합니다 </li>
+	               <li>* L.POINT 고객센터 : 1899-8900 </li>
+	             </ul>
+	             <div class="couple_btn">
+	               <a href="#" class="lpoint_btn">취소하기</a>
+	               <a href="#" class="lpoint_btn">비밀번호 설정/재설정</a>
+	             </div>
+	           </div>
+	         </div>
+	       </div>
+	       <div class="box_section type4">
+	         <ul class="amount_title_list">
+	           <li>총 주문금액</li>
+	           <li class="max_discount" onclick="toggleAction3()">최대할인</li>
+	           <li>최종결제금액</li>
+	         </ul>
+	         <ul class="amount_total">
+	           <li>2,330,000원<span>(배송비포함)</span></li>
+	           <li>209,550원</li>
+	           <li>2,002,450<span>원</span></li>
+	         </ul>
+	         <div class="amount_detail">
+	           <ul class="amount_detail_list">
+	             <li class="list_depth1">
+	               <ul>
+	                 <li class="list_depth2">
+	                   <div class="left">
+	                     <span class="coupon_title">롯데그룹창립기념 적립쿠폰</span>
+	                     <div class="coupon_wrap off">
+	                       <a href="#" class="coupon">쿠폰변경</a>
+	                     </div>
+	                   </div>
+	                   <p class="right middle short_blind">50,000점 적립</p>
+	                 </li>
+	                 <li class="list_depth2">
+	                   <p class="left">네이버가격비교 중복할인</p>
+	                   <p class="right short_blind">(-)15,000원</p>
+	                 </li>
+	                 <li class="list_depth2">
+	                   <p class="left">일시불 할인</p>
+	                   <p class="right short_blind">(-)3,000원</p>
+	                 </li>
+	               </ul>
+	             </li>
+	             <li class="list_depth1 full_cont">
+	               <ul>
+	                 <li class="list_depth2">
+	                   <p class="left">L.POINT 사용</p>
+	                   <p class="right">(-)30,000원</p>
+	                 </li>
+	                 <li class="list_depth2">
+	                   <p class="left">L-money사용</p>
+	                   <p class="right">(-)2,000원</p>
+	                 </li>
+	                 <li class="list_depth2">
+	                   <p class="left">보관금 사용</p>
+	                   <p class="right">(-)1,000원</p>
+	                 </li>
+	               </ul>
+	             </li>
+	             <li class="list_depth1 full_cont">
+	               <ul>
+	                 <li class="list_depth2">
+	                   <p class="left">적립 L.POINT</p>
+	                   <p class="right">50,000점 예정</p>
+	                 </li>
+	                 <li class="list_depth2">
+	                   <p class="left">롯데포인트플러스카드 시</p>
+	                   <p class="right">2,500점 예정</p>
+	                 </li>
+	               </ul>
+	             </li>
+	             <li class="list_depth1 short_cont">
+	               <ul>
+	                 <li class="list_depth2">
+	                   <p class="left">총 적립 금액</p>
+	                   <p class="right">15,045점 예정</p>
+	                 </li>
+	               </ul>
+	             </li>
+	           </ul>
+	         </div>
+	       </div>
+	       <p class="eventcard_title">청구할인 행사 카드 : 롯데/신한/삼성</p>
+	       <div class="slide">
+	         <ul class="slide_ul">
+	           <li>
+	             <div class="l_pay_logo">
+	               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_lpay.png" alt="">
+	             </div>
+	             <div class="card_name">
+	               <p class="title1">신한카드(주)</p>
+	               <p class="title2">신한카드(607*)</p>
+	             </div>
+	             <div class="check_img">
+	               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_check.png" alt="">
+	               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_lpay_on.png" alt="" class="on_img">
+	             </div>
+	             <div class="s_text">
+									<span class="s_box02">
+										<select name="deli_msg" class="del_msg" data-idx="1" style="width:100%">
+											<option value="" selected="일시불">일시불</option>
+											<option value="할부">할부</option>
+											<option value="할부2">할부2</option>
+										</select>
+										<span class="img_box">
+											<i></i>
+										</span>
+									</span>
+								</div>
+	           </li>
+	           <li class="on">
+	             <div class="l_pay_logo">
+	               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_lpay.png" alt="">
+	               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_lpay_on.png" alt="" class="on_img">
+	             </div>
+	             <div class="card_name">
+	               <p class="title1">신한카드(주)</p>
+	               <p class="title2">신한카드(607*)</p>
+	             </div>
+	             <div class="check_img">
+	               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_check.png" alt="">
+	             </div>
+	             <div class="s_text">
+									<span class="s_box02">
+										<select name="deli_msg" class="del_msg" data-idx="1" style="width:100%">
+											<option value="" selected="일시불">일시불</option>
+											<option value="할부">할부</option>
+											<option value="할부2">할부2</option>
+										</select>
+										<span class="img_box">
+											<i></i>
+										</span>
+									</span>
+								</div>
+	           </li>
+	           <li class="on">
+	             <div class="card_name">
+	               <p class="title1">신한카드(주)</p>
+	               <p class="title2">신한카드(607*)</p>
+	             </div>
+	             <div class="check_img">
+	               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_check.png" alt="">
+	             </div>
+	             <div class="s_text">
+									<span class="s_box02">
+										<select name="deli_msg" class="del_msg" data-idx="1" style="width:100%">
+											<option value="" selected="일시불">일시불</option>
+											<option value="할부">할부</option>
+											<option value="할부2">할부2</option>
+										</select>
+										<span class="img_box">
+											<i></i>
+										</span>
+									</span>
+								</div>
+	           </li>
+	           <li>
+	             <div class="card_name">
+	               <p class="title1">신한카드(주)</p>
+	               <p class="title2">신한카드(607*)</p>
+	             </div>
+	             <div class="check_img">
+	               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_check.png" alt="">
+	             </div>
+	             <div class="s_text">
+									<span class="s_box02">
+										<select name="deli_msg" class="del_msg" data-idx="1" style="width:100%">
+											<option value="" selected="일시불">일시불</option>
+											<option value="할부">할부</option>
+											<option value="할부2">할부2</option>
+										</select>
+										<span class="img_box">
+											<i></i>
+										</span>
+									</span>
+								</div>
+	           </li>
+	           <li class="phone">
+	               <div class="card_name">
+	                 <p class="title1">휴대폰결제</p>
+	               </div>
+	               <div class="mobile_img">
+	                 <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_phone.gif" alt="">
+	                 <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_phone_on.gif" alt="" class="on_img">
+	               </div>
+	           </li>
+	           <li class="phone on">
+	             <div class="card_name">
+	               <p class="title1">휴대폰결제</p>
+	             </div>
+	             <div class="mobile_img">
+	               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_phone.gif" alt="">
+	               <img src="http://image.lotte.com/lotte/mo2015/angular/order/pay_phone_on.gif" alt="" class="on_img">
+	             </div>
+	           </li>
+	           <li class="another">
+	             <div class="card_name">
+	               <p class="title1">다른 결제수단<br>이용하기</p>
+	             </div>
+	           </li>
+	         </ul>
+	       </div>
+	       <p class="eventcard_title">청구할인가 1,979,000원 예상</p>
+	       <div class="order_wrap mgt10">
+	 				<div class="box_agree_check">
+	 					<p class="tit_agree_check">
+	 						<input type="checkbox" name="ord_agr_yn" class="check01" id="order_agree_on">
+	 						<label for="order_agree_on">주문 내역 확인 동의</label>
+	 						<span class="" onclick="toggleAction2();">자세히 보기/닫기</span>
+	 					</p>
+	 					<p class="txt">
+	 						주문내용을 확인해주세요.<br/>
+	 						주문할 상품의 상품명, 상품가격, 배송정보를 확인하였습니다.(전자상거래법 제 8조 제2항)<br/><br/>
+	 						구매에 동의하시겠습니까?
+	 					</p>
+	 				</div>
+	 			</div>
+	      <!-- 결제하기 -->
+				<div class="order_btn_wrap">
+					<div id="ORDER" class="order_btn">
+						<a name="PAYMENT_ANCHAR"></a>
+						<span id="submit_btn"><a href="javascript:send();" class="btn_typeB"><span>결제하기</span></a></span>
+					</div>
+					<div class="order_btn" id="PROCESSING" style="display:none">
+						<font size="2">처리중 입니다. 잠시만 기다려 주십시오.</font>
+					</div>
+					<div class="laver_Lpay_order" style="display:none">
+						<p>L.pay<!-- 20150828 수정 -->  외의 결제수단으로 L.POINT를 사용하실 때에는 비밀번호 입력이 필요합니다.<br><span>(L.POINT로 전체 결제하실 때에는 L.pay<!-- 20150828 수정 -->가 아닌 결제수단 으로 처리됩니다.)</span></p>
+						<div class="btn_zone clearfix">
+							<!-- 20150925 수정 -->
+							<a href="#" class="btn_typeL">L.POINT 사용 취소</a>
+							<a href="#" class="btn_typeR">비밀번호 입력</a>
+							<!-- //20150925 수정 -->
+						</div>
+					</div>
+				</div>
+	     </div>
+	   </section>
+	 </div>
+	</section>
+
+</body>
+</html>

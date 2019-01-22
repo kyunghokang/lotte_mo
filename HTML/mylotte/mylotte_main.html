@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">	
+<!----------------- current css ----------------->
+
+<link rel="stylesheet" href="/lotte/resources_dev/mylotte/mylotte.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<!-- container -->
+<section id="container">	
+	<!-- 마이롯데_메인 -->
+	<section class="mylotteMain">
+		<!-- 마이롯데_메인 header -->
+		<section class="mainHeader clear">
+			<div class="mylotteMem mem10"><!-- D; 회원등급 플래티넘:mem10 -->
+				<div><span class="memName">홍길동</span>임직원님</div><!-- D: 일반:님 / 임직원:임직원님 -->
+			</div>
+			<div class="headerLink clear">
+				<a href="#none" class="myBtn1">절친쿠폰북</a>
+				<a href="#none" class="myBtn1">참좋은혜택</a>
+			</div>
+		</section>
+		<!-- //마이롯데_메인 header -->
+		<!--마이롯데_메인 contents -->
+		<section class="mainContainer">
+			<div class="mylotteMainLink">
+				<ul class="clear">
+					<li>
+						<dl>
+							<dt>L-money</dt>
+							<dd><span class="sum">111,529</span> 점</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt>L.POINT</dt>
+							<dd><span class="sum">5,529</span> 점</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt>보관금</dt>
+							<dd><span class="sum">200</span> 원</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt>쿠폰</dt>
+							<dd><span class="sum">10</span> 장</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt>클로버</dt>
+							<dd><span class="sum">270</span> 개</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt>스마트픽 교환권</dt>
+							<dd><span class="sum">10</span> 개</dd>
+						</dl>
+					</li>
+				</ul>
+			</div>
+			<div class="myLotteStatus">
+				<div class="statusTit">
+					<h3><a href="#none">주문&#47;배송조회</a></h3>
+					<span>최근 15일</span>
+				</div>
+				<div class="statusCount">
+					<ul class="clear">
+						<li>
+							<dl>
+								<dt>주문접수</dt>
+								<dd>12</dd>
+							</dl>
+						</li>
+						<li>
+							<dl>
+								<dt>주문완료</dt>
+								<dd>3</dd>
+							</dl>
+						</li>
+						<li>
+							<dl>
+								<dt>출고지시</dt>
+								<dd class="nodata">0</dd><!-- D: 내역없을때 클래스 nodata -->
+							</dl>
+						</li>
+						<li>
+							<dl>
+								<dt>상품준비</dt>
+								<dd>2</dd>
+							</dl>
+						</li>
+						<li>
+							<dl>
+								<dt>발송완료</dt>
+								<dd class="nodata">0</dd><!-- D: 내역없을때 클래스 nodata -->
+							</dl>
+						</li>
+					</ul>
+				</div>
+				<a href="#none" class="more">더보기</a>
+			</div>
+			<div class="myLotteInfo">
+				<dl class="infoShopping">
+					<dt>쇼핑정보</dt>
+					<dd>
+						<ul class="clear">
+							<li><a href="#none">취소&#47;교환&#47;반품내역</a></li>
+							<li><a href="#none">e-쿠폰 환불 신청</a></li>
+						</ul>
+					</dd>
+				</dl>
+				<dl class="infoService">
+					<dt>서비스정보</dt>
+					<dd>
+						<ul class="clear">
+							<li><a href="#none">상품평 작성 (00)</a></li>
+							<li><a href="#none">이벤트 응모&#47;당첨</a></li>
+							<li><a href="#none">상품 문의 답변확인</a></li>
+							<li><a href="#none">스마트페이 관리</a></li>
+							<li><a href="#none">1:1 문의하기</a></li>
+							<li><a href="#none">1:1 문의답변확인</a></li>
+						</ul>
+					</dd>
+				</dl>
+				<dl class="infoMine">
+					<dt>회원정보</dt>
+					<dd>
+						<ul class="clear">
+							<li><a href="#none">회원정보 수정</a></li>
+							<li><a href="#none">회원탈퇴</a></li>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+		</section>
+		<!--마이롯데_메인 contents -->
+	</section>
+	<!-- //마이롯데_메인 -->
+</section>
+<!-- 팝업 for 웰컴고객 -->
+<div class="popup welcomePop">
+	<div class="popCont">
+		<div class="dpCell">
+			특별한 홍길동 님께
+			<strong>3천원 할인 쿠폰 증정!</strong>
+			<a href="#none" class="getCoupon">쿠폰받기</a>		
+		</div>
+	</div>
+	<a href="#none" class="close">닫기</a>
+</div>
+
+<section ng-include src="'/HTML/include/footer.html'"></section>
+</body>
+</html>

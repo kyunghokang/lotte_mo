@@ -1,0 +1,25 @@
+<div class="gucci_sub_header_wrap">
+    <header id="gucciSubHead" sub-header-each>
+        <h2><a ng-href="/mall/gucci/gucci_main.do?{{baseParam}}&tclick=G_LOGO"><span>GUCCI</span></a></h2>
+        <nav>
+            <ul class="ctg_list_big">
+                <li ng-repeat="citem in screenData.cate_list" ng-class="{big_on:screenData.selectCate1==citem.disp_no}" >
+                    <a href="" class="btn_ctg_big" ng-click="menuCategory1Click(citem)">{{citem.disp_nm}}</a>
+                </li>
+            </ul>
+            <!-- <ul class="ctg_list_mid" ng-show="screenData.showAllCategory">
+                <li ng-repeat="citem in screenData.cate_list">
+                    <a href="#" ng-click="menuCategoryClick(citem)">{{citem.disp_nm}}</a>
+                </li>
+            </ul> -->
+            <ul class="ctg_list_sml" ng-repeat="citem in screenData.cate_list" ng-show="screenData.selectCate1==citem.disp_no">
+                <li ng-repeat="citem2 in citem.sub_cate_list" ng-class="{on:screenData.selectCate2==citem2.disp_no}">
+                    <a href="" ng-click="menuCategory2Click(citem2, citem)">{{citem2.disp_nm}}</a>
+                    <div class="cca" ng-show="screenData.selectCate2==citem2.disp_no">
+                        <a href="" ng-repeat="citem3 in citem2.sub_cate_list" ng-click="menuCategory3Click(citem3, citem2)" class="ng-binding ng-scope">{{citem3.disp_nm}}</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+</div>

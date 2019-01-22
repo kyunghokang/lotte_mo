@@ -1,0 +1,101 @@
+<section ng-show="contVisible" class="cont_minheight">
+     <section class="pageLoading ng-hide" ng-show="pageLoading"><p class="loading half"></p></section>
+    <header id="mallSubHeader" mall-sub-header></header>
+    <section id="burberry_main_wrap">
+        <!--메인 빅배너 영역-->
+        <div class="main_big_prod" ng-if="screenData.main_big_prod && screenData.main_big_prod.length > 0">
+            <ul>
+                <li ng-repeat="prod_main in screenData.main_big_prod | limitTo:4" ng-if="prod_main.img_url">
+                    <div class="prod_main_img">
+                        <a href="#" ng-click="goBurberryUrl(prod_main.link_url,'main_prod','Ban_',$index)">
+                            <img ng-src="{{prod_main.img_url}}" alt="{{prod_main.alt_cont}}">
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- // 메인 빅배너 영역-->
+        <!--메인 컬렉션배너 영역-->
+        <div class="collection_prod" ng-if="screenData.collection_prod && screenData.collection_prod.total_count > 0">
+            <ul>
+                <li ng-repeat="collection_prod in screenData.collection_prod.items | limitTo:3" ng-if="collection_prod.img.img_url">
+                    <div class="prod_main_img">
+                        <a href="#" ng-click="goBurberryUrl(collection_prod.img.link_url,'main_prod','Collection_Ban_',$index)">
+                            <img ng-src="{{collection_prod.img.img_url}}" alt="{{collection_prod.img.alt_cont}}">
+                        </a>
+                    </div>
+                    <div class="prod_main_text" ng-if="collection_prod.text_list.length > 0">
+                        <ul>
+                            <li ng-repeat="text in collection_prod.text_list | limitTo:3">
+                                <a href="#" ng-click="goBurberryUrl(collection_prod.img.link_url,'main_prod','Collection_Ban_',$index)" ng-bind-html="text.banner_nm"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- // 메인 컬렉션배너 영역-->
+        <!-- 신상품 배너 영역-->
+        <div class="center_prod center_top_prod" ng-if="screenData.new_prod && screenData.new_prod.total_count == 2 && screenData.new_prod.items.length >= 2">
+            <ul>
+                <li ng-repeat="new_prod in screenData.new_prod.items | limitTo:2" ng-if="new_prod.img.img_url && new_prod.text_list.length >= 2">
+                    <div class="prod_main_img">
+                        <a href="#" ng-click="goBurberryUrl(new_prod.img.link_url,'main_prod','Theme_Ban_', $index)">
+                            <img ng-src="{{new_prod.img.img_url}}" alt="{{new_prod.img.alt_cont}}">
+                        </a>
+                    </div>
+                    <div class="prod_main_text">
+                        <ul>
+                            <li ng-repeat="text in new_prod.text_list">
+                                <a href="#" ng-click="goBurberryUrl(new_prod.img.link_url,'main_prod','Theme_Ban_', $index)">{{text.banner_nm}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- // 신상품 배너 영역-->
+        <!-- 중앙 3단배너 영역 -->
+        <div class="center_prod" ng-if="screenData.center_prod && screenData.center_prod.total_count == 3 && screenData.center_prod.items.length >= 3">
+            <ul>
+                <li ng-repeat="center_prod in screenData.center_prod.items | limitTo:3" ng-if="center_prod.img.img_url && center_prod.text_list.length >= 2" >
+                    <div class="prod_main_img">
+                        <a href="#" ng-click="goBurberryUrl(center_prod.img.link_url,'main_prod','Theme_Ban_',screenData.new_prod.items.length + $index)">
+                            <img ng-src="{{center_prod.img.img_url}}" alt="{{center_prod.img.alt_cont}}">
+                        </a>
+                    </div>
+                    <div class="prod_main_text">
+                        <ul>
+                            <li ng-repeat="text in center_prod.text_list">
+                                <a href="#" ng-click="goBurberryUrl(text.link_url,'main_prod','Theme_Ban_',screenData.new_prod.items.length + $index)">{{text.banner_nm}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- // 중앙 3단배너 영역 -->
+        <!-- new arrivals 영역 -->
+        <div class="newArr_prod" ng-if="screenData.newArr_prod && screenData.newArr_prod.total_count > 3">
+            <h3>NEW ARRIVALS</h3>
+            <ul>
+                <li ng-repeat="newArr_prod in screenData.newArr_prod.items | limitTo:screenData.newArr_prod.limit">
+                    <a href="#" ng-click="goBurberryUrl(newArr_prod,'new_prod','new_Prd',$index)">
+                        <div>
+                            <img ng-src="{{newArr_prod.goods.img_url}}" alt="{{newArr_prod.goods.goods_nm}}">
+                        </div>
+                        <dl class="prd_info">
+                            <dd class="brand"><span>BURBERRY(버버리)</span></dd>
+                            <dt class="name">상품명 :</dt>
+					    	<dd class="name"><span ng-bind="newArr_prod.goods.goods_nm"></span></dd>
+					    	<dt class="price">현재가</dt>
+					    	<dd class="price"><span ng-bind="newArr_prod.goods.price2 | number:0"></span><em>원</em></dd>
+                        </dl> 
+                    </a>   
+                </li>
+            </ul>   
+        </div>
+        <!-- // new arrivals 영역 -->
+    </section>
+    <burberry-footer></burberry-footer>
+</section>

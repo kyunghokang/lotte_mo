@@ -1,0 +1,174 @@
+<section ng-show="contVisible" class="cont_minheight">
+	<section id="evt_purchase" ng-show="!isShowLoadingImage">
+	<!-- event purchase list -->
+		<div class="purchaseListWrap">
+			<div class="topPurchaseList" ng-if="eventList_view"><!-- 추천 구매사은 이벤트 -->
+		    	<h2>추천! 구매사은 이벤트</h2>
+			    <div>
+			    	<ul class="abEventList">
+				    	<li ng-repeat="items in EventList" ng-if="items.pur_ae_fvr_exp_yn=='Y'">
+				    		<a ng-click="goEvnetMainClick(items.evtNo)">
+							    <!-- s: image banner -->
+							    <img class="banner" ng-src="{{items.evtDtlImg1PathNm}}{{items.evtDtlImg1FileNm}}" ng-alt="">
+							    <!-- e: image banner -->
+							    
+							    <!-- s: purchase period -->
+							    <div class="periodWrap">
+							        <ul class="period">
+							            <li>
+							                <span>구매기간</span>
+							                <span>{{items.purStrtDtime | strToDate}} ~ {{items.purEndDtime | strToDate}}</span>
+							            </li>
+							            <li>
+							                <span>신청기간</span>
+							                <span>{{items.sbscSgtStrtDtime | strToDate}} ~ {{items.sbscSgtEndDtime | strToDate}}</span>
+							            </li>
+							            <li>
+							                <span>지급예정</span>
+							                <span>{{items.pmgSndDt | strToDate2}}</span>
+							            </li>
+							        </ul>
+							        <span ng-if="items.eventStatus == '001'" class="lb_status">준비중</span>
+							        <span ng-if="items.eventStatus == '002'" class="lb_status">마감임박</span>
+							        <span ng-if="items.eventStatus == '003'" class="lb_status">신청진행중</span>
+							        <span ng-if="items.eventStatus == '004'" class="lb_status">결과준비중</span>
+							        <span ng-if="items.eventStatus == '005'" class="lb_status">지급준비중</span>
+							        <span ng-if="items.eventStatus == '006'" class="lb_status">당첨발표</span>
+							        <span ng-if="items.eventStatus == '007'" class="lb_status">지급완료</span>
+							        <span ng-if="items.eventStatus == '008'" class="lb_status">마감</span>
+							    </div>
+						   		<!-- e: purchase period -->
+					   		</a>
+				   		</li>
+				   	</ul>
+				</div>
+			</div>
+		    <!-- s: tab area -->
+		    <div class="tlt_tab">
+		        <ul>
+		            <li ng-class="{true: 'on', false: ''}[allEventViewFlag]"><a ng-click="allEventClick()">전체</a></li>
+		            <li ng-class="{true: 'on', false: ''}[myEventViewFlag]"><a ng-click="myEventClick()">나의 신청 내역</a></li>
+		        </ul>
+		    </div>
+		    <!-- e: tab area -->
+		
+		    <!-- s: sub title -->
+		    <div class="sub_tlt">
+		        <span class="total_count" ng-if="allEventViewFlag">총 <em>{{saunList_tot_cnt}}</em>건</span>
+		        <span class="total_count" ng-if="myEventViewFlag">총 <em>{{myEventList.length}}</em>건</span>
+		        <select ng-if="allEventViewFlag" class="tlt_sel" ng-model="selectOptionList.selected" ng-options="p.val as p.text for p in selectOptionList" ng-change="eventOptionClick(selectOptionList.selected)" />
+		      
+		        <select ng-if="myEventViewFlag" class="tlt_sel" ng-model="myOption" ng-change="myOptionClick(myOption)">
+					<option selected="selected" value="">전체</option> 
+					<option value="003">신청진행중</option>
+					<option value="005">지급준비중</option>
+					<option value="007">지급완료</option>
+		        </select>
+		    </div>
+		    <!-- e: sub title -->
+		    <div ng-if="allEventViewFlag" ng-if="allEventList.length > 0">
+		    	<ul class="abEventList">
+			    	<li ng-repeat="items in allEventList">
+			    		<a ng-click="goEvnetMainClick(items.evtNo)">
+						    <!-- s: image banner -->
+						    <img class="banner" ng-src="{{items.evtDtlImg1PathNm}}{{items.evtDtlImg1FileNm}}" ng-alt="">
+						    <!-- e: image banner -->
+						    
+						    <!-- s: purchase period -->
+						    <div class="periodWrap">
+						        <ul class="period">
+						            <li>
+						                <span>구매기간</span>
+						                <span>{{items.purStrtDtime | strToDate}} ~ {{items.purEndDtime | strToDate}}</span>
+						            </li>
+						            <li>
+						                <span>신청기간</span>
+						                <span>{{items.sbscSgtStrtDtime | strToDate}} ~ {{items.sbscSgtEndDtime | strToDate}}</span>
+						            </li>
+						            <li>
+						                <span>지급예정</span>
+						                <span>{{items.pmgSndDt | strToDate2}}</span>
+						            </li>
+						        </ul>
+						        <span ng-if="items.eventStatus == '001'" class="lb_status">준비중</span>
+						        <span ng-if="items.eventStatus == '002'" class="lb_status">마감임박</span>
+						        <span ng-if="items.eventStatus == '003'" class="lb_status">신청진행중</span>
+						        <span ng-if="items.eventStatus == '004'" class="lb_status">결과준비중</span>
+						        <span ng-if="items.eventStatus == '005'" class="lb_status">지급준비중</span>
+						        <span ng-if="items.eventStatus == '006'" class="lb_status">당첨발표</span>
+						        <span ng-if="items.eventStatus == '007'" class="lb_status">지급완료</span>
+						        <span ng-if="items.eventStatus == '008'" class="lb_status">마감</span>
+						    </div>
+					   		<!-- e: purchase period -->
+				   		</a>
+			   		</li>
+			   	</ul>
+			    <div ng-if="currentStart < currentTotal">
+				    <a class="btn_more" ng-click="moreListClick()"><span class="ic"></span><em>더보기</em>({{allEventList.length}}/{{saunList_tot_cnt}})</a>
+			    </div>
+			</div>
+			<div ng-if="myEventViewFlag" ng-if="myEventList.length > 0">
+			    <ul class="abEventList">
+				    <li ng-repeat="items in myEventList">
+					    <a ng-click="goEvnetMainClick(items.evtNo)">
+						    <!-- s: image banner -->
+						    <img class="banner" ng-src="{{items.evtDtlImg1PathNm}}{{items.evtDtlImg1FileNm}}" ng-alt="{{items.evtDtlImglFileNm}}">
+						    <!-- e: image banner -->
+						    
+						    <!-- s: purchase period -->
+						    <div class="periodWrap">
+						        <ul class="period">
+						            <li>
+						                <span>구매기간</span>
+						                <span>{{items.purStrtDtime | strToDate}} ~ {{items.purEndDtime | strToDate}}</span>
+						            </li>
+						            <li>
+						                <span>신청기간</span>
+						                <span>{{items.sbscSgtStrtDtime | strToDate}} ~ {{items.sbscSgtEndDtime | strToDate}}</span>
+						            </li>
+						            <li>
+						                <span>지급예정</span>
+						                <span>{{items.pmgSndDt | strToDate2}}</span>
+						            </li>
+						        </ul>
+						        <span ng-if="items.eventStatus == '001'" class="lb_status">준비중</span>
+						        <span ng-if="items.eventStatus == '002'" class="lb_status">마감임박</span>
+						        <span ng-if="items.eventStatus == '003'" class="lb_status">신청진행중</span>
+						        <span ng-if="items.eventStatus == '004'" class="lb_status">결과준비중</span>
+						        <span ng-if="items.eventStatus == '005'" class="lb_status">지급준비중</span>
+						        <span ng-if="items.eventStatus == '006'" class="lb_status">당첨발표</span>
+						        <span ng-if="items.eventStatus == '007'" class="lb_status">지급완료</span>
+						        <span ng-if="items.eventStatus == '008'" class="lb_status">마감</span>
+						    </div>
+						    <!-- e: purchase period -->
+						</a>
+				    </li>
+				</ul>   
+			    <div ng-if="myEventList.length != currentTotal">
+				    <a class="btn_more" ng-click="moreMyListClick()"><span class="ic"></span><em>더보기</em>({{myEventList.length}}/{{currentTotal}})</a>
+			    </div>
+			</div>
+			<div class="loginWrap" ng-if="loginInfo.isLogin == false && myEventViewFlag">
+			    <p class="txt">로그인 후 확인하실 수 있습니다.</p>
+			    <div class="btnWrap"><a ng-click="goLoginClick()" class="btn_m point"><span>로그인</span></a></div>
+			</div>
+			
+			<div ng-if="allEventList.length == 0 && allEventViewFlag && loginInfo.isLogin == true ">
+			    <!-- s: 구매사은 이벤트신청 내역이 없을 경우-->
+			    <p class="nodata">진행중인 구매사은 이벤트가 없습니다.</p>                    
+			    <!-- e: 구매사은 이벤트신청 내역이 없을 경우-->
+		    </div>
+			<div ng-if="allEventList.length == 0 && myEventViewFlag && loginInfo.isLogin == true">
+			    <!-- s: 구매사은 이벤트신청 내역이 없을 경우-->
+			    <p class="nodata">신청한 구매사은 이벤트가 없습니다.</p>                    
+			    <!-- e: 구매사은 이벤트신청 내역이 없을 경우-->
+		    </div>
+		    
+		    </div>
+		</section>
+		<!-- //event purchase list -->
+    <div class="listLoading" ng-show="isShowLoadingImage" style="height:300px">
+    	<p class="noData"><p class="loading half"></p></p>
+    </div>
+
+</section>

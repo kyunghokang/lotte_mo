@@ -1,0 +1,68 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tpldearpetBrdBest" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/mall/pet/dearpet_brd_best_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/dearpet_brd_best.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsdearpetBrdBest" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/mall/pet/dearpet_brd_best.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/dearpet_brd_best.js"
+			}
+		},
+
+		"uglify" : {
+			"jsdearpetBrdBest" : {
+				"src" : "lotte/resources/<%= version %>/dearpet_brd_best.js",
+				"dest" : "lotte/resources/<%= version %>/dearpet_brd_best.min.js"
+			},
+			"tpldearpetBrdBest" : {
+				"src" : "lotte/resources/<%= version %>/dearpet_brd_best.template.js",
+				"dest" : "lotte/resources/<%= version %>/dearpet_brd_best.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssdearpetBrdBest" : {
+				"src" : [
+					"lotte/resources_dev/mall/pet/dearpet_brd_best.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/dearpet_brd_best.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleandearpetBrdBest" : [
+				"lotte/resources/<%= version %>/dearpet_brd_best.js",
+				"lotte/resources/<%= version %>/dearpet_brd_best.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmldearpetBrdBest" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"mall/pet/dearpet_brd_best.html" : "mall/pet/dearpet_brd_best_dev.html"
+				}
+			}
+		}
+	}
+}

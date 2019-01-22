@@ -1,0 +1,71 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplProductQna" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/product/m/sub/product_sub_header.html",
+					"lotte/resources_dev/product/m/sub/product_qna_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/product_qna.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsProductQna" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/product/m/sub/product_sub_header.js",
+					"lotte/resources_dev/product/m/sub/product_qna.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/product_qna.js"
+			}
+		},
+
+		"uglify" : {
+			"jsProductQna" : {
+				"src" : "lotte/resources/<%= version %>/product_qna.js",
+				"dest" : "lotte/resources/<%= version %>/product_qna.min.js"
+			},
+			"tplProductQna" : {
+				"src" : "lotte/resources/<%= version %>/product_qna.template.js",
+				"dest" : "lotte/resources/<%= version %>/product_qna.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssProductQna" : {
+				"src" : [
+					"lotte/resources_dev/product/m/sub/product_qna.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/product_qna.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanProductQna" : [
+				"lotte/resources/<%= version %>/product_qna.js",
+				"lotte/resources/<%= version %>/product_qna.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlProductQna" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"product/m/sub/product_qna.html" : "product/m/sub/product_qna_dev.html"
+				}
+			}
+		}
+	}
+}
+

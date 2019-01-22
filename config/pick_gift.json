@@ -1,0 +1,70 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplSmartPickSend" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/smartpick/pick_gift_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/pick_gift.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsSmartPickSend" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                	"lotte/lib/kakao/kakao.js",
+                    "lotte/resources_dev/smartpick/pick_gift.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/pick_gift.js"
+            }
+        },
+
+        "uglify" : {
+            "jsSmartPickSend" : {
+                "src" : "lotte/resources/<%= version %>/pick_gift.js",
+                "dest" : "lotte/resources/<%= version %>/pick_gift.min.js"
+            },
+            "tplSmartPickSend" : {
+                "src" : "lotte/resources/<%= version %>/pick_gift.template.js",
+                "dest" : "lotte/resources/<%= version %>/pick_gift.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssSmartPickSend" : {
+                "src" : [
+                    "lotte/resources_dev/smartpick/smartpick.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/pick_gift.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanSmartPickSend" : [
+                "lotte/resources/<%= version %>/pick_gift.js",
+                "lotte/resources/<%= version %>/pick_gift.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlSmartPickSend" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "smartpick/pick_gift.html" : "smartpick/pick_gift_dev.html"
+                }
+            }
+        }
+    }
+}
+

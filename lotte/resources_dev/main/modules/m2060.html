@@ -1,0 +1,76 @@
+<section class="n201811 best blankCd{{moduleData.blankCd}}">
+	<!--M60 실시간베스트(베스트)..-->
+	<div class="moduleCon">
+		<div class="tmpl_best">
+
+			<div class="unit_search_wrap naver">
+				<div class="unit unit_search">
+					<h4 class="title"><strong>전국민이 많이 찾고있는 상품</strong></h4>
+					<div class="slide_wrap swipe_wrap" lotte-slider>
+						<ul class="search_word">
+							<li ng-repeat="item in moduleData.naverKeywordList.items" ng-class="{on:$index == moduleData.uiData.naverSelIdx}">
+								<a ng-click="logGAEvtModuleEach($index + 1, item.keyword, '전국민인기검색어');tabClick('naver', $index, item.linkUrl, moduleData.tclick + '_Clk_NASearch_idx' + numberFill(($index + 1), 2))"><span>{{($index + 1) + '. ' + item.keyword}}</span></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+               <div class="side_padding">
+                    <div class="unit_table a">
+                        <div class="unit_cell" ng-repeat="id in [0,1,2,3]" ng-click="logGAEvtModuleEach(moduleData.uiData.naverSelIdx + 1, moduleData.naverKeywordList.items[moduleData.uiData.naverSelIdx].prdList.items[id].goodsNo, '전국민인기검색어', id + 1 );mainProductClick(moduleData.naverKeywordList.items[moduleData.uiData.naverSelIdx].prdList.items[id].goodsNo, moduleData.tclick + '_Clk_NASearch_idx' + numberFill((moduleData.uiData.naverSelIdx + 1), 2) + '_Prd' + numberFill((id + 1), 2))">
+                            <p class="imgwrap"><img ng-src="{{moduleData.naverKeywordList.items[moduleData.uiData.naverSelIdx].prdList.items[id].imgUrl}}"></p>
+                        </div>
+                    </div>		    
+                    <div class="unit_table b">
+                        <div class="unit_cell" ng-repeat="id in [4,5,6]" ng-click="logGAEvtModuleEach(moduleData.uiData.naverSelIdx + 1, moduleData.naverKeywordList.items[moduleData.uiData.naverSelIdx].prdList.items[id].goodsNo, '전국민인기검색어', id + 1 );mainProductClick(moduleData.naverKeywordList.items[moduleData.uiData.naverSelIdx].prdList.items[id].goodsNo, moduleData.tclick + '_Clk_NASearch_idx' + numberFill((moduleData.uiData.naverSelIdx + 1), 2) + '_Prd' + numberFill((id + 1), 2))">
+                            <p class="imgwrap"><img ng-src="{{moduleData.naverKeywordList.items[moduleData.uiData.naverSelIdx].prdList.items[id].imgUrl}}"></p>
+                        </div>
+                        <div class="unit_cell more" ng-click="logGAEvtModuleEach('더보기', '더보기', '전국민인기검색어',moduleData.uiData.naverSelIdx + 1);keywordMoreClick('naver', moduleData.tclick + '_Clk_NASearch_idx' + numberFill((moduleData.uiData.naverSelIdx + 1), 2)+'_more')">
+                            <p class="imgwrap dim50_cont"><img ng-src="{{moduleData.naverKeywordList.items[moduleData.uiData.naverSelIdx].prdList.items[7].imgUrl}}"></p>
+                            
+                        </div>
+                    </div>		    
+                </div>				
+				
+			</div>
+
+			<div class="search_time">
+				<p class="tit">최근 <strong>3시간</strong> 베스트</p>
+				<p class="time">{{m60Today}} 기준</p>
+			</div>
+		</div>
+
+		<ul class="comp prod_comp type_1 vertic">
+			<li ng-repeat="item in moduleData.prdList.items" ng-click="logGAEvtModuleEach($index + 1, item.goodsNo, '최근3시간베스트');mainProductClick(item.goodsNo, moduleData.tclick + '_Clk_Prd'+numberFill(($index+1),2))">
+				<div class="ranking_wrap">
+					<span class="ranking">{{$index + 1}}</span>
+					<span class="ranking chg" ng-class="{new:item.rateType == 'n', cur:item.rateType == 'c', 'num up':item.rateType == 'u', 'num down':item.rateType == 'd'}">{{item.rateType | rateTypeTxt:item.rate}}</span>
+					<!--<span class="ranking chg new">NEW</span>-->
+					<!--<span class="ranking chg num up">4</span>-->
+					<!--<span class="ranking chg num down">1</span>-->
+				</div>
+				<div class="thumb"><img ng-src="{{item.imgUrl}}"></div>
+				<div class="info">
+					<div class="flag_wrap">
+						<span class="flag2" ng-repeat="(k,v) in item.flag | limitTo:2" ng-if="v != 'smartpick'" ng-class="{depart:v == 'dept', himart:v == 'himart', 'tv_shopping':v == 'tvhome', 'smartpick':v == 'smartpick', 'free_ship':v == 'freeDlv', 'gift_pack':v == 'present'}">{{v | dealFlagName}}</span>
+						<span class="flag2" ng-repeat="(k,v) in item.flag" ng-if="v == 'smartpick'" ng-class="{depart:v == 'dept', himart:v == 'himart', 'tv_shopping':v == 'tvhome', 'smartpick':v == 'smartpick', 'free_ship':v == 'freeDlv', 'gift_pack':v == 'present'}">{{v | dealFlagName}}</span>
+						<!--<span class="flag2 depart">롯데백화점</span>-->
+						<!--<span class="flag2 himart">하이마트</span>-->
+						<!--<span class="flag2 free_ship">무료배송</span>-->
+						<!--<span class="flag2 gift_pack">선물포장</span>-->
+						<!--<span class="flag2 tv_shopping">TV쇼핑</span>-->
+						<!--<span class="flag2 smartpick">스마트픽</span>-->
+					</div>
+					<p class="tit">{{item.goodsNm}}</p>
+					<p class="price"><b>{{item.price | currency: '':0}}</b>원</p>
+					<div class="user_feedback"  ng-if="item.gdasStfdVal > 0">
+						<span class="starScoreWrap"><span class="starScoreCnt" style="width:{{item.gdasStfdVal / 5 * 100}}%"></span></span>
+						<span class="review">({{item.gdasCnt}})</span>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+
+</section>

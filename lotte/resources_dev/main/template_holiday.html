@@ -1,0 +1,173 @@
+<div template-holiday class="cont_wrap template_holiday">
+	<!-- 임직원 배너2016 8월12일~ 8월21일-->
+	<div ng-if="loginInfo.isStaff && bannerShow(2016,8,12,2016,8,22)" class="recomStaffBanner b_Bg_holiday02">	
+		<a href="#" ng-click="linkUrl('/product/m/product_list.do?curDispNo=5401045&tclick=B_holidaytap&tclick=B_groupvip')"><img ng-src="http://image.lotte.com/lotte/mo2015/angular/main/r_holidayTop_banner01.jpg" alt="품격있는 추석 선물포장을 원한다면" /></a>		
+	</div>
+	<!-- //임직원 배너 -->	
+	<!-- 임직원 배너 2016 8월29일~ 9월4일-->
+	<div ng-if="loginInfo.isStaff && bannerShow(2016,8,29,2016,9,5)" class="recomStaffBanner b_Bg_holiday02">	
+		<a href="#" ng-click="linkUrl('/product/m/product_list.do?curDispNo=5401045&tclick=B_holidaytap&tclick=B_groupvip')"><img ng-src="http://image.lotte.com/lotte/mo2015/angular/main/r_holidayTop_banner01.jpg" alt="품격있는 추석 선물포장을 원한다면" /></a>		
+	</div>
+	<!-- //임직원 배너 -->	
+	
+	<!-- 임직원 배너2016 8월22일~ 8월28일-->
+	<div ng-if="loginInfo.isStaff && bannerShow(2016,8,22,2016,8,29)" class="recomStaffBanner b_Bg_holiday02">	
+		<a href="#" ng-click="linkUrl('/product/m/product_list.do?curDispNo=5401040&tclick=B_holidaytap&tclick=B_groupvip')"><img ng-src="http://image.lotte.com/lotte/mo2015/angular/main/r_holidayTop_banner02.jpg" alt="품격있는 추석 선물포장! 어렵지 않아요" /></a>		
+	</div>
+	<!-- //임직원 배너 -->	
+	<!-- 임직원 배너 2016 9월5일~ 9월12일-->
+	<div ng-if="loginInfo.isStaff && bannerShow(2016,9,5,2016,9,12)" class="recomStaffBanner b_Bg_holiday02">	
+		<a href="#" ng-click="linkUrl('/product/m/product_list.do?curDispNo=5401040&tclick=B_holidaytap&tclick=B_groupvip')"><img ng-src="http://image.lotte.com/lotte/mo2015/angular/main/r_holidayTop_banner02.jpg" alt="품격있는 추석 선물포장! 어렵지 않아요" /></a>		
+	</div>
+	<!-- //임직원 배너 -->	
+	
+	<!-- 상단 이미지 코너 스와이프 배너 영역 -->
+	<section ng-if="screenData.top_ban_list && screenData.top_ban_list.length > 0 && screenType==1" ng-controller="lotteNgSwipeCtrl" class="top_swipe_wrap">	
+		<h3 class="holiday_logo">명절 명가</h3>
+		<a ng-click="linkUrl('/category/m/cate_holiday_mid_list_anglr.do?curDispNo=5452095', item.mov_frme_cd ,'m_DC_munu_5542242_goodsmore')" class="btn_all_view">명절관 모두보기</a>
+
+		<div class="swipe_wrap">
+			<ul lotte-ng-list-swipe 
+				swipe-id="EventFirstBanner" 
+				swipe-list-model="screenData.top_ban_list" 
+				swipe-slide-item="true"  
+				swipe-max-ratio="0.2" 
+				swipe-min-distance="40"
+				swipe-responsive="true" 
+				swipe-responsive320="1" 
+				swipe-responsive640="2" 
+				swipe-responsive900="2">
+				<li ng-repeat="item in screenData.top_ban_list"><a ng-click="linkUrl(item.img_link, item.mov_frme_cd, 'm_DC_menu_5542242_theme' + ($index + 1))"><img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}" /></a></li>
+			</ul>
+			<!--
+			<button class="btn_prev" ng-show="swipeIdx != 0" ng-click="beforeSlide()">이전</button>
+			<button class="btn_next" ng-show="swipeIdx != screenData.top_ban_list.length - 1" ng-click="nextSlide()">다음</button>-->
+		</div>
+
+		<ul class="indicator">
+			<li ng-repeat="item in screenData.top_ban_list" ng-class="{on: swipeIdx == $index}"><span>{{$index}}</span></li>
+		</ul>
+		
+		<!-- //스와이프 영역 -->
+		<!-- 상단 html 배너 영역 -->
+		<section ng-if="screenData.top_html" ng-bind-html="screenData.top_html | toTrustedHtml" class="top_html_wrap"></section>
+	</section>
+	
+	<!-- 상단 이미지 코너 스와이프 배너 영역 타블렛  -->
+	<section ng-if="screenData.top_ban_list && screenData.top_ban_list.length > 0 && screenType>1" ng-controller="lotteNgSwipeCtrl" class="top_swipe_wrap">
+		<h3 class="holiday_logo">명절 명가 설</h3>
+		<a ng-click="linkUrl('http://m.lotte.com/category/m/cate_mid_list_anglr.do?curDispNo=5552097&title=명절선물매장&cateDiv=MIDDLE', item.mov_frme_cd ,'m_menu_5542242_theme1')" class="btn_all_view">명절관 모두보기</a>
+		<div class="swipe_wrap">
+			<ul lotte-ng-list-swipe 
+				swipe-id="EventFirstBanner" 
+				swipe-list-model="screenData.top_ban_list" 
+				swipe-slide-item="true"  
+				swipe-max-ratio="0.2" 
+				swipe-min-distance="40"
+				swipe-responsive="true" 
+				swipe-responsive320="1" 
+				swipe-responsive640="2" 
+				swipe-responsive900="2">
+				<li ng-repeat="item in screenData.top_ban_list" ng-if="!(screenData.top_ban_list.length%2==1 && $index==screenData.top_ban_list.length-1 && screenType > 1)"><a ng-click="linkUrl(item.img_link, item.mov_frme_cd, 'el_m_holiday_rolling' + ($index + 1))"><img ng-src="{{item.img_url}}" alt="{{item.banner_nm}}" /></a></li>
+			</ul>
+			<!--
+			<button class="btn_prev" ng-show="swipeIdx != 0" ng-click="beforeSlide()">이전</button>
+			<button class="btn_next" ng-show="swipeIdx != screenData.top_ban_list.length - 2" ng-click="nextSlide()">다음</button>-->
+		</div>
+		<ul class="indicator"ng-if="screenData.top_ban_list && screenData.top_ban_list.length > 1" ng-hide="screenData.top_ban_list.length<4 && screenType>1">
+			<li ng-repeat="item in screenData.top_ban_list" ng-class="{on: swipeIdx == $index}" ng-hide="screenType>1 && $index%2==1" ng-if="!(screenData.top_ban_list.length%2==1 && screenData.top_ban_list.length-1 && screenType > 1)"><span>{{$index}}</span></li>
+		</ul>
+		
+		<!-- 상단 html 배너 영역 -->
+		<section ng-if="screenData.top_html" ng-bind-html="screenData.top_html" class="top_html_wrap"></section>
+	</section>
+	
+	<div class="holiday_category_tab">
+		<ul>
+			<li><a ng-click="holidayMenu(0)"><img ng-show="opt_dispno == 0" src="http://image.lotte.com/lotte/mo2015/angular/mall/holiday/holiday_ctg_tab01_on_20161222.png" alt="신선" /><img ng-show="opt_dispno != 0" src="http://image.lotte.com/lotte/mo2015/angular/mall/holiday/holiday_ctg_tab01_off_20161222.png" alt="신선" /></a></li>
+			<li><a ng-click="holidayMenu(1)"><img ng-show="opt_dispno == 1" src="http://image.lotte.com/lotte/mo2015/angular/mall/holiday/holiday_ctg_tab02_on_20161222.png" alt="백화점" /><img ng-show="opt_dispno != 1" src="http://image.lotte.com/lotte/mo2015/angular/mall/holiday/holiday_ctg_tab02_off_20161222.png" alt="백화점" /></a></li>
+			<li><a ng-click="holidayMenu(2)"><img ng-show="opt_dispno == 2" src="http://image.lotte.com/lotte/mo2015/angular/mall/holiday/holiday_ctg_tab03_on_20161222.png" alt="가공" /><img ng-show="opt_dispno != 2" src="http://image.lotte.com/lotte/mo2015/angular/mall/holiday/holiday_ctg_tab03_off_20161222.png" alt="가공" /></a></li>
+			<li><a ng-click="holidayMenu(3)"><img ng-show="opt_dispno == 3" src="http://image.lotte.com/lotte/mo2015/angular/mall/holiday/holiday_ctg_tab04_on_20161222.png" alt="건강" /><img ng-show="opt_dispno != 3" src="http://image.lotte.com/lotte/mo2015/angular/mall/holiday/holiday_ctg_tab04_off_20161222.png" alt="건강" /></a></li>
+		</ul>
+	</div>
+
+<!--	<div product-container 
+		template-type="mixdeal"
+		templatetype="templateType"
+		products="screenData.bannerMixContents"
+		banners="screenData.deal_banners" 
+		more-product-continer="getProductData()"
+		win-width="winWidth"
+		tclick-prod="m_menu_{{mainTemplateType}}_TAB{{holiday_tab_idx + 1}}_unit"
+		tclick-banner="m_menu_{{mainTemplateType}}_banner"
+		tclick-banner-idx-key="bannerIdx" 
+		holiday-flag="true"
+		class="prd_lst_wrap"></div>
+	<div class="listLoading" ng-if="productListLoading && !pageLoading">
+		<p class="loading half"></p>
+	</div>
+-->	
+	<section>
+		<ol class="prod_list_mix_2016 prod_list_mixdeal_2016">
+			<li ng-repeat="item in tpmlData.contData.prd_deal_list.items track by $index" class="prod swipe" ><!-- ng-if="winWidth < 640 || (winWidth >= 640 && item.isProduct)" ng-class="{prod: item.isProduct, banner: item.isBanner, swipe: item.isSwipe}" -->
+				<!-- 배너형 -->
+				<div ng-if="screenType==1 && item.deal_banner != undefined" class="bnr_wrap">
+					<a href="#" ng-click="processBannerTclick(item.deal_banner)">
+						<img ng-src="{{item.deal_banner.img_url}}" />
+					</a>
+				</div>
+				<!-- 딜상품형 -->
+				<div class="unit_mixdeal_01" ><!-- ng-if="item.isProduct" -->
+					<a ng-click="productDealClick(item)">
+						<!-- 품절 -->
+						<div class="soldout" ng-show="item.sold_out">SOLD OUT</div><!--20170124 ng-show수정-->
+						<!-- MD Talk -->
+						<div class="md_talk_wrap">
+							<p ng-class="{md_talk:item.md_tip}" class="md_talk_copy"><span> {{item.md_tip}} </span></p>
+						</div>
+	
+						<!-- 상품 이미지 : 대표이미지 불러오는 경우 class='thumb normal' 코너이미지 불러오는 경우 clas='thumb' -->
+						<div class="thumb" ><!-- ng-class="{normal:item.default_img}" default_img REMOVED -->
+							<!-- 엘포인트백 플레그 -->
+							<span ng-if="pageUI.curMenuDispNo == '5553715' && item.goods_nm.indexOf('[설]') > -1" class="lpointBack_flag">설</span>
+							<span ng-if="pageUI.curMenuDispNo == '5553715' && item.goods_nm.indexOf('[포인트백]') > -1" class="lpointBack_flag">엘포인트백</span>
+							<img ng-src="{{getProductImage2(item)}}" alt="{{item.goods_nm}}"/>
+	
+							<div class="prod_flag_wrap">
+								<span class="flag depart" ng-if="item.is_dept">롯데백화점</span>
+								<span class="flag etv" ng-if="item.is_tvhome && !item.is_dept">롯데홈쇼핑</span>
+								<!--<span class="flag tag" ng-show="item.dlv_fee_tp=='Y'||item.isdlex_free">무료배송</span>-->
+								<span class="flag smart" ng-show="item.issmart_pick">스마트픽</span>
+							</div>
+						</div>
+	
+						<!-- 상품 정보 -->
+						<div class="info"><!--  ng-class="{true:item.is_coupon}" -->
+							<div class="prod">
+								<!-- 할인율 : 할인율 표시 (기획전형 상품이 아니고 할인율이 0이 아니면서 있을 경우) -->
+								<p ng-if="!item.is_plan_prod && item.sale_rate && item.sale_rate != 0" class="sale_rate_wrap">
+									<span class="sale_rate">{{item.sale_rate}}</span>
+									<span class="sale_limit">%</span>
+									<em class="sale_desc">쿠폰포함</em>
+								</p>
+	
+								<!-- 상품명 -->
+								<span class="tit" ng-bind-html="item.goods_nm"></span><!-- ng-bind-html="item.goods_nm|titleToHtml" -->
+	
+								<!-- 상품가격 -->
+								<p class="price"><span>{{item.price2}}</span>원<em ng-if="item.plan_prod_yn" class="plan_prod_limit">~</em></p>
+							</div>
+	
+							<!-- 구매 개수 및 입력형 Flag -->
+							<div class="sale_wrap">
+								<span class="no" ng-show="item.sale_cnt !='0'"><em>{{item.sale_cnt}}</em>개 구매 중</span>
+								<span ng-if="item.flag && item.flag.length > 0" class="flag_tag" >{{item.flag[0]}}</span><!-- ng-repeat="flag in item.ipt_flag" -->
+							</div>
+						</div>
+					</a>
+				</div>
+			</li>
+		</ol>
+	</section>
+
+</div>

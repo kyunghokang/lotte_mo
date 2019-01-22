@@ -1,0 +1,48 @@
+<section ng-show="contVisible" class="cont_minheight">
+    <header id="mallSubHeader" mall-sub-header></header>
+    <section id="burberry_prod_list">
+        <section class="prod_top">
+            <p><span ng-repeat="nodName in screenData.cateNodeName track by $index"><em ng-if="$index != 0 && nodName"></em>{{nodName}}</span></p>
+            <div class="prod_sort_wrap">
+                <select name="burberrySort" id="burberrySort" ng-model="screenData.sortIdx" ng-change="sortClick(screenData.sortIdx,screenData.moneySelect)">
+                    <option value="10">신상품순</option>
+                    <option value="11">인기상품순</option>
+                    <option value="12">낮은가격순</option>
+                    <option value="13">높은가격순</option>
+                    <option value="19">MD추천순</option>
+                </select>  
+                <select name="burberryMoney" id="burberryMoney" ng-model="screenData.moneySelect" ng-change="sortClick(screenData.sortIdx,screenData.moneySelect)">
+                    <option value="">전체보기</option>
+                    <option value="0_500000">0~50만원 이하</option>
+                    <option value="500000_1000000">50~100만원 이하</option>
+                    <option value="1000000_1500000">100~150만원 이하</option>
+                    <option value="1500000_2000000">150~200만원 이하</option>
+                    <option value="2000000_2500000">200~250만원 이하</option>
+                    <option value="2500000_3000000">250~300만원 이하</option>
+                    <option value="3000000_99999999">300만원 이상</option>
+                </select>
+                <a href="#" ng-click="listUIChange(screenData.listType)" ng-class="{box:screenData.listType}"><span>타입</span></a>
+            </div>    
+        </section>
+        <section class="prod_list" ng-class="{box:screenData.listType}">
+            <ul>
+                <li ng-repeat="item in screenData.dispGoodsList">
+                    <a href="#" ng-click="goproduct(item)">
+                        <div class="prd_img">
+                            <img ng-src="{{item.img_url}}">
+                        </div>
+                        <dl>
+                            <dt class="brand">상품명 : {{item.goods_nm}}</dt>
+                            <dd class="brand"><span ng-if='item.brnd_nm == "버버리"'>BURBERRY</span>({{item.brnd_nm}})</dd>
+                            <dt class="name">상품명 : {{item.goods_nm}}</dt>
+                            <dd class="name"><p>{{item.goods_nm}}</p></dd>
+                            <dt class="price">현재가 : {{item.goods_nm}}</dt>
+                            <dd class="price"><span>{{item.sale_prc|number}}</span></dd>
+                        </dl>
+                    </a>
+                </li>
+            </ul>
+        </section>
+    </section>
+    <burberry-footer></burberry-footer>
+</section>

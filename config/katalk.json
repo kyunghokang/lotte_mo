@@ -1,0 +1,51 @@
+{
+	"tasks" : {
+		"concat" : {
+			"jsKatalk" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/event/katalk.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/katalk.js"
+			}
+		},
+
+		"uglify" : {
+			"jsKatalk" : {
+				"src" : "lotte/resources/<%= version %>/katalk.js",
+				"dest" : "lotte/resources/<%= version %>/katalk.min.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssKatalk" : {
+				"src" : [
+					"lotte/resources_dev/event/katalk.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/katalk.min.css"
+			}
+		},
+
+		"processhtml" : {
+			"htmlKatalk" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"event/katalk.html" : "event/katalk_dev.html"
+				}
+			}
+		},
+		
+		"clean" : {
+			"cleanKatalk" : [
+				"lotte/resources/<%= version %>/katalk.js"
+			]
+		}
+	}
+}
+

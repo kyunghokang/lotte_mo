@@ -1,0 +1,81 @@
+<div class="left_nav_wrap" ng-class="{on: isShowSideCtg}">
+	<!-- 헤더 -->
+	<div class="header_wrap">
+		<h1 class="logo"><button ng-click="closeSideCtg()" class="btn_logo">LOTTE.COM</button></h1>
+		<button ng-click="closeSideCtg()" class="btn_close">탐색레이어 닫기</button>
+	</div>
+	
+	<!-- 카테고리 -->
+	<div lnb-category class="ctg_wrap">
+		<section class="ctg_list_wrap">
+			<h3 class="tit">카테고리</h3>
+			<ul class="ctg_list left">
+				<li ng-repeat="item in sideCtgData.ctgAll track by $index" class="depth1 {{item.type}}" ng-class="{on: pageOpt.curCtgDepth1Idx == $index,
+				 prev: pageOpt.curCtgDepth1Idx-1 == $index}">
+					<a ng-if="item.type == 'mall' || item.type == 'depart'" ng-click="ctgSelect($index, item.name)">
+						<span class="img_wrap">
+							<img ng-show="pageOpt.curCtgDepth1Idx != $index" ng-src="{{item.iconImgUrl_off}}">
+							<img ng-show="pageOpt.curCtgDepth1Idx == $index" ng-src="{{item.iconImgUrl}}">
+						</span>
+						<span ng-if="item.type != 'depart'" class="tit">{{item.name}}</span>
+						<span ng-if="item.type == 'depart'" ng-show="pageOpt.curCtgDepth1Idx != $index" class="tit"><img ng-src="{{sideCtgData.departImgUrl_off}}" /></span>
+						<span ng-if="item.type == 'depart'" ng-show="pageOpt.curCtgDepth1Idx == $index" class="tit"><img ng-src="{{sideCtgData.departImgUrl}}" /></span>
+					</a>
+					<a ng-if="item.type != 'mall' && item.type != 'depart'" ng-click="ctgSelect($index, item.name)" class="{{item.type}}">
+						<span class="img_wrap"><img ng-src="{{item.iconImgUrl}}"></span>
+						<span class="tit">{{item.name}}</span>
+					</a>
+					<ul class="sub_list" ng-style="{'height': pageOpt.curCtgDepth1Idx == $index ? pageOpt.subListHeight+'px' : 0}" ng-class="{on:pageOpt.curCtgDepth1Idx == $index}">
+						<li ng-repeat="subItem in item.lctgs track by $index" class="depth2">
+							<a ng-if="subItem.name" ng-click="goCategory(item.name, subItem, $index)">
+								<span ng-if="subItem.name.indexOf('Dear Pet') > -1" class="dearpetOpenicon">
+								</span>{{subItem.name}} 
+								<span ng-if="subItem.desc" class="desc">{{subItem.desc}}</span>
+								<span ng-if="subItem.flag" class="ctg_flag" style="color:#{{subItem.flagColor}}">{{subItem.flag}}</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+		<div class="mid_wrap">
+			<section class="brand_wrap">
+				<h3 class="tit">브랜드</h3>
+				<div class="brand_search">
+					<a ng-click="goBrandSearch()">브랜드 검색</a>
+				</div>
+                <!--20180322 추천 브랜드 -->
+                <div class="brand_recomm" ng-if="sideCtgData.bestBrand && sideCtgData.bestBrand.length > 3">
+                    <ul style="width:{{sideCtgData.bestBrand.length | setSize}}px">
+                        <li ng-repeat="item in sideCtgData.bestBrand track by $index" ng-click="goBrandStore(item.linkUrl, item.tclick + '0' + ($index + 1), $index, item.name)" >
+                            <img ng-src="{{item.iconImgUrl}}" alt="{{item.name}}">
+                            <p>{{item.name | substr}}</p>
+                        </li>
+                    </ul>                    
+                </div>
+			</section>
+			<section ng-if="sideCtgData.specialStore && sideCtgData.specialStore.length > 2" class="recomm_list_wrap">
+				<h3 class="tit">추천 전문관</h3>
+                <div class="special_recomm">
+                    <ul style="width:{{sideCtgData.specialStore.length | setSize2}}px">
+                        <li ng-repeat="item in sideCtgData.specialStore" ng-click="goSpecialStore(item.linkUrl, item.tclick + '0' + ($index + 1), $index, item.name)">                            
+                            <img ng-src="{{item.iconImgUrl}}" class="icon" alt="{{item.name}}">
+                            <!--<span>{{item.name}}</span> -->                           
+                        </li>
+                    </ul>                    
+                </div>
+			</section>
+			<section class="app_list_wrap">
+				<h3 class="tit app">롯데 패밀리 APP</h3>
+				<ul class="app_list">
+					<li ng-repeat="item in sideCtgData.lotteApp track by $index">
+						<a ng-click="appLink(item)" class="{{item.iconClass}}">
+							<img ng-src="{{item.iconImgUrl}}" alt="{{item.name}}">
+							<span class="name">{{item.name}}</span>
+						</a>
+					</li>
+				</ul>
+			</section>
+		</div>
+	</div>
+</div>

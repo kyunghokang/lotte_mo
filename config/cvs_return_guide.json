@@ -1,0 +1,70 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplCvsReturnGuide" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mylotte/m/cvs_return_guide_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/cvs_return_guide.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsCvsReturnGuide" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/common/lotte_ngswipe.js",
+                    "lotte/resources_dev/mylotte/m/cvs_return_guide.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/cvs_return_guide.js"
+            }
+        },
+
+        "uglify" : {
+            "jsCvsReturnGuide" : {
+                "src" : "lotte/resources/<%= version %>/cvs_return_guide.js",
+                "dest" : "lotte/resources/<%= version %>/cvs_return_guide.min.js"
+            },
+            "tplCvsReturnGuide" : {
+                "src" : "lotte/resources/<%= version %>/cvs_return_guide.template.js",
+                "dest" : "lotte/resources/<%= version %>/cvs_return_guide.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssCvsReturnGuide" : {
+                "src" : [
+                    "lotte/resources_dev/mylotte/m/cvs_return_guide.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/cvs_return_guide.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanCvsReturnGuide" : [
+                "lotte/resources/<%= version %>/cvs_return_guide.js",
+                "lotte/resources/<%= version %>/cvs_return_guide.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlCvsReturnGuide" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mylotte/m/cvs_return_guide.html" : "mylotte/m/cvs_return_guide_dev.html"
+                }
+            }
+        }
+    }
+}
+

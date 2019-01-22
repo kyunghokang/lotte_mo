@@ -1,0 +1,10 @@
+<div>
+	<div class="detailPrdInfoWrap" ng-class="{gradientOn:pageUI.productInfoGradient}">
+		<section id="productDetailSelect" ng-class="{prod_max_height:pageUI.productInfoMoreBtn}">
+			<div class="btn_prodMore" ng-if="pageUI.productInfoMoreBtn"><a ng-click="productInfoDetailMore(); sendTclick('m_RDC_ProdDetail_Clk_Detail_more'); logGAEvtPrdView('상세정보','상품정보더보기');"><span>상품정보 더보기</span></a></div>
+			<div class="btn_prodMore up" ng-if="pageUI.productInfoMoreBtnUp"><a ng-click="productInfoDetailMoreShow(); sendTclick('m_RDC_ProdDetail_Clk_Detail_hide');logGAEvtPrdView('상세정보','상품정보접기');"><span>상품정보 접기</span></a></div>
+			<div class="detailLayout" id="detailLayout"></div>
+			<a ng-click="linkClick(linkRealProdDetail, 'm_RDC_ProdDetail_Clk_Detail_Elg');logGAEvtPrdView('상품정보','상품정보원본보기');" class="btn_prdinfo_detail" ng-class="{app: appObj.isNativeHeader}" ng-show="viewPrdDetailPageBtn" ng-if="pageUI.data.commonInfo.goodsCmpsCd != '30'">상세 기술서 원본보기</a>
+		</section>
+	</div>
+</div>

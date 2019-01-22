@@ -1,0 +1,55 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplHalfChance" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/unit/comm_unit.html",
+                    "lotte/resources_dev/planshop/half_chance_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/half_chance.template.js"
+            }
+        },
+        "concat" : {
+            "jsHalfChance" : {
+	            "options" : {
+	                "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+	            },
+                "src" : [
+                    "lotte/resources_dev/planshop/half_chance.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/half_chance.js"
+            }
+        },
+        "uglify" : {
+            "jsHalfChance" : {
+                "src" : "lotte/resources/<%= version %>/half_chance.js",
+                "dest" : "lotte/resources/<%= version %>/half_chance.min.js"
+            },
+            "tplHalfChance" : {
+                "src" : "lotte/resources/<%= version %>/half_chance.template.js",
+                "dest" : "lotte/resources/<%= version %>/half_chance.tpl.js"
+            }
+        },
+        "cssmin" : {
+            "cssHalfChance" : {
+                "src" : [
+                    "lotte/resources_dev/planshop/half_chance.css",
+                    "lotte/resources_dev/list/prd_lst.css",
+                    "lotte/resources_dev/unit/comm_unit.css",
+                    "lotte/resources_dev/icon/unit_ico.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/half_chance.min.css"
+            }
+        },
+        "clean" : {
+            "cleanHalfChance" : [
+                "lotte/resources/<%= version %>/half_chance.js",
+                "lotte/resources/<%= version %>/half_chance.template.js"
+            ]
+        }
+    }
+}

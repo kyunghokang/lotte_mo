@@ -1,0 +1,82 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplSpecMall" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/unit/comm_unit.html",
+					"lotte/resources_dev/mall/spec_mall_main.html",
+					"lotte/resources_dev/mall/spec_mall_cate.html",
+					"lotte/resources_dev/mall/michaelkors/spec_michaelkors_main.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/spec_mall.template.js"
+			}
+		},
+		
+		"concat" : {
+			"jsSpecMall" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/lib/angular/angular-route.min.js",
+					"lotte/resources_dev/mall/spec_mall.js",
+					"lotte/resources_dev/mall/spec_mall_cate.js",
+					"lotte/resources_dev/common/lotte_unit.js",
+					"lotte/resources_dev/common/lotte_ngswipe.js",
+					"lotte/resources_dev/common/lotte_slider.js",
+					"lotte/resources_dev/common/hwslider.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/spec_mall.js"
+			}
+		},
+		
+		"uglify" : {
+			"jsSpecMall" : {
+				"src" : "lotte/resources/<%= version %>/spec_mall.js",
+				"dest" : "lotte/resources/<%= version %>/spec_mall.min.js"
+			},
+			"tplSpecMall" : {
+				"src" : "lotte/resources/<%= version %>/spec_mall.template.js",
+				"dest" : "lotte/resources/<%= version %>/spec_mall.tpl.js"
+			}
+		},
+		
+		"cssmin" : {
+			"cssSpecMall" : {
+				"src" : [
+					"lotte/resources_dev/list/prd_lst.css",
+					"lotte/resources_dev/unit/comm_unit.css",
+					"lotte/resources_dev/icon/unit_ico.css",
+					"lotte/resources_dev/mall/spec_mall.css",
+					"lotte/resources_dev/mall/spec_mall_cate.css",
+					"lotte/resources_dev/mall/michaelkors/spec_mall_mk.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/spec_mall.min.css"
+			}
+		},
+		
+		"clean" : {
+			"cleanSpecMall" : [
+				"lotte/resources/<%= version %>/spec_mall.js",
+				"lotte/resources/<%= version %>/spec_mall.template.js"
+			]
+		},
+		
+		"processhtml" : {
+			"htmlSpecMall" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"mall/spec_mall.html" : "mall/spec_mall_dev.html"
+				}
+			}
+		}
+	}
+}

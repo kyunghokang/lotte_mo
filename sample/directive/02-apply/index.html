@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>AngularJS Sample App</title>
+<link rel="stylesheet" href="../../css/bootstrap.css"/> 
+<script src="../../../lib/angular/angular.js"></script>
+<script src="../../common/logger.js"></script>
+<script src="app.js"></script>
+</head>
+<body ng-app="app" > 
+<div ng-controller="appCtrl">
+<H2>AngularJS의 $digest, $apply에 대한 simple sample</H2>
+<H4>이 sample에서는 $digest loop가 언제 실행되는지 $digest의 실행 결과로 directive에 binding된 변수가 바뀌는 것에 대한 simple sample이다.</H4>
+<pre>
+$digest loop는 다음의 네가지 상황에서 실행된다.
+1. DOM event 
+2. $http의 callback이 실행된 후
+3. url이 변경될 때(angujarjs의 route 기능을 사용하여 화면 전환을 할 경우 화면전환은 url hashbang 변경에 해당한다)
+4. $timeout 의 function이 실행된 후 (setTimeout이 아니다.)
+
+* $apply()를 호출할 경우 전체 $scope에 대해 digest loop를 수행하게 된다. 
+특정 scope에서만 digest loop를 수행하고자 할 경우 $scope.$digest() 를 실행하도록 한다. 
+
+</pre>
+<p>{{appTitle}}</p>
+
+<button ng-click="updateTitle()" >클릭!</button>
+
+</div>
+</body> 
+</html>

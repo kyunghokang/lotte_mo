@@ -1,0 +1,68 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplShodoc" : {
+				"options": {
+					"prefix":"/",
+					"module" : "app"
+				},
+				"src" : [
+				],
+				"dest" : "lotte/resources/<%= version %>/shodoc.template.js"
+			}
+		},
+		
+		"concat" : {
+			"jsShodoc" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/event/shodoc.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/shodoc.js"
+			}
+		},
+		
+		"uglify" : {
+			"jsShodoc" : {
+				"src" : "lotte/resources/<%= version %>/shodoc.js",
+				"dest" : "lotte/resources/<%= version %>/shodoc.min.js"
+			},
+			"tplShodoc" : {
+				"src" : "lotte/resources/<%= version %>/shodoc.template.js",
+				"dest" : "lotte/resources/<%= version %>/shodoc.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssShodoc" : {
+				"src" : [
+					"lotte/resources_dev/event/shodoc.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/shodoc.min.css"
+			}
+		},
+
+		"processhtml" : {
+			"htmlShodoc" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"event/shodoc.html" : "event/shodoc_dev.html"
+				}
+			}
+		},
+		
+		"clean" : {
+			"cleanShodoc" : [
+				"lotte/resources/<%= version %>/shodoc.js",
+				"lotte/resources/<%= version %>/shodoc.template.js"
+			]
+		}
+	}
+}
+

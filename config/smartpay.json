@@ -1,0 +1,73 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplsmartPay" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mylotte/smartpay/m/smartpay_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/smartpay.template.js"
+            }
+        },
+
+        "concat" : {
+            "jssmartPay" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+					"lotte/resources_dev/mylotte/smartpay/m/smartpay.js",
+					"lotte/lib/jquery/bookmark.js",
+					"lotte/resources_dev/list/lotte_list.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/smartpay.js"
+            }
+        },
+
+        "uglify" : {
+            "jssmartPay" : {
+                "src" : "lotte/resources/<%= version %>/smartpay.js",
+                "dest" : "lotte/resources/<%= version %>/smartpay.min.js"
+            },
+            "tplsmartPay" : {
+                "src" : "lotte/resources/<%= version %>/smartpay.template.js",
+                "dest" : "lotte/resources/<%= version %>/smartpay.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "csssmartPay" : {
+                "src" : [
+					"lotte/resources_dev/mylotte/smartpay/m/smartpay.css",
+					"lotte/resources_dev/list/smart_window.css",
+					"lotte/resources_dev/icon/unit_ico.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/smartpay.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleansmartPay" : [
+                "lotte/resources/<%= version %>/smartpay.js",
+                "lotte/resources/<%= version %>/smartpay.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlsmartPay" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mylotte/smartpay/m/smartpay.html" : "mylotte/smartpay/m/smartpay_dev.html"
+                }
+            }
+        }
+    }
+}
+

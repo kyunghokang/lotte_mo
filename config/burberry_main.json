@@ -1,0 +1,74 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplburberryMain" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mall/burberry/burberry_main_container.html",
+                    "lotte/resources_dev/mall/burberry/mall_sub_header.html",
+                    "lotte/resources_dev/mall/burberry/burberry_footer.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/burberry_main.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsburberryMain" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mall/burberry/burberry_main.js",
+                    "lotte/resources_dev/common/lotte_ngswipe.js",
+                    "lotte/resources_dev/common/lotte_slider.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/burberry_main.js"
+            }
+        },
+
+        "uglify" : {
+            "jsburberryMain" : {
+                "src" : "lotte/resources/<%= version %>/burberry_main.js",
+
+                "dest" : "lotte/resources/<%= version %>/burberry_main.min.js"
+            },
+            "tplburberryMain" : {
+                "src" : "lotte/resources/<%= version %>/burberry_main.template.js",
+                "dest" : "lotte/resources/<%= version %>/burberry_main.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssburberryMain" : {
+                "src" : [
+                    "lotte/resources_dev/mall/burberry/burberry_main.css",
+                    "lotte/resources_dev/mall/burberry/burberry_common.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/burberry_main.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanburberryMain" : [
+                "lotte/resources/<%= version %>/burberry_main.js",
+                "lotte/resources/<%= version %>/burberry_main.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlburberryMain" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mall/burberry/burberry_main.html" : "mall/burberry/burberry_main_dev.html"
+                }
+            }
+        }
+    }
+}

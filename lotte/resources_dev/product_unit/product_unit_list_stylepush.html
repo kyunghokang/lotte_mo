@@ -1,0 +1,49 @@
+<ol class="prod_list_02">
+	<li class="camera_img_list">
+		<div class="camera_img_box">
+			<div class="img_wrap">
+				<img ng-src="{{cameraImg}}" alt="사용자 등록 이미지" />
+			</div>
+			<div class="caemera_img_txt">
+				<span class="title">내가 찾는 이미지</span>
+				<span class="sub_title">고객님께서 찾는<br/>이미지와 가장 유사한<br/>스타일 상품입니다.</span>
+			</div>
+		</div>
+	</li>
+	<li ng-repeat="item in products track by $index">
+		<!-- 일반상품 : 이미지형 -->
+		<div class="unit_list_02">
+			<span class="unit_zoom" ng-click="zoomImageClick(getProductImage(item))">크게보기</span>
+			<a href="#" ng-click="productInfoClick(item)">
+				<div class="soldout" ng-show="item.sold_out">SOLD OUT</div>
+				<div class="thumb">
+					<span class="icon_ranking" ng-if="templateType=='imagerank'">{{$index+1}}</span>
+					<img ng-src="{{getProductImage(item)}}" alt="{{item.goods_nm}}" err-src />
+					<p class="flag">
+						<span class="flag depart" ng-show="item.flag=='D'||item.is_dept">롯데백화점</span>
+						<span class="flag etv" ng-if="item.is_tvhome && !item.is_dept">롯데홈쇼핑</span>
+						<span class="flag tag" ng-show="item.dlv_fee_tp=='Y'||item.isdlex_free">무료배송</span>
+						<span class="flag smart" ng-show="item.smartpick_yn=='Y'||item.issmart_pick">스마트픽</span>
+					</p>
+				</div>
+				<div class="info">
+					<span class="tit"><span ng-show="item.brnd_nm"><span ng-bind-html="item.brnd_nm|titleToHtml"></span></span> <span ng-bind-html="item.goods_nm|titleToHtml"></span></span>
+					<p class="pr_box">
+						<span class="price"><em>{{item.discounted_price|number}}</em>원<span ng-show="item.is_sale_promotion">~</span></span>
+						<span class="price2" ng-show="item.original_price!=item.discounted_price && item.original_price !=0 && !item.is_sale_promotion">
+							<em>{{item.original_price|number}}</em>원
+						</span>
+					</p>
+					<!-- ng-show="item.has_coupon" -->
+					<p class="coupon" ng-show="!item.is_sale_promotion"><span ng-show="item.original_price&&item.sale_rate!='0'&&item.original_price!=item.discounted_price"><em class="no">{{item.sale_rate}}</em><em class="po">%</em></span><span ng-show="item.has_coupon">쿠폰포함</span></p>
+				</div>
+			</a>
+			<div class="info2">
+				<span class="review" ng-click="productReviewClick(item)">상품평 <em>({{item.review_count|number}})</em></span>
+				<span class="wish_icon"  ng-class="{on:item.has_wish}" ng-click="addWishClick($index,item)">위시리스트</span>
+			</div>
+		</div>
+		<!-- //일반상품 : 이미지형 -->
+	</li>
+</ol>
+

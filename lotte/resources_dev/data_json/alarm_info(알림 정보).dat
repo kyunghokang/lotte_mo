@@ -1,0 +1,19 @@
+1. 업무명 : 알림 정보
+2. 담당자 : 박상현
+3. URL : http://mapi.lotte.com/json/alarm_info.json
+4. 파라미터
+	- 없음
+5. JSON 파라미터
+	1) alarm_info :
+		- sum_tgt_sct_cd: 집계대상구분코드 = { 'NTC_CART': 장바구니(재입고알림), 'NTC_ETC': 위시/상품상세(재입고알림), 'CART': 장바구니, 'WISH': 위시리스트 }
+		- goods_nm : 상품명
+6. JSON
+{
+  "alarm_info" : {
+    "items" : [ {
+      "sum_tgt_sct_cd" : "CART",
+      "goods_nm" : "상품명"
+    } ],
+    "total_count" : 1
+  }
+}

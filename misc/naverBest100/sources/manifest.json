@@ -1,0 +1,18 @@
+{
+    "manifest_version": 2,
+    "name": "LotteDotComBest100",
+    "description": "LotteDotComBest100",
+    "version": "1.0",
+    "content_scripts": [
+        {
+	        "matches" : ["https://search.shopping.naver.com/best100v2/main.nhn*", "https://search.shopping.naver.com/best100v2/detail.nhn*"],
+	        "js" : ["jquery-3.1.1.min.js", "lottedotcom.js"],
+	        "css" : ["ldcb.css"]
+        }
+    ],
+    "icons": {
+        "48": "icon.png",
+        "128": "icon.png"
+    },
+    "permissions":["http://api.shopping.naver.com/"]
+}

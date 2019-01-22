@@ -1,0 +1,68 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplOrdMsgSetting" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mylotte/sub/ord_msg_setting_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/ord_msg_setting.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsOrdMsgSetting" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mylotte/sub/ord_msg_setting.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/ord_msg_setting.js"
+            }
+        },
+
+        "uglify" : {
+            "jsOrdMsgSetting" : {
+                "src" : "lotte/resources/<%= version %>/ord_msg_setting.js",
+                "dest" : "lotte/resources/<%= version %>/ord_msg_setting.min.js"
+            },
+            "tplOrdMsgSetting" : {
+                "src" : "lotte/resources/<%= version %>/ord_msg_setting.template.js",
+                "dest" : "lotte/resources/<%= version %>/ord_msg_setting.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssOrdMsgSetting" : {
+                "src" : [
+                    "lotte/resources_dev/mylotte/sub/ord_msg_setting.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/ord_msg_setting.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanOrdMsgSetting" : [
+                "lotte/resources/<%= version %>/ord_msg_setting.js",
+                "lotte/resources/<%= version %>/ord_msg_setting.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlOrdMsgSetting" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mylotte/sub/ord_msg_setting.html" : "mylotte/sub/ord_msg_setting.html"
+                }
+            }
+        }
+    }
+}

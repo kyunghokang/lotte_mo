@@ -1,0 +1,73 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplBestBrandMain" : {
+                "options": {
+	            	"prefix":"/",
+	            	"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/brandshop/bestbrand_main_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/bestbrand_main.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsBestBrandMain" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                	"lotte/resources_dev/common/lotte_ngswipe.js",
+                	"lotte/resources_dev/common/lotte_slider.js",
+                    "lotte/resources_dev/brandshop/bestbrand_main.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/bestbrand_main.js"
+            }
+        },
+
+        "uglify" : {
+            "jsBestBrandMain" : {
+                "src" : "lotte/resources/<%= version %>/bestbrand_main.js",
+                "dest" : "lotte/resources/<%= version %>/bestbrand_main.min.js"
+            },
+            "tplBestBrandMain" : {
+                "src" : "lotte/resources/<%= version %>/bestbrand_main.template.js",
+                "dest" : "lotte/resources/<%= version %>/bestbrand_main.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssBestBrandMain" : {
+                "src" : [
+                	"lotte/resources_dev/unit/unit_list.css",
+                	"lotte/resources_dev/brandshop/bestbrand_common.css",
+                    "lotte/resources_dev/brandshop/bestbrand_main.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/bestbrand_main.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanBestBrandMain" : [
+                "lotte/resources/<%= version %>/bestbrand_main.js",
+                "lotte/resources/<%= version %>/bestbrand_main.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlBestBrandMain" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "category/m/bestbrand_main.html" : "category/m/bestbrand_main_dev.html"
+                }
+            }
+        }
+    }
+}
+

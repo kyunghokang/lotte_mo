@@ -1,0 +1,172 @@
+<section ng-show="contVisible" class="cont_minheight" id="container">
+	<!-- //서브 헤더 -->
+	<section class="pageLoading" ng-show="pageLoading">
+		<p class="loading half"></p>
+	</section>
+
+	<!-- 검색 틀에서 카테고리 부분만 추가됨 -->
+	<!-- 카테고리: categoryWrap 클래스 추가 -->
+	<div class="result_wrap categoryWrap">
+		<!-- 추천검색어, 연관검색어 삭제 -->
+		<!-- 검색 필터 /-->
+		<div class="srh_terms_wrap" search-filter-layer>
+			<!-- 필터 탭 /-->
+			<ul class="tab">
+				 <!-- 선택은 'on'클래스 추가,탭안에 내용이 선택되어 있는 부분은 'selected'클래스 추가-->
+				<li ng-class="{on:pageOptions.tabIndex==1,selected:pageOptions.selectCategoryCode!=''}"><a href="#" ng-click="tabClick(1)">카테고리</a></li>
+				<li class="{{pageOptions.sort[pageOptions.sortIdx].sortClass}}" ng-class="{on:pageOptions.tabIndex==4,selected:pageOptions.sortIdx!=0}"><a href="#" ng-click="tabClick(4)">{{pageOptions.sort[pageOptions.sortIdx].sortText}}</a></li>
+			</ul>
+			<!--/ 필터 탭 -->
+			<!-- 필터 레이어 Wrapper /-->
+			<div class="terms_cont_wrap" ng-controller="lotteNgSwipeCtrl" ng-class="{on:pageOptions.tabShow,ctglst:pageOptions.tabIndex==1,brdlst:pageOptions.tabIndex==2,detail:pageOptions.tabIndex==3,sort:pageOptions.tabIndex==4}">
+				<!-- 카테고리 /-->
+				<div class="term ctglst" ng-class="{on:pageOptions.tabIndex==1}">
+					<div class="ctg_depth_wrap"> 
+						<div class="depth1">
+							<!-- 카테고리: 전체 개수 삭제, 몰 선택 -->
+							<div class="scroll_wrap" ng-hide="!screenData.L_CATE.length">
+								<div>
+									<h3><a href="#" ng-click="subCateClick(screenData,'',null)"><span class="depth2" ng-class="{cateon:pageOptions.selectCategoryCode==''}">전체</span> <span class="cnt">{{screenData.maxGoodsTotal|number}}</span></a></h3>
+								</div>
+								<div ng-show="screenData.L_CATE.length">
+									<div ng-repeat="subCat in screenData.L_CATE">
+										<ul>
+											<li ng-repeat="citem in subCat.cate_list.items">
+												<h3 ng-class="{cateon:pageOptions.selectCategory==citem.disp_no}" ng-click="subCateClick(citem,'L_CATE',null)">
+													<span class="depth2">롯데닷컴 </span>
+													<span class="depth2" ng-if="citem.lcate_nm">&gt; {{citem.lcate_nm}} </span>
+													<span class="depth2">&gt; {{citem.disp_nm}}</span> 
+													<span class="cnt">{{citem.cate_cnt|number}}</span>
+												</h3>
+												<ul ng-if="citem.subCate.items.length">
+													<li ng-repeat="subitem in citem.subCate.items" ng-class="{on:pageOptions.selectCategory==subitem.disp_no}" style="padding-left:15px;"><a href="#" ng-click="subCateClick(subitem,'L_CATE',citem.disp_no)">{{subitem.disp_nm}}<span class="cnt">{{subitem.cate_cnt|number}}</span></a></li>
+												</ul>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<!-- 결과가 없을 경우-->
+							<div class="empty" ng-show="!screenData.L_CATE.length">
+								<div class="empty_txt">해당하는 카테고리가 없습니다.</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--/ 카테고리 -->
+				<!-- sortting /-->
+				<div class="term sort" ng-class="{on:pageOptions.tabIndex==4}">
+					<h3>정렬옵션</h3>
+					<div class="sort_list">
+						<ul>
+							<li ng-class="{on:pageOptions.sortIdx==0}"><a ng-click="sortClick(0)"><span>판매 BEST</span></a></li>
+							<li ng-class="{on:pageOptions.sortIdx==1}"><a ng-click="sortClick(1)"><span>상품평 많은순</span></a></li>
+							<li ng-class="{on:pageOptions.sortIdx==2}"><a ng-click="sortClick(2)"><span>신상품순</span></a></li>
+							<li ng-class="{on:pageOptions.sortIdx==3}"><a ng-click="sortClick(3)"><span>낮은 가격순</span></a></li>
+							<li ng-class="{on:pageOptions.sortIdx==4}"><a ng-click="sortClick(4)"><span>높은 가격순</span></a></li>
+						</ul>
+					</div>
+					<div class="sort_guide">
+						<a ng-click="tipShowClick()" class="layerBtn"><span>판매 BEST</span></a>
+						<div class="layerPop" id="pop_sortGuide" ng-show="pageOptions.tipShow" style="display:block;">
+							<div class="popWrap">
+								<p class="tlt">
+									판매 BEST란?
+								</p>
+								<p class="desc">
+									최근 30일 + 최근 3일의 많이 판매된 상품을 누적한 기준으로 상품을 정렬합니다.
+								</p>
+							</div>							
+							<a class="btn_close" ng-click="tipShowClick()">닫기</a>
+						</div>
+					</div>
+				</div>
+				<!--/ sorting -->
+				
+				<!-- 하단 버튼/-->
+				<div class="btn_wrap">
+					<button class="btn_init" ng-click="tabReset()">초기화</button>
+					<span class="paging" ng-if="screenData.BrandList.length && pageOptions.tabIndex==2">
+						<span>{{swipeIdx+1}}/{{getBrandSwipeSize().length}}</span>
+					</span>
+					<button class="btn_close" ng-click="tabClose()">닫기</button>
+				</div>
+				<!--/ 하단 버튼-->
+			</div>
+			<!--/ 필터 레이어 Wrapper -->
+		</div>
+		
+		<!-- div class="layerPop" id="pop_sortGuide" ng-show="pageOptions.tipShow" style="display:block;">
+			<div class="popWrap">
+				<p class="tlt">
+					판매 BEST란?
+				</p>
+				<p class="desc">
+					최근 30일 + 최근 3일의 많이 판매된 상품을 누적한 기준으로 상품을 정렬합니다.
+				</p>
+			</div>							
+			<a class="btn_close" ng-click="tipShowClick()">닫기</a>
+		</div-->
+		<!--/ 검색 필터 -->
+
+		<!-- 검색 결과 / -->
+		<div class="listWrap" ng-controller="productCtrl"><!-- ng-show="screenData.goodsTotal" -->
+			<!-- 스와이프 삭제 -->
+			<!-- 검색결과 상품 상단/-->
+			<div class="result_tlt">
+				<div class="result_cnt" ng-show="screenData.goodsTotal!=0">전체 <em> {{screenData.goodsTotal|number}} </em>개</div>
+				<div class="result_filter">
+					<ul>
+						<!-- <li class="pr10">
+							<label for="storeSel" ng-class="{disabled:!screenData.hasDept}">
+								<input type="checkbox" id="storeSel" name="storeSel" value="D" ng-disabled="!screenData.hasDept" ng-model="pageOptions.selectDept" ng-click="deptClick()">롯데백화점
+							</label>
+						</li> -->
+						<!-- 카테고리: 유닛타입 추가 -->
+						<li class="unit_type">
+							<ul>
+								<li class="r1"><a href="#" ng-class="{on:templateType=='list'}" ng-click="changeTemplate('list')">리스트형</a></li>
+								<li class="r2"><a href="#" ng-class="{on:templateType=='image'}" ng-click="changeTemplate('image')">이미지형</a></li>
+								<li class="r3"><a href="#" ng-class="{on:templateType=='swipe'}" ng-click="changeTemplate('swipe')">스와이프형</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- /검색결과 상품 상단-->
+
+			<!-- s: unit list area -->
+			<div class="unitWrap">
+			<!-- //상품리스트 유형 선택 -->
+				<div product-container template-type="list" total-count="screenData.goodsTotal" templatetype="templateType" products="screenData.goodsList" more-product-continer="getProductData()"></div>
+			</div>
+			<!-- e: unit list area -->
+
+		</div>
+		<!-- /검색 결과 -->
+		<section class="noData" ng-if="screenData.goodsTotal == 0 && ! pageLoading">
+			해당하는 상품이 없습니다.
+		</section>
+	</div>
+	
+	<!--smart pick layer/-->
+	<div class="ly_smpick" ng-show="pageOptions.smartPicBox">
+		<div class="smpick_lst">
+			<header ><span class="tit">타이틀</span></header>
+			<div class="branch_wrap">
+				<ul id="branchLst">
+					<li ng-click="selectSmartPicClick(null)"><label><input type="radio"  name="smpick_lst" value="0" checked="checked">전체</label></li>
+					<li ng-repeat="smpitem in screenData.dptsRglList" ng-click="selectSmartPicClick(smpitem)">
+						<label><input type="radio" name="smpick_lst" value="{{smpitem.disp_no}}">{{smpitem.disp_nm}}</label>
+					</li>
+				</ul>
+			</div>
+			<div class="btn_wrap"><button class="btn_close" ng-click="closeSamrtPicClick()">닫기</button></div>
+		</div>
+	</div>
+	<!-- / smart pick layer-->
+
+	<div class="listLoading" ng-if="productListLoading&&templateType!='swipe'">
+		<p class="loading half"></p>
+    </div>
+</section>

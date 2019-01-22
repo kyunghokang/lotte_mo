@@ -1,0 +1,69 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplChanelProdList" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/mall/chanel/chanel_prod_list_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/chanel_prod_list.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsChanelProdList" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/mall/chanel/chanel_prod_list.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/chanel_prod_list.js"
+			}
+		},
+
+		"uglify" : {
+			"jsChanelProdList" : {
+				"src" : "lotte/resources/<%= version %>/chanel_prod_list.js",
+				"dest" : "lotte/resources/<%= version %>/chanel_prod_list.min.js"
+			},
+			"tplChanelProdList" : {
+				"src" : "lotte/resources/<%= version %>/chanel_prod_list.template.js",
+				"dest" : "lotte/resources/<%= version %>/chanel_prod_list.tpl.js"
+			}
+		},
+
+		 "cssmin" : {
+            "cssChanelProdList" : {
+                "src" : [
+                    "lotte/resources_dev/mall/chanel/chanel_main.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/chanel_prod_list.min.css"
+            }
+        },
+
+		"clean" : {
+			"cleanChanelProdList" : [
+				"lotte/resources/<%= version %>/chanel_prod_list.js",
+				"lotte/resources/<%= version %>/chanel_prod_list.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlChanelProdList" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"mall/chanel/chanel_prod_list.html" : "mall/chanel/chanel_prod_list_dev.html"
+				}
+			}
+		}
+	}
+}
+

@@ -1,0 +1,253 @@
+<section id="container" ng-show="contVisible" class="cont_minheight">
+	<!-- TV쇼핑 -->
+	<section id="main_shopping">
+		<!-- slide Banner -->
+<!--		<div class="wrapBox" ng-controller="lotteNgSwipeCtrl">
+			<div class="main_slide">
+				<button class="btn prev" ng-click="beforeSlide()" ng-show="swipeIdx > 0">Preview</button>
+				<div class="mask">
+					<ul class="list" lotte-ng-list-swipe 
+						swipe-id="tv_home_banner_list" 
+						swipe-list-model="screenData.tv_home_banner_list"
+						swipe-autoheight="true" 
+						swipe-responsive="true" 
+						swipe-responsive640="2" 
+						swipe-responsive900="2" 
+						swipe-slide-item="true" 
+						swipe-max-ratio="0.2" 
+						swipe-min-distance="40">
+						<li ng-repeat="item in screenData.tv_home_banner_list"><a href="#" ng-click="tvHomeBannerClick(item)"><img src="{{item.img_path_nm}}" alt="golden week" /></a></li>
+					</ul>
+				</div>
+				<button class="btn next" ng-click="nextSlide()" ng-show="swipeBulletIdx<=(swipeBullet.length-2)">Next</button>
+				<ol class="bullet">
+					<li ng-repeat="item in swipeBullet" ng-class="{active:$index==swipeBulletIdx}" >{{$index}}</li>
+				</ol>
+			</div>
+		</div>-->
+		<!-- //slide Banner -->
+		<div class="home_shopping_wrap">
+			<ul class="ul_homeshop">
+				<!-- 편성표 -->
+				<li ng-class="{on:pageOptions.homeTabFlag==1}"><!-- D;20151001현재탭 클래스on -->
+					<a href="#" ng-click="tvHomeTabClick(1)"><div>편성표</div></a>
+					<div class="area_homeshop_2" >
+						<div class="box_homeshop_1">
+							<div class="tvDate">
+								<ul class="clearfix" lotte-ng-list-swipe swipe-slide-menu="true" swipe-list-model="screenData.tv_home_calendar" swipe-id="tv_home_calendar" swipe-max-ratio="0.2" swipe-min-distance="40">
+									<li ng-repeat="citem in screenData.tv_home_calendar" ng-class="{today:citem.today_yn,on:pageOptions.calendarIdx == $index && !citem.today_yn}">
+										<a href="#" ng-click="programChangeDate(citem,$index)">
+											<span>{{citem.day}}</span>
+											<span>{{citem.dday}}요일</span>
+										</a>
+									</li>
+								</ul>
+								<a href="#none" class="tvPrev">이전</a>
+								<a href="#none" class="tvNext">다음</a>
+							</div>
+							<div class="selectArea">
+								<span class="count">전체 {{screenData.totalProducts}}개</span>
+								<select title="상품" ng-model="pageOptions.selected_disp_no" ng-change="changeProductList()">
+									<option value="0">전체</option>
+							   		<option value="5080601">화장품/잡화</option>
+							   		<option value="5080602">의류/스포츠</option>
+							   		<option value="5080603">유아/생활/식품</option>
+							   		<option value="5080604">가전/디지털</option>
+							   		<option value="5447474">보험/금융</option>
+								</select>
+								<div class="img_box"></div>
+							</div>
+						</div>
+						<!-- 상품 리스트 -->
+						<div class="box_homeshop_2" id="tv_list">
+							<dl class="lastBroad" ng-show="pageOptions.hasPrevious && (pageOptions.selected_date == '' || pageOptions.selected_date == pageOptions.today)">
+								<dt ng-class="{opened:pageOptions.showBeforeTvHome}"><a href="#none" ng-click="showBeforeTvHome()">이전 방송상품 보기</a></dt><!-- D:20151001 dd 열렸을때 클래스opened 추가 -->
+								<dd ng-show="pageOptions.showBeforeTvHome">
+									<!-- 지난방송 -->
+									<div class="box_homeshop_3" ng-repeat="preitem in screenData.tv_home_program_list|filter:{previous:true}">
+										<div class="box_homeshop_3_1 clearfix">
+											<p class="txt_homeshop_2">{{preitem.air_time}} <span>{{preitem.program_nm}}</span></p><!-- D:20151001 span 수정 -->
+										</div>
+										<ol class="prod_list_01">
+											<li ng-repeat="proditem in preitem.prod_list.items">
+												<!-- 일반상품 : 리스트형 -->
+												<div class="unit_list_01">
+													<a href="#" ng-click="productInfoClick(proditem, 'A')">
+														<div class="thumb">
+															<img ng-src="{{proditem.img_url}}" alt="{{proditem.goods_nm}}">
+														</div>
+														<div class="info">
+															<span class="tit">{{proditem.goods_nm}}</span>
+															<p class="pr_box">
+																<span class="price"><em>{{proditem.sale_prc | number}}</em>원</span>
+																<span class="price2" ng-show="proditem.org_sale_prc != proditem.sale_prc"><em>{{proditem.org_sale_prc | number}}</em>원</span>
+															</p>
+															<p class="coupon">
+																<em class="no" ng-show="proditem.org_sale_prc != proditem.sale_prc && proditem.sale_rate != 0">{{proditem.sale_rate}}</em><em class="po" ng-show="proditem.org_sale_prc != proditem.sale_prc && proditem.sale_rate != 0">%</em>
+																<span ng-show="proditem.inst_cpn_no!=0">쿠폰포함</span>
+															</p>
+														</div>
+													</a>
+												</div>
+												<!-- //일반상품 : 리스트형 -->
+											</li>
+										</ol>
+									</div>
+								</dd>
+							</dl>
+							<div ng-show="screenData.tv_home_onair.live && pageOptions.selected_date == pageOptions.today">
+								<!-- 생방송 -->
+								<p class="txt_homeshop_12"><strong>On-Air</strong> 방송종료까지 <span id="counter_imall"><timer end-time="screenData.onAirCountdown" interval="1000">{{hhours}}:{{mminutes}}:{{sseconds}}</timer></span> 남았습니다.<span class="broadCate">{{screenData.tv_home_onair.bdct_pgm_nm}}</span></p>
+								<div id="rest_time_imall" style="display:none">4030000</div>			
+								<div class="box_homeshop_3 on">
+									<ol class="prod_list_01">
+										<li ng-repeat="proditem in screenData.tv_home_onair.prod_list.items">
+											<!-- 일반상품 : 리스트형 -->
+											<div class="unit_list_01">
+												<a href="#" ng-click="productInfoClick(proditem, 'B')">
+													<div class="thumb">
+														<img ng-src="{{proditem.img_url}}" alt="{{proditem.goods_nm}}">
+													</div>
+													<div class="info">
+														<span class="tit">{{proditem.goods_nm}}</span>
+														<p class="pr_box">
+															<span class="price"><em>{{proditem.sale_prc | number}}</em>원</span>
+															<span class="price2" ng-show="proditem.org_sale_prc != proditem.sale_prc"><em>{{proditem.org_sale_prc | number}}</em>원</span>
+														</p>
+														<p class="coupon">
+															<em class="no" ng-show="proditem.org_sale_prc != proditem.sale_prc && proditem.sale_rate != 0">{{proditem.sale_rate}}</em><em class="po" ng-show="proditem.org_sale_prc != proditem.sale_prc && proditem.sale_rate != 0">%</em>
+															<span ng-show="proditem.inst_cpn_no!=0">쿠폰포함</span>
+														</p>
+													</div>
+												</a>
+											</div>
+											<!-- //일반상품 : 리스트형 -->
+										</li>
+									</ol>
+								</div>
+								<!-- //생방송 -->
+							</div>
+							
+							<div ng-show="!screenData.tv_home_onair.live && screenData.tv_home_onair.prod_list.items.length && pageOptions.selected_date == pageOptions.today">
+								<p class="txt_homeshop_13"><strong>HIT 상품</strong></p>
+								<div class="box_homeshop_3 hit">
+									<ol class="prod_list_01">
+										<li ng-repeat="proditem in screenData.tv_home_onair.prod_list.items">
+											<!-- 일반상품 : 리스트형 -->
+											<div class="unit_list_01">
+												<a href="#" ng-click="productInfoClick(proditem, 'D')">
+													<div class="thumb">
+														<img ng-src="{{proditem.img_url}}" alt="{{proditem.goods_nm}}">
+													</div>
+													<div class="info">
+														<span class="tit">{{proditem.goods_nm}}</span>
+														<p class="pr_box">
+															<span class="price"><em>{{proditem.sale_prc | number}}</em>원</span>
+															<span class="price2" ng-show="proditem.org_sale_prc != proditem.sale_prc"><em>{{proditem.org_sale_prc | number}}</em>원</span>
+														</p>
+														<p class="coupon">
+															<em class="no" ng-show="proditem.org_sale_prc != proditem.sale_prc && proditem.sale_rate != 0">{{proditem.sale_rate}}</em><em class="po" ng-show="proditem.org_sale_prc != proditem.sale_prc && proditem.sale_rate != 0">%</em>
+															<span ng-show="proditem.inst_cpn_no!=0">쿠폰포함</span>
+														</p>
+													</div>
+												</a>
+											</div>
+											<!-- //일반상품 : 리스트형 -->
+										</li>
+									</ol>
+								</div>
+							</div>
+							
+							
+							<!-- 오늘 예정된방송 -->
+							<div ng-if="pageOptions.selected_date == pageOptions.today">
+								<div class="box_homeshop_3" ng-repeat="pitem in screenData.tv_home_program_list|filter:{previous:false,onair_yn:false}">
+									<div class="box_homeshop_3_1 clearfix">
+										<p class="txt_homeshop_2">{{pitem.air_time}} <span>{{pitem.program_nm}}</span></p>
+									</div>
+									<ol class="prod_list_01">
+										<li ng-repeat="proditem in pitem.prod_list.items">
+											<!-- 일반상품 : 리스트형 -->
+											<div class="unit_list_01">
+												<a href="#" ng-click="productInfoClick(proditem, 'C')">
+													<div class="thumb">
+														<img ng-src="{{proditem.img_url}}" alt="{{proditem.goods_nm}}">
+													</div>
+													<div class="info">
+														<span class="tit">{{proditem.goods_nm}}</span>
+														<p class="pr_box">
+															<span class="price"><em>{{proditem.sale_prc | number}}</em>원</span>
+															<span class="price2" ng-show="proditem.org_sale_prc != proditem.sale_prc"><em>{{proditem.org_sale_prc | number}}</em>원</span>
+														</p>
+														<p class="coupon">
+															<em class="no" ng-show="proditem.org_sale_prc != proditem.sale_prc && proditem.sale_rate != 0">{{proditem.sale_rate}}</em><em class="po" ng-show="proditem.org_sale_prc != proditem.sale_prc && proditem.sale_rate != 0">%</em>
+															<span ng-show="proditem.inst_cpn_no!=0">쿠폰포함</span>
+														</p>
+													</div>
+												</a>
+											</div>
+											<!-- //일반상품 : 리스트형 -->
+										</li>
+									</ol>
+								</div>
+							</div>
+							
+							<!-- 오늘이 아닌 방송 편성표 -->
+							<div ng-if="pageOptions.selected_date != pageOptions.today">
+								<div class="box_homeshop_3" ng-repeat="pitem in screenData.tv_home_program_list">
+									<div class="box_homeshop_3_1 clearfix">
+										<p class="txt_homeshop_2">{{pitem.air_time}} <span>{{pitem.program_nm}}</span></p>
+									</div>
+									<ol class="prod_list_01">
+										<li ng-repeat="proditem in pitem.prod_list.items">
+											<!-- 일반상품 : 리스트형 -->
+											<div class="unit_list_01">
+												<a href="#" ng-click="productInfoClick(proditem, 'Z')">
+													<div class="thumb">
+														<img ng-src="{{proditem.img_url}}" alt="{{proditem.goods_nm}}">
+													</div>
+													<div class="info">
+														<span class="tit">{{proditem.goods_nm}}</span>
+														<p class="pr_box">
+															<span class="price"><em>{{proditem.sale_prc | number}}</em>원</span>
+															<span class="price2" ng-show="proditem.org_sale_prc != proditem.sale_prc"><em>{{proditem.org_sale_prc | number}}</em>원</span>
+														</p>
+														<p class="coupon">
+															<em class="no" ng-show="proditem.org_sale_prc != proditem.sale_prc && proditem.sale_rate != 0">{{proditem.sale_rate}}</em><em class="po" ng-show="proditem.org_sale_prc != proditem.sale_prc && proditem.sale_rate != 0">%</em>
+															<span ng-show="proditem.inst_cpn_no!=0">쿠폰포함</span>
+														</p>
+													</div>
+												</a>
+											</div>
+											<!-- //일반상품 : 리스트형 -->
+										</li>
+									</ol>
+								</div>
+							</div>
+							
+						</div>		          
+						<!-- 상품 리스트 끝-->
+					</div>
+					<!-- 상품리스트 -->
+				</li>
+				<!-- //편성표 -->
+				<!-- 방송인기상품 -->
+				<li ng-class="{on:pageOptions.homeTabFlag==2}">
+					<a href="#" ng-click="tvHomeTabClick(2);"><div>방송인기상품</div></a>
+					<div class="area_homeshop_2 area_homeshop_2_1"  ng-show="pageOptions.homeTabFlag==2">
+						<!-- 상품리스트 -->
+						<div class="box_homeshop_2" id="iMallBestProduct">
+							<div class="box_homeshop_3">
+								<div product-container tclick="m_DC_TVsub_Clk_Prd_E" template-type="imagerank" templatetype="templateType" products="screenData.tv_home_best_prod_list"></div>
+							</div>
+							<!-- //베스트 상품 -->
+							</div>
+						</div>
+					<!-- 상품리스트 -->
+				</li>
+				<!-- //방송인기상품 -->
+			</ul>
+		</div>
+	</section>
+	<!-- //TV쇼핑 -->
+</section>

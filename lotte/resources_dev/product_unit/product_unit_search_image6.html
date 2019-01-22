@@ -1,0 +1,30 @@
+<div class="prod_search_container prd_srh_cnt6">
+<ol class="prod_search_06">
+	<!-- 큐레이션 상품 6개까지표시 -->
+	<li ng-repeat="item in products | limitTo: 6" class="list{{$index}}" ng-class="{big:$index%3==0, small:$index%3>0}">
+		<!-- 일반상품 : 큐레이션형 -->
+		<div>
+			<div class="unit_search_06">
+				<a ng-href="{{getProductInfoUrl(item, 'normal', ($index+1))}}" onclick="return false;" ng-click="productInfoClick(item)">
+					<!-- <div class="soldout" ng-show="item.sold_out">SOLD OUT</div> -->
+					<div class="thumb" style="background-image:url({{getProductImage(item)}})">
+						<span class="icon_ranking" ng-if="templateType=='imagerank'">{{$index+1}}</span>
+						<p class="flag" ng-if="$index!=0 && $index!=3">
+							<span class="flag depart" ng-show="item.flag=='D'||item.is_dept">롯데백화점</span>
+							<span class="flag etv" ng-if="item.is_tvhome && !item.is_dept">롯데홈쇼핑</span>
+							<span class="flag depart super" ng-if="item.is_super && !item.is_dept">롯데슈퍼</span>
+						</p>
+						<span class="favor" ng-if="$index==0 || $index==3">인기</span>
+					</div>
+					<div class="info">
+						<p class="pr_box">
+							<span class="price"><em>{{item.discounted_price|number}}</em>원<span ng-show="item.is_sale_promotion">~</span></span>
+						</p>
+					</div>
+				</a>
+			</div>
+		<!-- //일반상품 : 큐레이션형 -->
+		</div>
+	</li>
+</ol>
+</div>

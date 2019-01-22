@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+/* .main_popup{position:fixed;top:50%;left:50%;margin-top:-200px;margin-left:-150px;width:300px;z-index:9001} */
+.main_popup{position:fixed;top:0;left:0;margin:0;z-index:9001;}
+
+.main_popup.full{top:0px; right:0px; bottom:0px; left:0px;margin:0px;width:100%; height:100%;}
+.main_popup.full div.inner{height:-webkit-calc( 100% - 45px );height:-moz-calc( 100% - 45px );height:calc( 100% - 45px );}
+.main_popup.full div.cont{overflow:hidden; height:100%; text-align:center; width:100%; position:relative;}
+.main_popup.full div.img{overflow:hidden; height:100%; width:2000px; position:absolute; left:50%; margin-left:-1000px;}
+.main_popup.full div.inner div.img img{height:100%; width:auto; display:block; margin:0 auto;}
+
+html.main_popup_act .main_popup{display:block;}
+.main_popup .cont { background:#fff; }
+.main_popup .check{position:relative;overflow:hidden;background:#fff;box-sizing:border-box;-webkit-box-sizing:border-box; }
+.main_popup .check .today{color:#666;font-size:14px;display:inline-block;padding-top:12px;box-sizing:border-box;-webkit-box-sizing:border-box;}
+.main_popup .check .today input[type="checkbox"]{cursor:pointer;border:solid 1px #d1d1d1;background:#fff;width:20px;height:20px;appearance:none;-webkit-appearance:none;margin-right:2px;vertical-align:top;box-sizing:border-box;-webkit-box-sizing:border-box;}
+.main_popup .check button{color:#666;font-size:14px;display:inline-block;padding:12px 0;display:inline-block;box-sizing:border-box;-webkit-box-sizing:border-box;appearance:none;-webkit-appearance:none;background:none;border:0; text-align: center; width: 50%;}
+
+.main_popup .check label{color:#666;font-size:14px;display:inline-block;padding:0 20px;display:inline-block;box-sizing:border-box;-webkit-box-sizing:border-box;appearance:none;-webkit-appearance:none;background:none;border:0;}
+.main_popup .check .close{position:absolute; right:0; top:0;box-sizing:border-box;-webkit-box-sizing:border-box;font-size:14px;}
+.main_popup .check button.btn_close, .main_popup .check .close a{position:absolute;top:0;right:0;}
+.main_popup .check button.btn_close { border-left:1px solid #ededed; text-align:center; }
+.main_popup .check .close a{color:#666;padding:14px 20px 0 0;display:inline-block}
+/*
+.main_popup .check button.btn_close:before, .main_popup .check .close:before{content:"";display:inline-block;vertical-align:middle;width:12px;height:11px;background:url(http://image.lotte.com/lotte/mo2015/angular/side_cate.png) no-repeat -223px 0;background-size:300px 300px;margin:0 5px 2px 0;}
+*/
+
+.app_down{top:0;left:0;width:100%;height:100%;border:none;}
+.app_down .bg{position:absolute;width:100%;height:100%;left:0;top:0;background:#000;opacity:.6;}
+.app_down .btn_wrap{position:absolute;left:0;top:65%;z-index:2;text-align:center;width:100%;}
+.app_down .appdown{width:96%;margin-bottom:5px;}
+.app_down .layerclose{width:23%;}
+
+@media screen and (max-height:360px){
+  .main_popup{margin-top:-123px;margin-left:-100px;width:200px;}
+  .main_popup .check .today{font-size:11px;padding-top:14px;letter-spacing:-1px;}
+}
+
+@media screen and (min-height:814px) and (min-height:814px){
+  .main_popup{margin-top:-233px;margin-left:-210px;width:420px;}
+}
+/*20171212 55 -> 80*/
+.app_bnr_wrap{position:relative;height:80px;background-color:#05bdc9;}
+.app_bnr_wrap >.btn_appdown{display:block;overflow:hidden;text-align:center;height:80px;}
+.app_bnr_wrap >.btn_appdown img{width:auto;max-height:80px;vertical-align:middle}
+.app_bnr_wrap >.btn_close{position:absolute;overflow:hidden;top:0;right:0;width:36px;height:80px;border:0;background:transparent;text-indent:100%;white-space:nowrap;
+-webkit-appearance:none;
+-moz-appearance:none;
+appearance:none;
+outline-color:transparent;
+}
+.app_bnr_wrap >.btn_close:after{content:"";display:block;position:absolute;top:50%;right:10px;width:16px;height:15px;margin:-8px 0;background:transparent url(http://image.lotte.com/lotte/mobile/mobile_new/common/btn_spr_2016.png) 0 -44px no-repeat;background-size:125px 65px;}/* 2016.12.06 requests */
+
+/* 제휴채널 전면팝업 */
+.alliance_pop{position:fixed;top:0;left:0;width:100%;height:100%;text-align:center;z-index:1000}
+.alliance_pop .dimmed{background:#000;opacity:0.6;width:100%;height:100%}
+.alliance_pop .cont{display:block;position:absolute;top:30%;width:100%}
+.alliance_pop .cont .img_wrap{display:block;width:100%}
+.alliance_pop .cont .img_wrap >img{max-width:293px;text-align:center;}
+.alliance_pop .cont .btn_close{display:block;width:100%}
+.alliance_pop .cont .btn_close >img{width:45px}
+
+.dimmed2{background:#000;opacity:0.6;width:100%;height:100%;position:fixed;top:0;left:0}
+/* .main_popup .inner{position:absolute;z-index:10;display:none;} */
+.main_popup .inner{position:fixed;z-index:10;width:300px;left: 50%;top: 50%;transform:translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)}
+
+/*20180508 쿠폰다운로드팝업 */
+.main_popup .cType{background:#fff;height:43px;border-radius:0 0 4px 4px;-webkit-border-radius:0 0 4px 4px}
+.main_popup .cType button{width:50%;padding:11px 20px 13px;border-top:1px solid #e0e0e0;font-size:14px;color:#333}
+.main_popup .cType button:first-child{border-right:1px solid  #e0e0e0}
+.main_popup .cType button.btn_close:before{content:none} 

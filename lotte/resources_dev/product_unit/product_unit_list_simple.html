@@ -1,0 +1,20 @@
+<!-- 일반상품 : 심플형 -->
+<ol class="prod_simple_01">
+	<li ng-repeat="item in products track by $index">
+		<div class="unit_list_02">
+			<a ng-click="productInfoClick(item)">
+				<div class="soldout" ng-show="item.sold_out">SOLD OUT</div>
+				<div class="thumb">
+					<img ng-src="{{getProductImage(item)}}" alt="{{item.goods_nm}}" err-src />
+				</div>
+				<div class="info">
+					<span class="tit" ng-bind-html="item.goods_nm|titleToHtml"></span>
+					<p class="pr_box">
+						<span class="price"><em>{{item.discounted_price|number}}</em>원<span ng-show="item.is_sale_promotion">~</span></span>
+					</p>
+				</div>
+			</a>
+		</div>
+	</li>
+</ol>
+<!-- 일반상품 : 심플형 -->

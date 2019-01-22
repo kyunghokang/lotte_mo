@@ -1,0 +1,73 @@
+<section id="container" class="smartpay">
+	<!-- contents -->
+	<aside class="info"><img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/smartpay_intro.png" alt=""></aside>
+	<div class="btns">
+		<a href="#" ng-click="smartpaySubmit(0)"><img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/smartpay_btn_01.png" alt="롯데카드"></a
+		><a href="#" ng-click="smartpaySubmit(1)"><img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/smartpay_btn_02.png" alt="신한카드"></a
+		><a href="#" ng-click="smartpaySubmit(2)"><img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/smartpay_btn_03.png" alt="삼성카드"></a
+		><a href="#" ng-click="smartpaySubmit(3)"><img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/smartpay_btn_04.png" alt="현대카드"></a>
+	</div>
+	<div class="desc">
+		<p>카드정보는 해당 카드사에서 안전하게 처리되므로 안심하고 등록하셔도 됩니다.</p>
+		<ul>
+			<li>롯데카드, 신한카드, 삼성카드, 현대카드 등록이 가능합니다.</li>
+			<li>30만원 이상 결제는 신한카드, 현대카드만 가능합니다.</li>
+			<li>신용카드와 휴대폰의 소유자가 동일해야 합니다.</li>
+			<li>등록과 변경은 마이롯데에서 가능합니다.</li>
+		</ul>
+	</div>
+
+	<!-- //contents -->
+<form method="post" name="frm_send" id="frm_send" action="">
+	<input type="hidden" name="smart_pay_use_yn" value="" />
+	<input type="hidden" name="user_key"   value="{{smartpayUser_key}}" />
+	<input type="hidden" name="restype"   value="" />
+	<input type="hidden" name="res_type"   value="" />
+	<input type="hidden" name="req_type" value="{{reqType}}" />
+	<input type="hidden" name="apvl_desc"   value="" />
+	<input type="hidden" name="update_easn_yn"   value="N" />
+</form>
+<form id="SIMPLEPAYFORM" name="SIMPLEPAYFORM" action="/smpi/LCSMPIAgent01.jsp" method="post" target="X_ANSIM_FRAME">
+	<input type="hidden" name="order_amount" value="" /><!-- 1. [필수] 금액(숫자로만, 콤마, 소수점 불가) 원화 : 1000 = 1000원 , 미화: 1000 = 10.00 달러 -->
+	<input type="hidden" name="order_currency" value="410" /><!-- 2. [필수] 통화(410:원화, 840:미화) -->
+	<input type="hidden" name="order_cardname" value="{{order_cardname}}" /><!-- 3. [필수] 카드사명(수정불가) -->
+	<input type="hidden" name="order_no" value="" /><!-- 4. [옵션] 주문번호 -->
+	<input type="hidden" name="order_userid" value="" /><!-- 5. [옵션] 주문 고객 ID -->
+	<input type="hidden" name="order_business" value="1018152964" /><!-- 6. [필수] PG인 경우 : 하위몰 사업자번호 / 쇼핑몰 경우 : 쇼핑몰 사업자번호-->
+	<input type="hidden" name="order_mname" value="LOTTEDOTCOM" /><!-- 7. [필수] Display Name (인증창에 출력할 쇼핑몰명) -->
+	<input type="hidden" name="order_etc1" value="N" /><!-- 8. [옵션] 여분필드 1 -->
+	<input type="hidden" name="order_etc2" value="" /><!-- 9. [옵션] 여분필드 2-->
+		
+	<!-- 롯데카드 온라인 세이브 파라미터 추가 added by duke when 2009.07.23 -->	
+	<input type="hidden" name="apvl_seller_id_lt" value="1018152964" /><!-- 사업자 번호 -->
+	<input type="hidden" name="apvl_chain_no_lt" value="9212743785" /><!-- 가맹점 번호 (롯데카드 포인트몰 일반 가맹점 번호로 셋팅함.)-->
+	<input type="hidden" name="apvl_ss_useyn_lt" value="L" /><!-- 롯데카드 온라인 세이브 사용여부 -->
+	
+	<input type="hidden" name="MBRNO" value="{{mbrNo}}" /><!-- 1. [필수] 회원키) mbr_no -->
+	<input type="hidden" name="REGNO" value="LD00002" /><!-- 2. [필수] 가맹점번호  대표가맹점번호(LD00002) - 고정 -->
+	<input type="hidden" name="REQTYPE" value="{{reqType}}" /><!-- 3. [필수]거래구분  -->
+	<input type="hidden" name="USERKEY" value="{{smartpayUser_key}}" /><!-- 7. [필수] 간편결제회원키 smartpayUser_key -->
+	<input type="hidden" name="PAY" value="{{pay}}" /><!-- 20160622 박형윤 안심결제 (EACS), 간편결제(ESPS) -->
+</form>
+<form id="frm_card" name="frm_card" action="/dacom/xansim/m_hagent01.jsp" method="post" target="X_ANSIM_FRAME">
+	<input type="hidden" name="X_CARDTYPE" value="" />
+	<input type="hidden" name="X_AMOUNT" value="1000" />
+	<input type="hidden" name="X_MNAME" value="SmartReg" />
+	<input type="hidden" name="X_SP_CHAIN_CODE" value="" />
+</form>
+<iframe id="smartpayreg" name="smartpayreg" style="display:none;" src="" height=0></iframe>
+<div id="ANSIM_LAYER" style="display:none;z-index:999;">
+	<header><span class="tit">카스사명</span></header>
+	<!-- <div id="CLOSE_BTN" style="display:none;background-color:#393939;padding:8px 15px;text-align:right;border-bottom:1px solid #1C1C1C;height:30px;width:100%;">
+		<div style="float:right;">
+			<a href="#" ng-click="closeFrame()">
+				<img src="http://image.lotte.com/mobile/btn/btn_smartpay_ifr_close.png" alt="닫기">
+			</a>
+		</div>
+	</div> -->
+	<div class="branch_wrap">
+        <iframe id="X_ANSIM_FRAME" name="X_ANSIM_FRAME" style="display:none;border:none;background:#FFFFFF;height:330px; width:320px;" src="/dacom/xansim/iframe.jsp" ></iframe>
+    </div>
+    <div class="btn_wrap"><a ng-click="dimmedClose({target:'ansimLayer',callback:ansimclose()});"><button class="btn_close">닫기</button></a></div>
+</div>
+</section>

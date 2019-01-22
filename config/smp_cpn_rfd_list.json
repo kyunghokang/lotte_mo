@@ -1,0 +1,68 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplsmpCpnRfdList" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                ],
+                "dest" : "lotte/resources/<%= version %>/smp_cpn_rfd_list.template.js"
+            }
+        },
+
+        "concat" : {
+            "jssmpCpnRfdList" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/smartpick/smp_cpn_rfd_list.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/smp_cpn_rfd_list.js"
+            }
+        },
+
+        "uglify" : {
+            "jssmpCpnRfdList" : {
+                "src" : "lotte/resources/<%= version %>/smp_cpn_rfd_list.js",
+                "dest" : "lotte/resources/<%= version %>/smp_cpn_rfd_list.min.js"
+            },
+            "tplsmpCpnRfdList" : {
+                "src" : "lotte/resources/<%= version %>/smp_cpn_rfd_list.template.js",
+                "dest" : "lotte/resources/<%= version %>/smp_cpn_rfd_list.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "csssmpCpnRfdList" : {
+                "src" : [
+                	"lotte/resources_dev/mylotte/mylotte.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/smp_cpn_rfd_list.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleansmpCpnRfdList" : [
+                "lotte/resources/<%= version %>/smp_cpn_rfd_list.js",
+                "lotte/resources/<%= version %>/smp_cpn_rfd_list.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlsmpCpnRfdList" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "smartpick/smp_cpn_rfd_list.html" : "smartpick/smp_cpn_rfd_list_dev.html"
+                }
+            }
+        }
+    }
+}
+

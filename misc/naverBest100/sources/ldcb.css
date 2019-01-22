@@ -1,0 +1,60 @@
+#LotteDotComBest100{position:fixed;top:5px;left:5px;z-index:10000;}
+#LotteDotComBest100 a{display:inline-block;height:36px;line-height:36px;cursor:pointer;}
+#LotteDotComBest100 a.ldcb_logo{width:36px;background:url(https://simage.lotte.com/lotte/mo2017/common/header_spr_2017.png) no-repeat -200px -55px;background-size:250px 95px;}
+#LotteDotComBest100 .ldcb_btn{display:inline-block;margin-left:10px;vertical-align:top;}
+#LotteDotComBest100 .ldcb_btn a{position:relative;border-radius:5px;margin-right:5px;padding:0 15px;color:#fff;}
+#LotteDotComBest100 .ldcb_btn a.dc{background-color:#518ddd;}
+#LotteDotComBest100 .ldcb_btn a.lt10{background-color:orange;}
+#LotteDotComBest100 .ldcb_btn a.gt10{background-color:red;}
+#LotteDotComBest100 .ldcb_btn a.gt30{background-color:purple;}
+#LotteDotComBest100 .ldcb_btn a.nodc{background-color:grey;}
+#LotteDotComBest100 .ldcb_btn a:after{content:"";display:none;width:15px;height:15px;background-color:#fff;position:absolute;bottom:-22px;left:50%;
+	-webkit-transform:rotate(45deg) translate(-12px, 0);transform:rotate(45deg) translate(-12px, 0);pointer-events:none;}
+
+.ldcb_table{display:none;position:absolute;left:46px;top:42px;padding:10px;background-color:#fff;border-radius:5px;
+	box-shadow:3px 3px 5px 0 rgba(0,0,0,0.5);overflow:auto;max-height:280px;}
+.ldcb_table table{display:none;border-collapse:collapse;}
+.ldcb_table td, .ldcb_table th{border:1px solid #666;white-space:nowrap;padding:5px;text-align:center;}
+.ldcb_table th{background-color:#efefef;}
+.ldcb_table td.nm{width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left;}
+.ldcb_table td.r{text-align:right;}
+.ldcb_table td a{color:#000;}
+
+.ldcb_list_item{position:relative;}
+.ldcb_list_item .ldcb_li_box{display:none;position:absolute;top:0;left:0;right:0;bottom:20px;border:3px solid black;pointer-events:none;z-index:10;}
+.ldcb_list_item.dc .ldcb_li_box{border-color:#518ddd;}
+.ldcb_list_item.lt10 .ldcb_li_box{border-color:orange;}
+.ldcb_list_item.gt10 .ldcb_li_box{border-color:red;}
+.ldcb_list_item.gt30 .ldcb_li_box{border-color:purple;}
+.ldcb_list_item.nodc .ldcb_li_box{border-color:grey;}
+.ldcb_list_item .ldcb_li_prc{position:absolute;left:5px;right:5px;bottom:115px;padding:10px;background-color:rgba(0,0,0,0.75);border-radius:5px;color:#fff;font-size:12px;line-height:16px;}
+.ldcb_list_item .ldcb_li_prc span{display:inline-block;}
+.ldcb_list_item .ldcb_li_prc span:first-child{width:60px;}
+.ldcb_list_item .ldcb_li_prc span:last-child{width:70px;text-align:right;}
+.ldcb_list_item .ldcb_li_prc .sum{border-top:1px dashed #fff;margin-top:5px;padding-top:7px;font-size:14px;font-weight:bold;}
+.ldcb_list_item.nodc .ldcb_li_prc{display:none;}
+
+body.dc .ldcb_list_item.dc .ldcb_li_box,
+body.lt10 .ldcb_list_item.lt10 .ldcb_li_box,
+body.gt10 .ldcb_list_item.gt10 .ldcb_li_box,
+body.gt30 .ldcb_list_item.gt30 .ldcb_li_box,
+body.nodc .ldcb_list_item.nodc .ldcb_li_box{display:block;}
+
+body.dc .ldcb_table,
+body.lt10 .ldcb_table,
+body.gt10 .ldcb_table,
+body.gt30 .ldcb_table,
+body.nodc .ldcb_table{display:block;}
+body.dc .ldcb_table table.dc,
+body.lt10 .ldcb_table table.lt10,
+body.gt10 .ldcb_table table.gt10,
+body.gt30 .ldcb_table table.gt30,
+body.nodc .ldcb_table table.nodc{display:table;}
+body.gt30 .ldcb_table,
+body.nodc .ldcb_table{left:auto;right:0;}
+
+body.dc #LotteDotComBest100 .ldcb_btn a.dc:after,
+body.lt10 #LotteDotComBest100 .ldcb_btn a.lt10:after,
+body.gt10 #LotteDotComBest100 .ldcb_btn a.gt10:after,
+body.gt30 #LotteDotComBest100 .ldcb_btn a.gt30:after,
+body.nodc #LotteDotComBest100 .ldcb_btn a.nodc:after{display:block;}

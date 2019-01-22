@@ -1,0 +1,66 @@
+<section ng-show="contVisible" class="cont_minheight">
+   <share-pop></share-pop>
+    <!-- 인스턴트팝업: 확대안내 infopop-->
+    <div class="brieflyPop imgZoomPop infopop">
+       <div class="popCntWrap">
+            <div class="popCnt">
+                <div class="popImg"></div>
+                <div class="popTxt">
+                    자유로운 확대가<br />가능합니다
+                </div>
+            </div>           
+       </div>
+    </div>
+   
+   <div class="photo_con" ng-if="photolist.length > 0">
+        <!--<div class="photobox" roll-swipe-banner id="photo" rolling="false" width320="1" info="photolist" endfnc="moveEnd" getcontrol="getControl1">-->
+        <div class="photobox" id="photo">           
+            <ul class="swipeBox">
+                <li ng-repeat="item in photolist" ng-if="$index == sid_sub">
+                   <!--<div class="imgbox" style="background:url({{item.img_url}}) center center no-repeat;background-size:100%">-->
+				   <!-- v-com : 포토이미지 영역 -->
+                    <div class="imgbox2" id="imgbox_{{$index}}" ng-if="item.vdo_url == null || item.vdo_url == ''">
+                        <img ng-src="{{item.img_url}}" ng-pinch-zoom max-scale="4" ng-init="imgload($index)">
+                   </div>
+				   <!-- v-com : 동영상 -->
+					<div class="video_wrap prod_vdo" ng-if="item.vdo_url">
+						<video controls="controls" video-poster="{{::item.img_url | trustUrl}}" id="autoVideo1" playsinline="true" webkit-playsinline="true">
+							<source video-source="{{::item.vdo_url | trustUrl}}" type="video/mp4">
+						</video>
+						<div class="play_cover"></div>
+						<div class="stop_cover"></div>
+						<div class="click_cover"></div>
+						<a class="btn_move_volume btn_text">음소거</a>
+						<a class="btn_move_start">비디오 재생</a>
+						<a class="btn_move_stop btn_text">일시정지</a>
+						<a ng-if="!appObj.isApp" class="btn_move_full btn_text">전체화면보기</a>
+					</div>
+                </li>
+            </ul>
+            <div class="sp_arrow left" ng-click="movePhoto(-1)" ng-hide="dataset.length == 1 && photolist.length == 1"></div>
+            <div class="sp_arrow right" ng-click="movePhoto(1)" ng-hide="dataset.length == 1 && photolist.length == 1"></div>
+            <div class="count">{{sid_sub + 1}}/{{photolist.length}}</div>
+        </div>
+        <div class="commentBasicArea">
+            <span class="starScoreWrap">
+                <span class="starScoreCnt" style="width:{{sComment.crit_pnt|starScorePolicy:100}}%" ></span>
+            </span>
+            <span class="commentDate">{{sComment.reg_dm}}</span>
+            <p class="commentOption">{{sComment.opt_desc}}</p>
+			<a class="icSns reviewer" ng-if="sComment.rev_grp_gdas_yn == 'Y'">리뷰어</a> <!-- v-com : 리뷰어 -->
+            <a id="recomm_{{sComment.gdas_no}}" class="icSns likeit" ng-class="{on:sComment.ok}" ng-if="sComment.healthfood_yn != 'Y' && sComment.recomm_cnt != undefined" ng-click="recomm_click(sComment)"><span class="icon"></span> {{sComment.recomm_cnt}}</a>
+            <a class="icSns" ng-click="showSharePop({mgoods_nm:baseinfo.mgoods_nm,goodsNo:reqDetailParam.goods_no,prdComment:sComment.crit_con,shareImg:goods_img, healthfood_yn:baseinfo.healthfood_yn},'crit')">공유</a>
+            <p ng-if="sComment.healthfood_yn != 'Y'" ng-bind-html="sComment.crit_con" ></p>
+        </div>     
+        <div class="tmph"></div>             
+   </div>
+    <div class="bottomcont" ng-if="dataset.length > 0" ng-class="{barsize:barsize}">
+        <div class="photolistbox">
+            <ul class="listBox" style="width:{{dataset.length*77}}px">
+                <li ng-repeat="item in dataset" ng-click="setInfo({{$index}})" ng-class="{on:$index == sid, video:item.img_path_1_nm=='/vod/review/'}"> <!-- v-com : 버튼 -->                   
+                   <div class="imgbox" style="background:url({{'http://image.lotte.com' + item.img_path_1_nm + item.img_file_1_nm | splitimg : $index}}) center center no-repeat;background-size:100%"></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>

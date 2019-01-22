@@ -1,0 +1,816 @@
+<section class="srh_result_wrap cont_minheight" ng-show="contVisible"
+	ng-class="{
+		hideRelatedKeyword : uiStateObj.ageGenderSearched==false && (uiStateObj.relatedKeywordEnabled==false || uiStateObj.relatedKeywordNotEmpty==false),
+		andr_chrm : searchUISetting.isAndroidChrome
+	}">
+
+    <!-- 검색 결과 있음/-->
+    <section class="result_wrap" ng-if="!uiStateObj.emptyResult">
+
+        <!-- 추천검색어 /-->
+        <section recom-link class="recom_lnk" ng-if="srhResultData.recomLink && srhResultData.recomLink.label">
+            <h3>추천</h3>
+            <article><a ng-click="goRecomLink($event)">{{srhResultData.recomLink.label}}</a></article>
+        </section>
+        <!--/ 추천검색어 -->
+
+        <!-- 결과내키워드 /-->
+        <div class="reated_keyword" ng-if="uiStateObj.ageGenderSearched==false && uiStateObj.relatedKeywordNotEmpty && uiStateObj.relatedKeywordEnabled && uiStateObj.voiceSearch==false">
+        	<div ng-if="appObj.isIpad==true"><!-- iPad 스와이프 딜레이 버그 대응 -->
+	        	<div id="relatedKeywordSlider" ng-if="srhResultData.reatedKeyword.length>0" class="scroll_wrap ipad_slider">
+					<ul>
+	        			<li ng-repeat="item in srhResultData.reatedKeyword track by $index">
+	        				<a ng-click="addRequeryKeyword(item, 'Y')">{{item}}</a>
+	        			</li><li class="searchRelatedkw"><label for="rekeyword_pop" ng-click="showRelatedKWPopup()"><a>결과내 검색</a></label></li>
+	        		</ul>
+	        	</div>
+        	</div>
+        	<div ng-if="appObj.isIpad==false"><!-- 비iPad 슬라이더 적용 -->
+	        	<div id="relatedKeywordSlider" lotte-slider ng-if="srhResultData.reatedKeyword.length>0" class="scroll_wrap other_slider">
+					<ul>
+	        			<li ng-repeat="item in srhResultData.reatedKeyword track by $index">
+	        				<a ng-click="addRequeryKeyword(item, 'Y')">{{item}}</a>
+	        			</li><li class="searchRelatedkw"><label for="rekeyword_pop" ng-click="showRelatedKWPopup()"><a>결과내 검색</a></label></li>
+	        		</ul>
+	        	</div>
+        	</div>
+        </div>
+
+		<div ng-if="!uiStateObj.emptyKeyword && !uiStateObj.initFlag">
+			<div ng-if="uiStateObj.ageGenderSearched==false">
+		        <section search-filter-layer class="srh_terms_wrap">
+					<div class="left"><em>{{srhResultData.tCnt|number}}</em>개</div>
+		        	<div class="right">
+		        		<a ng-click="showHideSideSearch('SORT')"><span>{{uiStateObj.sortTypeArr[uiStateObj.sortTypeIdx].shortLabel}}</span></a>
+		        		<a ng-click="showHideSideSearch()" ng-class="{disabled:!uiStateObj.detailSearchDataLoaded}"><span>상세검색</span></a>
+		        		<a ng-click="changeFontSize()" class="fontSizeBtn"><span>가</span></a>
+		        		<a class="csSetting" ng-class="{on:csCustomSettings.customized}"
+		        			ng-click="customSearchPage('srhResult')"><span>맞춤설정</span></a>
+		        	</div>
+		        </section>
+		        <!--/ 검색 필터 -->
+
+		        <!-- 맞춤설정 선택값 -->
+		        <div class="customSettingApplied" ng-if="csCustomSettings.customized && uiStateObj.sortTypeIdx==0">
+		        	<div><em>맞춤설정</em> 검색결과 입니다.<a ng-click="csResetCustomSearch('m_dc_SrhResult_CLK_customizing_search_reset_Btn')">설정 초기화</a></div>
+		        </div>
+		        <!-- 맞춤설정 선택값 -->
+
+        		<!-- 오탈자 -->
+		        <div class="autoCorrection" ng-if="srhResultData.orgKeyword">
+		        	<div class="org">'<em>{{postParams.keyword}}</em>'(으)로 자동변환한 검색결과 입니다.</div>
+		        	<div class="cor"><a ng-click="searchByOriginalKeyword()">'<em>{{srhResultData.orgKeyword}}</em>'(으)로 검색결과 보기</a></div>
+		        </div>
+
+		        <!-- 성별연령 모아보기 -->
+				<div class="ageGndGrp ageGndSwipe"
+					ng-if="uiStateObj.voiceSearch==false && csCustomSettings.customized == false
+							&& srhResultData.ageGndrGrpLst && srhResultData.ageGndrGrpLst.length > 0">
+					<div lotte-slider>
+						<ul style="width:{{srhResultData.ageGndrGrpLst.length*84-5}}px">
+							<li ng-repeat="item in srhResultData.ageGndrGrpLst track by $index"
+								ng-class="{fm:item.gender=='F', ml:item.gender=='M'}"
+								ng-click="setAgeGender(item, $index, 1)"><span>{{item.age}}</span></li>
+						</ul>
+					</div>
+				</div>
+		        <!-- 성별연령 모아보기 -->
+	        </div>
+
+	        <!-- 성별연력 모아보기 펼침 -->
+	        <div class="ageGndGrp ageGndOpen" ng-if="uiStateObj.ageGenderSearched==true">
+		        <h4><em ng-if="postParams.keyword && postParams.keyword != ''">'{{srhResultData.keyword}}' </em>인기 상품 모아보기</h4>
+		        <div>남녀 세대별 인기상품을 모아보세요!</div>
+				<ul>
+					<li ng-repeat="item in srhResultData.ageGndrGrpLst track by $index"
+						ng-class="{fm:item.gender=='F', ml:item.gender=='M', dim:(item.age+','+item.gender)!=postParams.pop}"
+						ng-click="setAgeGender(item, $index, 2)"><span>{{item.age}}</span></li>
+				</ul>
+				<a ng-click="setAgeGender(null, 0, 3)" class="cancelBtn">취소</a>
+	        </div>
+	        <!-- 성별연력 모아보기 펼침 -->
+        </div>
+
+
+		<div class="listWrap" style="opacity:0;"><!-- opacity -- 템플릿 깜박임 방지 -->
+			<!-- 검색결과 상품 상단/-->
+			<div ng-controller="productCtrl" ng-show="srhResultData.tCnt" class="productControlWrap" xxx-ng-class="{noDealList:!checkDealListShow()}">
+
+				<!-- s: unit list area -->
+				<div class="unitWrap">
+					<div product-container
+                        template-type="search_list"
+                        templatetype="templateType1"
+                        total-count="srhResultData.tCnt"
+                        srh-keyword="srhResultData.keyword"
+                        products="srhResultData.listTop6"></div>
+	            </div>
+
+				<!-- 딜상품 리스트 - 스와이프형/-->
+	            <div class="deal_prdlst" ng-controller="lotteNgSwipeCtrl" ng-if="uiStateObj.ageGenderSearched==false && checkDealListShow()">
+	            	<div class="srh_subtitle">'{{srhResultData.keyword}}' 빅딜 인기 상품</div>
+	                <div class="deal_swipe_wrap" ng-controller="productCtrl">
+	                    <div product-container template-type="swipe_deal" products="prdDealList" tclick="m_DC_SrhResult_Clk_Bigdeal_idx"></div>
+	                </div>
+	            </div>
+				<!-- /딜상품 리스트 - 스와이프형-->
+
+				<!-- s: unit list area -->
+				<div class="unitWrap" ng-if="srhResultData.listMid2 && srhResultData.listMid2.length > 0">
+					<div product-container
+                        template-type="search_list"
+                        templatetype="templateType2"
+                        total-count="srhResultData.tCnt"
+                        srh-keyword="srhResultData.keyword"
+                        products="srhResultData.listMid2"></div>
+	            </div>
+
+	            <div ng-if="uiStateObj.ageGenderSearched==false && srhResultData.relatedKeyword && srhResultData.relatedKeyword.length > 0"
+	            	class="list_related_keyword">
+					<div class="srh_subtitle">'{{srhResultData.keyword}}'연관 검색어</div>
+					<ul>
+						<li ng-repeat="rekey in srhResultData.relatedKeyword"><a ng-click="goSearch(rekey.keyword, 'M_SEARCH_hash_related')">{{rekey.keyword}}</a></li>
+					</ul>
+				</div>
+
+	            <div ng-if="uiStateObj.ageGenderSearched==false && srhResultData.advtBnrLst && srhResultData.advtBnrLst.items && srhResultData.advtBnrLst.items.length > 0"
+	            	class="advBanner" ng-class="{marginTop:templateType1=='search_list'}">
+					<div class="srh_subtitle">'{{srhResultData.keyword}}' 볼만한 기획전</div>
+					<div class="advBanWrap">
+						<ul class="swiper" lotte-ng-list-swipe swipe-id="MixDealSwipe_0" swipe-list-model="aboutData.big_plan_bnr.items" swipe-responsive="true" swipe-responsive320="1" swipe-responsive640="2" swipe-responsive900="2" swipe-slide-item="true" swipe-max-ratio="0.2" swipe-min-distance="40">
+							<li ng-repeat="item in srhResultData.advtBnrLst.items track by $index">
+								<a ng-click="advBnrLink(item.linkUrl, $index)">
+									<span class="img"><img ng-src="{{item.imgUrl}}" /></span>
+									<span class="tit">{{item.title}}</span>
+									<span class="sbt">{{item.subTitle}}</span>
+								</a>
+							</li>
+						</ul>
+				        <ul class="indicator">
+				            <li ng-repeat="indicator in srhResultData.advtBnrLst.items" ng-class="{on: swipeIdx == $index}"
+				            	ng-hide="screenType>1 && $index%2==1" ng-if="!(srhResultData.advtBnrLst.items.length%2==1 && $index==srhResultData.advtBnrLst.items.length-1 && screenType > 1)"><span>{{$index}}</span></li>
+				        </ul>
+					</div>
+	            </div>
+
+				<div class="unitWrap" ng-if="srhResultData.listRest && srhResultData.listRest.length > 0">
+					<div product-container
+                        template-type="search_list"
+                        templatetype="templateType2"
+                        total-count="srhResultData.tCnt"
+                        srh-keyword="srhResultData.keyword"
+                        products="srhResultData.listRest"></div>
+	            </div>
+
+	            <!-- 20160711 실시간 맞춤 추천 상품 데이터 -->
+			    <section class="recommond_wrap" ng-if="uiStateObj.ageGenderSearched==false && srhResultData.prdLst.items.length < 5">
+			        <div class="title">
+			            <h3>이런상품 어떠세요?</h3>
+			        </div>
+			        <div class="recommond_swipe" ng-controller="lotteNgSwipeCtrl" recom-data>
+				        <ul lotte-ng-list-swipe swipe-slide-item="true" swipe-list-model="tpmlData.recommondData.items" swipe-disp-count="3" swipe-max-ratio="0.2" swipe-min-distance="40" >
+				            <li ng-repeat="item in tpmlData.recommondData.items track by $index">
+			                   <a ng-click="gotoLinkM('&_reco=M_search','Swp_Clk_reco_Prd{{$index + 1}}', 0, item)">
+			                       <div class="imageCon">
+			                           <img ng-src="{{item.img_url}}">
+			                       </div>
+			                       <div class="titleCon">
+			                           <div class="name">{{item.goods_nm}}</div>
+			                           <div class="t1"><b>{{item.sale_price | number}}</b>원<em ng-if="item.is_plan_prod" class="plan_prod_limit">~</em></div>
+			                       </div>
+			                   </a>
+				            </li>
+				        </ul>
+				        <section class="page">
+			               <div ng-repeat="item in swipeBullet" ng-class="{on:$index == (swipeIdx/3)}"><span>{{$index+1}}</span></div>
+			            </section>
+			           </div>
+			    </section>
+			    <!-- //실시간 맞춤 추천 상품 데이터 -->
+
+	        </div>
+            <!-- e: unit list area -->
+		</div>
+    </section>
+    <!--/ 검색 결과 있음 -->
+    <!-- 검색 결과 없음 /-->
+    <section class="empty_result_wrap" ng-if="uiStateObj.emptyResult && !uiStateObj.emptyKeyword" ng-class="{voice:uiStateObj.voiceSearch==true}">
+    	<div ng-if="uiStateObj.voiceSearch==false">
+	        <!-- 검색 결과 없음 20160708 문구변경 /-->
+	        <section class="empty_result" ng-if="srhResultData.keyword.indexOf('스마트픽') < 0 && postParams.reQuery.indexOf('스마트픽') < 0">
+	            <p class="result">'<span class="error_keyword">{{srhResultData.keyword}}</span>' <strong>검색 결과가 없습니다.</strong></p>
+	        </section>
+	        <!-- 20160118 스마트픽 배너 노출: 한상훈 -->
+	        <section class="empty_result smartpick" ng-if="srhResultData.keyword.indexOf('스마트픽') >= 0 || postParams.reQuery.indexOf('스마트픽') >= 0">
+	            <p class="result"><strong>검색된 상품이 없습니다.<br/><span class="error_keyword">스마트픽</span> 상품 찾으세요?</strong></p>
+				<div class="smartpick_banner">
+					<a ng-href="/product/m/product_list.do?curDispNo=5381401" ng-link3d-touch><img src="http://image.lotte.com/lotte/images/search/smartpick/20170609_search_bn.jpg" alt="아쉬울 땐 아-!쉽다 스마트픽 온라인 쇼핑이 아쉬울땐? 오프라인에서 쉽게! 스마트픽 하세요."></a>
+				</div>
+	        </section>
+	        <!-- 20160118 스마트픽 배너 노출: 한상훈 -->
+	        <!--/ 검색 결과 없음 -->
+
+	        <!-- 오탈자 /-->
+	        <section class="miss_keyword" ng-if="srhResultData.missKeyword && srhResultData.missKeyword.keyword && srhResultData.missKeyword.keyword != ''">
+	            <a ng-click="goSearch(srhResultData.missKeyword.keyword, 'M_SEARCH_FAIL')">
+	                <h3>혹시 이 단어를 찾으셨나요?</h3>
+	                <div class="result">{{srhResultData.missKeyword.keyword}}<span class="desc">(검색결과 {{srhResultData.missKeyword.cnt | number}}개)</span><span class="btn_result">결과보기</span></div>
+	            </a>
+	        </section>
+	        <!--/ 오탈자 -->
+			<!-- 20160711 실시간 맞춤 추천 상품 데이터 -->
+		    <section recom-data class="recommond_wrap">
+		        <div class="title">
+		            <h3>이런상품 어떠세요?</h3>
+		        </div>
+		        <div class="recommond_swipe" ng-controller="lotteNgSwipeCtrl">
+			        <ul lotte-ng-list-swipe swipe-slide-item="true" swipe-list-model="tpmlData.recommondData.items" swipe-disp-count="3" swipe-max-ratio="0.2" swipe-min-distance="40" >
+			            <li ng-repeat="item in tpmlData.recommondData.items track by $index">
+		                   <a ng-click="gotoLinkM('&_reco=M_search','Swp_Clk_reco_Prd{{$index + 1}}', 0, item)">
+		                       <div class="imageCon">
+		                           <img ng-src="{{item.img_url}}">
+		                       </div>
+		                       <div class="titleCon">
+		                           <div class="name">{{item.goods_nm}}</div>
+		                           <div class="t1"><b>{{item.sale_price | number}}</b>원<em ng-if="item.is_plan_prod" class="plan_prod_limit">~</em></div>
+		                       </div>
+		                   </a>
+			            </li>
+			        </ul>
+			        <section class="page">
+		               <div ng-repeat="item in swipeBullet" ng-class="{on:$index == (swipeIdx/3)}"><span>{{$index+1}}</span></div>
+		            </section>
+	            </div>
+		    </section>
+		    <!-- //실시간 맞춤 추천 상품 데이터 -->
+	        <!-- 급상승 검색어 /-->
+	        <section fav-lst class="favlst">
+	            <h3>인기검색어</h3>
+	            <ul>
+	                <li ng-repeat="item in srhResultData.favLst.items"><a ng-click="goSearch(item.keyword, tClickBase + 'search_fail_Clk_' + ($index+1))"><span class="no">{{$index + 1}}</span>{{item.keyword}}</a></li>
+	            </ul>
+	        </section>
+	        <!--/ 급상승 검색어 -->
+	    </div>
+	    <div ng-if="uiStateObj.voiceSearch" class="empty_voice_warp">
+	    	<div class="result_text">
+	    		<div class="keyword" ng-bind-html="srhResultData.keyword"></div>
+	    		<div>검색 결과가 없습니다.</div>
+	    		<div class="retry">다시 한번 말씀해 주세요</div>
+	    	</div>
+	    	<div class="result_button">
+	    		<a ng-click="openSpeechSearch()">다시 검색</a>
+	    	</div>
+            <!-- 20160711 실시간 맞춤 추천 상품 데이터 -->
+		    <section class="recommond_wrap">
+		        <div class="title">
+		            <h3>이런상품 어떠세요?</h3>
+		        </div>
+		        <div class="recommond_swipe" ng-controller="lotteNgSwipeCtrl" recom-data>
+			        <ul lotte-ng-list-swipe swipe-slide-item="true" swipe-list-model="tpmlData.recommondData.items" swipe-disp-count="3" swipe-max-ratio="0.2" swipe-min-distance="40" >
+			            <li ng-repeat="item in tpmlData.recommondData.items track by $index">
+		                   <a ng-click="gotoLinkM('&_reco=M_search','Swp_Clk_reco_Prd{{$index + 1}}', 0, item)">
+		                       <div class="imageCon">
+		                           <img ng-src="{{item.img_url}}">
+		                       </div>
+		                       <div class="titleCon">
+		                           <div class="name">{{item.goods_nm}}</div>
+		                           <div class="t1"><b>{{item.sale_price | number}}</b>원<em ng-if="item.is_plan_prod" class="plan_prod_limit">~</em></div>
+		                       </div>
+		                   </a>
+			            </li>
+			        </ul>
+			        <section class="page">
+		               <div ng-repeat="item in swipeBullet" ng-class="{on:$index == (swipeIdx/3)}"><span>{{$index+1}}</span></div>
+		            </section>
+		           </div>
+		    </section>
+		    <!-- //실시간 맞춤 추천 상품 데이터 -->
+	    </div>
+    </section>
+    <!--/ 검색 결과 없음 -->
+
+	<section class="noData" ng-if="!srhResultData.prdLst.tcnt && ! isShowLoading && !uiStateObj.emptyResult">
+		해당하는 상품이 없습니다.
+	</section>
+
+    <loading-bar></loading-bar>
+    <!-- 20160108 검색만족도 . 김응 -->
+    <div class="survey" ng-class="{bottom:srhResultData.tCnt < 30, noprod:survey_noprod_stat}"
+    	xxx-ng-if="uiStateObj.ageGenderSearched==false && !(uiStateObj.emptyResult && !uiStateObj.emptyKeyword) && uiStateObj.voiceSearch==false"
+    	ng-if="uiStateObj.ageGenderSearched==false && uiStateObj.voiceSearch==false">
+		<div class="surveyBox">
+			<div class="caseA" ng-class="{hide:survey_state != 0}">
+				<p class="title"><em>"</em><strong><span></span> <var></var></strong><em>" 검색결과 어떠셨어요?</em></p>
+				<div class="button">
+					<a class="no mg" ng-click="survey_check(1, '')">아쉬워요.</a>
+					<a class="good"  ng-click="survey_check(2, '좋아요!')">좋아요!</a>
+				</div>
+			</div>
+			<div class="caseB" ng-class="{hide:survey_state != 1}">
+				<div class="caseB1">
+					<p class="title">아쉬운 점을 롯데닷컴에 보내주세요!</p>
+					<div class="button">
+						<a class="no mg subbt" ng-click="survey_check(3, '찾는브랜드 없음')">찾는브랜드 없음</a>
+						<label class="no subbt" for="survey_noprd_ta" ng-click="survey_noprod()" xxx-ng-click="survey_check(4, '찾는상품 없음')">찾는상품 없음</label>
+						<a class="no mg subbt"  ng-click="survey_check(5, '관련없는 상품')">관련없는 상품</a>
+					</div>
+				</div>
+				<div class="caseB2">
+					<p class="title">찾으시는 상품을 보내주세요!</p>
+					<div class="text"><textarea class="survey_noprd_ta" placeholder="의견 하나하나 귀기울여 듣겠습니다."></textarea></div>
+					<div class="button">
+						<a class="no mg" ng-click="survey_check(4, '')">다음에 할게요</a>
+						<a class="good" ng-click="survey_noprod_send()">보내기</a>
+					</div>
+				</div>
+			</div>
+			<div class="caseC" ng-class="{hide:survey_state < 3}">
+				<img src="http://image.lotte.com/lotte/mobile/mobile_new/search/survey_icon1.png">
+				<p class="title2">고맙습니다!</p>
+				<p class="title3">소중한 의견에 감사드립니다.</p>
+			</div>
+			<div class="caseC type2" ng-class="{hide:survey_state != 2}">
+				<img src="http://image.lotte.com/lotte/mobile/mobile_new/search/survey_icon1.png">
+				<!--http://image.lotte.com/ellotte/mo2015/angular/common/survey_icon1-1.png-->
+				<p class="title2">고맙습니다!</p>
+				<p class="title3">언제나 노력하는 롯데닷컴이 되겠습니다.</p>
+			</div>
+        </div>
+    </div>
+
+    <!-- 상세검색 사이드바 -->
+    <div class="side_search_wrap" ng-class="{on:searchUISetting.isShowSideBar, sub:searchUISetting.isShowSub}" ng-if="uiStateObj.detailSearchDataLoaded">
+		<div class="ssw_header">
+			<div class="ssw_header1">
+				<div class="cropview">
+					<a class="ssw_title main" ng-click="hideSubSearch()">상세검색</a>
+					<span class="ssw_title sub">{{searchUISetting.title}}</span>
+				</div>
+				<a ng-click="closeSidebarBtnClk()" class="search2016_bg ssw_close">close</a>
+			</div>
+			<div class="ssw_header2">
+				<span>검색결과 <em>{{srhResultData.tCnt|number}}</em>개</span>
+				<a class="reset_all" ng-click="resetAllSearchTerm()"
+					ng-hide="searchUISetting.slide=='research'"
+					ng-class="checkResetDisabled()">초기화</a>
+			</div>
+		</div>
+		<div class="ssw_content">
+			<div class="ssw_slide main">
+				<ul>
+					<li>
+						<a ng-click="showSubSearch($event)" data-slide="category" data-label="카테고리">
+							<span class="title">카테고리</span>
+							<span class="detail">{{uiStateObj.selectedCategory.ctgName}}</span>
+						</a>
+					</li>
+					<li>
+						<a ng-click="showSubSearch($event)" data-slide="brand" data-label="브랜드">
+							<span class="title">브랜드</span>
+							<span class="detail brand"><em ng-repeat="item in postParams.brdNmArr track by $index">{{item}}</em></span>
+						</a>
+					</li>
+					<li>
+						<a ng-click="showSubSearch($event)" data-slide="sort" data-label="정렬">
+							<span class="title">정렬</span>
+							<span class="detail">{{uiStateObj.sortTypeArr[uiStateObj.sortTypeIdx].label}}</span>
+						</a>
+					</li>
+					<li>
+						<a ng-click="showSubSearch($event)" data-slide="benefit" data-label="혜택">
+							<span class="title">혜택</span>
+							<span class="detail benefit"><em ng-if="postParams.freeDeliYN=='Y'">무료배송</em><!-- <em ng-if="postParams.smpickYN=='Y'">스마트픽</em> --><em ng-if="postParams.freeInstYN=='Y'">무이자</em><em ng-if="postParams.pointYN=='Y'">포인트</em><em ng-if="postParams.pkgYN=='Y'">무료포장</em></span>
+						</a>
+					</li>
+					<li>
+						<a ng-click="showSubSearch($event)" data-slide="delivery" data-label="배송">
+							<span class="title">배송</span>
+							<span class="detail benefit"><em ng-if="postParams.smpickYN=='Y' || postParams.delSevenYN=='Y'">스마트픽</em><em ng-if="postParams.delTdarYN=='Y'">오늘도착</em><em ng-if="postParams.delQuickYN=='Y'">퀵배송</em></span>
+						</a>
+					</li>
+					<li>
+						<a ng-click="showSubSearch($event)" data-slide="color" data-label="컬러">
+							<span class="title">컬러</span>
+							<div class="detail color_list">
+								<ul>
+									<li ng-repeat="item in postParams.selectedColor | limitTo:2" class="c{{item}} i{{$index}}"><a></a></li><li ng-if="postParams.selectedColor.length>2" class="ellipsis">...</li>
+								</ul>
+							</div>
+						</a>
+					</li>
+					<li>
+						<label ng-click="showSubSearch($event)" data-slide="price" data-label="가격대" for="{{appObj.isTablet?'':'priceMinU'}}">
+							<span class="title">가격대</span>
+							<span class="detail price"><em class="min" ng-if="postParams.priceMinU">{{postParams.priceMinU|number}}</em><em class="max" ng-if="postParams.priceMaxU">{{postParams.priceMaxU|number}}</em></span>
+							<!-- !postParams.priceMaxUFocus && postParams.priceMaxU -->
+						</label>
+					</li>
+					<li>
+						<label ng-click="showSubSearch($event)" data-slide="research" data-label="결과 내 검색" for="{{appObj.isTablet?'':'rekeyword'}}">
+							<span class="title">결과 내 검색</span>
+							<!-- <span class="detail research"><em ng-repeat="item in postParams.reQuery track by $index">{{item}}</em><em ng-repeat="item in postParams.exQuery track by $index">!{{item}}</em></span> -->
+						</label>
+					</li>
+					<li>
+						<a ng-click="showSubSearch($event)" data-slide="store" data-label="매장">
+							<span class="title">매장</span>
+							<span class="detail store">
+								<em ng-if="postParams.deptYN=='Y'">백화점</em><em ng-if="postParams.tvhomeYN=='Y'">홈쇼핑</em><em ng-if="postParams.superYN=='Y'">슈퍼</em><em ng-if="postParams.brdstoreYN=='Y'">브랜드 스토어</em>
+							</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="ssw_slide sub">
+				<!-- 01 CATEGORY -->
+				<div class="ssws_wrap ssws_category" ng-if="searchUISetting.slide=='category'">
+					<!-- 1뎁스 대대카 -->
+					<ul class="cate_d1 openable" ng-if="srhResultData.ctgLst.items && srhResultData.ctgLst.items.length > 0">
+						<li class="nochild" ng-class="{selected:uiStateObj.selectedCategory.ctgName==''}">
+							<a ng-click="srhFilterCtgInit(true);searchTclick2016('S', 'category_CLK_ini_Btn')">전체 (총 {{srhResultData.ctgLst.items.length | number}}개 카테고리)</a>
+						</li>
+						<li ng-repeat="ctg1 in srhResultData.ctgLst.items track by $index"
+							ng-class="{selected:uiStateObj.selectedCategory.depth1 == ctg1.ctgNo}"
+							id="ctg_{{ctg1.ctgNo}}" data-name="{{ctg1.ctgName}}" data-no="{{ctg1.ctgNo}}" data-depth="0">
+							<a ng-click="categoryItemClick($event, ctg1)">{{ctg1.ctgName}}<em ng-if="ctg1.mall && ctg1.mall != ''"> ({{ctg1.mall}})</em></a>
+							<!-- 2뎁스 대카 -->
+							<ul class="cate_d2" ng-if="ctg1.subCtgLst && ctg1.subCtgLst.items && ctg1.subCtgLst.items.length > 0">
+								<li ng-repeat="ctg2 in ctg1.subCtgLst.items track by $index" id="ctg_{{ctg2.ctgNo}}"
+									data-name="{{ctg2.ctgName}}" data-no="{{ctg2.ctgNo}}" data-depth="1"
+									ng-class="{selected:uiStateObj.selectedCategory.depth2 == ctg2.ctgNo}">
+									<a ng-click="categoryItemClick($event, ctg2)">{{ctg2.ctgName}}<em ng-if="ctg2.mall && ctg2.mall != ''"> ({{ctg2.mall}})</em></a>
+									<!-- 3뎁스 중카 -->
+									<ul class="cate_d3" ng-if="ctg2.subCtgLst && ctg2.subCtgLst.items && ctg2.subCtgLst.items.length > 0">
+										<li ng-repeat="ctg3 in ctg2.subCtgLst.items track by $index" id="ctg_{{ctg3.ctgNo}}"
+											data-name="{{ctg3.ctgName}}" data-no="{{ctg3.ctgNo}}" data-depth="2"
+											ng-class="{selected:uiStateObj.selectedCategory.depth3 == ctg3.ctgNo, nocheck:uiStateObj.selectedCategory.depth4 != null}">
+											<a ng-click="categoryItemClick($event, ctg3)">{{ctg3.ctgName}}</a>
+											<!-- 4뎁스 소카 -->
+											<ul class="cate_d4" ng-if="ctg3.subCtgLst && ctg3.subCtgLst.items && ctg3.subCtgLst.items.length > 0">
+												<li ng-repeat="ctg4 in ctg3.subCtgLst.items track by $index" id="ctg_{{ctg4.ctgNo}}"
+													data-name="{{ctg4.ctgName}}" data-no="{{ctg4.ctgNo}}" data-depth="3"
+													ng-class="{selected:uiStateObj.selectedCategory.depth4 == ctg4.ctgNo}">
+													<a ng-click="categoryItemClick($event, ctg4)">{{ctg4.ctgName}}</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<ul class="cate_d1 openable" ng-if="!srhResultData.ctgLst.items || srhResultData.ctgLst.items.length == 0">
+						<li class="nochild">
+							<a>해당하는 카테고리가 없습니다.</a>
+						</li>
+					</ul>
+				</div>
+				<!-- 01 CATEGORY -->
+
+				<!-- 02 BRAND -->
+				<div class="ssws_wrap ssws_brand" ng-if="searchUISetting.slide=='brand'">
+					<ul ng-if="srhResultData.brdLst.items && srhResultData.brdLst.items.length > 0">
+						<li>
+							<a ng-click="srhFilterBrdInit(true)" ng-class="{selected:postParams.brdNoArr==undefined || postParams.brdNoArr.length==0}">전체</a>
+							<div class="sortopt">
+								<label for="brandsort1">상품수<input type="radio" id="brandsort1" name="brdSort" value="-cnt" ng-model="uiStateObj.srhFilterBrdSort" ng-change="srhFilterBrdSortChange('-cnt')" /></label>
+								<label for="brandsort2">가나다<input type="radio" id="brandsort2" name="brdSort" value="brdName" ng-model="uiStateObj.srhFilterBrdSort" ng-change="srhFilterBrdSortChange('brdName')" /></label>
+							</div>
+						</li>
+						<li ng-repeat="item in srhResultData.brdLstRender">
+							<label for="brand{{$index}}" ng-class="{selected:postParams.brdNoArr.indexOf(item.brdNo) != -1}">
+								{{item.brdName}}
+								<input type="checkbox" id="brand{{$index}}" name="brand{{$index}}" ng-click="srhChkBrdPost(item)" ng-model="item.checked">
+							</label>
+						</li>
+					</ul>
+					<ul ng-if="!srhResultData.brdLst.items || !srhResultData.brdLst.items.length">
+						<li><a>해당하는 브랜드가 없습니다.</a></li>
+					</ul>
+				</div>
+				<!-- 02 BRAND -->
+
+				<!-- 03 SORT -->
+				<div class="ssws_wrap ssws_sort" ng-if="searchUISetting.slide=='sort'">
+					<ul>
+						<ul>
+							<li ng-class="{on:uiStateObj.sortTypeIdx==$index}" ng-repeat="item in uiStateObj.sortTypeArr">
+								<label for="sortTypeDetail{{$index}}">
+									{{item.label}}
+									<input type="radio" id="sortTypeDetail{{$index}}" name="sortTypeDetail" value="{{item.value}}" ng-model="postParams.sort" ng-change="srhSortPost($index)" />
+								</label>
+							</li>
+						</ul>
+					</ul>
+					<div class="sort_guide" id="sortGuideButton">
+						<a ng-click="showHideSortGuide()">인기/판매순</a>
+					</div>
+				</div>
+				<!-- 03 SORT -->
+
+				<!-- 04 BENEFIT -->
+				<div class="ssws_wrap ssws_benefit" ng-if="searchUISetting.slide=='benefit'">
+					<ul>
+						<li><span class="instruct">복수 선택이 가능합니다.</span></li>
+						<li>
+							<label for="ssws_bendfit1">
+								무료배송
+								<input type="checkbox" id="ssws_bendfit1" name="ssws_bendfit1"
+										ng-model="postParams.freeDeliYN"
+										ng-change="srhDetailChange('freeDeliYN')"
+										ng-true-value="'Y'" ng-false-value="'N'">
+							</label>
+						</li>
+						<!-- <li>
+							<label for="ssws_bendfit2" ng-class="{disabled:!srhDetailData.srhTerms.smpick}">
+								스마트픽
+								<input type="checkbox" id="ssws_bendfit2" name="ssws_bendfit2" ng-click="srhFilterSmpickClick($event)"
+										ng-model="postParams.smpickYN"
+										ng-change="srhDetailChange('smpickYN')"
+										ng-true-value="'Y'" ng-false-value="'N'"
+										ng-disabled="!srhDetailData.srhTerms.smpick">
+							</label>
+						</li> -->
+						<li>
+							<label for="ssws_bendfit3">
+								무이자
+								<input type="checkbox" id="ssws_bendfit3" name="ssws_bendfit3"
+										ng-model="postParams.freeInstYN"
+										ng-change="srhDetailChange('freeInstYN')"
+										ng-true-value="'Y'" ng-false-value="'N'">
+							</label>
+						</li>
+						<li>
+							<label for="ssws_bendfit4">
+								포인트
+								<input type="checkbox" id="ssws_bendfit4" name="ssws_bendfit4"
+										ng-model="postParams.pointYN"
+										ng-change="srhDetailChange('pointYN')"
+										ng-true-value="'Y'" ng-false-value="'N'">
+							</label>
+						</li>
+						<li>
+							<label for="ssws_bendfit5">
+								무료포장
+								<input type="checkbox" id="ssws_bendfit5" name="ssws_bendfit5"
+										ng-model="postParams.pkgYN"
+										ng-change="srhDetailChange('pkgYN')"
+										ng-true-value="'Y'" ng-false-value="'N'">
+							</label>
+						</li>
+					</ul>
+				</div>
+				<!-- 04 BENEFIT -->
+
+				<!-- 05 DELIVERY -->
+				<div class="ssws_wrap ssws_delivery" ng-if="searchUISetting.slide=='delivery'">
+					<ul>
+						<li><span class="instruct">복수 선택이 가능합니다.</span></li>
+						<li ng-class="{opened:searchUISetting.smartPickSub, selected:postParams.smpickYN=='Y' || postParams.delSevenYN=='Y'}">
+							<a ng-click="showHideSmartPick()">스마트픽</a>
+							<ul ng-if="searchUISetting.smartPickSub">
+								<li ng-class="{opened:searchUISetting.smartPickList, selected:postParams.smpickYN=='Y', disabled:!srhDetailData.srhTerms.smpick}">
+									<a ng-click="showHideDepartmentPick($event)">백화점 픽업</a>
+									<ul class="branches" id="smartPickBranchList" ng-if="searchUISetting.smartPickList">
+										<li ng-class="{selected:postParams.smpickBranchNo==''}">
+											<a ng-click="smpickBranchChange({'name':'전체', 'branchNo':''})">전체</a>
+										</li>
+										<li ng-repeat="item in srhDetailData.srhTerms.smpickBranch" ng-class="{selected:postParams.smpickBranchNo==item.branchNo}">
+											<a ng-click="smpickBranchChange(item)">{{item.name}}</a>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<label for="ssws_delivery12" ng-class="{selected:postParams.delSevenYN=='Y', disabled:!srhDetailData.srhTerms.seven}">
+										세븐일레븐/하이마트 픽업
+										<input type="checkbox" id="ssws_delivery12" name="ssws_delivery12"
+												ng-model="postParams.delSevenYN"
+												ng-change="srhDetailChange('delSevenYN')"
+												ng-true-value="'Y'" ng-false-value="'N'"
+												ng-disabled="!srhDetailData.srhTerms.seven">
+									</label>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<label for="ssws_delivery2" ng-class="{selected:postParams.delTdarYN=='Y', disabled:!srhDetailData.srhTerms.tdar}">
+								오늘도착
+								<input type="checkbox" id="ssws_delivery2" name="ssws_delivery2"
+										ng-model="postParams.delTdarYN"
+										ng-change="srhDetailChange('delTdarYN')"
+										ng-true-value="'Y'" ng-false-value="'N'"
+										ng-disabled="!srhDetailData.srhTerms.tdar">
+							</label>
+						</li>
+						<li>
+							<label for="ssws_delivery3" ng-class="{selected:postParams.delQuickYN=='Y', disabled:!srhDetailData.srhTerms.quick}">
+								퀵배송
+								<input type="checkbox" id="ssws_delivery3" name="ssws_delivery3"
+										ng-model="postParams.delQuickYN"
+										ng-change="srhDetailChange('delQuickYN')"
+										ng-true-value="'Y'" ng-false-value="'N'"
+										ng-disabled="!srhDetailData.srhTerms.quick">
+							</label>
+						</li>
+					</ul>
+				</div>
+				<!-- 05 DELIVERY -->
+
+				<!-- 06 COLOR -->
+				<div class="ssws_wrap ssws_color" ng-if="searchUISetting.slide=='color'">
+					<div ng-if="srhDetailData.srhColorList && srhDetailData.srhColorList.length > 0">
+						<span class="instruct">복수 선택이 가능합니다.</span>
+						<div class="color_list">
+							<ul>
+								<li ng-repeat="item in srhDetailData.srhColorList" class="c{{item.colorCd}}" data-color-cd="{{item.colorCd}}"
+									ng-class="{on:item.selected}" ng-click="srhSelectColor(item)"><a></a></li>
+							</ul>
+						</div>
+					</div>
+					<span class="instruct" ng-if="!srhDetailData.srhColorList || srhDetailData.srhColorList.length == 0">해당하는 컬러가 없습니다.</span>
+				</div>
+				<!-- 06 COLOR -->
+
+				<!-- 07 PRICE -->
+				<div class="ssws_wrap ssws_price" ng-if="searchUISetting.slide=='price'">
+					<div class="price">
+						<span class="ipt ipt_min">
+							<input only-number="int" id="priceMinU" name="priceMinU" type="number" placeholder="최저가"
+							ng-model="postParams.priceMinUTemp"
+							ng-focus="postParams.priceMinUFocus = true"
+							ng-blur="postParams.priceMinUFocus = false; srhDetailPriceValidate('min');"
+							min="{{srhResultData.price.min}}"
+							max="{{postParams.priceMaxUTemp}}"
+							ng-keyup="srhDetailPriceMaxlen('min')"
+							/><!-- ng-keyup="srhDetailSearchActiveChk()" -->
+							<span class="number_format"
+								ng-if="!postParams.priceMinUFocus && postParams.priceMinUTemp"
+								ng-click="srhFilterDetailPriceIpt('priceMinU')">{{postParams.priceMinUTemp | number}}</span>
+						</span>
+						<span class="ipt ipt_max">
+							<input only-number="int" id="priceMaxU" name="priceMaxU" type="number" placeholder="최고가"
+							ng-model="postParams.priceMaxUTemp"
+							ng-focus="postParams.priceMaxUFocus = true"
+							ng-blur="postParams.priceMaxUFocus = false; srhDetailPriceValidate('max')"
+							min="{{postParams.priceMinUTemp}}"
+							max="{{srhResultData.price.max}}"
+							ng-keyup="srhDetailPriceMaxlen('max')"
+							/><!-- ng-keyup="srhDetailSearchActiveChk()" -->
+							<span class="number_format"
+								ng-if="!postParams.priceMaxUFocus && postParams.priceMaxUTemp"
+								ng-click="srhFilterDetailPriceIpt('priceMaxU')">{{postParams.priceMaxUTemp | number}}</span>
+						</span>
+					</div>
+					<div class="button">
+						<button class="btn_search" ng-click="srhDetailSearchPrice()">검색</button>
+					</div>
+				</div>
+				<!-- 07 PRICE -->
+
+				<!-- 08 RESEARCH -->
+				<div class="ssws_wrap ssws_research" ng-if="searchUISetting.slide=='research'">
+					<div class="re-search">
+						<div>
+							<button class="btn_storeSel layerBtn" ng-class="{on:searchUISetting.keywordIncExc}" ng-click="showKeywordLayer()"
+								ng-disabled="uiStateObj.relatedKeywordEnabled==false">{{searchUISetting.researchTypeArr[searchUISetting.researchIdx].label}}</button>
+							<div class="keyword_layer" ng-if="searchUISetting.keywordIncExc">
+								<ul>
+									<li ng-repeat="item in searchUISetting.researchTypeArr track by $index" ng-class="{on:searchUISetting.researchIdx==$index}"
+										ng-click="selectKeywordLayer($index)"><a>{{item.label}}</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="keyword">
+							<input type="search" autocomplete="off" autocapitalize="off" autocorrect="off" id="rekeyword" name="rekeyword"
+								placeholder="{{searchUISetting.researchIdx==0?'결과 내 검색':'결과 내 제외'}}"
+								ng-model="postParams.rekeyword" ng-keypress="srhDetailSearchKeypress($event)" ng-focus="srhDetailSearchFocus()"
+								ng-disabled="uiStateObj.relatedKeywordEnabled==false" /><!--  ng-keyup="srhDetailSearchActiveChk()" -->
+						</div>
+						<div class="button">
+							<button class="btn_search" ng-click="srhDetailSearchKeyword()" ng-disabled="uiStateObj.relatedKeywordEnabled==false">검색</button>
+						</div>
+					</div>
+				</div>
+				<!-- 08 RESEARCH -->
+
+				<!-- 09 STORE -->
+				<div class="ssws_wrap ssws_store" ng-if="searchUISetting.slide=='store'">
+					<ul>
+						<li><span class="instruct">복수 선택이 가능합니다.</span></li>
+						<li>
+							<label for="ssws_store1" ng-class="{disabled:!srhDetailData.srhTerms.dept}">
+								백화점<input type="checkbox" id="ssws_store1" name="ssws_store1"
+										ng-model="postParams.deptYN"
+										ng-change="srhDetailChange('deptYN')"
+										ng-true-value="'Y'"
+										ng-false-value="'N'"
+										ng-disabled="!srhDetailData.srhTerms.dept">
+							</label>
+						</li>
+						<li>
+							<label for="ssws_store2" ng-class="{disabled:!srhDetailData.srhTerms.tvhome}">
+								홈쇼핑<input type="checkbox" id="ssws_store2" name="ssws_store2"
+										ng-model="postParams.tvhomeYN"
+										ng-change="srhDetailChange('tvhomeYN')"
+										ng-true-value="'Y'"
+										ng-false-value="'N'"
+										ng-disabled="!srhDetailData.srhTerms.tvhome">
+							</label>
+						</li>
+						<li>
+							<label for="ssws_store3" ng-class="{disabled:!srhDetailData.srhTerms.super}">
+								슈퍼<input type="checkbox" id="ssws_store3" name="ssws_store3"
+										ng-model="postParams.superYN"
+										ng-change="srhDetailChange('superYN')"
+										ng-true-value="'Y'"
+										ng-false-value="'N'"
+										ng-disabled="!srhDetailData.srhTerms.super">
+							</label>
+						</li>
+						<li>
+							<label for="ssws_store4" ng-class="{disabled:!srhDetailData.srhTerms.brdstore}">
+								브랜드 스토어<input type="checkbox" id="ssws_store4" name="ssws_store4"
+										ng-model="postParams.brdstoreYN"
+										ng-change="srhDetailChange('brdstoreYN')"
+										ng-true-value="'Y'"
+										ng-false-value="'N'"
+										ng-disabled="!srhDetailData.srhTerms.brdstore">
+							</label>
+						</li>
+					</ul>
+				</div>
+				<!-- 09 STORE -->
+			</div>
+		</div>
+    </div>
+    <!-- 상세검색 사이드바 -->
+
+	<!-- 결과내 검색 레이어 -->
+    <div class="ly_research" ng-show="uiStateObj.relatedKwywordOpenFlag">
+    	<div class="popupWrap">
+    		<div class="popupHead"><label for="rekeyword_pop" ng-click="showRelatedKWPopup()">결과내 검색</label></div>
+    		<div class="popupBody">
+    			<input type="search" autocomplete="off" autocapitalize="off" autocorrect="off" id="rekeyword_pop" name="rekeyword_pop"
+					placeholder="{{searchUISetting.researchIdx==0?'결과 내 검색':'결과 내 제외'}}"
+					ng-model="postParams.rekeyword" ng-keypress="srhDetailSearchKeypress($event)" ng-keyup="srhDetailSearchKeyUp($event)" ng-focus="srhDetailSearchFocus()"
+					ng-disabled="uiStateObj.relatedKeywordEnabled==false" />
+    		</div>
+    		<div class="popupFoot">
+    			<button ng-click="hideRelatedKWPopup()">취소</button>
+    			<button class="btn_search" ng-click="srhDetailSearchKeyword('pop')" ng-disabled="uiStateObj.relatedKeywordEnabled==false || uiStateObj.relatedKeywordEntered==false">확인</button>
+    		</div>
+    	</div>
+    </div>
+	<!-- 결과내 검색 레이어 -->
+
+    <!-- 정렬 안내 레이어 -->
+    <div class="sortGuidePop" ng-show="tipShow">
+    	<div class="layerPop_dim" ng-click="showHideSortGuide()"></div>
+		<div class="layerPop" id="pop_sortGuide">
+			<div class="popWrap">
+				<p class="tlt">
+					인기순란?
+				</p>
+				<p class="desc">
+					검색정확도 및 판매실적 등을 점수화하여 상품을 정렬합니다.
+				</p>
+				<p class="tlt">
+					판매순이란?
+				</p>
+				<p class="desc">
+					최근 15일동안 많이 판매된 상품을 누적한 기적으로 상품을 정렬합니다.
+				</p>
+			</div>
+			<a class="btn_close" ng-click="showHideSortGuide()">닫기</a>
+		</div>
+	</div>
+    <!-- 정렬 안내 레이어 -->
+
+	<!-- 리뷰 팝업 레이어 -->
+	<div class="srhReviewPop" id="srhReviewPop" ng-if="reviewPopData">
+    	<div class="layerPop_dim" ng-click="hideReviewPop()"></div>
+    	<div class="layerPop">
+    		<div class="cont">
+	    		<div>
+	    			<div ng-if="reviewPopData.gdasNo!=0">
+		    			<div class="star">
+							<span class="starScoreWrap"><span class="starScoreCnt" style="width:{{ ((reviewPopData.gdasStfdVal*2)|ceil)*10 }}%"></span></span>
+		    			</div>
+		    			<div class="text" ng-bind-html="reviewPopData.gdasCont"></div>
+		    			<div class="img" ng-if="reviewPopData.imgUrl" style="background-image:url({{reviewPopData.imgUrl}})"></div>
+	    			</div>
+	    			<div ng-if="reviewPopData.gdasNo==0">
+			    		<div class="text notavail">
+			    			<div>유효하지 않은 상품평 입니다.</div>
+			    			<!-- <div ng-if="reviewPopData.goodsNo">다른 상품평을 보시겠습니까?</div> -->
+			    		</div>
+	    			</div>
+	    			<a class="review" ng-if="reviewPopData.gdasNo!=0" xxx-ng-if="reviewPopData.goodsNo" ng-click="gotoProductReview()">다른 상품평 보기</a>
+	    		</div>
+    		</div>
+    		<a class="close" ng-click="hideReviewPop()">닫기</a>
+    	</div>
+	</div>
+	<!-- 리뷰 팝업 레이어 -->
+</section>

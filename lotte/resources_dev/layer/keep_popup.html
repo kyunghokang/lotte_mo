@@ -1,0 +1,89 @@
+<div id="keep_popup" ng-if="pop_type > 0" class="keep_popup" ng-class="{open:pop_type > 0}">
+   	<div class="pop_wrap">
+   		<h3><img ng-src="http://image.lotte.com/lotte/mobile/common/keep_pop_tit.png" alt="#"></h3>
+   		<div class="coupon_area">
+   			<img ng-src="{{keepCoupon.img_url_addr}}" alt="쿠폰 할인 정보">
+   			<a ng-click="keepLinkUrl(keepCoupon.coupon_no,'couponDown','m_DC_PausePop_clk_Btn01')"><img ng-src="http://image.lotte.com/lotte/mobile/common/keep_pop_coupon_btn.jpg" alt="쿠폰 다운로드"></a>
+		</div>
+		<div class="cont_box" ng-if="pop_type == 1">
+			<h4><img ng-src="http://image.lotte.com/lotte/mobile/common/keep_pop_cont_tit01.jpg" alt="이 상품은 어떠세요?"></h4>
+			<div class="cont keepPrd">
+				<ul>
+					<li ng-repeat="item in keepPrdList">
+						<a ng-click="keepLinkUrl(item.goods_no,'prdList','m_DC_PausePop_clk_Prd{{$index+1}}')">
+							<div class="keepPrdImg">
+								<img ng-src="{{item.img_url_addr}}" alt="#">
+							</div>
+							<div class="txt_box">
+								<p class="text" ng-bind-html="item.goods_nm"></p>
+								<p class="price"><strong>{{item.price | number}}</strong>원<em ng-if="item.isPlanPrd">~</em></p>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="cont_box" ng-if="pop_type == 2">
+			<h4><img ng-src="http://image.lotte.com/lotte/mobile/common/keep_pop_cont_tit02.jpg" alt="추가 기획전"></h4>
+			<div class="cont keepSpdpList">
+				<ul>
+					<li ng-repeat="item in keepSpdpList">
+						<a ng-click="keepLinkUrl(item.spdp_no,'planList','m_DC_PausePop_clk_Ban{{$index+1}}')">
+							<div class="keepPrdImg">
+								<img ng-src="{{item.img_url_addr}}" alt="#">
+							</div>
+							<div class="txt_box">
+								<p class="tit"><strong>{{item.conts_tit_nm}}</strong></p>
+								<p class="text" ng-bind-html="item.conts_desc_cont"></p>
+							</div>							
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="cont_box" ng-if="pop_type == 3">
+			<h4><img ng-src="http://image.lotte.com/lotte/mobile/common/keep_pop_cont_tit03.jpg" alt="닷컴만의 추가혜택"></h4>
+			<div class="cont bnrType">
+				<a ng-click="keepLinkUrl(keepAddBanner.lnk_url_addr,'baseLink','m_DC_PausePop_clk_Ban03')"><img ng-src="{{keepAddBanner.img_url_addr}}" alt="bnrImg"></a>
+			</div>
+		</div>
+   		<a ng-click="keepPopClose()"><img ng-src="http://image.lotte.com/lotte/mobile/common/keep_pop_close.png" alt="#"></a>
+   	</div>
+	<div id="msg" style="display: none">&nbsp;</div>
+    <style>
+        .keep_popup{position:fixed;top:0;left:0;width:100%;height:100%;z-index:20000;background-color:rgba(0,0,0,.65);display:none}
+        .keep_popup.open{display:block}
+		.keep_popup .pop_wrap{width:320px;position:relative;top:50%;left:0;margin:0 auto;transform: translate(0,-50%)-ms-transform: translate(0, -50%);-webkit-transform: translate(0, -50%);}
+		.keep_popup .pop_wrap .cont_box,.keep_popup .pop_wrap .coupon_area{background:#fff;height:auto}
+		.keep_popup .pop_wrap .cont_box .cont{padding:15px 15px 20px;}
+		
+		.keep_popup .pop_wrap .cont_box .cont {overflow:hidden}
+		.keep_popup .pop_wrap .cont_box .cont  ul li{float:left;width:142px;overflow:hidden;background:#5d997f;}
+		.keep_popup .pop_wrap .cont_box .cont  ul li:first-child {margin-right:6px;background: #da98a4} 
+		.keep_popup .pop_wrap .cont_box .cont  ul li .keepPrdImg{width:142px;max-height: 121px;overflow:hidden}
+		.keep_popup .pop_wrap .cont_box .cont  ul li .txt_box{padding:8px 14px 0;color:#fff;letter-spacing: -0.7px;height:67px}
+		.keep_popup .pop_wrap .cont_box .cont  ul li .txt_box .tit strong{font-size:14px; height:18px;width: 114px;overflow: hidden;display:inline-block}
+		.keep_popup .pop_wrap .cont_box .cont  ul li .txt_box .text{font-size:13px;line-height:17px;height:34px;padding-top:3px;overflow:hidden}
+		
+		.keep_popup .pop_wrap .cont_box .cont.keepPrd{padding:15px 28px 8px;}
+		.keep_popup .pop_wrap .cont_box .cont.keepPrd  ul li{float:left;width:125px;overflow:hidden;background:#fff;}
+		.keep_popup .pop_wrap .cont_box .cont.keepPrd  ul li:first-child {margin-right:14px;} 
+		.keep_popup .pop_wrap .cont_box .cont.keepPrd  ul li .keepPrdImg{width:125px;max-height: 125px;overflow:hidden}
+		.keep_popup .pop_wrap .cont_box .cont.keepPrd  ul li .txt_box{color:#333;padding:0px 5px;font-size:14px;height:74px;line-height:18px;letter-spacing:-0.6px}
+		.keep_popup .pop_wrap .cont_box .cont.keepPrd  ul li .txt_box .text{padding-top:0;margin-bottom: 7px;overflow:hidden;font-size:14px;height: 34px;}
+		.keep_popup .pop_wrap .cont_box .cont.keepPrd  ul li .txt_box .price{height:20px;overflow:hidden}
+		.keep_popup .pop_wrap .cont_box .cont.keepPrd  ul li .txt_box .price strong{font-size:18px}
+		.keep_popup .pop_wrap .cont_box .cont.bnrType{padding:15px 15px 20px}
+		@media screen and (max-width:320px){
+			.keep_popup .pop_wrap{width:284px}
+			.keep_popup .pop_wrap .cont_box .cont  ul li{width: 124px;}
+			.keep_popup .pop_wrap .cont_box .cont  ul li:first-child{margin-right:5px}
+			.keep_popup .pop_wrap .cont_box .cont  ul li .keepPrdImg{width:124px;max-height:107px}
+			.keep_popup .pop_wrap .cont_box .cont  ul li .txt_box .tit strong{width:100%}
+			
+			.keep_popup .pop_wrap .cont_box .cont.keepPrd  ul li{width:108px}
+			.keep_popup .pop_wrap .cont_box .cont.keepPrd  ul li:first-child{margin-right:12px}
+			.keep_popup .pop_wrap .cont_box .cont.keepPrd  ul li .keepPrdImg{width:108px;max-height:108px}
+		}		
+	</style>
+</div>

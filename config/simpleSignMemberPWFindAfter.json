@@ -1,0 +1,72 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplfindPwAfter" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/login/find_ellotte_head.html",
+                    "lotte/resources_dev/login/find_pw_after_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberPWFindAfter.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsfindPwAfter" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [                    
+                    "lotte/resources_dev/login/find_pw_after.js",
+                    "lotte/resources_dev/login/find_ellotte.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberPWFindAfter.js"
+            }
+        },
+
+        "uglify" : {
+            "jsfindPwAfter" : {
+                "src" : "lotte/resources/<%= version %>/simpleSignMemberPWFindAfter.js",
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberPWFindAfter.min.js"
+            },
+            "tplfindPwAfter" : {
+                "src" : "lotte/resources/<%= version %>/simpleSignMemberPWFindAfter.template.js",
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberPWFindAfter.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssfindPwAfter" : {
+                "src" : [
+                    "lotte/resources_dev/login/find_ellotte.css",
+                    "lotte/resources_dev/login/login.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/simpleSignMemberPWFindAfter.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanfindPwAfter" : [
+                "lotte/resources/<%= version %>/simpleSignMemberPWFindAfter.js",
+                "lotte/resources/<%= version %>/simpleSignMemberPWFindAfter.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlfindPwAfter" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "login/simpleSignMemberPWFindAfter.html" : "login/simpleSignMemberPWFindAfter_dev.html"
+                }
+            }
+        }
+    }
+}
+

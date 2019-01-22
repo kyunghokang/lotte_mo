@@ -1,0 +1,319 @@
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>DC HTML List</title>
+<style>
+html,body {height:100%;font-family:'Malgun Gothic','맑은고딕';}
+body {padding:10px 0}
+form,h1,h2,h3,h4,h5,h6,ul,ol,dl,li,dt,dd,p {margin:0;padding:0;border: 0}
+ol,ul,li {list-style:none}
+h1 {padding:10px 0; font-size:18px; font-family:arial;}
+h2 {padding:30px 0 10px 0; font-size:16px; font-family:arial;}
+h1 span,h2 span {font-size:14px; color:#999; font-weight:normal;}
+a {color:#000;text-decoration:none;display:block}
+a:hover{color:#000} a.on{color:#000} a:focus{color:#E11837}
+table {border-collapse:collapse;border-spacing:0}
+caption {visibility:hidden;overflow:hidden;width:0;height:0;font-size:0;line-height:0}
+.rowT {width:100%; border-top:2px solid #333}
+.rowT th,
+.rowT td {padding:5px 3px 5px 10px;border:1px solid #ddd;font-size:12px;font-family:'Malgun Gothic','맑은고딕';text-align:left}
+.rowT thead th {background:#f0f0f0;padding:7px 3px 7px 5px;border-bottom:1px solid #ddd;font-size:13px;text-align:center}
+.rowT tr td{background-color:#fff;}/*ffe5e5*/
+.rowT tr td.work {color:#004eff;}
+.rowT tr.on td{background-color:#f4ffe5;}
+.rowT tr.done {display:none;}
+.rowT tr:hover td{background-color:#feffc9;}
+.rowT td:first-child {text-align:center; padding:7px 0;}
+
+ul.tab{height:40px;background:#f2f2f2;}
+ul.tab li {float:left;width:200px;text-align:center;line-height:40px;font-size:11px;}
+ul.tab li.ui-state-active{background:#ddd;border:1px solid #333;border-bottom:0;font-size:14px;color:#E11837;font-weight:bold}
+</style>
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script>
+$(function() {
+	$( "#tabs" ).tabs();
+});
+</script>
+</head>
+<body>
+<h1>LOTTE</h1>
+<div id="tabs">
+	<ul class="tab">
+		<li class="ui-state-active"><a href="#html">html List</a></li>
+		<li><a href="#guide">표준 html 가이드</a></li>
+		<li><a href="#angularJS">angularJS List</a></li>
+	</ul>
+	
+	<div id="guide" class="tab_con">
+		<table class="rowT Guide">
+			<colgroup>
+				<col width="50"><col width="200"><col width="250"><col width="150"><col width="100"><col width="400"><col width="*">
+			</colgroup>
+			<thead>
+			<tr>
+				<th>순번</th>
+				<th>Depth 1</th>
+				<th>Depth 2</th>
+				<th>작업자</th>
+				<th>작업완료일</th>
+				<th>링크</th>
+				<th>비고</th>
+			</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		<script>
+		$(function(){
+			var str,
+			data = [
+				 {confirm:"off",dep1:"공통 유닛",	dep2:"딜상품",work:"방기정",end:"",link:"/HTML/guide/unit_deal_01.html",fyi:""}
+				,{confirm:"off",dep1:"공통 유닛",	dep2:"일반상품 : 리스트형",work:"방기정",end:"",link:"/HTML/guide/unit_list_01.html",fyi:""}
+				,{confirm:"off",dep1:"공통 유닛",	dep2:"일반상품 : 작은 박스형",work:"방기정",end:"",link:"/HTML/guide/unit_list_02.html",fyi:""}
+				,{confirm:"off",dep1:"공통 유닛",	dep2:"일반상품 : 스와이프형",work:"방기정",end:"",link:"/HTML/guide/unit_list_03.html",fyi:""}
+				,{confirm:"off",dep1:"유닛 심플 1",	dep2:"",work:"방기정",end:"",link:"/HTML/guide/unit_01.html",fyi:""}
+				,{confirm:"off",dep1:"form 태그 표준",	dep2:"",work:"방기정",end:"",link:"/HTML/guide/form_01.html",fyi:"select, input(text, checkbox, radio), textarea, file upload"}
+				,{confirm:"off",dep1:"head_sub",	dep2:"",work:"방기정",end:"",link:"/HTML/guide/head_sub.html",fyi:""}
+				,{confirm:"off",dep1:"슬라이드 html",	dep2:"",work:"방기정",end:"",link:"/HTML/guide/slide_01.html",fyi:""}
+				
+				,{confirm:"off",dep1:"공통 유닛",	dep2:"ALL",work:"",end:"",link:"/HTML/guide/unit_all.html",fyi:""}
+			];
+			for(var i in data){
+				str += "<tr class='" + data[i].confirm + "'>"
+					 + "<td>" + (parseInt(i) + 1) + "</td>"
+					 + "<td>" + data[i].dep1 + "</td>"
+					 + "<td>" + data[i].dep2 + "</td>"
+					 + "<td class='work'>" + data[i].work + "</td>"
+					 + "<td>" + data[i].end + "</td>"
+					 + "<td><a href=" + data[i].link + " target='_blank'>" + data[i].link + "</a></td>"
+					 + "<td>" + data[i].fyi + "</td>"
+				 + "</tr>";
+			}
+			$("table.rowT.Guide tbody").html(str);
+		});
+		</script>
+	</div>
+	
+	<div id="angularJS" class="tab_con">
+		<table class="rowT angularjs">
+			<colgroup>
+				<col width="50"><col width="150"><col width="150"><col width="150"><col width="150"><col width="100"><col width="400"><col width="*">
+			</colgroup>
+			<thead>
+			<tr>
+				<th>순번</th>
+				<th>Depth 1</th>
+				<th>Depth 2</th>
+				<th>Depth 3</th>
+				<th>작업자</th>
+				<th>작업완료일</th>
+				<th>링크</th>
+				<th>비고</th>
+			</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		<script>
+		$(function(){
+			var str,
+			data = [
+				 {confirm:"on",dep1:"메인",dep2:"",dep3:"",work:"TFT",end:"",link:"/main/main_dev.html?udid=&v=&indexA=0&indexB=2",fyi:""}
+				,{confirm:"off",dep1:"중카테고리 list",dep2:"",dep3:"",work:"",end:"",link:"/category/cate_mid_list_dev.html",fyi:""}
+				,{confirm:"off",dep1:"검색결과페이지",dep2:"",dep3:"",work:"운영",end:"",link:"/search/search_list_dev.html",fyi:""}
+				,{confirm:"off",dep1:"기획전",dep2:"",dep3:"",work:"운영",end:"",link:"/product/product_list_dev.html",fyi:""}
+				,{confirm:"off",dep1:"KSHOP",dep2:"",dep3:"",work:"운영",end:"",link:"/mall/kshop_dev.html",fyi:""}
+				,{confirm:"off",dep1:"고객센터",dep2:"",dep3:"",work:"",end:"",link:"/custcenter/cscenter_main_dev.html",fyi:""}
+				,{confirm:"off",dep1:"고객센터",dep2:"상품문의",dep3:"",work:"",end:"",link:"/custcenter/product_question_dev.html",fyi:""}
+				,{confirm:"off",dep1:"고객센터",dep2:"FAQ",dep3:"",work:"",end:"",link:"/custcenter/faq_dev.html",fyi:""}
+				,{confirm:"off",dep1:"고객센터",dep2:"공지사항",dep3:"",work:"",end:"",link:"/custcenter/notice_dev.html",fyi:""}
+				,{confirm:"off",dep1:"로그인",dep2:"로그인 메인",dep3:"",work:"TFT",end:"",link:"/login/login_form_dev.html",fyi:""}
+				,{confirm:"off",dep1:"로그인",dep2:"로그인 실패",dep3:"",work:"TFT",end:"",link:"/login/login_block_dev.html",fyi:""}
+				,{confirm:"off",dep1:"로그인",dep2:"아이디 찾기",dep3:"",work:"TFT",end:"",link:"/login/find_id_dev.html",fyi:""}
+				,{confirm:"off",dep1:"로그인",dep2:"아이디 찾기 결과",dep3:"",work:"TFT",end:"",link:"/login/find_id_after_dev.html",fyi:""}
+				,{confirm:"off",dep1:"로그인",dep2:"비밀번호 찾기",dep3:"",work:"TFT",end:"",link:"/login/find_pw_dev.html",fyi:""}
+				,{confirm:"off",dep1:"로그인",dep2:"비밀번호 찾기 결과",dep3:"",work:"TFT",end:"",link:"/login/find_pw_after_dev.html",fyi:""}
+				,{confirm:"off",dep1:"로그인",dep2:"비밀번호 변경",dep3:"",work:"TFT",end:"",link:"/login/change_pw_dev.html",fyi:""}
+				,{confirm:"off",dep1:"로그인",dep2:"본인인증",dep3:"",work:"TFT",end:"",link:"/login/check_person_dev.html",fyi:""}
+				,{confirm:"off",dep1:"풋터",dep2:"회사소개",dep3:"",work:"TFT",end:"",link:"/agreement/company_dev.html",fyi:""}
+			];
+			for(var i in data){
+				str += "<tr class='" + data[i].confirm + "'>"
+					 + "<td>" + (parseInt(i) + 1) + "</td>"
+					 + "<td>" + data[i].dep1 + "</td>"
+					 + "<td>" + data[i].dep2 + "</td>"
+					 + "<td>" + data[i].dep3 + "</td>"
+					 + "<td class='work'>" + data[i].work + "</td>"
+					 + "<td>" + data[i].end + "</td>"
+					 + "<td><a href=" + data[i].link + " target='_blank'>" + data[i].link + "</a></td>"
+					 + "<td>" + data[i].fyi + "</td>"
+				 + "</tr>";
+			}
+			$("table.rowT.angularjs tbody").html(str);
+		});
+		</script>
+	</div>
+	
+	<div id="html" class="tab_con">
+		<table class="rowT html">
+			<colgroup>
+				<col width="50"><col width="150"><col width="150"><col width="150"><col width="150"><col width="100"><col width="300"><col width="*">
+			</colgroup>
+			<thead>
+			<tr>
+				<th>순번</th>
+				<th>Depth 1</th>
+				<th>Depth 2</th>
+				<th>Depth 3</th>
+				<th>작업자</th>
+				<th>작업완료일</th>
+				<th>링크</th>
+				<th>비고</th>
+			</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		<script>
+		$(function(){
+			var str,
+			data = [
+				 {confirm:"off",dep1:"텐바이텐",dep2:"메인",dep3:"",work:"고민환",end:"2015-08-11",link:"/HTML/tenbyten/tenbyten_main.html",fyi:""}
+				,{confirm:"off",dep1:"텐바이텐",dep2:"서브",dep3:"",work:"고민환",end:"2015-08-11",link:"/HTML/tenbyten/tenbyten_sub.html",fyi:""}	
+				,{confirm:"off",dep1:"브랜드샵",dep2:"메인",dep3:"",work:"고민환",end:"2015-08-21",link:"/HTML/brandshop/brandshop_main.html",fyi:""}
+				,{confirm:"off",dep1:"브랜드샵",dep2:"서브",dep3:"",work:"고민환",end:"2015-08-21",link:"/HTML/brandshop/brandshop_sub.html",fyi:""}		
+				,{confirm:"off",dep1:"구찌",dep2:"메인",dep3:"",work:"임수경",end:"2015-09-21",link:"/HTML/mall/gucci/gucci_main.html",fyi:""}
+				,{confirm:"off",dep1:"구찌",dep2:"서브",dep3:"",work:"임수경",end:"2015-09-25",link:"/HTML/mall/gucci/prod_list.html",fyi:""}
+				,{confirm:"off",dep1:"전문몰",dep2:"메인",dep3:"",work:"고민환",end:"2015-08-25",link:"/HTML/specialshop/specialshop_main.html",fyi:""}
+				,{confirm:"off",dep1:"전문몰",dep2:"서브",dep3:"",work:"고민환",end:"2015-08-25",link:"/HTML/specialshop/specialshop_sub.html",fyi:""}
+				,{confirm:"off",dep1:"전문몰",dep2:"도서",dep3:"",work:"고민환",end:"2015-08-25",link:"/HTML/specialshop/specialshop_books.html",fyi:""}
+				,{confirm:"off",dep1:"전문관",dep2:" VINE",dep3:"",work:"고민환",end:"2015-08-25",link:"/HTML/specialsHall/specialsHall.html",fyi:""}
+				,{confirm:"off",dep1:"최근 본 상품",dep2:"",dep3:"",work:"",end:"2015-08-31",link:"/HTML/mylotte/lately_product.html",fyi:""}
+				
+				,{confirm:"off",dep1:"위시리스트",dep2:"",dep3:"",work:"",end:"2015-08-31",link:"/HTML/mylotte/wish_list.html",fyi:""}
+				,{confirm:"off",dep1:"위시리스트",dep2:"데이터없음",dep3:"",work:"",end:"2015-08-31",link:"/HTML/mylotte/wish_list_no.html",fyi:""}
+				,{confirm:"off",dep1:"위시리스트",dep2:"상품을 선택해 주세요.",dep3:"",work:"",end:"2015-08-31",link:"/HTML/layout/alert.html",fyi:""}
+				
+				,{confirm:"off",dep1:"이벤트",dep2:"구매사은",dep3:"목록",work:"김세련",end:"2015-08-20",link:"/HTML/event/event_purchaseList.html",fyi:""}
+				,{confirm:"off",dep1:"이벤트",dep2:"구매사은",dep3:"상세",work:"김세련",end:"2015-08-20",link:"/HTML/event/event_purchaseApply.html",fyi:"디자인 컨펌 후 추가예정"}
+				,{confirm:"off",dep1:"이벤트",dep2:"구매사은",dep3:"자세히 보기(L)",work:"김세련",end:"2015-08-20",link:"/HTML/event/event_readMore.html",fyi:""}
+				,{confirm:"off",dep1:"이벤트",dep2:"상세",dep3:"",work:"",end:"2015-08-31",link:"/HTML/event/event_detail.html",fyi:""}
+				
+				,{confirm:"off",dep1:"기획전",dep2:"기획전상세-기본",dep3:"",work:"김세련",end:"2015-08-26",link:"/HTML/planshop/planshop_detail.html",fyi:""}
+				,{confirm:"off",dep1:"기획전",dep2:"기획전상세(전체보기 on)",dep3:"",work:"김세련",end:"2015-08-26",link:"/HTML/planshop/planshop_detail_on.html",fyi:""}
+				,{confirm:"off",dep1:"기획전",dep2:"기획전상세-서프라이즈",dep3:"",work:"김세련",end:"2015-08-26",link:"/HTML/planshop/planshop_detail_sp.html",fyi:""}
+				,{confirm:"off",dep1:"기획전",dep2:"기획전상세-슈퍼찬스",dep3:"",work:"김세련",end:"2015-08-26",link:"/HTML/planshop/planshop_detail_sc.html",fyi:""}
+				,{confirm:"off",dep1:"기획전",dep2:"기획전상세-스토리샵",dep3:"",work:"김세련",end:"2015-08-26",link:"/HTML/planshop/planshop_detail_ss.html",fyi:""}
+				,{confirm:"off",dep1:"TV쇼핑",dep2:"",dep3:"",work:"임수경",end:"2015-10-01",link:"/HTML/main/tvhome.html",fyi:""}
+				
+				,{confirm:"off",dep1:"상품상세",dep2:"구매정보",dep3:"",work:"하혜미",end:"2015-08-26",link:"/HTML/detail/detail.html",fyi:""}
+				,{confirm:"off",dep1:"상품상세",dep2:"",dep3:"",work:"하혜미",end:"2015-08-26",link:"/HTML/detail/detail_naverMap.html",fyi:""}
+				,{confirm:"off",dep1:"상품상세",dep2:"네이버 지도",dep3:"",work:"",end:"2015-08-26",link:"/HTML/detail/detail_naverMap.html",fyi:""}
+				,{confirm:"off",dep1:"상품상세",dep2:"바로주문",dep3:"",work:"",end:"2015-08-26",link:"/HTML/detail/detail_option.html",fyi:""}
+				,{confirm:"off",dep1:"상품상세",dep2:"말풍선",dep3:"",work:"",end:"2015-08-26",link:"/HTML/detail/detail_help.html",fyi:""}
+				,{confirm:"off",dep1:"상품상세",dep2:"달력",dep3:"",work:"",end:"2015-08-26",link:"/HTML/detail/detail_datepicker.html",fyi:""}
+				,{confirm:"off",dep1:"상품상세",dep2:"알림리스트",dep3:"",work:"",end:"2015-08-26",link:"/HTML/detail/detail_popup.html",fyi:""}
+				,{confirm:"off",dep1:"상품상세",dep2:"미리계산",dep3:"",work:"하혜미",end:"2015-08-26",link:"/HTML/detail/calcLayer.html",fyi:""}
+				,{confirm:"off",dep1:"상품상세",dep2:"레이아웃 개요 A타입",dep3:"",work:"하혜미",end:"2015-08-26",link:"/HTML/detail/detailInfoA.html",fyi:""}
+				,{confirm:"off",dep1:"상품상세",dep2:"레이아웃 개요 C타입",dep3:"",work:"하혜미",end:"2015-08-26",link:"/HTML/detail/detailInfoC.html",fyi:""}
+				,{confirm:"off",dep1:"상품상세",dep2:"상품상세정보 팝업",dep3:"",work:"하혜미",end:"2015-08-26",link:"/HTML/detail/popDetailInfo.html",fyi:""}
+				,{confirm:"off",dep1:"상품상세",dep2:"상품상세정보 확대보기",dep3:"",work:"하혜미",end:"2015-08-26",link:"/HTML/detail/prdZoom.html",fyi:""}
+				,{confirm:"off",dep1:"상품상세",dep2:"스마트픽 예약목록/방문예약/팝업",dep3:"픽업",work:"김기용",end:"2015-09-10",link:"/HTML/detail/smartpick.html",fyi:""}
+				,{confirm:"off",dep1:"상품상세",dep2:"스마트픽 vine",dep3:"픽업",work:"하혜미",end:"2015-09-04",link:"/HTML/detail/detail_vine.html",fyi:""}
+				,{confirm:"off",dep1:"상품상세",dep2:"구찌 1:1문의",dep3:"",work:"",end:"2015-09-03",link:"/HTML/detail/gucci_question.html",fyi:""}
+				
+				,{confirm:"off",dep1:"검색개선",dep2:"검색결과-기본(검색어O)",dep3:"",work:"김세련",end:"2015-08-28",link:"/HTML/search/search_result.html",fyi:""}
+				,{confirm:"off",dep1:"검색개선",dep2:"검색결과-기본(검색어O)",dep3:"브랜드 스윕",work:"김세련",end:"2015-08-28",link:"/HTML/search/search_result_swipe.html",fyi:""}
+				,{confirm:"off",dep1:"검색개선",dep2:"검색결과-검색어X",dep3:"",work:"김세련",end:"2015-08-28",link:"/HTML/search/search_result_no.html",fyi:""}
+				,{confirm:"off",dep1:"검색개선",dep2:"스마트픽 팝업",dep3:"",work:"김세련",end:"2015-08-28",link:"/HTML/search/search_result_sp.html",fyi:""}
+				
+				,{confirm:"off",dep1:"대카테고리매장",dep2:"",dep3:"",work:"하혜미",end:"2015-09-01",link:"/HTML/category/category_shop.html",fyi:""}
+				,{confirm:"off",dep1:"카테고리상품리스트",dep2:"",dep3:"",work:"하혜미",end:"2015-09-01",link:"/HTML/category/category_list.html",fyi:""}
+
+				,{confirm:"off",dep1:"장바구니",dep2:"장바구니-상품없음",dep3:"",work:"하혜미",end:"2015-09-01",link:"/HTML/cart/cart_nodata.html",fyi:""}
+				,{confirm:"off",dep1:"장바구니",dep2:"장바구니-상품있음",dep3:"",work:"임수경",end:"2015-09-04",link:"/HTML/cart/cart_list.html",fyi:""}
+
+				,{confirm:"off",dep1:"마이롯데",dep2:"메인",dep3:"",work:"임수경",end:"2015-09-10",link:"/HTML/mylotte/mylotte_main.html",fyi:""}
+				,{confirm:"off",dep1:"마이롯데",dep2:"스마트픽교환권정보",dep3:"리스트",work:"임수경",end:"2015-09-10",link:"/HTML/mylotte/mylotte_smp_list.html",fyi:""}
+				,{confirm:"off",dep1:"마이롯데",dep2:"스마트픽교환권정보",dep3:"상세",work:"임수경",end:"2015-09-10",link:"/HTML/mylotte/mylotte_smp_detail.html",fyi:""}
+				,{confirm:"off",dep1:"마이롯데",dep2:"스마트픽교환권정보",dep3:"전송",work:"임수경",end:"2015-09-11",link:"/HTML/mylotte/mylotte_smp_send.html",fyi:""}
+				,{confirm:"off",dep1:"마이롯데",dep2:"응모/당첨",dep3:"리스트",work:"임수경",end:"2015-09-11",link:"/HTML/mylotte/mylotte_event_list.html",fyi:""}
+				,{confirm:"off",dep1:"마이롯데",dep2:"응모/당첨",dep3:"결과",work:"임수경",end:"2015-09-11",link:"/HTML/mylotte/mylotte_event_detail.html",fyi:""}
+				,{confirm:"off",dep1:"마이롯데",dep2:"영수증상세",dep3:"",work:"임수경",end:"2015-09-12",link:"/HTML/mylotte/mylotte_receipt.html",fyi:""}
+				,{confirm:"off",dep1:"마이롯데",dep2:"스마트페이 신청/수정",dep3:"",work:"김기용",end:"2015-09-08",link:"/HTML/mylotte/smartpay.html",fyi:""}
+				,{confirm:"off",dep1:"마이롯데",dep2:"스마트페이 약관 팝업",dep3:"",work:"김기용",end:"2015-09-08",link:"/HTML/mylotte/popup_pay.html",fyi:"결제모듈 자체 팝업으로 처리하는 것인지 확인 필요"}
+				,{confirm:"off",dep1:"마이롯데",dep2:"회원정보 변경 팝업",dep3:"",work:"김기용",end:"2015-09-08",link:"/HTML/mylotte/popup_mem_edit.html",fyi:""}
+				,{confirm:"off",dep1:"마이롯데",dep2:"공유하기",dep3:"",work:"",end:"2015-09-08",link:"/HTML/sns/sns.html",fyi:""}
+				,{confirm:"off",dep1:"마이롯데",dep2:"주문/배송조회",dep3:"리스트",work:"임수경",end:"2015-09-16",link:"/HTML/mylotte/mylotte_myorder.html",fyi:""}
+				,{confirm:"off",dep1:"마이롯데",dep2:"주문/배송조회",dep3:"상세보기",work:"임수경",end:"2015-09-20",link:"/HTML/mylotte/mylotte_myorder_detail.html",fyi:""}
+				
+				,{confirm:"off",dep1:"마이롯데",dep2:"주문/배송조회",dep3:"L포인트 팝업",work:"",end:"2015-11-23",link:"/HTML/mylotte/mylotte_myorder_pop.html",fyi:""}
+				
+				,{confirm:"off",dep1:"마이롯데",dep2:"알림리스트",dep3:"상세보기",work:"임수경",end:"2015-09-25",link:"/HTML/planshop/m/smartAlarmList.html",fyi:""}
+
+				,{confirm:"off",dep1:"고객센터",dep2:"",dep3:"",work:"",end:"2015-09-08",link:"/HTML/custcenter/custcenter_main.html",fyi:""}
+				,{confirm:"off",dep1:"고객센터",dep2:"FAQ",dep3:"",work:"",end:"2015-09-08",link:"/HTML/custcenter/faq.html",fyi:""}
+				,{confirm:"off",dep1:"고객센터",dep2:"공지사항",dep3:"",work:"",end:"2015-09-08",link:"/HTML/custcenter/notice.html",fyi:""}
+				,{confirm:"off",dep1:"고객센터",dep2:"상품문의",dep3:"",work:"",end:"2015-09-08",link:"/HTML/custcenter/product_question.html",fyi:""}
+				,{confirm:"off",dep1:"고객센터",dep2:"주문내역조회팝업",dep3:"",work:"",end:"2015-09-08",link:"/HTML/custcenter/product_question_pop.html",fyi:""}
+				,{confirm:"off",dep1:"고객센터",dep2:"주문내역없음",dep3:"",work:"",end:"2015-09-08",link:"/HTML/custcenter/product_question_pop_nodata.html",fyi:""}
+				,{confirm:"off",dep1:"고객센터",dep2:"문의리스트",dep3:"",work:"",end:"2015-09-08",link:"/HTML/custcenter/question_list.html",fyi:""}
+				,{confirm:"off",dep1:"고객센터",dep2:"1:1문의 내역없음",dep3:"",work:"김기용",end:"2015-10-08",link:"/HTML/custcenter/product_question_nodata.html",fyi:""}
+				,{confirm:"off",dep1:"고객센터",dep2:"오류신고",dep3:"",work:"",end:"2015-09-14",link:"/HTML/custcenter/dotcomStaffBoard.html",fyi:""}
+				
+				,{confirm:"off",dep1:"주문",dep2:"주문완료",dep3:"",work:"",end:"2015-09-09",link:"/HTML/order/order_complete.html",fyi:""}
+				
+				,{confirm:"off",dep1:"마이페이지",dep2:"포인트",dep3:"L.point,L-money,보관금",work:"",end:"2015-09-09",link:"/HTML/mylotte/point.html",fyi:""}
+				,{confirm:"off",dep1:"마이페이지",dep2:"포인트",dep3:"보관금 환불",work:"",end:"2015-09-09",link:"/HTML/mylotte/point_refund.html",fyi:""}
+				,{confirm:"off",dep1:"마이페이지",dep2:"쿠폰내역",dep3:"",work:"",end:"2015-09-09",link:"/HTML/mylotte/coupon_list.html",fyi:""}
+				,{confirm:"off",dep1:"마이페이지",dep2:"페이퍼쿠폰등록",dep3:"",work:"",end:"2015-09-09",link:"/HTML/mylotte/coupon_write.html",fyi:""}
+				,{confirm:"off",dep1:"마이페이지",dep2:"클로버 내역",dep3:"",work:"",end:"2015-09-09",link:"/HTML/mylotte/clover_list.html",fyi:""}
+				,{confirm:"off",dep1:"마이페이지",dep2:"상품문의내역",dep3:"리스트",work:"김기용",end:"2015-09-10",link:"/HTML/mylotte/prod_inquiry_list.html",fyi:""}
+				,{confirm:"off",dep1:"마이페이지",dep2:"상품평관리",dep3:"작성가능 리스트",work:"김기용",end:"2015-09-10",link:"/HTML/mylotte/prod_eval_list.html",fyi:""}
+				,{confirm:"off",dep1:"마이페이지",dep2:"상품평관리",dep3:"작성한 리스트",work:"김기용",end:"2015-09-11",link:"/HTML/mylotte/prod_eval_list_written.html",fyi:""}
+				,{confirm:"off",dep1:"마이페이지",dep2:"상품평관리",dep3:"쓰기/수정/Photo/SNS",work:"김기용",end:"2015-09-14",link:"/HTML/mylotte/prod_eval_write.html",fyi:""}
+				
+				,{confirm:"done",dep1:"마이페이지",dep2:"주문 취소/변경/반품 리스트",dep3:"",work:"김기용",end:"2015-09-16",link:"/HTML/mylotte/purchase/m/purchase_list.html",fyi:""}
+				,{confirm:"done",dep1:"마이페이지",dep2:"주문 취소/변경/반품 리스트 No Data",dep3:"",work:"김기용",end:"2015-09-16",link:"/HTML/mylotte/purchase/m/purchase_list_nodata.html",fyi:""}
+				,{confirm:"done",dep1:"마이페이지",dep2:"주문 취소",dep3:"상세",work:"임수경",end:"2015-09-18",link:"/HTML/mylotte/purchase/m/order_cancel_form.html",fyi:""}
+				,{confirm:"done",dep1:"마이페이지",dep2:"주문 반품접수",dep3:"Step1",work:"김기용",end:"2015-09-17",link:"/HTML/mylotte/purchase/m/order_return_reg_step1.html",fyi:""}
+				,{confirm:"done",dep1:"마이페이지",dep2:"주문 반품접수",dep3:"Step2",work:"김기용",end:"2015-09-18",link:"/HTML/mylotte/purchase/m/order_return_reg_step2.html",fyi:""}
+				,{confirm:"done",dep1:"마이페이지",dep2:"주문 반품접수",dep3:"Step3",work:"김기용",end:"2015-09-18",link:"/HTML/mylotte/purchase/m/order_return_reg_step3.html",fyi:""}
+				,{confirm:"done",dep1:"마이페이지",dep2:"주문 교환접수",dep3:"Step1",work:"김기용",end:"2015-09-20",link:"/HTML/mylotte/purchase/m/order_change_reg_step1.html",fyi:""}
+				,{confirm:"done",dep1:"마이페이지",dep2:"주문 교환접수",dep3:"Step2",work:"김기용",end:"2015-09-20",link:"/HTML/mylotte/purchase/m/order_change_reg_step2.html",fyi:""}
+				,{confirm:"done",dep1:"마이페이지",dep2:"주문 교환접수",dep3:"Step3",work:"김기용",end:"2015-09-20",link:"/HTML/mylotte/purchase/m/order_change_reg_step3.html",fyi:""}
+
+				,{confirm:"off",dep1:"로그인",dep2:"로그인 메인",dep3:"",work:"",end:"",link:"/HTML/login/login_form.html",fyi:"로그인 이하 칼라톤 수정 필요"}
+				,{confirm:"off",dep1:"로그인",dep2:"로그인 실패",dep3:"",work:"",end:"",link:"/HTML/login/login_block.html",fyi:""}
+				,{confirm:"off",dep1:"로그인",dep2:"아이디 찾기",dep3:"",work:"",end:"",link:"/HTML/login/find_id.html",fyi:""}
+				,{confirm:"off",dep1:"로그인",dep2:"아이디 찾기 결과",dep3:"",work:"",end:"",link:"/HTML/login/find_id_after.html",fyi:""}
+				,{confirm:"off",dep1:"로그인",dep2:"비밀번호 찾기",dep3:"",work:"",end:"",link:"/HTML/login/find_pw.html",fyi:""}
+				,{confirm:"off",dep1:"로그인",dep2:"비밀번호 찾기 결과",dep3:"",work:"",end:"",link:"/HTML/login/find_pw_after.html",fyi:""}
+				,{confirm:"off",dep1:"로그인",dep2:"비밀번호 변경",dep3:"",work:"",end:"",link:"/HTML/login/change_pw.html",fyi:""}
+				,{confirm:"off",dep1:"로그인",dep2:"본인인증",dep3:"",work:"",end:"",link:"/HTML/login/check_person.html",fyi:"이미지 수정 작업 필요"}
+				,{confirm:"off",dep1:"로그인",dep2:"본인인증1",dep3:"",work:"",end:"",link:"/HTML/login/check_person1.html",fyi:""}
+				,{confirm:"off",dep1:"로그인",dep2:"본인인증2",dep3:"",work:"",end:"",link:"/HTML/login/check_person2.html",fyi:""}
+				
+			];
+			for(var i in data){
+				str += "<tr class='" + data[i].confirm + "'>"
+					 + "<td>" + (parseInt(i) + 1) + "</td>"
+					 + "<td>" + data[i].dep1 + "</td>"
+					 + "<td>" + data[i].dep2 + "</td>"
+					 + "<td>" + data[i].dep3 + "</td>"
+					 + "<td class='work'>" + data[i].work + "</td>"
+					 + "<td>" + data[i].end + "</td>"
+					 + "<td><a href=" + data[i].link + " target='_blank'>" + data[i].link + "</a></td>"
+					 + "<td>" + data[i].fyi + "</td>"
+				 + "</tr>";
+			}
+			$("table.rowT.html tbody").html(str);
+		});
+		</script>
+	</div>
+</div>
+</body>
+</html>

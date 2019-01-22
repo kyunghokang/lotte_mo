@@ -1,0 +1,55 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplSktCoupon" : {
+                "options": {
+                    "prefix":"/",
+                    "module" : "app"
+                },
+                "src" : [
+                    "lotte/resources_dev/event/sktCoupon.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/sktCoupon.template.js"
+            }
+        },
+        "concat" : {
+            "jsSktCoupon" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/event/sktCoupon.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/sktCoupon.js"
+            }
+        },
+
+        "uglify" : {
+            "jsSktCoupon" : {
+                "src" : "lotte/resources/<%= version %>/sktCoupon.js",
+                "dest" : "lotte/resources/<%= version %>/sktCoupon.min.js"
+            },
+            "tplSktCoupon" : {
+                "src" : "lotte/resources/<%= version %>/sktCoupon.template.js",
+                "dest" : "lotte/resources/<%= version %>/sktCoupon.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssSktCoupon" : {
+                "src" : [
+                    "lotte/resources_dev/event/sktCoupon.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/sktCoupon.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanSktCoupon" : [
+                "lotte/resources/<%= version %>/sktCoupon.js",
+                "lotte/resources/<%= version %>/sktCoupon.template.js"
+            ]
+        }
+    }
+}
+

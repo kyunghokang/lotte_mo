@@ -1,0 +1,131 @@
+<section id="container" class="smart_alarm">
+	<ul class="tab" ng-class="{app:app}">
+		<li ng-class="{on: tabControl == 'first', new:startledNewAlarm}" ng-show="app" ng-click="switchTab('first');sendTclick('m_DC_Alram_Clk_tab_1')"><!-- D: app only -->
+			<a href="#" name="alarmTab1"><span>깜짝알림</span></a>
+		</li>
+		<li ng-class="{on: tabControl == 'second', new:smartNewAlarm}" ng-click="switchTab('second');sendTclick('m_DC_Alram_Clk_tab_2')">
+			<a href="#" name="alarmTab2"><span>스마트알림</span></a>
+		</li>
+		<li ng-class="{on: tabControl == 'third'}" ng-click="switchTab('third');sendTclick('m_DC_Alram_Clk_tab_3')">
+			<a href="#" name="alarmTab3"><span>쇼핑사서함</span></a>
+		</li>
+	</ul>
+	
+	<!-- 깜짝알림 app only -->
+	<!-- D:20161005 아이콘형태는 class로 구분
+		pushIcon100 여성		
+		pushIcon101 캐주얼
+		pushIcon102 남성
+		pushIcon103 화장품
+		pushIcon104 유아동
+		pushIcon105 스포츠
+		pushIcon106 패션잡화
+		pushIcon107 롯데백화점
+		pushIcon108 생활
+		pushIcon109 홈쇼핑
+		pushIcon110 식품
+		pushIcon111 이벤트
+		pushIcon113 비밀매장
+		pushIcon114 빅딜
+		pushIcon115 쿠폰
+		pushIcon117 GIFT
+		pushIcon119 구매사은
+		pushIcon120 포인트
+		pushIcon121 위시/장바구니 
+		pushIcon122 서프라이즈
+		pushIcon123 플래티넘
+		pushIcon124 참좋은혜택
+		pushIcon125 장보기
+		pushIcon124 랭킹존
+		pushIcon00010 재입고
+		pushIcon0011 테스트 상품
+		pushIcon0001 위시리스트 품정임박상품알림
+		pushIcon0002 위시리스트 할인상품알림
+	 	pushIcon0003 위시리스트 담은상품알림
+	 	pushIcon0004 장바구니 담은상품알림
+	 	pushIcon00128 위시리스트 삭제예정
+	 	pushIcon00129 위시리스트 품절예정
+	 	pushIcon00130 가구
+	 	pushIcon00131 생활
+	 	pushIcon00132 슈즈
+	 	pushIcon00133 애완
+	 	pushIcon00134 엘포인트
+	 	pushIcon00135 (스포츠)의류
+	 	pushIcon00136 명품
+	 	pushIcon00137 언데웨어
+	 	pushIcon00138 골프
+	 	pushIcon00139 스마트픽
+	 		
+	 	
+	 	
+	-->
+	<div class="product_list01 smart_alarm_tab01" ng-if="app" ng-show="tabControl == 'first'">
+		<p class="notice"><span>{{loginInfo.name}} </span>{{loginInfo.isStaff && '임직원님' || '고객님'}}께 제공되는 특별한 쇼핑혜택 정보를 확인하세요.</p>
+		<!-- content area -->
+		<div id="appContainer" ng-if="pushConfirm && startledAlarmList">
+			<a ng-href="{{startledAlarm.app_link}}" ng-class="{off:startledAlarm.read_yn == 'Y'}" ng-click="linkToStartledAlarm($index, $event);sendTclick('m_DC_Alram_Clk_Rst_1')" ng-repeat="startledAlarm in startledAlarmList">
+				<span class="appIcon"><span class="pushIcon{{startledAlarm.msg_grp_cd}}">not assign</span></span>
+				<span class="pushList">
+					<span class="pushTit">{{startledAlarm.push_title}}</span>
+					<span class="pushCont">{{startledAlarm.push_msg | mixedUnicode}}</span>
+					<span class="basic">발송일 : {{startledAlarm.reg_date.substring(0, 4)}}년 {{startledAlarm.reg_date.substring(4, 6)}}월 {{startledAlarm.reg_date.substring(6, 8)}}일</span>
+				</span>
+			</a>
+		</div>
+		<div class="onPlz" ng-if="!pushConfirm">
+			<div>Push 알림 설정을 'ON'으로 바꿔주세요. <br>특별한 쇼핑 혜택 정보를 보내 드립니다.</div>
+			<a href="#" class="btnOn" ng-click="showAppConfig()">지금 설정하기</a>
+		</div>
+		<div class="noData" ng-if="pushConfirm && startledAlarmEmpty">해당 내역이 없습니다.</div>
+		<div class="pageLoading" ng-show="startledAlarmLoading">
+	    	<p class="loading half"></p>
+	    </div>
+	</div>
+	
+	<!-- 스마트알림 -->
+	<div class="product_list01 smart_alarm_tab02" ng-show="tabControl == 'second'">
+		<p class="notice">관심상품 할인, 품절상품 재입고 정보를 확인하세요.</p>
+		<ul>
+			<li ng-repeat="smartAlarm in smartAlarmList">
+				<a ng-href="{{getSmartAlarmLinkUrl($index)}}&tclick=m_DC_Alram_Clk_Rst_2">
+					<span class="thumb">
+						<img ng-src="{{smartAlarm.img_url}}" alt="상품이미지">
+					</span>
+					<span class="cont01">
+						<p class="tl" ng-if="smartAlarm.sum_tgt_sct_cd.indexOf('NTC') != -1"><span class="g_title"><strong>[{{smartAlarm.goods_nm}}]</strong></span> 이/가 <span class="tColor1">재입고</span> 되었습니다.</p>
+						<p class="tl" ng-if="smartAlarm.sum_tgt_sct_cd.indexOf('NTC') == -1"><span class="g_title">{{smartAlarm.sum_tgt_sct_cd == 'CART' && '장바구니' || '위시리스트'}}에 담으신 <strong>[{{smartAlarm.goods_nm}}]</strong></span> 의 <span class="tColor1">가격이 할인</span>되었습니다.</p>
+						<p class="money">
+							<del class="small" ng-if="smartAlarm.sum_tgt_sct_cd.indexOf('NTC') == -1"><span>{{smartAlarm.exist_sale_prc | currency : "" : 0}}원</span></del>
+							<span class="price" ng-if="smartAlarm.sum_tgt_sct_cd.indexOf('NTC') == -1"><span>{{smartAlarm.dscnt_sale_prc | currency : "" : 0}}</span>원</span>
+							<span class="price" ng-if="smartAlarm.sum_tgt_sct_cd.indexOf('NTC') != -1"><span>{{smartAlarm.exist_sale_prc | currency : "" : 0}}</span>원</span>
+						</p>
+						<span class="basic">알림일 : {{smartAlarm.send_dt.substring(0, 4)}}년 {{smartAlarm.send_dt.substring(5, 7)}}월 {{smartAlarm.send_dt.substring(8, 10)}}일</span><!-- D;20150925 html추가 -->
+					</span>
+				</a>
+			</li>
+		</ul>
+		<div class="noData" ng-if="smartAlarmEmpty">해당 내역이 없습니다.</div>
+		<div class="pageLoading" ng-show="smartAlarmLoading">
+	    	<p class="loading half"></p>
+	    </div>
+	</div>
+
+	<!-- 쇼핑사서함 -->
+	<div class="product_list01 smart_alarm_tab03" ng-show="tabControl == 'third'">
+		<p class="notice">쇼핑 메일을 한 눈에 확인하세요.</p><!-- D;20150925 텍스트수정 -->
+		<ul>
+			<li ng-repeat="emailBargain in emailBargainList">
+				<a ng-href="/planshop/m/emailBargainDetail.do?{{baseParam}}&mail_sn={{emailBargain.email_sn}}&mail_cmps_sn={{emailBargain.mail_cmps_sn}}&tclick=m_DC_Alram_Clk_Rst_3">
+					<p class="tl">{{emailBargain.mail_tit_nm}}</p>
+					<p class="send">
+						<span class="basic">발송일 : {{emailBargain.snd_dtime}}</span>
+					</p>
+				</a>
+			</li>
+		</ul>
+		<div class="noData" ng-if="emailBargainEmpty">해당 내역이 없습니다.</div>
+		<div class="pageLoading" ng-show="emailBargainLoading">
+	    	<p class="loading half"></p>
+	    </div>
+	</div>
+</section>

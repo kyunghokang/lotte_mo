@@ -1,0 +1,20 @@
+<a href="" ng-click="clickUnit()">
+    <div class="product_box">
+        <h3 class="product_title">{{item.title}}</h3>
+        <div class="product_img">
+            <img ng-src="{{imgPath+item.imgUrl}}" alt="{{item.goodsNm}}"/>
+        </div>
+        <div class="tag" ng-if="item.saleRate">
+            <p class="icon_sale_1 {{item.useCpn}}">
+                <span>{{item.saleRate}}</span>
+            </p>
+        </div>
+        <div class="product_info">
+            <p class="name">{{item.goodsNm}}</p>
+            <p class="money">
+                <span class="small" ng-if="item.price1">{{item.price1}}</span>
+                <span class="price" ng-class="{plan_type_unit : item.goodsCmpsCd == '30'}" ng-if="item.price2">{{item.price2}}</span>
+            </p>
+        </div>
+    </div>
+</a>

@@ -1,0 +1,15 @@
+<div class="container_wrap">
+	<section id="container" lotte-ng-list-swipe  
+		swipe-id="MainContent" 
+		ignore-destory="true"
+		swipe-max-ratio="0.2" 
+		swipe-min-distance="40" 
+		swipe-responsive="true"
+		swipe-loading-el="#swipePageLoading"
+		swipe-loading-el-zindex="30" 
+		swipe-end-exec="mainSwipeReset($event)">
+		<div content-container tpml="pageUI.curMenuDispNo" class="cont_wrap"></div>
+	</section>
+	<div class="pageLoading" ng-show="pageLoading && !productListLoading"><p class="loading half"></p></div>
+	<div class="loadWrap none" id="swipePageLoading" ng-show="!pageLoading && !productListLoading" style="top:0px;"><p class="loading half"></p></div>
+</div>

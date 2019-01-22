@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- 공통 css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">
+<!-- //공통 css -->
+<!----------------- current css ----------------->
+   
+<link rel="stylesheet" href="/lotte/resources_dev/mylotte/cart/m/cart.css">
+
+<!---------------// current css ----------------->
+<!-- 퍼블리싱 : 공통 js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<!-- //퍼블리싱 : 공통 js -->
+<script src="/HTML/js/testPub.js"></script>
+</head>
+<body>
+
+<!-- common -->
+<section ng-include src="'/HTML/include/common.html'"></section>
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<section id="container">
+       
+       <!--s: 장바구니-->
+       <div class="cartWrap" id="cart">
+           <!--s: 상단 로그인 영역-->
+           <div class="tips">
+               <p>
+                   로그인 후 상품을 보관하세요.
+                   <a href="#none" class="btn_login"><span>로그인</span></a>
+               </p>
+           </div>
+           <!--e: 상단 로그인 영역-->
+           
+           <!--장바구니 상품이 없을 경우-->
+           <div id="resultEmpty" class="empty">
+               <div>
+                   <p>장바구니에 저장된 상품이 없습니다.</p>
+               </div>
+           </div>
+       </div>
+       <!--e: 장바구니-->
+	
+</section>
+
+<section ng-include src="'/HTML/include/footer.html'"></section>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<section ng-show="contVisible" >
+<find-head page="1"></find-head>
+<form name="findMemberForm" id="findMemberForm" method="POST">
+<!-- 	<input name="re_send_sms_yn" id="re_send_sms_yn" type="hidden">
+	<input name="mksh_cert_sn" id="mksh_cert_sn" type="hidden"> -->
+	<input name="mbr_no" id="mbr_no" type="hidden"/>
+    <input name="ellotte_join" id="ellotte_join" type="hidden" value="Y" ng-if="fromEllotte"/>
+	<!-- 계정 ID 찾기 -->
+	<!-- //계정 ID 찾기 -->
+	<section class="easy_login_wrap">
+		<fieldset>
+			<legend>비밀번호 찾기</legend><!-- 20150515 수정 -->
+			<div class="password_find_box">
+				<h3 class="password_find_title">계정 비밀번호를 찾기 위해 정보를 입력해주세요 .</h3>
+				<ul class="order_id_input">
+					<li><input type="text" id="login_id" name="login_id" class="txt01" placeholder="이메일 아이디" title="주문자 이메일" maxlength="400"></li>
+					<li><input type="text" id="mbr_name" name="mbr_name" class="txt01" placeholder="이름" title="주문자 이름" maxlength="40"></li>
+					<li>
+						<div class="phone_input_box">
+							<div class="select_box">
+								<select id="hpno_1" name="hpno_1">&gt;
+									<option ng-repeat="x in hp_list.cellList.items" value="{{x.cd}}">{{x.cd_nm}}</option>								
+								</select>
+							</div>
+							<input type="number" id="hpno_2" name="hpno_2" ng-model="hpno_2" class="txt01" title="핸드폰 중간 4자리" maxlength="4" input-max-length-number />
+							<input type="number" id="hpno_3" name="hpno_3" ng-model="hpno_3" class="txt01" title="핸드폰 마지막 4자리" maxlength="4" input-max-length-number />
+						</div>
+					</li>
+				</ul>
+				<div class="view_order_btn">
+					<a href="#" ng-click="fn_SendEmail()" class="c_btn col01"><span>확인</span></a>
+				</div>
+				<div class="lpoint_member_info_box">
+					<!-- 20150515 수정 -->
+					<p class="lpoint_member_info_txt">롯데계열사를 하나의 아이디로 사용하는 L.POINT<br>통합회원이시면 롯데멤버스에서 회원정보를 찾아주세요.</p>
+					<!-- //20150515 수정 -->
+					<ul class="lpoint_member_btn_list">
+						<li><a href="#" ng-click="goFamilySite('id')">아이디 찾기</a></li>
+						<li><i></i><a href="#" ng-click="goFamilySite('passwd')">비밀번호 찾기</a></li>
+					</ul>
+				</div>
+			</div>
+		</fieldset>
+	</section>
+</form>
+
+</section>

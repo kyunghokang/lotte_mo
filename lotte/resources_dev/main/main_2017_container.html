@@ -1,0 +1,42 @@
+<div class="container_wrap">
+	<section id="container" lotte-ng-list-swipe  
+		swipe-id="MainContent" 
+		ignore-destory="true"
+		swipe-max-ratio="0.2" 
+		swipe-min-distance="40" 
+		swipe-responsive="true"
+		swipe-left-el="#swipeLeftContainer"
+		swipe-right-el="#swipeRightContainer"
+		swipe-loading-el-zindex="30" 
+		swipe-start-exec="mainSwipeStart($event)"
+		swipe-end-exec="mainSwipeReset($event)">
+		<div class="cont_wrap none" id="swipeLeftContainer" ng-show="!pageLoading && !productListLoading" style="top:0px;"></div>
+		<div id="contentContainer" class="cont_wrap">
+			<div class="bg_loading">
+				<p class="loading_circle"></p>
+			</div>
+		</div>
+		<div class="cont_wrap none" id="swipeRightContainer" ng-show="!pageLoading && !productListLoading" style="top:0px;"></div>
+	</section>
+<!-- swipe-loading-el="#swipePageLoading" -->
+	<div class="pageLoading" ng-show="pageLoading && !productListLoading"><p class="loading half"></p></div>
+	<div class="loadWrap none" id="swipePageLoading" ng-show="!pageLoading && !productListLoading" style="top:0px;">
+		<div class="bg_loading">
+			<p class="loading_circle"></p>
+		</div>
+	</div>
+
+	<!--전면 팝업-->
+	<!--
+	show 일때 body에 noscroll 추가
+	angular.element(document).find('body').addClass('noscroll');
+	hide 일때 body에 noscroll 삭제
+	angular.element(document).find('body').removeClass('noscroll');
+	-- >
+	<!---->
+	<div class="full_popup" ng-class={hide:!ipadAppDownInfo}>
+		<p class="down_btn" ng-click="ipadAppDown();">신규 앱 다운받기</p>
+		<span class="next_btn" ng-click="ipadAppDownPopupClose()">다음에 할래요</span>
+	</div>
+
+</div>

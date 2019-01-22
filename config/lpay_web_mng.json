@@ -1,0 +1,69 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tpllpayWebMng" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mylotte/sub/lpay_web_mng_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/lpay_web_mng.template.js"
+            }
+        },
+
+        "concat" : {
+            "jslpayWebMng" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mylotte/sub/lpay_web_mng.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/lpay_web_mng.js"
+            }
+        },
+
+        "uglify" : {
+            "jslpayWebMng" : {
+                "src" : "lotte/resources/<%= version %>/lpay_web_mng.js",
+                "dest" : "lotte/resources/<%= version %>/lpay_web_mng.min.js"
+            },
+            "tpllpayWebMng" : {
+                "src" : "lotte/resources/<%= version %>/lpay_web_mng.template.js",
+                "dest" : "lotte/resources/<%= version %>/lpay_web_mng.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "csslpayWebMng" : {
+                "src" : [
+                    "lotte/resources_dev/mylotte/sub/lpay_web_mng.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/lpay_web_mng.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanlpayWebMng" : [
+                "lotte/resources/<%= version %>/lpay_web_mng.js",
+                "lotte/resources/<%= version %>/lpay_web_mng.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmllpayWebMng" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mylotte/sub/lpay_mng.html" : "mylotte/sub/lpay_web_mng_dev.html"
+                }
+            }
+        }
+    }
+}
+

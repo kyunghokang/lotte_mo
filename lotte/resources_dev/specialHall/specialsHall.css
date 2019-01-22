@@ -1,0 +1,132 @@
+@charset "utf-8";
+
+body #head_sub.wine{/*padding-right: 54px;*/border-bottom:0;background-color: #7a0031; border-top:1px solid #2b2b2b; text-align: center;}
+body #head_sub.wine h2 {color:#fff;}
+body #head_sub.wine .sns{display: none;}
+body #head_sub.wine .this{display: none;}
+body #container { position: relative;min-height: 450px;background-color: #e7e7e7;}
+
+/* 20160717 추가 */
+body #head_sub {border-bottom:0;border-top:1px solid #555;}
+body #head_sub a {color:#fff;}
+body #head_sub h2{background-color: #2b2b2b; color:#fff;}
+body #head_sub .prev a:before{background:url(http://image.lotte.com/lotte/mo2015/angular/common/btn_white_w.png) no-repeat center left;background-size:19px 14px;}
+body #head_sub .this a:before{background:url(http://image.lotte.com/lotte/mo2015/angular/common/ic_sns_white.png) no-repeat 0 0;background-size: 15px 16px;}
+
+body #head_sub.wine .prev a:before {background-image:url(http://image.lotte.com/lotte/mo2015/angular/common/btn_white_w.png);}
+
+/* Vine 카테고리
+.vine_wrap .box_cate{background-color: #7a0031;border-top:1px solid #95335a}
+.vine_wrap .box_cate .big_cate{display: block;}
+.vine_wrap .box_cate .big_cate ul{ white-space: inherit; padding: 0; overflow: hidden;}
+.vine_wrap .box_cate .big_cate li{ float: left}
+.vine_wrap .box_cate .big_cate li:nth-child(1){width: 23%}
+.vine_wrap .box_cate .big_cate li:nth-child(2){width: 23%}
+.vine_wrap .box_cate .big_cate li:nth-child(3){width: 26%}
+.vine_wrap .box_cate .big_cate li:nth-child(4){width: 28%}
+.vine_wrap .box_cate .big_cate li a {display: block; line-height: 43px;	letter-spacing: -1px;	color: #fff;text-align: center;}
+.vine_wrap .box_cate .mid_cate {background-color: #fff;}
+.vine_wrap .box_cate .mid_cate li { border-bottom: 1px solid #cccccc;}
+.vine_wrap .box_cate .mid_cate li a {color: #666666;}
+.vine_wrap .box_cate .mid_cate li.on a{color: #7a0031}
+ */
+
+.box_cate {position: relative;	border-top: 1px solid #646464;	background-color:#2b2b2b;z-index: 10;}
+.box_cate .big_cate {display:block; overflow:hidden; width:100%;}
+.box_cate .big_cate ul {	padding: 0 4px;white-space: nowrap;}
+.box_cate .big_cate li {display:block;float:left;position: relative;width:25%;height: 45px;text-align:center}
+.box_cate .big_cate li a {display: inline-block;	padding: 0px 15px;	line-height: 43px;	letter-spacing: -1px;	color: #fff;}
+.box_cate .big_cate li.on:after{content:''; bottom: 0; left:0; width: 0;height: 0; margin-left:0;background-color:transparent;}
+.box_cate .big_cate li.on{background-color:#393939}
+.box_cate .big_cate li.on a{ color: #ff7b62}
+
+.box_cate .mid_cate {position: absolute;	top: 45px;	left: 0;	width: 100%;background-color: #393939;}
+.box_cate .mid_cate ul.on {display: block;}
+.box_cate .mid_cate li {position: relative; float:left;width:50%;border-bottom: 1px solid #313131;}
+.box_cate .mid_cate li:nth-child(odd) a{border-right:1px solid #313131}
+.box_cate .mid_cate li a {display:block;overflow:hidden;padding-left:25px;height:41px;line-height:44px;color:#ccc;}
+/* start D:20150921 하위카테고리추가 */
+.box_cate .mid_cate li a.hasCate:after{content: ''; clear: both; position: absolute; top:12px; right:14px; width: 18px; height: 18px;background: url(http://image.lotte.com/lotte/mo2015/angular/bg_sprite_bullet.png) 0 0 no-repeat;
+    -webkit-background-size: 57px 80px;
+    background-size: 57px 80px;}
+.box_cate .mid_cate li>a:after{content:'';position: absolute;top:12px;right:16px; width: 9px; height: 16px; background-position: 0 -64px;}
+.box_cate .mid_cate li.on>a{color: #719cff}
+.box_cate .mid_cate div.cca {display:block;}
+.box_cate .mid_cate div.cca>a {padding-left:30px;border-top:1px solid #373737;background:#484848;}
+.box_cate .mid_cate div.cca>a:first-child {border-top:0;}
+/* end D:20150921 하위카테고리추가 */
+
+/* 20160717 추가 */
+.box_cate .mid_cate ul.scroll{height:276px;overflow-y:auto;}
+.box_cate .mid_cate li>a:after,
+.mall_cateLayerbar a.close{background-image:url(http://image.lotte.com/lotte/mobile/mobile_new/brandshop/brandshop_catemenu.png);background-repeat:no-repeat;background-size:26px 155px}
+.box_cate .mid_cate li>a:after{background-position:right -71px}
+.mall_cateLayerbar{clear:both;width:100%;height:33px;background:#2b2b2b;overflow:hidden;}
+.mall_cateLayerbar a.close{display:block;float:right;margin-top:10px;margin-right:15px;width:14px;height:14px;font-size:0;line-height:0;background-position:0 -141px}
+
+
+
+.list_vine {position: relative;background:#eee;}
+.list_vine li{border-bottom:1px solid #d0d0d0;background-color:#fff;margin-top:5px;}
+.list_vine li:first-child {margin-top:0;}
+.list_vine li a{display: block;}
+.list_vine li img{width: 100%}
+.list_vine li .wineTitle{position: relative; padding: 0 10px;}
+.list_vine li .wineTitle strong{display: block; height: 40px; line-height: 40px; font-size: 14px;}
+.list_vine li .wineTitle span{position: absolute; top: 13px; right: 10px; padding-left: 7px; color: #999999; letter-spacing: -1px;}
+.list_vine li .wineTitle span:before{content: ''; position: absolute; top: 2px; left: 0;border-left: 1px solid #d0d0d0; height: 9px;}
+
+/*반응형*/
+@media screen and (min-width:640px){
+	.list_vine li {width:50%;float:left;}
+	.list_vine li:nth-child(2) {margin-top:0;}
+	.list_vine li:nth-child(even) .wineTitle {border-left:1px solid #ededed;}
+}
+
+/* --------------------------------------------------------------------- category --------------------------------------------------------------------- */
+/* gucci location */
+.ctg_depth_wrap .depth1 h3 {overflow:hidden;background-color:#eee;padding:14px 0 14px 22px}
+.ctg_depth_wrap .depth1 h3 > span{background:url(http://image.lotte.com/lotte/mo2015/angular/brandshop/gucci/gucci_location_arrow.png) no-repeat right center;background-size:5px auto;padding-right:11px;margin-right:5px;font-size:13px;color:#313131;font-weight:bold;float:left;height:15px;line-height:15px}
+.ctg_depth_wrap .depth1 h3 > .last_location{background:none;padding:0;margin:0}
+
+/* category list */
+.gucci_category_list{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;width:100%;height:auto;min-height:640px;background-color:#fff;overflow:hidden}
+.gucci_category_list.category_list_none{background-color:#302b27}
+.gucci_category_list > ul > li{clear:both;max-height:140px;border-bottom:1px solid #dcd8d5;padding:12px 10px}
+.gucci_category_list > ul > li > .prd_item >a{display:block;text-decoration:none}
+.gucci_category_list > ul > li > .prd_item >a:after{content:"";display:block;clear:both}
+.gucci_category_list > ul > li > .prd_item{position:relative;height:110px}
+.gucci_category_list > ul > li > .prd_item:after{content:"";display:block;clear:both}
+.gucci_category_list > ul > li > .prd_item > a > .prd_img{width:110px;height:110px;position:absolute;top:0;left:0}
+.gucci_category_list > ul > li > .prd_item > a > .prd_img > img{width:100%;height:100%}
+.gucci_category_list > ul > li > .prd_item > a > .prd_info{margin-left:123px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;padding:5px 0 0 0;min-height:122px}
+.gucci_category_list > ul > li > .prd_item > a > .prd_info > dt{display:none}
+.gucci_category_list > ul > li > .prd_item > a > .prd_info > dd.name{min-height:36px;overflow:hidden;padding:0 19px 0 0}
+.gucci_category_list > ul > li > .prd_item > a > .prd_info > dd.name > span{font-weight:bold;color:#000;font-size:14px;text-decoration:none;display:-webkit-box;-webkit-box-orient:vertical;text-overflow:ellipsis;-webkit-line-clamp:2;word-wrap:break-word;line-height:130%;overflow:hidden}
+.gucci_category_list > ul > li > .prd_item > a > .prd_info > dd.price{position:absolute;bottom:7px;color:#333;font-size:12px}
+.gucci_category_list > ul > li > .prd_item > a > .prd_info > dd.price > span{font-weight:bold;font-size:15px}
+.gucci_category_list > ul > li > .prd_item > a > .prd_info > dd.price > span:after{content:"원";font-size:12px;color:#333;font-weight:normal}
+.gucci_category_list > .none_list{background:url(http://image.lotte.com/lotte/mo2015/angular/brandshop/gucci/bg_none_search_list.png) no-repeat 0 0;font-size:15px;color:#252525;width:266px;height:62px;background-size:266px auto;margin:33px auto;overflow:hidden;text-align:center;padding-top:24px;display:block}
+
+/* gucci location */
+.clear:after {content:" "; display:block;clear:both;overflow:hidden;}
+.gucci_location_area {position:relative; width:100%;}
+.gucci_location_area > p{overflow:hidden;background-color:#eee;padding:14px 0 14px 22px}
+.gucci_location_area > p > span{background:url(http://image.lotte.com/lotte/mobile/mobile_new/brandshop/gucci/gucci_location_arrow.png) no-repeat right center;background-size:5px auto;padding-right:11px;margin-right:5px;font-size:13px;color:#313131;font-weight:bold;float:left;height:15px;line-height:15px}
+.gucci_location_area > p > .last_location{background:none;padding:0;margin:0}
+
+.gucciSelect {padding:0 10px 10px 10px;}
+.gucciSelect div {float:left;width:50%;box-sizing:border-box;-webkit-box-sizing:border-box;}
+.gucciSelect div select {width:95%;height:24px;padding:0 26px 0 6px;border:1px solid #ddd;background:#fff url(http://image.lotte.com/lotte/mo2015/angular/mylotte/arr_select.png) 95% center no-repeat;background-size:10px 6px;-webkit-appearance:none;appearance:none;cursor:pointer;color:#888;font-size:12px;}
+
+.gucciSelect.wine {position:absolute; width:100px; right:0; top:10px;}
+.gucciSelect.wine div {width:100%;}
+.gucciSelect.wine div select {width:100%;}
+
+/*반응형*/
+@media screen and (min-width:640px){
+	.gucci_category_list > ul > li{clear:none;width:50%;float:left;}
+	.gucci_category_list > ul > li:nth-child(odd) {padding-right:0;border-right:1px solid #dcd8d5;}
+	/*.gucci_category_list > ul > li:nth-child(even) {margin-right:-20px;padding-right:0;padding-left:0;}*/
+	.gucci_category_list > ul > li:nth-child(even) {margin-right:-21px;padding-right:0;}
+}

@@ -1,0 +1,70 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplLatelyProduct" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+	                "lotte/resources_dev/product/m/lately_product_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/late_view_product_list.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsLatelyProduct" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+	                "lotte/resources_dev/common/lotte_salebest.js",
+					"lotte/resources_dev/product/m/lately_product.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/late_view_product_list.js"
+            }
+        },
+
+        "uglify" : {
+            "jsLatelyProduct" : {
+                "src" : "lotte/resources/<%= version %>/late_view_product_list.js",
+                "dest" : "lotte/resources/<%= version %>/late_view_product_list.min.js"
+            },
+            "tplLatelyProduct" : {
+                "src" : "lotte/resources/<%= version %>/late_view_product_list.template.js",
+                "dest" : "lotte/resources/<%= version %>/late_view_product_list.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssLatelyProduct" : {
+                "src" : [
+					"lotte/resources_dev/product/m/lately_product.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/late_view_product_list.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanLatelyProduct" : [
+                "lotte/resources/<%= version %>/late_view_product_list.js",
+                "lotte/resources/<%= version %>/late_view_product_list.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlLatelyProduct" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "product/m/late_view_product_list.html" : "product/m/late_view_product_list_dev.html"
+                }
+            }
+        }
+    }
+}
+

@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+<meta charset="utf-8">
+<title>롯데닷컴</title>
+<meta content="no_cache" http-equiv="cache_control">
+<meta content="0" http-equiv="expires">
+<meta content="no_cache" http-equiv="pragma">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<!-- test css -->
+<link rel="stylesheet" href="/lotte/resources_dev/common/lotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/header_sub.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_ctg.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/side_mylotte.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/actionbar.css">
+<link rel="stylesheet" href="/lotte/resources_dev/layout/footer.css">
+<link rel="stylesheet" href="/lotte/resources_dev/search/layer_srh.css">
+<!----------------- current css ----------------->
+    
+<link rel="stylesheet" href="/lotte/resources_dev/search/search_list.css">
+
+<!-- unit Deal type 01 -->
+<link rel="stylesheet" href="/lotte/resources_dev/unit/unit_list.css">
+<link rel="stylesheet" href="/lotte/resources_dev/unit/unit_deal_01.css"> 
+<!-- //unit Deal type 01 -->
+<link rel="stylesheet" href="/lotte/resources_dev/unit/unit_list_01.css">
+<link rel="stylesheet" href="/lotte/resources_dev/unit/unit_list_02.css">
+<link rel="stylesheet" href="/lotte/resources_dev/unit/unit_list_03.css">
+
+<!---------------// current css ----------------->
+<!-- test js -->
+<script src="/lib/jquery/jquery-1.11.2.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/HTML/js/testPub.js"></script>
+
+<script src="search_list.js"></script>
+</head>
+<body>
+
+<!-- header -->
+<section ng-include src="'/HTML/include/header.html'"></section>
+<section ng-include src="'/HTML/include/head_sub.html'"></section>
+
+<!-- container -->
+<section id="container">
+    <!-- s: 검색 결과 있음-->
+    <div class="result_wrap">
+
+        <!-- 추천검색어 /-->
+         <div class="recom_lnk">
+            <h3>추천</h3>
+            <article><a href="#none">살랑사랑 봄맞이 코디제안</a></article>
+        </div> 
+        <!--/ 추천검색어 -->
+
+        <!-- 연관검색어 /-->
+        <!--접힐시-->
+        <div class="reated_keyword"> <!--펴쳐질때, 'on'클래스 추가-->
+            <h3>연관</h3>
+            <ul>
+                <li><a href="#none">투피스</a></li>
+                <li><a href="#none">치마</a></li>
+                <li><a href="#none">스커트</a></li>
+                <li><a href="#none">임부복 원피스</a></li>
+                <li><a href="#none">빅사이즈 원피스</a></li>
+                <li><a href="#none">롱원피스</a></li>
+            </ul>
+            <button>펼치기/접기</button>
+        </div>
+        <!--펼치시-->
+        <!--<div class="reated_keyword on">
+            <h3>연관</h3>
+            <ul>
+                <li><a href="#none">투피스</a></li>
+                <li><a href="#none">치마</a></li>
+                <li><a href="#none">스커트</a></li>
+                <li><a href="#none">임부복 원피스</a></li>
+                <li><a href="#none">빅사이즈 원피스</a></li>
+                <li><a href="#none">롱원피스</a></li>
+            </ul>
+            <button>펼치기/접기</button>
+        </div>-->
+        <!--/ 연관검색어 -->
+
+        <!-- 검색 필터 /-->
+        <div class="srh_terms_wrap">
+
+            <!-- 필터 탭 /-->
+            <ul class="tab">
+                <li> <!-- 선택은 'on'클래스 추가,탭안에 내용이 선택되어 있는 부분은 'selected'클래스 추가-->
+                    <a href="#">카테고리</a>
+                </li>
+                <li>
+                    <a href="#">브랜드</a>
+                </li>
+                <li>
+                    <a href="#">상세검색</a>
+                </li>
+                <li>
+                    <a href="#">인기순</a>
+                </li>
+                <!-- 판매 BEST 선택 시 text 판매순으로 변경 -->
+                <!-- <li>
+                    <a href="#">판매순</a>
+                </li> -->
+                <!-- 상품평 많은순 선택 시 text 상품평으로 변경 -->
+                <!-- <li>
+                    <a href="#">상품평</a>
+                </li> -->
+                <!-- 신상품순 선택 시 text 상품평으로 변경 -->
+                <!-- <li>
+                    <a href="#">신상품</a>
+                </li> -->
+                <!-- 낮은가격순 선택 시 text 가격 ↓ 으로 변경 -->
+                <!-- <li class="down">
+                    <a href="#">가격</a>
+                </li> -->
+                <!-- 높은가격순 선택 시 text 가격 ↑으로 변경 -->
+                <!-- <li class="up">
+                    <a href="#">가격</a>
+                </li> -->
+            </ul>
+            <!--/ 필터 탭 -->
+
+            <!-- 필터 레이어 Wrapper /-->
+            <div class="terms_cont_wrap">
+                <!-- 카테고리 /-->
+                <div class="term ctglst">
+                    <div class="ctg_depth_wrap"> 
+                    <!--depth1에서 클릭시, 'depth2' 클래스 추가-->
+                    <!--<div class="ctg_depth_wrap depth2">-->
+						
+                        <!-- 결과가 있을 경우-->
+                        <div class="depth1">
+                            <h3><span class="depth1">전체</span> <span class="cnt">(총 15개 카테고리)</span></h3>
+							<!-- s: swipe형 -->
+
+
+                            <div class="scroll_wrap">
+                            	<ul>
+                       	        	<li>
+	                                    <div><a href="#">니트/스웨터<span class="cnt">37</span></a></div>
+	                                    <div><a href="#">베스트/조끼<span class="cnt">200</span></a></div>
+	                                    <div class="on"><a href="#">가디건/볼레로<span class="cnt">9</span></a></div>
+	                                    <div><a href="#">원피스<span class="cnt">99</span></a></div>
+	                                    <div><a href="#">팬츠<span class="cnt">999</span></a></div>
+	                                    <!--<div><a href="#">메종 프란시스 커정<span class="cnt">9,999</span></a></div>
+										<div><a href="#">Gucci 공식 온라인 스토어<span class="cnt">99,999</span></a></div>
+	                                    <div><a href="#">교환권/문구,취미/서비스<span class="cnt">2,165</span></a></div>-->
+	                                </li>
+	                                <li>
+	                                    <div><a href="#">스커트<span class="cnt">37</span></a></div>
+	                                    <div><a href="#">언더웨어<span class="cnt">37</span></a></div>
+	                                    <div><a href="#">주방/생활/건강<span class="cnt">37</span></a></div>
+	                                    <div><a href="#">원피스2<span class="cnt">37</span></a></div>
+	                                    <div><a href="#">팬츠2<span class="cnt">37</span></a></div>
+	                                    <!--<div><a href="#">2메종 프란시스 커정<span class="cnt">9,999</span></a></div>
+										<div><a href="#">2Gucci 공식 온라인 스토어<span class="cnt">99,999</span></a></div>
+	                                    <div><a href="#">2교환권/문구,취미/서비스<span class="cnt">2,165</span></a></div>-->
+	                                </li>
+                                </ul> 
+                            </div>
+
+                            <!--<div class="test_div">
+                                <ul>
+                                    <li>1</li> <li>2</li> <li>3</li>
+                                    <li>4</li> <li>5</li> <li>6</li>
+                                    <li>7</li> <li>8</li> <li>9</li>
+                                    <li>1</li> <li>2</li> <li>3</li>
+                                    <li>4</li> <li>5</li> <li>6</li>
+                                    <li>7</li> <li>8</li> <li>9</li>
+                                    <li>1</li> <li>2</li> <li>3</li>
+                                    <li>4</li> <li>5</li> <li>6</li>
+                                    <li>7</li> <li>8</li> <li>9</li>
+                                </ul>
+                            </div>-->
+
+                            <!-- e: swipe형 -->
+                        </div>
+                        <div class="depth2">
+                            <h3><span class="depth1">전체 ></span> <span class="depth2">유아동</span> <span class="cnt">(4개 카테고리)</span></h3>
+							<!-- s: swipe형 -->
+							<div class="scroll_wrap">
+                            	<ul>
+                       	        	<li>
+	                                    <div><a href="#">니트/스웨터<span class="cnt">37</span></a></div>
+	                                    <div><a href="#">베스트/조끼<span class="cnt">200</span></a></div>
+	                                    <div class="on"><a href="#">가디건/볼레로<span class="cnt">9</span></a></div>
+	                                    <div><a href="#">원피스<span class="cnt">99</span></a></div>
+	                                    <!--<div><a href="#">팬츠<span class="cnt">999</span></a></div>
+	                                    <div><a href="#">메종 프란시스 커정<span class="cnt">9,999</span></a></div>
+										<div><a href="#">Gucci 공식 온라인 스토어<span class="cnt">99,999</span></a></div>
+	                                    <div><a href="#">교환권/문구,취미/서비스<span class="cnt">2,165</span></a></div>-->
+	                                </li>
+	                                <li>
+	                                    <div><a href="#">스커트<span class="cnt">37</span><span class="flag etv">롯데홈쇼핑</span></a></div>
+	                                    <div><a href="#">언더웨어<span class="cnt">37</span><span class="flag depart">롯데백화점</span></a></div>
+	                                    <div><a href="#">주방/생활/건강<span class="cnt">37</span></a></div>
+	                                    <div><a href="#">원피스2<span class="cnt">37</span></a></div>
+	                                    <div><a href="#">팬츠2<span class="cnt">37</span></a></div>
+	                                    <div><a href="#">2메종 프란시스 커정<span class="cnt">9,999</span></a></div>
+										<div><a href="#">2Gucci 공식 온라인 스토어<span class="cnt">99,999</span></a></div>
+	                                    <div><a href="#">2교환권/문구,취미/서비스<span class="cnt">2,165</span></a></div>-->
+	                                </li>
+                                </ul> 
+                            </div>
+							<!-- e: swipe형 -->
+                        </div>
+
+
+						<!-- 결과가 없을 경우-->
+						<!-- <div class="empty">
+							<div class="empty_txt">해당하는 카테고리가 없습니다.</div>
+						</div> -->
+
+                    </div>
+                </div>
+                <!--/ 카테고리 -->
+                
+                <!-- 브랜드 /-->
+                <div class="term brdlst">
+
+					<!-- 결과가 있을 경우-->
+                    <div class="brd_top_wrap">
+                        <h3>
+                            <span class="depth1">전체</span> <span class="cnt">(총 99개 브랜드)</span>
+                        </h3>
+                        <div class="brd_sort_wrap">
+                            <label for="brdSortCnt"><input type="radio" id="brdSortCnt" name="brdSort" value="-cnt"/>상품수</label>
+                            <label for="brdSortName"><input type="radio" id="brdSortName" name="brdSort" value="brdName"/>가나다</label>
+                        </div>
+                    </div>
+		                    <div class="scroll_wrap">
+		                    	<ul>
+                      	        	<li>
+	                                    <div><a href="#">니트/스웨터<span class="cnt">37</span></a></div>
+	                                    <div><a href="#">베스트/조끼<span class="cnt">200</span></a></div>
+	                                    <div class="on"><a href="#">가디건/볼레로<span class="cnt">9</span></a></div>
+	                                    <div><a href="#">원피스<span class="cnt">99</span></a></div>
+	                                    <div><a href="#">팬츠<span class="cnt">999</span></a></div>
+	                                    <div><a href="#">메종 프란시스 커정<span class="cnt">9,999</span></a></div>
+										<div><a href="#">Gucci 공식 온라인 스토어<span class="cnt">99,999</span></a></div>
+	                                    <div><a href="#">교환권/문구,취미/서비스<span class="cnt">2,165</span></a></div>
+	                                </li>
+	                                <li>
+	                                    <div><a href="#">스커트<span class="cnt">37</span><span class="flag etv">롯데홈쇼핑</span></a></div>
+	                                    <div><a href="#">언더웨어<span class="cnt">37</span><span class="flag depart">롯데백화점</span></a></div>
+	                                    <div><a href="#">주방/생활/건강<span class="cnt">37</span></a></div>
+	                                    <div><a href="#">원피스2<span class="cnt">37</span></a></div>
+	                                    <div><a href="#">팬츠2<span class="cnt">37</span></a></div>
+	                                    <div><a href="#">2메종 프란시스 커정<span class="cnt">9,999</span></a></div>
+										<div><a href="#">2Gucci 공식 온라인 스토어<span class="cnt">99,999</span></a></div>
+	                                    <div><a href="#">2교환권/문구,취미/서비스<span class="cnt">2,165</span></a></div>
+	                                </li>
+                               	</ul>
+                           </div>
+                           		
+					<!-- 결과가 없을 경우-->
+                    <!-- <div class="empty">
+                        <div class="empty_txt">해당하는 브랜드가 없습니다.</div>
+                    </div> -->
+                </div>          
+                <!--/ 브랜드 -->
+                <!-- 상세검색 /-->
+                <div class="term detail">
+                    <form name="detailForm">
+                        <div class="benefits">
+                            <h3>혜택</h3>
+                            <ul>
+                                <li>
+                                    <label for="freeDeliYN">
+                                        <input
+                                            type="checkbox"
+                                            id="freeDeliYN"
+                                            name="freeDeliYN"
+                                            />무료배송
+                                    </label>
+                                </li>
+                                <li>
+                                    <label for="freeInstYN">
+                                        <input
+                                            type="checkbox"
+                                            id="freeInstYN"
+                                            name="freeInstYN"
+                                            />무이자
+                                    </label>
+                                </li>
+                                <li>
+                                    <label for="pointYN">
+                                        <input
+                                            type="checkbox"
+                                            id="pointYN"
+                                            name="pointYN"
+                                            />포인트
+                                    </label>
+                                </li>
+                                <li class="smpick">
+                                    <label for="smpickYN">
+                                        <input
+                                            type="checkbox"
+                                            id="smpickYN"
+                                            name="smpickYN"
+                                            />스마트픽
+                                    </label>
+                                    
+                                </li>
+                                <li class="smpick sel">
+                                    <div class="smpick_branch">
+                                        <!--
+                                        <select id="smpickBranch" name="smpickBranch"
+                                            ng-model="postParams.smpickBranchNo"
+                                            ng-disabled="postParams.smpickYN != 'Y'">
+                                            <option value="all" selected>전체</option>
+                                            <option value="{{item.branchNo}}"
+                                                ng-selected="postParams.smpickBranchNo == item.branchNo"
+                                                ng-repeat="item in srhDetailData.srhTerms.smpickBranch">{{item.name}}</option>
+                                        </select>
+                                        -->
+                                        <button class="btn_smpick">전체</button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="more">
+                            <dl>
+                                <dt class="keyword">결과 내</dt>
+                                <dd class="keyword">
+                                    <input
+                                        type="search"
+                                        autocomplete="off" autocapitalize="off" autocorrect="off"
+                                        id="rekeyword"
+                                        name="rekeyword"
+                                        placeholder="검색어를 입력해주세요"
+                                        />
+                                </dd>
+                                <dt class="price">가격대</dt>
+                                <dd class="price">
+                                    <span class="ipt">
+										<input only-number="int" id="priceMinU" name="priceMinU" type="number" placeholder="최저가">
+                                        <!-- <span class="number_format"></span> -->
+                                    </span>
+                                    <span>~</span>
+                                    <span class="ipt">
+										<input only-number="int" id="priceMaxU" name="priceMaxU" type="number" placeholder="최고가">
+                                        <!-- <span class="number_format"></span> -->
+                                    </span>
+                                </dd>
+                            </dl>
+                            <button class="btn_search">검색</button>
+                        </div>
+                    </form>
+                </div>
+                <!--/ 상세검색 -->	
+                <!-- sortting /-->
+                <div class="term sort">
+                    <h3>정렬옵션</h3>
+                    <div class="sort_list">
+                        <ul>                        
+                            <li><a href="#none"><span>인기 BEST</span></a></li>
+                            <li class="on"><a href="#none"><span>판매 BEST</span></a></li>
+                            <li><a href="#none"><span>상품평 많은순</span></a></li>
+                            <li><a href="#none"><span>신상품순</span></a></li>
+                            <li><a href="#none"><span>낮은 가격순</span></a></li>
+                            <li><a href="#none"><span>높은 가격순</span></a></li>                   
+
+                        </ul>
+                    </div>
+                    <div class="sort_guide">
+                        <a href="#none" class="layerBtn"><span>인기/판매 BEST</span></a>
+						<div class="layerPop" id="pop_sortGuide">
+							<div class="popWrap">
+								<p class="tlt">
+									인기 BEST란?
+								</p>
+								<p class="desc">
+									롯데닷컴 내에서의 판매실적, 고객 서비스 등을 합산한 랭킹입니다.
+								</p>
+								<p class="tlt">
+									판매 BEST란?
+								</p>
+								<p class="desc">
+									최근 30일 + 최근 3일의 많이 판매된 상품을 누적한 기준으로 상품을 정렬합니다.
+								</p>
+							</div>							
+							<a href="#none" class="btn_close">닫기</a>
+						</div>
+                    </div>
+                </div>
+                <!--/ sorting -->
+                
+                <!-- 하단 버튼/-->
+                <div class="btn_wrap">
+                    <button class="btn_init">초기화</button>                    					
+					<span class="paging">
+                        <span>1/6</span>
+                    </span>
+                    <button class="btn_close">닫기</button>
+                </div>
+                <!--/ 하단 버튼-->
+                
+            </div>
+            <!--/ 필터 레이어 Wrapper -->
+
+        </div>
+        <!--/ 검색 필터 -->
+
+		<!-- 검색 결과 / -->
+		<div class="listWrap">
+
+			<!-- 딜상품 리스트 - 스와이프형/-->
+            <div class="deal_prdlst">
+                <div class="deal_swipe_wrap">
+                    <ul>
+                        <li>
+							<div class="unit_deal_01">
+								<a href="#">
+									<p class="md_talk"><span>100만 고객 선택! 스테디셀러 국민 책장</span></p>
+									<p class="thumb normal"><!-- 대표이미지 불러오는 경우 class='thumb normal' 코너이미지 불러오는 경우 clas='thumb' -->
+										<img src="http://image.lotte.com/goods/98/94/93/71/1/171939498_1_280.jpg" alt="데체텍스트 넣어주세요.">
+										<!-- <span class="flag depart">롯데백화점</span> -->
+										<span class="flag etv">롯데홈쇼핑</span>
+										<!-- <span class="flag smart">스마트픽</span> -->
+									</p>
+									<div class="info"><!-- 쿠폰포함이 있는 경우 class='info true', 쿠폰포함이 없는 경우 class='info' -->
+										<p class="prod">
+											<span class="tit">[한샘]아이방이 넓어지는 인기 샘책장!</span>
+											<span class="price"><em>69,900</em>원~</span>
+											<span class="sale">
+												<em class="no">20</em>개 판매 중
+												<em class="flag tag">넓은공간</em>
+											</span>
+										</p>
+									</div>
+								</a>
+							</div>
+                        </li>
+                    </ul>
+					<div class="rn-carousel-controls">
+						<span class="rn-carousel-control rn-carousel-control-prev" ></span>
+						<span class="rn-carousel-control rn-carousel-control-next"></span>
+					</div>					
+                </div>
+				<ul class="swipe_indicator ng-scope">
+                    <li class="ng-scope on"></li>
+					<li class="ng-scope"></li>
+					<li class="ng-scope"></li>
+					<li class="ng-scope"></li>
+					<li class="ng-scope"></li>
+                </ul>
+            </div>
+			<!-- /딜상품 리스트 - 스와이프형-->
+
+			<!-- 검색결과 상품 상단/-->
+			<div class="result_tlt">
+				<div class="result_cnt">검색결과 <em>1,905</em>개</div>
+				<div class="result_filter">
+					<ul>
+						<li>
+							<label for="storeSel">
+								<input type="checkbox" id="storeSel" name="storeSel">롯데백화점
+							</label>
+						</li>
+						<li>
+							<!-- 선택 아닐 경우 -->
+							<!-- <button class="btn_storeSel">다른매장</button> --> <!--  선택시 on클래스 추가 -->
+
+							<!-- 선택시  -->
+							<button class="btn_storeSel layerBtn on">다른매장</button>
+
+							<div class="layerPop" id="pop_storeSel">
+								<div class="popWrap">
+									<ul>
+										<li>
+											<label for="storeSel_1">
+												<input type="checkbox" id="storeSel_1" name="storeSel_1">롯데백화점
+											</label>
+										</li>
+										<li>
+											<label for="storeSel_2">
+												<input type="checkbox" id="storeSel_2" name="storeSel_2">롯데홈쇼핑
+											</label>
+										</li>
+										<li>
+											<label for="storeSel_3">
+												<input type="checkbox" id="storeSel_3" name="storeSel_3">롯데슈퍼
+											</label>
+										</li>
+										<li>
+											<label for="storeSel_4">
+												<input type="checkbox" id="storeSel_4" name="storeSel_4">브랜드스토어
+											</label>
+										</li>
+									</ul>
+									
+								</div>
+								<a href="#none" class="btn_close">닫기</a>
+							</div>
+						</li>
+						<li>
+							<span class="unit_listType type1"></span><!--  type1~ type3별로 변경 -->
+							<!-- <span class="unit_listType type2"></span> -->
+							<!-- <span class="unit_listType type3"></span> -->
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- /검색결과 상품 상단-->
+
+			<!-- s: unit list area -->
+			<div class="unitWrap">
+				<ol class="prod_list_01">
+					<li>
+						<!-- 일반상품 : 리스트형 -->
+						<div class="unit_list_01">
+							<a href="#">
+								<div class="thumb">
+									<img src="http://image.lotte.com/goods/80/55/00/7/7005580_1_150.jpg" alt="데체텍스트 넣어주세요.">
+									<span class="unit_zoom">크게보기</span>
+								</div>
+								<div class="info">
+									<p class="flag">
+										<span class="flag depart">롯데백화점</span>
+										<!-- <span class="flag etv">롯데홈쇼핑</span> -->
+										<span class="flag tag">무료배송</span>
+										<span class="flag smart">스마트픽</span>
+									</p>
+									<span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+									<p class="pr_box">
+										<span class="price"><em>1,000,000</em>원</span>
+										<span class="price2"><em>1,500,000</em>원</span>
+									</p>
+									<p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+								</div>
+								<div class="info2">
+									<span class="review">상품평 <em>(100)</em></span>
+									<span class="wish_icon">위시리스트</span>
+								</div>
+							</a>
+						</div>
+						<!-- //일반상품 : 리스트형 -->
+					</li>
+					<li>
+						<!-- 일반상품 : 리스트형 -->
+						<div class="unit_list_01">
+							<a href="#">
+								<div class="thumb">
+									<img src="http://image.lotte.com/goods/58/80/52/5/5528058_1_150.jpg" alt="데체텍스트 넣어주세요.">
+									<span class="unit_zoom">크게보기</span>
+								</div>
+								<div class="info">
+									<p class="flag">
+										<span class="flag etv">롯데홈쇼핑</span>
+										<span class="flag tag">무료배송</span>
+									</p>
+									<span class="tit">[포트메리온] 엑소틱보타닉가든 뉴볼 13cm 6p(BG)</span>
+									<p class="pr_box">
+										<span class="price"><em>85,000</em>원</span>
+									</p>
+									<p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+								</div>
+								<div class="info2">
+									<span class="review">상품평 <em>(100)</em></span>
+									<span class="wish_icon">위시리스트</span>
+								</div>
+							</a>
+						</div>
+						<!-- //일반상품 : 리스트형 -->
+					</li>
+					<li>
+						<!-- 일반상품 : 리스트형 -->
+						<div class="unit_list_01">
+							<a href="#">
+								<div class="thumb">
+									<img src="http://image.lotte.com/goods/18/08/34/6/6340818_1_150.jpg" alt="데체텍스트 넣어주세요.">
+									<span class="unit_zoom">크게보기</span>
+								</div>
+								<div class="info">
+									<p class="flag">
+										<span class="flag tag">무료배송</span>
+									</p>
+									<span class="tit">[나니니] ESPRIT 그린테-그린 디그레딩 실버미러 렌즈</span>
+									<p class="pr_box">
+										<span class="price"><em>85,000</em>원</span>
+									</p>
+									<p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+								</div>
+								<div class="info2">
+									<span class="review">상품평 <em>(100)</em></span>
+									<span class="wish_icon">위시리스트</span>
+								</div>
+							</a>
+						</div>
+						<!-- //일반상품 : 리스트형 -->
+					</li>
+					<li>
+						<!-- 일반상품 : 리스트형 -->
+						<div class="unit_list_01">
+							<a href="#">
+								<div class="thumb">
+									<img src="http://image.lotte.com/goods/08/83/39/9/9398308_1_150.jpg" alt="데체텍스트 넣어주세요.">
+									<span class="unit_zoom">크게보기</span>
+								</div>
+								<div class="info">
+									<p class="flag">
+										<span class="flag tag">무료배송</span>
+									</p>
+									<span class="tit">[루디 프로젝트] [루디프로젝트] 라이돈 골프 카본 임펙트 엑스 (SN798514G) 선글라스</span>
+									<p class="pr_box">
+										<span class="price"><em>383,100</em>원</span>
+										<span class="price2"><em>385,000</em>원</span>
+									</p>
+									<p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+								</div>
+								<div class="info2">
+									<span class="review">상품평 <em>(100)</em></span>
+									<span class="wish_icon">위시리스트</span>
+								</div>
+							</a>
+						</div>
+						<!-- //일반상품 : 리스트형 -->
+					</li>
+					<li>
+						<!-- 일반상품 : 리스트형 -->
+						<div class="unit_list_01">
+							<a href="#">
+								<div class="thumb">
+									<img src="http://image.lotte.com/goods/58/14/20/6/6201458_1_150.jpg" alt="데체텍스트 넣어주세요.">
+									<span class="unit_zoom">크게보기</span>
+								</div>
+								<div class="info">
+									<p class="flag">
+										<span class="flag tag">무료배송</span>
+									</p>
+									<span class="tit">[루디 프로젝트] [루디프로젝트] 라이돈 골프 카본 임펙트 엑스 (SN798514G) 선글라스</span>
+									<p class="pr_box">
+										<span class="price"><em>383,100</em>원</span>
+										<span class="price2"><em>385,000</em>원</span>
+									</p>
+									<p class="coupon"><em class="no">25</em><em class="po">%</em><span>쿠폰포함</span></p>
+								</div>
+								<div class="info2">
+									<span class="review">상품평 <em>(100)</em></span>
+									<span class="wish_icon">위시리스트</span>
+								</div>
+							</a>
+						</div>
+						<!-- //일반상품 : 리스트형 -->
+					</li>
+				</ol>
+
+            </div>
+            <!-- e: unit list area -->
+
+		</div>
+		<!-- /검색 결과 -->
+    </div>
+    <!--e: 검색 결과 있음 -->
+</section>
+<!-- //container -->
+<!--smart pick layer/-->
+<!--<div ly-smpick="" class="ly_smpick ng-scope">
+    <div class="cover"></div>
+    <div class="smpick_lst">
+        <header ><span class="tit">타이틀</span></header>
+        <div class="branch_wrap">
+            <ul id="branchLst">
+                <li><label for="smpick_lst0"><input type="radio" id="smpick_lst0" name="smpick_lst" value="" class="ng-pristine ng-untouched ng-valid">전체</label></li>
+                <li class="ng-scope">
+                    <label for="smpick_lst1" class="ng-binding"><input type="radio" id="smpick_lst1" name="smpick_lst" class="ng-pristine ng-untouched ng-valid" value="104849">청량리점</label>
+                </li>
+                <li class="ng-scope">
+                    <label for="smpick_lst2" class="ng-binding"><input type="radio" id="smpick_lst2" name="smpick_lst" class="ng-pristine ng-untouched ng-valid" value="11050">영등포점</label>
+                </li>
+                <li class="ng-scope">
+                    <label for="smpick_lst3" class="ng-binding"><input type="radio" id="smpick_lst3" name="smpick_lst" class="ng-pristine ng-untouched ng-valid" value="11054">인천점</label>
+                </li>
+                <li class="ng-scope">
+                    <label for="smpick_lst4" class="ng-binding"><input type="radio" id="smpick_lst4" name="smpick_lst" class="ng-pristine ng-untouched ng-valid" value="110551">대구점</label>
+                </li>
+                <li class="ng-scope">
+                    <label for="smpick_lst5" class="ng-binding"><input type="radio" id="smpick_lst5" name="smpick_lst" class="ng-pristine ng-untouched ng-valid" value="111158">안양점</label>
+                </li>
+                <li class="ng-scope">
+                    <label for="smpick_lst6" class="ng-binding"><input type="radio" id="smpick_lst6" name="smpick_lst" class="ng-pristine ng-untouched ng-valid" value="111163">광복점</label>
+                </li>
+                <li class="ng-scope">
+                    <label for="smpick_lst7" class="ng-binding"><input type="radio" id="smpick_lst7" name="smpick_lst" class="ng-pristine ng-untouched ng-valid" value="111165">울산점</label>
+                </li>
+            </ul>
+        </div>
+        <div class="btn_wrap"><button class="btn_close">닫기</button></div>
+    </div>
+</div>-->
+<!-- / smart pick layer-->
+<!-- footer -->
+<section ng-include src="'/HTML/include/footer.html'"></section>
+
+</body>
+</html>

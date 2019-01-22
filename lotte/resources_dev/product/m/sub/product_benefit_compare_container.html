@@ -1,0 +1,71 @@
+<section ng-show="contVisible" class="cont_minheight"> <!--동일상품 혜택 비교하기-->
+	<product-sub-header></product-sub-header>
+
+	<!--상품 상세 서브 page 기본 wrapper(한번만 사용할 것): prod_detail_page_wrap-->
+	<div class="prod_detail_page_wrap p_benefit_compare">
+		<div class="detail_base_wrap price delivery div_line_b10">
+			<p class="noti"><span>지점별로 특별 행사기간이 진행되어 가격이 다를 수 있습니다.</span></p>
+
+			<!--상품 가격-->
+			<div class="price_wrap">
+				<p class="prod_noti">현재상품</p>
+				<p>
+					<span class="prod_price"><strong ng-bind="pageUI.loadData.prdInfo.price|number"></strong>원</span>
+					<span class="deli_fee div_line_v_s">{{pageUI.loadData.prdInfo.dlvPrc > 0? '배송비 '+(pageUI.loadData.prdInfo.dlvPrc | currency:'':0)+'원': '무료배송'}}</span>
+				</p>
+				
+				<span class="deli_desc"><var ng-bind="pageUI.loadData.prdInfo.dlvDate + pageUI.loadData.prdInfo.dlvYoil"></var> {{pageUI.loadData.prdInfo.dlvDesc}}</span>
+				<div class="deli_desc2" ng-if="pageUI.loadData.prdInfo.reserveDesc">{{pageUI.loadData.prdInfo.reserveDesc}} {{pageUI.loadData.prdInfo.reservePeriod}}</div>
+				<span class="thumb_wrap"><span class="thumb cover"><img ng-src="{{pageUI.loadData.prdInfo.imgUrl}}" alt="" /></span></span>
+
+				<!-- 상품 정보 (일반상품이 아닐 경우 표시) -->
+				<p class="prod_ord_prod" ng-if="pageUI.loadData.prdInfo.gubunNm && pageUI.loadData.prdInfo.gubunCd != '10' && pageUI.loadData.prdInfo.gubunCd != '2'" ng-bind="pageUI.loadData.prdInfo.gubunNm"></p>
+
+				<div class="deli_type">
+					<div class="free_gift" ng-if="pageUI.loadData.prdInfo.giftDesc"><span>사은품</span><span>{{pageUI.loadData.prdInfo.giftDesc}}</span></div>
+					<div class="quick" ng-if="pageUI.loadData.prdInfo.quickDispYn"><span>퀵배송</span><span>서울지역 4시간 이내 도착</span></div>
+					<div class="smartpick" ng-if="pageUI.loadData.prdInfo.smpDispYn">
+						<span>스마트픽</span>
+						<ul>
+							<li ng-if="pageUI.loadData.prdInfo.smpDlvArea && pageUI.loadData.prdInfo.smpDlvDesc"><span class="">{{pageUI.loadData.prdInfo.smpDlvArea}}</span><span class="smpDlvDesc">{{pageUI.loadData.prdInfo.smpDlvDesc}}</span></li>
+							<li ng-if="pageUI.loadData.prdInfo.smpDeptBrchDesc && pageUI.loadData.prdInfo.smpDeptBrch"><span class="smpDeptBrchDesc">{{pageUI.loadData.prdInfo.smpDeptBrchDesc}}</span> <span class="smpDeptBrch"><em>{{pageUI.loadData.prdInfo.smpDeptBrch}}</em></span></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="detail_base_wrap price delivery" ng-repeat="item in pageUI.loadData.samePrdList.items" ng-class="{'div_line_t line_full_w':$index > 0}" ng-click="productClick(item.goodsNo, 'm_RDC_ProdDetail_SamePrd_Clk_Prd'+numberFill(($index+1),2), numberFill(($index+1),2))">
+			<!--상품 가격-->
+			<div class="price_wrap">
+				<p class="prod_noti" ng-if="item.lowPrcYn">최저가</p>
+				<p class="prod_price_wrap right_clamp"><span class="prod_price"><strong>{{item.price | currency:'':0}}</strong>원</span><span class="deli_fee div_line_v_s">{{item.dlvPrc > 0? '배송비 '+(item.dlvPrc | currency:'':0)+'원': '무료배송'}}</span></p>
+				<!--<p class="deli_desc"><span class="div_line_v_s">설치상품</span><var>설치예정일 3일 이내 안내</var></p>-->
+				<!--<p class="deli_desc">도착예정일 <var>11/24(수)</var></p>-->
+				<p class="deli_desc"><var>{{item.dlvDate + item.dlvYoil}}</var> {{item.dlvDesc}}</p>
+				<div class="deli_desc2" ng-if="item.reserveDesc">{{item.reserveDesc}} {{item.reservePeriod}}</div>
+			</div>
+
+			<!-- 상품 정보 (일반상품이 아닐 경우 표시) -->
+			<p class="prod_ord_prod" ng-if="item.gubunNm && item.gubunCd != '10' && item.gubunCd != '2'" ng-bind="item.gubunNm"></p>
+
+			<div class="deli_type">
+				<!--<div class="" ng-if="item.reserveDesc"><span>{{item.reserveDesc}}</span><span>{{item.reservePeriod}}</span></div>-->
+				<div class="free_gift" ng-if="item.giftDesc"><span>사은품</span><span>{{item.giftDesc}}</span></div>
+				<div class="quick" ng-if="item.quickDispYn"><span>퀵배송</span><span>{{item.quickDesc}}</span></div>
+				<div class="smartpick" ng-if="item.smpDispYn">
+					<span>스마트픽</span>
+					<ul>
+						<li ng-if="item.smpDlvArea && item.smpDlvDesc"><span>{{item.smpDlvArea}}</span><span>{{item.smpDlvDesc}}</span></li>
+						<li ng-if="item.smpDeptBrchDesc && item.smpDeptBrch"><span>{{item.smpDeptBrchDesc}}</span> <span class="smpDeptBrch"><em>{{item.smpDeptBrch}}</em></span></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--공통 로딩커버-->
+	<div class="loading_cover" ng-if="jsonLoading">
+		<div class="loading"></div>
+	</div>
+</section>

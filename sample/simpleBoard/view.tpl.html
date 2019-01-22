@@ -1,0 +1,17 @@
+<H3>상세화면</H3>
+
+<div>
+이름: <span ng-bind="simpleBoardEntity.name"></span><br>
+제목: <span ng-bind="simpleBoardEntity.subject"></span><br>
+내용:
+<span ng-bind="simpleBoardEntity.content"></span>
+
+<div ng-repeat="file in simpleBoardEntity.attachedFiles">
+  <img ng-src="./data/downloadFile?file_no={{file.no}}" alt="{{file.filename}}" />
+</div>
+
+</div>
+<div>
+<button ng-click="openListView()">목록으로</button>
+<button ng-click="update(simpleBoardEntity)">수정</button>
+<div>

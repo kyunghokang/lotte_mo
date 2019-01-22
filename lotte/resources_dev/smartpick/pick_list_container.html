@@ -1,0 +1,156 @@
+<section ng-if="contVisible" class="cont_minheight">
+	<ul id="smp_nav" ng-if="smp_yn">
+	    <li><a ng-click="promotionUrl()"><span>LOTTE smart pick</span></a></li>
+	    <li class="on"><a ng-click="pickListUrl()"><span>my 교환권</span></a></li>
+	    <li><a ng-click="setupUrl()"><span>설정</span></a></li>
+	</ul>
+	<section id="container" ng-if="!isShowLoadingImage" >	
+		<!-- 스마트픽상품교환권_리스트 -->
+		<div class="smp_coupon">
+            <section class="detail">
+                <div class="cont_wrap">
+                   <!-- 10월 이벤 배너 -->
+                   <a href="http://m.lotte.com/product/m/product_list.do?curDispNo=5405991&{{baseParam}}&tclick=m_DC_MyPage_Clk_SPP_Ban" ng-if="enableBanner">
+                		<img src="http://image.lotte.com/lotte/mo2018/event/smartpick_banner_20181116.gif">
+                	</a>
+                   
+                    <dl class="smpList clear">
+                        <!--
+                        <dt><a ng-click="smartPickClick()" ng-class="{true: 'tabOn', false: ''}[smartPickListFlag]">스마트픽 교환권 {{smartPickTotal}}</a></dt>
+                         -->
+                        <dd ng-class="{true: 'contOn', false: ''}[smartPickListFlag]">
+                            <div class="tabCont" ng-if="smartPickListFlag">
+                                <div class="selectArea">
+                                    <span class="cnt">전체 {{smartPickTotal}}개</span>
+
+                                    <select ng-model="useGubn" name="useGubn" ng-change="useGubnClick(useGubn, termGubn)">
+                                        <option value="0">전체</option>
+                                        <option value="1">사용가능/교환처문의</option>
+                                        <option value="2">사용완료</option>
+                                        <option value="3">사용불가</option>
+                                    </select>
+                                    <select ng-model="termGubn" name="termGubn" ng-change="termGubnClick(useGubn, termGubn)" ng-if="useGubn == '1'">
+                                        <option value="">전체</option>
+                                    </select>
+                                    <select ng-model="termGubn" name="termGubn" ng-change="termGubnClick(useGubn, termGubn)" ng-if="useGubn != '1'">
+                                        <option value="D7">최근7일</option>
+                                        <option value="D15">최근15일</option>
+                                        <option value="M1">최근1개월</option>
+                                        <option value="M3">최근3개월</option>
+                                    </select>
+                                </div>
+                                <div  ng-if="smartPickTotal != '0'" >
+                                    <ul class="couponArea">
+                                        <li ng-repeat="items in smartPickList">
+
+                                            <div class="couponWrap">
+                                                <div class="thumb">
+                                                     <!--20180306 수정-->
+                                                    <a ng-click="goSmartPickProduct(items)"><img ng-src="{{items.goods_img}}" alt=""></a>
+                                                </div>
+                                                <div class="couponCont">
+                                                    <div class="smpStatus">
+                                                        <span class="usable" ng-if="items.cpn_state_cd == '1'">{{items.cpn_state_nm}}</span>
+                                                        <span ng-if="items.cpn_state_cd != '1'">{{items.cpn_state_nm}}</span>
+                                                    </div>
+                                                    <!--20180306 수정-->
+                                                    <a ng-click="goSmartPickProduct(items)">[{{items.brnd_nm}}] {{items.goods_nm}}</a>
+                                                    <div class="expiration" ng-if="items.cpn_state_cd == '1'">
+                                                        <!--크로스픽--> 
+                                                        <div ng-if="items.crspk_yn == undefined || items.crspk_yn == 'N'">
+                                                            <span ng-class="{passed:items.d_day_cnt == 0 && findOverDay(items.smp_vst_fcst_dtime) != '0'}" ng-if="items.prod_div == 'W'">방문예정일 {{items.smp_vst_fcst_dtime | strToDate}}<span ng-if="items.d_day_cnt == 0 && findOverDay(items.smp_vst_fcst_dtime) != '0'">{{findOverDay(items.smp_vst_fcst_dtime)}}일경과</span></span>
+                                                            <span ng-class="{passed:items.d_day_cnt == '0' && findOverDay(items.smp_vst_fcst_dtime) != '0'}" ng-if="items.prod_div == 'S' && items.smp_install_yn == 'Y'">상담예정일 {{items.smp_vst_fcst_dtime | strToDate}}<span ng-show="items.d_day_cnt == 0 && findOverDay(items.smp_vst_fcst_dtime) != '0'">{{findOverDay(items.smp_vst_fcst_dtime)}}일경과</span></span>
+                                                            <span ng-class="{passed:items.d_day_cnt == '0' && findOverDay(items.smp_vst_fcst_dtime) != '0'}" ng-if="items.prod_div == 'S' && items.smp_install_yn == 'N'">픽업예정일 {{items.smp_vst_fcst_dtime | strToDate}}<span ng-show="items.d_day_cnt == 0 && findOverDay(items.smp_vst_fcst_dtime) != '0'">{{findOverDay(items.smp_vst_fcst_dtime)}}일경과</span></span>
+                                                            <span ng-if="items.prod_div == 'E'">유효기간 {{items.aval_term_strt_dtime | strToDate}}~{{items.aval_term_end_dtime | strToDate}}</span>
+                                                            <a ng-if="items.cpn_state_cd == '1' && items.smp_vst_chg_avlbl_yn == 'Y' && items.prod_div == 'S'" ng-click="changePick(items)" class="edit">변경하기</a>
+                                                            <change-pick ng-if="changePickPopup[thisChangePickIdx] == true"></change-pick>													    
+                                                        </div>
+                                                        <div ng-if="items.crspk_yn != undefined && items.crspk_yn == 'Y'">
+                                                            <span>매장도착일 {{items.ord_goods_str_whsg_dtime}}</span><br>
+                                                            <span>고객픽업일 {{items.ord_goods_cust_rcv_dtime}}</span>
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div class="expiration" ng-if="items.cpn_state_cd != '1'">
+                                                        <div ng-if="items.crspk_yn == undefined || items.crspk_yn == 'N'">												
+                                                            <span ng-class="{passed:items.d_day_cnt == '0' && findOverDay(items.smp_vst_fcst_dtime) != '0'}" ng-if="items.prod_div == 'W'">방문예정일 {{items.smp_vst_fcst_dtime | strToDate}}<span ng-show="items.d_day_cnt == 0 && findOverDay(items.smp_vst_fcst_dtime) != '0'">{{findOverDay(items.smp_vst_fcst_dtime)}}일경과</span></span>
+                                                            <span ng-class="{passed:items.d_day_cnt == '0' && findOverDay(items.smp_vst_fcst_dtime) != '0'}" ng-if="items.prod_div == 'S' && items.smp_install_yn == 'Y'">상담예정일 {{items.smp_vst_fcst_dtime | strToDate}}<span ng-show="items.d_day_cnt == 0 && findOverDay(items.smp_vst_fcst_dtime) != '0'">{{findOverDay(items.smp_vst_fcst_dtime)}}일경과</span></span>
+                                                            <span ng-class="{passed:items.d_day_cnt == '0' && findOverDay(items.smp_vst_fcst_dtime) != '0'}" ng-if="items.prod_div == 'S' && items.smp_install_yn == 'N'">픽업예정일 {{items.smp_vst_fcst_dtime | strToDate}}<span ng-show="items.d_day_cnt == 0 && findOverDay(items.smp_vst_fcst_dtime) != '0'">{{findOverDay(items.smp_vst_fcst_dtime)}}일경과</span></span>
+                                                            <span ng-if="items.prod_div == 'E'">유효기간 {{items.aval_term_strt_dtime | strToDate}}~{{items.aval_term_end_dtime | strToDate}}<span ng-show="items.d_day_cnt == 0 && findOverDay(items.aval_term_end_dtime) != 0">{{findOverDay(items.aval_term_end_dtime)}}</span></span>
+                                                        </div>
+                                                        <div ng-if="items.crspk_yn != undefined && items.crspk_yn == 'Y'">
+                                                            <span>매장도착일 {{items.ord_goods_str_whsg_dtime}}</span><br>
+                                                            <span>고객픽업일 {{items.ord_goods_cust_rcv_dtime}}</span>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="expiration" ng-if="items.cpn_state_cd != '1'">
+                                                        <span class="cancel">{{items.impsb_reason}}</span>
+                                                    </div>											
+                                                    <!--  로고삭제 20180109 div class="smpLogo"><img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/smp_logo_lotte.png" alt="lotte.com"></div-->
+                                                </div>
+                                            </div>
+                                            <div class="btnArea" ng-if="items.cpn_state_cd == '1'">
+                                                <a ng-if="items.prod_div == 'W'"  ng-click="smartPickDetail(items)" class="btnSmp">예약증 상세보기</a>
+                                                <a ng-if="items.prod_div != 'W' && items.smp_install_yn == 'Y'"  ng-click="smartPickDetail(items)" class="btnSmp">내상담정보 상세보기</a>
+                                                <a ng-if="items.prod_div != 'W' && items.smp_install_yn == 'N'"  ng-click="smartPickDetail(items)" class="btnSmp">교환권 상세보기</a>
+                                                <a ng-if="items.prod_div == 'W'"  ng-click="sendPickPopup(items)" class="btnSmp btnSmp2">예약증 보내기</a>
+                                                <a ng-if="items.prod_div != 'W' && items.smp_install_yn == 'Y'"  ng-click="sendPickPopup(items)" class="btnSmp btnSmp2">상담정보 보내기</a>
+
+
+                                                <a ng-if="items.prod_div == 'S' && items.smp_install_yn == 'N' && items.ord_dtl_stat_cd != 12 && items.ord_dtl_stat_cd != 21" ng-click="sendPickPopup(items)" class="btnSmp btnSmp2">교환권 보내기</a>
+
+                                                <!-- 20160620 E쿠폰 교환권 보내기 -->
+                                                <a ng-if="
+                                                items.prod_div == 'E' &&
+                                                items.smp_install_yn == 'N' &&
+                                                items.ord_dtl_stat_cd != 12 &&
+                                                items.ord_dtl_stat_cd != 21 &&
+                                                items.cpn_state_cd == '1' &&
+                                                (items.reserv_send == 'N' ||
+                                                (items.reserv_send == 'Y' && todayDate >= items.reserv_date && todayDate <= items.aval_term_end_dtime && todayHours >= 10))
+                                                " ng-click="sendPickPopup(items)" class="btnSmp btnSmp2">교환권 보내기</a>
+                                                 <!-- //20160620 E쿠폰 교환권 보내기 -->
+                                                <!-- <a href="#none" class="btnSmp btnSmp3">교환권 보내기</a><!-- 스마트픽 앱 전용 -->
+                                                <send-pick ng-if="sendPickPopupFlag[thisPopupPickIdx] == true"></send-pick>
+                                            </div>
+                                            <!--20180306 조건변경 (items.prod_div == 'S' && items.smp_install_yn == 'N' && items.ord_dtl_stat_cd != '15') -->
+                                            <div ng-if="items.cpn_state_cd != '1'" class="dim dimOn" ng-click="smartPickDetail(items)"></div>
+
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div ng-if="smartPickTotal == '0'" >
+                                    <p class="noData"> 교환권 내역이 없습니다.</p>
+                                </div>	
+                                <!-- 더보기 버튼 -->
+                                <section class="list_more" ng-if="pageStart < smartPickTotal">
+                                    <div><a href="#" ng-click="moreListClick()"><span>더보기 (<label id="currentCnt">{{pageStart}}</label>/<label id="totalCnt">{{smartPickTotal}}</label>)</span></a></div>
+                                </section>
+                                <!--// 더보기 버튼 -->					
+                            </div>
+                        </dd>
+                    </dl>
+                </div>
+            </section>			
+		</div>
+	
+        <!-- //스마트픽상품교환권_상세보기 -->
+        <div class="istLoading" ng-if="isShowLoadingImage" style="height:300px">
+            <div class="noData"><p class="loading half"></p></div>
+        </div>
+    </section>
+	<!-- 2017-12-26 스마트픽 앱 종료 팝업 -->
+	<div class="app_end_pop_bg" ng-if="smp_yn == true && smp_end_yn == true"></div>
+	<div class="app_end_pop" ng-if="smp_yn == true && smp_end_yn == true">
+		<div class="content">
+			<div class="cont_scroll">
+				<img src="http://image.lotte.com/lotte/mobile/smartpick/common/pop_app_end.gif" alt="스마트픽 앱 서비스 종료를 안내 드립니다." />
+				<a class="btn_lottecom" ng-click="smpEndAppCall('lotte');">롯데닷컴 앱 다운받기</a>
+				<a class="btn_ellotte" ng-click="smpEndAppCall('ellotte');">엘롯데 앱 다운받기</a>
+			</div>
+		</div>
+	</div>
+
+</section>

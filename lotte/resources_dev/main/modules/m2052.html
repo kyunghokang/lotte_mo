@@ -1,0 +1,28 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!--M52 유아동 체험단-->
+	<div class="moduleCon">
+		<div class="baby_experience">
+			<div class="be_ti">
+				<p><span>유아동 체험단 모집</span></p>
+			</div>
+			<div class="prd_wrap" ng-click="logGAEvtModuleEach('-', moduleData.evtNm);moreClick(moduleData.linkUrl, moduleData.tclick + '_Clk_Ban01')">
+				<div class="thumb">
+					<img ng-src="{{moduleData.imgUrl}}" alt="" />
+				</div>
+				<div class="info">
+					<p class="name">
+						<span class="n1">{{moduleData.evtNm}}</span>
+					</p>
+					<ul>
+						<li>모집인원 : {{moduleData.pNum}}명</li>
+						<li>모집기간 : {{moduleData.evtReqDt}}</li>
+						<li>당첨발표 : {{moduleData.winnerDt}}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="btnBabyMore">
+			<span class="btnArea"><a ng-click="logGAEvtModuleEach('-', moduleData.evtNm);moreClick(moduleData.linkUrl, moduleData.tclick + '_Clk_Ban01')"><span>체험단 응모하기</span></a></span>
+		</div>
+	</div>
+</section>

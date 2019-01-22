@@ -1,0 +1,58 @@
+<section class="blankCd{{moduleData.blankCd}}">
+	<!--M19	갤러리 상품형-->
+	<div class="moduleCon" ng-if="moduleData.prdList.items.length == 6">
+		<div class="glr_list">
+			<ul>
+				<li>
+					<a ng-click="logGAEvtModuleEach('01', moduleData.prdList.items[0].goodsNo);mainProductClick(moduleData.prdList.items[0].goodsNo, moduleData.tclick + '_Clk_Prd01')">
+						<div class="thumb">
+						<img ng-src="{{moduleData.prdList.items[0].imgUrl}}" alt="" />
+						</div>
+						<p class="info"><span>{{moduleData.prdList.items[0].price | number}}</span>원<em ng-if="moduleData.prdList.items[0].isPlanPrd">~</em></p>
+					</a>
+				</li>
+				<li>
+					<a ng-click="logGAEvtModuleEach('02', moduleData.prdList.items[0].goodsNo);mainProductClick(moduleData.prdList.items[1].goodsNo, moduleData.tclick + '_Clk_Prd02')">
+						<div class="thumb">
+						<img ng-src="{{moduleData.prdList.items[1].imgUrl}}" alt="" />
+						</div>
+						<p class="info"><span>{{moduleData.prdList.items[1].price | number}}</span>원<em ng-if="moduleData.prdList.items[1].isPlanPrd">~</em></p>
+					</a>
+				</li>
+				<li>
+					<a ng-click="logGAEvtModuleEach('03', moduleData.prdList.items[0].goodsNo);mainProductClick(moduleData.prdList.items[2].goodsNo, moduleData.tclick + '_Clk_Prd03')">
+						<div class="thumb">
+						<img ng-src="{{moduleData.prdList.items[2].imgUrl}}" alt="" />
+						</div>
+						<p class="info"><span>{{moduleData.prdList.items[2].price | number}}</span>원<em ng-if="moduleData.prdList.items[2].isPlanPrd">~</em></p>
+					</a>
+				</li>
+				<li class="clear"></li>
+				<li>
+					<a ng-click="logGAEvtModuleEach('04', moduleData.prdList.items[0].goodsNo);mainProductClick(moduleData.prdList.items[3].goodsNo, moduleData.tclick + '_Clk_Prd04')">
+						<div class="thumb">
+						<img ng-src="{{moduleData.prdList.items[3].imgUrl}}" alt="" />
+						</div>
+						<p class="info"><span>{{moduleData.prdList.items[3].price | number}}</span>원<em ng-if="moduleData.prdList.items[3].isPlanPrd">~</em></p>
+					</a>
+				</li>
+				<li>
+					<a ng-click="logGAEvtModuleEach('05', moduleData.prdList.items[0].goodsNo);mainProductClick(moduleData.prdList.items[4].goodsNo, moduleData.tclick + '_Clk_Prd05')">
+						<div class="thumb">
+						<img ng-src="{{moduleData.prdList.items[4].imgUrl}}" alt="" />
+						</div>
+						<p class="info"><span>{{moduleData.prdList.items[4].price | number}}</span>원<em ng-if="moduleData.prdList.items[4].isPlanPrd">~</em></p>
+					</a>
+				</li>
+				<li>
+					<a ng-click="logGAEvtModuleEach('06', moduleData.prdList.items[0].goodsNo);mainProductClick(moduleData.prdList.items[5].goodsNo, moduleData.tclick + '_Clk_Prd06')">
+						<div class="thumb">
+						<img ng-src="{{moduleData.prdList.items[5].imgUrl}}" alt="" />
+						</div>
+						<p class="info"><span>{{moduleData.prdList.items[5].price | number}}</span>원<em ng-if="moduleData.prdList.items[5].isPlanPrd">~</em></p>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>

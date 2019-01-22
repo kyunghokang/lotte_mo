@@ -1,0 +1,2967 @@
+
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+    <meta charset="utf-8">
+    <title>롯데닷컴1</title>
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <script type="text/javascript">
+    var APP_KEY = "7fa1e44757a94fd89921";
+    var SERVER_TIME = new Date();
+    </script>
+    
+    
+
+<script>
+
+var MAPI_HOST_API = "http://molocal.lotte.com";
+var MAPI_HOST_SSL_API = "http://molocal.lotte.com";
+var M_HOST_MOBILE = "http://molocal.lotte.com";
+var M_HOST_SSL = "http://molocal.lotte.com";
+var PC_HOST_WEB = "http://www.lotte.com"; 
+
+var SPLIT_GUBUN_3 = ";;;;;"; 
+var ONENONE_BUY_LOGIN = "1"; 
+var IMALL_BUY_LOGIN = "4"; 
+
+var ST_STD_CD_PAY_MEAN_CD_L_POINT = "21";     //L-포인트
+var ST_STD_CD_PAY_MEAN_CD_LOTTE_POINT = "19";     //롯데포인트
+var ST_STD_CD_PAY_MEAN_CD_DEPOSIT = "20";     //회원보관금
+
+</script>
+
+
+
+
+    <!-- 공통 -->
+    <link rel="stylesheet" type="text/css" href="/lotte/resources_dev/common/lotte.css"/>
+    <link rel="stylesheet" type="text/css" href="/lotte/resources_dev/layout/header.css"/>
+    <link rel="stylesheet" type="text/css" href="/lotte/resources_dev/layout/header_sub.css"/>
+    <link rel="stylesheet" type="text/css" href="/lotte/resources_dev/layout/footer.css"/>
+    <link rel="stylesheet" type="text/css" href="/lotte/resources_dev/layout/actionbar.css"/>
+    <link rel="stylesheet" type="text/css" href="/lotte/resources_dev/layout/side_ctg.css"/>
+    <link rel="stylesheet" type="text/css" href="/lotte/resources_dev/layout/side_mylotte.css"/>
+    <link rel="stylesheet" type="text/css" href="/lotte/resources_dev/search/layer_srh.css"/>
+    <script src="/lotte/lib/jquery/jquery-1.11.2.min.js"></script>
+        <script src="/lotte/lib/angular/angular.min.js"></script>
+    <script src="/lotte/lib/angular/angular-sanitize.min.js"></script>
+    
+        <script src="/lotte/lib/jquery/LottePub.js"></script>
+    
+    <script src="/lotte/lib/jquery/EGSlider.js"></script>
+    <script src="/lotte/lib/jquery/cnt_interface.js"></script>
+    <script src="/lotte/lib/jquery/app_interface.js"></script>
+    <script src="/lotte/resources_dev/common/lotte_comm.js"></script>
+    <script src="/lotte/resources_dev/common/lotte_util.js"></script>
+    <script src="/lotte/resources_dev/common/lotte_filter.js"></script>
+    <script src="/lotte/resources_dev/common/lotte_svc.js"></script>
+    <script src="/lotte/resources_dev/common/lotte_search.js"></script>
+    <script src="/lotte/resources_dev/common/lotte_comm_footer.js"></script>
+    <script src="/lotte/resources_dev/common/lotte_log_dev.js"></script>
+    <script src="/lotte/resources_dev/layout/lotte_sidectg.js"></script>
+    <script src="/lotte/resources_dev/layout/lotte_sidemylotte.js"></script>
+    <script src="/lotte/resources_dev/order/order.js"></script>
+
+	<!-- 주문 전용 -->
+	<link rel="stylesheet" type="text/css" href="/common4/css/order_new_20150804_v2.css">
+	<script src="/common4/js/order.js"></script>
+
+	<script src="/common3/js/function.js"></script>
+	<script src="/common3/js/storage.js"></script>
+	<script src="https://flyasiana.com/CW/common/linkage/ozcd.js"></script>
+
+    <!-- html_meta_angular.jsp -->
+	<script src="/common3/js/SpeedTrapInsert.js"></script>
+	<script src="/common4/js/lib/crittercismClientLibraryMin.js"></script>
+
+	
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+	
+		
+	
+	
+
+
+
+	
+		
+			
+			
+			
+				
+			
+			
+			
+			
+		
+	
+	
+
+<script>
+var split_gubun_1 = ":^:"; // 구분자1
+var split_gubun_3 = ";;;;;"; // 구분자3
+var paytype_card_002 = "002";
+var paytype_card_008 = "008";
+var paytype_card_016 = "016";
+var paytype_card_018 = "018";
+var paytype_card_020 = "020";
+var paytype_card_021 = "021";
+var paytype_card_026 = "026";
+var paytype_card_029 = "029";
+var paytype_card_031 = "031";
+var paytype_card_036 = "036";
+var paytype_card_047 = "047";
+var paytype_card_048 = "048";
+var paytype_card_054 = "054";
+var hyundaeAppCardAval = false;
+var grockle_yn = "N";
+var singleProm = '';
+var singlePromCnt = 0;
+var multiProm = '';
+var multiPromCnt = 0;
+var cardStr = "<option value ='047'>롯데카드</option><option value ='029'>신한카드</option><option value ='026'>비씨카드</option><option value ='048'>현대카드</option><option value ='031'>삼성카드</option><option value ='016'>KB국민카드</option><option value ='021'>우리카드</option><option value ='008'>외환카드</option><option value ='020'>하나SK카드</option><option value ='018'>NH카드</option><option value ='036'>씨티카드</option><option value ='002'>광주카드</option><option value ='054'>우체국체크카드</option>";
+var cp_schema = "";
+var schema_domain = "http://molocal.lotte.com";
+var exp_tel_no = "1577-1110";
+var cp_udid = "";
+var cp_v = "";
+var cp_cn = "";
+var lotte_app_yn = "N";
+var smart_pic_app_yn = "N";
+var ellotte_app_yn = "N";
+var tstore_yn = "";
+var simple_mem_yn = "N";
+var ua_lower_str = "mozilla/5.0 (iphone; cpu iphone os 7_0 like mac os x; en-us) applewebkit/537.51.1 (khtml, like gecko) version/7.0 mobile/11a465 safari/9537.53";
+var adtn_cost_dtl_sct_cd_card = "10";
+var adtn_cost_dtl_sct_cd_coupon = "12";
+var adtn_cost_dtl_sct_cd_staff = "27";
+var adtn_cost_dtl_sct_cd_mrktng_cpn = "11";
+var varUa = "-1";
+var gubun = "GOODS";
+var imallYN = "N";
+var isDeliPlcChg = true;
+var freeShippingYn = "N";
+var dupGoodsInfo = "";
+var deli_size = "7";
+var manggo_yn = "N";
+var gucci_yn = "N";
+var username = "박상현";
+var lPoint = "21";
+var ltPoint = "19";
+var soilPoint = "24";
+var deposit = "20";
+var from_page = "";
+var paytype_code_card = "16";
+var paytype_code_bank = "03";
+var claim_sale_yn = "Y";
+var claim_sale_fvr_val = "5";
+var claim_sale_aply_lmt_amt = "50000";
+var claim_sale_card_knd_cd = "047";
+var curMonPhnSttlAmt = "0";
+var phone_no1 = "552";
+var phone_no2 = "8931";
+var phone_no3 = "4856";
+var commid = "300";
+var cartSn = "1278458115";
+var goods_smp_normal_etc = "0102ETC";
+var app_card_only_yn = "N";
+var app_card_cd = "";
+var PAYTYPE_CODE_BANK   = '03';
+var PAYTYPE_CODE_CARD   = '16';
+var PAYTYPE_CODE_SMART  = '16-1'; // 2011.06.07 스마트페이 추가
+var PAYTYPE_CODE_PHONE  = '15'; // 2011.05.27 (LotteUtil.java 참조)
+
+/*
+ * 카드 종류 선택시 일시불/무이자할부/일반할부에 대한 정보를 가져온 후
+ * UI를 구현한다.
+ */
+function getCardInsCheck() {
+	iscmcd		= $("#frm_inp select[name=iscmcd]").val();
+	payamt	 	= $("#frm_inp input[name=totsttlamt]:hidden").val();
+	goodsno 	= $("#frm_send input[name=goodsno]:hidden").val();
+	giftyn		= $("#frm_send input[name=giftyn]:hidden").val();
+
+	cpncardcd	= $("#frm_send input[name=cardkndcd]:hidden").val();	// 할인쿠폰의 카드정보
+	cpncardcd_dup = $("#frm_send input[name=cardkndcd_dup]:hidden").val();	// 중복카드할인쿠폰의 카드정보
+
+	// 카드사 전산센터 작업으로 인한 카드 결제 제어 관련 스크립트 생성
+	
+	
+	while(goodsno.indexOf(split_gubun_1) > -1){
+		goodsno = goodsno.replace(split_gubun_1, ",");
+	}
+	// 할인항목만 있고 카드가 존재하지 않을 경우
+	if (iscmcd=="null" || iscmcd==undefined || iscmcd=="undefined"){
+		iscmcd = "";
+	}
+	// 스마트페이, 앱카드 (롯데, 현대, 삼성, 신한) 영역 보이기/가리기
+	if ( iscmcd == paytype_card_047 || iscmcd == paytype_card_048 || iscmcd == paytype_card_031 || iscmcd == paytype_card_029 ){
+		$("#pay_card_confirm").show();
+
+		// 앱카드 전용 여부 체크
+		if ('N'!='Y'){
+			// 롯데카드 앱카드 선택 비활성화 (롯데카드 기능 없음)
+			if ( iscmcd == paytype_card_047 ){
+				$("#card_confirm_type_03").hide();
+				$("#card_confirm_label_03").hide();
+			}else{
+				$("#card_confirm_type_03").show();
+				$("#card_confirm_label_03").show();
+			}
+			if (iscmcd == paytype_card_047 && 'Y'=='Y'){ // 롯데카드 스마트페이 등록되어 있으면
+				$("#card_confirm_type_01").attr("checked", true);
+				$("#card_confirm_type_01").prop("checked", true);
+			}else{
+				if (hyundaeAppCardAval && iscmcd == paytype_card_048){ // 현대카드 (6월10일 ~ 6월26일) 앱카드 기본값
+					$("#card_confirm_type_03").attr("checked", true);
+					$("#card_confirm_type_03").prop("checked", true);
+				}else{
+					$("#card_confirm_type_02").attr("checked", true);
+					$("#card_confirm_type_02").prop("checked", true);
+				}
+			}
+		}else{
+			$("#card_confirm_type_01").hide();
+			$("#card_confirm_label_01").hide();
+			$("#card_confirm_type_02").hide();
+			$("#card_confirm_label_02").hide();
+			$("#card_confirm_type_03").attr("checked", true);
+			$("#card_confirm_type_03").prop("checked", true);
+		}
+	}else{
+		$("#pay_card_confirm").hide();
+		$("#card_confirm_type_02").attr("checked", true);
+		$("#card_confirm_type_02").prop("checked", true);
+		
+	}
+	if ( iscmcd != '' && ((cpncardcd != '' && cpncardcd != iscmcd) || (cpncardcd_dup != '' && cpncardcd_dup != iscmcd)) ) {
+		init_cardselect();
+
+		cardname		= $("#frm_inp select[name=iscmcd] option:selected").text();				
+		frm_alert(cardname + ' 할인을 받으시려면 ' + cardname + '로 결제하셔야 합니다.');
+		
+		$("#frm_inp input[name=rdo_cardinst]:radio:eq(0)").attr('disabled' , false);
+		$("#frm_inp input[name=rdo_cardinst]:radio:eq(0)").attr('checked' , true);		
+		$("#frm_inp input[name=rdo_cardinst]:radio:eq(0)").prop('checked' , true);
+
+		$("#frm_inp select[name=iscmcd]").change();	// 할인정보 재조회
+	} else {
+		var staff_yn = "N"; // 임직원 할인 시 무이자 기간 적용
+		if ($("#frm_inp input[name=prommdclcd]").eq($("#frm_inp select[name=coupon]").val()).val() == "27"){
+			staff_yn = "Y";
+		}	
+		if ( iscmcd != '' ) {
+			$.ajax({
+				type: 'post'
+				, async: false
+				, url: '/order/order_cardcheck.do?' + __commonParam
+				, data: 'goodsno='+goodsno+'&payamt='+payamt+'&iscmcd='+iscmcd+'&giftyn='+giftyn+'&staff_yn='+staff_yn+'&grockle_yn=' + grockle_yn
+				, success: function(response) {
+					$("#cardinscheck").html( response );
+					init_cardinstmon();
+					misp_plugIn(iscmcd);
+					}
+				, error : init_cardinstmon()
+			});
+		} else {
+			$("#frm_inp input[name=onintmonth]:hidden").val('');
+			$("#frm_inp input[name=intmonth]:hidden").val('');
+			init_cardinstmon();
+		}
+	}
+	
+	// 청구할인
+	if ('Y'=='Y'){
+		var claim_sale_fvr_val = ('5'==''?'0':'5');
+		var totsttlamt = $("#frm_inp input[name=totsttlamt]:hidden").val();
+		var claim_sale_aply_lmt_amt = ('50000'==''?'0':'50000');
+		var paytype = $("#frm_inp input[name=paytype]:hidden").val();
+		var claim_sale_card_max_amt = ('20'==''?'0':'20');   // 할인금액
+
+		if ($("#frm_inp select[name=iscmcd]").val() == '047'
+		 && parseInt(totsttlamt) >= parseInt(claim_sale_aply_lmt_amt)
+		 && paytype == PAYTYPE_CODE_CARD && parseInt(totsttlamt) > 0){ // 카드 할인 정보 표현
+			if(parseInt(claim_sale_card_max_amt)>0){
+				claim_sale_card_max_amt = claim_sale_card_max_amt*10000;
+			}
+			var claim_sale_price = parseInt(totsttlamt);
+		    claim_sale_price = claim_sale_price * claim_sale_fvr_val * 0.01;
+		    if(parseInt(claim_sale_price) > parseInt(claim_sale_card_max_amt)){
+		    	claim_sale_price = claim_sale_card_max_amt;
+		    }
+		    claim_sale_price = parseInt(totsttlamt) - claim_sale_price;
+			claim_sale_price = Math.floor(claim_sale_price * 0.1) * 10;
+			
+			$("#claim_sale_price").html("<strong>카드 청구할인 예상가: " + String(claim_sale_price).money() + "원</strong>"); // 청구 할인 금액
+			$("#claim_sale_info").show();
+			$("#claim_sale_price_noti").hide();
+		}else{ // 카드 할인 정보 가림
+			$("#claim_sale_info").hide();
+			$("#claim_sale_price_noti").show();
+		}
+	} 
+}
+
+//가상계좌 조회
+function sel_acct(){
+	 var bankCd = $("#frm_inp select[name=bankno]").val();
+	 var grockle_mbr_no = $("#frm_send input[name=grockle_mbr_no]:hidden").val(); // 비회원구매
+	 
+	 // 비회원이고 비회원번호가 존재 시
+	 if(grockle_yn == 'Y' && grockle_mbr_no != ''){
+		 return;
+	 }
+	 if(bankCd == '' || bankCd == null) {
+		 $("#acct_result").html("<div class=\"s_title\">계좌번호</div><div class=\"s_text\"><span class=\"high\">은행을 선택해 주세요</span></div>");	
+		 return;
+	 }
+	// 은행 전산센터 작업으로 인한 카드 결제 제어 관련 스크립트 생성
+	
+		
+	  $.ajax({
+		
+		type: 'post'
+		, async: false
+		, url: '/order/order_acct.do?' + __commonParam
+		//, data: $("#frm").serialize()
+		, data: 'bankCd=' + bankCd + '&grockle_mbr_no=' + grockle_mbr_no + '&grockle_yn=' + grockle_yn
+		, success: function(response) {
+			$("#acct_result").html(response);		        
+		  }
+		, error: function(request, status, err) {
+			alert('가상계좌  조회에 실패했습니다.!');
+		  }
+	});
+}
+
+//배송정보 setting (배송지별, 상품별로 setting 되는 값이 서로 다르므로 주의)
+function setDeliData(){
+	var areaNum = 1; // 배송지 수
+	var tmp_idx = 0;
+	var deliidx = 0;
+	var k = 1; // 배송지 값		
+	var cart_sn = null;
+	var deli_prod_cnt = null; // 상품 목록
+	var card_msg_chk = false; // 선물메시지 체크 여부
+	var basedlvpyn = new Array(), dlvpnm = new Array();
+	var dlvpsn = new Array(), usrsortrnk = new Array(), deli_chk = new Array(), rmitnm = new Array();
+	var dlvzip = new Array(), dlvzip1 = new Array(), dlvzip2 = new Array(), postaddr = new Array(), dtladdr = new Array();
+	var stnm_dlv_zip = new Array(), stnm_dlv_zip1 = new Array(), stnm_dlv_zip2 = new Array(), stnm_post_addr = new Array(), stnm_dtl_addr = new Array();
+	var cellsctno = new Array(), celltxnono = new Array(), cellendno = new Array();
+	var cbltelrgnno = new Array(), cblteltxnono = new Array(), cbltelendno = new Array(), cbltelexnono= new Array();
+	var rcvmessage = new Array(), ord_qty_list = new Array(), dlvp_idx = new Array(), dlvp_idx_tmp = new Array(), addrcvmessageyn = new Array();
+	var receivename = new Array(), sendmessage = new Array(), sendname = new Array(), dlvpuseyn = new Array();
+	var deli_span_nm = "#deli_1"; // "#multi_deli_1";
+	var chk_multi_dlvp = false;
+	
+	
+	
+
+	var chk_multi_dlvp = $("#chk_multi_dlvp").prop("checked");
+	var deli_span_nm = "";		
+	if (chk_multi_dlvp==undefined || !chk_multi_dlvp){ // 다중배송이 아닌 경우
+		areaNum = 0;
+	}else{
+		// 다중배송지 여부 및 수
+		if (typeof($("#frm_inp select[name=areaNum_select]").val())!=undefined && $("#frm_inp select[name=areaNum_select]").val() > 1){ 
+			$("#frm_send input[name=chk_multi_dlvp]:hidden").val("Y");
+			areaNum = $("#frm_inp select[name=areaNum_select]").val();
+		}else{
+			areaNum = 0;
+		}
+	}
+
+	for(var j=0; j<=areaNum; j++){
+		tmp_idx = rmitnm.length;
+		dlvpuseyn[tmp_idx] = "Y";
+		
+		if (j==0){ // 단일 배송지에 대한 값 셋팅
+			k = 1;
+		}else{
+			k = j;
+		}
+
+		if ( $("#multi_deli_"+k).html() != undefined ) {
+			deli_span_nm = "#multi_deli_"+k;
+		} else {
+			deli_span_nm = "#deli_"+k;
+		}
+
+		// 주문자명 수정완료 체크
+		var $nameInpt = $("[id^=orderer_name_val]:visible").find("#nameInpt");
+
+		//회원배송지 수정이 있을경우 주문자 정보 자동 복사
+		if ( k==1 && $("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val() != undefined 
+				  && $("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val() == "U" ) {
+
+			//alert("회원배송지 수정 주문자-->"+$nameInpt.val());
+			if ( $.trim($nameInpt.val()) == '') {
+				alert("주문자를 입력해 주세요.");
+				$nameInpt.focus();
+				return false;
+			}	
+			$("[id^='orderer_name_text']").find("#nameSp").text($nameInpt.val());
+			$("[id^='orderer_name_val']").find("#nameInpt").val($nameInpt.val());
+		} else if ($nameInpt.length > 0) {
+			alert("주문자를 입력해 주세요.");
+			$nameInpt.focus();
+			return false;
+		}
+
+		// 간편회원인 경우 첫번째일때는 undefined 로 들어온다.
+		var simpleMemberYnFirst = "N";
+           if ( $(deli_span_nm+" select[name=deli_select] option").index($(deli_span_nm+" select[name=deli_select] option:selected")) < 0 && mbr_sct_cd_5 == "Y"){
+		
+			
+			
+				simpleMemberYnFirst = "Y";
+				$("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val("C");
+			
+		
+		}
+
+		// 연락처 수정은 수정으로, 새배송지는 신규로 처리한다.
+		if ( $("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val() != undefined  || simpleMemberYnFirst == "Y") {  //수정 or 신규
+	
+		if( "Y" != grockle_yn ){
+			if ( $("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val() == "C" || 
+				 $("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val() == "U" || simpleMemberYnFirst == "Y" ) {
+				deli_span_nm += " #li_new";
+			} else {
+				deli_span_nm += " #li_mine";
+			}
+		}
+			rmitnm[tmp_idx]		 	= $(deli_span_nm + " input[name=inprmitnm]").val();
+			dlvzip1[tmp_idx]	 	= $(deli_span_nm + " input[name=inpzip1]:hidden").val();
+			dlvzip2[tmp_idx]	 	= $(deli_span_nm + " input[name=inpzip2]:hidden").val();
+			postaddr[tmp_idx]	 	= $(deli_span_nm + " input[name=inpaddr1]").val();
+			dtladdr[tmp_idx]	 	= $(deli_span_nm + " input[name=inpaddr2]").val();
+			stnm_dlv_zip1[tmp_idx]	= $(deli_span_nm + " input[name=stnm_inp_zip1]:hidden").val();
+			stnm_dlv_zip2[tmp_idx] 	= $(deli_span_nm + " input[name=stnm_inp_zip2]:hidden").val();
+			stnm_post_addr[tmp_idx]	= $(deli_span_nm + " input[name=stnm_inp_addr1]:hidden").val();
+			stnm_dtl_addr[tmp_idx]	= $(deli_span_nm + " input[name=stnm_inp_addr2]:hidden").val();
+			cbltelrgnno[tmp_idx] 	= $(deli_span_nm + " input[name=inptel1]").val();
+			if (cbltelrgnno[tmp_idx] == "") {
+				cbltelrgnno[tmp_idx] = "000";
+			}
+			cblteltxnono[tmp_idx]	= $(deli_span_nm + " input[name=inptel2]").val();
+			if (cblteltxnono[tmp_idx] == "") {
+				cblteltxnono[tmp_idx] = "000";
+			}
+			cbltelendno[tmp_idx] 	= $(deli_span_nm + " input[name=inptel3]").val();
+			if (cbltelendno[tmp_idx] == "") {
+				cbltelendno[tmp_idx] = "000";
+			}
+			cbltelexnono[tmp_idx]	= "";
+
+
+			if ( $("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val() == undefined  && simpleMemberYnFirst != "Y") {
+				// 배송지 수정/신규 둘 다 아닐 경우
+				var dlvpSn = $(deli_span_nm + " #deli_select_" + k).val();
+				cellsctno[tmp_idx] = $("#deli_phone_val_" + k + "_" + dlvpSn + " [name=inpcell1]:enabled").val();
+				celltxnono[tmp_idx]	= $("#deli_phone_val_" + k + "_" + dlvpSn + " input[name=inpcell2]").val();
+				cellendno[tmp_idx] = $("#deli_phone_val_" + k + "_" + dlvpSn + " input[name=inpcell3]").val();	
+				//alert('배송지 수정/신규 둘 다 아닐 경우');				
+			} else if ($("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val() == "C"  ||
+				       $("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val() == "U"  || simpleMemberYnFirst == "Y"   ) {
+				// 배송지 신규, 수정 (비회원 포함)
+				cellsctno[tmp_idx] = $("#deli_phone_val_" + k + " [name=inpcell1]:enabled").val();
+				celltxnono[tmp_idx]	= $("#deli_phone_val_" + k + " input[name=inpcell2]").val();
+				cellendno[tmp_idx] = $("#deli_phone_val_" + k + " input[name=inpcell3]").val();	
+
+				//수정일 경우 일반전화번호 셋팅
+				if ($("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val() == "U" ) {
+					cbltelrgnno[tmp_idx] =  $("#deli_phone_val_" + k + " input[name=inptel1]").val();
+					cblteltxnono[tmp_idx]= $("#deli_phone_val_" + k + " input[name=inptel2]").val();
+					cbltelendno[tmp_idx] =  $("#deli_phone_val_" + k + " input[name=inptel3]").val();
+				}
+				//alert('배송지 신규, 수정 (비회원 포함)'+cbltelrgnno[tmp_idx]);			
+			} 
+					
+		if( "Y" != grockle_yn ){
+			//deliidx = $("#frm_inp select[name=deli_select]").attr("selectedIndex");
+			deliidx = $(deli_span_nm+" select[name=deli_select] option").index($(deli_span_nm+" select[name=deli_select] option:selected"));
+
+			if($("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val() == 'U') {
+				deliidx = $("#deli_"+k + " #li_mine select[name=deli_select] option").index($("#deli_"+k + " #li_mine select[name=deli_select] option:selected"));
+			}
+			
+			basedlvpyn[tmp_idx] = $("#frm_inp input[name=basedlvpyn]").eq(deliidx).val();
+			if (basedlvpyn[tmp_idx] == "") {basedlvpyn[tmp_idx] = "N";}
+			dlvpnm[tmp_idx]     = $(deli_span_nm+" input[name=inpdlvpnm]").val();	
+		
+			if($("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val() == 'C' || simpleMemberYnFirst == "Y"  ){
+				dlvpsn[tmp_idx]    = "";
+				usrsortrnk[tmp_idx]= "0";
+				deli_chk[tmp_idx]  = "C";	//배송지 수정이면 U 신규이면 C
+
+				if (simpleMemberYnFirst == "Y" ) {
+					basedlvpyn[tmp_idx] = "N";
+				}	
+				//alert(($("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val())+" dlvpuseyn["+k+"]--->" + ($("#dlvpuseyn_"+k).prop("checked")));
+				if ($("#dlvpuseyn_"+k).length > 0 && $("#dlvpuseyn_"+k).prop("checked")==false) {
+					dlvpuseyn[tmp_idx] = "N";	
+				} 
+			}else if($("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val() == 'U'){
+				dlvpsn[tmp_idx]    = $("#frm_inp input[name=dlvpsn]").eq(deliidx).val();
+				usrsortrnk[tmp_idx]= $("#frm_inp input[name=usrsortrnk]").eq(deliidx).val();
+				deli_chk[tmp_idx]  = "U";
+			}else{
+				dlvpsn[tmp_idx]    = $("#frm_inp input[name=dlvpsn]").eq(deliidx).val();
+				usrsortrnk[tmp_idx]= $("#frm_inp input[name=usrsortrnk]").eq(deliidx).val();
+				deli_chk[tmp_idx]  = "";
+			}
+
+			if (chk_multi_dlvp!=undefined && chk_multi_dlvp){ // 다중배송이면
+				deli_chk[0]  = "";	// 첫번째 배송지는 읽기전용
+			}
+			
+			if ( $.trim($(deli_span_nm+" input[name=inpdlvpnm]").val()) == ''   ) {
+				alert("배송지명을 입력해주세요.");
+				//$(deli_span_nm+" input[name=inpdlvpnm]").focus();
+				return false;
+			} 
+		}
+	        if (    $("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val() == "C" 
+				 || $("#deli_"+k+" input[name=deli_chk_"+k+"]:radio:checked").val() == "U" 
+		        ) {
+				if ( $.trim($(deli_span_nm+" input[name=inprmitnm]").val()) == '' ) {
+					alert('받으시는 분을 입력해주세요.');
+					$(deli_span_nm+" input[name=inprmitnm]").focus();
+					return false;
+			    } else if ( (($.trim($(deli_span_nm + " input[name=inpzip1]").val()) == '' 
+								|| $.trim($(deli_span_nm + " input[name=inpzip2]").val()) == '' 
+								|| $.trim($(deli_span_nm + " input[name=inpaddr1]").val()) == '') 
+									&& ($.trim($(deli_span_nm + " input[name=stnm_inp_zip1]").val()) == '' 
+										|| $.trim($(deli_span_nm + " input[name=stnm_inp_zip2]").val()) == '' 
+										|| $.trim($(deli_span_nm + " input[name=stnm_inp_addr1]").val()) == '')) 
+						    || ( $.trim($(deli_span_nm + " #txt_zip1_" + k).val()) == '' 
+							        || $.trim($(deli_span_nm + " #txt_zip2_" + k).val()) == '' )
+				          ) 
+					{
+					alert('주소를 검색 후 입력해주세요.');
+					//$(deli_span_nm+" input[name=inpsearch]").focus();
+					return false;
+				} else if ( $.trim($(deli_span_nm + " input[name=inpaddr2]").val()) == ''
+						&& $.trim($(deli_span_nm + " input[name=stnm_inp_addr2]").val()) == '' ) {
+					alert('나머지 주소를  입력해주세요.');
+					//$(" input[name=inpaddr2]").focus();
+					return false;
+				/* 2014.12.29 모바일주문간소화 연락처 삭제. jjkim59
+				} else if ( !$.trim($(deli_span_nm+" input[name=inptel1]").val()).isNum() || ($.trim($(deli_span_nm+" input[name=inptel1]").val()).length < 2 || $.trim($(deli_span_nm+" input[name=inptel1]").val()).length > 4) ) {
+					alert('연락처를 2~4자리 숫자로 입력해주세요.');
+					$(deli_span_nm+" input[name=inptel1]").focus();
+					return false;
+				} else if ( !$.trim($(deli_span_nm+" input[name=inptel2]").val()).isNum() || ($.trim($(deli_span_nm+" input[name=inptel2]").val()).length < 3 || $.trim($(deli_span_nm+" input[name=inptel2]").val()).length > 4) ) {
+					alert('연락처를 3~4자리 숫자로 입력해주세요.');
+					$(deli_span_nm+" input[name=inptel2]").focus();
+					return false;
+				} else if ( !$.trim($(deli_span_nm+" input[name=inptel3]").val()).isNum() || ($.trim($(deli_span_nm+" input[name=inptel3]").val()).length < 3 || $.trim($(deli_span_nm+" input[name=inptel3]").val()).length > 4) ) {
+					alert('연락처를 3~4자리 숫자로 입력해주세요.');
+					$(deli_span_nm+" input[name=inptel3]").focus();
+					return false;
+				*/
+				}
+	        } 
+	        if ( !$(deli_span_nm+" input[name=inpcell1]").prop("disabled") && (!$.trim($(deli_span_nm+" input[name=inpcell1]").val()).isNum() || ($.trim($(deli_span_nm+" input[name=inpcell1]").val()).length < 3 || $.trim($(deli_span_nm+" input[name=inpcell1]").val()).length > 4)) ) {
+				alert('연락처를 3~4자리 숫자로 입력해주세요.1');
+				$(deli_span_nm+" input[name=inpcell1]").focus();
+				return false;
+			} else if ( !$(deli_span_nm+" select[name=inpcell1]").prop("disabled") && (!$.trim($(deli_span_nm+" select[name=inpcell1]").val()).isNum() || ($.trim($(deli_span_nm+" select[name=inpcell1]").val()).length < 3 || $.trim($(deli_span_nm+" select[name=inpcell1]").val()).length > 4)) ) {
+				alert('연락처를 선택해주세요.1');
+				//$(deli_span_nm+" input[name=inpcell2]").focus();
+				return false;
+			} else if ( !$.trim($(deli_span_nm+" input[name=inpcell2]").val()).isNum() || ($.trim($(deli_span_nm+" input[name=inpcell2]").val()).length < 3 || $.trim($(deli_span_nm+" input[name=inpcell2]").val()).length > 4) ) {
+				alert('연락처를 3~4자리 숫자로 입력해주세요.');
+				$(deli_span_nm+" input[name=inpcell2]").focus();
+				return false;
+			} else if ( !$.trim($(deli_span_nm+" input[name=inpcell3]").val()).isNum() || ($.trim($(deli_span_nm+" input[name=inpcell3]").val()).length < 3 || $.trim($(deli_span_nm+" input[name=inpcell3]").val()).length > 4) ) {
+				alert('연락처를 3~4자리 숫자로 입력해주세요.');
+				$(deli_span_nm+" input[name=inpcell3]").focus();
+				return false;
+			}
+		}else {		//회원 수정없을경우
+			//var deliidx = $("#frm_inp select[name=deli_select]").attr('selectedIndex');
+			deliidx = $(deli_span_nm+" select[name=deli_select] option").index($(deli_span_nm+" select[name=deli_select] option:selected"));
+			basedlvpyn[tmp_idx]	 	= $("#frm_inp input[name=basedlvpyn]").eq(deliidx).val(); //rcvCode
+			dlvpsn[tmp_idx]		 	= $("#frm_inp input[name=dlvpsn]").eq(deliidx).val(); //rcvCode
+			dlvpnm[tmp_idx]      	= $("#frm_inp input[name=dlvpnm]").eq(deliidx).val();
+			rmitnm[tmp_idx]		 	= $("#frm_inp input[name=rmitnm]").eq(deliidx).val();
+			dlvzip1[tmp_idx]	 	= $("#frm_inp input[name=dlvzip1]").eq(deliidx).val();
+			dlvzip2[tmp_idx]	 	= $("#frm_inp input[name=dlvzip2]").eq(deliidx).val();
+			postaddr[tmp_idx]	 	= $("#frm_inp input[name=postaddr]").eq(deliidx).val();
+			dtladdr[tmp_idx]	 	= $("#frm_inp input[name=dtladdr]").eq(deliidx).val();
+			stnm_dlv_zip1[tmp_idx]	= $("#frm_inp input[name=stnm_dlv_zip1]").eq(deliidx).val();
+			stnm_dlv_zip2[tmp_idx]	= $("#frm_inp input[name=stnm_dlv_zip2]").eq(deliidx).val();
+			stnm_post_addr[tmp_idx]	= $("#frm_inp input[name=stnm_post_addr]").eq(deliidx).val();
+			stnm_dtl_addr[tmp_idx]	= $("#frm_inp input[name=stnm_dtl_addr]").eq(deliidx).val();
+			cellsctno[tmp_idx]	 	= $("#frm_inp input[name=cellsctno]").eq(deliidx).val();
+			celltxnono[tmp_idx]	 	= $("#frm_inp input[name=celltxnono]").eq(deliidx).val();
+			cellendno[tmp_idx]	 	= $("#frm_inp input[name=cellendno]").eq(deliidx).val();
+			cbltelrgnno[tmp_idx] 	= $("#frm_inp input[name=cbltelrgnno]").eq(deliidx).val();
+			cblteltxnono[tmp_idx]	= $("#frm_inp input[name=cblteltxnono]").eq(deliidx).val();
+			cbltelendno[tmp_idx] 	= $("#frm_inp input[name=cbltelendno]").eq(deliidx).val();
+			cbltelexnono[tmp_idx]	= "";
+			usrsortrnk[tmp_idx]	 	= $("#frm_inp input[name=usrsortrnk]").eq(deliidx).val();
+			deli_chk[tmp_idx]	 	= "";
+		}
+
+		// 배송지재사용 셋팅
+		$("#frm_send input[name=chk_dlvp_reuse]").val("");
+		if (k==1 && $("#chk_dlvp_reuse").length > 0) {
+			if ( deli_chk[tmp_idx]== "U" && $("#chk_dlvp_reuse_mod").prop("checked") == true) {
+				$("#frm_send input[name=chk_dlvp_reuse]").val("Y");
+			} else  if ( deli_chk[tmp_idx]== "" && $("#chk_dlvp_reuse").prop("checked") == true) {
+				$("#frm_send input[name=chk_dlvp_reuse]").val("Y");
+			}
+		}
+
+		// 배송메시지
+		rcvmessage[tmp_idx]	 = $(deli_span_nm+" select[name=deli_msg]").val();
+		addrcvmessageyn[tmp_idx] = "";
+		if (rcvmessage[tmp_idx] == "직접입력") {
+			rcvmessage[tmp_idx]	 = $(deli_span_nm+" input[name=rcvmessage]").val();
+			if( k==1 ){
+				addrcvmessageyn[tmp_idx] = "Y";
+			}
+		}
+
+		// 우편번호
+		if (dlvzip1[tmp_idx]=="" || dlvzip2[tmp_idx]==""){
+			dlvzip[tmp_idx] = "";
+		}else{
+			dlvzip[tmp_idx] = dlvzip1[tmp_idx] + dlvzip2[tmp_idx];
+		}
+
+		if (stnm_dlv_zip1[tmp_idx]=="" || stnm_dlv_zip2[tmp_idx]==""){
+			stnm_dlv_zip[tmp_idx] = "";
+		}else{
+			stnm_dlv_zip[tmp_idx] = stnm_dlv_zip1[tmp_idx] + stnm_dlv_zip2[tmp_idx];
+		}
+
+		// 선물 메시지
+		if ( $(deli_span_nm + " input[name=gift_yn_"+k+"]:radio:checked").val() == '1' ) {
+			receivename[tmp_idx]	= $(deli_span_nm + " input[name=receivename_"+k+"]:enabled").val();
+			sendmessage[tmp_idx]	= $(deli_span_nm + " textarea[name=sendmessage_"+k+"]:enabled").val();
+			sendname[tmp_idx]	= $(deli_span_nm + " input[name=sendname_"+k+"]:enabled").val();
+
+			if ( $.trim(receivename[tmp_idx]) == '' && $.trim(sendmessage[tmp_idx]) == '' 
+				&& $.trim(sendname[tmp_idx]) == '' ) {
+				card_msg_chk = true;					
+			}
+		} else {
+			receivename[tmp_idx] = "";
+			sendmessage[tmp_idx] = "";
+			sendname[tmp_idx] = "";
+		}
+	}
+
+	// 배송지 중복 체크
+	if (dlvpsn.length > 1 && chk_multi_dlvp!=undefined && chk_multi_dlvp){
+		for(var i=1; i<dlvpsn.length; i++){
+			if (dlvpsn[i]=="" && deli_chk[i]=="C"){ // 신규 배송지일 경우
+				continue;
+			}
+			
+			for(var j=1; j<dlvpsn.length; j++){
+				if (i!=j && dlvpsn[i] == dlvpsn[j]){
+					alert('중복된 배송지가 존재합니다.');
+					return false;
+				}
+			}
+		}
+	}
+
+	// 선물 메시지 작성 체크
+	if (card_msg_chk && !confirm('선물메시지를 작성하지 않고 주문을 진행하시겠습니까?')) { 
+		return false;
+	}
+
+	if (chk_multi_dlvp!=undefined && chk_multi_dlvp){ // 다중배송인 경우
+		// 주문 상품 종류 수
+		cart_sn = $("#frm_send input[name=cartsn]:hidden").val().split(split_gubun_1);
+
+		var tmp_prod_cnt = 0; // 배송지별 상품수
+		// 주문 상품 종류 수 만큼 반복
+		for(var i=0; i<cart_sn.length;i++){	
+			deli_prod_cnt = new Array(); // 배송지별 수량
+			dlvp_idx_tmp = new Array(); // 상품별 배송지 idx
+				
+			for(var j=1; j<=areaNum; j++){
+				tmp_prod_cnt = $("input[name=multi_prod_"+cart_sn[i]+"_"+j+"]").val();
+
+				if (parseInt(tmp_prod_cnt) < 1){
+					continue;
+				}
+				
+				deli_prod_cnt[deli_prod_cnt.length] = tmp_prod_cnt;
+				dlvp_idx_tmp[dlvp_idx_tmp.length] = j;
+			}
+
+			ord_qty_list[i] = deli_prod_cnt.join(split_gubun_1);// 상품별 배송지별 수량
+			dlvp_idx[i] = dlvp_idx_tmp.join(split_gubun_1);// 상품별 배송지별 수량
+		}
+
+		$("#frm_send input[name=ord_qty_list]").val( ord_qty_list.join(split_gubun_3) );
+		$("#frm_send input[name=dlvp_idx]").val( dlvp_idx.join(split_gubun_3) );
+	}else{
+		$("#frm_send input[name=dlvp_idx]").val("0");
+	}
+
+	$("#frm_send input[name=basedlvpyn]:hidden").val( basedlvpyn.join(split_gubun_3) );
+	$("#frm_send input[name=dlvpsn]:hidden").val( dlvpsn.join(split_gubun_3) );
+	$("#frm_send input[name=dlvpnm]:hidden").val( dlvpnm.join(split_gubun_3) );
+	$("#frm_send input[name=rmitnm]:hidden").val( rmitnm.join(split_gubun_3) );
+	$("#frm_send input[name=dlvzip]:hidden").val( dlvzip.join(split_gubun_3) );
+	$("#frm_send input[name=postaddr]:hidden").val( postaddr.join(split_gubun_3) );
+	$("#frm_send input[name=dtladdr]:hidden").val( dtladdr.join(split_gubun_3) );
+	$("#frm_send input[name=stnm_dlv_zip]:hidden").val( stnm_dlv_zip.join(split_gubun_3) );
+	$("#frm_send input[name=stnm_post_addr]:hidden").val( stnm_post_addr.join(split_gubun_3) );
+	$("#frm_send input[name=stnm_dtl_addr]:hidden").val( stnm_dtl_addr.join(split_gubun_3) );
+	$("#frm_send input[name=cellsctno]:hidden").val( cellsctno.join(split_gubun_3) );
+	$("#frm_send input[name=celltxnono]:hidden").val( celltxnono.join(split_gubun_3) );
+	$("#frm_send input[name=cellendno]:hidden").val( cellendno.join(split_gubun_3) );
+	$("#frm_send input[name=cbltelrgnno]:hidden").val( cbltelrgnno.join(split_gubun_3) );
+	$("#frm_send input[name=cblteltxnono]:hidden").val( cblteltxnono.join(split_gubun_3) );
+	$("#frm_send input[name=cbltelendno]:hidden").val( cbltelendno.join(split_gubun_3) );
+	$("#frm_send input[name=cbltelexnono]:hidden").val( cbltelexnono.join(split_gubun_3) );
+	$("#frm_send input[name=usrsortrnk]:hidden").val( usrsortrnk.join(split_gubun_3) );
+	$("#frm_send input[name=delichk]:hidden").val( deli_chk.join(split_gubun_3) );
+	$("#frm_send input[name=rcvmessage]").val( rcvmessage.join(split_gubun_3) );		
+	$("#frm_send input[name=addrcvmessageyn]").val( addrcvmessageyn.join(split_gubun_3) );
+	$("#frm_send input[name=receivename]:hidden").val( receivename.join(split_gubun_3) );
+	$("#frm_send input[name=sendmessage]:hidden").val( sendmessage.join(split_gubun_3) );
+	$("#frm_send input[name=sendname]:hidden").val( sendname.join(split_gubun_3) );
+	$("#frm_send input[name=dlvpuseyn]:hidden").val( dlvpuseyn.join(split_gubun_3) );
+	
+	var prodArr = '1278458115'.split(split_gubun_1);
+	var tmp_val = "";
+	var tmp_arr = new Array(prodArr);
+	
+	// 매장전달메시지
+	for(var i=0; i<prodArr.length; i++){
+		if (typeof($("#frm_inp input[name=shop_memo_"+prodArr[i]+"]"))==undefined){
+			tmp_val = "";
+		}else{
+			tmp_val = $("#frm_inp input[name=shop_memo_"+prodArr[i]+"]").val();
+		}
+				
+		tmp_arr[i] = tmp_val;
+	}
+	
+	$("#frm_send input[name=shop_memo_cont]:hidden").val( tmp_arr.join(split_gubun_1) );
+	
+	// 선물포장여부
+	for(var i=0; i<prodArr.length; i++){
+		if (typeof($("#frm_inp input[name=gift_pkg_"+prodArr[i]+"]:radio:checked"))==undefined){
+			tmp_val = "N";
+		}else{
+			tmp_val = $("#frm_inp input[name=gift_pkg_"+prodArr[i]+"]:radio:checked").val();
+		}
+				
+		tmp_arr[i] = tmp_val;
+	}
+	$("#frm_send input[name=gift_pkg_yn]:hidden").val( tmp_arr.join(split_gubun_1) );
+
+	return true;
+}
+</script>
+
+</head>
+<body ng-controller="OrderCtrl" >
+	<script>
+	var resCode = "0000";
+	var orderSubTitle = "주문서 작성";
+	</script>
+    <div id="wrapper" ng-show="showWrap">
+        <lotte-header></lotte-header>
+        <sub-header></sub-header>
+        <section lotte-container ng-show="contVisible" class="contVisible">
+		
+
+
+	
+	<div id="container">
+	<!-- spAmt -->	
+	<form method="post" name="frm_send" id="frm_send" action="/order/order_complete.do?c=mlotte&udid=&v=&cn=&cdn=">
+	<input type="hidden" id="pageName" name="pageName" value="of" />
+	<input type="hidden" name="cartsn" value="1278458115" />
+	<input type="hidden" name="gubun" value="GOODS" />
+	<input type="hidden" name="goodsno" value="42498702" />
+	<input type="hidden" name="goodsnm" value="픽시스 12 PYXIS 12 BACKPACK (ABDFU12954) (ABDFU12954)" />
+	<input type="hidden" name="itemno" value="2" />
+	<input type="hidden" name="saleprc" value="89000" />
+	<input type="hidden" name="ordqty" value="1" />	
+	<!-- 수정된 주문자명 -->
+	<input type="hidden" name="ord_man_nm" value="" />	
+	<input type="hidden" name="goodstpcd" value="10" />
+	<input type="hidden" name="ordertp" value="" />
+	<input type="hidden" name="goodsdesc" value="<strong>[아크테릭스]</strong>픽시스 12 PYXIS 12 BACKPACK (ABDFU12954) (ABDFU12954)" />
+	<input type="hidden" name="delidlvpolcno" value="100" />
+	<input type="hidden" name="conrno" value="0" />
+	<input type="hidden" name="mastdispno" value="5420390" />
+	<input type="hidden" name="infwdispno" value="5537338" />
+	<input type="hidden" name="infwdispnosctcd" value="12" />
+	<input type="hidden" name="goodschocdesc" value="" />
+	<input type="hidden" name="goodscmpscd" value="50" />
+	<input type="hidden" name="pkggoodssn" value="0" />
+	<input type="hidden" name="cardyn" value="N" />
+	<input type="hidden" name="gift_pkg_yn" value="N" />
+	<input type="hidden" name="shop_memo_cont" value="" />
+	<input type="hidden" name="giftyn" value="N" />
+	<input type="hidden" name="ecpnexistyn" value="N" />
+	<input type="hidden" name="smppsbyn" value="Y" />
+	<input type="hidden" name="smpvstshopno" value="0" />
+	<input type="hidden" name="totsmartpickdcamt" value="0" />
+	<input type="hidden" name="strsmpvstfcstdtime" value="" />
+	<input type="hidden" name="totdeliamt" value="0" />	
+	<!-- 배송정보 -->
+	<input type="hidden" name="basedlvpsn" value="223919658" /><!-- orderRcvCode -->
+	<input type="hidden" name="basedlvpyn" value="" />
+	<input type="hidden" name="dlvpsn" value="" />
+	<input type="hidden" name="dlvpnm" value="" />
+	<input type="hidden" name="rmitnm" value="" />
+	<input type="hidden" name="postaddr" value="" />
+	<input type="hidden" name="dtladdr" value="" />
+	<input type="hidden" name="usrsortrnk" value="" />
+	<input type="hidden" name="delichk" value="" />	
+	<input type="hidden" name="cellsctno" value="" />
+	<input type="hidden" name="celltxnono" value="" />
+	<input type="hidden" name="cellendno" value="" />
+	<input type="hidden" name="cbltelrgnno" value="" />
+	<input type="hidden" name="cblteltxnono" value="" />
+	<input type="hidden" name="cbltelendno" value="" />
+	<input type="hidden" name="sameaddr" value="1" />
+	<input type="hidden" name="dlvfnation" value="1" />
+	<input type="hidden" name="rcvmessage" value="" />
+	<input type="hidden" name="addrcvmessageyn" value="" />
+	<!-- 결제정보 -->
+	<input type="hidden" name="paytype" value="" />
+	<input type="hidden" name="iscmcd" value="" />
+	<input type="hidden" name="cardinst" value="" />
+	<input type="hidden" name="cardinstmon" value="" />
+	<input type="hidden" name="bankno" value="" />
+	<input type="hidden" name="viracctno" value="" />
+	<input type="hidden" name="viracctenddt" value="20150907" />
+	<input type="hidden" name="onlineacctname" value="" />
+	<input type="hidden" name="receivename" value="" />
+	<input type="hidden" name="sendmessage" value="" />
+	<input type="hidden" name="sendname" value="" />
+	<input type="hidden" name="credit_crd_gb" value="" />
+	<!-- 현금영수증 -->
+	<input type="hidden" name="cr_issu_mean_sct_cd" value="" />
+	<input type="hidden" name="cr_use_sct_cd" value="" /><!-- 소득공제:0 지출증빙용:1 -->
+	<input type="hidden" name="cr_issu_mean_no" value="" />
+	<!-- 카드승인정보 -->
+	<input type="hidden" name="xid" value="">
+	<input type="hidden" name="eci" value="">
+	<input type="hidden" name="cavv" value="">
+	<input type="hidden" name="cardno" value="">
+	<input type="hidden" name="joincode" value="">
+	<!-- 쿠폰정보 -->
+	<input type="hidden" name="promcartsn" value="">
+	<input type="hidden" name="prommdclcd" value="">
+	<input type="hidden" name="fvrpolctpcd" value="">
+	<input type="hidden" name="totdcamt" value="">
+	<input type="hidden" name="cpnpromno" value="">
+	<input type="hidden" name="cpnrscmgmtsn" value="">
+	<input type="hidden" name="adtncostdtlsctnm" value="">
+	<input type="hidden" name="cardkndcd" value="">
+	<input type="hidden" name="includeSaveInstCpn" value="">
+	<!-- 추가할인 쿠폰 정보 -->
+	<input type="hidden" name="promcartsn_dup" value="">
+	<input type="hidden" name="prommdclcd_dup" value="" /><!-- discntgubun -->
+	<input type="hidden" name="fvrpolctpcd_dup" value="" /><!--discnttype -->
+	<input type="hidden" name="totdcamt_dup" value="" /><!-- discntAmt -->
+	<input type="hidden" name="cpnpromno_dup" value="" /><!-- cpnPromNo -->
+	<input type="hidden" name="cpnrscmgmtsn_dup" value="" /><!-- cpnRscMgmtSn -->
+	<input type="hidden" name="adtncostdtlsctnm_dup" value="" /><!-- adtnCostDtlSctNm -->
+	<input type="hidden" name="cardkndcd_dup" value="" /><!-- cardKndCd -->
+	<input type="hidden" name="includeSaveInstCpn_dup" value="" /><!-- includeSaveInstCpn -->
+	<!-- 3차 할인 쿠폰 정보 -->
+	<input type="hidden" name="promcartsn_third" value="">
+	<input type="hidden" name="prommdclcd_third" value="" />
+	<input type="hidden" name="fvrpolctpcd_third" value="" />
+	<input type="hidden" name="totdcamt_third" value="" />
+	<input type="hidden" name="cpnpromno_third" value="" />
+	<input type="hidden" name="cpnrscmgmtsn_third" value="" />
+	<input type="hidden" name="adtncostdtlsctnm_third" value="" />
+	<input type="hidden" name="cardkndcd_third" value="" />
+	<input type="hidden" name="includeSaveInstCpn_third" value="" />
+	<!-- 포인트정보 2011.05.20 -->
+	<input type="hidden" name="lpoint_amt" value="">
+	<input type="hidden" name="lt_point_amt" value="">
+	<input type="hidden" name="deposit_amt" value="">
+	<input type="hidden" name="soil_point_amt" value="">
+	<input type="hidden" name="chk_point" value="">
+	<input type="hidden" name="chk_point_all" value="">	
+	<input type="hidden" name="pay_mean_cd" value="">
+	<input type="hidden" name="pay_amt" value="">
+	<!-- S-OIL 카드 정보 -->
+	<input type="hidden" name="soil_card_no" value="">
+	<input type="hidden" name="soil_card_pw" value="">
+	<!-- OK CASHBAG 포인트 카드 번호 -->
+	<input type="hidden" name="ocb_card_no" value="">
+	<input type="hidden" name="ocb_is_save" value="">
+	<!-- s:아시아나 제휴몰 회원번호 등록 icjung 150107-->
+	<input type="hidden" name="asiana_mbr_no" value="">
+	<!-- e:아시아나 제휴몰 회원번호 등록 icjung 150107-->
+	<!-- 무료배송권 정보 2011.05.26 -->
+	<input type="hidden" name="dlv_prom_use_yn" value="N" />
+	<input type="hidden" name="dlv_fvr_val" value="" />
+	<input type="hidden" name="dlv_prom_no" value="" />
+	<input type="hidden" name="dlv_rsc_mgmt_sn" value="" />
+	<!-- 휴대폰 정보  -->
+	<input type="hidden" name="companyCd" value="300" />
+	<input type="hidden" name="phone_num1" value="552" />
+	<input type="hidden" name="phone_num2" value="8931" />
+	<input type="hidden" name="phone_num3" value="4856" />
+	<input type="hidden" name="curMonPhnSttlAmt" value="0" />
+	<!-- 스마트페이 정보 -->
+	<input type="hidden" name="smart_pay_use_yn" value="" />
+	<input type="hidden" name="user_key"   value="" />
+	<input type="hidden" name="restype"   value="" />
+	<input type="hidden" name="res_type"   value="" />
+	<input type="hidden" name="req_type" value="3" />
+	<input type="hidden" name="apvl_desc"   value="" />
+	<input type="hidden" name="update_easn_yn"   value="N" />
+	<input type="hidden" name="smartpayUser_yn" value="Y" />
+	<!-- MISP 정보 -->
+	<input type="hidden" name="KVP_PGID"		value="A0029" />	<!-- PG  -->
+	<input type="hidden" name="KVP_SESSIONKEY"  value="" />		<!-- 세션키  -->
+	<input type="hidden" name="KVP_ENCDATA"		value="" />		<!-- 암호된데이터 -->
+	<input type="hidden" name="KVP_CURRENCY"	value="WON" />		<!-- 지불 화폐 단위 (WON/USD) : 한화 - WON, 미화 - USD-->
+	<input type="hidden" name="KVP_NOINT"		value="" />		<!-- 무이자구분(1:무이자,0:일반) -->
+	<input type="hidden" name="KVP_QUOTA"		value="" />		<!-- 할부 -->
+	<input type="hidden" name="KVP_CARDCODE"	value="" />		<!-- 카드코드 -->
+	<input type="hidden" name="KVP_CONAME"		value="" />		<!-- 카드명 -->
+	<input type="hidden" name="KVP_RESERVED1"   value="" />		<!-- 예비1 -->
+	<input type="hidden" name="KVP_RESERVED2"   value="" />		<!-- 예비2 -->
+	<input type="hidden" name="KVP_RESERVED3"   value="" />		<!-- 예비3 -->
+	<input type="hidden" name="KVP_IMGURL"		value="" />
+	<input type="hidden" name="KVP_GOODNAME"	value="" />		<!-- 상품명-->
+	<input type="hidden" name="KVP_PRICE"		value="" />		<!-- 금액-->
+	<input type="hidden" name="KVP_NOINT_INF"   value="" />		<!-- 일반, 무이자-->
+	<input type="hidden" name="KVP_QUOTA_INF"   value="" />		<!-- 할부값:ISP인증팝업에 보여질 할부개월수 설정-->
+	<input type="hidden" name="KVP_CARDCOMPANY"	value="" />		<!-- 카드사코드 -->
+	
+	<input type="hidden" name="MISP_PgId"		value="A0029" />	<!-- PG -->
+	<input type="hidden" name="MISP_ReturnUrl"	value="http://molocal.lotte.com/misp/receiveData.jsp?c=mlotte&udid=&v=&cn=&cdn=" /> <!-- 결제인증 데이터를 받을 PG URL  -->
+	<input type="hidden" name="MISP_GoodName"	value="" />			<!-- 상품명 -->
+	<input type="hidden" name="MISP_Price"		value="" />			<!-- 가격 -->
+	<input type="hidden" name="MISP_Currency"	value="WON" />		<!-- 지불 화폐 단위 (WON/USD) : 한화 - WON, 미화 - USD -->
+	<input type="hidden" name="MISP_NoInt"		value="" />			<!-- 무이자여부 -->
+	<input type="hidden" name="MISP_Noint_Inf"	value="" />			<!-- 할부개월수 -->
+	<input type="hidden" name="MISP_HpNum"   	value="" />			<!-- 휴대폰 번호 -->
+	<input type="hidden" name="MISP_MerchantNo" value="" />			<!-- 가맹점번호 -->
+	<input type="hidden" name="MISP_Tcode"   	value="" />			<!-- 통신사구분 -->
+	<input type="hidden" name="MISP_TID"		value="" />			<!-- 거래고유번호('LOTTE'+회원번호+서버년월일시간) -->
+	
+	<input type="hidden" name="MISP_WAPUrl"		value="http://molocal.lotte.com/misp/result.jsp?c=mlotte&udid=&v=&cn=&cdn=" /> <!-- 결제가 완료되고 이동될 WEB page url -->
+	<input type="hidden" name="MISP_CancelUrl"  value="http://molocal.lotte.com/misp/cancel.jsp?c=mlotte&udid=&v=&cn=&cdn=" /> <!-- APP에서 결제를 취소하고 이동하는 WEB URL  -->
+	
+	<!-- 결제금액 -->
+	<input type="hidden" name="totsttlamt" value="">
+	<!-- 추가 -->
+	<input type="hidden" name="mbrDlvpCnt" value="7">
+	<input type="hidden" name="smartOrd" value="N">
+	<!-- 사은품 -->
+	<input type="hidden" name="freeGiftYn" value="">
+    
+    <!-- 롯데핀 정보 -->
+    <input type="hidden" name="lt_pn_no" value="null" />
+    <input type="hidden" name="lt_pn_no_reg" value="N" />
+    <input type="hidden" name="pavv" value="" />
+    <!-- 롯데체크인 정보 -->
+    <input type="hidden" name="lt_cd_no" value="" />
+    <input type="hidden" name="lt_pwd" value="" />
+    <!-- 주문동의 여부  -->
+    <input type="hidden" name="ord_agr_yn" value="N" />
+    <!--  휴대폰 인증 정보 -->
+	<input type=hidden name=No           value="">
+	<input type=hidden name=Commid       value="">
+	<input type=hidden name=Tradeid      value="">
+	<input type=hidden name=Prdtprice    value="">
+	<input type=hidden name=Userkey      value="">
+	<input type=hidden name=Phoneid      value="">
+	<input type=hidden name=Mobilid      value="">
+	<input type=hidden name=Email        value="gnzjoum@naver.com">
+	<input type=hidden name=Mode         value="21">
+    <!-- 주문서 url -->
+    <input type="hidden" name="back_url" value="http://molocal.lotte.com/order/m/order_form.do?cdn=&v=&imallYN=N&udid=&smartOrd=N&cartSn=1278458115&cn=&c=mlotte" />
+    <!-- 결제수단다음에도사용 -->
+    <input type="hidden" name="pay_mean_hist_pay_mean_cd" value=""/>
+    <input type="hidden" name="bnk_cd" value=""/>
+    <input type="hidden" name="acqr_cd" value=""/>
+    <input type="hidden" name="card_pay_meth_cd" value=""/>
+    <input type="hidden" name="org_pay_mean_hist_use_yn" value="Y"/>
+    <input type="hidden" name="pay_mean_hist_use_yn" value=""/>
+    <!-- 배송지 재사용, 배송지목록추가 -->
+    <input type="hidden" name="chk_dlvp_reuse" value=""/>
+    <input type="hidden" name="dlvpuseyn" value=""/>
+  
+	
+		<input type="hidden" name="stnm_post_addr" value="" />
+		<input type="hidden" name="stnm_dtl_addr" value="" />
+		<input type="hidden" name="stnm_dlv_zip" value="" />
+		<input type="hidden" name="smp_tp_cd" value="" />
+		<input type="hidden" name="smp_deli_loc_sn" value="0" />
+	    <input type="hidden" name="sendSms" value="N"/>
+	    <input type="hidden" name="ordr_nm" value="박상현"/>
+	    <input type="hidden" name="ordr_cell_no" value="552-8931-4856"/>
+	    <input type="hidden" name="ordGoodsNo" value="">
+		<input type="hidden" name="ord_qty_list" value="" /><!-- 다중배송지별 상품수 배열 -->
+	    <!-- 스마트픽 교환권 MMS 전송 -->
+	    <input type="hidden" name="mst_adre_no_01" value=""/>
+	    <input type="hidden" name="mst_adre_no_02" value=""/>
+	    <input type="hidden" name="mst_adre_no_03" value=""/>
+	    <input type="hidden" name="mst_adre_nm" value=""/>
+	    <input type="hidden" name="msg_cont" value=""/>
+	    <!-- 구찌 여부  -->
+	    <input type="hidden" name="gucci_yn" value="N" />
+	    <input type="hidden" name="gucci_arg_yn" value="N" />
+	    <input type="hidden" name="giftItemQty" value="">
+	    <input type="hidden" name="giftItemNo" value="">
+	    <input type="hidden" name="giftInvQ" value="">
+	    <input type="hidden" name="giftGoodsNo" value="">
+	    <input type="hidden" name="giftGoodsNm" value="">
+		<input type="hidden" name="evtNo" value="">
+		<input type="hidden" name="dlvzip" value="" />
+		<input type="hidden" name="dlvp_idx" value="" /><!-- 배송지 배열 idx -->
+		<input type="hidden" name="chk_multi_dlvp" value="N" /><!-- 다중배송여부 -->
+		<input type="hidden" name="cbltelexnono" value="" />
+	
+	
+    </form>
+    
+	<form method="post" name="frm_inp" id="frm_inp" onsubmit="return false;">
+	<input type="hidden" name="orgtotdeliamt" value="0" /> <!-- 최초배송비 -->
+	<input type="hidden" name="caltotdeliamt" value="0" /> <!-- 계산배송비 -->
+	<input type="hidden" name="onintmonth" value="" /><!-- 무이자 할부 개월 -->
+	<input type="hidden" name="intmonth" value="" /><!-- 일반 할부 개월 -->
+	<input type="hidden" name="defaultNm" value="" /><!-- 선물메시지받으시는 분 -->
+	<input type="hidden" name="sendM" value="" />
+
+	
+
+	
+	<input type="hidden" name="basedlvpyn" value="N" />
+	<input type="hidden" name="dlvpsn" value="292377653" />
+	<input type="hidden" name="dlvpnm" value="그만좀만들어라" />
+	<input type="hidden" name="rmitnm" value="뉴배송지" />
+	<input type="hidden" name="dlvzip1" value="139" />
+	<input type="hidden" name="dlvzip2" value="804" />
+	<input type="hidden" name="postaddr" value="서울 노원구 공릉2동" />
+	<input type="hidden" name="dtladdr" value="408-4번지 건설빌딩" />	
+	<input type="hidden" name="cellsctno" value="5445" />
+	<input type="hidden" name="celltxnono" value="7931" />
+	<input type="hidden" name="cellendno" value="4552" />
+	<input type="hidden" name="cbltelrgnno" value="0000" />
+	<input type="hidden" name="cblteltxnono" value="0000" />
+	<input type="hidden" name="cbltelendno" value="0000" />
+	<input type="hidden" name="usrsortrnk" value="-1" />
+	
+	<input type="hidden" name="stnm_dlv_zip1" value="139" />
+	<input type="hidden" name="stnm_dlv_zip2" value="804" />
+	<input type="hidden" name="stnm_post_addr" value="서울 노원구 공릉로" />
+	<input type="hidden" name="stnm_dtl_addr" value="187 건설빌딩" />
+	<input type="hidden" name="addr_choc_sct_cd" value="" />
+	<input type="hidden" name="addr_chk_rslt_cd" value="" />	
+	
+	
+	
+	<input type="hidden" name="basedlvpyn" value="Y" />
+	<input type="hidden" name="dlvpsn" value="223919658" />
+	<input type="hidden" name="dlvpnm" value="IDRCommerce" />
+	<input type="hidden" name="rmitnm" value="박대리" />
+	<input type="hidden" name="dlvzip1" value="100" />
+	<input type="hidden" name="dlvzip2" value="849" />
+	<input type="hidden" name="postaddr" value="경상북도 상주시 모동면" />
+	<input type="hidden" name="dtladdr" value="114-4" />	
+	<input type="hidden" name="cellsctno" value="010" />
+	<input type="hidden" name="celltxnono" value="8931" />
+	<input type="hidden" name="cellendno" value="4856" />
+	<input type="hidden" name="cbltelrgnno" value="552" />
+	<input type="hidden" name="cblteltxnono" value="8931" />
+	<input type="hidden" name="cbltelendno" value="4856" />
+	<input type="hidden" name="usrsortrnk" value="3" />
+	
+	<input type="hidden" name="stnm_dlv_zip1" value="100" />
+	<input type="hidden" name="stnm_dlv_zip2" value="786" />
+	<input type="hidden" name="stnm_post_addr" value="전라북도 김제시 광활로" />
+	<input type="hidden" name="stnm_dtl_addr" value="24" />
+	<input type="hidden" name="addr_choc_sct_cd" value="" />
+	<input type="hidden" name="addr_chk_rslt_cd" value="" />	
+	
+	
+	
+	<input type="hidden" name="basedlvpyn" value="N" />
+	<input type="hidden" name="dlvpsn" value="292377862" />
+	<input type="hidden" name="dlvpnm" value="배송지1" />
+	<input type="hidden" name="rmitnm" value="이형근1" />
+	<input type="hidden" name="dlvzip1" value="139" />
+	<input type="hidden" name="dlvzip2" value="240" />
+	<input type="hidden" name="postaddr" value="서울특별시 노원구 공릉동" />
+	<input type="hidden" name="dtladdr" value="1" />	
+	<input type="hidden" name="cellsctno" value="010" />
+	<input type="hidden" name="celltxnono" value="7931" />
+	<input type="hidden" name="cellendno" value="4552" />
+	<input type="hidden" name="cbltelrgnno" value="0000" />
+	<input type="hidden" name="cblteltxnono" value="0000" />
+	<input type="hidden" name="cbltelendno" value="0000" />
+	<input type="hidden" name="usrsortrnk" value="4" />
+	
+	<input type="hidden" name="stnm_dlv_zip1" value="" />
+	<input type="hidden" name="stnm_dlv_zip2" value="" />
+	<input type="hidden" name="stnm_post_addr" value="" />
+	<input type="hidden" name="stnm_dtl_addr" value="" />
+	<input type="hidden" name="addr_choc_sct_cd" value="" />
+	<input type="hidden" name="addr_chk_rslt_cd" value="" />	
+	
+	
+	
+	<input type="hidden" name="basedlvpyn" value="N" />
+	<input type="hidden" name="dlvpsn" value="292377863" />
+	<input type="hidden" name="dlvpnm" value="배송지2" />
+	<input type="hidden" name="rmitnm" value="이형근2" />
+	<input type="hidden" name="dlvzip1" value="314" />
+	<input type="hidden" name="dlvzip2" value="830" />
+	<input type="hidden" name="postaddr" value="충청남도 공주시 계룡면" />
+	<input type="hidden" name="dtladdr" value="1" />	
+	<input type="hidden" name="cellsctno" value="010" />
+	<input type="hidden" name="celltxnono" value="7931" />
+	<input type="hidden" name="cellendno" value="4552" />
+	<input type="hidden" name="cbltelrgnno" value="0000" />
+	<input type="hidden" name="cblteltxnono" value="0000" />
+	<input type="hidden" name="cbltelendno" value="0000" />
+	<input type="hidden" name="usrsortrnk" value="5" />
+	
+	<input type="hidden" name="stnm_dlv_zip1" value="" />
+	<input type="hidden" name="stnm_dlv_zip2" value="" />
+	<input type="hidden" name="stnm_post_addr" value="" />
+	<input type="hidden" name="stnm_dtl_addr" value="" />
+	<input type="hidden" name="addr_choc_sct_cd" value="" />
+	<input type="hidden" name="addr_chk_rslt_cd" value="" />	
+	
+	
+	
+	<input type="hidden" name="basedlvpyn" value="N" />
+	<input type="hidden" name="dlvpsn" value="292377864" />
+	<input type="hidden" name="dlvpnm" value="배송지4" />
+	<input type="hidden" name="rmitnm" value="이형근4" />
+	<input type="hidden" name="dlvzip1" value="139" />
+	<input type="hidden" name="dlvzip2" value="240" />
+	<input type="hidden" name="postaddr" value="서울특별시 노원구 공릉동" />
+	<input type="hidden" name="dtladdr" value="1" />	
+	<input type="hidden" name="cellsctno" value="010" />
+	<input type="hidden" name="celltxnono" value="7931" />
+	<input type="hidden" name="cellendno" value="4552" />
+	<input type="hidden" name="cbltelrgnno" value="0000" />
+	<input type="hidden" name="cblteltxnono" value="0000" />
+	<input type="hidden" name="cbltelendno" value="0000" />
+	<input type="hidden" name="usrsortrnk" value="6" />
+	
+	<input type="hidden" name="stnm_dlv_zip1" value="" />
+	<input type="hidden" name="stnm_dlv_zip2" value="" />
+	<input type="hidden" name="stnm_post_addr" value="" />
+	<input type="hidden" name="stnm_dtl_addr" value="" />
+	<input type="hidden" name="addr_choc_sct_cd" value="" />
+	<input type="hidden" name="addr_chk_rslt_cd" value="" />	
+	
+	
+	
+	<input type="hidden" name="basedlvpyn" value="N" />
+	<input type="hidden" name="dlvpsn" value="292377866" />
+	<input type="hidden" name="dlvpnm" value="배송지2" />
+	<input type="hidden" name="rmitnm" value="박상현22" />
+	<input type="hidden" name="dlvzip1" value="153" />
+	<input type="hidden" name="dlvzip2" value="010" />
+	<input type="hidden" name="postaddr" value="서울특별시 금천구 독산동" />
+	<input type="hidden" name="dtladdr" value="123" />	
+	<input type="hidden" name="cellsctno" value="010" />
+	<input type="hidden" name="celltxnono" value="2212" />
+	<input type="hidden" name="cellendno" value="5531" />
+	<input type="hidden" name="cbltelrgnno" value="0000" />
+	<input type="hidden" name="cblteltxnono" value="0000" />
+	<input type="hidden" name="cbltelendno" value="0000" />
+	<input type="hidden" name="usrsortrnk" value="7" />
+	
+	<input type="hidden" name="stnm_dlv_zip1" value="" />
+	<input type="hidden" name="stnm_dlv_zip2" value="" />
+	<input type="hidden" name="stnm_post_addr" value="" />
+	<input type="hidden" name="stnm_dtl_addr" value="" />
+	<input type="hidden" name="addr_choc_sct_cd" value="" />
+	<input type="hidden" name="addr_chk_rslt_cd" value="" />	
+	
+	
+	
+	<input type="hidden" name="basedlvpyn" value="N" />
+	<input type="hidden" name="dlvpsn" value="292377867" />
+	<input type="hidden" name="dlvpnm" value="새배송지2" />
+	<input type="hidden" name="rmitnm" value="새배송지2" />
+	<input type="hidden" name="dlvzip1" value="153" />
+	<input type="hidden" name="dlvzip2" value="010" />
+	<input type="hidden" name="postaddr" value="서울특별시 금천구 독산동" />
+	<input type="hidden" name="dtladdr" value="123" />	
+	<input type="hidden" name="cellsctno" value="010" />
+	<input type="hidden" name="celltxnono" value="2222" />
+	<input type="hidden" name="cellendno" value="2211" />
+	<input type="hidden" name="cbltelrgnno" value="0000" />
+	<input type="hidden" name="cblteltxnono" value="0000" />
+	<input type="hidden" name="cbltelendno" value="0000" />
+	<input type="hidden" name="usrsortrnk" value="8" />
+	
+	<input type="hidden" name="stnm_dlv_zip1" value="" />
+	<input type="hidden" name="stnm_dlv_zip2" value="" />
+	<input type="hidden" name="stnm_post_addr" value="" />
+	<input type="hidden" name="stnm_dtl_addr" value="" />
+	<input type="hidden" name="addr_choc_sct_cd" value="" />
+	<input type="hidden" name="addr_chk_rslt_cd" value="" />	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<input type="hidden" name="lumpSumFvrVal" value="" />
+
+	<section id="order">
+	<div class="cart_list_order">
+	
+	
+	
+	
+	
+		
+	
+	
+	<input type="hidden" name="tot_card_yn" id="tot_card_yn" value="N">
+	<input type="hidden" name="tot_happy_yn" id="tot_happy_yn" value="N">
+	
+	
+		
+	
+	
+	
+		
+			
+		
+	
+		<h3 class="tit">배송지</h3>
+		
+			<div class="order_section  pdb10">
+				
+					
+					
+				
+
+
+
+
+	
+	
+	
+	
+	
+	
+		
+	
+	
+ 	 
+ 	 
+	
+	
+	
+	
+		
+	
+	
+		
+			
+				
+				
+					
+				
+			
+			
+			
+			
+			
+			
+			
+			<div class="order_product_list" id="deli_1">
+				 	
+				<ul class="tab_addr clearfix">
+				
+					
+					
+					<li id="li_mine" class="on">
+						<a href="javascript:void(0)" class="tit" cnt="1">내 배송지</a>
+				 
+						<dl id="deli_mine" class="pdb0" style="display:;">	
+							
+							<dd>
+								 
+									<div class="s_title">주문자</div>
+									<div class="s_text" id="o_name">
+										
+										
+										 
+											<div id="orderer_name_text_1" class="name_area">
+												<span id="nameSp" >박상현</span>
+												<a id="changeMyDlvp" href="javascript:changeMyDlvp('1', 'mod')" class="btn_typeA">내 배송지 수정</a>
+												<a id="changeNameM" style="display: none;" href="javascript:changeName('mod', '1', '')" class="btn_typeA">수정</a>
+											</div>
+											<div id="orderer_name_val_1" class="namemodi_area" style="display: none;">
+												<input id="nameInpt" class="txt01 mgb0" type="text" value="박상현" style="width:70%"/>
+												<span class="namemodi_a">
+													<a href="javascript:changeName('cnfm', '1', '')" class="btn_typeA">완료</a>
+												</span>
+											</div>
+										
+										
+									</div>
+								
+							</dd>
+							
+							
+							 
+							<dd>
+								<div class="s_title">받는분</div>
+								<div class="s_text">
+									<span class="s_box02">
+										<select style="width:100%"
+											name="deli_select" id="deli_select_1" data-idx="1">
+											
+											
+												<option value="292377653" 
+													
+													selected
+													
+													
+													
+													
+													
+													
+													
+													
+													
+													
+													
+													
+													
+													>
+													뉴배송지 (그만좀만들어라)
+												</option>
+											
+												<option value="223919658" 
+													>
+													박대리 (IDRCommerce)
+												</option>
+											
+												<option value="292377862" 
+													>
+													이형근1 (배송지1)
+												</option>
+											
+												<option value="292377863" 
+													>
+													이형근2 (배송지2)
+												</option>
+											
+												<option value="292377864" 
+													>
+													이형근4 (배송지4)
+												</option>
+											
+												<option value="292377866" 
+													>
+													박상현22 (배송지2)
+												</option>
+											
+												<option value="292377867" 
+													>
+													새배송지2 (새배송지2)
+												</option>
+											
+										</select>
+										<input type="hidden" name="inprmitnm" id="inprmitnm_1" value="뉴배송지" />
+										<input type="hidden" name="inpdlvpnm" id="inpdlvpnm_1" value="그만좀만들어라" />
+										<input type="hidden" name="inpbasedlvpyn" id="inpbasedlvpyn_1" value="N" />
+										
+										<input type="hidden" name="inpzip1" value="139" />
+										<input type="hidden" name="inpzip2" value="804" />
+										<input type="hidden" name="inpaddr1" value="서울 노원구 공릉2동"/>
+										<input type="hidden" name="inpaddr2" value="408-4번지 건설빌딩"/>
+										
+										<input type="hidden" name="stnm_inp_zip1" value="139" />
+										<input type="hidden" name="stnm_inp_zip2" value="804" />
+										<input type="hidden" name="stnm_inp_addr1" value="서울 노원구 공릉로"/>
+										<input type="hidden" name="stnm_inp_addr2" value="187 건설빌딩"/>
+										<span class="img_box">
+											<i></i>
+										</span>
+									</span>
+								</div>
+							</dd>
+							
+							
+								<dd class="deli_292377653"  style="display:none;">
+									
+									<input type="hidden" id="deliVal_rmitnm_292377653" value="뉴배송지" />
+									<input type="hidden" id="deliVal_dlvpnm_292377653" value="그만좀만들어라" />
+									<input type="hidden" id="deliVal_zip1_292377653" value="139" />
+									<input type="hidden" id="deliVal_zip2_292377653" value="804" />
+									<input type="hidden" id="deliVal_addr1_292377653" value="서울 노원구 공릉2동" />
+									<input type="hidden" id="deliVal_addr2_292377653" value="408-4번지 건설빌딩" />
+									<input type="hidden" id="deliVal_stnmzip1_292377653" value="139" />
+									<input type="hidden" id="deliVal_stnmzip2_292377653" value="804" />
+									<input type="hidden" id="deliVal_stnmaddr1_292377653" value="서울 노원구 공릉로" />
+									<input type="hidden" id="deliVal_stnmaddr2_292377653" value="187 건설빌딩" />
+									
+									<input type="hidden" id="deliVal_cbltelrgnno_292377653" value="0000" />
+									<input type="hidden" id="deliVal_cblteltxnono_292377653" value="0000" />
+									<input type="hidden" id="deliVal_cbltelendno_292377653" value="0000" />
+									
+ 									<input type="hidden" id="deliVal_cellsctno_292377653" value="5445" />
+									<input type="hidden" id="deliVal_celltxnono_292377653" value="7931" />
+									<input type="hidden" id="deliVal_cellendno_292377653" value="4552" />
+									<input type="hidden" id="deliVal_basedlvpyn_292377653" value="N" />
+																			
+									<div class="s_title">주소</div>
+									<div class="s_text">
+										<span class="combo long_txt">
+										
+										서울 노원구 공릉로 187 건설빌딩
+										
+										
+										</span>
+									</div>
+								</dd>
+								
+								<dd class="deli_292377653"  style="display:none;">
+								 
+									<div class="s_title">
+										연락처<a href="javascript:showANSPop();" class="safe_num">안심번호 서비스 안내</a>
+									</div>
+									
+									<div id="deli_phone_text_1_292377653" class="s_text">
+										<span class="combo pdl12">5445-7931-4552</span>
+										
+									</div>
+								
+								</dd>
+							
+								<dd class="deli_223919658"  style="display:none;">
+									
+									<input type="hidden" id="deliVal_rmitnm_223919658" value="박대리" />
+									<input type="hidden" id="deliVal_dlvpnm_223919658" value="IDRCommerce" />
+									<input type="hidden" id="deliVal_zip1_223919658" value="100" />
+									<input type="hidden" id="deliVal_zip2_223919658" value="849" />
+									<input type="hidden" id="deliVal_addr1_223919658" value="경상북도 상주시 모동면" />
+									<input type="hidden" id="deliVal_addr2_223919658" value="114-4" />
+									<input type="hidden" id="deliVal_stnmzip1_223919658" value="100" />
+									<input type="hidden" id="deliVal_stnmzip2_223919658" value="786" />
+									<input type="hidden" id="deliVal_stnmaddr1_223919658" value="전라북도 김제시 광활로" />
+									<input type="hidden" id="deliVal_stnmaddr2_223919658" value="24" />
+									
+									<input type="hidden" id="deliVal_cbltelrgnno_223919658" value="552" />
+									<input type="hidden" id="deliVal_cblteltxnono_223919658" value="8931" />
+									<input type="hidden" id="deliVal_cbltelendno_223919658" value="4856" />
+									
+ 									<input type="hidden" id="deliVal_cellsctno_223919658" value="010" />
+									<input type="hidden" id="deliVal_celltxnono_223919658" value="8931" />
+									<input type="hidden" id="deliVal_cellendno_223919658" value="4856" />
+									<input type="hidden" id="deliVal_basedlvpyn_223919658" value="Y" />
+																			
+									<div class="s_title">주소</div>
+									<div class="s_text">
+										<span class="combo long_txt">
+										
+										전라북도 김제시 광활로 24
+										
+										
+										</span>
+									</div>
+								</dd>
+								
+								<dd class="deli_223919658"  style="display:none;">
+								 
+									<div class="s_title">
+										연락처<a href="javascript:showANSPop();" class="safe_num">안심번호 서비스 안내</a>
+									</div>
+									
+									<div id="deli_phone_text_1_223919658" class="s_text">
+										<span class="combo pdl12">010-8931-4856</span>
+										
+									</div>
+								
+								</dd>
+							
+								<dd class="deli_292377862"  style="display:none;">
+									
+									<input type="hidden" id="deliVal_rmitnm_292377862" value="이형근1" />
+									<input type="hidden" id="deliVal_dlvpnm_292377862" value="배송지1" />
+									<input type="hidden" id="deliVal_zip1_292377862" value="139" />
+									<input type="hidden" id="deliVal_zip2_292377862" value="240" />
+									<input type="hidden" id="deliVal_addr1_292377862" value="서울특별시 노원구 공릉동" />
+									<input type="hidden" id="deliVal_addr2_292377862" value="1" />
+									<input type="hidden" id="deliVal_stnmzip1_292377862" value="" />
+									<input type="hidden" id="deliVal_stnmzip2_292377862" value="" />
+									<input type="hidden" id="deliVal_stnmaddr1_292377862" value="" />
+									<input type="hidden" id="deliVal_stnmaddr2_292377862" value="" />
+									
+									<input type="hidden" id="deliVal_cbltelrgnno_292377862" value="0000" />
+									<input type="hidden" id="deliVal_cblteltxnono_292377862" value="0000" />
+									<input type="hidden" id="deliVal_cbltelendno_292377862" value="0000" />
+									
+ 									<input type="hidden" id="deliVal_cellsctno_292377862" value="010" />
+									<input type="hidden" id="deliVal_celltxnono_292377862" value="7931" />
+									<input type="hidden" id="deliVal_cellendno_292377862" value="4552" />
+									<input type="hidden" id="deliVal_basedlvpyn_292377862" value="N" />
+																			
+									<div class="s_title">주소</div>
+									<div class="s_text">
+										<span class="combo long_txt">
+										
+										
+										서울특별시 노원구 공릉동 1
+										
+										</span>
+									</div>
+								</dd>
+								
+								<dd class="deli_292377862"  style="display:none;">
+								 
+									<div class="s_title">
+										연락처<a href="javascript:showANSPop();" class="safe_num">안심번호 서비스 안내</a>
+									</div>
+									
+									<div id="deli_phone_text_1_292377862" class="s_text">
+										<span class="combo pdl12">010-7931-4552</span>
+										
+									</div>
+								
+								</dd>
+							
+								<dd class="deli_292377863"  style="display:none;">
+									
+									<input type="hidden" id="deliVal_rmitnm_292377863" value="이형근2" />
+									<input type="hidden" id="deliVal_dlvpnm_292377863" value="배송지2" />
+									<input type="hidden" id="deliVal_zip1_292377863" value="314" />
+									<input type="hidden" id="deliVal_zip2_292377863" value="830" />
+									<input type="hidden" id="deliVal_addr1_292377863" value="충청남도 공주시 계룡면" />
+									<input type="hidden" id="deliVal_addr2_292377863" value="1" />
+									<input type="hidden" id="deliVal_stnmzip1_292377863" value="" />
+									<input type="hidden" id="deliVal_stnmzip2_292377863" value="" />
+									<input type="hidden" id="deliVal_stnmaddr1_292377863" value="" />
+									<input type="hidden" id="deliVal_stnmaddr2_292377863" value="" />
+									
+									<input type="hidden" id="deliVal_cbltelrgnno_292377863" value="0000" />
+									<input type="hidden" id="deliVal_cblteltxnono_292377863" value="0000" />
+									<input type="hidden" id="deliVal_cbltelendno_292377863" value="0000" />
+									
+ 									<input type="hidden" id="deliVal_cellsctno_292377863" value="010" />
+									<input type="hidden" id="deliVal_celltxnono_292377863" value="7931" />
+									<input type="hidden" id="deliVal_cellendno_292377863" value="4552" />
+									<input type="hidden" id="deliVal_basedlvpyn_292377863" value="N" />
+																			
+									<div class="s_title">주소</div>
+									<div class="s_text">
+										<span class="combo long_txt">
+										
+										
+										충청남도 공주시 계룡면 1
+										
+										</span>
+									</div>
+								</dd>
+								
+								<dd class="deli_292377863"  style="display:none;">
+								 
+									<div class="s_title">
+										연락처<a href="javascript:showANSPop();" class="safe_num">안심번호 서비스 안내</a>
+									</div>
+									
+									<div id="deli_phone_text_1_292377863" class="s_text">
+										<span class="combo pdl12">010-7931-4552</span>
+										
+									</div>
+								
+								</dd>
+							
+								<dd class="deli_292377864"  style="display:none;">
+									
+									<input type="hidden" id="deliVal_rmitnm_292377864" value="이형근4" />
+									<input type="hidden" id="deliVal_dlvpnm_292377864" value="배송지4" />
+									<input type="hidden" id="deliVal_zip1_292377864" value="139" />
+									<input type="hidden" id="deliVal_zip2_292377864" value="240" />
+									<input type="hidden" id="deliVal_addr1_292377864" value="서울특별시 노원구 공릉동" />
+									<input type="hidden" id="deliVal_addr2_292377864" value="1" />
+									<input type="hidden" id="deliVal_stnmzip1_292377864" value="" />
+									<input type="hidden" id="deliVal_stnmzip2_292377864" value="" />
+									<input type="hidden" id="deliVal_stnmaddr1_292377864" value="" />
+									<input type="hidden" id="deliVal_stnmaddr2_292377864" value="" />
+									
+									<input type="hidden" id="deliVal_cbltelrgnno_292377864" value="0000" />
+									<input type="hidden" id="deliVal_cblteltxnono_292377864" value="0000" />
+									<input type="hidden" id="deliVal_cbltelendno_292377864" value="0000" />
+									
+ 									<input type="hidden" id="deliVal_cellsctno_292377864" value="010" />
+									<input type="hidden" id="deliVal_celltxnono_292377864" value="7931" />
+									<input type="hidden" id="deliVal_cellendno_292377864" value="4552" />
+									<input type="hidden" id="deliVal_basedlvpyn_292377864" value="N" />
+																			
+									<div class="s_title">주소</div>
+									<div class="s_text">
+										<span class="combo long_txt">
+										
+										
+										서울특별시 노원구 공릉동 1
+										
+										</span>
+									</div>
+								</dd>
+								
+								<dd class="deli_292377864"  style="display:none;">
+								 
+									<div class="s_title">
+										연락처<a href="javascript:showANSPop();" class="safe_num">안심번호 서비스 안내</a>
+									</div>
+									
+									<div id="deli_phone_text_1_292377864" class="s_text">
+										<span class="combo pdl12">010-7931-4552</span>
+										
+									</div>
+								
+								</dd>
+							
+								<dd class="deli_292377866"  style="display:none;">
+									
+									<input type="hidden" id="deliVal_rmitnm_292377866" value="박상현22" />
+									<input type="hidden" id="deliVal_dlvpnm_292377866" value="배송지2" />
+									<input type="hidden" id="deliVal_zip1_292377866" value="153" />
+									<input type="hidden" id="deliVal_zip2_292377866" value="010" />
+									<input type="hidden" id="deliVal_addr1_292377866" value="서울특별시 금천구 독산동" />
+									<input type="hidden" id="deliVal_addr2_292377866" value="123" />
+									<input type="hidden" id="deliVal_stnmzip1_292377866" value="" />
+									<input type="hidden" id="deliVal_stnmzip2_292377866" value="" />
+									<input type="hidden" id="deliVal_stnmaddr1_292377866" value="" />
+									<input type="hidden" id="deliVal_stnmaddr2_292377866" value="" />
+									
+									<input type="hidden" id="deliVal_cbltelrgnno_292377866" value="0000" />
+									<input type="hidden" id="deliVal_cblteltxnono_292377866" value="0000" />
+									<input type="hidden" id="deliVal_cbltelendno_292377866" value="0000" />
+									
+ 									<input type="hidden" id="deliVal_cellsctno_292377866" value="010" />
+									<input type="hidden" id="deliVal_celltxnono_292377866" value="2212" />
+									<input type="hidden" id="deliVal_cellendno_292377866" value="5531" />
+									<input type="hidden" id="deliVal_basedlvpyn_292377866" value="N" />
+																			
+									<div class="s_title">주소</div>
+									<div class="s_text">
+										<span class="combo long_txt">
+										
+										
+										서울특별시 금천구 독산동 123
+										
+										</span>
+									</div>
+								</dd>
+								
+								<dd class="deli_292377866"  style="display:none;">
+								 
+									<div class="s_title">
+										연락처<a href="javascript:showANSPop();" class="safe_num">안심번호 서비스 안내</a>
+									</div>
+									
+									<div id="deli_phone_text_1_292377866" class="s_text">
+										<span class="combo pdl12">010-2212-5531</span>
+										
+									</div>
+								
+								</dd>
+							
+								<dd class="deli_292377867"  style="display:none;">
+									
+									<input type="hidden" id="deliVal_rmitnm_292377867" value="새배송지2" />
+									<input type="hidden" id="deliVal_dlvpnm_292377867" value="새배송지2" />
+									<input type="hidden" id="deliVal_zip1_292377867" value="153" />
+									<input type="hidden" id="deliVal_zip2_292377867" value="010" />
+									<input type="hidden" id="deliVal_addr1_292377867" value="서울특별시 금천구 독산동" />
+									<input type="hidden" id="deliVal_addr2_292377867" value="123" />
+									<input type="hidden" id="deliVal_stnmzip1_292377867" value="" />
+									<input type="hidden" id="deliVal_stnmzip2_292377867" value="" />
+									<input type="hidden" id="deliVal_stnmaddr1_292377867" value="" />
+									<input type="hidden" id="deliVal_stnmaddr2_292377867" value="" />
+									
+									<input type="hidden" id="deliVal_cbltelrgnno_292377867" value="0000" />
+									<input type="hidden" id="deliVal_cblteltxnono_292377867" value="0000" />
+									<input type="hidden" id="deliVal_cbltelendno_292377867" value="0000" />
+									
+ 									<input type="hidden" id="deliVal_cellsctno_292377867" value="010" />
+									<input type="hidden" id="deliVal_celltxnono_292377867" value="2222" />
+									<input type="hidden" id="deliVal_cellendno_292377867" value="2211" />
+									<input type="hidden" id="deliVal_basedlvpyn_292377867" value="N" />
+																			
+									<div class="s_title">주소</div>
+									<div class="s_text">
+										<span class="combo long_txt">
+										
+										
+										서울특별시 금천구 독산동 123
+										
+										</span>
+									</div>
+								</dd>
+								
+								<dd class="deli_292377867"  style="display:none;">
+								 
+									<div class="s_title">
+										연락처<a href="javascript:showANSPop();" class="safe_num">안심번호 서비스 안내</a>
+									</div>
+									
+									<div id="deli_phone_text_1_292377867" class="s_text">
+										<span class="combo pdl12">010-2222-2211</span>
+										
+									</div>
+								
+								</dd>
+							
+							
+							<!-- 배송지 재사용 -->
+							
+								<dd id="dlvp_reuse">
+								  <div class="s_text pdt0 pdb10">
+					                  <input type="checkbox" id="chk_dlvp_reuse" name="chk_dlvp_reuse" class="check01 mgb0" checked="checked">
+					                  <label for="chk_dlvp_reuse" style="font-weight:normal">지금 배송지를 다음에도 사용</label>
+				                  </div>
+				                </dd>
+							
+							
+							<!-- 배송메시지 -->
+							
+								<dd id="deli_msg_1">
+									<div class="s_title">배송메시지</div>
+									<div class="s_text">
+										<span class="s_box02">
+											<select name="deli_msg" class="del_msg" data-idx="1" style="width:100%">
+												<option value="" selected="selected">배송메시지 선택하기</option>
+												
+												<option value="직접입력333">직접입력333</option>
+												
+												<option value="부재시 경비실에 맡겨주세요.">부재시 경비실에 맡겨주세요.</option>
+												<option value="빠른 배송 부탁드립니다.">빠른 배송 부탁드립니다.</option>
+												<option value="부재시 핸드폰으로 연락바랍니다.">부재시 핸드폰으로 연락바랍니다.</option>
+												<option value="배송 전 연락바랍니다.">배송 전 연락바랍니다.</option>
+												<option value="직접입력">직접 입력하기 (20자 이내)</option>
+											</select>
+											<span class="img_box">
+												<i></i>
+											</span>
+										</span>
+										<!-- 직접 입력하기 활성화시! (default시 빠짐) -->
+										<input type="text" class="txt01 mgb0" id="rcvmessage_1" name="rcvmessage" 
+												style="display:none;" maxlength="20" placeholder="직접 입력하기 (20자 이내)">
+									</div>
+								</dd>
+							
+
+							<!-- 메시지카드 -->
+							
+							
+							
+							
+				 
+						</dl>
+					</li>
+					
+					
+					<li id="li_new" class="">
+						<a href="javascript:void(0)" class="tit" cnt="1">새로운 배송지</a>
+						<dl id="deli_new" class="pdb0" style="display:none;">
+							<dd>
+								 
+									<div class="s_title">주문자</div>
+									<div class="s_text" id="o_name">
+										
+										
+										
+											<div id="orderer_name_text_1_new" class="name_area">
+												<span id="nameSp" >박상현</span>
+												<a href="javascript:changeName('mod', '1', '_new')" class="btn_typeA">수정</a>
+											</div>
+											<div id="orderer_name_val_1_new" class="namemodi_area" style="display: none;">
+												<input id="nameInpt" class="txt01 mgb0" type="text" value="박상현" style="width:70%"/>
+												<span class="namemodi_a">
+													<a id="changeMyDlvpCncl" style="display:none;" href="javascript:changeMyDlvp('1', 'cncl')" class="btn_typeA">수정취소</a>
+													<a id="changeNameNC" href="javascript:changeName('cnfm', '1', '_new')" class="btn_typeA">완료</a>
+												</span>
+											</div>
+										
+										
+									</div>
+								
+							</dd>
+				
+							
+							<dd>
+								<div class="s_title">받는분</div>
+								<div class="s_text flex">
+									<input type="text" name="inprmitnm" class="txt01" style="width:55%;" placeholder="이름" />
+									 
+										<input type="text" name="inpdlvpnm" class="txt01" style="width:42%;" placeholder="배송지명" />
+									
+								</div>
+							</dd>
+							
+							<dd class="txtarea">
+								<div class="s_title">주소</div>
+								<div class="s_text flex">
+									
+									<input type="hidden" name="inpzip1"/>
+									<input type="hidden" name="inpzip2"/>
+									<input type="hidden" name="inpaddr1"/>
+									<input type="hidden" name="inpaddr2"/>
+									
+									<input type="hidden" name="stnm_inp_zip1"/>
+									<input type="hidden" name="stnm_inp_zip2"/>
+									<input type="hidden" name="stnm_inp_addr1"/>
+									<input type="hidden" name="stnm_inp_addr2"/>
+									
+									<input type="hidden" id="temp_zip1_1"/>
+									<input type="hidden" id="temp_zip2_1"/>
+									<input type="hidden" id="temp_addr1_1"/>
+									<input type="hidden" id="temp_addr2_1"/>
+									
+									<input type="number" id="txt_zip1_1" class="txt01" readonly="readonly" style="width:29%;" />
+									<input type="number" id="txt_zip2_1" class="txt01" readonly="readonly" style="width:29%;" />
+									<a href="#none" id="search_addr_trigger_1" class="btn_typeA tit_addr_search" style="width:36%;"><span class="txt">주소찾기</span></a>
+								</div>
+								
+							
+								<div class="addr_boxline" style="display: none;">
+								    <div class="wrap_addr_detail">
+							        	<ul class="tab_addr_detail clearfix">
+							        		<li class="on">
+							        			<a href="#none" class="tab_tit">지번주소</a>
+							        			
+							        			
+							        			<div id="seq1_J_1" class="tab_txt" >
+							        				<div class="flex mgb15">
+								        				<input type="search" id="inp_seq1_J_1" class="txt01" 
+								        						placeholder="동(읍/면/리) 이름입력"/>
+								        				<a href="javascript: searchAddress('1', 'S', 'J', 'c=mlotte&udid=&v=&cn=&cdn=')" 
+								        						class="btn_typeA mgl2">검색</a>
+								        			</div>
+							        				<ul id="result_seq1_J_1" style="display:none;">
+							        				
+							        				</ul>
+							        			</div>
+							        			
+							        			
+							        			<div id="seq2_J_1" class="tab_txt" style="display: none;">
+							        				<p id="txt_seq2_J_1" class="txt_addr1"></p>
+							        				<div class="flex mgb15">
+								        				<input type="search" id="inp_seq2_J_1" class="txt01" 
+								        						placeholder="나머지 주소 입력"/>
+								        				<a href="javascript: searchAddress('1', 'M', 'J', 'c=mlotte&udid=&v=&cn=&cdn=')"
+								        						class="btn_typeA mg12">입력</a>
+								        			</div>
+							        			</div>
+							        			
+							        			
+							        			<div id="seq3_J_1" class="tab_txt" style="display: none;">
+							        			
+							        			</div>
+							        		</li>
+							        		<li>
+							        			<a href="#none" class="tab_tit">도로명주소</a>
+												
+							        			<div id="seq1_N_1" class="tab_txt" style="display:none;">
+							        				<div class="flex">
+								        				<span class="s_box02  mgb10" style="width:49%;">
+															<select id="key1_seq1_N_1">
+																<option value="" selected="selected">＊시/도 선택</option>
+																<option value="서울">서울</option>
+																<option value="부산">부산</option>
+																<option value="대구">대구</option>
+																<option value="인천">인천</option>
+																<option value="광주">광주</option>
+																<option value="대전">대전</option>
+																<option value="울산">울산</option>
+																<option value="세종">세종</option>
+																<option value="경기">경기</option>
+																<option value="강원">강원</option>
+																<option value="충북">충북</option>
+																<option value="충남">충남</option>
+																<option value="전북">전북</option>
+																<option value="전남">전남</option>
+																<option value="경북">경북</option>
+																<option value="경남">경남</option>
+																<option value="제주">제주</option>
+																<option value="서울">서울</option>
+															</select>
+															<span class="img_box">
+																<i></i>
+															</span>
+														</span>
+							        					<input type="text" class="txt01 mgb10" id="key2_seq1_N_1" style="width:49%;" placeholder="＊시/군/구 입력">
+							        				</div>
+							        				<div class="flex">
+							        					<input type="text" class="txt01 mgb10" id="key3_seq1_N_1" style="width:49%;" placeholder="＊도로명 입력">
+							        					<input type="number" class="txt01 mgb10" id="key4_seq1_N_1" style="width:49%; text-align:left;" placeholder="건물번호 입력">
+							        				</div>
+							        				<div class="flex mgb10">
+							        					<input type="text" class="txt01" id="key5_seq1_N_1" placeholder="건물명 입력">
+							        					<a href="javascript: searchAddress('1', 'S', 'N', 'c=mlotte&udid=&v=&cn=&cdn=')" class="btn_typeA mgl2">검색</a>
+								        			</div>
+							        				<ul id="result_seq1_N_1">
+							        					
+							        				</ul>
+							        			</div>
+							        			
+							        			
+							        			
+							        			<div id="seq2_N_1" class="tab_txt" style="display: none;">
+							        				<p id="txt_seq2_N_1" class="txt_addr1"></p>
+							        				<div class="flex mgb10">
+								        				<input type="search" id="inp_seq2_N_1" class="txt01" 
+								        						placeholder="나머지 주소 입력"/>
+								        				<a href="javascript: searchAddress('1', 'M', 'N', 'c=mlotte&udid=&v=&cn=&cdn=')"
+								        						class="btn_typeA mgl2">입력</a>
+								        			</div>
+							        			</div>
+							        			
+							        			
+							        			<div id="seq3_N_1" class="tab_txt" style="display: none;">
+							        			
+							        			</div>
+							        		</li>
+							        	</ul>
+						        	</div>
+						        </div>
+					        
+				        	
+				        	
+							    <div id="txt_addr_wrap_1" class="s_text pdt0">
+							      <input type="text" id="txt_addr1_1" class="txt01 mgb5" readonly="readonly" style="width:100%;" />
+							      <input type="text" id="txt_addr2_1" class="txt01 mgb5" readonly="readonly" style="width:100%;" />
+								</div>
+								
+							</dd>
+							
+							<dd class="txtarea">
+								<div class="s_title">
+									연락처<a href="javascript:showANSPop();" class="safe_num">안심번호 서비스 안내</a>
+								</div>
+								<div id="deli_phone_val_1" class="s_text flex">
+									<span class="s_box02" style="width:33%">
+										<select name="inpcell1" class="phone_modi">
+										
+											<option value ="010">010</option>
+										
+											<option value ="011">011</option>
+										
+											<option value ="016">016</option>
+										
+											<option value ="017">017</option>
+										
+											<option value ="018">018</option>
+										
+											<option value ="019">019</option>
+										
+											<option value ="0502">0502</option>
+										
+											<option value ="0505">0505</option>
+										
+										<option value="직접입력">직접입력</option>
+										</select>
+										<span class="img_box">
+											<i></i>
+										</span>
+									</span>
+									<input type="tel" class="txt01 mgb0" name="inpcell1" disabled="disabled" style="display: none; width:31%;" maxlength="4" pattern="[0-9]*"/>
+									<input type="tel" class="txt01 mgb0" name="inpcell2" style="width:31%;" maxlength="4" pattern="[0-9]*">
+									<input type="tel" class="txt01 mgb0" name="inpcell3" style="width:31%;" maxlength="4" pattern="[0-9]*">
+									
+									<input type="hidden" name="inptel1" value=""/>
+									<input type="hidden" name="inptel2" value=""/>
+									<input type="hidden" name="inptel3" value=""/>
+								</div>
+							</dd>
+							
+							<!-- 회원 배송지 재사용 및 내 배송지 목록에 추가 -->
+							 
+								
+									<dd id="dlvp_reuse_mod" style="display:none;">
+									  <div class="s_text pdt0 pdb10">
+						                  <input type="checkbox" id="chk_dlvp_reuse_mod" name="chk_dlvp_reuse_mod" class="check01 mgb0" checked="checked">
+						                  <label for="chk_dlvp_reuse_mod" style="font-weight:normal">지금 배송지를 다음에도 사용</label>
+					                  </div>
+					                </dd>
+								
+								<dd id="dlvpuseyn_dd_1" >
+								  <div class="s_text pdt0 pdb10">
+					                  <input type="checkbox" id="dlvpuseyn_1" class="check01 mgb0" checked="checked">
+					                  <label for="dlvpuseyn_1">내 배송지 목록에 추가</label>
+				                  </div>
+				                </dd>
+							
+
+							<!-- 배송메시지 -->
+							
+								<dd class="mgt5" id="deli_msg_1">
+									<div class="s_title">배송메시지</div>
+									<div class="s_text">
+										<span class="s_box02">
+											<select name="deli_msg" class="del_msg" data-idx="1" style="width:100%">
+												<option value="" selected="selected">배송메시지 선택하기</option>
+												
+												<option value="직접입력333">직접입력333</option>
+												
+												<option value="부재시 경비실에 맡겨주세요.">부재시 경비실에 맡겨주세요.</option>
+												<option value="빠른 배송 부탁드립니다.">빠른 배송 부탁드립니다.</option>
+												<option value="부재시 핸드폰으로 연락바랍니다.">부재시 핸드폰으로 연락바랍니다.</option>
+												<option value="배송 전 연락바랍니다.">배송 전 연락바랍니다.</option>
+												<option value="직접입력">직접 입력하기 (20자 이내)</option>
+											</select>
+											<span class="img_box">
+												<i></i>
+											</span>
+										</span>
+										<!-- 직접 입력하기 활성화시! (default시 빠짐) -->
+										<input type="text" class="txt01 mgb0" id="rcvmessage_1" name="rcvmessage" 
+												style="display:none;" maxlength="20" placeholder="직접 입력하기 (20자 이내)">
+									</div>
+								</dd>
+							
+			
+							<!-- 메시지카드 -->
+							
+							
+						</dl>		
+				 
+					</li>
+				</ul>
+				
+				<div id="deli_option_1" style="display:none;">
+					<!-- 기존 배송정보에 업데이트 -->
+					<input type="radio" class="radio01" name="deli_chk_1" value="U"/>
+					<!-- 새로운 배송지로 추가 -->
+					<input type="radio" class="radio01" name="deli_chk_1" value="C" 
+							/>
+				</div>
+			</div>
+			
+			
+			
+		
+			
+			
+		
+			</div>
+		
+<!--		<h3 class="tit">참좋은혜택</h3>-->
+		
+			
+		
+
+
+
+
+	
+	
+	
+	
+	
+	<input type="hidden" name="bene_tmp_deli_amt_" value="0"/>
+	
+	<div class="box_line">
+		
+		
+			
+		
+			<!-- 배송비 -->
+			
+			
+			<!-- 상품정보 -->
+			<div class="order_goods" id="bene_deli_product_1">
+				<input type="hidden" name="bene_deli_data_1" value="42498702|100|89000|1"/>
+				<span class="thumb"><img src="http://image.lotte.com/goods/02/87/49/42/42498702_1_280.jpg" alt="상품이미지"></span>
+				<span class="cont01">
+					<p class="tl">[아크테릭스] 픽시스 12 PYXIS 12 BACKPACK (ABDFU12954) (ABDFU12954)</p>
+					<p class="option">
+						색상:CHIPOTLE,사입즈:One Size / 1개
+						
+						<br/>
+					</p>
+					<p class="money">
+						89,000원
+					</p>
+				</span>
+			</div>
+			
+			<!-- 주문제작 여부 -->
+			
+			
+			
+			
+			
+				
+					<input type="hidden" name="bene_tmp_deli_amt_1_100" value="0"/>
+					<div class="order_section" id="bene_tmp_deli_amt_1_100">
+						<div class="order_product_list pdt15">
+						
+							<!-- 선물포장/매장전달 메시지 -->
+							
+							
+							<!-- //선물포장/매장전달 메시지 -->
+						
+							<dl class="del_pay pdb10 clearfix">
+						    
+						        
+						        
+						            <dd class="fl mgb0">배송비</dd>
+									<dd class="fr mgb0" id="bene_group_deli_amt_1"><span class="price">무료</span></dd>
+						        
+						    
+							</dl>
+						</div>
+					</div>
+				
+				
+			
+			
+		
+		
+		
+		
+		<h3 class="tit">참좋은혜택</h3>
+		
+				
+				
+		<div class="order_section btnone">
+			<div id="pay_info" class="order_product_list">
+				<dl>
+					<dd class="txtarea2">
+						
+	
+	
+						
+	
+						<!-- 무료배송권 -->
+						<input type="hidden" name="dlv_prom_use_yn" id="dlv_prom_use_yn" value="N" /><!-- 무료쿠폰사용여부  -->
+						
+						
+						
+						<!-- 할인총계 -->
+						<div class="clearfix total_dc">
+							
+								
+									<p class="fl pdt7">최종 결제금액</p>
+									<p class="fr money" id="bene_tot_amt"><span class="price">0원</span></p>
+								
+								
+							
+						</div>
+						
+					</dd>
+				</dl>
+			</div><!-- //#pay_info -->
+		</div>
+		
+	</div>
+
+	
+	
+	
+	
+	
+		<!-- //매장위치 레이어01 -->
+		<section id="shop_location" class="shop_location" style="display: block;">
+		</section>
+		<!-- 매장위치 레이어01// -->
+	
+			<!-- 모바일주문간소화 포인트정보 시작 -->
+			
+				
+					<div id="lp_layer" class="order_section mgt5">
+						<div id="pay_info2" class="order_product_list pdb0">
+							<input type="hidden" name="dlv_prom_use_yn" id="dlv_prom_use_yn" value="N" /><!-- 무료쿠폰사용여부  -->
+							<dl>
+								<dd class="point_info mgb0">
+										
+										
+											
+												<div class="clearfix">
+													<p class="fl">
+														<input type="checkbox" name="chk_point" id="chk_lpoint" class="check01" value="lpoint" onclick="javascript:fn_selPoint(this);" >
+														<label for="chk_lpoint" class="no_bold mgl1">L-money <span class="price">(<span>9,808,500</span>원)</span></label><!-- 20150601_3 -->
+													</p>
+													<p class="fr" style="width:80px !important;"><input type="number" class="txt01 txt_num" pattern="[0-9]*" id="lpoint_amt" style="width:100%;" onblur="fn_point_change(this);" onfocus="fn_point_focus(this);" ></p>
+													<input type="hidden" id="old_lpoint_amt" value="0"/>
+													<input type="hidden" id="useable_lpoint_amt" value="9808500"/>
+												</div>
+																	
+											
+											
+										
+										
+										
+																	
+											
+												
+													
+													
+														
+														
+										     			
+														
+										  				<div class="clearfix">
+															<p class="fl">
+																<input type="checkbox" class="check01" name="chk_point" id="chk_lt_point" value="lt_point" onclick="javascript:fn_selPoint(this);" disabled>
+																<label for="lotte_point" class="no_bold mgl1">L.POINT <span class="price">(<span id="lottePointStr">0</span>원)</span></label><!-- 20150601_02 -->																
+															</p>
+															<p class="fr">
+																<a href="#lp_layer" class="btn_typeA btn_lotte_point" style="width:80px;" id="lt_point_amt_btn">본인확인</a>
+																<!-- default시 비노출 -->
+																<input type="number" class="txt01 txt_num" style="width:80px; display:none;" pattern="[0-9]*" id="lt_point_amt" onblur="javascript:fn_point_change(this);" onfocus="fn_point_focus(this);" >
+																<input type="hidden" id="old_lt_point_amt" value="0"/>
+																<input type="hidden" id="useable_lt_point_amt" value="0"/>
+															</p>
+														</div>
+														<div id="useLottePoint" class="box_lotte_point" style="display:none;">
+															<div class="box_lp_line">
+																<P class="tit">L.POINT 본인 인증 서비스</P>
+																<div class="lp_cont">
+																	<p class="stit">안전한 L.POINT 결제를 위해<br /> 고객님의 포인트 카드 비밀번호를 확인합니다.</p>
+																	<div class="flex">
+								  										<input type="password" name="card_passwd" class="txt01" id="card_passwd" placeholder="L.POINT 비밀번호 입력" maxlength="8">
+								                    					<a href="javascript:make_certification();" class="btn_typeA point_confirm mgl2" style="min-width:80px">확인하기</a>
+								                  					</div>
+																	<ul>
+																		<li>롯데카드 또는 L.POINT 카드 관련 문의는 각 고객센터로 문의해주세요.(롯데카드:1588-8100, L.POINT:1899-8900)</li>
+                                    									<li>5회 이상 비밀번호 오류 시, 비밀번호를 재설정해주세요.</li>
+																	</ul>
+																	<div class="btn_cen">
+																		<a href="javascript:fn_useLottePointCancel();" class="btn_typeA point_cancle">취소하기</a>
+																		<a href="javascript:openLotteMembers();" class="btn_typeA">비밀번호 설정/재설정</a>
+																	</div>
+																</div>
+																<div id="LottePoint_Result_div"></div>
+															</div>
+														</div>
+													
+													
+													
+												
+											
+											
+										
+										
+										
+																	
+											
+											
+												<div class="clearfix">
+													<p class="fl">
+														<input type="checkbox" class="check01" name="chk_point_all" id="chk_deposit_all" value="deposit" onclick="javascript:fn_selPointAll(this);" >
+														<label for="member_won" class="no_bold mgl1">회원보관금 <span class="price">(<span>101,031,000</span>원)</span></label><!-- 20150601_3 -->
+													</p>
+													<p class="fr" style="width:80px !important;"><input type="number" class="txt01 txt_num" pattern="[0-9]*" style="width:100%;" id="deposit_amt" readonly></p>
+													<input type="hidden" id="old_deposit_amt" value="0"/>
+													<input type="hidden" id="useable_deposit_amt" value="101031000"/>
+												</div>
+											
+										
+									
+									<div class="clearfix total_dc">
+										<p class="fl pdt7">내 포인트 사용</p>
+										<p class="fr pdt7" id="usePointSum">0<span class="no_bold">원</span></p>
+									</div>	
+								</dd>
+							</dl>
+						</div><!-- //#pay_info2 -->
+					</div>	
+					
+			
+			<!--  모바일주문간소화 포인트정보 끝 -->
+			
+			<!-- okcashbag start -->	
+			
+
+			
+			<!-- okcashbag end --> 
+			
+			<!-- s:20141126 아시아나 통해서 접근시만 보이는 화면 (상품권&스마트픽&e쿠폰 제외) icjung-->
+			
+			<!-- //e:20141126 아시아나 통해서 접근시만 보이는 화면 -->
+			
+			<!--모바일주문간소화 주문금액-->
+			<div class="order_tp mgt5">
+				<div class="calculation">
+						<ul class="clearfix fir">
+							<li class="fl">총 주문금액</li>
+							<li class="fr" id="totalOrdAmt"><strong>89,000</strong>원</li>
+						</ul>
+						<ul id="discount" class="clearfix">
+							<li class="fl">총 할인금액</li>
+							<li class="fr"><strong>0</strong>원</li>
+						</ul>
+						<ul class="clearfix end_bg">
+							<li class="fl">최종 결제금액</li>
+							<li class="fr" id="totalprice"><span></span><strong>89,000</strong>원</li>
+						</ul>
+						<input type="hidden" name="totordamt" value="89000" />
+						<input type="hidden" name="totsttlamt" value="89000" />
+					    <input type="hidden" name="defaulttotsttlamt" value="89000" />
+				</div>
+				<div id="lottepointSave" style="display: none;"></div>
+				<div class="total_price_loading" style="display: none;text-align:center;background-color: #EBEBEB;">
+					금액 계산중...
+				</div>
+			</div>
+			
+			<div id="lottepointSave" style="display: none;"></div>
+			<div class="total_price_loading" style="display: none;text-align:center;background-color: #EBEBEB;">		
+				금액 계산중...
+			</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			<!--결제수단-->
+			<h3 class="tit" id="h3_paytype_title">결제수단</h3>
+			<input type="hidden" name="op_pay_mean_hist_pay_mean_cd" value="03"/>
+		    <input type="hidden" name="op_pay_mean_hist_bnk_cd" value="004"/>
+		    <input type="hidden" name="op_pay_mean_hist_acqr_cd" value=""/>
+		    <input type="hidden" name="op_pay_mean_hist_card_pay_meth_cd" value=""/>
+			<div class="order_section pdb10">
+				<div id="div_paytype">
+					<div id="pay_method" class="order_product_list pdt14">
+						<dl>
+							<dd class="bnone">
+								<div class="pay_method_area">
+								    			
+										
+											
+						    				
+							    				<span id="pay_type1" class="pay_type1 on">
+							    					<span>
+														<input type="radio" name="rdo_paytype" value="16" onclick="javascript:selPayType(1);" onfocus="this.blur()" />
+														<label for="rdo_paytype1">신용카드</label>
+													</span>
+												</span>
+												
+													
+												
+											
+											
+											
+											
+									    		<span id="pay_type2" class="pay_type2">
+									    			<span>
+									    				<input type="radio" name="rdo_paytype" value="03" onclick="javascript:selPayType(2);" onfocus="this.blur()"  />
+									    				<label for="rdo_paytype3">무통장입금</label>
+							    					</span>
+							    				</span>
+							    				
+											
+											
+												<span id="pay_type3" class="pay_type3">
+													<span>
+														<input type="radio" name="rdo_paytype" value="15" onclick="javascript:selPayType(3);" onfocus="this.blur()" />
+														<label for="rdo_paytype4">휴대폰결제</label>
+													</span>
+												</span>
+												
+											
+											<input type="hidden" name="paytype" value="16" />
+										
+										
+										
+										
+										
+									
+								</div>
+							</dd>
+						</dl>
+					</div>
+					
+					<!--결제수단_신용카드 선택시-->
+					<div id="pay_card" class="order_product_list" style="display: none;">
+						<dl>
+							<dd class="clearfix">
+								<div class="fl">
+									<span class="s_box02">
+										<select name="iscmcd" class="ono_selectBox0503 wd95">
+										</select>
+										<span class="img_box"><i></i></span>
+									</span>
+								</div>
+								<div class="fr">
+									<span class="s_box02">
+										<select name="cardinstmon" disabled>
+										    <option value="">일시불</option>
+										</select>
+										<span class="img_box"><i></i></span>
+									</span>
+									<span id="cardinscheck" class="fcff0101 fs11"></span>
+									
+									<div style="display:none;">
+										<span>
+										<input type="radio" name="rdo_cardinst" value="01" class="radio_order radio01">
+										<label for="">일시불</label>
+									</span>
+									<span class="mg_left2">
+										<input type="radio" name="rdo_cardinst" value="02" class="radio_order radio01" disabled>
+										<label for="">무이자할부</label>
+									</span>
+									<span class="mg_left2">
+										<input type="radio" name="rdo_cardinst" value="03" class="radio_order radio01" disabled>
+										<label for="">일반할부</label>
+									</span>
+									</div>
+									
+								</div>
+							</dd>
+
+							<!-- 롯데카드 선택시  -->
+							<dd>
+								<!--청구할인 안내-->
+								
+								<ul class="ok_card_noti" id="claim_sale_info">
+									<li id="claim_sale_price"></li>
+								</ul>
+								
+								
+								
+								<div class="flex mgt10" id="pay_card_confirm" style="width:auto !important;">
+								    
+									<span class="combo">
+										<input type="radio" name="card_confirm_type" id="card_confirm_type_01" value="01" class="radio01">
+										<label for="card_confirm_type_01">스마트페이</label>
+						 			</span>
+						 			
+						 			<span class="combo">
+										<input type="radio" name="card_confirm_type" id="card_confirm_type_02" value="02" class="radio01" >
+										<label for="card_confirm_type_02">일반결제</label>
+						 			</span>
+						 			<span class="combo">
+										<input type="radio" name="card_confirm_type" id="card_confirm_type_03" value="03" class="radio01" >
+										<label id="card_confirm_label_03" for="card_confirm_type_03">앱카드</label>
+						 			</span>
+						 		</div>
+						 		
+							</dd>
+					
+						    
+						    <dd id="claim_sale_price_noti">
+								<ul class="ok_card_noti">
+									<li><strong>롯데카드 50,000원 이상 결제 시 추가 5% 청구 할인</strong><br/>(단, 카드별 1일 할인한도 최대 20만원)</li>
+								</ul>
+						    </dd>
+							
+							
+						</dl>
+					</div>
+					
+					<!--결제수단_무통장입금 선택 시-->
+					<div id="pay_bank" class="order_product_list" style="display: none;">
+						<dl>
+							<dd>
+								<div class="s_title pdt0">은행명</div>
+								<div class="s_text pdt0">
+									<span class="s_box02">
+										<select name="bankno" class="ono_selectBox0503 wd95" onChange="sel_acct()">
+											<option value ="">은행선택</option>
+										
+											<option value ="004">국민은행</option>
+										
+											<option value ="005">외환은행</option>
+										
+											<option value ="011">농협중앙회</option>
+										
+											<option value ="020">우리은행</option>
+										
+											<option value ="026">신한은행</option>
+										
+										</select>
+										<span class="img_box"><i></i></span>
+									</span>
+								</div>
+							</dd>
+						
+						    <!-- 계좌 조회 검색 결과-->
+							<dd id="acct_result" class="txtarea">
+							
+							   <div class="s_title">계좌번호</div>
+							   <div class="s_text"><span class="high">은행을 선택해 주세요</span></div>
+							
+							</dd>
+							<dd class="txtarea">
+								<div class="s_title">예금주</div>
+									<div class="s_text"><span class="high">(주)롯데닷컴</span>
+									
+									</div>
+							</dd>
+							<dd>
+								<div class="s_title">입금자이름</div>
+								<div class="s_text">
+									<input type="text" name="onlineacctname" value="박상현" class="txt01" />
+								</div>
+							</dd>
+							
+							<dd class="txtarea">
+								<div class="s_title pdt5">입금기한</div>
+								<div class="s_text pdt5">
+									<span class="high">2015-09-07</span>
+									<br>
+									<span class="long_txt fs12">※ 주문일 기준, 다음날까지 미입금 시 자동 취소됩니다.(토, 일, 공휴일 제외)</span>
+								</div>
+							</dd>
+						
+						</dl>
+					</div>		
+					
+					<!-- 20141231// 현금영수증 Start -->
+					<div id="cash_receipts" class="taxsave clearfix order_product_list" style="display:none"  >
+						<div class="s_title">현금영수증 </div>
+						<div class="s_text radioarea">
+							<span>
+								<input type="radio" id="pers" name="rdo_cash" value="1" class="radio01" checked="checked" />
+								<label for="pers"> 소득공제용 (개인)</label>
+							</span>
+							<span>
+								<input type="radio" id="co" name="rdo_cash" value="2" class="radio01" />
+								<label for="co"> 지출증빙용 (사업자)</label>
+							</span>
+							<span>
+								<input type="radio" id="not" name="rdo_cash" value="3" class="radio01" />
+								<label for="not"> 신청안함</label>
+							</span>
+						</div>
+						<div id="pers_select" class="s_text">
+							<span id="cash_receipts01" class="s_box02" style="width:100%;">
+								<select name="cr_issu_mean_sct_cd">
+			
+									<option value ="3">휴대폰번호</option>
+									<option value ="4">신용카드번호</option>
+									<option value ="5">현금영수증카드번호</option>
+			
+								</select>
+								<span class="img_box"><i></i></span>
+							</span>
+						</div>
+						<div id="pers_value" class="s_text">
+							<span id="cash_receipts02" class="combo" style="display:none">
+								<input type="number" name="cr_issu_mean_no_ssn1" value="" class="txt01" maxlength="6" pattern="[0-9]*" title="주민번호앞자리" onkeydown="acthChkNum();" onkeyup="nextElement(this);"/>-<input type="number" name="cr_issu_mean_no_ssn2" value="" class="txt01" maxlength="7" pattern="[0-9]*" title="주민번호뒷자리" onkeydown="acthChkNum();"/>
+							</span>
+							<span id="cash_receipts03" class="flex">
+								<span class="s_box02">
+									<select name="cr_issu_mean_no_phone1" class="phone_modi">
+										<option value="010" selected="">010</option>
+										<option value="011">011</option>
+										<option value="016">016</option>
+										<option value="017">017</option>
+										<option value="018">018</option>
+										<option value="019">019</option>
+										<option value="0130">0130</option>
+										<option value="0505">0505</option>
+										<option value="직접입력">직접입력</option>
+									</select>
+									<span class="img_box"><i></i></span>
+								</span>
+								<!-- 직접 입력하기 활성화시! (default시 빠짐) -->
+								<input style="display:none; width:32%;" class="txt01 mgb0" id="" type="tel" />
+								<input type="tel" name="cr_issu_mean_no_phone2" class="txt01" maxlength="4" pattern="[0-9]*" title="전화번호중간자리" onkeydown="acthChkNum();" onkeyup="nextElement(this);" style="display:inline-block; width:31%;"/>
+								<input type="tel" name="cr_issu_mean_no_phone3" class="txt01" maxlength="4" pattern="[0-9]*" title="전화번호뒷자리" onkeydown="acthChkNum();" style="display:inline-block; width:31%;"/>
+							</span>
+							<span id="cash_receipts04" class="combo flex" style="display:none">
+								<input type="tel" name="cr_issu_mean_no_credit_crd1" value="" class="txt01" maxlength="4" pattern="[0-9]*" title="신용카드번호첫째자리" onkeydown="acthChkNum();" onkeyup="nextElement(this);" style="width:23%"/>
+								<input type="tel" name="cr_issu_mean_no_credit_crd2" value="" class="txt01" maxlength="4" pattern="[0-9]*" title="신용카드번호둘째자리" onkeydown="acthChkNum();" onkeyup="nextElement(this);" style="width:23%"/>
+								<input type="tel" name="cr_issu_mean_no_credit_crd3" value="" class="txt01" maxlength="4" pattern="[0-9]*" title="신용카드번호셋째자리" onkeydown="acthChkNum();" onkeyup="nextElement(this);" style="width:23%"/>
+								<input type="tel" name="cr_issu_mean_no_credit_crd4" value="" class="txt01" maxlength="4" pattern="[0-9]*" title="신용카드번호넷째자리" onkeydown="acthChkNum();" style="width:23%"/>
+							</span>
+							<span id="cash_receipts05" class="combo flex" style="display:none">
+								<input type="tel" name="cr_issu_mean_no_rcpt_crd1" value="" class="txt01" maxlength="4" pattern="[0-9]*" title="현금영수증카드번호첫째자리" onkeydown="acthChkNum();" onkeyup="nextElement(this);" style="width:23%"/>
+								<input type="tel" name="cr_issu_mean_no_rcpt_crd2" value="" class="txt01" maxlength="4" pattern="[0-9]*" title="현금영수증카드번호둘째자리" onkeydown="acthChkNum();" onkeyup="nextElement(this);" style="width:23%"/>
+								<input type="tel" name="cr_issu_mean_no_rcpt_crd3" value="" class="txt01" maxlength="4" pattern="[0-9]*" title="현금영수증카드번호셋째자리" onkeydown="acthChkNum();" onkeyup="nextElement(this);" style="width:23%"/>
+								<input type="tel" name="cr_issu_mean_no_rcpt_crd4" value="" class="txt01" maxlength="6" pattern="[0-9]*" title="현금영수증카드번호넷째자리" onkeydown="acthChkNum();" style="width:23%"/>
+							</span>
+							<span id="cash_receipts06" class="combo" style="display:none">
+								<input type="text" name="cr_issu_mean_no_barcode" value="" class="txt01" maxlength="12" pattern="[0-9]*" title="바코드(QR코드) 번호" onkeydown="acthChkNum();"/>
+							</span>
+						</div>
+						<div id="co_value" class="s_text" style="display:none">
+							<p>사업자등록번호</p>
+							<div class="flex">
+								<input type="hidden" name="cr_issu_mean_sct_cd_bman" value="2" maxlength="1"/>
+								<input type="tel" name="cr_issu_mean_no_bman1" value="" class="txt01" maxlength="3" pattern="[0-9]*" title="사업자번호앞자리" onkeydown="acthChkNum();" onkeyup="nextElement(this);" style="width:31%" />
+								<input type="tel" name="cr_issu_mean_no_bman2" value="" class="txt01" maxlength="2" pattern="[0-9]*" title="사업자번호중간자리" onkeydown="acthChkNum();" onkeyup="nextElement(this);" style="width:31%" />
+								<input type="tel" name="cr_issu_mean_no_bman3" value="" class="txt01" maxlength="5" pattern="[0-9]*" title="사업자번호뒷자리" onkeydown="acthChkNum();" style="width:31%" />
+							</div>
+						</div>
+						<p class="taxsave_txt s_text">
+							[영수증발급] 현금영수증/세금계산서는 <strong>롯데닷컴 PC웹 &gt; 마이롯데</strong>에서 발급받으실 수 있습니다. 할인금액 및 L-money 중 비현금성은 현금영수증 발급금액에서 제외됩니다.
+						</p>
+					</div>
+					<!-- 2012-03-05// 현금영수증 추가 End -->
+					
+					<!-- 지금 선택한 결제수단... (비회원일 경우 표시안함) -->
+					
+						<div class="order_product_list" id="payment_method_next_use">
+							<dl>
+								<dd class="t_line mgt15">
+									<input type="checkbox" id="next_use" name="next_use" class="check01" checked />
+									<label for="next_use">지금 선택한 결제수단을 다음에도 사용</label>
+								</dd>
+							</dl>
+						</div>
+					
+						<!-- ellotte_20140918_휴대폰결제일 경우 ellotte_yhchoi9 -->
+						<div id="pay_phone" class="ellotte_txt02" style="display:none;">
+						
+						</div>
+						<!-- // ellotte_20140918_휴대폰결제일 경우 -->
+				</div>
+			</div>
+		
+			<!-- ellotte_20140918_휴대폰결제일 경우 ellotte_yhchoi9 -->
+			<div id="pay_phone" class="ellotte_txt02" style="display:none;">
+			
+			</div>
+			<!-- // ellotte_20140918_휴대폰결제일 경우 -->
+			
+		<div class="order_wrap mgt10">
+			<div class="box_agree_check">
+				<p class="tit_agree_check">
+					<input type="checkbox" name="ord_agr_yn" class="check01" id="order_agree_on" checked>
+					<label for="order_agree_on">주문 내역 확인 동의</label>
+					<span class="">자세히 보기/닫기</span>
+				</p>
+				
+				<p class="txt" style="display: none;">
+				        주문내용을 확인해주세요.<br/>
+					주문할 상품의 상품명, 상품가격, 배송정보를 확인하였습니다.(전자상거래법 제 8조 제2항)<br/><br/>
+					
+					구매에 동의하시겠습니까?
+				</p>
+			</div>
+			
+			
+			
+			
+				
+			
+				
+			
+			
+			
+		</div>
+		
+		<!--결제버튼-->
+			
+			<!-- 결제하기 -->
+			<div class="order_btn_wrap">
+				<div id="ORDER" class="order_btn">
+					<a name="PAYMENT_ANCHAR"></a>
+					<span id="submit_btn"><a href="javascript:send();" class="btn_typeB"><span>결제하기</span></a></span>					
+				</div>
+				<div class="order_btn" id="PROCESSING" style="display:none">
+					<font size="2">처리중 입니다. 잠시만 기다려 주십시오.</font>
+				</div>
+			</div>
+		
+		
+		
+		
+		<!-- 30만원이상 결제하는 방법 -->
+		<div class="payment30up" style="margin-top:10px">
+			<strong>신용/체크카드로 30만원 이상 결제 시 공인인증서가 필요합니다.</strong><br/>
+			- 롯데, 국민, 비씨, 신한, 삼성, 현대, 하나, 광주, 우체국
+		</div>
+		<!-- 20140811 미성년자 결제 관련 -->
+        <div class="payment30up" style="margin-top:10px">
+			미성년자 주문시, 법정대리인이 계약에 동의하지 않으면 미성년자 본인 또는 법정대리인이 계약을 취소할 수 있습니다.
+        </div>
+		<!--20121128 30만원 이상 결제 안내 popup 페이지 -->
+		<div id="cardapp" style="display:none;" >
+			<!-- sub header -->
+			<header id="head_sub">
+				<h2>결제 인증절차 안내 (30만원이상)</h2>
+				<p class="close"><a href="javascript:closeInfo30Pop()">닫기</a></p>
+			</header>
+			<!--// sub header -->
+			
+			<section id="order">		
+				<section class="step">
+					<div class="roll_banner">
+						<ul class="photo swiper-wrapper">
+							<li class="swiper-slide">
+								<img src="http://image.lotte.com/lotte/mobile/mobile_new/order/img_step01.gif" alt="카드사 앱 설치">
+								<div>
+									<h3>STEP 01. 카드사 앱설치</h3>
+									<p><strong>본인이 소유하고 있는 카드사 앱 다운받기</strong></p>
+									<ul>
+										<li>BC, KB국민, 광주, 우체국카드 카드는 ISP 앱을 다운받으셔야 합니다. 롯데/신한/현대/삼성/하나SK카드는 해당 카드사 앱을 다운 받으셔야 합니다.</li>
+										<li>아이폰(IOS)에서 하나SK 카드 결제는 불가합니다.</li>
+									</ul>
+								</div>
+							</li>
+							<li class="swiper-slide">
+								<img src="http://image.lotte.com/lotte/mobile/mobile_new/order/img_step02.gif" alt="스마트폰 공인인증서 인증번호 확인 - 해당 이미지는 카드사 앱마다 다를 수 있습니다.">
+								<div>
+									<h3>STEP 02. 스마트폰 공인인증서 인증번호 확인</h3>
+									<ol>
+										<li>카드사 앱 공인인증센터 클릭</li>
+										<li>공인인증서 가져오기 클릭</li>
+										<li>주민번호 입력 및 인증(승인) 번호 확인</li>
+									</ol>
+								</div>
+							</li>
+							<li class="swiper-slide">
+								<img src="http://image.lotte.com/lotte/mobile/mobile_new/order/img_step03.jpg" alt="PC웹에서 공인인증서 복사 - 해당 이미지는 카드사 앱마다 다를 수 있습니다.">
+								<div style="height:171px"><!-- 2014-04-18 수정(스타일추가) -->
+									<h3>STEP 03. PC웹에서 공인인증서 복사</h3>
+									<ol>
+										<li>PC 웹사이트(카드사 및 ISP사이트) 공인인증센터</li>
+										<li>스마트폰 공인인증서 복사</li>
+										<li>공인인증서 암호 입력</li>
+										<li>주민번호 및 스마트폰 인증(승인) 번호 입력</li>
+										<li>공인인증서 휴대폰 저장</li>
+									</ol>
+								</div>
+							</li>
+						</ul>
+						<div class="page">
+							<ul >
+							</ul>
+						</div>
+					</div>
+					
+				</section> 
+			</section>
+		</div>
+	</div> 
+	</section>
+	</form>
+<!-- X안심클릭에서 사용하는 iframe START									-->
+<!-- 스타일 및 웹 칼라는 쇼핑몰 및 PG사에 맞게 적용하세요.						-->
+<a name="ANDROID_ANCHAR"/>
+<div id="ANSIM_LAYER" style="display:none;position:absolute;z-index:999;top:10px;">
+	<!--20121128 close button -->
+	<div style="position: absolute;right: 2px;top: -10px;">
+		<a href="javascript:close_iframe();"><img src="http://image.lotte.com/lotte/mobile/popup/btn_close03.png" alt="닫기"></a>
+	</div>
+	<iframe id="X_ANSIM_FRAME" name="X_ANSIM_FRAME" style="display:none;border:none;background:#FFFFFF;width:100%;height:100%;" src="http://molocal.lotte.com/dacom/xansim/iframe.jsp" height=0 scrolling="no"></iframe>
+</div>
+</div> 
+
+<form id="frm_card" name="frm_card">
+<input type="hidden" name="X_CARDTYPE" value="" />
+<input type="hidden" name="X_AMOUNT" value="" />
+<input type="hidden" name="X_SP_CHAIN_CODE" value="" />
+<!-- 신한/현대카드 30만원 이상 결제 시 -->
+<input type="hidden" name="X_ISMART_USE_SIGN" value="">
+<input type="hidden" name="X_MALL_APP_NAME" value="">
+</form> 
+<!-- 모빌리언스 (휴대폰 소액 결제)              								-->
+<form id="frm_mobilians" name="frm_mobilians">
+<input type="hidden" name="goodsno" value="42498702" />
+<input type="hidden" name="goodsnm" value="픽시스 12 PYXIS 12 BACKPACK (ABDFU12954) (ABDFU12954)" />
+<input type="hidden" name="totsttlamt" value="" />
+<input type="hidden" name="login_id" value="0018712789" />
+<input type="hidden" name="email" value="gnzjoum@naver.com" />
+<input type="hidden" name="companyCd" value="300" />
+<input type="hidden" name="phone_num" value="55289314856" />
+</form>
+<!-- 롯데카드인증 (롯데핀 사용)              											-->
+<form id="LOTTE_PIN_FORM" name="LOTTE_PIN_FORM" action="/pmpi/Agent01.jsp" method="post" target="X_ANSIM_FRAME">
+<input type="hidden" name="LOTTE_PIN" value="null" />
+</form>
+<!-- 스마트페이                                                                      						-->
+<!-- SMPI 인증 FORM -->
+<form id="SIMPLEPAYFORM" name="SIMPLEPAYFORM" action="/smpi/LCSMPIAgent01.jsp" method="post" target="X_ANSIM_FRAME">
+<input type="hidden" name="order_amount" value="" />
+<input type="hidden" name="order_currency" value="410" />
+<input type="hidden" name="order_cardname" value="" />
+<input type="hidden" name="order_no" value="" />
+<input type="hidden" name="order_userid" value="" />
+<input type="hidden" name="order_business" value="1018152964" />
+<input type="hidden" name="order_mname" value="LOTTEDOTCOM" />
+<input type="hidden" name="order_etc1" value="N" />
+<input type="hidden" name="order_etc2" value="" />
+	
+<input type="hidden" name="apvl_seller_id_lt" value="1018152964" />
+<input type="hidden" name="apvl_chain_no_lt" value="9212743785" />
+<input type="hidden" name="apvl_ss_useyn_lt" value="L" />
+<input type="hidden" name="MBRNO" value="0018712789" />
+<input type="hidden" name="REGNO" value="LD00002" />
+<input type="hidden" name="REQTYPE" value="3" />
+<input type="hidden" name="USERKEY" value="" />
+<input type="hidden" name="PAY" value="" />
+
+<input type="hidden" name="IOS_RETURN_APP" value="" />
+</form>
+
+<!-- MISP -->
+<span id="misp_confirm_div" style="display: none;"></span>
+<!-- ILKMPI -->
+<form id="ILKFORM" name="ILKFORM" action="/ilkmpi/veri_host_mobile.jsp" method="post" target="X_ANSIM_FRAME">
+	<input type="hidden" name="pan"             	value="">				<!-- 카드번호  -->
+	<input type="hidden" name="pay_ansim_price"		value="" />				<!-- 결제금액 -->
+	<input type="hidden" name="apvl_halbu"			value="" />				<!-- 할부개월수 -->
+	<input type="hidden" name="handNum"   			value="00000000000" />	<!-- 휴대폰 번호 -->
+	<input type="hidden" name="TID" 				value="">				<!-- TransactionID -->
+	<input type="hidden" name="usimYn"				value="N" />			<!-- 모바일카드 -->
+	<input type="hidden" name="expiry"          	value="">				<!-- 유효기간 -->
+	<input type="hidden" name="purchase_amount" 	value="">				<!-- 금액 -->
+	<input type="hidden" name="description"     	value="none">			<!-- 기타비고 -->
+	<input type="hidden" name="currency"        	value="410">			<!-- 통화코드 -->
+	<input type="hidden" name="device_category" 	value="0">				<!-- 접근디바이스 -->
+	<input type="hidden" name="hostid"          	value="00000001">	    <!-- ILK에서 부여받은 ID -->
+	<input type="hidden" name="hostpwd"         	value="PkD19gVs">	    <!-- ILK에서 부여받은 Password -->
+	<input type="hidden" name="name" 				value="LOTTEDOTCOM">	<!-- 가맹점명 -->
+	<input type="hidden" name="url" 				value="http://molocal.lotte.com"><!-- 가맹점Url -->
+	<input type="hidden" name="country" 			value="410">			<!-- ISO코드 -->
+	<input type="hidden" name="useActiveX" 			value="N">				<!-- ActiveX 사용여부 -->
+	
+	<input type="hidden" name="returnUrl" 			value="http://molocal.lotte.com/ilkmpi/mobileReturn.jsp">
+	
+	<input type="hidden" name="cardType"      		value="">
+</form>
+
+<!-- KBAPP									                            -->
+<form id="frm_spay" name="frm_spay" action="/spay/shop.jsp" method="post">
+<input type="hidden" name="aff_name" value="KB" />
+<input type="hidden" name="totsttlamt" value="" />
+<input type="hidden" name="cardinst" value="" />
+<input type="hidden" name="cardinstmon" value="" />
+<input type="hidden" name="schema" value="" />
+<input type="hidden" name="form_name" value="frm_send" />
+</form>
+
+<!-- VPAY	(하나SK)								                        -->
+<form id="frm_vpay" name="frm_vpay" action="/vpay/req-authM.jsp" method="post">
+<input type="hidden" name="vp_cardcode" value="" />
+<input type="hidden" name="vp_goodname" value="" />
+<input type="hidden" name="vp_price" value="" />
+<input type="hidden" name="vp_quota" value="" />
+<input type="hidden" name="vp_quota_flag" value="" />
+<input type="hidden" name="vp_iscmcd" value="" />
+<input type="hidden" name="vp_site_no" value="1" />
+</form>
+
+
+<input type="hidden" name="lt_crd_no" id="lt_crd_no" value=""/>
+
+
+	
+
+
+
+
+<div id="storage_layer" style="display:none;position:absolute;z-index:999;width:100%;height:100%;">
+	<iframe id="storage_frame" name="storage_frame" style="display:none;border:none;background:#FFFFFF;width:100%;height:100%;" src="" height=0 scrolling="no"></iframe>
+</div>
+<iframe id="frm_alert" name="frm_alert" style="display:none" src="" height=0 scrolling="no"></iframe>
+<iframe id="app_frame" name="app_frame" style="display:none" src="" height=0 scrolling="no"></iframe>
+<!-- 20141216 모바일주문서 수정 -->
+<style>
+#ansimPop {display:none; position:fixed; z-index:9000; left:0; width:80%; top:50%; margin-top:-120px; margin-left:10%}
+html.ansimPop_act #ansimPop {display:block;}
+</style>
+<div id="ansimPop">
+    <header id="head_sub">
+        <h2>연락처 제공 안내</h2>
+        <p class="close"><a href="javascript:closeANSPop();">닫기</a></p>
+    </header>
+    <ul class="ansim_cont">
+    	<li>고객님의 연락처는 안심번호 서비스로 보호받고 있습니다.</li>
+    	<li>안심번호 서비스란, <strong>고객님의 연락처를 1회성 임시번호(050-000-0000)로 자동전환 하여 택배사에 전달함으로써 개인정보 유출을 사전에 방지</strong>하는 서비스입니다.</li>
+    	<li><strong>택배기사님이 부재시 전화를 드리거나, 배송진행상황을 택배사에서 SMS로 안내해 드릴 수 있습니다.</strong></li>
+    </ul>
+</div>
+<!-- //20141216 모바일주문서 수정 -->
+		</section>
+		<lotte-footer></lotte-footer>
+	</div>
+	
+	<lotte-search></lotte-search>
+	<lotte-side-category></lotte-side-category>
+	<lotte-side-mylotte></lotte-side-mylotte>
+    <lotte-footer-actionbar></lotte-footer-actionbar>
+    
+	<lotte-comm-footer></lotte-comm-footer>
+	
+	<!--  2015.02.17 추가-->
+	<script type="text/javascript" src="http://static.criteo.net/js/ld/ld.js" async="true"></script>
+	<script type="text/javascript">
+	window.criteo_q = window.criteo_q || [];
+	window.criteo_q.push(
+	        { event: "setAccount", account: "2975" },
+	        { event: "setSiteType", type: "m" },
+	        { event: "viewHome" }
+	);
+	</script>
+	<!-- 이걸 팝업으로 함수들이 height: 100%를 주고 있어 div wrapper 안에 있으면 높이보다 넘어가는건 잘리는 현상이 있다 -->
+	<div id="CONFIRM_LAYER" style="display:none;position:absolute;z-index:5000;top:85px;left:0;">
+		<iframe id="CONFIRM_FRAME" name="CONFIRM_FRAME" src="http://molocal.lotte.com/dacom/xansim/iframe.jsp" style="width:100%;height:100%;display:none;border:none;" ></iframe>
+	</div>
+	
+	<div id="ajax_info" style="display:none"></div>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<section id="container">
+    <!-- contents -->
+    <section class="prod_eval">
+        <section class="list write review">
+            <div class="group">
+                <span class="thumb">
+                    <img ng-src="{{commentWrite.goods_img_url}}" alt=""/>
+                </span>
+                <span class="cont01">
+                    <p class="tl">{{commentWrite.goods_nm}}</p>
+                    <p class="spec" ng-if="commentWrite.goods_tp_cd != '20' && !commentWrite.smp_psb_yn">
+                        <span>{{commentWrite.opt_desc}}</span>
+                    </p>
+					<p class="spec e-coupon" ng-if="commentWrite.goods_tp_cd == '20' && !commentWrite.smp_psb_yn">
+						<span>{{commentWrite.e_use_loc_desc_cont}}</span>
+					</p>
+                </span>
+            </div>
+			<!-- <form id="commentWriteForm" name="commentWriteForm"> -->
+				<ul class="eval_wrap">
+					<li ng-class="{on:pageUI.stepOpen1}" class="star">
+			            <div class="cont">
+			                <div class="title_area">
+								<a ng-click="clickStepTitle(1)">
+									<h5>별점을 선택해 주세요.</h5><em>*</em>
+									<div class="star_wrap" ng-show="!pageUI.stepOpen1">
+										<span class="starScoreWrap"><span class="starScoreCnt" ng-style="{'width': ( input.gdas_stfd_val * 20 ) + '%'}"></span></span>
+									</div>
+								</a>
+			                </div>
+			                <div ng-show="pageUI.stepOpen1" class="content">
+								<div class="star_rating" lotte-star on-star-change="onStarChange(val)">
+									<ul class="btns">
+										<li ng-class="{on:input.gdas_stfd_val >= 1}">
+											<a ng-click="input.gdas_stfd_val=1;openStep(2)">1점</a>
+										</li>
+										<li ng-class="{on:input.gdas_stfd_val > 1}">
+											<a ng-click="input.gdas_stfd_val=2;openStep(2)">2점</a>
+										</li>
+										<li ng-class="{on:input.gdas_stfd_val > 2}">
+											<a ng-click="input.gdas_stfd_val=3;openStep(2)">3점</a>
+										</li>
+										<li ng-class="{on:input.gdas_stfd_val > 3}">
+											<a ng-click="input.gdas_stfd_val=4;openStep(2)">4점</a>
+										</li>
+										<li ng-class="{on:input.gdas_stfd_val > 4}">
+											<a ng-click="input.gdas_stfd_val=5;openStep(2)">5점</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+			            </div>
+		            </li>
+		            <li ng-class="{on:pageUI.stepOpen2}" class="option" ng-if="commentWrite.easyList && commentWrite.easyList.items && commentWrite.easyList.items.length">
+			            <div class="cont">
+			                <div class="title_area">
+								<a ng-click="clickStepTitle(2)">
+			                		<h5>항목별로 간단히 평가해 주세요.</h5><em>*</em>
+								</a>
+							</div>
+			                <div ng-show="pageUI.stepOpen2" class="content">
+								<ul class="option_wrap">
+									<li ng-repeat="item in commentWrite.easyList.items" ng-init="pIndex = $index">
+										<div ng-if="item.gdas_choc_shp_item_yn === 'Y'">
+											<span class="title">{{item.gdas_item_nm}}</span>
+											<input type="text" autocomplete="off" autocapitalize="off" autocorrect="off" id="inputText{{$index}}" ng-model="item.gdas_choc_item_value" ng-keypress="srhDetailSearchKeypress($event)"/>
+										</div>
+										<div ng-if="item.gdas_choc_shp_item_yn === 'N'">
+											<span class="title">{{item.gdas_item_nm}}</span>
+											<ul class="option_select">
+												<li ng-repeat="obj in item.easnGdasSubList.items">
+													<input type="radio" id="rd_{{pIndex}}_{{$index}}" value="{{obj.gdas_choc_item_no}}" name="rg_{{pIndex}}" ng-model="item.gdas_choc_item_value" ng-change="commentWrite.easyList.items.length - 1 === pIndex && !commentWrite.healthfood && openStep(3)">
+													<label for="rd_{{pIndex}}_{{$index}}">{{obj.gdas_choc_item_nm}}</label>
+												</li>
+											</ul>
+										</div>
+									</li>
+								</ul>
+							</div>
+			            </div>
+		            </li>
+		            <li ng-if="!commentWrite.healthfood" ng-class="{on:pageUI.stepOpen3}" class="file">
+			            <div class="cont">
+			                <div class="title_area">
+								<a ng-click="clickStepTitle(3)">
+									<h5>상품평을 작성해 주세요.</h5>
+								</a>
+							</div>
+							<div ng-show="pageUI.stepOpen3" class="content">
+								<div class="photo_area">
+									<ul>
+										<li>
+											<span class="image" ng-class='{
+													horizontal:rotation1==2,
+		                                            rotate180:rotation1==3,
+		                                            rotate90:rotation1==6,
+		                                            rotateM90:rotation1==8,
+		                                            vertical:rotation1==4,
+		                                            horizontalRotate90:rotation1==5,
+		                                            horizontalRotateM90:rotation1==7
+												}' ng-style="{'background' : 'url(' + fileImgList.list[0].imgUrl + ') center center no-repeat', 'background-size': 'cover'}"></span>
+											<input id="file1" name="" type="file" class="" 
+											onchange="angular.element(this).scope().detectFile(this, 1)" 
+											ng-click="callAppUpload($event, 1)" accept="image/*">
+											<a class="btn_del" ng-show="fileImgList.list[0].imgUrl != fileImgList.blankImg" ng-click="deleteImg(1)">이미지 삭제</a>
+										</li>
+										<li>
+											<span class="image" ng-class='{
+													horizontal:rotation2==2,
+		                                            rotate180:rotation2==3,
+		                                            rotate90:rotation2==6,
+		                                            rotateM90:rotation2==8,
+		                                            vertical:rotation2==4,
+		                                            horizontalRotate90:rotation2==5,
+		                                            horizontalRotateM90:rotation2==7
+												}' ng-style="{'background' : 'url(' + fileImgList.list[1].imgUrl + ') center center no-repeat', 'background-size': 'cover'}"></span>
+											<input id="file2" name="" type="file" class="" 
+											onchange="angular.element(this).scope().detectFile(this, 2)" 
+											ng-click="callAppUpload($event, 2)" accept="image/*">
+											<a class="btn_del" ng-show="fileImgList.list[1].imgUrl != fileImgList.blankImg" ng-click="deleteImg(2)">이미지 삭제</a>
+										</li>
+										<li>
+											<span class="image" ng-class='{
+													horizontal:rotation3==2,
+		                                            rotate180:rotation3==3,
+		                                            rotate90:rotation3==6,
+		                                            rotateM90:rotation3==8,
+		                                            vertical:rotation3==4,
+		                                            horizontalRotate90:rotation3==5,
+		                                            horizontalRotateM90:rotation3==7
+												}' ng-style="{'background' : 'url(' + fileImgList.list[2].imgUrl + ') center center no-repeat', 'background-size': 'cover'}"></span>
+											<input id="file3" name="" type="file" class="" 
+											onchange="angular.element(this).scope().detectFile(this, 3)" 
+											ng-click="callAppUpload($event, 3)"  accept="image/*">
+											<a class="btn_del" ng-show="fileImgList.list[2].imgUrl != fileImgList.blankImg" ng-click="deleteImg(3)">이미지 삭제</a>
+										</li>
+									</ul>
+								</div>
+								<div class="write_area">
+									<textarea id="reviewTxt" ng-model="input.reviewTxt" placeholder="자세히 작성할수록 상품평 랭킹 점수가 올라갑니다." 
+					                		onchange="maxLengthCheck('4000', null, this, reviewTxt)" onkeyup="maxLengthCheck('4000', null, this)">
+					                	{{input.reviewTxt}}
+					                </textarea>
+									<span class="limit"><span id="spn_input_char">0</span>/4000 byte</span>
+								</div>
+								<a class="btn_tip" ng-click="showTipLayer()">상품평 작성 팁</a>
+							</div>
+			            </div>
+		            </li>
+				</ul>
+	            <div class="confirm">
+	                <a href="#" class="btn b" ng-click="cancel()">취소하기</a>
+	                <a href="#" class="btn b on" ng-click="saveReady()">등록하기</a>
+	            </div>
+			<!-- </form> -->
+        </section>
+    </section>
+    <!-- //contents -->
+    
+    <!-- 상품평 작성 팁 레이어 -->
+	<div class="tip_layer" ng-if="arrTip && arrTip.length">
+		<div class="img_swipe_wrap">
+			<div class="prd_top_imgwrap" roll-swipe-banner endfnc="tipSwipeEnd" rolling="true" width320="1" width640="1" width900="1" interval="300000" info="arrReviewOne">
+				<ul class="swipeBox">
+					<li ng-repeat="item in arrTip">
+						<!-- 이미지 -->
+						<div class="thumb">
+							<img ng-src="{{item.imgUrl}}" alt="상품이미지" err-src="550"/>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<!-- 페이징 -->
+			<div class="indicator" ng-if="arrTip.length > 1">
+				<ul>
+					<li ng-repeat="item in arrTip" ng-class="{'on' : tipSwipeIndex == $index}">{{$index}}</li>
+				</ul>
+			</div>
+			<a class="btn_close" ng-click="dimmedClose()">닫기</a>
+		</div>
+	</div>
+    
+    <!--공통 로딩커버-->
+	<div class="loading_cover" ng-if="jsonLoading">
+		<div class="loading"></div>
+	</div>
+</section>

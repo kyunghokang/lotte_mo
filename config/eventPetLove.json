@@ -1,0 +1,33 @@
+{
+	"tasks" : {
+		"uglify" : {
+			"jsEventPetLove" : {
+				"src" : "lotte/resources_dev/event/petLove.js",
+				"dest" : "lotte/resources/<%= version %>/petLove.min.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssEventPetLove" : {
+				"src" : [
+					"lotte/resources_dev/event/petLove.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/petLove.min.css"
+			}
+		},
+
+		"processhtml" : {
+			"htmlEventPetLove" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"event/petLove.html" : "event/petLove_dev.html"
+				}
+			}
+		}
+	}
+}
+

@@ -1,0 +1,24 @@
+<section id="container" ng-show="contVisible" class="cont_minheight">
+	<section class="pageLoading" ng-show="pageLoading">
+		<p class="loading half"></p>
+	</section>
+	<section ng-show="!pageLoading">
+		<div class="menu_smallcate">
+			<ul class="cateList">
+				<li ng-repeat="item in screenData.smallCate"><a ng-click="subCateClick(item)">{{item.disp_nm}}</a></li>
+			</ul>	
+			<div ng-show="screenData.rankingBestBuy.length">
+				<!-- 추천상품 -->
+				<div class="peopleBuy" ng-controller="productCtrl">
+					<h5>추천상품</h5>
+					<!-- 리스트형 유닛 -->
+					<product-container template-type="list2" products="screenData.rankingBestBuy" more-product-continer="loadScreenData()"></product-container>
+				</div>
+				<div class="listLoading" ng-if="productListLoading&&templateType!='swipe'">
+					<p class="loading half"></p>
+				</div>
+			</div>
+		</div>
+		
+	</section>
+</section>

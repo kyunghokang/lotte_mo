@@ -1,0 +1,29 @@
+<section>
+    <h2 class="sub_title">
+        <a href="javascript:void(0)" ng-click="gotoPrepage();"><span>{{subTitle}}</span></a>
+    </h2>
+    <nav ng-if="screenData.cate_list && screenData.cate_list.length > 0">
+        <div class="topMenu_wrap nav_swipe_wrap" lotte-slider  swipe-end-func="$scope.menuSwipEndFunc">
+            <ul class="menu_depth1">
+                <li ng-repeat="depth1 in screenData.cate_list" ng-class="{on:screenData.cateDepth2 == depth1.disp_no && screenData.subShow}">
+                    <a href="javascript:void(0)" ng-click="subHeaderCtrl(depth1,depth1.cate_depth);"><span>{{depth1.disp_nm}}</span></a>
+                </li>
+            </ul>
+        </div>
+        <div class="subMenu_wrap" ng-if="screenData.subShow">
+            <ul class="menu_depth2" ng-repeat="depth1 in screenData.cate_list">
+                <li ng-repeat="depth2 in depth1.sub_cate_list" ng-if="screenData.cateDepth2 == depth1.disp_no" ng-class="{on:screenData.cateDepth3 == depth2.disp_no}">
+                    <a href="javascript:void(0)" ng-click="subHeaderCtrl(depth2,depth2.cate_depth);" >
+                        <span>{{depth2.disp_nm}}</span>
+                        <em class="arrow" ng-if="depth2.sub_cate_list != null || $index == 0" ng-class="{allshow:$index == 0}">화살표</em>
+                    </a>
+                    <ul class="menu_depth3" ng-class="{depth3:depth2.sub_cate_list != null}">
+                        <li ng-repeat="depth3 in depth2.sub_cate_list"  ng-if="screenData.cateDepth3 == depth2.disp_no"><a href="javascript:void(0)" ng-click="subHeaderCtrl(depth3,depth3.cate_depth);">{{depth3.disp_nm}}</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <a href="javascript:void(0);" ng-click="subHeaderCtrl(close,0);"><span>메뉴닫기</span></a>
+        </div>
+    </nav>
+    <div class="header_dimm" ng-if="screenData.subShow"></div>
+</section>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LotteCtrl">
+<head>
+	<meta charset="utf-8">
+	<title>롯데닷컴</title>
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+	<script src="/lotte/resources_dev/common/common_load_2018.js"></script>
+	<script src="/lotte/resources_dev/common/lotte_comm_2018.js"></script>
+	<link rel="stylesheet" type="text/css" href="/lotte/resources_dev/category/category.css">
+	<link rel="stylesheet" href="./prdList.css"/>
+	<script src="/lotte/resources_dev/common/lotte_ngswipe.js"></script>
+	<script src="./prdList.js"></script>
+</head>
+<body ng-controller="VoiceCommerceCtrl" class="bg_detail">
+	<section id="container" class="cont_minheight">
+		<div class="prod_detail">
+			<div class="q_list" id="roll" roll-swipe-banner rolling="true" interval="3000" width320="1"  width640="1" width900="1" info="test_form.goodsList.items" endfnc="setInfo" getcontrol="getControl1">
+				<ul class="swipeBox" >
+					<li><div class="img_area"><img src="../images/thumb_img3.png" alt="" /></div></li>
+				</ul>
+			</div>
+
+			<div class="prod_item">
+				<!-- 상품 정보 -->
+				<div class="info">
+					<div class="tit_area">
+						<span class="brand">[쥬크]</span>
+						<span class="tit">글로우 오리털 롱패딩(Z174psg803)</span>
+					</div>
+					<div class="score_wrap" >
+							<span class="starScoreWrap">
+								<em class="starScoreCnt"  style="width:{{item.avg_gdas_stfd_val * 20}}%" ></em>
+							</span>
+							<span class="review" >(18,938)</span>
+					</div>
+					<div class="prod">
+						<div class="price_wrap">
+							<span class="prod_price"><em>3,150,800원</em></span>
+							<span class="old_price_wrap">
+								<span class="orign_price"><span>3,555,500</span>원</span>
+							</span>
+							
+							<!-- 20180521 예약상품 날짜 추가 -->
+							<p class="deli_free">무료배송<span>12/27 배송시작</span></p>
+							<!-- //20180521 예약상품 날짜 추가 -->
+						</div>
+						<p class="deli_price">배송비 2,500원 <span class="free_condition">(10개 이상 무료배송)</span></p>
+					</div>
+				</div>
+				<!-- //상품 정보 -->
+
+				<!--  옵션 -->
+				<div class="option_wrap">
+					<div class="option_val">
+						<ul>
+								<li>
+										<strong>색상</strong>
+										<span>(47)네이비</span>
+								</li>
+								<li>
+										<strong>사이즈</strong>
+										<span>44</span>
+								</li>
+								<li>
+										<strong>여성반지사이즈</strong>
+										<span>01루쥬 따뚜아</span>
+								</li>
+						</ul>
+					</div>
+					<a href="#none" class="change_btn"><span>변경</span></a>
+				</div>
+				<!--  //옵션 -->
+
+				<div class="btn_area">
+					<a href="#none" class="wish_btn"><span>찜해줘</span></a>
+					<a href="#none" class="order_btn"><span><em>3개</em> 주문해줘</span></a>
+				</div>
+			</div>
+			<!-- 상품기술서 -->
+			<div class="prod_description">
+					<img src="../images/thumb_img2.png" alt="" />
+			</div>
+			<!-- //상품기술서 -->
+
+		</div>
+
+	</section>
+</body>
+</html>

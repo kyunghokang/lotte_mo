@@ -1,0 +1,44 @@
+<section ng-show="contVisible" class="cont_minheight">
+	<section id="container">
+	    <!-- contents -->
+	    <section class="swag_form write">
+	        <div class="form_wrap">
+		       
+		       	<div class="area photo">
+		       	    <div ng-if="!(appObj.isApp && !isNewestApp && appObj.isIOS)">
+		                <h3 ng-class="{on:appObj.isApp && isNewestApp}">사진 등록하기</h3>
+		                <span class="r_area">
+		                    <a href="#" class="btn_style4" ng-click="attachImage()">
+		                    	<img src="http://image.lotte.com/lotte/mo2015/angular/mylotte/ic_btn_photo_add.png"> 사진첨부
+		                    </a>
+		                </span>
+		            </div>
+		            <div class="appPhotoArea" ng-if="appObj.isApp && isNewestApp" ng-class="{android:appObj.isAndroid}"></div>
+				</div>
+				<form id="swagWriteForm" name="swagWriteForm">
+		            <div class="area cont">
+		                <h3>내용 작성하기</h3>
+		                <textarea id="reviewTxt" ng-model="input.swagTxt"
+	                		onchange="maxLengthCheck('2000', null, this, reviewTxt)" onkeyup="maxLengthCheck('2000', null, this)">
+	                		{{input.swagTxt}}
+	                	</textarea>
+		            </div>
+		            <div class="confirm">
+			        	<div class="btn_area two">
+					        <a href="#" class="btn"  ng-click="cancel()"><span>작성 취소</span></a>
+					        <a href="#" class="btn on" ng-click="save()"><span>뽐내기 등록</span></a>
+			            </div>
+		            </div>
+				</form>
+			</div>
+			<div class="noti_wrap">
+			    <ul class="noti">
+			        <li>뽐내기 작성 내용은 등록 즉시 바로 사이트에 게재되며,모두 공개를 원칙으로 합니다. </li>
+			        <li>뽐내기 갤러리에 적합하지 않은 내용이나 사진이 포함된 게시물은 통보 없이 삭제 될 수 있습니다.</li>
+			        <li>타인의 홈페이지나 블로그 등에 게재되어있는 사진과 내용을 무단 도용하여 게시물 작성 시, 해당 게시물은 별도 통보없이 삭제처리 됩니다.                     </li>
+			    </ul>
+			</div>
+	    </section>
+	    <!-- //contents -->
+	</section>
+</section>

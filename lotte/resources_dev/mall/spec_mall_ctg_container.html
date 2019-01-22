@@ -1,0 +1,63 @@
+<div class="sort_header_wrap">
+    <section sort-header kshop-ctg ng-show="contVisible" id="kshopSubHead" ng-if="ctgData.ctgs && ctgData.ctgs.length > 0">
+        <!-- <h2>
+            <a href="" ng-click="goKshopHome($event);">
+                <img src="http://image.lotte.com/lotte/mobile/mobile_new/brandshop/kshop/logo_kshop.png" alt="Kshop" />
+            </a>
+        </h2> -->
+        <!-- category menu -->
+        <div class="cateArea">
+            <div class="ksCA">
+                <ul class="ksMenuBox" id="ksAmenu" ng-class="{two:ctgData.ctgs.length == 2, three:ctgData.ctgs.length == 3, four:ctgData.ctgs.length == 4}" >
+                    <li ng-repeat="item in ctgData.ctgs" ng-class="{on:kShopUI.curCtgIdx == $index}" ng-click="ctgSliceData($index);"><span>{{item.name}}</span></li>
+                </ul>
+                <!-- 
+                <div class="sideBar" ng-class="{none:ctgData.ctgs.length < 5}" >
+                    <img src="http://image.lotte.com/lotte/mobile/mobile_new/brandshop/kshop/kshop_menuSide2.png" class="left">
+                    <img src="http://image.lotte.com/lotte/mobile/mobile_new/brandshop/kshop/kshop_menuSide.png" class="right">
+                </div> -->
+                <!-- class on 으로 활성화 -->
+                <div class="big_cate_all" ng-if="ctgData.ctgs.length > 4">
+                    <button class="open_btn" ng-class="{on:kShopUI.showAllCategory}" ng-click="showAllCategoryClick()">더보기</button>
+                    <div ng-show="kShopUI.showAllCategory" ng-class="{scroll:ctgData.ctgs.length > 14}">
+                        <ul>
+                            <li ng-repeat="item in ctgData.ctgs" ng-class="{on:kShopUI.curCtgIdx == $index}" ng-click="subCtgClick($index)"><span>{{item.name}}</span></li>
+                        </ul>
+                        <div class="mall_cateLayerbar">
+                            <a ng-click="hideCate()" class="close">닫기</a>
+                        </div>
+                    </div>	
+                </div>
+                <!-- class on 으로 활성화 -->
+            </div>	    
+            
+        </div>
+        
+        <!--sub category-->
+        <!-- <div class="ksCB" ng-repeat="item in ctgData.ctgs"   ng-class="{on:kShopUI.curCtgIdx == $index && kShopUI.sCtgLayerOpen}"> -->
+        <div class="ksCB" ng-repeat="item in ctgData.ctgs" ng-class="{on:kShopUI.curCtgIdx == $index && kShopUI.sCtgLayerOpen}">
+            <ul ng-class="{scroll:ctgData.ctgs.sliceItems.length > 6}">
+                <li ng-repeat="sctg in ctgData.ctgs.sliceItems">  
+                    <!-- 중카 -->
+                    <div class="bca" ng-class="{sub:sctg[0].ssctgs.length > 0, first:ctgData.ctgs.sliceItems.length == 1, open:sctg[0].open}" ng-if="sctg[0]">
+                        <a href="#" ng-click="sctgClick($event, sctg[0], $index*2)"><div><span ng-if="sctg[0].new_flag">N</span><var>{{sctg[0].name}}</var></div></a>
+                    </div>
+                    <div class="bca" ng-class="{sub:sctg[1].ssctgs.length > 0, first:ctgData.ctgs.sliceItems.length == 1, open:sctg[1].open}"  ng-if="sctg[1]">
+                        <a href="#" ng-click="sctgClick($event, sctg[1], $index*2+1)"><div><span ng-if="sctg[1].new_flag">N</span><var>{{sctg[1].name}}</var></div></a>
+                    </div>
+                    
+                    <!-- 소카 -->
+                    <div class="cca" ng-class="{open:sctg[0].open}" ng-if="sctg[0]">
+                        <a href="#" ng-repeat="ssctg in sctg[0].ssctgs" ng-click="ssctgClick($event, ssctg, $index)"><div><span ng-if="ssctg.new_flag">N</span><var>{{ssctg.name | htmlRemove}}</var></div></a>
+                    </div>
+                    <div class="cca" ng-class="{open:sctg[1].open}" ng-if="sctg[1]">
+                        <a href="#" ng-repeat="ssctg in sctg[1].ssctgs" ng-click="ssctgClick($event, ssctg, $index)"><div><span ng-if="ssctg.new_flag">N</span><var>{{ssctg.name | htmlRemove}}</var></div></a>
+                    </div>
+                </li>
+            </ul>  
+            <div class="mall_cateLayerbar">
+                <a ng-click="hideSubCate()" class="close">닫기</a>
+            </div>     
+        </div>
+    </section>
+</div>

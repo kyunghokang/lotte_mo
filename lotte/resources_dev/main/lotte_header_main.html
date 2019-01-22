@@ -1,0 +1,41 @@
+<section id="gnb">
+	<div class="fixed_area">
+		<div class="trans_wrap">
+			<!-- 메인 1Depth -->
+			<nav class="nav_depth1">
+				<ul>
+					<li ng-repeat="item in mainMenu" ng-class="{on : $index == pageOptions.depth1NodeIdx}">
+						<a ng-click="menuDepth1Click(item, $index)" ng-bind-html="item.tabName"></a>
+					</li>
+				</ul>
+			</nav>
+
+			<!-- 메인 2Depth -->
+			<div class="nav_depth2_wrap">
+				<nav class="nav_depth2">
+					<ul lotte-ng-list-swipe 
+						swipe-id="NavDepth2" 
+						swipe-list-model="mainMenu[pageOptions.depth1NodeIdx].list" 
+						swipe-slide-menu="true" 
+						swipe-max-ratio="0.2" 
+						swipe-min-distance="40" 
+						swipe-enable-min-distance="15" 
+						swipe-right-margin="40">
+						<li ng-repeat="item in mainMenu[pageOptions.depth1NodeIdx].list" class="dispno_{{item.disp_no}}" ng-class="{on: $index == pageOptions.depth2NodeIdx, sale: deptSaleFlag && item.disp_no == '5537339', hot: holidayHotFlag && item.disp_no == '5542242', new: newFlag && item.disp_no == '5550633'}">
+							<a ng-click="menuDepth2Click(item, $index)">{{item.disp_nm}}</a>
+						</li>
+					</ul>
+				</nav>
+				<button class="btn_menu_open" ng-click="depth2MenuToggle()" ng-class="{on: depth2MenuOpenFlag}">메뉴 펼쳐보기</button>
+				<div class="opened_menu" ng-show="depth2MenuOpenFlag">
+					<ul>
+						<li ng-repeat="item in mainMenu[pageOptions.depth1NodeIdx].list" ng-class="{on: $index == pageOptions.depth2NodeIdx}">
+							<a ng-click="openMenuDepth2Click(item, $index)">{{item.disp_nm}}</a>
+						</li>
+					</ul>
+					<button class="btn_menu_close" ng-click="depth2MenuToggle()">닫기</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

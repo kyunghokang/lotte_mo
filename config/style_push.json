@@ -1,0 +1,68 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplStylePush" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/search/style_push_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/style_push.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsStylePush" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/search/style_push.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/style_push.js"
+			}
+		},
+
+		"uglify" : {
+			"jsStylePush" : {
+				"src" : "lotte/resources/<%= version %>/style_push.js",
+				"dest" : "lotte/resources/<%= version %>/style_push.min.js"
+			},
+			"tplStylePush" : {
+				"src" : "lotte/resources/<%= version %>/style_push.template.js",
+				"dest" : "lotte/resources/<%= version %>/style_push.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssStylePush" : {
+				"src" : [
+					"lotte/resources_dev/search/style_push.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/style_push.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanStylePush" : [
+				"lotte/resources/<%= version %>/style_push.js",
+				"lotte/resources/<%= version %>/style_push.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlStylePush" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"search/style_push.html" : "search/style_push_dev.html"
+				}
+			}
+		}
+	}
+}

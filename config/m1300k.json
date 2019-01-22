@@ -1,0 +1,70 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplm1300k" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/mall/m1300k/m1300k_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/m1300k.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsm1300k" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/mall/m1300k/m1300k.js",
+                    "lotte/resources_dev/common/lotte_ngswipe.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/m1300k.js"
+            }
+        },
+
+        "uglify" : {
+            "jsm1300k" : {
+                "src" : "lotte/resources/<%= version %>/m1300k.js",
+                "dest" : "lotte/resources/<%= version %>/m1300k.min.js"
+            },
+            "tplm1300k" : {
+                "src" : "lotte/resources/<%= version %>/m1300k.template.js",
+                "dest" : "lotte/resources/<%= version %>/m1300k.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssm1300k" : {
+                "src" : [
+                    "lotte/resources_dev/tenbyten/tenbyten.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/m1300k.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanm1300k" : [
+                "lotte/resources/<%= version %>/m1300k.js",
+                "lotte/resources/<%= version %>/m1300k.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlm1300k" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "mall/m1300k/m1300k.html" : "mall/m1300k/m1300k_dev.html"
+                }
+            }
+        }
+    }
+}
+

@@ -1,0 +1,69 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplSpecialMallMain" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/mall/special_mall_main_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/special_mall_main.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsSpecialMallMain" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/mall/special_mall_main.js",
+					"lotte/resources_dev/common/lotte_ngswipe.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/special_mall_main.js"
+			}
+		},
+
+		"uglify" : {
+			"jsSpecialMallMain" : {
+				"src" : "lotte/resources/<%= version %>/special_mall_main.js",
+				"dest" : "lotte/resources/<%= version %>/special_mall_main.min.js"
+			},
+			"tplSpecialMallMain" : {
+				"src" : "lotte/resources/<%= version %>/special_mall_main.template.js",
+				"dest" : "lotte/resources/<%= version %>/special_mall_main.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssSpecialMallMain" : {
+				"src" : [
+					"lotte/resources_dev/mall/special_mall_main.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/special_mall_main.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanSpecialMallMain" : [
+				"lotte/resources/<%= version %>/special_mall_main.js",
+				"lotte/resources/<%= version %>/special_mall_main.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlSpecialMallMain" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"mall/special_mall_main.html" : "mall/special_mall_main_dev.html"
+				}
+			}
+		}
+	}
+}

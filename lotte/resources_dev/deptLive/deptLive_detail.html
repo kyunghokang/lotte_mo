@@ -1,0 +1,110 @@
+<section class="dLdetail">
+   <div class="deptLiveVOD" ng-show="vodFlag">
+            <div class="cvButton" ng-click="closeVodBox()">
+                <img ng-src="http://image.lotte.com/lotte/mobile/mobile_new/main/maintv_close.png" alt="닫기">
+            </div>
+            <div class="vodBox" youtubeID="{{detailData.vodCode}}" ng-show="detailData.vodCode != 'none'">                
+                <div id="player"></div>                
+                <div class="sktMsg">
+                    동영상은 외부 호스팅 사용으로 <br>SKT 데이터 프리가 적용되지 않으니 유의하시기 바랍니다.
+                    <a href="javascript:$('.sktMsg').hide()"><img ng-src="http://image.lotte.com/lotte/mobile/mobile_new/main/maintv_close.png" alt="닫기"></a>
+                </div>                
+                <script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
+                <!-- youttube 전용 스크립트 -->                 
+                <script>  
+                $(".vodBox").css("height", $(".vodBox").width() * 0.75);
+                $("#player").css("height", $(".vodBox").width() * 0.75);
+                var player;
+                function onYouTubeReady(){
+                    onYouTubeIframeAPIReady();
+                }
+                
+                function onYouTubeIframeAPIReady() { //onYouTubeIframeAPIReady
+                    if(document.location.href.indexOf("schema=sklotte001") > 10){                    
+                        $(".sktMsg").show();
+                    }else{
+                        $(".sktMsg").hide();
+                    }
+                    $("#player").html("<div id='youtube'></div>");
+                    player = new YT.Player('youtube', {
+                        videoId: $(".vodBox").attr("youtubeID"),
+                        playerVars: { 'rel': 0, "autohide":1},
+                    });
+                }                 
+                </script>                
+            </div>       
+   </div>
+    <!--기본이미지-->
+    <div class="baseImage">        
+        
+        <div class="mainBanner">
+           <div class="brlistBox">
+               <ul class="brlist" rn-carousel rn-carousel-index="prdDealIdx">
+                   <li ng-repeat="item in detailData.imgList">
+                        <div style="background:url({{item}}) no-repeat;background-size:100% auto;background-position:center" class="nsh_detailPhoto"></div>
+                   </li>
+               </ul>                      
+            </div>
+            <div class="indicator">
+                <div class="circle" ng-repeat="item in detailData.imgList" ng-class="{on:prdDealIdx == $index}"></div>
+            </div>   
+        </div>
+        <div class="vod" ng-if="detailData.vodCode != 'none'" ng-click="vodView()"></div>
+    </div>        
+    <!--상세정보-->
+    <div class="baseInfo">
+        <div class="sptxt">{{detailData.goodsPoint}}</div>
+        <div class="tcell price">
+            <span>매장판매가</span>
+            <b>{{ detailData.price | number:0 }}</b> 원
+        </div>
+        <div class="tcell model">
+            <span>모델번호</span>
+            {{detailData.modelNm}}
+        </div>
+        <div class="dlbtn">
+            <div class="ask" ng-class="{alone:detailData.detailid == 'none'}" ng-click="dLask()"><span class="icon"></span>전화문의하기</div>
+            <div class="buy" ng-if="detailData.detailid != 'none'" ng-click="dLbuy()"><span class="icon"></span>사러가기</div>
+        </div>        
+        
+        <div class="etc">
+            <p>백화점의 영업시간 내에만 매장 문의가 가능합니다.<br>
+            (영업시간: 10:30 ~ 20:00)</p>
+            <p>매장판매가는 온라인 매장가격과 상이할 수 있습니다.</p>
+        </div>
+    </div>
+    
+    <!--샵마스터 코멘트-->
+    <div class="dldbox" ng-if="detailData.comment">
+        <h1>샵매니저 코멘트</h1>
+        <div class="dldbox_detail" ng-bind-html="commentStr"></div>
+    </div>    
+
+
+    <!-- 배너 -->
+    <div class="dldbox banner" ng-if="subData.banner.items[0].img_url">
+        <a ng-click="bannerTclick(subData.banner.items[0].img_link, 7)">
+            <img ng-src="{{subData.banner.items[0].img_url}}" alt="{{subData.banner.items[0].banner_nm}}">            
+        </a>
+    </div>  
+    
+   <!--상품 리스트-->
+    <div class="dldbox listGroup">
+       <h1 class="mb15">이 브랜드의 더 많은 상품 보기</h1>       
+        <ul class="dynamic-grid" angular-grid="subList" grid-width="130" gutter-size="7" angular-grid-id="gallery" refresh-on-img-load="true" >
+            <li ng-repeat="item in subList" ng-if="detailNo != item.goodsNo" class="grid plist">
+                <a ng-click="otherDetail({{brandNo}}, {{item.goodsNo}})" >
+                    <img ng-src="{{item.imgUrl}}" class="grid-img">
+                    <div class="ginfo">                        
+                        <div class="box">
+                            <div class="price"><span class="iconSet moneyIcon"></span>{{item.price| number:0 }}</div>
+                            <div class="view" ng-if="item.viewRate > 0"><span class="iconSet viewIcon"></span>{{viewRateFnc(item.viewRate)}}</div>
+                        </div>
+                        <div class="iconSet" ng-class="{vodIcon:item.vod}"></div>
+                    </div>
+                </a>
+            </li>        
+        </ul>   
+    </div>
+</section>
+

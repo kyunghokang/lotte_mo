@@ -1,0 +1,69 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplProdList" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/category/m/prod_list_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/prod_list.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsProdList" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/category/m/prod_list.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/prod_list.js"
+            }
+        },
+
+        "uglify" : {
+            "jsProdList" : {
+                "src" : "lotte/resources/<%= version %>/prod_list.js",
+                "dest" : "lotte/resources/<%= version %>/prod_list.min.js"
+            },
+            "tplProdList" : {
+                "src" : "lotte/resources/<%= version %>/prod_list.template.js",
+                "dest" : "lotte/resources/<%= version %>/prod_list.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssProdList" : {
+                "src" : [
+                    "lotte/resources_dev/mall/gucci/gucci_main.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/prod_list.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanProdList" : [
+                "lotte/resources/<%= version %>/prod_list.js",
+                "lotte/resources/<%= version %>/prod_list.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlProdList" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "category/m/prod_list.html" : "category/m/prod_list_dev.html"
+                }
+            }
+        }
+    }
+}
+

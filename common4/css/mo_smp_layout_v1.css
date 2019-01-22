@@ -1,0 +1,164 @@
+@charset "utf-8"; 
+/** ##$$##_css_NEW_000 /css/mo_smp_layout.css mhpark17 */
+
+#wrap.smp_main{background:#fff;}
+
+/* 헤더 영역 S */
+header.new1025 { position:static; z-index:20; }
+header.new1025 section.top { position:relative; height:80px; padding:0; background:#2a2a2a; border-bottom:none; }
+#head_smp { position:relative; height:80px; background:#fff; border-radius:15px 15px 0 0; text-align:center; }
+#head_smp .logo_smp     { display:inline-block; padding-top:15px; text-align:center;}
+#head_smp #btnImgMenu   { position:absolute; top:18px; left:19px; z-index:20; }
+#head_smp #btnImgSch    { position:absolute; top:18px; right:19px; }
+    #head_smp .logo_smp img { width:auto; height:50px; }
+    #head_smp #btnImgMenu img { width:auto; height:45px; }
+    #head_smp #btnImgSch img { width:auto; height:45px; }
+
+/* media ViewPort */
+@media all and (max-width:684px){
+	/* 헤더 영역 S */
+    header.new1025 section.top { height:56px; }
+    #head_smp { height:56px; border-radius:11px 11px 0 0;}
+    #head_smp .logo_smp     { padding-top:10px; }
+    #head_smp #btnImgMenu   { top:13px; left:15px;}
+    #head_smp #btnImgSch    { top:10px; right:15px; }
+    #head_smp .logo_smp img { width:auto; height:36px; }
+    #head_smp #btnImgMenu img { width:auto; height:34px; }
+    #head_smp #btnImgSch img { width:auto; height:36px; }
+}
+
+
+/* main header TAB */
+#menu { position:relative; z-index:10; height:75px; background:#2b2b2b;}
+#menu ul { width:100%;  text-align:center; }
+#menu ul li { float:left; width:15%; height:75px;  }
+#menu ul li a { display:block; width:100%; height:69px; padding-top:6px; }
+#menu ul li:nth-child(1){width:0%;}
+#menu ul li:nth-child(2){width:8%; background-image:none !important; }
+#menu ul li:nth-child(3){width:15%; background:url('http://image.lotte.com/lotte/mobile/smartpick/common/menu_201403_bg.png') repeat-y left top;}
+#menu ul li:nth-child(4){width:16%; background:url('http://image.lotte.com/lotte/mobile/smartpick/common/menu_201403_bg.png') repeat-y left top;}
+#menu ul li:nth-child(5){width:16%; background:url('http://image.lotte.com/lotte/mobile/smartpick/common/menu_201403_bg.png') repeat-y left top;}
+#menu ul li:nth-child(6){width:15%; background:url('http://image.lotte.com/lotte/mobile/smartpick/common/menu_201403_bg.png') repeat-y left top;}
+#menu ul li:nth-child(7){width:15%; background:url('http://image.lotte.com/lotte/mobile/smartpick/common/menu_201403_bg.png') repeat-y left top;}
+#menu ul li:nth-child(8){width:15%; background:url('http://image.lotte.com/lotte/mobile/smartpick/common/menu_201403_bg.png') repeat-y left top;}
+#menu ul li:nth-child(9){width:0%;}
+#menu ul li.on { background:#1fa197 url('http://image.lotte.com/lotte/mobile/smartpick/common/menu_201403_bg.png') repeat-y left top; }
+    #menu ul li a img { height:58px; }
+/* media ViewPort */
+@media all and (max-width:684px){
+    /* main header TAB */
+    #menu { height:50px;  overflow-x:auto; overflow-y:hidden;  }
+    #menu ul { height:50px; }
+    #menu ul:after {content:"";display:block;clear:both}
+    #menu ul li { height:50px; }
+    #menu ul li a { height:47px; padding-top:3px; }
+	#menu ul li:nth-child(2){width:15%; background-image:none !important; }
+	#menu ul li:nth-child(3){width:25%; background:url('http://image.lotte.com/lotte/mobile/smartpick/common/menu_201403_bg2.png') repeat-y left top;}
+	#menu ul li:nth-child(4){width:25%; background:url('http://image.lotte.com/lotte/mobile/smartpick/common/menu_201403_bg2.png') repeat-y left top;}
+	#menu ul li:nth-child(5){width:25%; background:url('http://image.lotte.com/lotte/mobile/smartpick/common/menu_201403_bg2.png') repeat-y left top;}
+	#menu ul li:nth-child(6){width:25%; background:url('http://image.lotte.com/lotte/mobile/smartpick/common/menu_201403_bg2.png') repeat-y left top;}
+	#menu ul li:nth-child(7){width:25%; background:url('http://image.lotte.com/lotte/mobile/smartpick/common/menu_201403_bg2.png') repeat-y left top;}
+	#menu ul li:nth-child(8){width:25%; background:url('http://image.lotte.com/lotte/mobile/smartpick/common/menu_201403_bg2.png') repeat-y left top;}
+	#menu ul li.on { background:#1fa197 url('http://image.lotte.com/lotte/mobile/smartpick/common/menu_201403_bg2.png') repeat-y left top; }
+    #menu ul li a img { height:40px; }
+}
+
+/* 검색 */
+.searchWrap { display:none; position:absolute; top:13px; right:-100px; width:80%; z-index:15; }
+.searchWrap .searchArea { width:100%; position:relative;}
+.searchWrap .searchArea div.inSearch { margin-right:95px; height:52px; background:#fff url("http://image.lotte.com/lotte/mobile/smartpick/common/bg_search_img.png") no-repeat right 8px; background-size:37px 31px; border:1px solid #a4a6b6; border-right:none; border-top-left-radius:5px; border-bottom-left-radius:5px; box-sizing:border-box; -moz-box-sizing:border-box;/* Firefox */}
+.searchWrap .searchArea div.inSearch input{ width:90%; height:40px; margin:5px 30px 0 0; padding:0 5px 5px 5px; border:none; background-color:transparent; font-family:Dotum; box-sizing:border-box; -moz-box-sizing:border-box;/* Firefox */}
+.searchWrap .searchArea a.btnSearch { position:absolute; top:0px; right:0px; }
+.searchWrap .searchArea a.btnSearch img { width:auto; height:52px; }
+
+.searchWrap .searchArea div.searchList { display:none; position:absolute; top:43px; left:0px; width:100%; }
+.searchWrap .searchArea div.searchList ul { }
+.searchWrap .searchArea .searchList li { border:1px solid #a4a6b6; border-bottom:0px; background:#f0f0f2; margin-right:95px; }
+.searchWrap .searchArea .searchList a { display:block; height:40px; padding:0 10px; line-height:40px; }
+.searchWrap .searchArea .searchList a p { float:left; width:75%; overflow:hidden; color:#888; font-size:16px; font-weight:bold; }
+.searchWrap .searchArea .searchList a p span.blue { color:#09837d; font-size:16px; font-weight:bold; }
+.searchWrap .searchArea .searchList a span.count { float:right; width:25%; text-align:right; font-size:16px; font-weight:bold; }
+.searchWrap .searchArea .searchList li.close { background:#a9aaba; }
+.searchWrap .searchArea .searchList li.close a { text-align:center; line-height:40px; }
+.searchWrap .searchArea .searchList li.close img { width:auto; height:20px; vertical-align:middle; }
+
+@media all and (max-width:684px){
+    /* 검색 */
+    .searchWrap { top:10px; right:-100px; }
+    .searchWrap .searchArea div.inSearch { margin-right:70px; height:38px; background:#fff url("http://image.lotte.com/lotte/mobile/smartpick/common/bg_search_img.png") no-repeat right 7px; background-size:26px 22px;  border-top-left-radius:3px; border-bottom-left-radius:3px; }
+    .searchWrap .searchArea div.inSearch input{ width:95%; height:30px; margin:3px 0 0 0; padding:0 5px 3px 5px; }
+    .searchWrap .searchArea a.btnSearch img { width:auto; height:38px; }
+    .searchWrap .searchArea .searchList li { margin-right:70px; }
+	.searchWrap .searchArea .searchList a { display:block; height:35px; padding:0 10px; line-height:35px; }
+	.searchWrap .searchArea .searchList a p { font-size:12px; font-weight:bold; }
+	.searchWrap .searchArea .searchList a p span.blue { font-size:12px; }
+	.searchWrap .searchArea .searchList a span.count { font-size:12px; }
+	.searchWrap .searchArea .searchList li.close a { line-height:35px; }
+	.searchWrap .searchArea .searchList li.close img { height:15px;  }
+}
+
+/* 헤더 영역 E */
+
+/* Contents Area S */
+#container.smp_container{overflow:hidden;padding-bottom:0;z-index:10;}
+#container.smp_search{overflow:hidden;padding-bottom:300px;background:#fff;z-index:10;}
+#container.subTem{padding-bottom:50px;}/* 서브 */
+#container.bg_color01{background:#f5f5f5;}
+#container.bg_color02{background:#dfe4eb;}
+.mainContainer{position:relative;overflow:hidden;}
+.mainContainer .mainCon{float:left;}
+
+@media all and (min-width:640px){
+	/* Contents Area S */
+    #container.smp_container { padding-bottom:80px; }
+}
+/* Contents Area E */
+
+/* Footer S */
+.footer_smp{position:static;height:auto;padding-bottom:30px;border:none;text-align:left;font-size:11px;z-index:20;}
+.footer_smp.subTem{position:static;}/* 서브 */
+
+.footer_nav_smp{height:40px;background:#3f3f3f;}
+.footer_nav_smp ul{overflow:hidden;}
+.footer_nav_smp ul li{float:left;width:20%;background:url("http://image.lotte.com/lotte/mobile/smartpick/common/bg_footer_line.png") no-repeat 0 15px;background-size:1px 10px;text-align:center;}
+.footer_nav_smp ul li a{display:inline-block;height:40px;line-height:40px;color:#fff;font-size:12px;}
+
+.footer_nav_smp ul li a.pink{color:#ff6864;}
+.footer_nav_smp ul li:first-child{background:none;}
+.footer_nav_smp ul li img{height:10.5px;}
+/*@media all and (min-width:640px){
+	.footer_nav_smp{height:50px;margin-bottom:20px;padding-top:30px;}
+	.footer_nav_smp ul li{float:left;width:20%;background:url("http://image.lotte.com/lotte/mobile/smartpick/common/bg_footer_line.png") no-repeat 0 0;background-size:2px 20px;text-align:center;}
+	.footer_nav_smp ul li img{height:auto;}
+}*/
+
+.comGo{margin-bottom:14px;text-align:center;}
+.comGo img{width:100%;}
+
+.footer_adr{margin:0 10px;}
+.footer_adr .adr_01{margin-bottom:5px;line-height:16px;color:#9d9d9d;font-size:11px;}
+.footer_adr .adr_02{margin-bottom:4px;line-height:17px;color:#9d9d9d;font-size:11px;}
+.footer_adr .copyright_smp{margin-bottom:18px;font-family:verdana;color:#9d9d9d;font-size:11px;}
+
+.footer_adr .blue{color:#222;}
+
+/*@media all and (min-width:640px){
+	.footer_adr{margin:0 10px;font-size:}
+	.footer_adr .comGo{height:48px;margin-bottom:24px;padding-top:36px;}
+	.footer_adr .comGo img{height:auto;}
+	.footer_adr .adr_01{margin-bottom:10px;line-height:32px;}
+	.footer_adr .adr_02{margin-bottom:8px;line-height:34px;}
+	.footer_adr .copyright_smp{margin-bottom:36px;}
+}*/
+
+.comAbout{}
+.comAbout ul{display:table;width:100%;border-top:1px solid #cbcbcb;border-bottom:1px solid #cbcbcb;}
+.comAbout ul li{display:table-cell;width:20%;padding:7px 0 3px 0;vertical-align:middle;border-right:1px solid #cbcbcb;text-align:center;box-sizing:border-box;-moz-box-sizing:border-box;/* Firefox */letter-spacing:-1px}
+.comAbout ul li a{font-size:11px;color:#5a5a5a;}
+.comAbout ul li a img { height:10px; }
+.comAbout ul li:nth-child(1){width:18%;border-left:1px solid #cbcbcb;}
+.comAbout ul li:nth-child(2){width:18%;}
+.comAbout ul li:nth-child(3){width:28%;}
+.comAbout ul li:nth-child(4){width:18%;}
+.comAbout ul li:nth-child(5){width:18%;}
+/* Footer E */

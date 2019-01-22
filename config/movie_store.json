@@ -1,0 +1,73 @@
+{
+	"tasks" : {
+		"ngtemplates" : {
+			"tplmovieStore" : {
+				"options": {
+					"prefix":"/",
+					"module": "app"
+				},
+				"src" : [
+					"lotte/resources_dev/sns/share_box.html",
+					"lotte/resources_dev/sns/share_pop.html",
+					"lotte/resources_dev/movie_store/movie_store_container.html"
+				],
+				"dest" : "lotte/resources/<%= version %>/movie_store.template.js"
+			}
+		},
+
+		"concat" : {
+			"jsmovieStore" : {
+				"options" : {
+					"separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+				},
+				"src" : [
+					"lotte/resources_dev/sns/lotte_sns.js",
+					"lotte/resources_dev/common/lotte_slider.js",
+					"lotte/resources_dev/movie_store/movie_store.js"
+				],
+				"dest" : "lotte/resources/<%= version %>/movie_store.js"
+			}
+		},
+
+		"uglify" : {
+			"jsmovieStore" : {
+				"src" : "lotte/resources/<%= version %>/movie_store.js",
+				"dest" : "lotte/resources/<%= version %>/movie_store.min.js"
+			},
+			"tplmovieStore" : {
+				"src" : "lotte/resources/<%= version %>/movie_store.template.js",
+				"dest" : "lotte/resources/<%= version %>/movie_store.tpl.js"
+			}
+		},
+
+		"cssmin" : {
+			"cssmovieStore" : {
+				"src" : [
+					"lotte/resources_dev/sns/sns.css",
+					"lotte/resources_dev/movie_store/movie_store.css"
+				],
+				"dest" : "lotte/resources/<%= version %>/movie_store.min.css"
+			}
+		},
+
+		"clean" : {
+			"cleanmovieStore" : [
+				"lotte/resources/<%= version %>/movie_store.js",
+				"lotte/resources/<%= version %>/movie_store.template.js"
+			]
+		},
+
+		"processhtml" : {
+			"htmlmovieStore" : {
+				"options": {
+					"data" : {
+						"version" : "<%= version %>"
+					}
+				},
+				"files" : {
+					"movie_store/movie_store.html" : "movie_store/movie_store_dev.html"
+				}
+			}
+		}
+	}
+}

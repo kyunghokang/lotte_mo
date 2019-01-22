@@ -1,0 +1,69 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplCompany" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/agreement/company_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/company.template.js"
+            }
+        },
+
+        "concat" : {
+            "jsCompany" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/agreement/company.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/company.js"
+            }
+        },
+
+        "uglify" : {
+            "jsCompany" : {
+                "src" : "lotte/resources/<%= version %>/company.js",
+                "dest" : "lotte/resources/<%= version %>/company.min.js"
+            },
+            "tplCompany" : {
+                "src" : "lotte/resources/<%= version %>/company.template.js",
+                "dest" : "lotte/resources/<%= version %>/company.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "cssCompany" : {
+                "src" : [
+                    "lotte/resources_dev/agreement/company.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/company.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleanCompany" : [
+                "lotte/resources/<%= version %>/company.js",
+                "lotte/resources/<%= version %>/company.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlCompany" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "agreement/company.html" : "agreement/company_dev.html"
+                }
+            }
+        }
+    }
+}
+

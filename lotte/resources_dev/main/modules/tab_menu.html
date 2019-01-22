@@ -1,0 +1,25 @@
+<div class="unit unit_tabmenu best v201809">
+    <!-- <ul ng-if="tabData.length <= 2">
+        <li class="menu1 on" ng-show="tabIndex==0" ng-click="logGASubTabEach('subTab', tabData[0].dispNm);tabClick(0)" style="background:{{bgcolor}};border:1px solid {{bgcolor}} !important"><img ng-src="{{tabData[0].onImgUrl}}" ng-show="tabData[0].onImgUrl != undefined"><span style="color:#fff !important">{{tabData[0].dispNm}}</span></li>
+        <li class="menu1" ng-show="tabIndex!=0" ng-click="logGASubTabEach('subTab', tabData[0].dispNm);tabClick(0)" style="border:1px solid #e9e9e9;border-right:none"><img ng-src="{{tabData[0].offImgUrl}}"  ng-show="tabData[0].offImgUrl != undefined"><span style="color:#888">{{tabData[0].dispNm}}</span></li>
+
+        <li class="menu2 on" ng-show="tabIndex==1" ng-click="logGASubTabEach('subTab', tabData[1].dispNm);tabClick(1)" style="background:{{bgcolor}};color:{{bgcolor}};border:1px solid {{bgcolor}} !important"><img ng-src="{{tabData[1].onImgUrl}}"  ng-show="tabData[1].onImgUrl != undefined"><span style="color:#fff !important">{{tabData[1].dispNm}}</span></li>
+        <li class="menu2" ng-show="tabIndex!=1" ng-click="logGASubTabEach('subTab', tabData[1].dispNm);tabClick(1)"  style="border:1px solid #e9e9e9;border-left:none"><img ng-src="{{tabData[1].offImgUrl}}"  ng-show="tabData[1].offImgUrl != undefined"><span style="color:#888">{{tabData[1].dispNm}}</span></li>
+    </ul> -->
+    
+    <ul ng-class="{expansion:tabData.length > 2}">
+        <li ng-if="tabData.length == 2" ng-class={on:tabIndex==$index} ng-repeat="item in tabData" ng-click="logGASubTabEach('subTab', item.dispNm);tabClick($index);" ng-style="tabIndex==$index ? {background:bgcolor, border:bgcolor} : {}">
+            <img ng-if="tabIndex==$index && item.onImgUrl && rScope.mainData.dispNo!=5572537 && rScope.mainData.dispNo!=5572539" ng-src="{{item.onImgUrl}}">
+            <img ng-if="tabIndex!=$index && item.onImgUrl && rScope.mainData.dispNo!=5572537 && rScope.mainData.dispNo!=5572539" ng-src="{{item.offImgUrl}}">
+            <span>{{item.dispNm}}</span>
+        </li>
+
+        <li ng-if="tabData.length > 2" ng-class={on:tabIndex==$index} ng-repeat="item in tabData" ng-click="logGASubTabEach('subTab', item.dispNm);tabClick($index);" ng-style="rScope.mainData.colorInfo.subtabColor ? {borderColor:rScope.mainData.colorInfo.subtabColor} : ''">
+            <div class="img_wrap">
+                <img ng-if="tabIndex==$index && item.onImgUrl" ng-src="{{item.onImgUrl}}">
+                <img ng-if="tabIndex!=$index && item.onImgUrl" ng-src="{{item.offImgUrl}}">
+            </div>
+            <span ng-style="rScope.mainData.colorInfo.subtabfontColor ? {color:rScope.mainData.colorInfo.subtabfontColor} : ''">{{item.dispNm}}</span>
+        </li>
+    </ul>
+</div>

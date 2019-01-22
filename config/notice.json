@@ -1,0 +1,69 @@
+{
+    "tasks" : {
+        "ngtemplates" : {
+            "tplcscenterNotice" : {
+                "options": {
+	            	"prefix":"/",
+					"module" : "app"
+            	},
+                "src" : [
+                    "lotte/resources_dev/custcenter/notice_container.html"
+                ],
+                "dest" : "lotte/resources/<%= version %>/notice.template.js"
+            }
+        },
+
+        "concat" : {
+            "jscscenterNotice" : {
+                "options" : {
+                    "separator" : "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                },
+                "src" : [
+                    "lotte/resources_dev/custcenter/notice.js"
+                ],
+                "dest" : "lotte/resources/<%= version %>/notice.js"
+            }
+        },
+
+        "uglify" : {
+            "jscscenterNotice" : {
+                "src" : "lotte/resources/<%= version %>/notice.js",
+                "dest" : "lotte/resources/<%= version %>/notice.min.js"
+            },
+            "tplcscenterNotice" : {
+                "src" : "lotte/resources/<%= version %>/notice.template.js",
+                "dest" : "lotte/resources/<%= version %>/notice.tpl.js"
+            }
+        },
+
+        "cssmin" : {
+            "csscscenterNotice" : {
+                "src" : [
+                    "lotte/resources_dev/custcenter/cscenter_main.css"
+                ],
+                "dest" : "lotte/resources/<%= version %>/notice.min.css"
+            }
+        },
+
+        "clean" : {
+            "cleancscenterNotice" : [
+                "lotte/resources/<%= version %>/notice.js",
+                "lotte/resources/<%= version %>/notice.template.js"
+            ]
+        },
+
+        "processhtml" : {
+            "htmlcscenterNotice" : {
+                "options": {
+                    "data" : {
+                        "version" : "<%= version %>"
+                    }
+                },
+                "files" : {
+                    "custcenter/notice.html" : "custcenter/notice_dev.html"
+                }
+            }
+        }
+    }
+}
+
