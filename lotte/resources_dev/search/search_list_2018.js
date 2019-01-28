@@ -969,9 +969,9 @@
 			var convertFields = {
 				goods_no : 'goodsNo',
 				goods_nm : 'goodsNm',
+				saleRate : 'saleRate',
 				brnd_nm : 'brandNm',
 				img_url : 'imgUrl',
-				salePer : 'salePer',
 				original_price : 'price1',
 				discounted_price : 'price2',
 				sale_rate : 'saleRate',
@@ -985,6 +985,7 @@
 				is_tvhome : 'isTvhome',
 				is_youngplz : 'isYoung',
 				is_super : 'isSuper',
+				sale_cnt : 'saleCnt',
 				is_sale_promotion: 'goodsCmpsCd',
 				outlnk : 'outlnk',
 				outlnkMall : 'outlnkMall',
@@ -1039,7 +1040,7 @@
 				nhCardPrice:""
 			};
 			var retData = [];
-
+			
 			angular.forEach(data, function(item, index) {
 				var newData = angular.copy(defaultConvertStruct);
 				angular.forEach(convertFields, function(val, key) {
@@ -1068,7 +1069,7 @@
 						newData[key] = LotteUtil.replaceAll(newData[key],'<!HE>','</STRONG>');
 					} else {
 						newData[key] = item[val];
-					}				
+					}
 				});
 				if(item.isDlvToday != undefined){
 					newData.isDlvToday = item.isDlvToday;
@@ -1100,6 +1101,7 @@
 				retData.push(newData);
 			});
 			return retData;
+
 		}
 
 		
@@ -2738,7 +2740,6 @@
 						$('.count_wrap').fadeOut();
 					},1000);
 					
-					$scope.totalItem = $('.listWrap ol > li').length;
 					var prevIndex = -1;
 					var prevTop = -1;
 					for(var i = 0; i<$scope.totalItem; i++){
@@ -2765,7 +2766,6 @@
 			replace : true,
 			link:function($scope, el, attrs) {
 				var $win = angular.element($window);
-
 				$scope.startSearchList();// 검색 콘트롤 시작하기
 
 				/**
@@ -3074,6 +3074,8 @@
 						$scope.sendTclick( "m_RDC_SrhResult_Clk_Filter" );
 					}
 				};
+
+
 				
 				var sswSlideMainScroll_ST;
 				function sswSlideMainScroll2(opened){
@@ -5060,10 +5062,21 @@
 			}
 		}
 	}]);
-	
+
+	commProduct.directive("demoDirective",['$rootScope','$window', '$parse', '$http' , '$log', 'LotteCommon', 'LotteUtil', function ($rootScope , $window, $parse,$http,$log,LotteCommon, LotteUtil) {
+		return {
+			replace : true,
+			link : function($scope, el, attrs) {
+				// console.log($scope)
+				// console.log(angular.element(el).find("li"));
+			}
+		}
+	}]);
+
 	app.filter('superCutTxt', function(){
 		return function (txt) {
 			return txt.substring(0, 12);
 		}
 	});
+
 })(window, window.angular);

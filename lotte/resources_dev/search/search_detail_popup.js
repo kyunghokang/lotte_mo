@@ -29,7 +29,7 @@
 					["LotteCommon", "LotteUtil", "LotteScroll", "LotteStorage" ,"$window", "$timeout", "$http", "$location", "$filter", "commInitData",
 			function( LotteCommon,   LotteUtil,   LotteScroll,   LotteStorage,   $window,   $timeout,   $http,   $location,   $filter,   commInitData){
         return {
-            templateUrl : "/lotte/resources_dev/search/search_detail_popup.html",
+            templateUrl : "/lotte/resources_dev/search/search_detail_2019_popup.html",
             replace : true,
             link : function($scope, el, attrs) {
             	
@@ -47,13 +47,13 @@
 				 * @param item {Object} 상품 데이터
 				 * @param idx {Number} 인덱스 번호
 				 */
-            	$scope.getProductDetailInfo = function(item, idx){
-
+            	$scope.getProductDetailInfo = function(item, idx, zIndex){
         			$scope.sendTclick("m_RDC_SrhResult_Clk_ProductPop");
         			$scope.srhPrdDetailInfo.data = {};
         			try{
         				item.vodUrl = item.mpic_info.mpic_url;
-        			}catch(e){}
+    			    }catch(e){}
+
         			if($scope.isValidString(item.vodUrl)){
         				// video
         				angular.copy(item, $scope.srhPrdDetailInfo.item);
@@ -65,7 +65,8 @@
     					$scope.dimmedOpen({
     						target: "prdDetailInfo",
     						callback: $scope.productDetailInfoClose,
-    						scrollEventFlag: true
+    						scrollEventFlag: true,
+                            zIndex : zIndex
     					});
     					
     					// 높이 설정
@@ -99,7 +100,8 @@
 	        					$scope.dimmedOpen({
 	        						target: "prdDetailInfo",
 	        						callback: $scope.productDetailInfoClose,
-	        						scrollEventFlag: true
+	        						scrollEventFlag: true,
+                                    zIndex : zIndex
 	        					});
 	
 	        					$scope.srhPrdDetailInfo.imageSwipeIdx = 1;
@@ -168,6 +170,24 @@
         			$scope.dimmedClose();
         			return false;
         		};
+
+                // #hhk
+                /*$scope.tabSetTab = function(tabNum) {
+
+                };*/
+
+                // $scope.tabActive = 1;
+                $scope.tabActive = 'resultPrice';
+
+                $scope.setTabActive = function(newTab){
+                  $scope.tabActive = newTab;
+
+                };
+
+                $scope.isSetActive = function(tabNum){
+                  return $scope.tabActive === tabNum;
+                };
+
         		/**
         	     * @ngdoc function
         	     * @name productContainer.function:addWishClick

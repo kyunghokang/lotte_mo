@@ -514,6 +514,7 @@ var appObj2 = {};
 		 * @param {function} dimmed.callback 창 닫힐때 콜백 함수
 		 */
 		$scope.dimmedOpen = function (dimmed) {
+			console.log('55555555555555555')
 			if (dimmed.dimmed == false) {
 				$scope.LotteDimm.dimmedOpacity = '0.0';
 			}

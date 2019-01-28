@@ -39,7 +39,7 @@
 							</p>
 						</a>
 						<div class="pr_box">
-							<span class="salePer"><em>{{item.salePer|number}}</em>%</span>
+							<span class="salePer"><em>{{item.saleRate|number}}</em>%</span>
 							<span class="price">
 								<em>{{item.discounted_price|number}}</em>원<span ng-show="item.is_sale_promotion">~</span>
 							</span>
@@ -58,7 +58,7 @@
 							<span class="score" ng-if="item.review_count > 0 && item.avg_gdas_stfd_val > 0" ng-click="productReviewClick(item)">
 								<span class="starScoreWrap"><span class="starScoreCnt" style="width:{{ ((item.avg_gdas_stfd_val*2)|ceil)*10 }}%"></span></span>
 								<span class="review"><em>({{item.review_count|number}})</em></span>
-								<span class="buyCnt">구매<em>7885</em></span>
+								<span class="buyCnt">구매<em>{{item.sale_cnt|number}}</em></span>
 							</span>
 						</div>
 						<!-- //별점/상품평 -->
@@ -93,15 +93,17 @@
 						</div> -->
 					</div>
 
-					<div ng-class="{on:showDscLayer}" class="info4">
-						<ul>
-							<li class="calendar"><span>1/26 (월) 도착예정</span></li>
-							<li ng-if="item.nhCardPrice > 0" class="card"><span>NH카드 {{item.nhCardPrice|number}}원</span></li>
-							<li ng-if="item.dlv_fee_tp=='Y'||item.isdlex_free" class="delivery"><span>무료배송</span></li>
-							<li ng-if="item.savePoint > 0" class="point"><span>{{item.savePoint|number}}점 적립</span></li>
-							<li ng-if="item.smartpick_yn == 'Y'" class="location"><span>백화점, 내 주변</span></li>
-						</ul>
-						<span ng-click="infoDscAdd()" ng-class="{on:showDscLayer}" class="btn_add">더보기</span>
+					<div class="info4">
+						<a class="infoDsc" ng-click="productDetailInfo(item,200)">
+							<ul>
+								<li class="calendar"><span>1/26 (월) 도착예정11</span></li>
+								<li ng-if="item.nhCardPrice > 0" class="card"><span>NH카드 {{item.nhCardPrice|number}}원</span></li>
+								<li ng-if="item.dlv_fee_tp=='Y'||item.isdlex_free" class="delivery"><span>무료배송</span></li>
+								<li ng-if="item.savePoint > 0" class="point"><span>{{item.savePoint|number}}점 적립</span></li>
+								<li ng-if="item.smartpick_yn == 'Y'" class="location"><span>백화점, 내 주변</span></li>
+							</ul>
+							<span class="btn_add">더보기</span>
+						</a>
 					</div>
 					
 				</div>

@@ -1279,6 +1279,8 @@ var ssoChk = false ; // SSO 토큰 로그인 체크
 			} else {
 				angular.element("#wrapper").css("height","100%");
 			}
+
+			angular.element("#lotteDimm").css("z-index",dimmed.zIndex);
 		};
 		
 		/**

@@ -201,7 +201,6 @@ var commProduct = {};
 					// 템플릿타입을 로컬스토리지로부터 가져오기
 					if(attrs.templateType == 'local'){
 						var template = LotteStorage.getLocalStorage(scope.rScope.screenID+'TemplateTypeDC');
-	                	
 	                	if(!(template == "cate_prod_image" || template == "cate_prod_single" || template == "cate_prod_double")){
 	                		template = "cate_prod_normal";
 	                	}
@@ -216,9 +215,12 @@ var commProduct = {};
 						loadTemplate(getTemplateFromType(newValue));
 					});
 				}
+
+				/* 상품기타정보 show/hide #kkh*/
 				scope.infoDscAdd = function() {
 					scope.showDscLayer = !scope.showDscLayer;
 				};
+
 				/**
 			     * @ngdoc function
 			     * @name productContainer.function:getProductImage
@@ -988,8 +990,8 @@ var commProduct = {};
 					window.location.href = LotteCommon.styleRecomUrl + "?img=" + imgUrl2 + "&"+ scope.rScope.getBaseParam(true) + "&cate=1&tclick=" + tclick;
 				};
 				
-				scope.productDetailInfo = function(item) {
-					scope.rScope.getProductDetailInfo(item, this.$index);
+				scope.productDetailInfo = function(item, zIndex) {
+					scope.rScope.getProductDetailInfo(item, this.$index, zIndex);
 				}
 
 				scope.setAgeGender = function(item, idx, flag) {
